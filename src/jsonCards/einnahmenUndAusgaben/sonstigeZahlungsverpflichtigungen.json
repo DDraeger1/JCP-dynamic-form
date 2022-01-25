@@ -1,6 +1,7 @@
 {
     "section": "Sonstige Zahlungsverpflichtigungen",
     "card": true,
+  "mobileClassname":"SonstigeZahlungsverpflichtungen",
     "items": [
         {
             "name": "vertragspartnerSonstigeZahlungsverpflichtigungen",

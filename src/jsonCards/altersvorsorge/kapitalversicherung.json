@@ -1,6 +1,7 @@
 {
     "section": "Kapitalversicherung",
     "card": true,
+    "mobileClassname":"Kapitalversicherungen",
     "items": [
         {
             "name": "artKapitalversicherung",

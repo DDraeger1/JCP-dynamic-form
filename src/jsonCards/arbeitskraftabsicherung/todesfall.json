@@ -1,6 +1,7 @@
 {
     "section": "Todesfall",
     "card": true,
+    "mobileClassname":"Risikolebensversicherung",
     "items": [
       {
         "name": "gesellschaftTodesfallHeader",

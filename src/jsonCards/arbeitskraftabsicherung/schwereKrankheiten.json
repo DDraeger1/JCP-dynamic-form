@@ -1,6 +1,7 @@
 {
     "section": "Schwere Krankheiten",
     "card": true,
+    "mobileClassname":"DreadDisease",
     "items": [
         {
             "name": "gesellschaftSchwereKrankheitenHeader",

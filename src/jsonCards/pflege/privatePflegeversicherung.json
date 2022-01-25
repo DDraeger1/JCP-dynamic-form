@@ -2,7 +2,8 @@
     "section": "Private Pflegeversicherung",
     "card": true,
     "props": { "sm": 6 },
-    "items": [
+  "mobileClassname":"PrivateKrankenPflegeversicherung",
+  "items": [
         {
             "name": "gesellschaftPrivatePflegeversicherung",
             "type": "gesellschaft",

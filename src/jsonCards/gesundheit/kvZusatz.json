@@ -1,7 +1,8 @@
 {
     "section": "KV Zusatz",
     "card": true,
-    "items": [
+  "mobileClassname":"PrivateKrankenPflegeversicherung",
+  "items": [
         {
             "name": "gesellschaftKVZusatz",
             "type": "gesellschaft",

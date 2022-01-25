@@ -1,6 +1,7 @@
 {
     "section": "BU/EU/GFK",
     "card": true,
+    "mobileClassname": "PrivateBerufsunfahigkeitsErwerbsunfahigkeitsversicherung",
     "items": [
       {
         "name": "gesellschaftBuEuGjkHeader",

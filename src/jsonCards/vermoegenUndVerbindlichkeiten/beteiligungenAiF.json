@@ -1,6 +1,7 @@
 {
   "section": "Beteiligungen / AiF",
   "card": true,
+  "mobileClassname":"Beteiligungen",
   "items": [
     {
       "name": "gesellschaftBeteiligungenAiF",

@@ -1,6 +1,7 @@
 {
   "section": "Hausrat",
   "card": true,
+  "mobileClassname":"Hausratversicherung",
   "items": [
     {
       "name": "versicherungsnehmerHausrat",

@@ -1,6 +1,7 @@
 {
     "section": "Automobilclub",
     "card": true,
+    "mobileClassname":"Automobilclub",
     "items": [
         {
             "name": "versicherungsnehmerAutomobilclub",

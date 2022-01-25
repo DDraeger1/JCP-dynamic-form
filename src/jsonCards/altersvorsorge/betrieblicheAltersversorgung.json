@@ -1,6 +1,7 @@
 {
   "section": "Betriebliche Altersversorgung",
   "card": true,
+  "mobileClassname": "BetrieblicheAltersversorgung",
   "items": [
     {
       "name": "gesellschaftBetrieblicheAltersversorgung",

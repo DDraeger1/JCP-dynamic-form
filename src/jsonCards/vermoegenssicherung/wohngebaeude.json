@@ -1,7 +1,8 @@
 {
     "section": "Wohngebäude",
     "card": true,
-    "items": [
+  "mobileClassname":"Wohngebaudeversicherung",
+  "items": [
       {
         "name": "versicherungsnehmerWohngebaudeHeader",
         "label": "Versicherungsnehmer",

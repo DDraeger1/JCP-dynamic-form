@@ -1,7 +1,8 @@
 {
     "section": "Pferdehalterhaftpflicht",
     "card": true,
-    "items": [
+  "mobileClassname":"HaftpflichtversicherungUndTierhalterpolice",
+  "items": [
         {
             "name": "versicherungsnehmerPferdehalterpflichttHeader",
             "label": "Versicherungsnehmer",

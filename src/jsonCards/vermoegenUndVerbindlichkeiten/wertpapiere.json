@@ -1,6 +1,7 @@
 {
   "section": "Wertpapiere",
   "card": true,
+  "mobileClassname":"Wertpapiere",
   "items": [
     {
       "name": "produktIDWertpapiere",

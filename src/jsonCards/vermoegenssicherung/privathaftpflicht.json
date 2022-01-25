@@ -1,7 +1,8 @@
 {
     "section": "Privathaftpflicht",
     "card": true,
-    "items": [
+  "mobileClassname":"HaftpflichtversicherungUndTierhalterpolice",
+  "items": [
         {
             "name": "versicherungsnehmerPrivathaftpflichtHeader",
             "label": "Versicherungsnehmer",

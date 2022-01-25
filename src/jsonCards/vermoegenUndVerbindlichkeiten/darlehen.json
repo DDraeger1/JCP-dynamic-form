@@ -1,7 +1,8 @@
 {
     "section": "Darlehen",
     "card": true,
-    "items": [
+  "mobileClassname":"Darlehen",
+  "items": [
         {
             "name":"produktIDDarlehen",
             "label":"Produkt ID (suite mapping)",

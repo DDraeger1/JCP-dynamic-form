@@ -1,6 +1,7 @@
 {
     "section": "Gesetzliche Krankenversicherung",
     "card": true,
+  "mobileClassname":"GesetzlicheKrankenPflegeversicherung",
     "items": [
         {
             "name": "gesellschaftGesetzlicheKrankenversicherung",

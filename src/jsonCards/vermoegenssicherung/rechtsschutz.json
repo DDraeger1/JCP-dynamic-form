@@ -1,7 +1,8 @@
 {
     "section": "Rechtschutz",
     "card": true,
-    "items": [
+  "mobileClassname":"Rechtsschutzversicherung",
+  "items": [
         {
             "name": "versicherungsnehmerRechtschutz",
             "label": "Versicherungsnehmer",

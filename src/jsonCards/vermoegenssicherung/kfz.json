@@ -1,7 +1,8 @@
 {
     "section": "KFZ",
     "card": true,
-    "items": [
+  "mobileClassname":"KfzVersicherung",
+  "items": [
         {
             "name": "AllgemeinKFZHeader",
             "label": "Allgemein",

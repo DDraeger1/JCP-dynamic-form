@@ -1,6 +1,7 @@
 {
     "section": "Rürup-Rente (Basisrente)",
     "card": true,
+    "mobileClassname":"RuerupRente",
     "items": [
         {
             "name": "produktIDRuerupRente",

@@ -1,6 +1,7 @@
 {
     "section": "Riesterrente",
     "card": true,
+    "mobileClassname":"RiesterRente",
     "items": [
             {
               "name": "produktIDRiesterrente",

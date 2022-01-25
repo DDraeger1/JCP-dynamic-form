@@ -1,6 +1,7 @@
 {
     "section": "Steuern",
     "card": true,
+  "mobileClassname":"Steuern",
     "items": [
         {
             "name": "steuerklasseSteuern",

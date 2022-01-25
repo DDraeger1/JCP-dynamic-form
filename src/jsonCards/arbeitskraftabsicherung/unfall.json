@@ -1,6 +1,7 @@
 {
   "section": "Unfall",
   "card": true,
+  "mobileClassname":"Unfallversicherung",
   "items": [
     {
       "name": "gesellschaftUnfallHeader",

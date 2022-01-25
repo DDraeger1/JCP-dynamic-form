@@ -1,7 +1,8 @@
 {
     "section": "Immobilienbestand",
     "card": true,
-    "items": [
+  "mobileClassname":"Immobilienbestand",
+  "items": [
         {
             "name": "eigentuemerImmobilienbestandHeader",
             "label": "Eigentümer",

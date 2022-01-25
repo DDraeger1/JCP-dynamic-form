@@ -1,6 +1,7 @@
 {
     "section": "Ausgaben",
     "card": true,
+    "mobileClassname":"Ausgaben",
     "items": [
         {
             "name": "personenzuordnungAusgaben",

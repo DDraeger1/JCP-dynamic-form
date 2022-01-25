@@ -1,7 +1,8 @@
 {
     "section": "Konsumkredit",
     "card": true,
-    "items": [
+  "mobileClassname":"Konsumkredit",
+  "items": [
         {
             "name":"kreditnehmerKonsumkredit",
             "label": "Personenzuordnung",

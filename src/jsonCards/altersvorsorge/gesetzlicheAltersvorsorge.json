@@ -1,7 +1,7 @@
 {
     "section": "Gesetzliche Altersvorsorge",
     "card": true,
-
+    "mobileClassname": "GesetzlicheAltersversorgung",
     "items": [
         {
             "name": "versicherungsnehmerGesetzlicheAltersvorsorgeHeader",

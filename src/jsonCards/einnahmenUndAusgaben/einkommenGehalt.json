@@ -1,6 +1,7 @@
 {
   "section": "Einkommen / Gehalt",
   "card": true,
+  "mobileClassname":"EinkommenGehalt",
   "items": [
     {
       "name": "personenzuordnungEinnahmenHeader",

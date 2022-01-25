@@ -1,6 +1,7 @@
 {
     "section": "Einkommen aus geringfügiger beschaefitgung",
     "card": true,
+    "mobileClassname":"EinkommenAusGeringfugigerBeschaftigung",
     "items": [
         {
             "name": "personenzuordnungGeringfuegigeBeschaeftigung",

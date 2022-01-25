@@ -1,6 +1,7 @@
 {
   "section": "Sachwert",
   "card": true,
+  "mobileClassname":"Sachwert",
   "items": [
     {
       "name": "vertragsinhaberSachwert",

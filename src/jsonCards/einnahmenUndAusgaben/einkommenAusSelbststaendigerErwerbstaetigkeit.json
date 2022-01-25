@@ -1,6 +1,7 @@
 {
     "section": "Einkommen aus selbstständiger Erwerbstätigkeit",
     "card": true,
+    "mobileClassname":"EinkommenAusSelbststandigerErwerbstatigkeit",
     "items": [
       {
         "name": "personenzuordnungEinkommenSelbststaendigeEwerbstaetigkeit",

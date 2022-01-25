@@ -1,6 +1,7 @@
 {
   "section": "Private Krankenversicherung",
   "card": true,
+  "mobileClassname":"PrivateKrankenPflegeversicherung",
   "items": [
     {
       "name": "gesellschaftPrivateKrankenversicherung",
