@@ -1,0 +1,193 @@
+{
+    "section": "Gesetzliche Altersvorsorge",
+    "card": true,
+
+    "items": [
+        {
+            "name": "versicherungsnehmerGesetzlicheAltersvorsorgeHeader",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerGesetzlicheAltersvorsorge",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType":"GESETZLICHE_AV",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+            "name": "rententraegerGesetzlicheAltersvorsorge",
+            "label": "Rententräger",
+            "type": "select",
+            "options": [
+                { "value": "rentenversicherung", "label": "Deutsche Rentenversicherung" },
+                { "value": "knappschaft", "label": "Knappschaft-Bahn-See" },
+                { "value": "alterskasse", "label": "Landwirtschaft Altersklasse" },
+                { "value": "versorgungswerk", "label": "Versorgungswerk" },
+                { "value": "sonstige", "label": "Sonstige" }
+            ],
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"gesellschaft"
+          },
+          {
+            "name": "fallsSonstigeGesetzlicheAltersvorsorge",
+            "label": "... falls Sonstige",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"gesellschaftSonstige"
+          },
+          {
+            "name": "datumRentenbeginnGesetzlicheAltersvorsorge",
+            "label": "Datum Rentenbeginn",
+            "type": "date",
+            "suiteValue":"rentenbeginn"
+          },
+          {
+            "name": "volleErwerbsminderungsrenteGesetzlicheAltersvorsorge",
+            "label": "Volle Erwerbsminderungsrente (€)",
+            "type": "text",
+            "suiteValue":"volleErwerbsminderungsrente"
+          },
+          {
+            "name": "wartezeitGesetzlicheAltersvorsorgeHeader",
+            "label": "Wartezeit",
+            "type": "header"
+          },
+          {
+            "name": "wartezeitGesetzlicheAltersvorsorge",
+            "label": "Wartezeit EM/BU (60 Monate) erfüllt",
+            "type": "select",
+            "options": [
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }],
+                "props": { "sm": 6,
+                  "xs":6 },
+                  "suiteValue":"wartezeitErfuellt"
+          },
+          {
+            "name": "fallsNeinAnzahlMonateWartezeitGesetzlicheAltersvorsorge",
+            "label": "... falls nein Anzahl Monate",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"wartezeitMonate"
+          },
+          {
+            "name": "heutigerAnspruchWartezeitGesetzlicheAltersvorsorge",
+            "label": "Heutiger Anspruch (Renteninformation) (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"renteninformation"
+          },
+          {
+            "name": "weitereEinzahlungenWartezeitGesetzlicheAltersvorsorge",
+            "label": "Bei weiteren Einzahlungen (ohne Rentenanpassung) (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"weiterenEinzahlungen"
+          },
+          {
+            "name": "rentenschätzungGesetzlicheAltersvorsorgeHeader",
+            "label": "Rentenschätzung",
+            "type": "header"
+          },
+          {
+            "name": "artRentenschaetzungGesetzlicheAltersvorsorge",
+            "label": "Art der Rentenschätzung",
+            "type": "select",
+            "options": [
+                { "value": "BISHER_GELEISTET", "label": "Bisher geleistete Arbeitsjahre" },
+                { "value": "GESAMTANZAHL_ARBEITSJAHRE", "label": "Gesamtanzahl Arbeitsjahre"},
+                { "value": "IGNORE", "label": "Reguläre Rentenschätzung (ohne Berücksichtigung der angegebenen Arbeitsjahre)" }],
+                "suiteValue":"rentenschaetzungArt"
+          },
+          {
+            "name": "frageRentenschaetzungGesetzlicheAltersvorsorge",
+            "label": "Seit wie vielen Jahren sind Sie sozialversicherungspflichtig berufstätig?",
+            "type": "paragraph"
+         },
+         {
+           "name": "berufstaetigSeitRentenschaetzungGesetzlicheAltersvorsorge",
+           "label": "Berufstätig seit (in Jahren)",
+           "type": "text",
+           "suiteValue":"jahrenBerufstaetig"
+        },
+        {
+          "name": "frageRentenschaetzungGesetzlicheAltersvorsorge",
+          "label": "Gesamtanzahl zu berücksichtigender, sozialversicherungspflichtiger Arbeitsjahre",
+          "type": "paragraph"
+       },
+       {
+         "name": "gesamtanzahlArbeitsjahreRentenschaetzungGesetzlicheAltersvorsorge",
+         "label": "Gesamtanzahl Arbeitsjahre",
+         "type": "text",
+         "suiteValue":"arbeitsjahreGesamt"
+      },
+      {
+        "name": "rentenschaetzungDurchfuehrenRentenschaetzungGesetzlicheAltersvorsorge",
+        "label": "Rentenschätzung Durchführen (Button)",
+        "type": "paragraph"
+     },
+     {
+       "name": "datumLetzteRenteninformationBescheidRentenschaetzungGesetzlicheAltersvorsorge",
+       "label": "Datum letzte/r Renteninformation/-bescheid",
+       "type": "date",
+       "suiteValue":"letzteRenteninformation"
+    },
+    {
+      "name": "beiSelbststaendigenGesetzlicheAltersvorsorgeHeader",
+      "label": "Bei Selbstständigen:",
+      "type": "header"
+   },
+   {
+     "name": "weiterhinBeitraegeGRVBeiSelbststaendigenGesetzlicheAltersvorsorge",
+     "label": "Leisten Sie weiterhin Beiträge in die GRV",
+     "type": "select",
+     "options":[
+         {"value":false, "label":"Nein"},
+         {"value":true, "label":"Ja"}
+     ],
+     "props": { "sm": 6,
+      "xs":6 },
+      "suiteValue":"selbstGRV"
+  },
+  {
+    "name": "fallsJaBeiSelbststaendigenGesetzlicheAltersvorsorge",
+    "label": "... falls Ja (in EURO)",
+    "type": "text",
+    "props": { "sm": 6,
+      "xs":6 },
+      "suiteValue":"selbstGRVMtl"
+    
+ },
+ {
+   "name": "ununterbrochenSeitBeiSelbststaendigenGesetzlicheAltersvorsorge",
+   "label": "ununterbrochen seit",
+   "type": "date" ,
+   "suiteValue":"selbstGRVSeit"
+},
+{
+  "name": "frageBeiSelbststaendigenGesetzlicheAltersvorsorge",
+  "label": "Sofern keine Renteninformation vorliegt: Wie hoch war ca. das durchschnittliche Bruttojahreseinkommen vor der Selbstständigkeit?",
+  "type": "paragraph" 
+},
+{
+  "name": "durchschnittlicheBruttojahrenseinkommenBeiSelbststaendigenGesetzlicheAltersvorsorge",
+  "label": "Durchschnittliche Bruttojahrenseinkommen vor der Selbstständigkeit (€)",
+  "type": "text" ,
+  "suiteValue":"selbstBruttoJahreseinkommen"
+},
+{
+  "name": "anzahlJahreBeiSelbststaendigenGesetzlicheAltersvorsorge",
+  "label": "für ca. Anzahl Jahre",
+  "type": "text",
+  "suiteValue":"selbstBruttoJahreseinkommenJahre"
+}
+        ]
+        
+    }

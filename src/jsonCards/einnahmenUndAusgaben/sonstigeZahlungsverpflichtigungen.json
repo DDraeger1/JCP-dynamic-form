@@ -1,0 +1,85 @@
+{
+    "section": "Sonstige Zahlungsverpflichtigungen",
+    "card": true,
+    "items": [
+        {
+            "name": "vertragspartnerSonstigeZahlungsverpflichtigungen",
+            "label": "Vertragspartner",
+            "type": "selectMandant",
+            "versicherungsnehmerBeide":"true",
+            "tarifType":"SONSTIGE_ZAHLUNG",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+              "name":"artSonstigeZahlungsverpflichtigungen",
+              "label":"Art",
+              "type":"text",
+              "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"art"
+          },
+          {
+              "name":"leasinggeberSonstigeZahlungsverpflichtigungen",
+              "label":"Leasinggeber",
+              "type":"text",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"gesellschaft"
+          },
+          {
+              "name":"verwendungszweckSonstigeZahlungsverpflichtigungen",
+              "label":"Verwendungszweck",
+              "type":"text",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"verwendungszweck"
+          },
+          {
+              "name":"vertragsnummerSonstigeZahlungsverpflichtigungen",
+              "label":"Vertragsnummer",
+              "type":"text",
+              "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"versicherungsnummer"
+          },
+          {
+              "name":"beginnZahlungSonstigeZahlungsverpflichtigungen",
+              "label":"Beginn der Zahlung",
+              "type":"date",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"beginZahlung"
+          },
+          {
+              "name":"endeZahlungSonstigeZahlungsverpflichtigungen",
+              "label":"Ende der Zahlung",
+              "type":"date",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"endeZahlung"
+          },
+          {
+              "name":"rateSonstigeZahlungsverpflichtigungen",
+              "label":"Rate",
+              "type":"text",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"rate"
+          },
+          {
+              "name":"zahlweiseSonstigeZahlungsverpflichtigungen",
+              "label":"Zahlweise",
+              "type":"select",
+              "props":{"required":true, "sm":6,
+                "xs":6},
+              "options": [
+                { "value": "MONATLICH", "label": "Monatlich" },
+                { "value": "QUARTAL", "label": "Quartal" },
+                { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+                { "value": "JAEHRLICH", "label": "Jährlich" }
+              ],
+              "suiteValue":"zahlweise"
+          }
+    ]
+}

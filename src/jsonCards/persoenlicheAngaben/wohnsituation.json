@@ -1,0 +1,73 @@
+{
+    "section": "Wohnsituation",
+    "card": true,
+
+    "items": [
+          {
+            "name": "wohnortWohnsituation",
+            "label": "Sie wohnen in",
+            "type": "select",
+
+      "options": [
+        { "value": "WOHNUNG", "label": "Eine Wohnung" },
+        { "value": "HAUS", "label": "Ein Haus" }
+      ],
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+      {
+        "name": "mieteEigentumWohnsituation",
+        "label": "Miete oder Eigentum",
+        "type": "select",
+        "props": {
+          "sm": 6,
+          "xs":6
+        },
+  "options": [
+    { "value": true, "label": "Miete" },
+    { "value": false, "label": "Eigentum" }
+  ]
+},
+{
+    "name": "personenzuordnung",
+    "label": "Personenzuordnung",
+    "type": "header"
+  },
+  {
+    "name": "personenzuordnungWohnsituation",
+    "label": "Personenzuordnung (Suite Mapping)",
+    "type": "selectMandant",
+    "tarifType":"WOHNSITUATION",
+    "props": {
+      "required": true
+    }
+},
+{
+    "name": "mieteProMonatWohnsituation",
+    "label": "Miete: Wohnkosten pro Monat",
+    "type": "header"
+  },
+  {
+    "name": "warmmieteMieteProMonatWohnsituation",
+    "label": "Warmmiete (€)",
+    "type": "text"
+  },
+  {
+    "name": "kaltmieteMieteProMonatWohnsituation",
+    "label": "Kaltmiete (€)",
+    "type": "text"
+  },
+  {
+    "name": "nebenkostenMieteProMonatWohnsituation",
+    "label": "Nebenkosten (€)",
+    "type": "text"
+  },
+  {
+    "name": "wohngeldMieteProMonatWohnsituation",
+    "label": "Wohngeld (€)",
+    "type": "text"
+  }
+    ]
+}

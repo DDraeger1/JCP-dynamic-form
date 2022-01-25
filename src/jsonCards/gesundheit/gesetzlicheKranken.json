@@ -1,0 +1,127 @@
+{
+    "section": "Gesetzliche Krankenversicherung",
+    "card": true,
+    "items": [
+        {
+            "name": "gesellschaftGesetzlicheKrankenversicherung",
+            "type": "gesellschaft",
+            "suiteValue":"gesellschaft"
+          },
+          {
+            "name": "tarifbezeichnungGesetzlicheKrankenversicherung",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 } ,
+              "suiteValue":"tarifBezeichnung"
+          },
+          {
+            "name": "vertragsnummerGesetzlicheKrankenversicherung",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props":{"required":true, "sm":6,
+              "xs":6},
+              "suiteValue":"versicherungsnummer"
+          },
+          {
+            "name": "vertragsnehmerGesetzlicheKrankenversicherungHeader",
+            "label": "Vertragsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "vertragsnehmerGesetzlicheKrankenversicherung",
+            "label": "Vertragsnehmer",
+            "type": "selectMandant",
+            "tarifType":"PFLEGEKOSTEN",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+            "name": "statusGesetzlicheKrankenversicherung",
+            "label": "status",
+            "type": "select",
+            "options":[
+                { "value": "PFLICHTVERSICHERT", "label": "Pflichtv." },
+                { "value": "FAMILIENVERSICHERT", "label": "Familienv." },
+                { "value": "FREIWILLIG_VERSICHERT", "label": "Freiwilligen V." }
+            ],
+            "suiteValue":"status"
+          },
+          {
+            "name": "mitKTGGesetzlicheKrankenversicherung",
+            "label": "mit KTG",
+            "type": "checkbox",
+            "suiteValue":"mitKT"
+          },
+          {
+            "name": "aufKTHoeheVonGesetzlicheKrankenversicherung",
+            "label": "auf KT in Höhe von (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kTHoehe"
+          },
+          {
+            "name": "abDemGesetzlicheKrankenversicherung",
+            "label": "ab dem (Tag)",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"kTTag"
+          },
+          {
+            "name": "GKVLeistungsbonusGesetzlicheKrankenversicherung",
+            "label": "GKV Leistungsbonus (€) (p.a.)",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"gkvLeistungsbonus"
+          },
+          {
+            "name": "vertragsbeginnGesetzlicheKrankenversicherung",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"versicherungsbeginn"
+          },
+          {
+            "name": "GKVZusatzbeitragGesetzlicheKrankenversicherung",
+            "label": "GKV-Zusatzbeitrag",
+            "type": "checkbox",
+            "suiteValue":"gkvZusatzBeitrag"
+          },
+          {
+            "name": "mtlGesetzlicheKrankenversicherung",
+            "label": "mtl. (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"gkvZusatz"
+          },
+          {
+            "name": "zusatzbeitragInProzentGesetzlicheKrankenversicherung",
+            "label": "Zusatzbeitrag (in %)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"gkvZusatzsatz"
+          },
+          {
+            "name": "vonBusprogrammGesetzlicheKrankenversicherung",
+            "label": "Bonusprogramm",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"bonusprogramm"
+          },
+          {
+            "name": "zusatzleistungGesetzlicheKrankenversicherung",
+            "label": "Zusatzleistung",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"zusatzleistungen"
+          }
+        ]
+        }

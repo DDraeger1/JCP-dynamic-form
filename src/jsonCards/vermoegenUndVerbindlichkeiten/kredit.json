@@ -1,0 +1,147 @@
+{
+    "section": "Konsumkredit",
+    "card": true,
+    "items": [
+        {
+            "name":"kreditnehmerKonsumkredit",
+            "label": "Personenzuordnung",
+            "type": "selectMandant",
+            "tarifType":"KONSUMKREDIT",
+            "versicherungsnehmerBeide":"true",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+        },
+        {
+            "name":"gesellschaftKonsumkreditHeader",
+            "label":"Gesellschaft",
+            "type":"header"
+        },
+        {
+            "name":"gesellschaftKonsumkredit",
+            "type":"gesellschaft",
+            "props":{"required":true, "sm":6,
+                "xs":6},
+                "suiteValue":"gesellschaft"
+        },
+        {
+            "name":"tarifbezeichnungKonsumkredit",
+            "label":"Tarifbezeichnung",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"tarifBezeichnung"
+        },
+        {
+            "name":"vertragsnummerKonsumkredit",
+            "label":"Vertragsnummer",
+            "type":"text",
+            "props":{"required":true, "sm":6,
+                "xs":6},
+                "suiteValue":"versicherungsnummer"
+        },
+        {
+            "name":"verwendungsKonsumkredit",
+            "label":"Verwendung",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"verwendung"
+        },
+        {
+            "name":"vertragslaufzeitKonsumkreditHeader",
+            "label":"Vertragslaufzeit",
+            "type":"header"
+        },
+        {
+            "name":"beginnKonsumkredit",
+            "label":"Beginn",
+            "type":"date",
+            "props":{"required":true, "sm":6,
+                "xs":6},
+                "suiteValue":"versicherungsbeginn"
+        },
+        {
+            "name":"ablaufKonsumkredit",
+            "label":"Ablauf",
+            "type":"date",
+            "props":{"required":true, "sm":6,
+                "xs":6},
+                "suiteValue":"versicherungsende"
+        },
+        {
+            "name":"zahlweiseKonsumkredit",
+            "label":"Zahlweise",
+            "type":"select",
+            "props":{"required":true, "sm":6,
+                "xs":6},
+            "options": [
+                { "value": "MONATLICH", "label": "Monatlich" },
+                { "value": "QUARTAL", "label": "Quartal" },
+                { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+                { "value": "JAEHRLICH", "label": "Jährlich" }
+            ],
+            "suiteValue":"zahlweise"
+        },
+        {
+            "name":"rateMtlKonsumkredit",
+            "label":"Rate mtl.",
+            "type":"text",
+            "props":{"required":true, "sm":6,
+                "xs":6},
+                "suiteValue":"rate"
+        },
+        {
+            "name":"anfangshoeheMtlKonsumkredit",
+            "label":"Anfangshöhe",
+            "type":"text",
+            "props":{"required":true, "sm":6,
+                "xs":6},
+                "suiteValue":"anfangshoehe"
+        },
+        {
+            "name":"restschuldKonsumkredit",
+            "label":"Restschuld",
+            "type":"text",
+            "props":{"required":true, "sm":6,
+                "xs":6},
+                "suiteValue":"restschuld"
+        },
+        {
+            "name":"standVomKonsumkredit",
+            "label":"Stand Vom",
+            "type":"date",
+            "suiteValue":"standVom"
+        },
+        {
+            "name":"zinssatzKonsumkreditHeader",
+            "label":"Zinssatz",
+            "type":"header"
+        },
+        {
+            "name":"zinssatzSelectKonsumkredit",
+            "label":"Zinssatz",
+            "type":"select",
+            "options":[
+                { "value": "nominal", "label": "Nominal" },
+                { "value": "effektiv", "label": "Effektiv" }
+            ],
+            "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"zinssatzTyp"
+        },
+        {
+            "name":"zinssatzKonsumkredit",
+            "label":"Zinssatz (%)",
+            "type":"text",
+            "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"zinssatz"
+        },
+        {
+            "name":"zinsfestschreibungKonsumkredit",
+            "label":"Zinsfestschreibung",
+            "type":"date",
+            "suiteValue":"zinsfestschreibung"
+        }
+    ]
+}

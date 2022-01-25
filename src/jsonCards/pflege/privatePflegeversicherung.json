@@ -1,0 +1,278 @@
+{
+    "section": "Private Pflegeversicherung",
+    "card": true,
+    "props": { "sm": 6 },
+    "items": [
+        {
+            "name": "gesellschaftPrivatePflegeversicherung",
+            "type": "gesellschaft",
+            "suiteValue":"gesellschaft"
+          },
+          {
+            "name": "tarifbezeichnungPrivatePflegeversicherung",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"tarifBezeichnung"
+          },
+          {
+            "name": "vertragsnummerPrivatePflegeversicherung",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props":{"required":true, "sm":6,
+              "xs":6},
+              "suiteValue":"versicherungsnummer"
+          },
+          {
+            "name": "ArtPrivatePflegeversicherung",
+            "label": "Art",
+            "type": "header"
+          },
+          {
+            "name": "artPrivatePflegeversicherung",
+            "label": "Art",
+            "type": "select",
+            "options":[
+                { "value": "tagegeld", "label": "Pflege-Tagegeld" },
+                { "value": "kosten", "label": "Pflege-Kosten" },
+                { "value": "renten", "label": "Pflege-Rentenversicherung" }
+            ],
+            "suiteValue":"art"
+          },
+          {
+            "name": "versicherungsnehmerPrivatePflegeversicherungHeader",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerPrivatePflegeversicherung",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType":"PFLEGEKOSTEN",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+            "name": "versichertePersonPrivatePflegeversicherungHeader",
+            "label": "Versicherte Person",
+            "type": "header"
+          },
+          {
+            "name": "versichertePersonPrivatePflegeversicherung",
+            "label": "Versicherte Person",
+            "type": "selectVersichert",
+            "suiteValue":"versichertePersonId"
+          },
+          {
+            "name": "vertragslaufzeitPrivatePflegeversicherungHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitPrivatePflegeversicherung",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsbeginn"
+          },
+          {
+            "name": "vertragsendeVertragslaufzeitPrivatePflegeversicherung",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsende"
+          },
+          {
+            "name": "zahlweiseVertragslaufzeitPrivatePflegeversicherung",
+            "label": "Zahlweise",
+            "type": "select",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+            "options": [
+              { "value": "MONATLICH", "label": "Monatlich" },
+              { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+              { "value": "QUARTAL", "label": "Quartal" },
+              { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+              { "value": "JAEHRLICH", "label": "Jährlich" }],
+              "suiteValue":"zahlweise"
+          },
+          {
+            "name": "beitragVertragslaufzeitPrivatePflegeversicherung",
+            "label": "Beitrag (€)",
+            "type": "text",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+              "suiteValue":"beitrag"
+          },
+          {
+            "name": "staatlichGefoerderVertragslaufzeitPrivatePflegeversicherung",
+            "label": "staatlich gefördert (Pflege-Bahr)",
+            "type": "checkbox",
+            "suiteValue":"staatlichGefoerdert"
+          },
+          {
+            "name": "leistungPrivatePflegeversicherungHeader",
+            "label": "Leistung",
+            "type": "header"
+          },
+          {
+            "name": "leistungPrivatePflegeversicherung",
+            "label": "Leistung",
+            "type": "text",
+            "suiteValue":"leistung"
+          },
+          {
+            "name": "proLeistungPrivatePflegeversicherung",
+            "label": "...pro",
+            "type": "paragraph"
+          },
+          {
+            "name": "tagLeistungPrivatePflegeversicherung",
+            "label": "Tag",
+            "type": "checkbox",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"leistungProTag"
+          },
+          {
+            "name": "monatLeistungPrivatePflegeversicherung",
+            "label": "Monat",
+            "type": "checkbox",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"!leistungProTag"
+          },
+          {
+            "name": "dynamikLeistungPrivatePflegeversicherung",
+            "label": "Dynamik",
+            "type": "select",
+            "options": [
+              { "value": false, "label": "Nein" },
+              { "value": true, "label": "Ja" }
+            ],
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"dynamik"
+          },
+          {
+            "name": "fallsDynamikLeistungPrivatePflegeversicherung",
+            "label": "falls Dynamik",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"dynamikProzent"
+          },
+          {
+            "name": "jePflegegradStationaerPrivatePflegeversicherungHeader",
+            "label": "Je Pflegegrad Stationär",
+            "type": "header"
+          },
+          {
+            "name": "stationaerAmbulantJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "stationär = ambulant",
+            "type": "checkbox",
+            "suiteValue":"ambulantEqStationaer"
+          },
+          {
+            "name": "leisungInJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "Leisung in",
+            "type": "paragraph"
+          },
+          {
+            "name": "EuroJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "€",
+            "type": "checkbox",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"leistungIn"
+          },
+          {
+            "name": "prozentJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "%",
+            "type": "checkbox",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"leistungIn"
+          },
+          {
+            "name": "einsJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "1",
+            "type": "text",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"pflegegrad1Stationaer"
+          },
+          {
+            "name": "zweiJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "2",
+            "type": "text",
+            "props": { "sm": 4 ,
+              "xs":4},
+              "suiteValue":"pflegegrad2Stationaer"
+          },
+          {
+            "name": "dreiJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "3",
+            "type": "text",
+            "props": { "sm": 4 ,
+              "xs":4},
+              "suiteValue":"pflegegrad3Stationaer"
+          },
+          {
+            "name": "vierJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "4",
+            "type": "text",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"pflegegrad4Stationaer"
+          },
+          {
+            "name": "fuenfJePflegegradStationaerPrivatePflegeversicherung",
+            "label": "5",
+            "type": "text",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"pflegegrad5Stationaer"
+          },
+          {
+            "name": "leistungJePflegestufePrivatePflegeversicherungHeader",
+            "label": "Leistung je Pflegestufe (bis 2016)",
+            "type": "header"
+          },
+          {
+            "name": "nullLeistungJePflegestufePrivatePflegeversicherung",
+            "label": "0",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"pflegestufe"
+          },
+          {
+            "name": "einsLeistungJePflegestufePrivatePflegeversicherung",
+            "label": "I",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"pflegestufe1"
+          },
+          {
+            "name": "zweiLeistungJePflegestufePrivatePflegeversicherung",
+            "label": "II",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"pflegestufe2"
+          },
+          {
+            "name": "dreiLeistungJePflegestufePrivatePflegeversicherung",
+            "label": "III",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"pflegestufe3"
+          }
+        ]
+    }

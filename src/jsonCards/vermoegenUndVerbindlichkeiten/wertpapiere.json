@@ -1,0 +1,175 @@
+{
+  "section": "Wertpapiere",
+  "card": true,
+  "items": [
+    {
+      "name": "produktIDWertpapiere",
+      "label": "Produkt ID (suite mapping)",
+      "type": "select",
+      "props": { "required": true },
+      "options": [{ "value": 0, "label": "Produkt ID" }]
+    },
+
+    {
+      "name": "tarifbezeichnungWertpapiere",
+      "label": "Tarifbezeichnung",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "vertragsnummerWertpapiere",
+      "label": "Vertragsnummer",
+      "props": { "required": true, "sm":6,
+        "xs":6 },
+      "type": "text"
+    },
+    {
+      "name": "vertragspartnerWertpapiereHeader",
+      "label": "Vertragspartner",
+      "type": "header"
+    },
+    {
+      "name": "vertragspartnerWertpapiere",
+      "label": "Vertragspartner (suite mapping)",
+      "type": "select",
+      "props": { "required": true ,
+        "xs":6},
+      "options": [{ "value": 0, "label": "Mandant" }]
+    },
+    {
+      "name": "WKNISINVertragspartnerWertpapiere",
+      "label": "WKN/ISIN",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "anzahlVertragspartnerWertpapiere",
+      "label": "Anzahl (Stück)",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "anlageartVertragspartnerWertpapiere",
+      "label": "Anlageart",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "verwendungszweckVertragspartnerWertpapiere",
+      "label": "Verwendungszweck",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "anlagebetragVertragspartnerWertpapiere",
+      "label": "Anlagebetrag",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "wertpapiereNameVertragspartnerWertpapiere",
+      "label": "Wertpapiere Name",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "anteileVertragspartnerWertpapiere",
+      "label": "Anteile",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "jahrDerZeichnungVertragspartnerWertpapiere",
+      "label": "Jahr der Zeichnung",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "aktuellerWertVertragspartnerWertpapiere",
+      "label": "Aktueller Wert",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "vertragslaufzeitWertpapiereHeader",
+      "label": "Vertragslaufzeit",
+      "type": "header"
+    },
+    {
+      "name": "vertragsbeginnVertragslaufzeitWertpapiere",
+      "label": "Vertragsbeginn",
+      "type": "date",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "vertragsendeVertragslaufzeitWertpapiere",
+      "label": "Vertragsende",
+      "type": "date",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "VWLWertpapiereHeader",
+      "label": "VWL",
+      "type": "header"
+    },
+    {
+      "name": "VWLWertpapiere",
+      "label": "Vwl",
+      "type": "checkbox"
+    },
+    {
+      "name": "arbeitnehmeranteilVWLWertpapiere",
+      "label": "Arbeitnehmeranteil (€)",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "arbeitgeberanteilVWLWertpapiere",
+      "label": "Arbeitgeberanteil (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "summeVWLWertpapiere",
+      "label": "Summe (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "zahlweiseVWLWertpapiere",
+      "label": "Zahlweise",
+      "type": "select",
+      "props":{"required":true,"sm":6,
+        "xs":6},
+      "options": [
+          { "value": 0, "label": "Monatlich"},
+          { "value": 1, "label": "Quartal"},
+          { "value": 2, "label": "Halbjährlich"},
+          { "value": 3, "label": "Jährlich"},
+          { "value": 3, "label": "Einmalig"}
+
+      ]
+    },
+    {
+      "name": "beitragVWLWertpapiereHeader",
+      "label": "Beitrag",
+      "props":{"required":true},
+      "type": "text"
+    }
+  ]
+}

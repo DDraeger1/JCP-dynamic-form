@@ -1,0 +1,244 @@
+{
+    "section": "Rechtschutz",
+    "card": true,
+    "items": [
+        {
+            "name": "versicherungsnehmerRechtschutz",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerRechtschutz",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType":"RECHTSSCHUTZ",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmer.id"
+          },
+          {
+            "name": "gesellschaftRechtschutzHeader",
+            "label": "Gesellschaft",
+            "type": "header"
+          },
+          {
+            "name": "gesellschaftRechtschutz",
+            "type": "gesellschaft",
+            "suiteValue":"gesellschaft"
+          },
+          {
+            "name": "tarifbezeichnungGesellschaftRechtschutz",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"tarifBezeichnung"
+          },
+          {
+            "name": "vertragsnummerGesellschaftRechtschutz",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props": { "required": true, "sm":6 ,
+              "xs":6},
+              "suiteValue":"versicherungsnummer"
+          },
+          {
+            "name": "tarifGesellschaftRechtschutz",
+            "label": "Tarif",
+            "type": "select",
+            "options": [
+                { "value": "single", "label": "Single" },
+                { "value": "familie", "label": "Familie" },
+                { "value": "landwirt", "label": "Landwirt" },
+                { "value": "selbstaendig", "label": "Selbständig" },
+                { "value": "aerzte", "label": "Ärzte" }
+            ],
+            "suiteValue":"tarifgruppe"
+          },
+          {
+            "name": "tarifOeffentlicherDienstGesellschaftRechtschutz",
+            "label": "Tarif 'Öffentlicher Dienst'",
+            "type": "checkbox",
+            "suiteValue":"oeffentlicherDienst"
+          },
+          {
+            "name": "rechtschutzpaketDeckumfangRechtschutzHeader",
+            "label": "Rechtschutzpaket Deckumfang",
+            "type": "header"
+          },
+          {
+            "name": "deckungsumfangRechtschutzpaketDeckumfangRechtschutz",
+            "label": "Deckungsumfang",
+            "type": "paragraph"
+          },
+          {
+            "name": "privatRechtschutzpaketDeckumfangRechtschutz",
+            "label": "Privat",
+            "type": "checkbox",
+            "props": { "sm": 4 ,
+              "xs":4},
+              "suiteValue":"privat"
+          },
+          {
+            "name": "berufRechtschutzpaketDeckumfangRechtschutz",
+            "label": "Beruf",
+            "type": "checkbox",
+            "props": { "sm": 4 ,
+              "xs":4},
+              "suiteValue":"beruf"
+          },
+          {
+            "name": "verkehrRechtschutzpaketDeckumfangRechtschutz",
+            "label": "Verkehr",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"verkehr"
+          },
+          {
+            "name": "wuGRechtschutzpaketDeckumfangRechtschutz",
+            "label": "WuG",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"wug"
+          },
+          {
+            "name": "beratungRechtschutzpaketDeckumfangRechtschutz",
+            "label": "Beratung",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"beratung"
+          },
+          {
+            "name": "spezialStrRechtschutzpaketDeckumfangRechtschutz",
+            "label": "Spezial Str...",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"strafrechtsschutz"
+          },
+          {
+            "name": "vermieterRechtschutzpaketDeckumfangRechtschutz",
+            "label": "Vermieter",
+            "type": "checkbox",
+            "props": { "sm": 4 ,
+              "xs":4},
+              "suiteValue":"vermieter"
+          },
+          {
+            "name": "sonstigesRechtschutzpaketDeckumfangRechtschutz",
+            "label": "Sonstiges",
+            "type": "checkbox",
+            "props": { "sm": 4 ,
+              "xs":4},
+              "suiteValue":"sonstiges"
+          },
+          {
+            "name": "fallsSonstigesRechtschutzpaketDeckumfangRechtschutz",
+            "label": "...falls Sonstiges",
+            "type": "text",
+            "suiteValue":"sonstiges"
+          },
+          {
+            "name": "telefonischeAnwaltlicheErstberatungRechtschutzpaketDeckumfangRechtschutz",
+            "label": "telefonische anwaltliche Erstberatung",
+            "type": "paragraph"
+          },
+          {
+            "name": "versichertRechtschutzpaketDeckumfangRechtschutz",
+            "label": "versichert",
+            "type": "checkbox",
+            "suiteValue":"telAnwaltErstberatung"
+          },
+          {
+            "name": "versicherungssummeRechtschutzHeader",
+            "label": "Versicherungssumme",
+            "type": "header"
+          },
+          {
+            "name": "versicherungssummeRechtschutz",
+            "label": "Versicherungssumme (€)",
+            "type": "text",
+            "suiteValue":"versicherungssumme"
+          },
+          {
+            "name": "unbegrenztVersicherungssummeRechtschutz",
+            "label": "unbegrenzt",
+            "type": "checkbox",
+            "suiteValue":"unbegrenzt"
+          },
+          {
+            "name": "selbstbeteiligungVersicherungssummeRechtschutz",
+            "label": "Selbstbeteiligung (€)",
+            "type": "text",
+            "suiteValue":"sb"
+          },
+          {
+            "name": "versicherungssummeRechtschutzHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitRechtschutz",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"versicherungsbeginn"
+          },
+          {
+            "name": "vertragsendeVertragslaufzeitRechtschutz",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"versicherungsende"
+          },
+          {
+            "name": "beitragVertragslaufzeitRechtschutz",
+            "label": "Beitrag (€)",
+            "type": "text",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+              "suiteValue":"beitrag"
+          },
+          {
+            "name": "zahlweiseVertragslaufzeitRechtschutz",
+            "label": "Zahlweise",
+            "type": "select",
+            "props": { "required": true, "sm":6 ,
+              "xs":6},
+            "options": [
+              { "value": "MONATLICH", "label": "Monatlich" },
+              { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+              { "value": "QUARTAL", "label": "Quartal" },
+              { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+              { "value": "JAEHRLICH", "label": "Jährlich" }],
+              "suiteValue":"zahlweise"
+          },
+          {
+            "name": "VorschaedenRechtschutzHeader",
+            "label": "Vorschäden",
+            "type": "header"
+          },
+          {
+            "name": "anzahlVorschaedenRechtschutz",
+            "label": "Anzahl Vorschäden letzten 5 Jahre",
+            "type": "text",
+            "suiteValue":"vorschaedenAnzahl"
+          },
+          {
+            "name": "hoeheVorschaedenRechtschutz",
+            "label": "Höhe der Vorschäden (€)",
+            "type": "text",
+            "suiteValue":"vorschaedenHoehe"
+          },
+          {
+            "name": "listeVorschaedenRechtschutz",
+            "label": "Liste der Vorschäden (Datum/Art/Höhe)",
+            "type": "text",
+            "suiteValue":"vorschaedenNotiz"
+          }
+    ]
+}

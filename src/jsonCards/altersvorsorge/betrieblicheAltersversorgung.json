@@ -1,0 +1,376 @@
+{
+  "section": "Betriebliche Altersversorgung",
+  "card": true,
+  "items": [
+    {
+      "name": "gesellschaftBetrieblicheAltersversorgung",
+      "type": "gesellschaft",
+      "props": { "required": true },
+      "suiteValue":"gesellschaft"
+    },
+    {
+      "name": "tarifbezeichnungBetrieblicheAltersversorgung",
+      "label": "Tarifbezeichnung",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"tarifBezeichnung"
+    },
+    {
+      "name": "vertragsnummerBetrieblicheAltersversorgung",
+      "label": "Vertragsnummer",
+      "type": "text",
+      "props": { "required": true, "sm":6,
+        "xs":6 },
+        "suiteValue":"versicherungsnummer"
+    },
+    {
+      "name": "versicherungsnehmerBetrieblicheAltersversorgung",
+      "label": "Versicherungsnehmer",
+      "type": "selectMandant",
+      "tarifType":"DIREKT_3",
+      "props": { "required": true },
+      "suiteValue":"versicherungsnehmerId"
+    },
+    {
+      "name": "versichertePersonBetrieblicheAltersversorgungHeader",
+      "label": "Versicherte Person",
+      "type": "header"
+    },
+    {
+      "name": "versichertePersonBetrieblicheAltersversorgung",
+      "label": "Versicherte Person",
+      "type": "selectVersichert",
+      "props": { "required": true },
+      "suiteValue":"versichertePerson"
+    },
+    {
+      "name": "artVersichertePersonBetrieblicheAltersversorgung",
+      "label": "Art",
+      "type": "select",
+      "props": { "required": true, "sm":6,
+        "xs":6 },
+      "options": [{ "value": "klassisch", "label": "Klassisch" },
+        { "value": "fondsgebunden", "label": "Fondsgebunden" }],
+        "suiteValue":"art"
+    },
+    {
+      "name": "durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung",
+      "label": "Durchführungsweg",
+      "type": "select",
+      "props": { "required": true, "sm":6,
+        "xs":6 },
+      "options": [
+        { "value": "DIREKT_3", "label": "Direktversicherung (§ 3 Nr. 63 EStG)" },
+        { "value": "DIREKT_40", "label": "Direktversicherung (§ 40b EStG)" },
+        { "value": "DIREKTZUSAGE", "label": "Direktzusage" },
+        { "value": "PENSIONSFONDS_3", "label": "Pensionsfond (§ 3 Nr. 63 EStG)" },
+        { "value": "PENSIONSKASSE_3", "label": "Pensionskasse (§ 3 Nr. 63 EStG)" },
+        { "value": "PENSIONSKASSE_40", "label": "Pensionskasse (§ 40b EStG)" },
+        { "value": "UNTERSTUETZUNGSKASSE", "label": "Unterstützungskasse" }
+      ],
+      "suiteValue":"tarifTypeId"
+    },
+    {
+      "name": "beitragBetrieblicheAltersversorgungHeader",
+      "label": "Beitrag",
+      "type": "header"
+    },
+    {
+      "name": "beitragANAnteilBeitragBetrieblicheAltersversorgung",
+      "label": "Beitrag AN Anteil",
+      "type": "text",
+      "props": { "required": true, "sm":6,
+        "xs":6 },
+        "suiteValue":"arbeitnehmeranteil"
+    },
+    {
+      "name": "beitragAGAnteilBeitragBetrieblicheAltersversorgung",
+      "label": "Beitrag AG Anteil",
+      "type": "text",
+      "props": { "required": true, "sm":6,
+        "xs":6 },
+        "suiteValue":"arbeitgeberanteil"
+    },
+    {
+      "name": "VWLArbeitgeberbeitragBetrieblicheAltersversorgung",
+      "label": "VWL Arbeitgeberbeitrag (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"vwlArbeitgeber"
+    },
+    {
+      "name": "VWLArbeitnehmerbeitragBetrieblicheAltersversorgung",
+      "label": "VWL Arbeitnehmerbeitrag (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"vwlArbeitnehmer"
+    },
+    {
+      "name": "beitragIintegrierteVWLBeitragBetrieblicheAltersversorgung",
+      "label": "Beitrag integrierte VWL",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "beitragGesamtBeitragBetrieblicheAltersversorgung",
+      "label": "Beitrag Gesamt (inkl. BU)",
+      "type": "text",
+      "props": { "required": true,"sm":6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "nettobelastungBeitragBetrieblicheAltersversorgung",
+      "label": "ca. Nettobelastung",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "zahlweiseBetrieblicheAltersversorgung",
+      "label": "Zahlweise",
+      "type": "select",
+      "props": { "required": true, "sm":6,
+        "xs":6 },
+      "options": [
+        { "value": "MONATLICH", "label": "Monatlich" },
+        { "value": "QUARTAL", "label": "Quartal" },
+        { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+        { "value": "JAEHRLICH", "label": "Jährlich" }
+      ],
+      "suiteValue":""
+    },
+    {
+      "name": "dynamikBeitragBetrieblicheAltersversorgung",
+      "label": "Dynamik",
+      "type": "select",
+      "options": [
+        { "value": 2, "label": "2 %" },
+        { "value": 3, "label": "3 %" },
+        { "value": 4, "label": "4 %" },
+        { "value": 5, "label": "5 %" },
+        { "value": 6, "label": "6 %" },
+        { "value": 10, "label": "10 %" }
+      ]
+    },
+    {
+      "name": "versicherungssummeBetrieblicheAltersversorgungHeader",
+      "label": "Vertragslaufzeit",
+      "type": "header"
+    },
+    {
+      "name": "vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung",
+      "label": "Vertragsbeginn",
+      "type": "date",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "vertragsendeVertragslaufzeitBetrieblicheAltersversorgung",
+      "label": "Vertragsende",
+      "type": "date",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "monatlicheRentenleistungBetrieblicheAltersversorgungHeader",
+      "label": "Monatliche Rentenleistung",
+      "type": "header"
+    },
+    {
+      "name": "garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung",
+      "label": "Monatliche Rentenleistung garantiert (€)",
+      "type": "text",
+      "suiteValue":""
+    },
+    {
+      "name": "prognostiziertMonatlicheRentenleistungBetrieblicheAltersversorgung",
+      "label": "Monatliche Rentenleistung prognostiziert (€)",
+      "type": "text",
+      "suiteValue":""
+    },
+    {
+      "name": "beiMonatlicheRentenleistungBetrieblicheAltersversorgung",
+      "label": "bei (%)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "RGZMonatlicheRentenleistungBetrieblicheAltersversorgung",
+      "label": "RGZ (Jahre)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "ablaufleistungBetrieblicheAltersversorgungHeader",
+      "label": "Ablaufleistung",
+      "type": "header"
+    },
+    {
+      "name": "ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung",
+      "label": "Ablaufsleistung garantiert (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "ablaufsleistungPrognostiziertAblaufleistungBetrieblicheAltersversorgung",
+      "label": "Ablaufsleistung prognostiziert (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "beiAblaufleistungBetrieblicheAltersversorgung",
+      "label": "bei (%)",
+      "type": "text",
+      "suiteValue":""
+    },
+    {
+      "name": "BUBetrieblicheAltersversorgungHeader",
+      "label": "BU",
+      "type": "header"
+    },
+    {
+      "name": "integrierteBUBetrieblicheAltersversorgung",
+      "label": "integrierte BU",
+      "type": "select",
+      "options": [
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "renteBUBetrieblicheAltersversorgung",
+      "label": "BU Rente (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "dynamikBULeistungBUBetrieblicheAltersversorgung",
+      "label": "Dynamik BU Leistung BU",
+      "type": "select",
+      "options": [
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "beitragsbefreiungBUBetrieblicheAltersversorgung",
+      "label": "Beitragsbefreiung BU",
+      "type": "select",
+      "options": [
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "beitragsendeBUZBetrieblicheAltersversorgung",
+      "label": "Beitragsende",
+      "type": "date",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "leistungsendeBUZBetrieblicheAltersversorgung",
+      "label": "Leistungsende",
+      "type": "date",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "beitragsanteilBUZBetrieblicheAltersversorgung",
+      "label": "Beitragsanteil (€)",
+      "props": { "required": true, "sm":6,
+        "xs":6 },
+      "type": "text",
+      "suiteValue":""
+    },
+    {
+      "name": "leistungBeiTodBUZBetrieblicheAltersversorgung",
+      "label": "Leistung bei Tod (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "aktuellerRKWBUZBetrieblicheAltersversorgung",
+      "label": "Aktueller RKW (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "standBUZBetrieblicheAltersversorgung",
+      "label": "Stand",
+      "type": "date",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "ansprechpartnerBetriebBUZBetrieblicheAltersversorgung",
+      "label": "Ansprechpartner Betrieb",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "rahmenvertragBUZBetrieblicheAltersversorgung",
+      "label": "Rahmenvertrag",
+      "options": [
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "type": "select",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "tarifvertragBUZBetrieblicheAltersversorgung",
+      "label": "Tarifvertrag",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    },
+    {
+      "name": "fondsBUZBetrieblicheAltersversorgung",
+      "label": "Fonds",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":""
+    }
+  ]
+}

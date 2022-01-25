@@ -1,0 +1,12 @@
+{
+    "card": true,
+    "items": [
+      {
+        "name": "hasChildren",
+        "label": "Kinder vorhanden",
+        "type": "checkbox",
+        "props":{"sm":6,
+          "xs":6}
+      }
+    ]
+  }

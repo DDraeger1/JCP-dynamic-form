@@ -1,0 +1,113 @@
+{
+  "section": "Beteiligungen / AiF",
+  "card": true,
+  "items": [
+    {
+      "name": "gesellschaftBeteiligungenAiF",
+      "type": "gesellschaft",
+      "props": { "required": true }
+    },
+    {
+      "name": "tarifbezeichnungBeteiligungenAiF",
+      "label": "Tarifbezeichnung",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "vertragsnummerBeteiligungenAiF",
+      "label": "Vertragsnummer",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "verwendungszweckBeteiligungenAiF",
+      "label": "Verwendungszweck",
+      "type": "text"
+    },
+    {
+      "name": "vertragsinhaberBeteiligungenAiFHeader",
+      "label": "Vertragsinhaber",
+      "type": "header"
+    },
+    {
+      "name": "vertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "Vertragsinhaber",
+      "type": "selectMandant",
+      "versicherungsnehmerBeide":"true",
+      "tarifType":"BETEILIGUNGEN",
+      "props": { "required": true }
+    },
+    {
+      "name": "investitionsthemaVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "Investitionsthema",
+      "type": "select",
+      "props": { "required": true, "sm":6 ,
+        "xs":6},
+      "options": [
+        { "value": 0, "label": "Immobilienfonds" },
+        { "value": 1, "label": "Infrastruktur" },
+        { "value": 2, "label": "Private Equity" },
+        { "value": 3, "label": "Containerfonds" },
+        { "value": 4, "label": "Umweltfonds" },
+        { "value": 5, "label": "erneuerbare Energien" },
+        { "value": 6, "label": "Medienfonds" },
+        { "value": 7, "label": "Lebensversicherungs Fonds" },
+        { "value": 8, "label": "Sonstiges" }
+      ]
+    },
+    {
+      "name": "zeichnungssummeVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "Zeichnungssumme (€)",
+      "type": "text"
+    },
+    {
+      "name": "beginnVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "Beginn",
+      "type": "date",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "endeVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "Ende",
+      "type": "date",
+      "props": { "sm": 6,
+        "xs":6}
+    },
+    {
+      "name": "einmalbeitragVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "Einmalbeitrag (€)",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "beitragVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "Beitrag (€)",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6}
+    },
+    {
+      "name": "jaehrlAusschuettungVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "jährl. Ausschüttung ca. (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "aktuellerWertVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "Aktueller Wert (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 }
+    },
+    {
+      "name": "zumVertragsinhaberProduktIDBeteiligungenAiF",
+      "label": "... zum",
+      "type": "date"
+    }
+  ]
+}

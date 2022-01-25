@@ -1,0 +1,140 @@
+{
+    "section": "Kommunikation",
+    "card": true,
+
+    "items": [
+        {
+            "name": "ansprechpartnerKommunikationHeader",
+            "label": "Ansprechpartner für...",
+            "type": "header"
+          },
+          {
+            "name": "versicherungKommunikation",
+            "label": "Versicherung",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "bankgeschaefteKommunikation",
+            "label": "Bankgeschäfte",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "steuernKommunikation",
+            "label": "Steuern",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "rechtlichesKommunikation",
+            "label": "Rechtliches",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "telefonFestnetzKommunikationHeader",
+            "label": "Telefon/Festnetz",
+            "type": "header"
+          },
+          {
+            "name": "privatTelefonFestnetzKommunikation",
+            "label": "privat",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "geschaeftlichTelefonFestnetzKommunikation",
+            "label": "geschäftlich",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "mobiltelefonKommunikationHeader",
+            "label": "Mobiltelefon",
+            "type": "header"
+          },
+          {
+            "name": "privatMobiltelefonKommunikation",
+            "label": "privat",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "geschaeftlichMobiltelefonKommunikation",
+            "label": "geschäftlich",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "faxKommunikationHeader",
+            "label": "Fax",
+            "type": "header"
+          },
+          {
+            "name": "privatFaxKommunikation",
+            "label": "privat",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "geschaeftlichFaxKommunikation",
+            "label": "geschäftlich",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "socialMediaKommunikationHeader",
+            "label": "Social Media",
+            "type": "header"
+          },
+          {
+            "name": "facebookKommunikation",
+            "label": "(icon) Facebook",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "xingKommunikation",
+            "label": "(icon) Xing",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          }
+    ]
+}

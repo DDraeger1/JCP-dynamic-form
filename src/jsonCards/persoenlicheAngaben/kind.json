@@ -1,0 +1,229 @@
+{
+  "section": "Kind",
+  "card": true,
+
+  "items": [
+    {
+      "name": "geschlechtKind",
+      "label": "Geschlecht",
+      "type": "select",
+      "rules": {
+        "required": true
+      },
+      "options": [
+        {
+          "value": 0,
+          "label": "Männlich"
+        },
+        {
+          "value": 1,
+          "label": "Weiblich"
+        }
+      ]
+    },
+    {
+      "name": "vornameKind",
+      "label": "Vorname",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "nameKind",
+      "label": "Name",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "rules": {
+        "required": true
+      }
+    },
+    {
+      "name": "geburtsdatumKind",
+      "label": "Geburtsdatum",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "geburtsortKind",
+      "label": "Geburtsort",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "gemeinsamesKind",
+      "label": "gemeinsames Kind",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 }
+    },
+    {
+      "name": "filler",
+      "label": " ",
+      "type": "paragraph",
+      "props": { "sm": 1,
+        "xs":1 }
+    },
+    {
+      "name": "versichertBeiKind",
+      "label": "Krankenkenversichert bei",
+      "type": "select",
+      "props": {
+        "sm": 7,
+        "xs":7
+      },
+      "options": [
+        {
+          "value": 0,
+          "label": "Mandant1"
+        },
+        {
+          "value": 1,
+          "label": "Mandant2"
+        }
+      ]
+    },
+    {
+      "name": "steuerIDKind",
+      "label": "Steuer-ID",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ausbildungsstandKind",
+      "label": "Ausbildungsstand",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": 0, "label": "Kind" },
+        { "value": 1, "label": "Schüler" },
+        { "value": 2, "label": "Azubi" },
+        { "value": 3, "label": "Student" },
+        { "value": 4, "label": "Ausbildung/Student" }
+      ]
+    },
+    {
+      "name": "bisKind",
+      "label": "...bis",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "fachrichtungKind",
+      "label": "Fachrichtung",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "berufKind",
+      "label": "berufstätig, Beruf",
+      "type": "text"
+    },
+    {
+      "name": "kindergeldHeader",
+      "label": "Kindergeld",
+      "type": "header"
+    },
+    {
+      "name": "kindergeldBisKind",
+      "label": "Kindergeld bis (Altersangabe)",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "bezugsberechtigtePersonKindergeldKind",
+      "label": "Bezugsberechtigte Person Kindergeld",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": 0, "label": "Mandant" },
+        { "value": 1, "label": "Partner/in" }
+      ]
+    },
+    {
+      "name": "kinderfreibetragHeader",
+      "label": "Kinderfreibetrag",
+      "type": "header"
+    },
+    {
+      "name": "bisJahrKinderfreibetragKind",
+      "label": "Kinderfreibetrag bis Jahr (JJJJ)",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "kinderfreibetragKind ",
+      "label": "Kinderfreibetrag",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": 0, "label": "Ganzer" },
+        { "value": 1, "label": "Halber" },
+        { "value": 2, "label": "Kein" }
+      ]
+    },
+    {
+      "name": "bezugsberechtigtePersonKindFreibetragKind",
+      "label": "Bezugsberechtigte Person",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": 0, "label": "Mandant" },
+        { "value": 1, "label": "Partner/in" },
+        { "value": 2, "label": "Beide" },
+        { "value": 3, "label": "Sonstige" }
+      ]
+    },
+    {
+      "name": "kinderzulageRiesterKind",
+      "label": "Kinderzulage Riester",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": 0, "label": "Mandant" },
+        { "value": 1, "label": "Partner/in" },
+        { "value": 2, "label": "Sonstige" }
+      ]
+    }
+  ]
+}

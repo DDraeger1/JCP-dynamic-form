@@ -1,0 +1,247 @@
+{
+    "section": "Immobilienbestand",
+    "card": true,
+    "items": [
+        {
+            "name": "eigentuemerImmobilienbestandHeader",
+            "label": "Eigentümer",
+            "type": "header"
+        },
+        {
+            "name": "eigentuemerImmobilienbestand",
+            "label": "Eigentümer",
+            "type": "selectMandant",
+            "versicherungsnehmerBeide":"true",
+            "tarifType":"IMMOBILIENBESTAND",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+        {
+            "name": "objektzuordnungEigentuemerImmobilienbestand",
+            "label": "Objektzuordnung (Anschrift, etc.)",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"objektnotizen"
+        },
+        {
+            "name": "immobilienartEigentuemerImmobilienbestand",
+            "label": "Immobilienart",
+            "type": "select",
+            "options":[
+                { "value": "EIGENTUMSWOHNUNG", "label": "Eigentumswohnung" },
+                { "value": "EINFAMILIENHAUS", "label": "Einfamilienhaus" },
+                { "value": "ZWEIFAMILIENHAUS", "label": "Zweifamilienhaus" },
+                { "value": "MEHRFAMILIENTHAUS", "label": "Mehrfamilienhaus" },
+                { "value": "REIHENHAUS", "label": "Reihenhaus" },
+                { "value": "DOPPELHAUSHAELFTE", "label": "Doppelhaushälfte" },
+                { "value": "GRUNDSTUECK", "label": "Grundstück" },
+                { "value": "SONSTIGES", "label": "Sonstiges" }
+            ],
+            "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"immobilienart"
+        },
+        {
+            "name": "nutzungEigentuemerImmobilienbestand",
+            "label": "Nutzung",
+            "type": "select",
+            "options":[
+                { "value": true, "label": "selbst genutzt" },
+                { "value": false, "label": "vermietet" }
+            ],
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"nutzung"
+        },
+        {
+            "name": "wohnflaecheEigentuemerImmobilienbestand",
+            "label": "Wohnfläche (m²)",
+            "type": "text",
+            "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"wohnflaeche"
+        },
+        {
+            "name": "kaufpreisOhneStellplatzEigentuemerImmobilienbestand",
+            "label": "Kaufpreis ohne Stellplatz (€)",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"kaufpreisEuro"
+        },
+        {
+            "name": "preisProQmEigentuemerImmobilienbestand",
+            "label": "Preis pro qm (€) (suite)",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":""
+        },
+        {
+            "name": "stellplatzEigentuemerImmobilienbestand",
+            "label": "Stellplatz",
+            "type": "checkbox",
+            "suiteValue":"stellplatz"
+        },
+        {
+            "name": "kaufpreisStellplatzEigentuemerImmobilienbestand",
+            "label": "Kaufpreis Stellplatz (€)",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"stellplatzKaufpreis"
+        },
+        {
+            "name": "aktuellerWertEigentuemerImmobilienbestand",
+            "label": "Aktueller Wert (€)",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"aktuellerwert"
+        },
+        {
+            "name": "mieteinnahmeWarmEigentuemerImmobilienbestand",
+            "label": "Mieteinnahme warm (€)",
+            "type": "text",
+            "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"monatlicheMieteinkuenfte"
+        },
+        {
+            "name": "mieteinnahmeKaltEigentuemerImmobilienbestand",
+            "label": "Mieteinnahme kalt (€)",
+            "type": "text",
+            "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"kaltmiete"
+        },
+        {
+            "name": "mieteinnahmeStellplatzEigentuemerImmobilienbestand",
+            "label": "Miete Stellplatz (€)",
+            "type": "text",
+            "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"stellplatzMiete"
+        },
+        {
+            "name": "hausgeldEigentuemerImmobilienbestand",
+            "label": "Hausgeld (€)",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"hausgeld"
+        },
+        
+        {
+            "name": "jahrDesErwerbsEigentuemerImmobilienbestand",
+            "label": "Jahr des Erwerbs",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"erwerbsjahr"
+        },
+        {
+            "name": "belastungUeberschussEigentuemerImmobilienbestand",
+            "label": "Belastung oder Überschuss (netto)",
+            "type": "select",
+            "options":[
+                { "value": false, "label": "Belastung" },
+                { "value": true, "label": "Überschuss" }
+            ],
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"hasUeberschuss"
+        },
+        {
+            "name": "nettobelastungMtlEigentuemerImmobilienbestand",
+            "label": "ca. Nettobelastung mtl",
+            "type": "text",
+            "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"nettobelastungMtlCa"
+        },
+        {
+            "name": "restschuldEigentuemerImmobilienbestand",
+            "label": "Restschuld",
+            "type": "select",
+            "options":[
+                { "value": false, "label": "Schuldenfrei" },
+                { "value": true, "label": "Restschuld besteht" }
+            ],
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"restschuld"
+        },
+        {
+            "name": "pflegeimmobilieEigentuemerImmobilienbestand",
+            "label": "Pflegeimmobilie",
+            "type": "checkbox",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"pflegeimmobilie"
+        },
+        {
+            "name": "ferienimmobilieEigentuemerImmobilienbestand",
+            "label": "Ferienimmobilie",
+            "type": "checkbox",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"ferienimmobilie"
+        },
+        {
+            "name": "denkmalschutzEigentuemerImmobilienbestand",
+            "label": "Denkmalschutz § 7i",
+            "type": "checkbox",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"denkmalschutz"
+        },
+        {
+            "name": "mietpoolEigentuemerImmobilienbestand",
+            "label": "Mietpool",
+            "type": "checkbox",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"mietpool"
+        },
+        {
+            "name": "endeMietpoolEigentuemerImmobilienbestand",
+            "label": "Ende Mietpool",
+            "type": "date",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"mietpoolEnde"
+        },
+        {
+            "name": "garabtieProQmEigentuemerImmobilienbestand",
+            "label": "Garantie pro qm (€)",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"garantieProQm"
+        },
+        {
+            "name": "voraussichtlichSchuldenfreiEigentuemerImmobilienbestand",
+            "label": "voraussichtlich schuldenfrei",
+            "type": "date",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"voraussichtlichSchuldenfrei"
+        },
+        {
+            "name": "wohnungsnummerEigentuemerImmobilienbestand",
+            "label": "Wohnungsnummer",
+            "type": "text",
+            "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"wohnungsnummer"
+        },
+        {
+            "name": "baujahrEigentuemerImmobilienbestand",
+            "label": "Baujahr",
+            "type": "text",
+            "suiteValue":"baujahr"
+        }
+    ]
+}

@@ -1,0 +1,1674 @@
+{
+  "section": "Einkommen / Gehalt",
+  "card": true,
+  "items": [
+    {
+      "name": "personenzuordnungEinnahmenHeader",
+      "label": "Personenzuordnung",
+      "type": "header",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"variablerBezug",
+      "type":"paragraph",
+      "label": "",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"bonus",
+      "type":"paragraph",
+      "label": "",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"urlaubsgeld",
+      "type":"paragraph",
+      "label": "",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"weihnachtsgeld",
+      "type":"paragraph",
+      "label": "",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"gewinnbeteiligung",
+      "type":"paragraph",
+      "label": "",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"sonstigesSonderzahlung",
+      "type":"paragraph",
+      "label": "",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"sonstigerSachbezug",
+      "type":"paragraph",
+      "label": "",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"abzuegeVwlGesamt",
+    "type":"paragraph",
+    "label": "",
+    "props": { "sm": 0,
+      "xs":0 }
+  },
+  {"name":"sonstigerAbzug",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+},
+{"name":"fahrtkosten",
+"type":"paragraph",
+"label": "",
+"props": { "sm": 0,
+  "xs":0 }
+},
+{"name":"fahrtkosten",
+"type":"paragraph",
+"label": "",
+"props": { "sm": 0,
+  "xs":0 }
+},
+  {"name":"feiertagszuschlag",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+  },
+  {"name":"nachtzuschlag",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+  },
+  {"name":"kitaGebuehren",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+  },
+  {"name":"jobRad",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+  },
+  {"name":"vwlAG",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+  },
+  {"name":"provision",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+  },
+  {"name":"sonstigesBrutto",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+  },
+  {"name":"sachbezug",
+  "type":"paragraph",
+  "label": "",
+  "props": { "sm": 0,
+    "xs":0 }
+  },
+      {"name":"sonstigerAbzug",
+      "type":"paragraph",
+      "label": "",
+      "props": { "sm": 0,
+        "xs":0 }
+    },
+    {"name":"dienstwagen",
+    "type":"paragraph",
+    "label": "",
+    "props": { "sm": 0,
+      "xs":0 }
+  },
+    {
+      "name": "personenzuordnungEinnahmen",
+      "label": "Personenzuordnung",
+      "type": "selectMandant",
+      "tarifType":"EINKOMMEN_GEHALT",
+      "props": { "required": true },
+      "suiteValue":"versicherungsnehmerId"
+    },
+    {
+      "name": "bruttobezuegeEinnahmenHeader",
+      "label": "Bruttobezüge",
+      "type": "header"
+    },
+    {
+      "name": "bruttobezuegeEinnahmen",
+      "label": "Bruttobezüge",
+      "type": "paragraph",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "steuerEinnahmen",
+      "label": "Steuer",
+      "type": "paragraph",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "sozialversicherungEinnahmen",
+      "label": "Sozialvers",
+      "type": "paragraph",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "gesamtbruttoEinnahmen",
+      "label": "Gesamt-Brutto",
+      "type": "paragraph",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "betragMtlEinnahmen",
+      "label": "Betrag mtl. (€)",
+      "type": "paragraph",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "bankAddBrutto",
+      "label": "Bruttobezug Hinzufügen",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "gehaltNameEinnahmen",
+      "label": "Gehalt",
+      "type": "paragraph",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "steuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"grundgehaltSteuer"
+    },
+    {
+      "name": "sozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"grundgehaltSozialversicherung"
+    },
+    {
+      "name": "gesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"grundgehaltGesamtbrutto"
+    },
+    {
+      "name": "betragMtlTextfieldEinnahmen",
+      "label": " ",
+      "type": "number",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"grundgehalt"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Gehalt",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "variablerBezugTitle",
+      "label": "Variabler Bezug",
+      "type": "paragraph",
+      "condition":"variablerBezug",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "variablerBezugSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"variablerBezug",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"variablerBezugSteuer"
+    },
+    {
+      "name": "variablerBezugSozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"variablerBezug",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"variablerBezugSozialversicherung"
+    },
+    {
+      "name": "variablerBezugGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"variablerBezug",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"variablerBezugGesamtbrutto"
+    },
+    {
+      "name": "variablerBezugBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "condition":"variablerBezug",
+      "type": "number",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"variablerBezug"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "VariablerBezug",
+      "condition":"variablerBezug",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "fahrtkostenTitle",
+      "label": "fahrtkosten",
+      "type": "paragraph",
+      "condition":"fahrtkosten",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "fahrtkostenSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"fahrtkosten",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"fahrtkostenSteuer"
+    },
+    {
+      "name": "fahrtkostenSozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"fahrtkosten",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"fahrtkostenSozialversicherung"
+    },
+    {
+      "name": "fahrtkostenGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"fahrtkosten",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"fahrtkostenGesamtbrutto"
+    },
+    {
+      "name": "fahrtkostenBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "type": "number",
+      "condition":"fahrtkosten",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"fahrtkosten"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Fahrtkosten",
+      "type": "costumFunction",
+      "condition":"fahrtkosten",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "feiertagszuschlagTitle",
+      "label": "feiertagszuschlag",
+      "type": "paragraph",
+      "condition":"feiertagszuschlag",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "feiertagszuschlagSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"feiertagszuschlag",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"feiertagszuschlagSteuer"
+    },
+    {
+      "name": "feiertagszuschlagSozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"feiertagszuschlag",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"feiertagszuschlagSozialversicherung"
+    },
+    {
+      "name": "feiertagszuschlagGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"feiertagszuschlag",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"feiertagszuschlagGesamtbrutto"
+    },
+    {
+      "name": "feiertagszuschlagBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "condition":"feiertagszuschlag",
+      "type": "number",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"feiertagszuschlag"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Feiertagszuschlag",
+      "condition":"feiertagszuschlag",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "nachtzuschlagTitle",
+      "label": "nachtzuschlag",
+      "type": "paragraph",
+      "condition":"nachtzuschlag",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "nachtzuschlagSteuerSelectEinnahmen",
+      "label": "",
+      "condition":"nachtzuschlag",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"nachtzuschlagSteuer"
+    },
+    {
+      "name": "nachtzuschlagSozialversicherungSelectEinnahmen",
+      "label": "",
+      "condition":"nachtzuschlag",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"nachtzuschlagSozialversicherung"
+    },
+    {
+      "name": "nachtzuschlagGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "condition":"nachtzuschlag",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"nachtzuschlagGesamtbrutto"
+    },
+    {
+      "name": "nachtzuschlagBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "condition":"nachtzuschlag",
+      "type": "number",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"nachtzuschlag"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Nachtzuschlag",
+      "condition":"nachtzuschlag",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "dienstwagenTitle",
+      "label": "dienstwagen",
+      "type": "paragraph",
+      "condition":"dienstwagen",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "dienstwagenSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"dienstwagen",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"dienstwagenSteuer"
+    },
+    {
+      "name": "dienstwagenSozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"dienstwagen",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"dienstwagenSozialversicherung"
+    },
+    {
+      "name": "dienstwagenGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"dienstwagen",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"dienstwagenGesamtbrutto"
+    },
+    {
+      "name": "dienstwagenBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "type": "number",
+      "condition":"dienstwagen",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"dienstwagen"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Dienstwagen",
+      "condition":"dienstwagen",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "kitaGebuehrenTitle",
+      "label": "kitaGebuehren",
+      "type": "paragraph",
+      "condition":"kitaGebuehren",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "kitaGebuehrenSteuerSelectEinnahmen",
+      "label": "",
+      "condition":"kitaGebuehren",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"kitaSteuer"
+    },
+    {
+      "name": "kitaGebuehrenSozialversicherungSelectEinnahmen",
+      "label": "",
+      "condition":"kitaGebuehren",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"kitaSozialversicherung"
+    },
+    {
+      "name": "kitaGebuehrenGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "condition":"kitaGebuehren",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"kitaGesamtbrutto"
+    },
+    {
+      "name": "kitaGebuehrenBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "condition":"kitaGebuehren",
+      "type": "number",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"kita"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Gebuehren",
+      "condition":"kitaGebuehren",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {"name":"jobRadTitle",
+    "type":"paragraph",
+    "label": "jobRad",
+    "condition":"jobRad",
+    "props": { "sm": 2,
+      "xs":2 }
+    },
+    {
+      "name": "jobRadSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+    "condition":"jobRad",
+    "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"jobradSteuer"
+    },
+    {
+      "name": "jobRadSozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+    "condition":"jobRad",
+    "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"jobradSozialversicherung"
+    },
+    {
+      "name": "jobRadGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+    "condition":"jobRad",
+    "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"jobradGesamtbrutto"
+    },
+    {
+      "name": "jobRadBetragMtlTextfieldEinnahmen",
+      "label": " ",
+    "condition":"jobRad",
+    "type": "number",
+      "props": { "sm": 2,
+        "xs":2 },
+      "suiteValue":"jobrad"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "JobRad",
+    "condition":"jobRad",
+    "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "vwlAGTitle",
+      "label": "vwlAG",
+      "type": "paragraph",
+      "condition":"vwlAG",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "vwlAGSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"vwlAG",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"vwlSteuer"
+    },
+    {
+      "name": "vwlAGSozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"vwlAG",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"vwlSozialversicherung"
+    },
+    {
+      "name": "vwlAGGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"vwlAG",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"vwlGesamtbrutto"
+    },
+    {
+      "name": "vwlAGBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "type": "number",
+      "condition":"vwlAG",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"vwl"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "VwLAG",
+      "type": "costumFunction",
+      "condition":"vwlAG",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "sachbezugTitle",
+      "label": "sachbezug",
+      "type": "paragraph",
+      "condition":"sachbezug",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "sachbezugSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"sachbezug",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"sachbezugSteuer"
+    },
+    {
+      "name": "sachbezugSozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"sachbezug",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"sachbezugSozialversicherung"
+    },
+    {
+      "name": "sachbezugGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"sachbezug",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"sachbezugGesamtbrutto"
+    },
+    {
+      "name": "sachbezugBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "condition":"sachbezug",
+      "type": "number",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"sachbezug"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Sachbezug",
+      "condition":"sachbezug",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "provisionTitle",
+      "label": "provision",
+      "type": "paragraph",
+      "condition":"provision",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "provisionSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"provision",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"provisionSteuer"
+    },
+    {
+      "name": "provisionSozialversicherungSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"provision",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"provisionSozialversicherung"
+    },
+    {
+      "name": "provisionGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"provision",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"provisionGesamtbrutto"
+    },
+    {
+      "name": "provisionBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "type": "number",
+      "condition":"provision",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"provision"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Provision",
+      "type": "costumFunction",
+      "condition":"provision",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "sonstigesBruttoTitle",
+      "label": "sonstigesBrutto",
+      "type": "paragraph",
+      "condition":"sonstigesBrutto",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "sonstigesBruttoSteuerSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"sonstigesBrutto",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"sonstigesBruttoSteuer"
+    },
+    {
+      "name": "sonstigesBruttoSozialversicherungSelectEinnahmen",
+      "label": "",
+      "condition":"sonstigesBrutto",
+      "type": "select",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "L", "label": "L" },
+        { "value": "S", "label": "S" },
+        { "value": "F", "label": "F" },
+        { "value": "E", "label": "E" },
+        { "value": "P", "label": "P" },
+        { "value": "A", "label": "A" },
+        { "value": "M", "label": "M" },
+        { "value": "N", "label": "N" },
+        { "value": "V", "label": "V" },
+        { "value": "W", "label": "W" }
+      ],
+      "suiteValue":"sonstigesBruttoSozialversicherung"
+    },
+    {
+      "name": "sonstigesBruttoGesamtBruttoSelectEinnahmen",
+      "label": "",
+      "type": "select",
+      "condition":"sonstigesBrutto",
+      "props": { "sm": 2,
+        "xs":2 },
+      "options": [
+        { "value": "J", "label": "J" },
+        { "value": "N", "label": "N" }
+      ],
+      "suiteValue":"sonstigesBruttoGesamtbrutto"
+    },
+    {
+      "name": "sonstigesBruttoBetragMtlTextfieldEinnahmen",
+      "label": " ",
+      "condition":"sonstigesBrutto",
+      "type": "number",
+      "props": { "sm": 2,
+        "xs":2 },
+        "suiteValue":"sonstigesBrutto"
+    },
+    {
+      "name": "bankRemoveBrutto",
+      "label": "Sonstiges",
+      "condition":"sonstigesBrutto",
+      "type": "costumFunction",
+      "props": { "sm": 2,
+        "xs":2 }
+    },
+    {
+      "name": "summeBruttobezuegeEinnahmen",
+      "label": "Summe Bruttobezuege: (mtl.)",
+      "type": "paragraph",
+      "props": { "sm": 3,
+        "xs":3 }
+    },
+    {
+      "name": "summeBruttobezuegeEinnahmenValue",
+      "label": " ",
+      "type": "paragraphValue",
+      "props": { "sm": 1,
+        "xs":1 },
+        "suiteValue":""
+    },
+    {
+        "name": "anzahlGehaelterEinnahmen",
+        "label": "Anzahl Gehaelter",
+        "type": "text",
+        "suiteValue":"lohnAnzahlProJahr"
+      },
+      {
+          "name": "nettoBezuegeEinnahmenHeader",
+          "label": "Nettobezüge",
+          "type": "header"
+        },
+        {
+          "name": "nettobezugEinnahmenParagraph",
+          "label": "Netto-Bezug",
+          "type": "paragraph",
+          "props": { "sm": 6,
+            "xs":6 }
+        },
+        {
+          "name": "nettobezugBetragMtlEinnahmenParagraph",
+          "label": "Betrag mtl.",
+          "type": "paragraph",
+          "props": { "sm": 2,
+            "xs":2 }
+        },
+        {
+          "name": "bankAddNetto",
+          "type": "costumFunction",
+          "props": { "sm": 2,
+            "xs":2 }
+        },
+        {
+          "name": "nettobezugEinnahmen",
+          "label": "Netto",
+          "type": "paragraph",
+          "props": { "sm": 6,
+            "xs":6 }
+        },
+        {
+          "name": "nettobezugBetragMtlEinnahmen",
+          "label": "",
+          "type": "text",
+          "props": { "sm": 2,
+            "xs":2 },
+            "suiteValue":"grundgehaltNetto"
+        },
+        {
+          "name": "bankRemoveNetto",
+          "label": "Netto",
+          "type": "costumFunction",
+          "props": { "sm": 2,
+            "xs":2 }
+        },
+        {
+          "name": "sonstigerSachbezugNettobezugEinnahmen",
+          "label": "Sonstiger Sachbezug",
+          "condition":"sonstigerSachbezug",
+          "type": "paragraph",
+          "props": { "sm": 6,
+            "xs":6 }
+        },
+        {
+          "name": "sonstigerSachbezugNettobezugBetragMtlEinnahmen",
+          "condition":"sonstigerSachbezug",
+          "label": "",
+          "type": "text",
+          "props": { "sm": 2,
+            "xs":2 },
+            "suiteValue":"sonstigerSachbezug"
+        },
+        {
+          "name": "bankRemoveNetto",
+          "label":"SonstigerSachbezug",
+          "condition":"sonstigerSachbezug",
+          "type": "costumFunction",
+          "props": { "sm": 2,
+            "xs":2 }
+        },
+        {
+          "name": "abzuegeVwlGesamtNettobezugEinnahmen",
+          "label": "Abzüge VwL Gesamt",
+          "condition":"abzuegeVwlGesamt",
+          "type": "paragraph",
+          "props": { "sm": 6,
+            "xs":6 }
+        },
+        {
+          "name": "abzuegeVwlGesamtNettobezugBetragMtlEinnahmen",
+          "label": "",
+          "condition":"abzuegeVwlGesamt",
+          "type": "text",
+          "props": { "sm": 2,
+            "xs":2 },
+            "suiteValue":"abzuegeVwl"
+        },
+        {
+          "name": "bankRemoveNetto",
+          "label": "AbzuegeVwlGesamt",
+          "condition":"abzuegeVwlGesamt",
+          "type": "costumFunction",
+          "props": { "sm": 2,
+            "xs":2 }
+        },
+        {
+          "name": "sonstigerAbzugNettobezugEinnahmen",
+          "label": "Sonstiger Abzug",
+          "condition":"sonstigerAbzug",
+          "type": "paragraph",
+          "props": { "sm": 6,
+            "xs":6 }
+        },
+        {
+          "name": "sonstigerAbzugNettobezugBetragMtlEinnahmen",
+          "label": "",
+          "condition":"sonstigerAbzug",
+          "type": "text",
+          "props": { "sm": 2,
+            "xs":2 },
+            "suiteValue":"sonstigerAbzug"
+        },
+        {
+          "name": "bankRemoveNetto",
+          "label": "SonstigerAbzugNetto",
+          "condition":"sonstigerAbzug",
+          "type": "costumFunction",
+          "props": { "sm": 2,
+            "xs":2 }
+        },
+        {
+          "name": "summeNettobezuegeEinnahmen",
+          "label": "Summe Nettobezuege (mtl.)",
+          "type": "paragraph"
+        },
+        {
+            "name": "sonderzahlungenEinnahmenHeader",
+            "label": "Sonderzahlungen",
+            "type": "header"
+          },
+          {
+            "name": "sonderzahlungenEinnahmenParagraph",
+            "label": "Sonderzahlungen",
+            "type": "paragraph",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "sonderzahlungenAuszahlungsmonatEinnahmenParagraph",
+            "label": "Auszahlungsmonat",
+            "type": "paragraph",
+            "props": { "sm": 2,
+              "xs":2 }
+          },
+          {
+            "name": "sonderzahlungenBetragEinnahmenParagraph",
+            "label": "Betrag mtl. (€)",
+            "type": "paragraph",
+            "props": { "sm": 2 ,
+              "xs":2}
+          },
+          {
+            "name": "bankAddSonderzahlung",
+            "label": "",
+            "type": "costumFunction",
+            "props": { "sm": 2 ,
+              "xs":2}
+          },
+          {
+            "name": "sonderzahlungenHinzufügenEinnahmen",
+      "condition":"bonus",
+      "label": "Bonus",
+            "type": "paragraph",
+            "props": { "sm": 6 ,
+              "xs":6}
+          },
+          {
+            "name": "sonderzahlungenAuszahlungsmonatEinnahmenSelect",
+      "condition":"bonus",
+      "label": "",
+            "type": "select",
+            "props": { "sm": 2,
+              "xs":2 },
+              "options":[{
+                "label": "Januar",
+                "value": "januar"
+            }, {
+                "label": "Februar",
+                "value": "februar"
+            }, {
+                "label": "März",
+                "value": "maerz"
+            }, {
+                "label": "April",
+                "value": "april"
+            }, {
+                "label": "Mai",
+                "value": "mai"
+            }, {
+                "label": "Juni",
+                "value": "juni"
+            }, {
+                "label": "Juli",
+                "value": "juli"
+            }, {
+                "label": "August",
+                "value": "august"
+            }, {
+                "label": "September",
+                "value": "september"
+            }, {
+                "label": "Oktober",
+                "value": "oktober"
+            }, {
+                "label": "November",
+                "value": "november"
+            }, {
+                "label": "Dezember",
+                "value": "dezember"
+            }],
+            "suiteValue":"bonuszahlungAuszahlungsmonat"
+          },
+          {
+            "name": "sonderzahlungenAuszahlungsmonatEinnahmen",
+      "condition":"bonus",
+      "label": "",
+            "type": "number",
+            "props": { "sm": 2,
+              "xs":2 },
+              "suiteValue":"bonuszahlung"
+          },
+          {
+            "name": "kp",
+            "label": "Entfernen",
+      "condition":"urlaubsgeld",
+      "type": "paragraph",
+            "props": { "sm": 2 ,
+              "xs":2}
+          },
+          {
+            "name": "urlaubsgeldSonderzahlungenHinzufügenEinnahmen",
+            "label": "Urlaubsgeld",
+      "condition":"urlaubsgeld",
+      "type": "paragraph",
+            "props": { "sm": 6 ,
+              "xs":6}
+          },
+          {
+            "name": "urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect",
+            "label": "",
+      "condition":"urlaubsgeld",
+      "type": "select",
+            "props": { "sm": 2,
+              "xs":2 },
+              "options":[{
+                "label": "Januar",
+                "value": "januar"
+            }, {
+                "label": "Februar",
+                "value": "februar"
+            }, {
+                "label": "März",
+                "value": "maerz"
+            }, {
+                "label": "April",
+                "value": "april"
+            }, {
+                "label": "Mai",
+                "value": "mai"
+            }, {
+                "label": "Juni",
+                "value": "juni"
+            }, {
+                "label": "Juli",
+                "value": "juli"
+            }, {
+                "label": "August",
+                "value": "august"
+            }, {
+                "label": "September",
+                "value": "september"
+            }, {
+                "label": "Oktober",
+                "value": "oktober"
+            }, {
+                "label": "November",
+                "value": "november"
+            }, {
+                "label": "Dezember",
+                "value": "dezember"
+            }],
+            "suiteValue":"urlaubsgeldAuszahlungsmonat"
+          },
+          {
+            "name": "urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmen",
+            "label": "",
+      "condition":"urlaubsgeld",
+      "type": "text",
+            "props": { "sm": 2,
+              "xs":2 },
+              "suiteValue":"urlaubsgeld"
+          },
+          {
+            "name": "weihnachtsgeldSonderzahlungenHinzufügenEinnahmen",
+            "label": "Weihnachtsgeld",
+      "condition":"weihnachtsgeld",
+      "type": "paragraph",
+            "props": { "sm": 6 ,
+              "xs":6}
+          },
+          {
+            "name": "weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect",
+      "condition":"weihnachtsgeld",
+      "label": "",
+            "type": "select",
+            "props": { "sm": 2,
+              "xs":2 },
+              "options":[{
+                "label": "Januar",
+                "value": "januar"
+            }, {
+                "label": "Februar",
+                "value": "februar"
+            }, {
+                "label": "März",
+                "value": "maerz"
+            }, {
+                "label": "April",
+                "value": "april"
+            }, {
+                "label": "Mai",
+                "value": "mai"
+            }, {
+                "label": "Juni",
+                "value": "juni"
+            }, {
+                "label": "Juli",
+                "value": "juli"
+            }, {
+                "label": "August",
+                "value": "august"
+            }, {
+                "label": "September",
+                "value": "september"
+            }, {
+                "label": "Oktober",
+                "value": "oktober"
+            }, {
+                "label": "November",
+                "value": "november"
+            }, {
+                "label": "Dezember",
+                "value": "dezember"
+            }],
+            "suiteValue":"weihnachtsgeldAuszahlungsmonat"
+          },
+          {
+            "name": "weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect",
+            "label": "",
+      "condition":"weihnachtsgeld",
+      "type": "text",
+            "props": { "sm": 2,
+              "xs":2 },
+              "suiteValue":"weihnachtsgeld"
+          },
+          {
+            "name": "gewinnbeteiligungSonderzahlungenHinzufügenEinnahmen",
+      "condition":"gewinnbeteiligung",
+      "label": "Gewinnbeteiligung",
+            "type": "paragraph",
+            "props": { "sm": 6 ,
+              "xs":6}
+          },
+          {
+            "name": "gewinnbeteiligungSonderzahlungenAuszahlungsmonatEinnahmenSelect",
+      "condition":"gewinnbeteiligung",
+      "label": "",
+            "type": "select",
+            "props": { "sm": 2,
+              "xs":2 },
+              "options":[{
+                "label": "Januar",
+                "value": "januar"
+            }, {
+                "label": "Februar",
+                "value": "februar"
+            }, {
+                "label": "März",
+                "value": "maerz"
+            }, {
+                "label": "April",
+                "value": "april"
+            }, {
+                "label": "Mai",
+                "value": "mai"
+            }, {
+                "label": "Juni",
+                "value": "juni"
+            }, {
+                "label": "Juli",
+                "value": "juli"
+            }, {
+                "label": "August",
+                "value": "august"
+            }, {
+                "label": "September",
+                "value": "september"
+            }, {
+                "label": "Oktober",
+                "value": "oktober"
+            }, {
+                "label": "November",
+                "value": "november"
+            }, {
+                "label": "Dezember",
+                "value": "dezember"
+            }],
+            "suiteValue":"gewinnbeteiligungAuszahlungsmonat"
+          },
+          {
+            "name": "gewinnbeteiligungSonderzahlungenAuszahlungsmonatEinnahmen",
+            "label": "",
+      "condition":"gewinnbeteiligung",
+      "type": "number",
+            "props": { "sm": 2,
+              "xs":2 },
+              "suiteValue":"gewinnbeteiligung"
+          },
+          {
+            "name": "sonstigesSonderzahlungenHinzufügenEinnahmen",
+      "condition":"sonstiges",
+      "label": "Sonstiges",
+            "type": "paragraph",
+            "props": { "sm": 6 ,
+              "xs":6}
+          },
+          {
+            "name": "sonstigesSonderzahlungSonderzahlungenAuszahlungsmonatEinnahmenSelect",
+      "condition":"sonstiges",
+      "label": "",
+            "type": "select",
+            "props": { "sm": 2,
+              "xs":2 },
+              "options":[{
+                "label": "Januar",
+                "value": "januar"
+            }, {
+                "label": "Februar",
+                "value": "februar"
+            }, {
+                "label": "März",
+                "value": "maerz"
+            }, {
+                "label": "April",
+                "value": "april"
+            }, {
+                "label": "Mai",
+                "value": "mai"
+            }, {
+                "label": "Juni",
+                "value": "juni"
+            }, {
+                "label": "Juli",
+                "value": "juli"
+            }, {
+                "label": "August",
+                "value": "august"
+            }, {
+                "label": "September",
+                "value": "september"
+            }, {
+                "label": "Oktober",
+                "value": "oktober"
+            }, {
+                "label": "November",
+                "value": "november"
+            }, {
+                "label": "Dezember",
+                "value": "dezember"
+            }],
+            "suiteValue":"sonstigesAuszahlungsmonat"
+          },
+          {
+            "name": "sonstigesSonderzahlungSonderzahlungenAuszahlungsmonatEinnahmen",
+      "condition":"sonstiges",
+      "label": "",
+            "type": "text",
+            "props": { "sm": 2,
+              "xs":2 },
+              "suiteValue":"sonstigerSachbezug"
+          },
+          {
+            "name": "jahresbruttoEinnahmen",
+            "label": "Jahresbrutto",
+            "type": "text",
+            "props": { "sm": 5,
+              "xs":5 },
+              "suiteValue":"lohnBruttoProJahr"
+          },
+          {
+            "name": "space",
+            "label": "",
+            "type": "paragraph",
+            "props": { "sm": 2,
+              "xs":2 }
+          },
+          {
+            "name": "bruttoEinkommenProJahrEinnahmen",
+            "label": "Brutto-Einkommen pro Jahr (Vorjahr)",
+            "type": "text",
+            "props": { "sm": 5 ,
+              "xs":5},
+              "suiteValue":"lohnBruttoProJahrVorjahr"
+          }
+  ]
+}

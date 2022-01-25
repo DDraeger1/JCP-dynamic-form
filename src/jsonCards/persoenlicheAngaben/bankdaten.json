@@ -1,0 +1,49 @@
+{
+    "section": "Bankdaten",
+    "card": true,
+
+    "items": [
+        {
+          "name": "bankBankdaten",
+          "label": "Bank",
+          "type": "text",
+          "props": {
+              "sm": 6,
+              "xs":6
+            }
+        },
+        {
+            "name": "kontoInhaberBankdaten",
+            "label": "KontoInhaber",
+            "type": "selectMandant",
+            "tarifType":"BANKVERBINDUNG",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "kontonummerBankdaten",
+            "label": "Kontonummer",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "ibanBankdaten",
+            "label": "IBAN",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "bicBankdaten",
+            "label": "BIC",
+            "type": "text"
+          }
+        ]
+}

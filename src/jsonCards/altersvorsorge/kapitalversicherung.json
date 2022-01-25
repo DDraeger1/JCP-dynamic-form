@@ -1,0 +1,365 @@
+{
+    "section": "Kapitalversicherung",
+    "card": true,
+    "items": [
+        {
+            "name": "artKapitalversicherung",
+            "label": "Art",
+            "type": "select",
+            "options":
+               [{"value":0,"label":"KLV"},
+                {"value":1,"label":"PRV"},
+                {"value":2,"label":"FLV"},
+                {"value":3,"label":"FRV"}]
+          },
+          {
+            "name": "versicherungsnehmerKapitalversicherungHeader",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerKapitalversicherung",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant"
+          },
+          {
+            "name": "gesellschaftKapitalversicherungHeader",
+            "label": "Gesellschaft",
+            "type": "header"
+          },
+          {
+            "name": "produktIDGesellschaftKapitalversicherung",
+            "label": "Produkt ID (Suite mapping)",
+            "type": "select",
+            "options": [{ "value": 0, "label": "Mandant" }]
+          },
+          {
+            "name": "tarifbezeichnungGesellschaftKapitalversicherung",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "vertragsnummerGesellschaftKapitalversicherung",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props": { "required": true, "sm":6,
+              "xs":6 }
+          },
+        {
+            "name": "verwendungszweckKapitalversicherungHeader",
+            "label": "Verwendungszweck",
+            "type": "header"
+          },
+          {
+            "name": "verwendungszweckKapitalversicherung",
+            "label": "Verwendungszweck",
+            "type": "select",
+            "options":
+               [{"value":0,"label":"Altersversorgung"},
+                {"value":1,"label":"Vermögungsaufbau"},
+                {"value":2,"label":"Tilgung eines Darlehen"},
+                {"value":3,"label":"Entnahmeplan"},
+                {"value":4,"label":"Sonstiges"}],
+                "props": { "sm": 6,
+                  "xs":6 }
+          },
+          {
+            "name": "fallsSonstigesVerwendungszweckKapitalversicherung",
+            "label": "... falls Sonstiges",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "versichertePersonKapitalversicherungHeader",
+            "label": "Versicherte Person",
+            "type": "header"
+          },
+          {
+            "name": "versichertePersonKapitalversicherung",
+            "label": "Versicherte Person (Suite mapping)",
+            "type": "select",
+            "options": [{ "value": 0, "label": "Mandant" }]
+          },
+          {
+            "name": "versicherungssummeKapitalversicherungHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitKapitalversicherung",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "vertragsendeVertragslaufzeitKapitalversicherung",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "versicherungssummeVertragslaufzeitKapitalversicherung",
+            "label": "Versicherungssumme (€)",
+            "type": "text"
+          },
+          {
+            "name": "dynamikKapitalversicherungHeader",
+            "label": "Dynamik",
+            "type": "header"
+          },
+          {
+            "name": "dynamikKapitalversicherung",
+            "label": "Dynamik",
+            "type": "select",
+            "options":[{ "value": 0, "label": "Nein" },
+                { "value": 1, "label": "Ja" }],
+                "props": { "sm": 6,
+                  "xs":6 }
+          },
+          {
+            "name": "prozentDynamikKapitalversicherung",
+            "label": "Prozent (%)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "fondsDynamikKapitalversicherung",
+            "label": "Fonds",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "beitragszahlerDynamikKapitalversicherung",
+            "label": "Beitragszahler",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "bezugsrechtTodesfallDynamikKapitalversicherung",
+            "label": "Bezugsrecht Todesfall",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "leistungTodDynamikKapitalversicherung",
+            "label": "Leistung bei Tod (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "monatlicheRentenleistungKapitalversicherungHeader",
+            "label": "Monatliche Rentenleistung",
+            "type": "header"
+          },
+          {
+            "name": "garantiertMonatlicheRentenleistungKapitalversicherung",
+            "label": "Monatliche Rentenleistung garantiert (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "prognostiziertMonatlicheRentenleistungKapitalversicherung",
+            "label": "Monatliche Rentenleistung prognostiziert (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "beiMonatlicheRentenleistungKapitalversicherung",
+            "label": "bei (%)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "RGZMonatlicheRentenleistungKapitalversicherung",
+            "label": "RGZ (Jahre)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "MonatlicheRentenleistungKapitalversicherung",
+            "label": "Prognostizierte Rene Berechnet",
+            "type": "paragraph"
+          },
+          {
+            "name": "ablaufleistungKapitalversicherungHeader",
+            "label": "Ablaufleistung",
+            "type": "header"
+          },
+          {
+            "name": "garantiertAblaufleistungKapitalversicherung",
+            "label": "garantiert (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "prognostiziertAblaufleistungKapitalversicherung",
+            "label": "prognostiziert (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "beiAblaufleistungKapitalversicherung",
+            "label": "bei (%)",
+            "type": "text"
+          },
+          {
+            "name": "BUKapitalversicherungHeader",
+            "label": "BU",
+            "type": "header"
+          },
+          {
+            "name": "inetgrierteBUKapitalversicherung",
+            "label": "integrierte BU",
+            "type": "select",
+            "options":[{"value":0,"label":"Nein"},
+                {"value":1,"label":"Ja"}],
+                "props": { "sm": 6,
+                  "xs":6 }
+          },
+          {
+            "name": "rentenleistungBUKapitalversicherung",
+            "label": "BU-Rentenleistung (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "beitragsbefreiungBUKapitalversicherung",
+            "label": "Beitragsbefreiung BU",
+            "type": "select",
+            "options":[{"value":0,"label":"Nein"},
+                {"value":1,"label":"Ja"}]
+          },
+          {
+            "name": "BUZKapitalversicherungHeader",
+            "label": "BUZ",
+            "type": "header"
+          },
+          {
+            "name": "beitragsendeBUZKapitalversicherung",
+            "label": "Beitragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "leistungsendeBUZKapitalversicherung",
+            "label": "Leistungsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "beitragsanteilBUZKapitalversicherung",
+            "label": "Beitragsanteil (€)",
+            "type": "text"
+          },
+          {
+            "name": "vertagAbgetretenBUZKapitalversicherung",
+            "label": "Vertag abgetreten?",
+            "type": "checkbox"
+          },
+          {
+            "name": "aktuellerRückkaufswertBUZKapitalversicherung",
+            "label": "Aktueller Rückkaufswert (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "datumBUZKapitalversicherung",
+            "label": "Datum",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "garantiezinsBUZKapitalversicherung",
+            "label": "Garantiezins (%)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "veitragsendeBUZKapitalversicherung",
+            "label": "Beitragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "VWLKapitalversicherungHeader",
+            "label": "VWL",
+            "type": "header"
+          },
+          {
+            "name": "VWLKapitalversicherung",
+            "label": "VWL",
+            "type": "checkbox"
+          },
+          {
+            "name": "arbeitgeberanteilVWLKapitalversicherung",
+            "label": "Arbeitgeberanteil (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "arbeitnehmeranteilVWLKapitalversicherung",
+            "label": "Arbeitnehmeranteil (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "summeVWLKapitalversicherung",
+            "label": "Summe (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "zahlweiseVWLKapitalversicherung",
+            "label": "Zahlweise",
+            "type": "select",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+            "options": [
+              { "value": 0, "label": "Monatlich" },
+              { "value": 1, "label": "Quartal" },
+              { "value": 2, "label": "Halbjährlich" },
+              { "value": 3, "label": "Jährlich" }]
+          },
+          {
+            "name": "einmalbeitragVWLKapitalversicherung",
+            "label": "Einmalbeitrag (€)",
+            "type": "text"
+          },
+          {
+            "name": "gesamtzahlbeitragVWLKapitalversicherung",
+            "label": "Gesamtzahlbeitrag (inkl. BU) (€)",
+            "type": "text"
+          },
+          {
+            "name": "beitragsanteilVWLKapitalversicherung",
+            "label": "Beitragsanteil für BU (€)",
+            "type": "text"
+          }
+        ]
+}

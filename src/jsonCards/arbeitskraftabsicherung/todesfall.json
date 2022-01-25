@@ -1,0 +1,167 @@
+{
+    "section": "Todesfall",
+    "card": true,
+    "items": [
+      {
+        "name": "gesellschaftTodesfallHeader",
+        "label": "Gesellschaft",
+        "type": "header"
+      },
+      {
+        "name": "gesellschaftTodesfall",
+        "type": "gesellschaft",
+        "props":{"required":true},
+        "suiteValue":"gesellschaft"
+      },
+      {
+        "name": "tarifbezeichnungGesellschaftTodesfall",
+        "label": "Tarifbezeichnung",
+        "type": "text",
+        "props": { "sm": 6,
+          "xs":6 } ,
+          "suiteValue":"tarifBezeichnung"
+      },
+      {
+        "name": "vertragsnummerGesellschaftTodesfall",
+        "label": "Vertragsnummer",
+        "type": "text",
+        "props":{"required":true, "sm":6,
+          "xs":6},
+          "suiteValue":"versicherungsnummer"
+      },
+      {
+        "name": "versicherungsnehmerTodesfallHeader",
+        "label": "Versicherungsnehmer",
+        "type": "header"
+      },
+      {
+        "name": "versicherungsnehmerTodesfall",
+        "label": "Versicherungsnehmer",
+        "type": "selectMandant",
+        "tarifType":"RISIKO",
+        "props": { "required": true },
+        "suiteValue":"versicherungsnehmerId"
+      },
+      {
+        "name": "vertragslaufzeitTodesfallHeader",
+        "label": "Vertragslaufzeit",
+        "type": "header"
+      },
+      {
+        "name": "vertragsbeginnVertragslaufzeitTodesfall",
+        "label": "Vertragsbeginn",
+        "type": "date",
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"versicherungsbeginn"
+      },
+      {
+        "name": "vertragsendeVertragslaufzeitTodesfall",
+        "label": "Vertragsende",
+        "type": "date",
+        "props": { "sm": 6 ,
+          "xs":6},
+          "suiteValue":"versicherungsende"
+      },
+      {
+        "name": "bruttobeitragVertragslaufzeitTodesfall",
+        "label": "Bruttobeitrag",
+        "type": "text",
+        "props": { "sm": 6,
+          "xs":6},
+          "suiteValue":"bruttobeitrag"
+      },
+      {
+        "name": "nettobeitragVertragslaufzeitTodesfall",
+        "label": "Nettobeitrag",
+        "type": "text",
+        "props": { "sm": 6 ,
+          "xs":6},
+          "suiteValue":"monatsBeitrag"
+      },
+      {
+        "name": "zahlweiseVertragslaufzeitTodesfall",
+        "label": "Zahlweise",
+        "type": "select",
+        "props": { "required": true, "sm":6,
+          "xs":6 },
+        "options": [
+          { "value": "MONATLICH", "label": "Monatlich" },
+          { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+          { "value": "QUARTAL", "label": "Quartal" },
+          { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+          { "value": "JAEHRLICH", "label": "Jährlich" }],
+          "suiteValue":"zahlweise"
+      },
+      {
+        "name": "artVertragslaufzeitTodesfall",
+        "label": "Art",
+        "type": "select",
+        "options": [
+          { "value": "rlv", "label": "RLV" },
+          { "value": "sterbegeld", "label": "Sterbegeld" }],
+          "props": { "sm": 6,
+            "xs":6 },
+            "suiteValue":"art"
+      },
+      {
+        "name": "versicherungssummeTodesfallHeader",
+        "label": "Versicherungssumme",
+        "type": "header"
+      },
+      {
+        "name": "versicherungssummeTodesfall",
+        "label": "Versicherungssumme",
+        "type": "text",
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"versicherungssumme"
+      },
+      {
+        "name": "summeLinearFallendVersicherungssummeTodesfall",
+        "label": "Summe linear/fallend",
+        "type": "select",
+        "options": [
+          { "value": true, "label": "Linear" },
+          { "value": false, "label": "Fallend" }],
+          "props": { "sm": 6,
+            "xs":6 },
+            "suiteValue":"versicherungssummeLineare"
+      
+      },
+      {
+        "name": "vertragAbgetretenVersicherungssummeTodesfall",
+        "label": "Vertrag abgetreten",
+        "type": "checkbox",
+        "suiteValue":"vertragAbgetreten"
+      },
+      {
+        "name": "MtlBULeistungVersicherungssummeTodesfall",
+        "label": "Mtl. BU-Leistung",
+        "type": "text",
+        "suiteValue":"integrierteBuRentenBetrag"
+      },
+      {
+        "name": "beitragsbefreiungBUVersicherungssummeTodesfall",
+        "label": "Beitragsbefreiung BU",
+        "type": "checkbox",
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"beitragsbefreiungBU"
+      },
+      {
+        "name": "motorradfaherVersicherungssummeTodesfall",
+        "label": "Motorradfaher",
+        "type": "checkbox",
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"motorradfahrer"
+      },
+      {
+        "name": "raucherVersicherungssummeTodesfall",
+        "label": "Raucher",
+        "type": "checkbox",
+        "suiteValue":"raucher"
+      }
+    ]
+    }

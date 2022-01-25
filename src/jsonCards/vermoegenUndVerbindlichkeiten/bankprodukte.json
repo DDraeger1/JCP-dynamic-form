@@ -1,0 +1,147 @@
+{
+  "section": "Bankprodukte",
+  "card": true,
+  "items": [
+    {
+      "name": "gesellschaftBankprodukte",
+      "label": "Bankprodukte",
+      "type": "gesellschaft",
+      "props": { "required": true, "sm":6 },
+      "suiteValue":"gesellschaft"
+    },
+    {
+      "name": "tarifbezeichnungBankprodukte",
+      "label": "Tarifbezeichnung",
+      "type": "text",
+      "props": { "sm": 6 },
+      "suiteValue":"tarifBezeichnung"
+    },
+    {
+      "name": "vertragsnummerBankprodukte",
+      "label": "Vertragsnummer",
+      "type": "text",
+      "props": { "sm": 6 },
+      "suiteValue":"versicherungsnummer"
+    },
+    {
+      "name": "vertragsinhaberBankprodukteHeader",
+      "label": "Vertragsinhaber",
+      "type": "header"
+    },
+    {
+      "name": "vertragsinhaberBankprodukte",
+      "label": "Vertragsinhaber",
+      "type": "selectMandant",
+      "versicherungsnehmerBeide":"true",
+      "tarifType":"BANKPRODUKTE",
+      "props": { "required": true },
+      "suiteValue":"versicherungsnehmerId"
+    },
+    { "name": "artVertragsinhaberBankprodukte", "label": "Art", "type": "select",
+        "options": [
+          { "value": "sparbuch", "label": "Sparbuch" },
+          { "value": "festgeld", "label": "Festgeld" },
+          { "value": "bonussparen", "label": "Bonussparen" },
+          { "value": "praemiensparen", "label": "Prämiensparen" },
+          { "value": "sparbrief", "label": "Sparbrief" },
+          { "value": "girokonto", "label": "Girokonto" },
+          { "value": "tagesgeld", "label": "Tagesgeld" },
+          { "value": "sonstiges", "label": "Sonstiges" }
+        ],
+        "props": { "sm": 6 ,
+          "xs":6},
+          "suiteValue":"anlageart" },
+        {
+          "name": "aktuellerWertVertragsinhaberBankprodukte",
+          "label": "Aktueller Wert (€)",
+          "type": "text",
+          "props": { "sm": 6 ,
+            "xs":6},
+            "suiteValue":"wert"
+        },
+        {
+            "name": "einmalbetraegeVertragsinhaberBankprodukte",
+            "label": "Einmalbeitrag (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"einmalbeitrag"
+          },
+          {
+              "name": "beitragVertragsinhaberBankprodukte",
+              "label": "Beitrag (€)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"beitrag"
+            },
+            {
+                "name":"zahlweiseVertragsinhaberBankprodukte",
+                "label":"Zahlweise",
+                "type":"select",
+                "options": [
+                  { "value": "MONATLICH", "label": "Monatlich" },
+                  { "value": "QUARTAL", "label": "Quartal" },
+                  { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+                  { "value": "JAEHRLICH", "label": "Jährlich" }
+                ],
+                "props":{"required":true, "sm":6,
+                  "xs":6},
+                  "suiteValue":"zahlweise"
+            },
+            {
+                "name": "zinsVertragsinhaberBankprodukte",
+                "label": "Zins",
+                "type": "text",
+                "suiteValue":"zins"
+            },
+            {
+              "name": "vertragslaufzeitBankprodukteHeader",
+              "label": "Vertragslaufzeit",
+              "type": "header"
+            },
+            {
+              "name": "VWLBankprodukte",
+              "label": "Vwl",
+              "type": "checkbox",
+              "suiteValue":"vwlJaNein"
+            },
+            {
+              "name": "arbeitgeberanteilVWLBankprodukte",
+              "label": "arbeitgeberanteil (€)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"aganteil"
+            },
+            {
+              "name": "arbeitnehmeranteilVWLBankprodukte",
+              "label": "arbeitnehmeranteil (€)",
+              "type": "text",
+              "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"ananteil"
+            },
+            {
+              "name": "summeVWLBankprodukte",
+              "label": "Summe (€)",
+              "type": "text"
+            },
+            {
+              "name": "vertragsbeginnVertragslaufzeitBankprodukte",
+              "label": "Vertragsbeginn",
+              "type": "date",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"versicherungsbeginn"
+            },
+            {
+              "name": "vertragsendeVertragslaufzeitBankprodukte",
+              "label": "Vertragsende",
+              "type": "date",
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"versicherungsende"
+            }
+  ]
+}

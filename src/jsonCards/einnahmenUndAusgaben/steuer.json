@@ -1,0 +1,130 @@
+{
+    "section": "Steuern",
+    "card": true,
+    "items": [
+        {
+            "name": "steuerklasseSteuern",
+            "label": "Steuerklasse",
+            "type": "select",
+            "options": [
+                { "value": "1", "label": "1" },
+                { "value": "2", "label": "2" },
+                { "value": "3", "label": "3" },
+                { "value": "4", "label": "4" },
+                { "value": "5", "label": "5" },
+                { "value": "6", "label": "6" }],
+                "props": { "sm": 3,
+                    "xs":6 },
+                    "suiteValue":"steuerklasse"
+          },
+          {
+            "name": "kinderfreibetragSteuern",
+            "label": "Kinderfreibetrag",
+            "type": "select",
+            "options": [
+                { "value": 0, "label": "0" },
+                { "value": 0.5, "label": "0.5" },
+                { "value": 1, "label": "1" },
+                { "value": 1.5, "label": "1.5" },
+                { "value": 2, "label": "2" },
+                { "value": 2.5, "label": "2.5" },
+                { "value": 3, "label": "3" },
+                { "value": 3.5, "label": "3.5" },
+                { "value": 4, "label": "4" },
+                { "value": 4.5, "label": "4.5" },
+                { "value": 5, "label": "5" }
+            ],
+            "props": { "sm": 3,
+                "xs":6 },
+                "suiteValue":"kinderfreibetrag"
+            },
+            {
+                "name": "fuerSteuern",
+                "label": "für",
+                "type": "text",
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"sonstFreibetraegeFuer"
+            },
+            {
+                "name": "steuerlVeranlagungSteuern",
+                "label": "Steuerl. Veranlagung",
+                "type": "select",
+                "options": [
+                    { "value": true, "label": "gemeinsam" },
+                    { "value": false, "label": "getrennt" }
+                ],
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"steuerlicheVeranlagungGemeinsam"
+            },
+            {
+                "name": "kirchensteuerSteuern",
+                "label": "Kirchensteuer",
+                "type": "select",
+                "options": [
+                    { "value": false, "label": "Nein" },
+                    { "value": true, "label": "Ja" }
+                ],
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"kirchensteuer"
+            },
+            {
+                "name": "zustFinanzamtSteuern",
+                "label": "Zust. Finanzamt",
+                "type": "text",
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"zustaendigesFinanzamt"
+            },
+            {
+                "name": "steuernummerSteuern",
+                "label": "Steuernummer",
+                "type": "text",
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"steuernummer"
+            },
+            {
+                "name": "steuerIDSteuern",
+                "label": "steuer-ID",
+                "type": "text",
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"steuerId"
+            },
+            {
+                "name": "sozialversNummerSteuern",
+                "label": "Sozialvers.-Nummer",
+                "type": "text",
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"sozialversicherungsnummer"
+            },
+            {
+                "name": "zustFamilienkasseSteuern",
+                "label": "Zust. Familienkasse",
+                "type": "text",
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"zustaendigeFamilienkasse"
+            },
+            {
+                "name": "kindergeldnummerSteuern",
+                "label": "Kindergeldnummer",
+                "type": "text",
+                "props": { "sm": 6,
+                    "xs":6 },
+                    "suiteValue":"kindergeldnummer"
+            },
+            {
+                "name": "steuerberatungDurchSteuern",
+                "label": "Steuerberatung durch",
+                "type": "text",
+                "props": {"xs":6 },
+                "suiteValue":"steuerberatungDurch"
+            
+            }
+    ]
+}

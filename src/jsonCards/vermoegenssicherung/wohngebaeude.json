@@ -1,0 +1,551 @@
+{
+    "section": "Wohngebäude",
+    "card": true,
+    "items": [
+      {
+        "name": "versicherungsnehmerWohngebaudeHeader",
+        "label": "Versicherungsnehmer",
+        "type": "header"
+      },
+      {
+        "name": "versicherungsnehmerWohngebaude",
+        "label": "Versicherungsnehmer",
+        "type": "selectMandant",
+        "tarifType":"WOHNGEBAEUDE",
+        "props": { "required": true },
+        "suiteValue":""
+      },
+        {
+            "name": "gesellschaftWohngebaeudeHeader",
+            "label": "Gesellschaft",
+            "type": "header"
+          },
+          {
+            "name": "gesellschaftWohngebaeude",
+            "label": "Gesellschaft",
+            "type": "gesellschaft",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"gesellschaft"
+          },
+          {
+            "name": "tarifbezeichnungGesellschaftWohngebaeude",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"tarifBezeichnung"
+          },
+          {
+            "name": "vertragsnummerGesellschaftWohngebaeude",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnummer"
+          },
+    {
+      "name": "tarifgruppeVersicherungssummeWohngebaeude",
+      "label": "Tarifgruppe",
+      "type": "select",
+      "options":[
+        { "value": "0", "label": "Normal" },
+        { "value": "1", "label": "Öffentlicher Dienst" },
+        { "value": "2", "label": "Innendienst" },
+        { "value": "3", "label": "Arzt/Mediziner" }
+      ],
+      "suiteValue":"tarifOeffentlicherDienstGesellschaftWohngebaeude"
+    },
+    {
+      "name": "tarifOeffentlicherDienstGesellschaftWohngebaeude",
+      "label": "Tarif 'Öffentlicher Dienst'",
+      "type": "checkbox",
+      "suiteValue":"oeffentlicherDienst"
+    },
+    {
+      "name": "absicherungWohngebaeudeHeader",
+      "label": "Absicherung",
+      "type": "header"
+    },
+    {
+      "name": "deckungsumfangAbsicherungWohngebaeude",
+      "label": "Deckungsumfang",
+      "type": "paragraph"
+    },
+    {
+      "name": "feuerAbsicherungWohngebaeude",
+      "label": "Feuer",
+      "type": "checkbox",
+      "props": { "sm": 4 ,
+        "xs":4},
+        "suiteValue":"feuer"
+    },
+    {
+      "name": "sturmHagelAbsicherungWohngebaeude",
+      "label": "Sturm/Hagel",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"sturm"
+    },
+    {
+      "name": "glasAbsicherungWohngebaeude",
+      "label": "Glas",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"glasflaeche"
+    },
+    {
+      "name": "leitungswasserAbsicherungWohngebaeude",
+      "label": "Leitungswasser (möglich falsch)",
+      "type": "checkbox",
+      "props": { "sm": 4 ,
+        "xs":4},
+        "suiteValue":"leitungswasser"
+    },
+    {
+      "name": "elementarschadenAbsicherungWohngebaeude",
+      "label": "Elementarschaden",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4},
+        "suiteValue":"elementar"
+    },
+    {
+      "name": "sonstigeLeistungenAbsicherungWohngebaeude",
+      "label": "Sonstige Leistungen",
+      "type": "text",
+      "suiteValue":"sonstigeLeistungen"
+    },
+    {
+      "name": "wohnflaecheGaragenWohngebaeudeHeader",
+      "label": "Wohnfläche/Garagen",
+      "type": "header"
+    },
+    {
+      "name": "bauartklasseGaragenWohngebaeude",
+      "label": "Bauartklasse 1-5",
+      "type": "select",
+      "options":[
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" },
+        { "value": "5", "label": "5" }
+      ],
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"bauartklasse"
+    },
+    {
+      "name": "fertighausgruppeWohnflaecheGaragenWohngebaeude",
+      "label": "Fertighausgruppe 1-3",
+      "type": "select",
+      "options":[
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"fertighausgruppe"
+    },
+    {
+      "name": "kellergeschossWohnflaecheGaragenWohngebaeude",
+      "label": "Kellergeschoss (qm)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"qmKellergeschoss"
+    },
+    {
+      "name": "erdgeschossWohnflaecheGaragenWohngebaeude",
+      "label": "Erdgeschoss (qm)",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"qmErdgeschoss"
+    },
+    {
+      "name": "ersterObergeschossWohnflaecheGaragenWohngebaeude",
+      "label": "1. Obergeschoss (qm)",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"qmObergeschoss"
+    },
+    {
+      "name": "zweiterObergeschossWohnflaecheGaragenWohngebaeude",
+      "label": "2. Obergeschoss (qm)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"qmObergeschoss2"
+    },
+    {
+      "name": "dachgeschossWohnflaecheGaragenWohngebaeude",
+      "label": "Dachgeschoss (qm)",
+      "type": "text",
+      "suiteValue":"qmDachgeschoss"
+    },
+    {
+      "name": "sanierungsmaßnahmenWohnflaecheGaragenWohngebaeude",
+      "label": "Sanierungsmaßnahmen",
+      "type": "checkbox",
+      "suiteValue":"schaeden"
+    },
+    {
+      "name": "wohnflaecheWohnflaecheGaragenWohngebaeude",
+      "label": "Wohnfläche (qm)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"wohnflaeche"
+    },
+    {
+      "name": "anzahlWohneinheitenWohnflaecheGaragenWohngebaeude",
+      "label": "Anzahl Wohneinheiten",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"wohneinheiten"
+    },
+    {
+      "name": "anzahlGaragenWohnflaecheGaragenWohngebaeude",
+      "label": "Anzahl Garagen",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"garagen"
+    },
+    {
+      "name": "sonstigeGaragenWohnflaecheGaragenWohngebaeude",
+      "label": "Sonstige Garagen",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"garagenSonstige"
+    },
+    {
+      "name": "anzahlCarportsWohnflaecheGaragenWohngebaeude",
+      "label": "Anzahl Carports",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"carport"
+    },
+    {
+      "name": "anzahlGeschosseWohnflaecheGaragenWohngebaeude",
+      "label": "Anzahl der Geschosse",
+      "type": "select",
+      "options":[
+        { "value": "1", "label": "1 Geschoss mit Keller" },
+        { "value": "10", "label": "1 Geschoss ohne Keller" },
+        { "value": "2", "label": "2 Geschoss mit Keller" },
+        { "value": "20", "label": "2 Geschoss ohne Keller" },
+        { "value": "3", "label": "3 Geschoss mit Keller" },
+        { "value": "30", "label": "3 Geschoss ohne Keller" },
+        { "value": "4", "label": "4 Geschoss mit Keller" },
+        { "value": "40", "label": "4 Geschoss ohne Keller" },
+        { "value": "5", "label": "5 Geschoss mit Keller" },
+        { "value": "50", "label": "5 Geschoss ohne Keller" },
+        { "value": "6", "label": "6 Geschoss mit Keller" },
+        { "value": "60", "label": "6 Geschoss ohne Keller" }
+      ],
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"wohneinheiten"
+    },
+    {
+      "name": "gebaeudeartWohnflaecheGaragenWohngebaeude",
+      "label": "Gebäudeart",
+      "type": "text",
+      "suiteValue":"garagen"
+    },
+    {
+      "name": "staendigBewohntWohnflaecheGaragenWohngebaeude",
+      "label": "ständig bewohnt",
+      "type": "checkbox",
+      "suiteValue":"staendigBewohnt"
+
+    },
+    {
+      "name": "ableitungsrohreWohnflaecheGaragenWohngebaeude",
+      "label": "Ableitungsrohre",
+      "type": "checkbox",
+      "suiteValue":"ableitungsrohre"
+
+    },
+    {
+      "name": "dachartWohnflaecheGaragenWohngebaeude",
+      "label": "Dachart",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"dachart"
+    },
+    {
+      "name": "grundstueckzubehoerWohnflaecheGaragenWohngebaeude",
+      "label": "Grundstückzubehör",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"grundstueckszubehoer"
+    },
+    {
+      "name": "fussbodenheizungWohnflaecheGaragenWohngebaeude",
+      "label": "Fussbodenheizung",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"fussbodenheizung"
+    },
+    {
+      "name": "schwimmbadWohnflaecheGaragenWohngebaeude",
+      "label": "Schwimmbad",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"schwimmbadPos"
+    },
+    {
+      "name": "baujahrWohnflaecheGaragenWohngebaeude",
+      "label": "Baujahr",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"baujahr"
+    },
+    {
+      "name": "neubauwertWohnflaecheGaragenWohngebaeude",
+      "label": "Neubauwert (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"neubausumme"
+    },
+    {
+      "name": "wertWohnflaecheGaragenWohngebaeude",
+      "label": "Wert 1914 (Mark)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"wert1914"
+    },
+    {
+      "name": "waendeWohngebaeudeHeader",
+      "label": "Wände",
+      "type": "header"
+    },
+    {
+      "name": "waendeWohngebaeude",
+      "label": "Wände",
+      "type": "paragraph"
+    },
+    {
+      "name": "massivWaendeWohngebaeude",
+      "label": "massiv",
+      "type": "checkbox",
+      "props": { "sm": 4 ,
+        "xs":4},
+        "suiteValue":"waendeMassiv"
+    },
+    {
+      "name": "nichtMassivWaendeWohngebaeude",
+      "label": "nicht massiv",
+      "type": "checkbox",
+      "props": { "sm": 4 ,
+        "xs":4},
+        "suiteValue":"waendeNichtMassiv"
+    },
+    {
+      "name": "stahlHolzfachwerkNichtBrennbareFuellungWaendeWohngebaeude",
+      "label": "Stahl/Holzfachwerk nicht brennbare Füllung",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"waendeNichtBrennbar"
+    },
+    {
+      "name": "stahlHolzfachwerkBrennbareFuellungWaendeWohngebaeude",
+      "label": "Stahl/Holzfachwerk brennbare Füllung",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"waendeBrennbar"
+    },
+    {
+      "name": "sonstigesWaendeWohngebaeude",
+      "label": "Sonstiges",
+      "type": "checkbox",
+      "props": { "sm": 4 ,
+        "xs":4},
+        "suiteValue":"waendeSonstiges"
+    },
+    {
+      "name": "fallsSonstigesWaendeWohngebaeude",
+      "label": "falls sonstiges",
+      "type": "text",
+      "suiteValue":"waendeSonstigesText"
+    },
+    {
+      "name": "feuerhemmungWohngebaeudeHeader",
+      "label": "Feuerhemmung",
+      "type": "header"
+    },
+    {
+      "name": "feuerhemmungWohngebaeude",
+      "label": "Feuerhemmung",
+      "type": "paragraph"
+    },
+    {
+      "name": "FHSechzigFeuerhemmungWohngebaeude",
+      "label": "FH 60",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"feuerhemmungFh60"
+    },
+    {
+      "name": "FHDreißigFeuerhemmungWohngebaeude",
+      "label": "FH 30",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"feuerhemmungFh30"
+    },
+    {
+      "name": "unbekanntFeuerhemmungWohngebaeude",
+      "label": "unbekannt",
+      "type": "checkbox",
+      "props": { "sm": 4 ,
+        "xs":4},
+        "suiteValue":"feuerhemmungUnbekannt"
+    },
+    {
+      "name": "sonstigeFeuerhemmungWohngebaeude",
+      "label": "sonstige",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"feuerhemmungSonstiges"
+    },
+    {
+      "name": "fallsSonstigesFeuerhemmungWohngebaeude",
+      "label": "falls sonstiges",
+      "type": "text",
+      "suiteValue":"feuerhemmungSonstigesText"
+    },
+    {
+      "name": "kellerWohngebaeudeHeader",
+      "label": "Keller",
+      "type": "header"
+    },
+    {
+      "name": "kellerWohngebaeude",
+      "label": "mit Keller?",
+      "type": "checkbox",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"keller"
+    },
+    {
+      "name": "teilunterkellertKellerWohngebaeude",
+      "label": "teilunterkellert",
+      "type": "checkbox",
+      "condition":"kellerWohngebaeude",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"teilunterkellert"
+    },
+    {
+      "name": "teilunterkellertQmKellerWohngebaeude",
+      "label": "teilunterkellert qm",
+      "type": "text",
+      "condition":"teilunterkellertKellerWohngebaeude",
+      "suiteValue":"qmUnterkellert"
+    },
+    {
+      "name": "kellerWohngebaeudeHeader",
+      "label": "Vertragslaufzeit",
+      "type": "header"
+    },
+    {
+      "name": "vertragsbeginnVertragslaufzeitWohngebaeude",
+      "label": "Vertragsbeginn",
+      "type": "date",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"versicherungsbeginn"
+    },
+    {
+      "name": "vertragsendeVertragslaufzeitWohngebaeude",
+      "label": "Vertragsende",
+      "type": "date",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"versicherungsende"
+    },
+    {
+      "name": "beitragVertragslaufzeitWohngebaeude",
+      "label": "Selbstbeteiligung (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"beitrag"
+    },
+    {
+      "name": "versicherungssummeBeitragVertragslaufzeitWohngebaeude",
+      "label": "Versicherungssumme (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"versicherungssumme"
+    },
+    {
+      "name": "beitragVertragslaufzeitWohngebaeude",
+      "label": "Beitrag (€)",
+      "type": "text",
+      "props": { "required": true, "sm":6 ,
+        "xs":6},
+        "suiteValue":"beitrag"
+    },
+    {
+      "name": "zahlweiseVertragslaufzeitWohngebaeude",
+      "label": "Zahlweise",
+      "type": "select",
+      "props": { "required": true, "sm":6 ,
+        "xs":6},
+      "options": [
+        { "value": "MONATLICH", "label": "Monatlich" },
+        { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+        { "value": "QUARTAL", "label": "Quartal" },
+        { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+        { "value": "JAEHRLICH", "label": "Jährlich" }],
+        "suiteValue":"zahlweise"
+    },
+    {
+      "name": "vorschaedenWohngebaeudeHeader",
+      "label": "Vorschäden",
+      "type": "header"
+    },
+      {
+        "name": "anzahlVorschaedenWohngebaeude",
+        "label": "Anzahl Vorschäden letzten 5 Jahre",
+        "type": "text",
+        "suiteValue":"vorschaedenAnzahl"
+      },
+      {
+        "name": "hoeheVorschaedenWohngebaeude",
+        "label": "Höhe der Vorschäden (€)",
+        "type": "text",
+        "suiteValue":"vorschaedenHoehe"
+      },
+      {
+        "name": "listeVorschaedenWohngebaeude",
+        "label": "Liste der Vorschäden (Datum/Art/Höhe)",
+        "type": "text",
+        "suiteValue":"vorschaedenNotiz"
+      }
+    ]
+}

@@ -1,0 +1,327 @@
+{
+    "section": "Riesterrente",
+    "card": true,
+    "items": [
+            {
+              "name": "produktIDRiesterrente",
+              "label": "Produkt ID (Suite mapping)",
+              "type": "select",
+              "options": [{ "value": 0, "label": "Mandant" }]
+            },
+            {
+              "name": "tarifbezeichnungRiesterrente",
+              "label": "Tarifbezeichnung",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "vertragsnummerRiesterrente",
+              "label": "Vertragsnummer",
+              "type": "text",
+              "props": { "required": true, "sm":6,
+                "xs":6 }
+            },
+            {
+              "name": "versicherungsnehmerRiesterrenteHeader",
+              "label": "Versicherungsnehmer",
+              "type": "header"
+            },
+            {
+              "name": "versicherungsnehmerRiesterrente",
+              "label": "Versicherungsnehmer (suite mapping)",
+              "type": "select",
+              "props": { "required": true },
+              "options": [{ "value": 0, "label": "Mandant" }]
+            },
+            {
+              "name": "versichertePersonRiesterrenteHeader",
+              "label": "Versicherte Person",
+              "type": "header"
+            },
+            {
+              "name": "versichertePersonRiesterrente",
+              "label": "Versicherte Person",
+              "type": "select",
+              "props": { "required": true },
+              "options": [{ "value": 0, "label": "Mandant" }]
+            },
+            {
+              "name": "artVersichertePersonRiesterrente",
+              "label": "Art",
+              "type": "select",
+              "options": [
+                  { "value": "klassisch", "label": "Klassisch" },
+                  { "value": "FRV", "label": "FRV" },
+                  { "value": "investment", "label": "Investment" },
+                  { "value": "bank", "label": "Bank" },
+                  { "value": "fondssparplan", "label": "Fondssparplan" },
+                  { "value": "bausparen", "label": "Bausparen" }
+                ]
+            },
+            {
+              "name": "vertragslaufzeitRiesterrenteHeader",
+              "label": "Vertragslaufzeit",
+              "type": "header"
+            },
+            {
+              "name": "vertragsbeginnVertragslaufzeitRiesterrente",
+              "label": "Vertragsbeginn",
+              "type": "date",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "vertragsendeVertragslaufzeitRiesterrente",
+              "label": "Vertragsende",
+              "type": "date",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "leistungTodVertragslaufzeitRiesterrente",
+              "label": "Leistung bei Tod",
+              "type": "select",
+              "options": [
+                  { "value": "guthaben", "label": "Guthaben" },
+                  { "value": "gezahltebeitraege", "label": "gezahlter Beitrag" }
+                ]
+            },
+            {
+              "name": "monatlicheRentenleistungRiesterrenteHeader",
+              "label": "Monatliche Rentenleistung",
+              "type": "header"
+            },
+            {
+              "name": "garantiertMonatlicheRentenleistungRiesterrente",
+              "label": "Monatliche Rentenleistung garantiert",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "prognostiziertMonatlicheRentenleistungRiesterrente",
+              "label": "Monatliche Rentenleistung prognostiziert",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "beiProzentMonatlicheRentenleistungRiesterrente",
+              "label": "bei (%)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "RGZMonatlicheRentenleistungRiesterrente",
+              "label": "RGZ (Jahre)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "dynamikRiesterrenteHeader",
+              "label": "Dynamik",
+              "type": "header"
+            },
+            {
+              "name": "dynamikRiesterrente",
+              "label": "Dynamik",
+              "type": "select",
+              "options": [
+                  { "value": 0, "label": "Nein" },
+                  { "value": 1, "label": "Ja" }
+                ],
+                "props": { "sm": 6,
+                  "xs":6 }
+            },
+            {
+              "name": "prozentDynamikRiesterrente",
+              "label": "Prozent (%)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "BURiesterrenteHeader",
+              "label": "BU",
+              "type": "header"
+            },
+            {
+              "name": "integrierteBURiesterrente",
+              "label": "inetgrierte BU",
+              "type": "select",
+              "options":[{"value":0,"label":"Nein"},
+                  {"value":1,"label":"Ja"}],
+                  "props": { "sm": 6,
+                    "xs":6 }
+            },
+            {
+              "name": "rentenleistungBURiesterrente",
+              "label": "BU-Rentenleistung (€)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "dynamikBULeistungBURiesterrente",
+              "label": "Dynamik BU Leistung BU",
+              "type": "select",
+              "options":[{"value":0,"label":"Nein"},
+                  {"value":1,"label":"Ja"}],
+                  "props": { "sm": 6,
+                    "xs":6 }
+            },
+            {
+              "name": "beitragsbefreiungBURiesterrente",
+              "label": "Beitragsbefreiung BU",
+              "type": "select",
+              "options":[{"value":0,"label":"Nein"},
+                  {"value":1,"label":"Ja"}],
+                  "props": { "sm": 6,
+                    "xs":6 }
+            },
+            {
+              "name": "BUZRiesterrenteHeader",
+              "label": "BUZ",
+              "type": "header"
+            },
+            {
+              "name": "beitragsendeBUZRiesterrente",
+              "label": "Beitragsende",
+              "type": "date",
+              "props": { "sm": 6 ,
+                "xs":6}
+            },
+            {
+              "name": "leistungsendeBUZRiesterrente",
+              "label": "Leistungsende",
+              "type": "date",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "beitragsanteilBUZRiesterrente",
+              "label": "Beitragsanteil (€)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "aktuellerRückkaufswertBUZRiesterrente",
+              "label": "Aktueller Rückkaufswert (€)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "datumBUZRiesterrente",
+              "label": "Datum",
+              "type": "date"
+            },
+            {
+              "name": "fondsRiesterrenteHeader",
+              "label": "Fonds",
+              "type": "header"
+            },
+            {
+              "name": "fondsRiesterrente",
+              "label": "Fonds",
+              "type": "text",
+              "props": { "sm": 6 ,
+                "xs":6}
+            },
+            {
+              "name": "beitragsendeFondsRiesterrente",
+              "label": "Beitragsende",
+              "type": "date",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "VWLRiesterrenteHeader",
+              "label": "VWL",
+              "type": "header"
+            },
+            {
+              "name": "VWLRiesterrente",
+              "label": "VWL",
+              "type": "checkbox"
+            },
+            {
+              "name": "arbeitgeberanteilVWLRiesterrente",
+              "label": "Arbeitgeberanteil (€)",
+              "type": "text",
+              "props": { "sm": 6 ,
+                "xs":6}
+            },
+            {
+              "name": "arbeitnehmeranteilVWLRiesterrente",
+              "label": "Arbeitnehmeranteil (€)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "summeVWLRiesterrente",
+              "label": "Summe (€)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "zahlweiseVWLRiesterrente",
+              "label": "Zahlweise",
+              "type": "select",
+              "props": { "required": true, "sm":6,
+                "xs":6 },
+              "options": [
+                { "value": 0, "label": "Monatlich" },
+                { "value": 1, "label": "Quartal" },
+                { "value": 2, "label": "Halbjährlich" },
+                { "value": 3, "label": "Jährlich" }]
+            },
+            {
+              "name": "beitragVWLRiesterrente",
+              "label": "Beitrag (€)",
+              "type": "text",
+              "props": { "required": true, "sm":6,
+                "xs":6 }
+            },
+            {
+              "name": "dauerzulagenantragVWLRiesterrente",
+              "label": "Dauerzulagenantrag",
+              "type": "select",
+              "options": [
+                { "value": 0, "label": "Nein" },
+                { "value": 1, "label": "Ja" }],
+                "props": { "sm": 6,
+                  "xs":6 }
+            },
+            {
+              "name": "zahlungLetzteZulageRiesterrenteHeader",
+              "label": "Zahlung letzte Zulage",
+              "type": "header"
+            },
+            {
+              "name": "inHoeheVonZahlungLetzteZulageRiesterrenteHeader",
+              "label": "in Höhe von (€)",
+              "type": "text",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "gebuchtAmLetzteZulageRiesterrenteHeader",
+              "label": "gebucht am",
+              "type": "date",
+              "props": { "sm": 6,
+                "xs":6 }
+            },
+            {
+              "name": "garantiezinsZahlungLetzteZulageRiesterrenteHeader",
+              "label": "Garantiezins (%)",
+              "type": "text"
+            }
+    ]
+}

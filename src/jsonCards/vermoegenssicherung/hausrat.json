@@ -1,0 +1,286 @@
+{
+  "section": "Hausrat",
+  "card": true,
+  "items": [
+    {
+      "name": "versicherungsnehmerHausrat",
+      "label": "Versicherungsnehmer",
+      "type": "header"
+    },
+    {
+      "name": "versicherungsnehmerHausrat",
+      "label": "Versicherungsnehmer",
+      "type": "selectMandant",
+      "tarifType":"HAUSRAT",
+      "props": { "required": true },
+      "suiteValue":"versicherungsnehmerId"
+    },
+    {
+      "name": "gesellschaftHausratHeader",
+      "label": "Gesellschaft",
+      "type": "header"
+    },
+    {
+      "name": "gesellschaftHausrat",
+      "type": "gesellschaft",
+      "props": { "required": true },
+      "suiteValue":"gesellschaft"
+    },
+    {
+      "name": "tarifbezeichnungGesellschaftHausrat",
+      "label": "Tarifbezeichnung",
+      "props": { "sm": 6,
+        "xs":6 },
+      "type": "text",
+      "suiteValue":"tarifBezeichnung"
+    },
+    {
+      "name": "vertragsnummerGesellschaftHausrat",
+      "label": "Vertragsnummer",
+      "type": "text",
+      "props": { "required": true, "sm":6 ,
+        "xs":6},
+        "suiteValue":"versicherungsnummer"
+    },
+    {
+      "name": "staendigBewohntGesellschaftHausrat",
+      "label": "ständig bewohnt",
+      "type": "select",
+      "options": [
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "suiteValue":"staendigBewohnt"
+    },
+    {
+      "name": "einschluesseHausratHeader",
+      "label": "Einschlüsse",
+      "type": "header"
+    },
+    {
+      "name": "erhoehungWertsachenEinschluesseHausrat",
+      "label": "Erhöhung Wertsachen",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"wertsachen"
+    },
+    {
+      "name": "ueberspannungEinschluesseHausrat",
+      "label": "Überspannung",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"ueberspannung"
+    },
+    {
+      "name": "elementarschaedenEinschluesseHausrat",
+      "label": "Elementarschäden",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":""
+    },
+    {
+      "name": "versicherungssummeHausratHeader",
+      "label": "Versicherungssumme",
+      "type": "header"
+    },
+    {
+      "name": "versicherungssummeHausrat",
+      "label": "Versicherungssumme (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"versicherungssumme"
+    },
+    {
+      "name": "selbstbeteiligungVersicherungssummeHausrat",
+      "label": "Selbstbeteiligung (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"sb"
+    },
+    {
+      "name": "postleitzahlVersicherungssummeHausrat",
+      "label": "PLZ",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"plz"
+    },
+    {
+      "name": "stadtVersicherungssummeHausrat",
+      "label": "Stadt",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"stadt"
+    },
+    {
+      "name": "strasseVersicherungssummeHausrat",
+      "label": "Strasse",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"strasse"
+    },
+    {
+      "name": "hausnummerVersicherungssummeHausrat",
+      "label": "Hausnummer",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"hausnummer"
+    },
+    {
+      "name": "immobilienartVersicherungssummeHausrat",
+      "label": "Immobilienart",
+      "type": "select",
+      "options":[
+        { "value": "1", "label": "Einfamilienhaus" },
+        { "value": "2", "label": "Zweifamilienhaus" },
+        { "value": "3", "label": "Mehrfamilienhaus" }
+      ],
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"iart"
+    },
+    {
+      "name": "wohnflaecheVersicherungssummeHausrat",
+      "label": "Wohnfläche (in qm)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"wohnflaeche"
+    },
+    {
+      "name": "unterversicherungsverzichtVersicherungssummeHausrat",
+      "label": "Unterversicherungsverzicht",
+      "type": "select",
+      "props": { "sm": 6 ,
+        "xs":6},
+      "options":[
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "suiteValue":"unterversicherungsverzicht" 
+    },
+    {
+      "name": "fahrradVersicherungssummeHausrat",
+      "label": "Fahrrad",
+      "props": { "sm": 6 ,
+        "xs":6},
+      "type": "select",
+      "options":[
+        { "value": "0", "label": "nicht gewünscht" },
+        { "value": "1", "label": "mind. 1%" },
+        { "value": "2", "label": "mind. 2%" },
+        { "value": "3", "label": "mind. 3%" },
+        { "value": "4", "label": "mind. 4%" },
+        { "value": "5", "label": "mind. 5%" }
+      ],
+      "suiteValue":"fahrrad" 
+    },
+    {
+      "name": "wertVersicherungssummeHausrat",
+      "label": "Wert (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"fahrradWert" 
+    },
+    {
+      "name": "glasversicherungVersicherungssummeHausrat",
+      "label": "Glasversicherung",
+      "type": "select",
+      "props": { "sm": 6,
+        "xs":6 },
+      "options":[
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "suiteValue":"glasflaeche" 
+    },
+    {
+      "name": "mitCeranKochfeldernVersicherungssummeHausrat",
+      "label": "... mit Ceran-Kochfeldern",
+      "type": "select",
+      "options":[
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"ceran" 
+    },
+    {
+      "name": "aquariumVersicherungssummeHausrat",
+      "label": "Aquarium",
+      "type": "select",
+      "options":[
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"aquarium" 
+    },
+    {
+      "name": "wasserbettVersicherungssummeHausrat",
+      "label": "Wasserbett",
+      "type": "select",
+      "options":[
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"wasserbett" 
+    },
+    {
+      "name": "tarifgruppeVersicherungssummeHausrat",
+      "label": "Tarifgruppe",
+      "type": "select",
+      "options":[
+        { "value": "0", "label": "Normal" },
+        { "value": "1", "label": "Öffentlicher Dienst" },
+        { "value": "2", "label": "Innendienst" },
+        { "value": "3", "label": "Arzt/Mediziner" }
+      ],
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"tarifgruppe" 
+    },
+    {
+      "name": "tarifOeffentlicherDienstVersicherungssummeHausrat",
+      "label": "Tarif 'Öffentlicher Dienst'",
+      "type": "checkbox",
+      "suiteValue":"oeffentlicherDienst" 
+    },
+    {
+      "name": "VorschaedenHausratHeader",
+      "label": "Vorschäden",
+      "type": "header"
+    },
+    {
+      "name": "anzahlVorschaedenHausrat",
+      "label": "Anzahl Vorschäden letzten 5 Jahre",
+      "type": "text",
+      "suiteValue":"vorschaedenAnzahl" 
+    },
+    {
+      "name": "hoeheVorschaedenHausrat",
+      "label": "Höhe der Vorschäden (€)",
+      "type": "text",
+      "suiteValue":"vorschaedenHoehe" 
+    },
+    {
+      "name": "listeVorschaedenHausrat",
+      "label": "Liste der Vorschäden (Datum/Art/Höhe)",
+      "type": "text",
+      "suiteValue":"vorschaedenNotiz" 
+    }
+  ]
+}

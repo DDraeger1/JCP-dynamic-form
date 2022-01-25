@@ -1,0 +1,127 @@
+{
+    "section": "KFZ",
+    "card": true,
+    "items": [
+        {
+            "name": "AllgemeinKFZHeader",
+            "label": "Allgemein",
+            "type": "header"
+          },
+          {
+            "name": "fahrzeugtypAllgemeinKFZ",
+            "label": "Fahrzeugtyp",
+            "type": "select",
+            "options": [
+              { "value": "pkw", "label": "PKW" },
+              { "value": "krad", "label": "Krad" },
+              { "value": "lkw", "label": "LKW" },
+              { "value": "wohnwagen", "label": "Wohnwagen" },
+              { "value": "anhaenger", "label": "Anhänger" },
+              { "value": "sonstige", "label": "Sonstige" }
+            ],
+            "suiteValue":"fahrzeugtyp" 
+
+          },
+          {
+            "name": "fallsSonstigeAllgemeinKFZ",
+            "label": "...falls Sonstige",
+            "type": "text",
+            "suiteValue":"fahrzeugtypSonstige" 
+          },
+        {
+            "name": "versicherungsnehmerKFZHeader",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerKFZ",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType":"KFZ",
+            "suiteValue":"versicherungsnehmerId" 
+          },
+          {
+            "name": "gesellschaftKFZHeader",
+            "label": "Gesellschaft",
+            "type": "header"
+          },
+          {
+            "name": "gesellschaftKFZ",
+            "label": "Gesellschaft",
+            "type": "text",
+            "suiteValue":"gesellschaft" 
+          },
+          {
+            "name": "tarifbezeichnungGesellschaftKFZ",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props": { "sm": 6,
+            "xs":6 },
+            "suiteValue":"tarifBezeichnung" 
+          },
+          {
+            "name": "vertragsnummerGesellschaftKFZ",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props": { "required": true, "sm":6 ,
+              "xs":6},
+              "suiteValue":"versicherungsnummer" 
+          },
+          {
+            "name": "tarifGesellschaftKFZ",
+            "label": "Tarif",
+            "type": "select",
+            "options": [
+                { "value": "AGRAR", "label": "A (= Land-u. Forstwirtschaft sowie Garten- und Weinbaubetriebe)" },
+                { "value": "OD_BEAMTE", "label": "B (ÖD)" },
+                { "value": "NORMAL", "label": "R (= Jeder PKW sofern er nicht zur Tarifgruppe A oder B gehört)" },
+                { "value": "SONSTIGE", "label": "N (= Kraftfahrzeuge + Anhänger mit Ausnahme von Pkw)" }
+            ],
+            "suiteValue":"tarifgruppe" 
+          },
+          {
+            "name": "vertragslaufzeitKFZHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitKFZ",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"versicherungsbeginn" 
+          },
+          {
+            "name": "vertragsendeVertragslaufzeitKFZ",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsende" 
+          },
+          {
+            "name": "beitragKFZHeader",
+            "label": "Beitrag",
+            "type": "header"
+          },
+          {
+            "name": "beitragKFZ",
+            "label": "Beitrag (€)",
+            "type": "text",
+            "suiteValue":"beitrag" 
+          },
+          {
+            "name": "beitragGeschaeftsausgabeBeitragKFZ",
+            "label": "Beitrag ist Geschäftsausgabe",
+            "type": "checkbox",
+            "suiteValue":"geschaeftsausgabe" 
+          },
+          {
+            "name": "mitgliedAutomobilclubBeitragKFZ",
+            "label": "Mitglied Automobilclub",
+            "type": "text",
+            "suiteValue":"automobilclub" 
+          }
+        ]
+    }

@@ -1,0 +1,34 @@
+{
+    "section": "Einkommen aus geringfügiger beschaefitgung",
+    "card": true,
+    "items": [
+        {
+            "name": "personenzuordnungGeringfuegigeBeschaeftigung",
+            "label": "Personenzuordnung",
+            "type": "selectMandant",
+            "tarifType":"EINKOMMEN_MINIJOB",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {"name":"einkommenProMonatGeringfuegigeBeschaeftigung",
+        "label":"Einkommen Pro Monat",
+    "type":"text",
+    "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"einkommen"
+    },
+    {"name":"anzahlLoehneGehaelterProJahrGeringfuegigeBeschaeftigung",
+        "label":"Anzahl Loehne/Gehälter pro Jahr",
+    "type":"text",
+    "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"anzahlMonateProJahr"},
+    {"name":"leistenEigenbeitraegeSvGeringfuegigeBeschaeftigung",
+        "label":"Leisten Sie Eigenbeitraege Zur Sv",
+    "type":"select",
+    "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"eigenbeitraegeZurSV",
+    "options": [{ "value": false, "label": "Nein" },{ "value": true, "label": "Ja" }]}
+    ]
+}

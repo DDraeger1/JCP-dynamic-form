@@ -1,0 +1,135 @@
+{
+  "section": "Einnahmen",
+  "card": true,
+  "items": [ 
+    {
+      "name": "personenzuordnungEinnahmen",
+      "label": "Personenzuordnung",
+      "type": "selectMandant",
+      "tarifType":"EINNAHMEN",
+      "props": { "required": true },
+      "suiteValue":"versicherungsnehmerId"
+    },
+    {
+      "name": "einnahmeartEinnahmenHeader",
+      "label": "Einnahmeart (change to radiobuttons)",
+      "type": "header"
+    },
+    {
+      "name": "nichtselbststaendigeTaetigkeitEinnahmen",
+      "label": "Nichtselbstständige Tätigkeit",
+      "type": "checkbox",
+      "props": {
+          "sm": 4
+        },
+        "suiteValue":"nichtselbststaendigeTaetigkeit"
+    },
+    {
+      "name": "kapitalvermoegenEinnahmen",
+      "label": "Kapitalvermoegen",
+      "type": "checkbox",
+      "props": {
+          "sm": 4
+        },
+        "suiteValue":"kapitalvermogen"
+    },
+    {
+      "name": "vermietungUndVerpachtungEinnahmen",
+      "label": "Vermietung und Verpachtung",
+      "type": "checkbox",
+      "props": {
+          "sm": 4
+        },
+        "suiteValue":"vermietungUndVerpachtung"
+    },
+    {
+      "name": "selbststaendigeTaetigkeitEinnahmen",
+      "label": "Selbstständige Tätigkeit",
+      "type": "checkbox",
+      "props": {
+          "sm": 4
+        },
+        "suiteValue":"selbststaendigeTaetigkeit"
+    },
+    {
+      "name": "landUndForstwirtschaftEinnahmen",
+      "label": "Land- und Forstwirtschaft",
+      "type": "checkbox",
+      "props": {
+          "sm": 4
+        },
+        "suiteValue":"landUndForstwirtschaft"
+    },
+    {
+      "name": "gewerbebetriebEinnahmen",
+      "label": "Gewerbebetrieb",
+      "type": "checkbox",
+      "props": {
+          "sm": 4
+        },
+        "suiteValue":"gewerbebetrieb"
+    },
+    {
+      "name": "sonstigeEinkünfteEinnahmen",
+      "label": "Sonstige Einkünfte (§ 22 EStG/Renten)",
+      "type": "checkbox",
+      "props": {
+          "sm": 4
+        },
+        "suiteValue":"sonstigeEinkuenfte22Renten"
+    },
+    {
+      "name": "außerordentlicheEinkuenfteEinnahmen",
+      "label": "Außerordentliche Einkuenfte (§ 34 EStG/Fünftreglung)",
+      "type": "checkbox",
+      "props": {
+          "sm": 6
+        },
+        "suiteValue":"ausserordentlicheEinkuenfte"
+    },
+    {
+      "name": "steuerfreieEinnahmenUnterProgessionsvorbehaltEinnahmen",
+      "label": "steuerfreie Einnahmen umter Progessionsvorbehalt (§ 32b EStG/z. B. Arbeitslosengeld I und ausländische Einkünfte)",
+      "type": "checkbox",
+      "props": {
+          "sm": 6
+        },
+        "suiteValue":"steuerfreieEinnahmenUnterProgressionsvorbehalt"
+    },
+    {
+      "name": "filler",
+      "label": "",
+      "type": "paragraph",
+      "props": {
+          "sm": 6
+        }
+    },
+    { "name": "vonEinnahmen", "label": "von", "type": "date",
+      "props": {
+          "sm": 6,
+          "xs":6
+        },
+        "suiteValue":"versicherungsbeginn" },
+    { "name": "bisEinnahmen", "label": "bis", "type": "date",
+      "props": {
+          "sm": 6,
+          "xs":6
+        },
+        "suiteValue":"versicherungsende" },
+    {
+      "name": "zahlweiseEinnahmen",
+      "label": "Zahlweise",
+      "type": "select",
+      "options": [{ "value": "MONATLICH", "label": "Monatlich"
+         },
+         { "value": "QUARTAL", "label": "Quartal"
+            },{ "value": "HALBJAEHRLICH", "label": "Halbjährlich"
+                },
+                { "value": "JAEHRLICH", "label": "Jährlich"
+                    }],
+                    "suiteValue":"zahlweise"
+    },
+    { "name": "betragEinnahmen", "label": "Betrag", "type": "text",
+      "suiteValue":"betrag" }
+  ]
+}

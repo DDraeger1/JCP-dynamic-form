@@ -1,0 +1,172 @@
+{
+    "section": "Arbeitgeber",
+    "card": true,
+    "items": [
+        {
+        "name": "firmennameArbeitgeber",
+        "label": "Firmenname",
+        "type": "text",
+        "props": {
+          "sm": 6,
+          "xs":6
+        }
+      },
+      {
+        "name": "rechtsformArbeitgeber",
+        "label": "Rechtsform (z.B GmbH, GbR, etc.)",
+        "type": "text",
+        "props": {
+          "sm": 6,
+          "xs":6
+        }
+    },
+    {
+      "name": "straßeArbeitgeber",
+      "label": "Straße",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "nummerArbeitgeber",
+      "label": "Nr.",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "postleitzahlArbeitgeber",
+      "label": "Postleitzahl",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "wohnortArbeitgeber",
+      "label": "Wohnort",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "telefonnummerArbeitgeber",
+      "label": "Telefonnummer",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "seitWannbeschaeftigtArbeitgeber",
+      "label": "seit wann beshäftigt?",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "bAVArbeitgeberHeader",
+      "label": "Betriebliche Altersvorsorge",
+      "type": "header"
+    },
+    {
+      "name": "inGewerkschaftBAVArbeitgeber",
+      "label": "Sind Sie in der Gewerkschaft?",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": true, "label": "Ja" },
+        { "value": false, "label": "Nein" }
+    ]
+    },
+    {
+      "name": "inWelcheGewerkschaftBAVArbeitgeber",
+      "label": "Falls ja, welche Gewerkschaft?",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "tarifgebundenBAVArbeitgeber",
+      "label": "Ist ihr Arbeitgeber tarifgebunden?",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": true, "label": "Ja" },
+        { "value": false, "label": "Nein" }
+    ]
+    },
+    {
+      "name": "tarifvertragBestehenBAVArbeitgeber",
+      "label": "Besteht ein Tarifvertrag?",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": true, "label": "Ja" },
+        { "value": false, "label": "Nein" }
+    ]
+    },
+    {
+        "name": "inWelcheGewerkschaftBAVArbeitgeber",
+        "label": "min. 1x 'ja', welcher Tarifvertrag gilt?",
+        "type": "text",
+        "props": {
+          "sm": 6,
+          "xs":6
+        }
+      },
+      {
+          "name": "unternehmensgrößeBAVArbeitgeber",
+          "label": "Unternehmensgröße",
+          "type": "text",
+          "props": {
+            "sm": 6,
+            "xs":6
+          }
+        },
+        {
+            "name": "ansprechspartnerArbeitgeber",
+            "label": "Ansprechspartner",
+            "type": "text",
+            "props": {
+              "sm": 6,
+              "xs":6
+            }
+          },
+          {
+              "name": "telNrAnsprechspartnerArbeitgeber",
+              "label": "Telefon Nummer des Ansprechspartners",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs":6
+              }
+            },
+            {
+                "name": "emailAnsprechspartnerArbeitgeber",
+                "label": "Email des Ansprechspartners",
+                "type": "text"
+              }
+    ]
+}

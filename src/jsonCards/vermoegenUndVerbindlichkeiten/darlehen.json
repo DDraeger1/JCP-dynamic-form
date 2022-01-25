@@ -1,0 +1,163 @@
+{
+    "section": "Darlehen",
+    "card": true,
+    "items": [
+        {
+            "name":"produktIDDarlehen",
+            "label":"Produkt ID (suite mapping)",
+            "type":"select",
+            "options":[
+                { "value": 0, "label": "Produkt ID" }
+            ],
+            "props":{"required":true}
+        },
+        {
+            "name":"tarifbezeichnungDarlehen",
+            "label":"Tarifbezeichnung",
+            "props": { "sm": 6 ,
+                "xs":6},
+            "type":"text"
+        },
+        {
+            "name":"vertragsnummerDarlehen",
+            "label":"Vertragsnummer",
+            "type":"text",
+            "props":{"required":true, "sm":6,
+                "xs":6}
+        },
+        {
+            "name":"darlehensnehmerDarlehenHeader",
+            "label":"Darlehensnehmer",
+            "type":"header"
+        },
+        {
+            "name":"darlehensnehmerDarlehen",
+            "label":"Darlehensnehmer (suite mapping)",
+            "type":"select",
+            "props":{"required":true},
+            "options":[
+                { "value": 0, "label": "Mandant" }
+            ]
+        },
+        {
+            "name":"artDarlehenHeader",
+            "label":"Art",
+            "type":"header"
+        },
+        {
+            "name":"artDarlehen",
+            "label":"Art",
+            "type":"select",
+            "options":[
+                { "value": 0, "label": "endfälliges Darlehen" },
+                { "value": 1, "label": "Annuitätendarlehen" },
+                { "value": 2, "label": "Bausparfinanziert" }
+            ]
+        },
+        {
+            "name":"objektzuordnungDarlehenHeader",
+            "label":"Objektzuordnung (Anschrift, etc.)",
+            "type":"header"
+        },
+        {
+            "name":"zugeordneteImmobilieObjektzuordnungDarlehen",
+            "label":"Zugeordnete Immobilie",
+            "type":"select",
+            "options":[
+                { "value": 0, "label": "Immobilie" }
+            ],
+            "props": { "sm": 6 ,
+                "xs":6}
+        },
+        {
+            "name":"darlehenshoeheBeginnObjektzuordnungDarlehen",
+            "label":"Darlehenshöhe Beginn (€)",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 }
+        },
+        {
+            "name":"restschuldBerechnenObjektzuordnungDarlehen",
+            "label":"Restschuld Berechnen (Button)",
+            "type":"paragraph"
+        },
+        {
+            "name":"restschuldObjektzuordnungDarlehen",
+            "label":"Restschuld (€)",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 }
+        },
+        {
+            "name":"standVomObjektzuordnungDarlehen",
+            "label":"Stand Vom",
+            "type":"date",
+            "props": { "sm": 6,
+                "xs":6 }
+        },
+        {
+            "name":"rateObjektzuordnungDarlehen",
+            "label":"Rate",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 }
+        },
+        {
+            "name":"zahlweiseObjektzuordnungDarlehen",
+            "label":"Zahlweise",
+            "type":"select",
+            "options": [
+                { "value": 0, "label": "Monatlich" },
+                { "value": 1, "label": "Quartal" },
+                { "value": 2, "label": "Halbjährlich" },
+                { "value": 3, "label": "Jährlich" }
+            ],
+            "props":{"required":true, "sm":6}
+        },
+        {
+            "name":"zinssatzObjektzuordnungDarlehen",
+            "label":"Zinssatz %",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 }
+        },
+        {
+            "name":"zinsfestschreibungObjektzuordnungDarlehen",
+            "label":"Zinsfestschreibung",
+            "type":"date",
+            "props": { "sm": 6 ,
+                "xs":6}
+        },
+        {
+            "name":"tilgungProzentObjektzuordnungDarlehen",
+            "label":"Tilgung in %",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 }
+        },
+        {
+            "name":"tilgungEuroObjektzuordnungDarlehen",
+            "label":"Tilgung in €",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 }
+        },
+        {
+            "name":"sondertilgungProzentObjektzuordnungDarlehen",
+            "label":"Sondertilgung in %",
+            "type":"text",
+            "props": { "sm": 6,
+                "xs":6 }
+        },
+        {
+            "name":"beginnObjektzuordnungDarlehen",
+            "label":"Beginn",
+            "type":"date"
+        },
+        {
+            "name":"voraussichtlichSchuldenfreiObjektzuordnungDarlehen",
+            "label":"voraussichtlich schuldenfrei (suitemapping)",
+            "type":"date"
+        }
+        ]
+    }

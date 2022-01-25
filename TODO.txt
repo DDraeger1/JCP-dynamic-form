@@ -1,0 +1,59 @@
+1.: Bankdaten fertigmachen
+
+2. Map array funktion für bspw. Kinder, Arbeitgeber etc.
+
+3. Neues css.
+
+4. Dynamik form calc fertig schreiben (?)
+
+5. Speicher funktion
+
+6. Optional: In suite einbauen
+
+7. Parameter in html link
+
+8. vertragsId wird beschrieben?
+
+9.verlauf?
+
+10. Rentenschätzung - GRV
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+urlaubsgeldSteuerSelectEinnahmen:"",
+urlaubsgeldSozialversicherungSelectEinnahmen:"",
+urlaubsgeldGesamtBruttoSelectEinnahmen:"",
+urlaubsgeldBetragMtlTextfieldEinnahmen:"",
+urlaubsgeldEntfernenEinnahmen:"",
+weihnachtsgeldSteuerSelectEinnahmen:"",
+weihnachtsgeldSozialversicherungSelectEinnahmen:"",
+weihnachtsgeldGesamtBruttoSelectEinnahmen:"",
+weihnachtsgeldBetragMtlTextfieldEinnahmen:"",
+weihnachtsgeldEntfernenEinnahmen:"",
+gewinnbeteiligungSteuerSelectEinnahmen:"",
+gewinnbeteiligungSozialversicherungSelectEinnahmen:"",
+gewinnbeteiligungGesamtBruttoSelectEinnahmen:"",
+gewinnbeteiligungBetragMtlTextfieldEinnahmen:"",
+gewinnbeteiligungEntfernenEinnahmen:"",
+sonstigesSonderSteuerSelectEinnahmen:"",
+sonstigesSonderSozialversicherungSelectEinnahmen:"",
+sonstigesSonderGesamtBruttoSelectEinnahmen:"",
+sonstigesSonderBetragMtlTextfieldEinnahmen:"",
+sonstigesSonderEntfernenEinnahmen:"",

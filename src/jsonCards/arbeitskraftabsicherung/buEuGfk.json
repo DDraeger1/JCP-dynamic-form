@@ -1,0 +1,146 @@
+{
+    "section": "BU/EU/GFK",
+    "card": true,
+    "items": [
+      {
+        "name": "gesellschaftBuEuGjkHeader",
+        "label": "Gesellschaft",
+        "type": "header"
+      },
+      {
+        "name": "gesellschaftBuEuGjk",
+        "type": "gesellschaft",
+        "props": { "required": true },
+        "suiteValue":""
+      },
+      {
+        "name": "tarifbezeichnungBuEuGjk",
+        "label": "Tarifbezeichnung",
+        "type": "text",
+        "props": { "sm": 6 },
+        "suiteValue":"tarifBezeichnung"
+      },
+      {
+        "name": "vertragsnummerBuEuGjk",
+        "label": "Vertragsnummer",
+        "type": "text",
+        "props": { "sm": 6 },
+        "suiteValue":"versicherungsnummer"
+      },
+      {
+        "name": "versicherungsnehmerBuEuGjkHeader",
+        "label": "Versicherungsnehmer",
+        "type": "header"
+      },
+      {
+        "name": "versicherungsnehmerBuEuGjk",
+        "label": "Versicherungsnehmer",
+        "type": "selectMandant",
+        "versicherungsnehmerBeide":"true",
+        "tarifType":"BU",
+        "props": { "required": true },
+        "suiteValue":"versicherungsnehmerId"
+      },
+      {
+        "name": "versichertePersonBuEuGjkHeader",
+        "label": "Versicherte Person",
+        "type": "header"
+      },
+      {
+        "name": "versichertePersonBuEuGjk",
+        "label": "Versicherte Person",
+        "type": "selectVersichert",
+        "props": { "required": true },
+        "suiteValue":"versichertePersonId"
+      },
+      {
+        "name": "artVersichertePersonBuEuGjk",
+        "label": "Art",
+        "type": "select",
+        "props": { "required": true },
+        "options": [{ "value": "BU", "label": "BU" },
+            { "value": "EU", "label": "EU" },
+            { "value": "GFK", "label": "GFK" }],
+            "suiteValue":"art"
+      },
+      {
+        "name": "VertragslaufzeitBuEuGjkHeader",
+        "label": "Vertragslaufzeit",
+        "type": "header"
+      },
+      {
+        "name": "vertragsbeginnVertragslaufzeitBuEuGjk",
+        "label": "Vertragsbeginn",
+        "type": "date",
+        "props": { "sm": 6 },
+        "suiteValue":"versicherungsbeginn"
+      },
+      {
+        "name": "vertragsendeVertragslaufzeitBuEuGjk",
+        "label": "Vertragsende",
+        "type": "date",
+        "props": { "sm": 6 },
+        "suiteValue":"versicherungsende"
+      },
+      {
+        "name": "bruttobeitragVertragslaufzeitBuEuGjk",
+        "label": "Bruttobeitrag (€)",
+        "props": { "required": true, "sm":6,
+          "xs":6 },
+        "type": "text",
+        "suiteValue":"bruttobeitrag"
+      },
+      {
+        "name": "nettozahlbeitragVertragslaufzeitBuEuGjk",
+        "label": "Nettozahlbeitrag (€)",
+        "props": { "required": true, "sm":6 ,
+          "xs":6},
+        "type": "text",
+        "suiteValue":"beitrag"
+      },
+      {
+        "name": "zahlweiseVertragslaufzeitBuEuGjk",
+        "label": "Zahlweise",
+        "type": "select",
+        "props":{"required":true, "sm":6,
+          "xs":6},
+        "options": [
+          { "value": "MONATLICH", "label": "Monatlich" },
+          { "value": "QUARTAL", "label": "Quartal" },
+          { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+          { "value": "JAEHRLICH", "label": "Jährlich" }
+        ],
+        "suiteValue":"zahlweise"
+      },
+      {
+        "name": "rentenleistungMonatVertragslaufzeitBuEuGjk",
+        "label": "Rentenleistung/Monat (€)",
+        "type": "text",
+        "props": { "sm": 6 ,
+          "xs":6},
+          "suiteValue":"rentenleistung"
+      },
+      {
+        "name": "dynamikVertragslaufzeitBuEuGjk",
+        "label": "Dynamik",
+        "type": "checkbox",
+        "suiteValue":"dynamik"
+      },
+      {
+        "name": "garantierteRentensteigerungVertragslaufzeitBuEuGjk",
+        "label": "Garantierte Rentensteigerung in %",
+        "type": "text",
+        "props": { "sm": 6 ,
+          "xs":6},
+          "suiteValue":"renteGarantiert"
+      },
+      {
+        "name": "rueckkaufswertAktuellVertragslaufzeitBuEuGjk",
+        "label": "Rückkaufswert aktuell (€)",
+        "type": "text",
+        "props": { "sm": 6 ,
+          "xs":6},
+          "suiteValue":"rueckkaufswert"
+      }
+    ]
+      }

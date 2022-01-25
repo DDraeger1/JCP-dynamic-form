@@ -1,0 +1,186 @@
+{
+  "section": "Ausbildung Beruf",
+  "card": true,
+
+  "items": [
+    {
+      "name": "beschaeftigungsverhaeltnisAusbildungBeruf",
+      "label": "Beschaeftigungsverhaeltnis",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": "0", "label": "Angestelte/r" },
+        { "value": "1", "label": "Arbeiter/in" },
+        { "value": "2", "label": "arbeitssuchend" },
+        { "value": "3", "label": "Beamter/in" },
+        { "value": "4", "label": "Rentner/in, Pensionär/in" },
+        { "value": "5", "label": "Landwirt/in" },
+        { "value": "6", "label": "Soldat" },
+        { "value": "7", "label": "Selbstständig, Freiberufler/in" },
+        {
+          "value": "8",
+          "label": "Geschäftsführer/in, von Sozialversicherung befreit"
+        },
+        { "value": "9", "label": "Hausmann/frau" },
+        { "value": "10", "label": "Minijob" },
+        { "value": "11", "label": "Student/in" },
+        { "value": "12", "label": "in Elternzeit" },
+        { "value": "13", "label": "falls sonstiges" }
+      ]
+    },
+    {
+      "name": "filler",
+      "label": " ",
+      "type": "paragraph",
+      "props": { "sm": 1,
+        "xs":1 }
+    },
+    {
+      "name": "imODAusbildungBeruf",
+      "label": "im ö. D.",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 }
+    },
+    {
+      "name": "artSchulausbildungAusbildungBerufHeader",
+      "label": "Art der Schulausbildung",
+      "type": "header"
+    },
+    {
+      "name": "ausbildungBeruf",
+      "label": "Ausbildung",
+      "type": "select",
+      "options": [
+        { "value": "kein_abschluss", "label": "Kein Abschluss" },
+        { "value": "kaufmaennische_ausbildung", "label": "Kaufmännische Ausbildung" },
+        { "value": "gewerbliche_ausbildung", "label": "Gewerbliche Ausbildung" },
+        { "value": "berufsausbildung_mit_weiterbildung", "label": "Berufsausbildung mit Weiterbildung" },
+        { "value": "meister", "label": "Meister" },
+        { "value": "techniker", "label": "Techniker" },
+        { "value": "fachwirt", "label": "Fachwirt" },
+        { "value": "abitur", "label": "Abitur" },
+        { "value": "realschulabschluss", "label": "Realschulabschluss" },
+        { "value": "hauptschulabschluss", "label": "Hauptschulabschluss" },
+        { "value": "diplom", "label": "Diplom" },
+        { "value": "master", "label": "Master" },
+        { "value": "bachelor", "label": "Bachelor" },
+        { "value": "doktor", "label": "Doktor" },
+        { "value": "staatsexam", "label": "Staatsexam" },
+        { "value": "studium", "label": "Studium" },
+        { "value": "sonstiges", "label": "Sonstiges" }
+      ]
+    },
+    {
+      "name": "berufAusbildungBerufHeader",
+      "label": "Beruf",
+      "type": "header"
+    },
+    {
+      "name": "erlernterBerufAusbildungBeruf",
+      "label": "erlernter Beruf",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "berufsbrancheAusbildungBeruf",
+      "label": "Berufsbranche",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ausgeuebterBerufAusbildungBeruf",
+      "label": "Derz. ausgeübter Beruf (exakte Bezeichnung)",
+      "type": "text"
+    },
+    {
+      "name": "nebentaetigkeitenAusbildungBerufHeader",
+      "label": "Nebentätigkeiten",
+      "type": "header"
+    },
+    {
+      "name": "nebentaetigkeitenAusbildungBeruf",
+      "label": "Notieren Sie hier weitere Informationen",
+      "type": "text"
+    },
+    {
+      "name": "taetigkeitArtAusbildungBerufHeader",
+      "label": "Art der Tätigkeit",
+      "type": "header"
+    },
+    {
+      "name": "ueberwiegendTaetigAusbildungBeruf",
+      "label": "Überwiegent tätig",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": "0", "label": "verwaltend/nicht körperlich ca." },
+        { "value": "1", "label": "körperlich/handwerklich ca." }
+      ]
+    },
+    {
+      "name": "prozentsatzAusbildungBeruf",
+      "label": "Prozentsatz",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "leitungsfunktionArtAusbildungBerufHeader",
+      "label": "Leitungsfunktion",
+      "type": "header"
+    },
+    {
+      "name": "leitendTaetigAusbildungBeruf",
+      "label": "Leitend tätig (B)",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs":6
+      },
+      "options": [
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja, mit Personalverantwortung für" }
+      ]
+    },
+    {
+      "name": "anzahlMitarbeiterAusbildungBeruf",
+      "label": "Anzahl Mitarbeiter",
+      "condition":"leitendTaetigAusbildungBeruf",
+      "type": "number",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "reisetaetigkeitAusbildungBerufHeader",
+      "label": "Reisetaetigkeit",
+      "type": "header"
+    },
+    {
+      "name": "reisetaetigkeitAusbildungBeruf",
+      "label": "Reisetaetigkeit",
+      "type": "select",
+      "options": [
+        { "value": "0", "label": "bis 20%" },
+        { "value": "1", "label": "bis 50%" },
+        { "value": "2", "label": "über 50%" }
+      ]
+    }
+  ]
+}

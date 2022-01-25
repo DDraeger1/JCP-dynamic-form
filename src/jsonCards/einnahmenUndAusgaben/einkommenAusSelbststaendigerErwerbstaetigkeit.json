@@ -1,0 +1,52 @@
+{
+    "section": "Einkommen aus selbstständiger Erwerbstätigkeit",
+    "card": true,
+    "items": [
+      {
+        "name": "personenzuordnungEinkommenSelbststaendigeEwerbstaetigkeit",
+        "label": "Personenzuordnung",
+        "type": "selectMandant",
+        "tarifType":"EINKOMMEN_SELBSTAENDIGER",
+        "props": { "required": true },
+        "suiteValue":"versicherungsnehmerId"
+      },
+      {
+        "name": "inklUmsatzsteuerEinkommenSelbststaendigeEwerbstaetigkeit",
+        "label": "Umsatz inkl. Umsatzsteuer p.a.",
+        "type": "text",
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"umsatzInklSteuer"
+      },
+      {
+        "name": "exklUmsatzsteuerEinkommenSelbststaendigeEwerbstaetigkeit",
+        "label": "Umsatz exkl. Umsatzsteuer p.a.",
+        "type": "text",
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"umsatzExklSteuer"
+      },
+      {
+        "name": "gewinnVorSteuernEinkommenSelbststaendigeEwerbstaetigkeit",
+        "label": "Gewinn vor Steuern p.a.",
+        "type": "text",
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"jaehrlichesEinkommenGewerbebetrieb"
+      },
+      {
+        "name": "gewinnNachSteuernEinkommenSelbststaendigeEwerbstaetigkeit",
+        "label": "Gewinn nach Steuern p.a.",
+        "type": "text",
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"jaehrlicherGewinnNachSteuer"
+      },
+      {
+        "name": "jaehrlichVersteuerndesEinkommenSelbststaendigeEwerbstaetigkeit",
+        "label": "Järhlich zu versteuerndes Einkommen",
+        "type": "text",
+        "suiteValue":"jaehrlichVersteuerndesEinkommen"
+      }
+    ]
+  }

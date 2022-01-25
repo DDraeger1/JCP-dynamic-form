@@ -1,0 +1,62 @@
+{
+    "section": "Filter",
+    "card": true,
+    "items": [
+        {
+            "name": "oberbegriff",
+            "label": "Oberbegriff",
+            "type": "select",
+            "props": {
+              "sm": 6
+            },
+            "options": [
+              {
+                "value": 0,
+                "label": "Alle"
+              },
+              {
+                "value": 1,
+                "label": "Einnahmen und Ausgaben"
+              },
+              {
+                "value": 2,
+                "label": "Vermögen und Verbindlichkeiten"
+              },
+              {
+                "value": 3,
+                "label": "Arbeitskraftsicherung"
+              },
+              {
+                "value": 4,
+                "label": "Pflege"
+              },
+              {
+                "value": 5,
+                "label": "Gesundheit"
+              },
+              {
+                "value": 6,
+                "label": "Vermögenssicherung"
+              },
+              {
+                "value": 7,
+                "label": "Altersvorge"
+              }
+            ]
+          },
+          {
+            "name": "unterbegriff",
+            "label": "Unterbegriff",
+            "type": "select",
+            "props": {
+              "sm": 6
+            },
+            "options": [
+                {
+                  "value": 0,
+                  "label": "Alle"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,337 @@
+{
+    "section": "Gesundheit",
+    "card": true,
+
+    "items": [
+        {
+            "name": "allgemeinGesundheitHeader",
+            "label": "Allgemein",
+            "type": "header"
+          },
+          {
+            "name": "groesseGesundheit",
+            "label": "Größe (cm)",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "gewichtGesundheit",
+            "label": "Gewicht (kg)",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "motorradfahrerGesundheit",
+            "label": "Motorradfahrer",
+            "type": "select",
+              "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+            "name": "rauchenGesundheitHeader",
+            "label": "Angaben zum Rauchen",
+            "type": "header"
+          },
+          {
+            "name": "antwortRauchenGesundheit",
+            "label": "Antwort",
+            "type": "select",
+              "options":[
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein, seit... Jahren nicht mehr" },
+                { "value": false, "label": "Nein, noch nie" }
+              ],
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "seitRauchenGesundheit",
+            "label": "seit",
+            "type": "date",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "sehvermoegenGesundheitHeader",
+            "label": "Sehvermoegen",
+            "type": "header"
+          },
+          {
+            "name": "brilleSehvermoegenGesundheit",
+            "label": "Brille",
+            "type": "checkbox",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "kontaktlinsenSehvermoegenGesundheit",
+            "label": "Kontaktlinsen",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":6 }
+          },
+          {
+            "name": "erlaeuterungenSehvermoegenGesundheit",
+            "label": "Erläuterungen",
+            "type": "text"
+          },
+          {
+            "name": "linksDioptrienSehvermoegenGesundheit",
+            "label": "links (-/+ Dioptrien)",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "rechtsDioptrienSehvermoegenGesundheit",
+            "label": "rechts (-/+ Dioptrien)",
+            "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "unfallbestandGesundheitHeader",
+            "label": "Bestehen oder bestanden Behinderungen, Erkrankungen, Gebrechen, Unfallverletzungen oder Wehrdiensbeschädigungen in den letzten 10 Jahren (z. B. der Psyche, Wirbelsäule oder chronische Erkrankungen)?",
+            "type": "header"
+          },
+          {
+            "name": "antwortUnfallbestandGesundheit",
+            "label":"Antwort",
+            "type": "select",
+              "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+            "name": "zeitraumUnfallbestandGesundheit",
+            "label": "Zeitraum",
+            "type": "text"
+          },
+          {
+            "name": "inBehandlungUnfallbestandGesundheit",
+            "label": "Deswegen in Behandlung?",
+            "type": "select",
+            "props": {
+                "sm": 6,
+                "xs":6
+              },
+              "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+            "name": "beschwerdefreiGeheiltUnfallbestandGesundheit",
+            "label": "beschwerdefrei geheilt",
+            "type": "checkbox",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "behandlungGesundheitHeader",
+            "label": "Haben in den Letzten 10 Jahren Krankenhaus-, Heilstätten- oder Kurbehandlungen stattgefunden?",
+            "type": "header"
+          },
+          {
+            "name": "behandlungGesundheit",
+            "label": "Antwort",
+            "type": "select",
+              "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+            "name": "zeitraumVonBehandlungGesundheit",
+            "label": "von",
+            "type": "date",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "zeitraumBisBehandlungGesundheit",
+            "label": "bis",
+            "type": "date",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {            "name": "beschwerdefreiGeheiltBehandlungGesundheit",
+            "label": "beschwerdefrei geheilt",
+            "type": "checkbox"
+        },
+        {            "name": "operationenGesundheitHeader",
+            "label": "Haben in den Letzten 10 Jahren Operationen stattgefunden?",
+            "type": "header"
+        },
+        {            "name": "antwortOperationenGesundheit",
+            "label": "Antwort",
+            "type": "select",
+              "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+            "name": "zeitraumVonOperationenGesundheit",
+            "label": "von",
+            "type": "date",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "zeitraumBisOperationenGesundheit",
+            "label": "bis",
+            "type": "date",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+          },
+          {
+            "name": "diagnoseOperationenGesundheit",
+            "label": "Diagnose",
+            "type": "text"
+          },
+          {
+            "name": "beschwerdefreiGeheiltOperationenGesundheit",
+            "label": "beschwerdefrei geheilt",
+            "type": "checkbox",
+            "props": {
+                "sm": 6,
+                "xs":6
+              }
+        },
+        {
+          "name": "seitOperationenGesundheit",
+          "label": "Seit",
+          "type": "date",
+          "props": {
+              "sm": 6,
+              "xs":6
+            }
+        },
+        {
+          "name": "KHTageOperationenGesundheit",
+          "label": "KH Tage",
+          "type": "text",
+          "props": {
+              "sm": 6,
+              "xs":6
+            }
+        },
+        {
+          "name": "AUTageOperationenGesundheit",
+          "label": "AU Tage",
+          "type": "text",
+          "props": {
+              "sm": 6,
+              "xs":6
+            }
+        },
+        {
+            "name": "gesundheitUndArbeitsfaehigkeitGesundheitHeader",
+            "label": "Völlige Gesundheit und Arbeitsfähigkeit?",
+            "type": "header"
+        },
+        {            "name": "antwortGesundheitUndArbeitsfaehigkeitGesundheit",
+            "label": "Antwort",
+            "type": "select",
+              "options":[
+                { "value": false, "label": "Nein, warum nicht?" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+            "name":"notizenGesundheitUndArbeitsfaehigkeitGesundheit",
+            "label": "notizen",
+            "type": "text"
+          },
+          {
+              "name": "derzeitigeZahnbehandlungenGesundheitHeader",
+              "label": "Werden derzeit Zahnbehandlungen, Zahnersatzmaßnahmen, Behandlungen wegen Zahn- und Kieferregulierung oder Parodontose durchgeführt oder sind solche notwendig, angeraten oder beabsichtigt?",
+              "type": "header"
+          },
+          {
+              "name": "antwortDerzeitigeZahnbehandlungenGesundheit",
+              "label": "Antwort",
+              "type": "select",
+              "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+              "name": "angabenDerzeitigeZahnbehandlungenGesundheit",
+              "label": "Angaben",
+              "type": "text"
+          },
+          {
+              "name": "fehlendeZaehneGesundheitHeader",
+              "label": "Fehlen Zähne, die nich ersetzt sind? (ohne Milch- oder Weisheitszähne)",
+              "type": "header"
+          },
+          {
+              "name": "antwortFehlendeZaehneGesundheit",
+              "label": "Antwort",
+              "type": "select",
+              "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+              "name": "anzahlFehlendeZaehneGesundheit",
+              "label": "Anzahl",
+              "type": "text"
+          },
+          {
+              "name": "zahnersatzGesundheitHeader",
+              "label": "Besteht bereits Zahnersatz?",
+              "type": "header"
+          },
+          {
+              "name": "zahnersatzGesundheit",
+              "label": "Antwort",
+              "type": "select",
+              "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ]
+          },
+          {
+              "name": "anzahlZahnersatzGesundheit",
+              "label": "Anzahl ersetzter Zähne",
+              "type": "text"
+          },
+          {
+              "name": "bestehtSeitZahnersatzGesundheit",
+              "label": "Zahnersatz besteht (Jahren)",
+              "type": "text"
+          }
+    ]
+}

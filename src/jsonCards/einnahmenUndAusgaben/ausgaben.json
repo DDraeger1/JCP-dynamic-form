@@ -1,0 +1,179 @@
+{
+    "section": "Ausgaben",
+    "card": true,
+    "items": [
+        {
+            "name": "personenzuordnungAusgaben",
+            "label": "Personenzuordnung",
+            "type": "selectMandant",
+            "tarifType":"AUSGABEN",
+            "versicherungsnehmerBeide":"true",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+            "name": "stromAusgaben",
+            "label": "Strom",
+            "type": "text",
+              "props": { "sm": 6,
+                  "xs":6 },
+                  "suiteValue":"kostenStrom"
+          },
+          {
+            "name": "haushaltKonsumAusgaben",
+            "label": "Haushalt/Konsum",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenKonsum"
+          },
+          {
+            "name": "nebenkostenWohneigentumAusgaben",
+            "label": "Nebenkosten Wohneigentum",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"nebenkosten"
+          },
+          {
+            "name": "kleidungSchuheAusgaben",
+            "label": "Kleidung/Schuhe",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenKleidung"
+          },
+          {
+            "name": "freizeitAusgaben",
+            "label": "Freizeit",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenFreizeit"
+          },
+          {
+            "name": "haustiereAusgaben",
+            "label": "Haustiere",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenHausiere"
+          },
+          {
+            "name": "arztMedikamenteAusgaben",
+            "label": "Arzt/Medikamente",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenArzt"
+          },
+          {
+            "name": "zeitungenZeitschriftenAbosAusgaben",
+            "label": "Zeitungen/Zeitschriften/Abos",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenZeitungen"
+          },
+          {
+            "name": "vereinSportAusgaben",
+            "label": "Verein/Sport",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenVerein"
+          },
+          {
+            "name": "hobbysAusgaben",
+            "label": "Hobbys",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenHobbies"
+          },
+          {
+            "name": "tvTelefonInternetAusgaben",
+            "label": "TV/Telefon/Internet",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenTV"
+          },
+          {
+            "name": "kraftstoffAusgaben",
+            "label": "Kraftstoff",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenKfzKraftstoff"
+          },
+          {
+            "name": "steuerKFZAusgaben",
+            "label": "Steuer KFZ",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenKfzSteuer"
+          },
+          {
+            "name": "PKWWartungAusgaben",
+            "label": "PKW Wartung",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenKfz"
+          },
+          {
+            "name": "oeffentlicheVerkehrsmittelAusgaben",
+            "label": "Öffentliche Verkehrsmittel",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenBus"
+          },
+          {
+            "name": "kindergartenSchulgeldAusgaben",
+            "label": "Kindergarten Schulgeld",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenSchule"
+          },
+          {
+            "name": "taschengeldAusgaben",
+            "label": "Taschengeld",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenTaschengeld"
+          },
+          {
+            "name": "musikschuleAusgaben",
+            "label": "Musikschule o. ä.",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenMusikschule"
+          },
+          {
+            "name": "unterhaltAusgaben",
+            "label": "Unterhalt",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenUnterhalt"
+          },
+          {
+            "name": "sonstigesAusgaben",
+            "label": "sonstiges",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"kostenSonstiges"
+          },
+          {
+            "name": "summeDerAusgabenAusgabenParagraph",
+            "label": "Summe der Ausgabe",
+            "type": "paragraph"
+          }
+    ]}

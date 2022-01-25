@@ -1,0 +1,80 @@
+{
+    "section": "Automobilclub",
+    "card": true,
+    "items": [
+        {
+            "name": "versicherungsnehmerAutomobilclub",
+            "label": "Personenzuordnung",
+            "type": "selectMandant",
+            "tarifType":"AUTOMOBILCLUB",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+            "name": "clubAutomobilclub",
+            "label": "Club",
+            "type": "select",
+            "options": [
+                { "value": "ADAC", "label": "ADAC" },
+                { "value": "AVD", "label": "AVD" },
+                { "value": "ACE", "label": "ACE" },
+                { "value": "ACV", "label": "ACV" },
+                { "value": "KS", "label": "KS" },
+                { "value": "sonstige", "label": "sonstige" }],
+                "props": { "sm": 8 ,
+                  "xs":8},
+                  "suiteValue":"club"
+          },
+          {
+            "name": "anzahlVersicherterKFZAutomobilclub",
+            "label": "Anzahl versicherter Kfz",
+            "type": "text",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"anzahlVersicherterKfz"
+          },
+          {
+            "name": "vertragslaufzeitAutomobilclub",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitAutomobilclub",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsbeginn"
+          },
+          {
+            "name": "vertragsendeVertragslaufzeitAutomobilclub",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsende"
+          },
+          {
+            "name": "beitragVersicherterKFZAutomobilclub",
+            "label": "Beitrag",
+            "type": "text",
+            "props":{"required":true, "sm":6,
+              "xs":6},
+              "suiteValue":"beitrag"
+          },
+          {
+            "name": "zahlweiseAutomobilclub",
+            "label": "Zahlweise",
+            "type": "select",
+            "props":{"required":true, "sm":6,
+              "xs":6},
+            "options": [
+                { "value": "MONATLICH", "label": "Monatlich" },
+                { "value": "QUARTAL", "label": "Quartal" },
+                { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+                { "value": "JAEHRLICH", "label": "Jährlich" }
+            ],
+            "suiteValue":"zahlweise"
+          }
+    ]
+}

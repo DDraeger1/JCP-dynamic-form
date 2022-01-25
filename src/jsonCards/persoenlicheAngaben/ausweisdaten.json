@@ -1,0 +1,144 @@
+{
+  "section": "Ausweisdaten",
+  "card": true,
+
+  "items": [
+    {
+      "name": "nummerAusweisdaten",
+      "label": "Nummer",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ausstellungsdatumAusweisdaten",
+      "label": "Ausstellungsdatum",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "gueltigBisAusweisdaten",
+      "label": "Gültig bis",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ausstellungsstelleVerwaltungAusweisdaten",
+      "label": "Ausstellungsstelle/Verwaltung",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ortBehoerdeAusweisdaten",
+      "label": "Ort der ausstellenden Behörde (nicht vorhanden)",
+      "type": "text"
+    },
+    {
+      "name": "reisepassHeader",
+      "label": "Reisepass",
+      "type": "header"
+    },
+    {
+      "name": "reisepassNummerAusweisdaten",
+      "label": "Reisepass",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ausstellungsdatumReisepassAusweisdaten",
+      "label": "Ausstellungsdatum",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "gueltigBisReisepassReisepassAusweisdaten",
+      "label": "Gültig bis",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ausstellungsstelleVerwaltungReisepassAusweisdaten",
+      "label": "Ausstellungsstelle/Verwaltung",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ortBehoerdeReisepassAusweisdaten",
+      "label": "Ort der ausstellenden Behoerde (nicht vorhanden)",
+      "type": "text"
+    },
+    {
+      "name": "aufenthaltstitelHeader",
+      "label": "Aufenthaltstitel",
+      "type": "header"
+    },
+    {
+      "name": "nummerAufenthaltstitelAusweisdaten",
+      "label": "Nummer",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ausstellungsdatumAufenthaltstitelAusweisdaten",
+      "label": "Ausstellungsdatum",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "gueltigAbAufenthaltstitelAusweisdaten",
+      "label": "Gültig ab",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "gueltigBisAufenthaltstitelAusweisdaten",
+      "label": "Gültig bis",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    },
+    {
+      "name": "ortBehoerdeAufenthaltstitelAusweisdaten",
+      "label": "Ort der ausstellenden Behörde (nicht vorhanden)",
+      "type": "date",
+      "props": {
+        "sm": 6,
+        "xs":6
+      }
+    }
+  ]
+}

@@ -1,0 +1,1527 @@
+{
+    "section": "Hundehalterpflicht",
+    "card": true,
+    "items": [
+        {
+            "name": "versicherungsnehmerHundehalterpflichttHeader",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerHundehalterpflicht",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType":"HUNDEHALTERHAFTPFLICHT",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId" 
+          },
+          {
+            "name": "gesellschaftHundehalterpflichtHeader",
+            "label": "Gesellschaft",
+            "type": "header"
+          },
+          {
+            "name": "gesellschaftHundehalterpflicht",
+            "type": "gesellschaft",
+            "props": { "required": true },
+            "suiteValue":"gesellschaft" 
+            
+          },
+          {
+            "name": "tarifbezeichnungGesellschaftHundehalterpflicht",
+            "label": "Tarifbezeichnung",
+            "type": "text" ,
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"tarifBezeichnung" 
+          },
+          {
+            "name": "vertragsnummerGesellschaftHundehalterpflicht",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props":{"required":true, "sm":6,
+              "xs":6},
+              "suiteValue":"versicherungsnummer" 
+          },
+          {
+            "name": "tarifOeffentlicherDienstGesellschaftHundehalterpflicht",
+            "label": "Tarif 'Öffentlicher Dienst'",
+            "type": "checkbox",
+            "suiteValue":"oeffentlicherDienst" 
+          },
+          {
+            "name": "anzahlHundeGesellschaftHundehalterpflicht",
+            "label": "Anzahl Hunde",
+            "type": "text",
+            "suiteValue":"anzahl" 
+          },
+          {
+            "name": "versicherungssummeHundehalterpflichtHeader",
+            "label": "Versicherungssumme",
+            "type": "header"
+          },
+          {
+            "name": "versicherungssummeHundehalterpflicht",
+            "label": "Versicherungssumme (€)",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"versicherungssumme" 
+          },
+          {
+            "name": "selbstbeteiligungHundehalterpflicht",
+            "label": "Selbstbeteiligung (€)",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"sb" 
+          },
+          {
+            "name": "vertragslaufzeitHundehalterpflichtHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitHundehalterpflicht",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"versicherungsbeginn" 
+          },
+          {
+            "name": "vertragsendeVertragslaufzeitHundehalterpflicht",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsende" 
+          },
+          {
+            "name": "beitragVertragslaufzeitHundehalterpflicht",
+            "label": "Beitrag (€)",
+            "type": "text",
+            "props": { "required": true,"sm":6,
+              "xs":6 },
+              "suiteValue":"beitrag" 
+          },
+          {
+            "name": "zahlweiseVertragslaufzeitHundehalterpflicht",
+            "label": "Zahlweise",
+            "type": "select",
+            "props": { "required": true,"sm":6 ,
+              "xs":6},
+            "options": [
+              { "value": "MONATLICH", "label": "Monatlich" },
+              { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+              { "value": "QUARTAL", "label": "Quartal" },
+              { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+              { "value": "JAEHRLICH", "label": "Jährlich" }],
+              "suiteValue":"zahlweise" 
+          },
+          {
+            "name": "detailsHundehalterpflichtHeader",
+            "label": "Details",
+            "type": "header"
+          },
+          {
+            "name": "detailsHundehalterpflicht",
+            "label": "Rasse (suite mapping/suchen)",
+            "type": "select",
+            "options": [{
+              "value": 1,
+              "label": "sonstige Hunde (keine Hunde der Kategorie 2 oder 3)"
+          }, {
+              "value": 4,
+              "label": "Afghane"
+          }, {
+              "value": 6,
+              "label": "Aidi"
+          }, {
+              "value": 8,
+              "label": "Akita Inu"
+          }, {
+              "value": 9,
+              "label": "Alano"
+          }, {
+              "value": 10,
+              "label": "Alaskan Malamute"
+          }, {
+              "value": 22,
+              "label": "Anglo Francais de Petite Venerie"
+          }, {
+              "value": 25,
+              "label": "Ariegeois"
+          }, {
+              "value": 26,
+              "label": "Australian Cattle Dog"
+          }, {
+              "value": 27,
+              "label": "Australian Kelpie"
+          }, {
+              "value": 28,
+              "label": "Australian Shepherd"
+          }, {
+              "value": 31,
+              "label": "Azawakh"
+          }, {
+              "value": 36,
+              "label": "Bandog"
+          }, {
+              "value": 37,
+              "label": "Barbet"
+          }, {
+              "value": 245,
+              "label": "Bärenhund (Karelischer Bärenhund)"
+          }, {
+              "value": 38,
+              "label": "Barzoi"
+          }, {
+              "value": 39,
+              "label": "Basenji"
+          }, {
+              "value": 40,
+              "label": "Basset Artesien-Normand"
+          }, {
+              "value": 41,
+              "label": "Basset Bleu de Gascogne"
+          }, {
+              "value": 42,
+              "label": "Basset d Artois"
+          }, {
+              "value": 43,
+              "label": "Basset Fauve de Bretagne"
+          }, {
+              "value": 46,
+              "label": "Beagle"
+          }, {
+              "value": 47,
+              "label": "Beagle Harrier"
+          }, {
+              "value": 49,
+              "label": "Beauceron"
+          }, {
+              "value": 53,
+              "label": "Bergamasker"
+          }, {
+              "value": 54,
+              "label": "Berger de Brie"
+          }, {
+              "value": 55,
+              "label": "Berger des Pyrenees"
+          }, {
+              "value": 56,
+              "label": "Berger Picard"
+          }, {
+              "value": 59,
+              "label": "Bernhardiner"
+          }, {
+              "value": 60,
+              "label": "Bichon a poil frise"
+          }, {
+              "value": 61,
+              "label": "Bichon Havanais"
+          }, {
+              "value": 62,
+              "label": "Billy"
+          }, {
+              "value": 65,
+              "label": "Bluthund"
+          }, {
+              "value": 66,
+              "label": "Bobtail"
+          }, {
+              "value": 67,
+              "label": "Böhmischer Rauhbart"
+          }, {
+              "value": 71,
+              "label": "Boulogneser"
+          }, {
+              "value": 72,
+              "label": "Bouvier des Flandres"
+          }, {
+              "value": 73,
+              "label": "Boxer"
+          }, {
+              "value": 74,
+              "label": "Bracco Italiano"
+          }, {
+              "value": 11,
+              "label": "Bracke (Alpenländische Dachsbracke)"
+          }, {
+              "value": 34,
+              "label": "Bracke (Balkan Bracke)"
+          }, {
+              "value": 75,
+              "label": "Bracke (Brandlbracke)"
+          }, {
+              "value": 128,
+              "label": "Bracke (Deutsche Bracke)"
+          }, {
+              "value": 166,
+              "label": "Bracke (Finnenbracke)"
+          }, {
+              "value": 215,
+              "label": "Bracke (Hygenbracke)"
+          }, {
+              "value": 240,
+              "label": "Bracke (Jugoslawische Dreifarbige Bracke)"
+          }, {
+              "value": 257,
+              "label": "Bracke (Kurzhaarige Istrianer Bracke)"
+          }, {
+              "value": 333,
+              "label": "Bracke (Polnische Bracke)"
+          }, {
+              "value": 349,
+              "label": "Bracke (Rauhhaarige Istrianer Bracke)"
+          }, {
+              "value": 362,
+              "label": "Bracke (Sauerländer Dachsbracke)"
+          }, {
+              "value": 363,
+              "label": "Bracke (Savetal Bracke)"
+          }, {
+              "value": 370,
+              "label": "Bracke (Schwedische Dachsbracke)"
+          }, {
+              "value": 386,
+              "label": "Bracke (Siebenbürger Bracke)"
+          }, {
+              "value": 392,
+              "label": "Bracke (Slowakische Schwarzwildbracke)"
+          }, {
+              "value": 405,
+              "label": "Bracke (Steirische Rauhaarige Hochgebirgsbracke)"
+          }, {
+              "value": 419,
+              "label": "Bracke (Tiroler Bracke)"
+          }, {
+              "value": 434,
+              "label": "Bracke (Westfälische Dachsbracke)"
+          }, {
+              "value": 76,
+              "label": "Braque (Braque d\"Auverne)"
+          }, {
+              "value": 77,
+              "label": "Braque (Braque de l\"Ariège)"
+          }, {
+              "value": 78,
+              "label": "Braque (Braque du Bourbonnais)"
+          }, {
+              "value": 79,
+              "label": "Braque (Braque Dupuy)"
+          }, {
+              "value": 80,
+              "label": "Braque (Braque Francais)"
+          }, {
+              "value": 81,
+              "label": "Braque (Braque Saint-Germain)"
+          }, {
+              "value": 83,
+              "label": "Briard"
+          }, {
+              "value": 85,
+              "label": "Broholmer"
+          }, {
+              "value": 86,
+              "label": "Bruno du Jura"
+          }, {
+              "value": 295,
+              "label": "Buhund (Norwegischer Buhund)"
+          }, {
+              "value": 13,
+              "label": "Bulldog (American Bulldog)"
+          }, {
+              "value": 88,
+              "label": "Bulldog"
+          }, {
+              "value": 32,
+              "label": "Bulldogge (Azoren-Bulldogge)"
+          }, {
+              "value": 149,
+              "label": "Bulldogge (Englische Bulldogge)"
+          }, {
+              "value": 177,
+              "label": "Bulldogge (Französische Bulldogge)"
+          }, {
+              "value": 90,
+              "label": "Bullmastiff"
+          }, {
+              "value": 92,
+              "label": "Ca (Ca De Bestiar)"
+          }, {
+              "value": 93,
+              "label": "Ca (Ca de Bou)"
+          }, {
+              "value": 96,
+              "label": "Cane (Cane Corso)"
+          }, {
+              "value": 95,
+              "label": "Cane (Cane Da Pastore Maremmano Abruzzese )"
+          }, {
+              "value": 97,
+              "label": "Cao (Cao Da Serra Da Estrela)"
+          }, {
+              "value": 98,
+              "label": "Cao (Cao Da Serra De Aires)"
+          }, {
+              "value": 99,
+              "label": "Cao (Cao De Agua Portugues )"
+          }, {
+              "value": 100,
+              "label": "Cao (Cao de Castro Laboreiro)"
+          }, {
+              "value": 102,
+              "label": "Cesky Fousek"
+          }, {
+              "value": 105,
+              "label": "Chien (Chien de Berger de Beauce )"
+          }, {
+              "value": 106,
+              "label": "Chien (Chien de Saint Hubert )"
+          }, {
+              "value": 107,
+              "label": "Chihuahua"
+          }, {
+              "value": 108,
+              "label": "Chincha Bull"
+          }, {
+              "value": 109,
+              "label": "Chinese Crested Dog"
+          }, {
+              "value": 110,
+              "label": "Chinesischer Faltenhund"
+          }, {
+              "value": 111,
+              "label": "Chinesischer Haarloser Schopfhund"
+          }, {
+              "value": 112,
+              "label": "Chow-Chow"
+          }, {
+              "value": 114,
+              "label": "Coban Köpegi"
+          }, {
+              "value": 48,
+              "label": "Collie (Bearded Collie)"
+          }, {
+              "value": 69,
+              "label": "Collie (Border Collie)"
+          }, {
+              "value": 116,
+              "label": "Collie"
+          }, {
+              "value": 117,
+              "label": "Coton de Tulear"
+          }, {
+              "value": 119,
+              "label": "Dachshund"
+          }, {
+              "value": 120,
+              "label": "Dackel"
+          }, {
+              "value": 121,
+              "label": "Dalmatiner"
+          }, {
+              "value": 124,
+              "label": "Deutsch Drahthaar"
+          }, {
+              "value": 125,
+              "label": "Deutsch Kurzhaar"
+          }, {
+              "value": 126,
+              "label": "Deutsch Langhaar"
+          }, {
+              "value": 127,
+              "label": "Deutsch Stichelhaar"
+          }, {
+              "value": 130,
+              "label": "Deutscher Boxer"
+          }, {
+              "value": 139,
+              "label": "Deutscher Wachtelhund"
+          }, {
+              "value": 140,
+              "label": "Do Khyi"
+          }, {
+              "value": 141,
+              "label": "Dobermann"
+          }, {
+              "value": 68,
+              "label": "Dogge (Bordeaux Dogge)"
+          }, {
+              "value": 374,
+              "label": "Niederlaufhund"
+          }, {
+              "value": 82,
+              "label": "Dogge (Brasilianische Dogge)"
+          }, {
+              "value": 123,
+              "label": "Dogge (Dänische Dogge )"
+          }, {
+              "value": 129,
+              "label": "Dogge (Deutsche Dogge)"
+          }, {
+              "value": 148,
+              "label": "Dogge (Englische Dogge)"
+          }, {
+              "value": 228,
+              "label": "Dogge (Italienische Dogge)"
+          }, {
+              "value": 397,
+              "label": "Dogge (Spanische Dogge)"
+          }, {
+              "value": 415,
+              "label": "Dogge (Tibet Dogge)"
+          }, {
+              "value": 142,
+              "label": "Dogo (Dogo Argentino)"
+          }, {
+              "value": 143,
+              "label": "Dogo (Dogo Canario)"
+          }, {
+              "value": 144,
+              "label": "Dogo (Dogo Mallorquin)"
+          }, {
+              "value": 145,
+              "label": "Drentsche Patijshond"
+          }, {
+              "value": 146,
+              "label": "Drever"
+          }, {
+              "value": 147,
+              "label": "Dunker"
+          }, {
+              "value": 199,
+              "label": "Elchhund (Großer Schwedischer Elchhund )"
+          }, {
+              "value": 296,
+              "label": "Elchhund (Norwegischer Elchhund)"
+          }, {
+              "value": 151,
+              "label": "Englischer Pointer"
+          }, {
+              "value": 156,
+              "label": "Epagneul Bleu De Picardie"
+          }, {
+              "value": 157,
+              "label": "Epagneul Breton"
+          }, {
+              "value": 158,
+              "label": "Epagneul de Pont Audemer"
+          }, {
+              "value": 159,
+              "label": "Epagneul francais"
+          }, {
+              "value": 160,
+              "label": "Epagneul nain continental"
+          }, {
+              "value": 161,
+              "label": "Epagneul Picard"
+          }, {
+              "value": 162,
+              "label": "Erdelyi Kopo"
+          }, {
+              "value": 163,
+              "label": "Eurasier"
+          }, {
+              "value": 165,
+              "label": "Fila Brasileiro"
+          }, {
+              "value": 169,
+              "label": "Finsk Spets"
+          }, {
+              "value": 170,
+              "label": "Finsk Stövare"
+          }, {
+              "value": 19,
+              "label": "Foxhound (Amerikanischer Foxhound)"
+          }, {
+              "value": 173,
+              "label": "Foxhound"
+          }, {
+              "value": 174,
+              "label": "Francais blanc et noir"
+          }, {
+              "value": 175,
+              "label": "Francais blanc et orange"
+          }, {
+              "value": 176,
+              "label": "Francais tricolor"
+          }, {
+              "value": 178,
+              "label": "Galgo Espanol"
+          }, {
+              "value": 179,
+              "label": "Gammel Dansk Hønsehund"
+          }, {
+              "value": 241,
+              "label": "Gebirgslaufhund (Jugoslawischer Gebirgslaufhund)"
+          }, {
+              "value": 45,
+              "label": "Gebirgsschweisshund (Bayrischer Gebirgsschweisshund)"
+          }, {
+              "value": 35,
+              "label": "Gonic (Balkanski Gonic )"
+          }, {
+              "value": 227,
+              "label": "Gonic (Istarski Ostrodlaki Gonic )"
+          }, {
+              "value": 238,
+              "label": "Gonic (Jugoslavenski Planinski Gonic )"
+          }, {
+              "value": 239,
+              "label": "Gonic (Jugoslavenski Trobojni Gonic )"
+          }, {
+              "value": 183,
+              "label": "Grand Anglo Francais"
+          }, {
+              "value": 185,
+              "label": "Grand Bleu De Gascogne"
+          }, {
+              "value": 186,
+              "label": "Grand Gascon Saintongeois"
+          }, {
+              "value": 188,
+              "label": "Greyhound"
+          }, {
+              "value": 189,
+              "label": "Griechischer Spürhund"
+          }, {
+              "value": 51,
+              "label": "Griffon (Belgischer Griffon )"
+          }, {
+              "value": 84,
+              "label": "Griffon (Briquet Griffon Vendeen)"
+          }, {
+              "value": 87,
+              "label": "Griffon (Brüsseler Griffon )"
+          }, {
+              "value": 184,
+              "label": "Griffon (Grand Basset Griffon Vendéen)"
+          }, {
+              "value": 187,
+              "label": "Griffon (Grand Griffon Vendeen)"
+          }, {
+              "value": 190,
+              "label": "Griffon (Griffon a poil laineux)"
+          }, {
+              "value": 191,
+              "label": "Griffon (Griffon Belge )"
+          }, {
+              "value": 192,
+              "label": "Griffon (Griffon Bruxellois)"
+          }, {
+              "value": 193,
+              "label": "Griffon (Griffon d Arret à poil dur )"
+          }, {
+              "value": 194,
+              "label": "Griffon (Griffon Fauve de Bretagne)"
+          }, {
+              "value": 195,
+              "label": "Griffon (Griffon nivernais)"
+          }, {
+              "value": 255,
+              "label": "Griffon (Korthals Griffon)"
+          }, {
+              "value": 317,
+              "label": "Griffon (Petit Basset Griffon Vendeen)"
+          }, {
+              "value": 196,
+              "label": "Groenendael"
+          }, {
+              "value": 197,
+              "label": "Grönlandshund"
+          }, {
+              "value": 201,
+              "label": "Haldenstoever"
+          }, {
+              "value": 202,
+              "label": "Hamilton Stövare"
+          }, {
+              "value": 204,
+              "label": "Harrier"
+          }, {
+              "value": 205,
+              "label": "Havaneser"
+          }, {
+              "value": 206,
+              "label": "Heidewachtel"
+          }, {
+              "value": 207,
+              "label": "Hellenikos Ichnilatis"
+          }, {
+              "value": 21,
+              "label": "Hirtenhund (Anatolischer Hirtenhund)"
+          }, {
+              "value": 208,
+              "label": "Hokkaido"
+          }, {
+              "value": 209,
+              "label": "Holländischer Rattler"
+          }, {
+              "value": 211,
+              "label": "Hollandse Smoushond"
+          }, {
+              "value": 44,
+              "label": "Hound (Basset Hound)"
+          }, {
+              "value": 63,
+              "label": "Hound (Black and tan Coonhound)"
+          }, {
+              "value": 64,
+              "label": "Hound (Bloodhound)"
+          }, {
+              "value": 225,
+              "label": "Hound (Irish Wolfhound )"
+          }, {
+              "value": 294,
+              "label": "Hound (Norwegian Hound )"
+          }, {
+              "value": 303,
+              "label": "Hound (Otterhound )"
+          }, {
+              "value": 323,
+              "label": "Hound (Pharaoh Hound )"
+          }, {
+              "value": 356,
+              "label": "Hound (Saarloos Wolfhound)"
+          }, {
+              "value": 212,
+              "label": "Hovawart"
+          }, {
+              "value": 213,
+              "label": "Hrvatski Ovcar"
+          }, {
+              "value": 12,
+              "label": "Hühnerhund (Altdänischer Hühnerhund)"
+          }, {
+              "value": 91,
+              "label": "Hühnerhund (Burgos-Hühnerhund)"
+          }, {
+              "value": 338,
+              "label": "Hühnerhund (Portugiesischer Hühnerhund)"
+          }, {
+              "value": 214,
+              "label": "Husky"
+          }, {
+              "value": 216,
+              "label": "Hygenhund"
+          }, {
+              "value": 226,
+              "label": "Islandhund"
+          }, {
+              "value": 231,
+              "label": "Italienisches Windspiel"
+          }, {
+              "value": 233,
+              "label": "Jämthund"
+          }, {
+              "value": 234,
+              "label": "Jämtländer"
+          }, {
+              "value": 235,
+              "label": "Japan Chin"
+          }, {
+              "value": 242,
+              "label": "Kai Inu"
+          }, {
+              "value": 243,
+              "label": "Kanaan Hund"
+          }, {
+              "value": 244,
+              "label": "Kangal"
+          }, {
+              "value": 248,
+              "label": "Kelb Tal Fenek"
+          }, {
+              "value": 251,
+              "label": "Kishu Inu"
+          }, {
+              "value": 252,
+              "label": "Kleiner Brabanter"
+          }, {
+              "value": 253,
+              "label": "Kleiner Münsterländer"
+          }, {
+              "value": 254,
+              "label": "Komondor"
+          }, {
+              "value": 258,
+              "label": "Kuvasz"
+          }, {
+              "value": 260,
+              "label": "Laekenois"
+          }, {
+              "value": 261,
+              "label": "Lagotto"
+          }, {
+              "value": 263,
+              "label": "Landseer"
+          }, {
+              "value": 264,
+              "label": "Lapinporokoira"
+          }, {
+              "value": 168,
+              "label": "Lapphund (Finnischer Lapphund)"
+          }, {
+              "value": 371,
+              "label": "Lapphund (Schwedischer Lapphund)"
+          }, {
+              "value": 411,
+              "label": "Lapphund (Svensk Lapphund )"
+          }, {
+              "value": 265,
+              "label": "Lapplaendske Spets"
+          }, {
+              "value": 266,
+              "label": "Lappländer Rentierhund"
+          }, {
+              "value": 33,
+              "label": "Laufhund (Balearen Laufhund)"
+          }, {
+              "value": 57,
+              "label": "Laufhund (Berner Laufhund )"
+          }, {
+              "value": 229,
+              "label": "Laufhund (Italienischer Laufhund)"
+          }, {
+              "value": 270,
+              "label": "Laufhund (Luzerner Laufhund )"
+          }, {
+              "value": 373,
+              "label": "Laufhund (Schweizer Laufhund)"
+          }, {
+              "value": 375,
+              "label": "Laufhund (Schwyzer Laufhund )"
+          }, {
+              "value": 267,
+              "label": "Leonberger"
+          }, {
+              "value": 268,
+              "label": "Lhasa Apso"
+          }, {
+              "value": 269,
+              "label": "Loewchen"
+          }, {
+              "value": 297,
+              "label": "Lundehund (Norwegischer Lundehund)"
+          }, {
+              "value": 271,
+              "label": "Magyar Agar"
+          }, {
+              "value": 272,
+              "label": "Magyar Vizsla"
+          }, {
+              "value": 273,
+              "label": "Malinois"
+          }, {
+              "value": 274,
+              "label": "Malteser"
+          }, {
+              "value": 277,
+              "label": "Mastiff"
+          }, {
+              "value": 278,
+              "label": "Mastin de los Pirineos"
+          }, {
+              "value": 279,
+              "label": "Mastin Espanol"
+          }, {
+              "value": 280,
+              "label": "Mastino Napoletano"
+          }, {
+              "value": 282,
+              "label": "Molosser"
+          }, {
+              "value": 283,
+              "label": "Mops"
+          }, {
+              "value": 284,
+              "label": "Mudi"
+          }, {
+              "value": 281,
+              "label": "Nackthund (Mexikanischer Nackthund)"
+          }, {
+              "value": 316,
+              "label": "Nackthund (Peruanischer Nackthund)"
+          }, {
+              "value": 285,
+              "label": "Napoletano"
+          }, {
+              "value": 286,
+              "label": "Neufundländer"
+          }, {
+              "value": 287,
+              "label": "Niederländischer Kooikerhondje"
+          }, {
+              "value": 374,
+              "label": "Niederlaufhund (Schweizer Niederlaufhund)"
+          }, {
+              "value": 289,
+              "label": "Nihon Supittsu"
+          }, {
+              "value": 290,
+              "label": "Nihon Teria"
+          }, {
+              "value": 291,
+              "label": "Norbotten Spets"
+          }, {
+              "value": 304,
+              "label": "Otterhund"
+          }, {
+              "value": 301,
+              "label": "Owtscharka"
+          }, {
+              "value": 308,
+              "label": "Palasthund (Peking Palasthund)"
+          }, {
+              "value": 305,
+              "label": "Papillon"
+          }, {
+              "value": 307,
+              "label": "Pekinese"
+          }, {
+              "value": 309,
+              "label": "Perdigueiro Portugues"
+          }, {
+              "value": 310,
+              "label": "Perdiguere de Burgos"
+          }, {
+              "value": 311,
+              "label": "Perro (Perro de Agua Espanol )"
+          }, {
+              "value": 312,
+              "label": "Perro (Perro de Pastor Catalan)"
+          }, {
+              "value": 313,
+              "label": "Perro (Perro de Presa Canario)"
+          }, {
+              "value": 314,
+              "label": "Perro (Perro de Presa Mallorquin)"
+          }, {
+              "value": 315,
+              "label": "Perro (Perro sin Pelo del Peru)"
+          }, {
+              "value": 318,
+              "label": "Petit Bleu de Gascogne"
+          }, {
+              "value": 319,
+              "label": "Petit Brabancon"
+          }, {
+              "value": 320,
+              "label": "Petit Chien Lion"
+          }, {
+              "value": 321,
+              "label": "Petit Gascon Saintongeois"
+          }, {
+              "value": 322,
+              "label": "Phalene"
+          }, {
+              "value": 324,
+              "label": "Pharaonenhund"
+          }, {
+              "value": 325,
+              "label": "Picard"
+          }, {
+              "value": 3,
+              "label": "Pinscher (Affenpinscher)"
+          }, {
+              "value": 135,
+              "label": "Pinscher (Deutscher Pinscher (Mittelschlag))"
+          }, {
+              "value": 302,
+              "label": "Pinscher (Österreichischer Kurzhaariger Pinscher)"
+          }, {
+              "value": 440,
+              "label": "Pinscher (Zwergpinscher)"
+          }, {
+              "value": 326,
+              "label": "Pitbull"
+          }, {
+              "value": 328,
+              "label": "Podenco Canario"
+          }, {
+              "value": 329,
+              "label": "Podenco Ibicenco"
+          }, {
+              "value": 330,
+              "label": "Podengo Portugues"
+          }, {
+              "value": 331,
+              "label": "Podhalaner"
+          }, {
+              "value": 332,
+              "label": "Poitevin"
+          }, {
+              "value": 334,
+              "label": "Polnischer Niederungshütehund"
+          }, {
+              "value": 335,
+              "label": "Polski Owczarek Nizinny"
+          }, {
+              "value": 336,
+              "label": "Polski Owczarek Podhalanski"
+          }, {
+              "value": 337,
+              "label": "Porcelaine"
+          }, {
+              "value": 288,
+              "label": "Pudel (Niederländischer Schafspudel)"
+          }, {
+              "value": 340,
+              "label": "Pudel"
+          }, {
+              "value": 341,
+              "label": "Pudel (Pudelpointer)"
+          }, {
+              "value": 342,
+              "label": "Puli"
+          }, {
+              "value": 343,
+              "label": "Pumi"
+          }, {
+              "value": 345,
+              "label": "Pyrenäenberghund"
+          }, {
+              "value": 346,
+              "label": "Pyrenäenhund"
+          }, {
+              "value": 348,
+              "label": "Rafeiro do Alentejo"
+          }, {
+              "value": 350,
+              "label": "Rebhuhnhund"
+          }, {
+              "value": 104,
+              "label": "Retriever (Chesapeake Bay Retriever)"
+          }, {
+              "value": 118,
+              "label": "Retriever (Curly Coated Retriever)"
+          }, {
+              "value": 171,
+              "label": "Retriever (Flat Coated Retriever)"
+          }, {
+              "value": 181,
+              "label": "Retriever (Golden Retriever)"
+          }, {
+              "value": 259,
+              "label": "Retriever (Labrador Retriever)"
+          }, {
+              "value": 299,
+              "label": "Retriever (Nova Scotia Duck Tolling Retriever)"
+          }, {
+              "value": 351,
+              "label": "Ridgeback (Rhodesian Ridgeback)"
+          }, {
+              "value": 353,
+              "label": "Rottweiler"
+          }, {
+              "value": 355,
+              "label": "Russisch-Europäischer Laika"
+          }, {
+              "value": 357,
+              "label": "Sabueso Espanol"
+          }, {
+              "value": 358,
+              "label": "Saluki"
+          }, {
+              "value": 359,
+              "label": "Samojede"
+          }, {
+              "value": 360,
+              "label": "Sankt-Bernhards-Hund"
+          }, {
+              "value": 361,
+              "label": "Sarplaninac"
+          }, {
+              "value": 2,
+              "label": "Schäferhund (AC Weisser Schäferhund)"
+          }, {
+              "value": 52,
+              "label": "Schäferhund (Belgischer Schäferhund)"
+          }, {
+              "value": 136,
+              "label": "Schäferhund (Deutscher Schäferhund)"
+          }, {
+              "value": 210,
+              "label": "Schäferhund (Holländischer Schäferhund)"
+          }, {
+              "value": 217,
+              "label": "Schäferhund (Illyrischer Schäferhund )"
+          }, {
+              "value": 246,
+              "label": "Schäferhund (Karst Schäferhund)"
+          }, {
+              "value": 247,
+              "label": "Schäferhund (Katalonischer Schäferhund)"
+          }, {
+              "value": 256,
+              "label": "Schäferhund (Kroatischer Schäferhund)"
+          }, {
+              "value": 276,
+              "label": "Schäferhund (Maremmen-Abruzzen-Schäferhund)"
+          }, {
+              "value": 344,
+              "label": "Schäferhund (Pyreäenschäferhund, Kurzhaar)"
+          }, {
+              "value": 347,
+              "label": "Schäferhund (Pyrenäenschäferhund, Langhaar)"
+          }, {
+              "value": 364,
+              "label": "Schäferhund"
+          }, {
+              "value": 428,
+              "label": "Schäferhund (Weisser Schäferhund )"
+          }, {
+              "value": 365,
+              "label": "Schapendoes"
+          }, {
+              "value": 366,
+              "label": "Schillerstövare"
+          }, {
+              "value": 352,
+              "label": "Schnauzer (Riesenschnauzer )"
+          }, {
+              "value": 367,
+              "label": "Schnauzer"
+          }, {
+              "value": 441,
+              "label": "Schnauzer (Zwergschnauzer )"
+          }, {
+              "value": 203,
+              "label": "Schweisshund (Hannoverscher Schweisshund)"
+          }, {
+              "value": 378,
+              "label": "Segugio Italiano"
+          }, {
+              "value": 23,
+              "label": "Sennenhund (Appenzeller Sennenhund)"
+          }, {
+              "value": 58,
+              "label": "Sennenhund (Berner Sennenhund)"
+          }, {
+              "value": 155,
+              "label": "Sennenhund (Entlebucher Sennenhund)"
+          }, {
+              "value": 200,
+              "label": "Sennenhund (Großer Schweizer Sennenhund)"
+          }, {
+              "value": 153,
+              "label": "Setter (English Setter)"
+          }, {
+              "value": 182,
+              "label": "Setter (Gordon Setter)"
+          }, {
+              "value": 218,
+              "label": "Setter (Irisch rot-weisser Setter)"
+          }, {
+              "value": 221,
+              "label": "Setter (Irish Red and White Setter )"
+          }, {
+              "value": 222,
+              "label": "Setter (Irish Setter)"
+          }, {
+              "value": 379,
+              "label": "Shar-Pei"
+          }, {
+              "value": 300,
+              "label": "Sheepdog (Old English Sheepdog)"
+          }, {
+              "value": 381,
+              "label": "Sheepdog (Shetland Sheepdog)"
+          }, {
+              "value": 380,
+              "label": "Sheltie"
+          }, {
+              "value": 382,
+              "label": "Shiba Inu"
+          }, {
+              "value": 383,
+              "label": "Shih Tzu"
+          }, {
+              "value": 384,
+              "label": "Shikoku Inu"
+          }, {
+              "value": 385,
+              "label": "Siberian Husky"
+          }, {
+              "value": 388,
+              "label": "Sloughi"
+          }, {
+              "value": 389,
+              "label": "Slovensky (Cuvac Slovensky)"
+          }, {
+              "value": 390,
+              "label": "Slovensky (Hruborsty Stavac Slovensky)"
+          }, {
+              "value": 391,
+              "label": "Slovensky (Kopov Slovensky)"
+          }, {
+              "value": 394,
+              "label": "Slowakischer Tchuwatsch"
+          }, {
+              "value": 395,
+              "label": "Smalandsstövare"
+          }, {
+              "value": 14,
+              "label": "Spaniel (American Cocker Spaniel)"
+          }, {
+              "value": 18,
+              "label": "Spaniel (American Water Spaniel )"
+          }, {
+              "value": 20,
+              "label": "Spaniel (Amerikanischer Wasserspaniel)"
+          }, {
+              "value": 101,
+              "label": "Spaniel (Cavalier King Charles Spaniel)"
+          }, {
+              "value": 113,
+              "label": "Spaniel (Clumber Spaniel)"
+          }, {
+              "value": 115,
+              "label": "Spaniel (Cocker Spaniel)"
+          }, {
+              "value": 150,
+              "label": "Spaniel (Englischer Cocker Spaniel )"
+          }, {
+              "value": 152,
+              "label": "Spaniel (Englischer Springer Spaniel)"
+          }, {
+              "value": 164,
+              "label": "Spaniel (Field Spaniel)"
+          }, {
+              "value": 219,
+              "label": "Spaniel (Irischer Wasserspaniel )"
+          }, {
+              "value": 224,
+              "label": "Spaniel (Irish Water Spaniel)"
+          }, {
+              "value": 250,
+              "label": "Spaniel (King Charles Spaniel)"
+          }, {
+              "value": 410,
+              "label": "Spaniel (Sussex Spaniel)"
+          }, {
+              "value": 417,
+              "label": "Spaniel (Tibet Spaniel)"
+          }, {
+              "value": 431,
+              "label": "Spaniel (Welsh Springer Spaniel)"
+          }, {
+              "value": 398,
+              "label": "Spanish Mastiff"
+          }, {
+              "value": 401,
+              "label": "Spinone Italiano"
+          }, {
+              "value": 137,
+              "label": "Spitz (Deutscher Spitz )"
+          }, {
+              "value": 167,
+              "label": "Spitz (Finnenspitz)"
+          }, {
+              "value": 237,
+              "label": "Spitz (Japan-Spitz)"
+          }, {
+              "value": 292,
+              "label": "Spitz (Norbottenspitz)"
+          }, {
+              "value": 372,
+              "label": "Spitz (Schwedischer Schäferspitz)"
+          }, {
+              "value": 402,
+              "label": "Spitz"
+          }, {
+              "value": 403,
+              "label": "Stabijhoun"
+          }, {
+              "value": 406,
+              "label": "Südrussischer Owtscharka"
+          }, {
+              "value": 407,
+              "label": "Suomenajokoira"
+          }, {
+              "value": 408,
+              "label": "Suomenlapinkoira"
+          }, {
+              "value": 409,
+              "label": "Suomenpystykorva"
+          }, {
+              "value": 412,
+              "label": "Tatrahund"
+          }, {
+              "value": 413,
+              "label": "Teckel"
+          }, {
+              "value": 7,
+              "label": "Terrier (Airedale Terrier)"
+          }, {
+              "value": 15,
+              "label": "Terrier (American Pit Bull Terrier)"
+          }, {
+              "value": 17,
+              "label": "Terrier (American Stafford Terrier)"
+          }, {
+              "value": 16,
+              "label": "Terrier (American Staffordshire Terrier)"
+          }, {
+              "value": 29,
+              "label": "Terrier (Australian Silky Terrier)"
+          }, {
+              "value": 30,
+              "label": "Terrier (Australian Terrier)"
+          }, {
+              "value": 50,
+              "label": "Terrier (Bedlington Terrier)"
+          }, {
+              "value": 70,
+              "label": "Terrier (Border Terrier)"
+          }, {
+              "value": 89,
+              "label": "Terrier (Bullterrier)"
+          }, {
+              "value": 94,
+              "label": "Terrier (Cairn Terrier)"
+          }, {
+              "value": 103,
+              "label": "Terrier (Cesky Terrier)"
+          }, {
+              "value": 122,
+              "label": "Terrier (Dandie Dinmont Terrier)"
+          }, {
+              "value": 132,
+              "label": "Terrier (Deutscher Jagdterrier)"
+          }, {
+              "value": 154,
+              "label": "Terrier (English Toy Terrier)"
+          }, {
+              "value": 172,
+              "label": "Terrier (Fox Terrier)"
+          }, {
+              "value": 180,
+              "label": "Terrier (Glen of Imaal Terrier)"
+          }, {
+              "value": 223,
+              "label": "Terrier (Irish Terrier)"
+          }, {
+              "value": 232,
+              "label": "Terrier (Jack Russell Terrier)"
+          }, {
+              "value": 236,
+              "label": "Terrier (Japanischer Terrier)"
+          }, {
+              "value": 249,
+              "label": "Terrier (Kerry Blue Terrier)"
+          }, {
+              "value": 262,
+              "label": "Terrier (Lakeland Terrier)"
+          }, {
+              "value": 275,
+              "label": "Terrier (Manchester Terrier)"
+          }, {
+              "value": 293,
+              "label": "Terrier (Norfolk Terrier)"
+          }, {
+              "value": 298,
+              "label": "Terrier (Norwich Terrier)"
+          }, {
+              "value": 306,
+              "label": "Terrier (Parson Jack Russel Terrier )"
+          }, {
+              "value": 327,
+              "label": "Terrier (Pitbullterrier)"
+          }, {
+              "value": 368,
+              "label": "Terrier (Schwarzer Russischer Terrier )"
+          }, {
+              "value": 369,
+              "label": "Terrier (Schwarzer Terrier)"
+          }, {
+              "value": 376,
+              "label": "Terrier (Scottish Terrier)"
+          }, {
+              "value": 377,
+              "label": "Terrier (Sealyham Terrier)"
+          }, {
+              "value": 387,
+              "label": "Terrier (Skye Terrier)"
+          }, {
+              "value": 396,
+              "label": "Terrier (Soft-Coated Wheaten Terrier)"
+          }, {
+              "value": 404,
+              "label": "Terrier (Staffordshire Bullterrier)"
+          }, {
+              "value": 418,
+              "label": "Terrier (Tibet Terrier)"
+          }, {
+              "value": 432,
+              "label": "Terrier (Welsh Terrier)"
+          }, {
+              "value": 433,
+              "label": "Terrier (West Highland White Terrier)"
+          }, {
+              "value": 439,
+              "label": "Terrier (Yorkshire Terrier)"
+          }, {
+              "value": 414,
+              "label": "Tervueren"
+          }, {
+              "value": 416,
+              "label": "Tibet Mastiff"
+          }, {
+              "value": 420,
+              "label": "Toller"
+          }, {
+              "value": 421,
+              "label": "Tosa Inu"
+          }, {
+              "value": 423,
+              "label": "Vallhund"
+          }, {
+              "value": 424,
+              "label": "Västgötaspets"
+          }, {
+              "value": 425,
+              "label": "Volpino Italiano"
+          }, {
+              "value": 131,
+              "label": "Vorstehhund (Deutscher drahthaariger Vorstehhund)"
+          }, {
+              "value": 133,
+              "label": "Vorstehhund (Deutscher kurzhaariger Vorstehhund)"
+          }, {
+              "value": 134,
+              "label": "Vorstehhund (Deutscher langhaariger Vorstehhund)"
+          }, {
+              "value": 138,
+              "label": "Vorstehhund (Deutscher stichelhaariger Vorstehhund)"
+          }, {
+              "value": 198,
+              "label": "Vorstehhund (Großer Münsterländer Vorstehhund)"
+          }, {
+              "value": 230,
+              "label": "Vorstehhund (Italienischer Vorstehhund)"
+          }, {
+              "value": 393,
+              "label": "Vorstehhund (Slowakischer Drahthaariger Vorstehhund)"
+          }, {
+              "value": 426,
+              "label": "Wäller"
+          }, {
+              "value": 339,
+              "label": "Wasserhund (Portugiesischer Wasserhund)"
+          }, {
+              "value": 399,
+              "label": "Wasserhund (Spanischer Wasserhund)"
+          }, {
+              "value": 427,
+              "label": "Weimaraner"
+          }, {
+              "value": 429,
+              "label": "Welsh Corgi Cardigan"
+          }, {
+              "value": 430,
+              "label": "Welsh Corgi Pembroke"
+          }, {
+              "value": 435,
+              "label": "Westsibirischer Laika"
+          }, {
+              "value": 436,
+              "label": "Wetterhoun"
+          }, {
+              "value": 437,
+              "label": "Whippet"
+          }, {
+              "value": 5,
+              "label": "Windhund (Afghanischer Windhund )"
+          }, {
+              "value": 24,
+              "label": "Windhund (Arabischer Windhund)"
+          }, {
+              "value": 354,
+              "label": "Windhund (Russischer Windhund )"
+          }, {
+              "value": 400,
+              "label": "Windhund (Spanischer Windhund)"
+          }, {
+              "value": 422,
+              "label": "Windhund (Ungarischer Windhund)"
+          }, {
+              "value": 220,
+              "label": "Wolfshund (Irischer Wolfshund)"
+          }],
+              "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"hunderasse1" 
+          },
+          {
+            "name": "chipnummerDetailsHundehalterpflicht",
+            "label": "Chipnummer",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"hunderasse1" 
+          },
+          {
+            "name": "geburtsdatumDetailsHundehalterpflicht",
+            "label": "Geburtsdatum",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"geburtsdatum" 
+          },
+          {
+            "name": "nameDetailsHundehalterpflicht",
+            "label": "Name",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"tiername" 
+          },
+          {
+            "name": "farbeDetailsHundehalterpflicht",
+            "label": "Farbe",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"farbe" 
+          },
+          {
+            "name": "geschlechtDetailsHundehalterpflicht",
+            "label": "Geschlecht",
+            "type": "select",
+            "options": [
+              { "value": "", "label": "-" },
+              { "value": "m", "label": "Männlich" },
+              { "value": "w", "label": "Weiblich" }],
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"geschlecht" 
+          },
+          {
+            "name": "vorschaedenHundehalterpflichtHeader",
+            "label": "Vorschäden",
+            "type": "header"
+          },
+          {
+            "name": "anzahlVorschaedenHundehalterpflicht",
+            "label": "Anzahl Vorschäden letzten 5 Jahre",
+            "type": "text",
+            "suiteValue":"vorschaedenAnzahl" 
+          },
+          {
+            "name": "hoeheVorschaedenHundehalterpflicht",
+            "label": "Höhe der Vorschäden (€)",
+            "type": "text",
+            "suiteValue":"vorschaedenHoehe" 
+          },
+          {
+            "name": "listeVorschaedenHundehalterpflicht",
+            "label": "Liste der Vorschäden (Datum/Art/Höhe)",
+            "type": "text",
+            "suiteValue":"vorschaedenNotiz" 
+          }
+    ]
+}

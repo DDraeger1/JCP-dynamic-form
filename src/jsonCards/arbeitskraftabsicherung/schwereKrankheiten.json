@@ -1,0 +1,161 @@
+{
+    "section": "Schwere Krankheiten",
+    "card": true,
+    "items": [
+        {
+            "name": "gesellschaftSchwereKrankheitenHeader",
+            "label": "Gesellschaft",
+            "type": "header"
+          },
+          {
+            "name": "gesellschaftSchwereKrankheiten",
+            "type": "gesellschaft",
+            "props":{"required":true},
+            "suiteValue":"gesellschaft"
+          },
+          {
+            "name": "TarifbezeichnungGesellschaftSchwereKrankheiten",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props":{"required":true},
+            "suiteValue":"tarifBezeichnung"
+          },
+          {
+            "name": "versicherungsnehmerSchwereKrankheitenHeader",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerSchwereKrankheiten",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType":"DREADDISEASE",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+            "name": "versichertePersonSchwereKrankheitenHeader",
+            "label": "Versicherte Person",
+            "type": "header"
+          },
+          {
+            "name": "versichertePersonSchwereKrankheiten",
+            "label": "Versicherte Person",
+            "type": "selectVersichert",
+            "suiteValue":"versichertePersonId"
+          },
+          {
+            "name": "vertragslaufzeitSchwereKrankheitenHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitSchwereKrankheiten",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsbeginn"
+          },
+          {
+            "name": "vertragsendeVertragslaufzeitSchwereKrankheiten",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsende"
+          },
+          {
+            "name": "bruttobeitragVertragslaufzeitSchwereKrankheiten",
+            "label": "Bruttobeitrag (€)",
+            "type": "text",
+            "props": { "required": true, "sm":6 ,
+              "xs":6},
+              "suiteValue":"bruttobeitrag"
+          },
+          {
+            "name": "nettobeitragVertragslaufzeitSchwereKrankheiten",
+            "label": "Nettobeitrag (€)",
+            "type": "text",
+            "props": { "required": true, "sm":6 ,
+              "xs":6},
+              "suiteValue":"beitrag"
+          },
+          {
+            "name": "zahlweiseVertragslaufzeitSchwereKrankheiten",
+            "label": "Zahlweise",
+            "type": "select",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+            "options": [
+              { "value": "MONATLICH", "label": "Monatlich" },
+              { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+              { "value": "QUARTAL", "label": "Quartal" },
+              { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+              { "value": "JAEHRLICH", "label": "Jährlich" }],
+              "suiteValue":"zahlweise"
+          },
+          {
+            "name": "leistungenSchwererKrankheitVertragslaufzeitSchwereKrankheiten",
+            "label": "Leistungen bei Schwerer Krankheit (€)",
+            "type": "text",
+              "props": { "sm": 6 ,
+                "xs":6},
+                "suiteValue":"leistungssummeKrankheit"
+          },
+          {
+            "name": "artAuszahlungLeistungenSchwererKrankheitVertragslaufzeitSchwereKrankheiten",
+            "label": "Art der Auszahlung",
+            "type": "select",
+            "props": { "sm": 5,
+              "xs":5 },
+           
+            "options": [
+              { "value": "rente", "label": "Rente" },
+              { "value": "einmal", "label": "Einmalzahlung" }
+            ],
+            "suiteValue":"leistungssummeKrankheitAuszahlung"
+          
+          },
+          {
+            "name": "leistungenTodesfallVertragslaufzeitSchwereKrankheiten",
+            "label": "Leistungen im Todesfall (€)",
+            "type": "text",
+            "props": { "sm": 7,
+              "xs":7 },
+              "suiteValue":"leistungssummeTod"
+          },
+          {
+            "name": "artAuszahlungLeistungenTodesfallVertragslaufzeitSchwereKrankheiten",
+            "label": "Art der Auszahlung",
+            "type": "select",
+            "props": { "sm": 5 ,
+              "xs":5},
+            "options": [
+              { "value": "rente", "label": "Rente" },
+              { "value": "einmalzahlung", "label": "Einmalzahlung" }
+            ],
+            "suiteValue":"leistungssummeTodAuszahlung"
+          
+          },
+          {
+            "name": "rueckkaufwertAktuellVertragslaufzeitSchwereKrankheiten",
+            "label": "Rueckkaufwert aktuell (€)",
+            "type": "text",
+            "props": { "sm": 7,
+              "xs":7},
+              "suiteValue":"rueckkaufswert"
+          },
+          {
+            "name": "artAuszahlungRueckkaufwertAktuellVertragslaufzeitSchwereKrankheiten",
+            "label": "Art der Auszahlung",
+            "type": "select",
+            "options": [
+              { "value": "rente", "label": "Rente" },
+              { "value": "einmalbetrag", "label": "Einmalzahlung" }
+            ],
+            "suiteValue":"auszahlung"
+          
+          }
+    ]
+}

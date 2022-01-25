@@ -1,0 +1,239 @@
+{
+    "section": "Privathaftpflicht",
+    "card": true,
+    "items": [
+        {
+            "name": "versicherungsnehmerPrivathaftpflichtHeader",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerPrivathaftpflicht",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType":"PRIVATHAFTPFLICHT",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+            "name": "gesellschaftPrivathaftpflichtHeader",
+            "label": "Gesellschaft",
+            "type": "header"
+          },
+          {
+            "name": "gesellschaftPrivathaftpflicht",
+            "type": "gesellschaft",
+            "suiteValue":"gesellschaft"
+            
+          },
+          {
+            "name": "tarifbezeichnungGesellschaftPrivathaftpflicht",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"tarifBezeichnung"
+          },
+          {
+            "name": "vertragsnummerGesellschaftPrivathaftpflicht",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props":{"required":true, "sm":6,
+              "xs":6},
+              "suiteValue":"versicherungsnummer"
+          },
+          {
+            "name": "tarifGesellschaftPrivathaftpflicht",
+            "label": "Tarif",
+            "type": "select",
+            "options":[
+                { "value": "single", "label": "Single" },
+                { "value": "familie", "label": "Familie" }
+            ],
+            "suiteValue":"tarifgruppe"
+          },
+          {
+            "name": "inkludiertBetriebshaftpflichtGesellschaftPrivathaftpflicht",
+            "label": "inkludiert in Betriebshaftpflicht",
+            "type": "checkbox",
+            "suiteValue":"inkludiertInBetriebsHV"
+          },
+          {
+            "name": "tarifOeffentlicherDienstGesellschaftPrivathaftpflicht",
+            "label": "Tarif 'Öffentlicher Dienst'",
+            "type": "checkbox",
+            "suiteValue":"oeffentlicherDienst"
+          },
+          {
+            "name": "versicherungssummePrivathaftpflichtHeader",
+            "label": "Versicherungssumme",
+            "type": "header"
+          },
+          {
+            "name": "versicherungssummePrivathaftpflicht",
+            "label": "Versicherungssumme (€)",
+            "type": "select",
+            "options":[
+                { "value": 1000000, "label": "1000000" },
+                { "value": 3000000, "label": "3000000" },
+                { "value": 5000000, "label": "5000000" },
+                { "value": 100000000, "label": "100000000" },
+                { "value": 150000000, "label": "150000000" },
+                { "value": 200000000, "label": "200000000" },
+                { "value": 500000000, "label": "500000000" }
+            ],
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"versicherungssumme"
+          },
+          {
+            "name": "selbstbeteiligungVersicherungssummePrivathaftpflicht",
+            "label": "Selbstbeteiligung (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"sb"
+          },
+          {
+            "name": "einschluessePrivathaftpflichtHeader",
+            "label": "Einschlüsse",
+            "type": "header"
+          },
+          {
+            "name": "ehrenamtEinschluessePrivathaftpflicht",
+            "label": "Ehrenamt",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4},
+              "suiteValue":"einschlussEhrenamt"
+          },
+          {
+            "name": "tagesmutterEinschluessePrivathaftpflicht",
+            "label": "Tagesmutter",
+            "type": "checkbox",
+            "props": { "sm": 4 ,
+              "xs":4},
+              "suiteValue":"einschlussTagesmutter"
+          },
+          {
+            "name": "fremdeSchluesselPrivatEinschluessePrivathaftpflicht",
+            "label": "fremde Schlüssel (privat)",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"einschlussSchluesselPrivat"
+          },
+          {
+            "name": "fremdeSchlüsselBeruflichEinschluessePrivathaftpflicht",
+            "label": "fremde Schlüssel (beruflich)",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"einschlussSchluesselBeruflich"
+          },
+          {
+            "name": "forderungsausfallEinschluessePrivathaftpflicht",
+            "label": "Forderungsausfall",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"forderungsausfall"
+          },
+          {
+            "name": "gefaelligkeitsschaedenEinschluessePrivathaftpflicht",
+            "label": "Gefälligkeitsschäden",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 },
+              "suiteValue":"gefaelligkeitsschaeden"
+          },
+          {
+            "name": "schadenersatzrechtsschutzEinschluessePrivathaftpflicht",
+            "label": "Schadenersatzrechtsschutz",
+            "type": "checkbox",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"schadenersatzrechtsschutz"
+          },
+          {
+            "name": "lehrerhaftpflichtEinschluessePrivathaftpflicht",
+            "label": "Lehrerhaftpflicht",
+            "type": "checkbox",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"lehrerhaftpflicht"
+          },
+          {
+            "name": "dienstschluesselSummeEinschluessePrivathaftpflicht",
+            "label": "Dienstschlüssel Summe",
+            "type": "text",
+            "suiteValue":"schluesselschadenSumme"
+          },
+          {
+            "name": "vertragslaufzeitPrivathaftpflichtHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitPrivathaftpflicht",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsbeginn"
+          },
+          {
+            "name": "VertragsendeVertragslaufzeitPrivathaftpflicht",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsende"
+          },
+          {
+            "name": "beitragVertragslaufzeitPrivathaftpflicht",
+            "label": "Beitrag (€)",
+            "type": "text",
+            "props": { "required": true,"sm":6,
+              "xs":6 },
+              "suiteValue":"beitrag"
+          },
+          {
+            "name": "zahlweiseVertragslaufzeitPrivathaftpflicht",
+            "label": "Zahlweise",
+            "type": "select",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+            "options": [
+              { "value": "MONATLICH", "label": "Monatlich" },
+              { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+              { "value": "QUARTAL", "label": "Quartal" },
+              { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+              { "value": "JAEHRLICH", "label": "Jährlich" }],
+              "suiteValue":"zahlweise"
+          },
+          {
+            "name": "vorschaedenPrivathaftpflichtHeader",
+            "label": "Vorschäden",
+            "type": "header"
+          },
+          {
+            "name": "anzahlVorschaedenPrivathaftpflicht",
+            "label": "Anzahl Vorschäden letzten 5 Jahre",
+            "type": "text",
+            "suiteValue":"vorschaedenAnzahl"
+          },
+          {
+            "name": "hoeheVorschaedenPrivathaftpflicht",
+            "label": "Höhe der Vorschäden (€)",
+            "type": "text",
+            "suiteValue":"vorschaedenHoehe"
+          },
+          {
+            "name": "listeVorschaedenPrivathaftpflicht",
+            "label": "Liste der Vorschäden (Datum/Art/Höhe)",
+            "type": "text",
+            "suiteValue":"vorschaedenNotiz"
+          }
+        ]
+        }

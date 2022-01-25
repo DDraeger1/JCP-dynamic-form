@@ -1,0 +1,275 @@
+{
+    "section": "Rürup-Rente (Basisrente)",
+    "card": true,
+    "items": [
+        {
+            "name": "produktIDRuerupRente",
+            "label": "Produkt ID (Suite mapping)",
+            "type": "select",
+            "props": { "required": true },
+            "options": [{ "value": 0, "label": "Mandant" }]
+          },
+          {
+            "name": "tarifbezeichnungRuerupRente",
+            "label": "Tarifbezeichnung",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "vertragsnummerRuerupRente",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props": { "required": true, "sm":6,
+              "xs":6 }
+          },
+          {
+            "name": "versicherungsnehmerRuerupRente",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerRuerupRente",
+            "label": "Versicherungsnehmer (suite mapping)",
+            "type": "select",
+            "props": { "required": true },
+            "options": [{ "value": 0, "label": "Mandant" }]
+          },
+          {
+            "name": "versichertePersonRuerupRenteHeader",
+            "label": "Versicherte Person",
+            "type": "header"
+          },
+          {
+            "name": "versichertePersonRuerupRente",
+            "label": "Versicherte Person (suite mapping)",
+            "type": "select",
+            "props": { "required": true },
+            "options": [{ "value": 0, "label": "Mandant" }]
+          },
+          {
+            "name": "artVersichertePersonRuerupRente",
+            "label": "Art",
+            "type": "select",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+            "options": [{ "value": 0, "label": "Klassisch" },
+              { "value": 1, "label": "FRV" },
+              { "value": 2, "label": "Investment" }]
+          },
+          {
+            "name": "fondsVersichertePersonRuerupRente",
+            "label": "Fonds",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "versicherungssummeRuerupRenteHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitRuerupRente",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "vertragsendeVertragslaufzeitRuerupRente",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "monatlicheRentenleistungRuerupRenteHeader",
+            "label": "Monatliche Rentenleistung",
+            "type": "header"
+          },
+          {
+            "name": "garantiertMonatlicheRentenleistungRuerupRente",
+            "label": "Monatliche Rentenleistung garantiert (€)",
+            "type": "text"
+          },
+          {
+            "name": "prognostiziertMonatlicheRentenleistungRuerupRente",
+            "label": "Monatliche Rentenleistung prognostiziert (€)",
+            "type": "text"
+          },
+          {
+            "name": "beiMonatlicheRentenleistungRuerupRente",
+            "label": "bei (%)",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6}
+          },
+          {
+            "name": "RGZMonatlicheRentenleistungRuerupRente",
+            "label": "RGZ (Jahre)",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6}
+          },
+          {
+            "name": "dynamikRuerupRenteHeader",
+            "label": "Dynamik",
+            "type": "header"
+          },
+          {
+            "name": "dynamikRuerupRente",
+            "label": "Dynamik",
+            "type": "select",
+            "options":[{ "value": 0, "label": "Nein" },
+                { "value": 1, "label": "Ja" }],
+                "props": { "sm": 6,
+                  "xs":6 }
+          },
+          {
+            "name": "prozentDynamikRuerupRente",
+            "label": "Prozent (%)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "BURuerupRenteHeader",
+            "label": "BU",
+            "type": "header"
+          },
+          {
+            "name": "integrierteBURuerupRente",
+            "label": "integrierte BU",
+            "type": "select",
+            "options":[{"value":0,"label":"Nein"},
+                {"value":1,"label":"Ja"}],
+                "props": { "sm": 6,
+                  "xs":6 }
+          },
+          {
+            "name": "rentenleistungBURuerupRente",
+            "label": "BU-Rentenleistung (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "dynamikBULeistungBURuerupRente",
+            "label": "Dynamik BU Leistung BU",
+            "type": "select",
+            "options":[{"value":0,"label":"Nein"},
+                {"value":1,"label":"Ja"}],
+                "props": { "sm": 6 ,
+                  "xs":6}
+          },
+          {
+            "name": "beitragsbefreiungBURuerupRente",
+            "label": "Beitragsbefreiung BU",
+            "type": "select",
+            "options":[{"value":0,"label":"Nein"},
+                {"value":1,"label":"Ja"}],
+                "props": { "sm": 6,
+                  "xs":6 }
+          },
+          {
+            "name": "BUZRuerupRenteHeader",
+            "label": "BUZ",
+            "type": "header"
+          },
+          {
+            "name": "beitragsendeBUZRuerupRente",
+            "label": "Beitragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "leistungsendeBUZRuerupRente",
+            "label": "Leistungsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "beitragsanteilBUZRuerupRente",
+            "label": "Beitragsanteil (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "deckungskapitalBUZRuerupRente",
+            "label": "Deckungskapital (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "hinterbliebenenZusatzversicherungBUZRuerupRenteHeader",
+            "label": "Hinterbliebenen-Zusatzversicherung (€)",
+            "type": "header"
+          },
+          {
+            "name": "zusatzversicherungHinterbliebenenZusatzversicherungRuerupRente",
+            "label": "Zusatzversicherung",
+            "type": "select",
+            "options":[{"value":0,"label":"Nein"},
+                {"value":1,"label":"Ja"}],
+                "props": { "sm": 6,
+                  "xs":6 }
+          },
+          {
+            "name": "prozentHinterbliebenenZusatzversicherungRuerupRente",
+            "label": "Prozent (%)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "betragHinterbliebenenZusatzversicherungRuerupRente",
+            "label": "Betrag",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "aktuellerRueckkaufswertHinterbliebenenZusatzversicherungRuerupRente",
+            "label": "Aktueller Rückkaufswert",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6}
+          },
+          {
+            "name": "zahlweiseHinterbliebenenZusatzversicherungRuerupRente",
+            "label": "Zahlweise",
+            "type": "select",
+            "props": { "required": true, "sm":6 ,
+              "xs":6},
+            "options": [
+              { "value": 0, "label": "Monatlich" },
+              { "value": 1, "label": "Quartal" },
+              { "value": 2, "label": "Halbjährlich" },
+              { "value": 3, "label": "Jährlich" }
+            ]
+          },
+          {
+            "name": "einmalbeitragHinterbliebenenZusatzversicherungRuerupRente",
+            "label": "Einmalbeitrag (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "beitragHinterbliebenenZusatzversicherungRuerupRente",
+            "label": "Beitrag (Gesamtzahlbeitrag inkl. BU)",
+            "props": { "required": true},
+            "type": "text"
+          },
+          {
+            "name": "beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente",
+            "label": "Beitragsanteil für BU",
+            "type": "text"
+          }
+    ]
+}

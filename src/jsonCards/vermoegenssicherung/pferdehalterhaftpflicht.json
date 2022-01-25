@@ -1,0 +1,220 @@
+{
+    "section": "Pferdehalterhaftpflicht",
+    "card": true,
+    "items": [
+        {
+            "name": "versicherungsnehmerPferdehalterpflichttHeader",
+            "label": "Versicherungsnehmer",
+            "type": "header"
+          },
+          {
+            "name": "versicherungsnehmerPferdehalterpflicht",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType":"PFERDEHALTERHAFTPFLICHT",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmer.id"
+          },
+          {
+            "name": "gesellschaftPferdehalterpflichtHeader",
+            "label": "Gesellschaft",
+            "type": "header"
+          },
+          {
+            "name": "gesellschaftPferdehalterpflicht",
+            "type": "gesellschaft",
+            "props": { "required": true },
+            "suiteValue":"gesellschaft" 
+          },
+          {
+            "name": "tarifbezeichnungGesellschaftPferdehalterpflicht",
+            "label": "Tarifbezeichnung",
+            "suiteValue":"tarifBezeichnung",
+            "type": "text" ,
+            "props": { "sm": 6,
+              "xs":6 }
+          },
+          {
+            "name": "vertragsnummerGesellschaftPferdehalterpflicht",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props":{"required":true, "sm":6,
+              "xs":6},
+              "suiteValue":"versicherungsnummer"
+          },
+          {
+            "name": "versicherungssummePferdehalterpflichtHeader",
+            "label": "Versicherungssumme",
+            "type": "header"
+          },
+          {
+            "name": "versicherungssummePferdehalterpflicht",
+            "label": "Versicherungssumme (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungssumme"
+          },
+          {
+            "name": "selbstbeteiligungPferdehalterpflicht",
+            "label": "Selbstbeteiligung (€)",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"sb"
+          },
+          {
+            "name": "anzahlPferdePferdehalterpflicht",
+            "label": "Anzahl Pferde",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"anzahl"
+          },
+          {
+            "name": "mitgliedReitvereinPferdehalterpflicht",
+            "label": "Mitglied im Reitverein",
+            "type": "select",
+            "options":[
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }],
+                "props": { "sm": 6,
+                  "xs":6 },
+                  "suiteValue":"reitverein"
+          },
+          {
+            "name": "tarifgruppePferdehalterpflicht",
+            "label": "Tarifgruppe",
+            "type": "select",
+            "options":[
+                { "value": "0", "label": "normal" },
+                { "value": "1", "label": "öffentlicher Dienst" }
+            ,{ "value": "2", "label": "Innendienst" },
+            { "value": "3", "label": "Arzt/Mediziner" }],
+            "suiteValue":"tarifgruppe"
+          },
+          {
+            "name": "vertragslaufzeitPferdehalterpflichtHeader",
+            "label": "Vertragslaufzeit",
+            "type": "header"
+          },
+          {
+            "name": "vertragsbeginnVertragslaufzeitPferdehalterpflicht",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsbeginn"
+          },
+          {
+            "name": "VertragsendeVertragslaufzeitPferdehalterpflicht",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"versicherungsende"
+          },
+          {
+            "name": "BeitragVertragslaufzeitPferdehalterpflicht",
+            "label": "Beitrag (€)",
+            "type": "text",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+              "suiteValue":"beitrag"
+          },
+          {
+            "name": "zahlweiseVertragslaufzeitPferdehalterpflicht",
+            "label": "Zahlweise",
+            "type": "select",
+            "props": { "required": true, "sm":6,
+              "xs":6 },
+            "options": [
+              { "value": "MONATLICH", "label": "Monatlich" },
+              { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+              { "value": "QUARTAL", "label": "Quartal" },
+              { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+              { "value": "JAEHRLICH", "label": "Jährlich" }],
+              "suiteValue":"zahlweise"
+          },
+          {
+            "name": "detailsPferdehalterpflichtHeader",
+            "label": "Details",
+            "type": "header"
+          },
+          {
+            "name": "chipnummerDetailsPferdehalterpflicht",
+            "label": "Chipnummer",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"chipnummer"
+          },
+          {
+            "name": "geburtsdatumDetailsPferdehalterpflicht",
+            "label": "Geburtsdatum",
+            "type": "date",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"geburtsdatum"
+          },
+          {
+            "name": "nameDetailsPferdehalterpflicht",
+            "label": "Name",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"tiername"
+          },
+          {
+            "name": "farbeDetailsPferdehalterpflicht",
+            "label": "Farbe",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6 },
+              "suiteValue":"farbe"
+          },
+          {
+            "name": "rasseDetailsPferdehalterpflicht",
+            "label": "Rasse",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"rasse"
+          },
+          {
+            "name": "geschlechtDetailsPferdehalterpflicht",
+            "label": "Geschlecht",
+            "type": "select",
+            "options": [
+              { "value": "", "label": "-" },
+              { "value": "m", "label": "Männlich" },
+              { "value": "w", "label": "Weiblich" }],
+              "props": { "sm": 6,
+                "xs":6 },
+                "suiteValue":"geschlecht"
+          },
+          {
+            "name": "vorschaedenPferdehalterpflichtHeader",
+            "label": "Vorschäden",
+            "type": "header"
+          },
+          {
+            "name": "anzahlVorschaedenPferdehalterpflicht",
+            "label": "Anzahl Vorschäden letzten 5 Jahre",
+            "type": "text",
+            "suiteValue":"vorschaedenAnzahl"
+          },
+          {
+            "name": "hoeheVorschaedenPferdehalterpflicht",
+            "label": "Höhe der Vorschäden (€)",
+            "type": "text",
+            "suiteValue":"vorschaedenHoehe"
+          },
+          {
+            "name": "listeVorschaedenPferdehalterpflicht",
+            "label": "Liste der Vorschäden (Datum/Art/Höhe)",
+            "type": "text",
+            "suiteValue":"vorschaedenNotiz"
+          }
+    ]
+}

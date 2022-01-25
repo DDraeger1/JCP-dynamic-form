@@ -1,0 +1,92 @@
+{
+    "section": "Fuehrerschein",
+    "card": true,
+
+    "items": [
+        {
+            "name": "fuehrerscheinFuehrerschein",
+            "label": "Fuehrerschein",
+            "type": "text",
+            "props": {
+              "sm": 6
+            }
+          },
+          {
+            "name": "ausstellungsDatumFuehrerscheinFuehrerschein",
+            "label": "Fuehrerschein",
+            "type": "date",
+            "props": {
+              "sm": 6
+            }
+          },
+          {
+            "name": "fuehrerscheinLandFuehrerschein",
+            "label": "Land",
+            "type": "text",
+            "props": {
+              "sm": 6
+            }
+          },
+          {
+            "name": "fuehrerscheinKlasseFuehrerscheinHeader",
+            "label": "Fuehrerschein-Klasse",
+            "type": "header"
+          },
+          {
+            "name": "klasseBFuehrerschein",
+            "label": "B",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 }
+          },
+          {
+            "name": "klasseBEFuehrerschein",
+            "label": "BE",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 }
+          },
+          {
+            "name": "klasseAFuehrerschein",
+            "label": "A",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 }
+          },
+          {
+            "name": "klasseAEinsFuehrerschein",
+            "label": "A1",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 }
+          },
+          {
+            "name": "klasseAZweiFuehrerschein",
+            "label": "A2",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 }
+          },
+          {
+            "name": "klasseCFuehrerschein",
+            "label": "C",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 }
+          },
+          {
+            "name": "klasseCEinsFuehrerschein",
+            "label": "C1",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 }
+          },
+          {
+            "name": "klasseCFuehrerschein",
+            "label": "CE",
+            "type": "checkbox",
+            "props": { "sm": 4,
+              "xs":4 }
+          }
+    ]
+}

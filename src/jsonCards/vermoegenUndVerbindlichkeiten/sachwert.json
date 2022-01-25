@@ -1,0 +1,92 @@
+{
+  "section": "Sachwert",
+  "card": true,
+  "items": [
+    {
+      "name": "vertragsinhaberSachwert",
+      "label": "Vertragsinhaber",
+      "type": "selectMandant",
+      "versicherungsnehmerBeide":"true"
+    },
+    {
+      "name": "VertragspartnerSachwertHeader",
+      "label": "Vertragspartner",
+      "type": "header"
+    },
+    {
+      "name": "produktIDSachwert",
+      "label": "Produkt ID (suite mapping)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Produkt ID" }
+      ]},
+        {
+          "name": "tarifbezeichnungVertragspartnerSachwert",
+          "label": "Tarifbezeichnung",
+          "type": "text"
+        },
+        {
+          "name": "vertragsnummerVertragspartnerSachwert",
+          "label": "Vertragsnummer",
+          "props": { "required": true },
+          "type": "text"
+        },
+        {
+          "name": "artVertragspartnerSachwert",
+          "label": "Art",
+          "type": "select",
+          "options": [
+            { "value": 1, "label": "Edelmetalle" },
+            { "value": 2, "label": "Sonstiges" }
+          ]
+        },
+        {
+          "name": "fallsSonstigesVertragspartnerSachwert",
+          "label": "...falls sonstiges",
+          "type": "text"
+        },
+        {
+          "name": "gewichtVertragspartnerSachwert",
+          "label": "Gewicht",
+          "type": "text"
+        },
+        {
+          "name": "lagerungVertragspartnerSachwert",
+          "label": "Lagerung",
+          "type": "text"
+        },
+        {
+          "name": "anschaffungsjahrVertragspartnerSachwert",
+          "label": "Anschaffungsjahr",
+          "type": "text"
+        },
+        {
+          "name": "aktuellerWertVertragspartnerSachwert",
+          "label": "Aktueller Wert",
+          "type": "text"
+        },
+        {
+          "name": "vertragssummeVertragspartnerSachwert",
+          "label": "Vertragssumme",
+          "type": "text"
+        },
+        {
+          "name": "zahlweiseVertragspartnerSachwert",
+          "label": "Zahlweise",
+          "type": "select",
+          "props": { "required": true },
+          "options": [
+            { "value": 0, "label": "Monatlich" },
+            { "value": 1, "label": "Quartal" },
+            { "value": 2, "label": "Halbjährlich" },
+            { "value": 3, "label": "Jährlich" }
+          ]
+        },
+        {
+          "name": "beitragVertragspartnerSachwert",
+          "label": "Beitrag",
+          "props": { "required": true },
+          "type": "text"
+        }
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "section": "Private Krankenversicherung",
+  "card": true,
+  "items": [
+    {
+      "name": "gesellschaftPrivateKrankenversicherung",
+      "type": "gesellschaft",
+      "props": { "required": true},
+      "suiteValue":"gesellschaft"
+    },
+    {
+      "name": "tarifbezeichnungPrivateKrankenversicherung",
+      "label": "Tarifbezeichnung",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"tarifBezeichnung"
+    },
+    {
+      "name": "vertragsnummerPrivateKrankenversicherung",
+      "label": "Vertragsnummer",
+      "type": "text",
+      "props": { "required": true, "sm":6 ,
+        "xs":6},
+        "suiteValue":"versicherungsnummer"
+    },
+    {
+      "name": "versicherungsnehmerPrivateKrankenversicherungHeader",
+      "label": "Versicherungsnehmer",
+      "type": "header"
+    },
+    {
+      "name": "versicherungsnehmerPrivateKrankenversicherung",
+      "label": "Versicherungsnehmer",
+      "type": "selectMandant",
+      "tarifType":"KVV",
+      "props": { "required": true },
+      "suiteValue":"versicherungsnehmerId"
+    },
+    {
+      "name": "beginnVersicherungsnehmerPrivateKrankenversicherung",
+      "label": "Beginn",
+      "type": "date",
+      "props": { "required": true,"sm":6,
+        "xs":6 },
+        "suiteValue":"versicherungsbeginn"
+    },
+    {
+      "name": "zahlweiseVersicherungsnehmerPrivatePflegeversicherung",
+      "label": "Zahlweise",
+      "type": "select",
+      "props": { "required": true,"sm":6 ,
+        "xs":6},
+      "options": [
+        { "value": "MONATLICH", "label": "Monatlich" },
+        { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+        { "value": "QUARTAL", "label": "Quartal" },
+        { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+        { "value": "JAEHRLICH", "label": "Jährlich" }
+      ],
+      "suiteValue":"zahlweise"
+    },
+    {
+      "name": "gesamtbeitragVersicherungsnehmerPrivatePflegeversicherung",
+      "label": "Gesamtbeitrag (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"beitrag"
+    },
+    {
+      "name": "tarifVersicherungsnehmerPrivatePflegeversicherung",
+      "label": "Tarif",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"tarifgruppe"
+    },
+    {
+      "name": "versichertePersonenPrivatePflegeversicherungHeader",
+      "label": "Versicherte Personen",
+      "type": "header"
+    },
+    {
+      "name": "anzahlVersichertePersonenPrivatePflegeversicherung",
+      "label": "Anzahl versicherte Personen",
+      "type": "select",
+      "options": [
+        { "value": 1, "label": "1" },
+        { "value": 2, "label": "2" },
+        { "value": 3, "label": "3" },
+        { "value": 4, "label": "4" },
+        { "value": 5, "label": "5" },
+        { "value": 6, "label": "6" }
+      ],
+      "suiteValue":"anzahlVP"
+    },
+    {
+      "name": "versichertePersonPrivatePflegeversicherungHeader",
+      "label": "Versicherte Person",
+      "type": "header"
+    },
+    {
+      "name": "versichertePersonPrivatePflegeversicherung",
+      "label": "Versicherte Person (suite mapping)",
+      "type": "select",
+      "options": [{ "value": 0, "label": "Mandant" }],
+      "suiteValue":"versichertePerson.id"
+    },
+    {
+      "name": "sonstigeVersichertePersonPrivatePflegeversicherung",
+      "label": "Sonstige",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"versichertePersonSonstige"
+    },
+    {
+      "name": "tarifVersichertePersonPrivatePflegeversicherung",
+      "label": "Tarif",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"tarifname"
+    },
+    {
+      "name": "primaerarztprinzipVersichertePersonPrivatePflegeversicherung",
+      "label": "Primärarztprinzip",
+      "type": "select",
+      "options": [
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }],
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"primaerarztprinzip"
+    },
+    {
+      "name": "einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung",
+      "label": "Einbettzimmer/Chefarzt",
+      "type": "select",
+      "options": [
+        { "value": "0", "label": "Mehrbett" },
+        { "value": "1", "label": "Einbett mit Chefarzt" },
+        { "value": "2", "label": "Zweibett mit Chefarzt" }],
+        "props": { "sm": 6,
+          "xs":6 },
+          "suiteValue":"einbettzimmer"
+    },
+    {
+      "name": "beitragVersichertePersonPrivatePflegeversicherung",
+      "label": "Beitrag (€)",
+      "type": "text",
+      "suiteValue":"beitragVP"
+    },
+    {
+      "name": "leistungsbeschreibungPrivatePflegeversicherungHeader",
+      "label": "Leistungsbeschreibung",
+      "type": "header"
+    },
+    {
+      "name": "zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung",
+      "label": "Zahnbehandlung (%)",
+      "type": "text",
+      "suiteValue":"zahnbehandlung"
+    },
+    {
+      "name": "bereicheSelbsbehaltLeistungsbeschreibungPrivatePflegeversicherung",
+      "label": "Bereiche Selbstbehalt",
+      "type": "paragraph"
+    },
+    {
+      "name": "ambulantLeistungsbeschreibungPrivatePflegeversicherung",
+      "label": "Ambulant",
+      "type": "checkbox",
+      "props": { "sm": 4 ,
+        "xs":4},
+        "suiteValue":"sbAmbulant"
+    },
+    {
+      "name": "stationaerLeistungsbeschreibungPrivatePflegeversicherung",
+      "label": "Stationär",
+      "type": "checkbox",
+      "props": { "sm": 4,
+        "xs":4 },
+        "suiteValue":"sbStationaer"
+    },
+    {
+      "name": "zahnLeistungsbeschreibungPrivatePflegeversicherung",
+      "label": "Zahn",
+      "type": "checkbox",
+      "props": { "sm": 4 ,
+        "xs":4},
+        "suiteValue":"sbZahn"
+    },
+    {
+      "name": "krankentagegeldPrivatePflegeversicherungHeader",
+      "label": "Krankentagegeld ab dem",
+      "type": "header"
+    },
+    {
+      "name": "tagEinsPrivatePflegeversicherung",
+      "label": "(.Tag)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"krankentagegeldtag1"
+    },
+    {
+      "name": "betragEinsPrivatePflegeversicherung",
+      "label": "Betrag (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"krankentagegeld1"
+    },
+    {
+      "name": "tagZweiPrivatePflegeversicherung",
+      "label": "(.Tag)",
+      "type": "text",
+      "props": { "sm": 6 ,
+        "xs":6},
+        "suiteValue":"krankentagegeldtag2"
+    },
+    {
+      "name": "betragZweiPrivatePflegeversicherung",
+      "label": "Betrag (€)",
+      "type": "text",
+      "props": { "sm": 6,
+        "xs":6 },
+        "suiteValue":"krankentagegeld2"
+    },
+    {
+      "name": "kurtagegeldZweiPrivatePflegeversicherung",
+      "label": "Kurtagegeld (€)",
+      "type": "text",
+      "suiteValue":"kurtagegeld"
+    }
+  ]
+}
