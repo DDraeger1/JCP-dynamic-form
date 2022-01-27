@@ -2416,8 +2416,8 @@ cardTemplateData={
     }  
     break;
     case "DIREKT_3":
-      console.log(cardTemplateData)
      output={ 
+      externalProduktId:cardTemplateData.externalProduktId,
       initMandantValue: mandantMapper(
         cardTemplateData.versicherungsnehmer.id
       ), 
@@ -2764,6 +2764,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
 
       break;
     case "PFERDEHALTERHAFTPFLICHT":
+      console.log(cardTemplateData)
       output = {
         initMandantValue: mandantMapper(
           cardTemplateData.versicherungsnehmer.id
@@ -3525,7 +3526,9 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         gesellschaftKVZusatz: cardTemplateData.gesellschaft,
         tarifbezeichnungKVZusatz: cardTemplateData.tarifBezeichnung,
         vertragsnummerKVZusatz: cardTemplateData.versicherungsnummer,
-        versicherungsnehmerKVZusatz: "Placeholder",
+        versicherungsnehmerKVZusatz: mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
         beginnVersicherungsnehmerKVZusatz: dateFormater(
           cardTemplateData.versicherungsbeginn
         ),
@@ -3533,9 +3536,8 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         gesamtbeitragVersicherungsnehmerKVZusatz: cardTemplateData.beitrag,
         tarifVersicherungsnehmerKVZusatz: cardTemplateData.tarifgruppe,
         anzahlVersichertePersonenKVZusatz: cardTemplateData.anzahlVP,
-        versichertePersonKVZusatz:  mandantMapper(
-          cardTemplateData.versicherungsnehmer.id
-        ),
+        versichertePersonKVZusatz: 
+          cardTemplateData.versichertePerson.id,
         ambulantVersichertePersonKVZusatz: cardTemplateData.inklAmbulant,
         stationaerVersichertePersonKVZusatz: cardTemplateData.inklStationaer,
         zahnVersichertePersonKVZusatz: cardTemplateData.inklZahn,
@@ -3562,8 +3564,8 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         tarifLeistungenStationaerKVZusatz: cardTemplateData.tarifStationair,
         altersrueckstellungLeistungenStationaerKVZusatz:
           cardTemplateData.altersrueckstellungStationaer,
-        bettzimmerChefarztLeistungenStationaerKVZusatz: "Kann ich nicht finden",
-        erstattungLeistungenStationaerKVZusatz: cardTemplateData.stationaer,
+        bettzimmerChefarztLeistungenStationaerKVZusatz: cardTemplateData.stationaer,
+        erstattungLeistungenStationaerKVZusatz: cardTemplateData.erstattung,
         ersatzkrankenhausTarifLeistungenStationaerKVZusatz:
           cardTemplateData.ersatzkrankenhaustagegeld,
         GKVTarifLeistungenStationaerKVZusatz: cardTemplateData.gkvZuzahlungen,
@@ -3596,11 +3598,336 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
           cardTemplateData.auslandsreiseKV,
         krankenhaustagegeldSonstigeLeistungenKVZusatz:
           cardTemplateData.krankenhaustagegeld,
+          artKVZusatz:"1",
+
+          selected2Persons: anzahlPersonen(cardTemplateData.anzahlVP, 2),
+          versichertePersonKVZusatz2:  typeof cardTemplateData.versichertePerson2 === "undefined"
+          ? isMandantDefined("undefined")
+          : isMandantDefined(cardTemplateData.versichertePerson2.id),
+        ambulantVersichertePersonKVZusatz2: cardTemplateData.inklAmbulant2,
+        stationaerVersichertePersonKVZusatz2: cardTemplateData.inklStationaer2,
+        zahnVersichertePersonKVZusatz2: cardTemplateData.inklZahn2,
+        KTVersichertePersonKVZusatz2: cardTemplateData.inklKT2,
+        kHTVersichertePersonKVZusatz2: cardTemplateData.inklKHT2,
+        tarifLeistungenAmbulantKVZusatz2: cardTemplateData.tarifAmbulant2,
+        altersrueckstellungLeistungenAmbulantKVZusatz2:
+          cardTemplateData.altersrueckstellungAmbulant2,
+        sehhilfeLeistungenAmbulantKVZusatz2: cardTemplateData.sehhilfe2,
+        sehhilfeBrilleLeistungenAmbulantKVZusatz2: cardTemplateData.brille2,
+        sehhilfeZeitraumLeistungenAmbulantKVZusatz2:
+          cardTemplateData.sehhilfeJahre2,
+        lasikHoeheLeistungenAmbulantKVZusatz2: cardTemplateData.lasik2,
+        heilpraktikerAmbulantKVZusatz2: cardTemplateData.heilpraktiker2,
+        leistungProJahrAmbulantKVZusatz2:
+          cardTemplateData.leistungProJahrAmbulantKVZusatz2,
+        hufelandAmbulantKVZusatz2: cardTemplateData.hufeland2,
+        psychotherapieAmbulantKVZusatz2: cardTemplateData.psychotherapie2,
+        kurAmbulantKVZusatz2: cardTemplateData.kur2,
+        hilfsmittelAmbulantKVZusatz2: cardTemplateData.hilfsmittel2,
+        ambulanteOPAmbulantKVZusatz2: cardTemplateData.ambulanteOp2,
+        hoergeraeteAmbulantKVZusatz2: cardTemplateData.hoergeraete2,
+        beitragAmbulantKVZusatz2: cardTemplateData.beitragAmbulantKVZusatz2,
+        tarifLeistungenStationaerKVZusatz2: cardTemplateData.tarifStationair2,
+        altersrueckstellungLeistungenStationaerKVZusatz2:
+          cardTemplateData.altersrueckstellungStationaer2,
+        bettzimmerChefarztLeistungenStationaerKVZusatz2: cardTemplateData.stationaer2,
+        erstattungLeistungenStationaerKVZusatz2: cardTemplateData.erstattung2,
+        ersatzkrankenhausTarifLeistungenStationaerKVZusatz2:
+          cardTemplateData.ersatzkrankenhaustagegeld2,
+        GKVTarifLeistungenStationaerKVZusatz2: cardTemplateData.gkvZuzahlungen2,
+        beitragTarifLeistungenStationaerKVZusatz2:
+          cardTemplateData.beitragStationaer2,
+        tarifLeistungenZahnKVZusatz2: cardTemplateData.tarifZahn2,
+        altersrueckstellungLeistungenZahnKVZusatz2:
+          cardTemplateData.altersrueckstellungZahn2,
+        regelversorgungLeistungenZahnKVZusatz2: cardTemplateData.regelversorgung2,
+        zahnbehandlungZahnKVZusatz2: cardTemplateData.zahnbehandlung2,
+        zahnersatzZahnKVZusatz2: cardTemplateData.zahnersatz2,
+        kieferorthopaedieLeistungenZahnKVZusatz2:
+          cardTemplateData.kieferorthopaedie2,
+        anzahlReinigungenProJahrLeistungenZahnKVZusatz2:
+          cardTemplateData.anzahlReinigungenProJahr2,
+        leistungProJahrLeistungenZahnKVZusatz2:
+          cardTemplateData.reinigungLeistung2,
+        beitragLeistungenZahnKVZusatz2: cardTemplateData.beitragDental2,
+        tarifKTKVZusatz2: cardTemplateData.tarifKT2,
+        altersrueckstellungKTKVZusatz2: cardTemplateData.altersrueckstellungKT2,
+        tagEinsKTKVZusatz2: cardTemplateData.krankentagegeldtag12,
+        betragTagEinsKTKVZusatz2: cardTemplateData.krankentagegeld12,
+        tagZweiKTKVZusatz2: cardTemplateData.krankentagegeldtag22,
+        betragTagZweiKTKVZusatz2: cardTemplateData.krankentagegeld22,
+        beitragKTKVZusatz2: cardTemplateData.beitragKT2,
+        beitragsrueckerstattungSonstigeLeistungenKVZusatz2:
+          cardTemplateData.beitragsrueckerstattung2,
+        erstattungSonstigeLeistungenKVZusatz2: cardTemplateData.erstattung2,
+        auslandsreiseKVSonstigeLeistungenKVZusatz2:
+          cardTemplateData.auslandsreiseKV2,
+        krankenhaustagegeldSonstigeLeistungenKVZusatz2:
+          cardTemplateData.krankenhaustagegeld2,
+
+          selected3Persons: anzahlPersonen(cardTemplateData.anzahlVP, 3),
+          versichertePersonKVZusatz3:  typeof cardTemplateData.versichertePerson3 === "undefined"
+          ? isMandantDefined("undefined")
+          : isMandantDefined(cardTemplateData.versichertePerson3.id),
+        ambulantVersichertePersonKVZusatz3: cardTemplateData.inklAmbulant3,
+        stationaerVersichertePersonKVZusatz3: cardTemplateData.inklStationaer3,
+        zahnVersichertePersonKVZusatz3: cardTemplateData.inklZahn3,
+        KTVersichertePersonKVZusatz3: cardTemplateData.inklKT3,
+        kHTVersichertePersonKVZusatz3: cardTemplateData.inklKHT3,
+        tarifLeistungenAmbulantKVZusatz3: cardTemplateData.tarifAmbulant3,
+        altersrueckstellungLeistungenAmbulantKVZusatz3:
+          cardTemplateData.altersrueckstellungAmbulant3,
+        sehhilfeLeistungenAmbulantKVZusatz3: cardTemplateData.sehhilfe3,
+        sehhilfeBrilleLeistungenAmbulantKVZusatz3: cardTemplateData.brille3,
+        sehhilfeZeitraumLeistungenAmbulantKVZusatz3:
+          cardTemplateData.sehhilfeJahre3,
+        lasikHoeheLeistungenAmbulantKVZusatz3: cardTemplateData.lasik3,
+        heilpraktikerAmbulantKVZusatz3: cardTemplateData.heilpraktiker3,
+        leistungProJahrAmbulantKVZusatz3:
+          cardTemplateData.leistungProJahrAmbulantKVZusatz3,
+        hufelandAmbulantKVZusatz3: cardTemplateData.hufeland3,
+        psychotherapieAmbulantKVZusatz3: cardTemplateData.psychotherapie3,
+        kurAmbulantKVZusatz3: cardTemplateData.kur3,
+        hilfsmittelAmbulantKVZusatz3: cardTemplateData.hilfsmittel3,
+        ambulanteOPAmbulantKVZusatz3: cardTemplateData.ambulanteOp3,
+        hoergeraeteAmbulantKVZusatz3: cardTemplateData.hoergeraete3,
+        beitragAmbulantKVZusatz3: cardTemplateData.beitragAmbulantKVZusatz3,
+        tarifLeistungenStationaerKVZusatz3: cardTemplateData.tarifStationair3,
+        altersrueckstellungLeistungenStationaerKVZusatz3:
+          cardTemplateData.altersrueckstellungStationaer3,
+        bettzimmerChefarztLeistungenStationaerKVZusatz3: cardTemplateData.stationaer3,
+        erstattungLeistungenStationaerKVZusatz3: cardTemplateData.erstattung3,
+        ersatzkrankenhausTarifLeistungenStationaerKVZusatz3:
+          cardTemplateData.ersatzkrankenhaustagegeld3,
+        GKVTarifLeistungenStationaerKVZusatz3: cardTemplateData.gkvZuzahlungen3,
+        beitragTarifLeistungenStationaerKVZusatz3:
+          cardTemplateData.beitragStationaer3,
+        tarifLeistungenZahnKVZusatz3: cardTemplateData.tarifZahn3,
+        altersrueckstellungLeistungenZahnKVZusatz3:
+          cardTemplateData.altersrueckstellungZahn3,
+        regelversorgungLeistungenZahnKVZusatz3: cardTemplateData.regelversorgung3,
+        zahnbehandlungZahnKVZusatz3: cardTemplateData.zahnbehandlung3,
+        zahnersatzZahnKVZusatz3: cardTemplateData.zahnersatz3,
+        kieferorthopaedieLeistungenZahnKVZusatz3:
+          cardTemplateData.kieferorthopaedie3,
+        anzahlReinigungenProJahrLeistungenZahnKVZusatz3:
+          cardTemplateData.anzahlReinigungenProJahr3,
+        leistungProJahrLeistungenZahnKVZusatz3:
+          cardTemplateData.reinigungLeistung3,
+        beitragLeistungenZahnKVZusatz3: cardTemplateData.beitragDental3,
+        tarifKTKVZusatz3: cardTemplateData.tarifKT3,
+        altersrueckstellungKTKVZusatz3: cardTemplateData.altersrueckstellungKT3,
+        tagEinsKTKVZusatz3: cardTemplateData.krankentagegeldtag13,
+        betragTagEinsKTKVZusatz3: cardTemplateData.krankentagegeld13,
+        tagZweiKTKVZusatz3: cardTemplateData.krankentagegeldtag23,
+        betragTagZweiKTKVZusatz3: cardTemplateData.krankentagegeld23,
+        beitragKTKVZusatz3: cardTemplateData.beitragKT3,
+        beitragsrueckerstattungSonstigeLeistungenKVZusatz3:
+          cardTemplateData.beitragsrueckerstattung3,
+        erstattungSonstigeLeistungenKVZusatz3: cardTemplateData.erstattung3,
+        auslandsreiseKVSonstigeLeistungenKVZusatz3:
+          cardTemplateData.auslandsreiseKV3,
+        krankenhaustagegeldSonstigeLeistungenKVZusatz3:
+          cardTemplateData.krankenhaustagegeld3,
+
+          selected4Persons: anzahlPersonen(cardTemplateData.anzahlVP, 4),
+          versichertePersonKVZusatz4:  typeof cardTemplateData.versichertePerson4 === "undefined"
+          ? isMandantDefined("undefined")
+          : isMandantDefined(cardTemplateData.versichertePerson4.id),
+        ambulantVersichertePersonKVZusatz4: cardTemplateData.inklAmbulant4,
+        stationaerVersichertePersonKVZusatz4: cardTemplateData.inklStationaer4,
+        zahnVersichertePersonKVZusatz4: cardTemplateData.inklZahn4,
+        KTVersichertePersonKVZusatz4: cardTemplateData.inklKT4,
+        kHTVersichertePersonKVZusatz4: cardTemplateData.inklKHT4,
+        tarifLeistungenAmbulantKVZusatz4: cardTemplateData.tarifAmbulant4,
+        altersrueckstellungLeistungenAmbulantKVZusatz4:
+          cardTemplateData.altersrueckstellungAmbulant4,
+        sehhilfeLeistungenAmbulantKVZusatz4: cardTemplateData.sehhilfe4,
+        sehhilfeBrilleLeistungenAmbulantKVZusatz4: cardTemplateData.brille4,
+        sehhilfeZeitraumLeistungenAmbulantKVZusatz4:
+          cardTemplateData.sehhilfeJahre4,
+        lasikHoeheLeistungenAmbulantKVZusatz4: cardTemplateData.lasik4,
+        heilpraktikerAmbulantKVZusatz4: cardTemplateData.heilpraktiker4,
+        leistungProJahrAmbulantKVZusatz4:
+          cardTemplateData.leistungProJahrAmbulantKVZusatz4,
+        hufelandAmbulantKVZusatz4: cardTemplateData.hufeland4,
+        psychotherapieAmbulantKVZusatz4: cardTemplateData.psychotherapie4,
+        kurAmbulantKVZusatz4: cardTemplateData.kur4,
+        hilfsmittelAmbulantKVZusatz4: cardTemplateData.hilfsmittel4,
+        ambulanteOPAmbulantKVZusatz4: cardTemplateData.ambulanteOp4,
+        hoergeraeteAmbulantKVZusatz4: cardTemplateData.hoergeraete4,
+        beitragAmbulantKVZusatz4: cardTemplateData.beitragAmbulantKVZusatz4,
+        tarifLeistungenStationaerKVZusatz4: cardTemplateData.tarifStationair4,
+        altersrueckstellungLeistungenStationaerKVZusatz4:
+          cardTemplateData.altersrueckstellungStationaer4,
+        bettzimmerChefarztLeistungenStationaerKVZusatz4: cardTemplateData.stationaer4,
+        erstattungLeistungenStationaerKVZusatz4: cardTemplateData.erstattung4,
+        ersatzkrankenhausTarifLeistungenStationaerKVZusatz4:
+          cardTemplateData.ersatzkrankenhaustagegeld4,
+        GKVTarifLeistungenStationaerKVZusatz4: cardTemplateData.gkvZuzahlungen4,
+        beitragTarifLeistungenStationaerKVZusatz4:
+          cardTemplateData.beitragStationaer4,
+        tarifLeistungenZahnKVZusatz4: cardTemplateData.tarifZahn4,
+        altersrueckstellungLeistungenZahnKVZusatz4:
+          cardTemplateData.altersrueckstellungZahn4,
+        regelversorgungLeistungenZahnKVZusatz4: cardTemplateData.regelversorgung4,
+        zahnbehandlungZahnKVZusatz4: cardTemplateData.zahnbehandlung4,
+        zahnersatzZahnKVZusatz4: cardTemplateData.zahnersatz4,
+        kieferorthopaedieLeistungenZahnKVZusatz4:
+          cardTemplateData.kieferorthopaedie4,
+        anzahlReinigungenProJahrLeistungenZahnKVZusatz4:
+          cardTemplateData.anzahlReinigungenProJahr4,
+        leistungProJahrLeistungenZahnKVZusatz4:
+          cardTemplateData.reinigungLeistung4,
+        beitragLeistungenZahnKVZusatz4: cardTemplateData.beitragDental4,
+        tarifKTKVZusatz4: cardTemplateData.tarifKT4,
+        altersrueckstellungKTKVZusatz4: cardTemplateData.altersrueckstellungKT4,
+        tagEinsKTKVZusatz4: cardTemplateData.krankentagegeldtag14,
+        betragTagEinsKTKVZusatz4: cardTemplateData.krankentagegeld14,
+        tagZweiKTKVZusatz4: cardTemplateData.krankentagegeldtag24,
+        betragTagZweiKTKVZusatz4: cardTemplateData.krankentagegeld24,
+        beitragKTKVZusatz4: cardTemplateData.beitragKT4,
+        beitragsrueckerstattungSonstigeLeistungenKVZusatz4:
+          cardTemplateData.beitragsrueckerstattung4,
+        erstattungSonstigeLeistungenKVZusatz4: cardTemplateData.erstattung4,
+        auslandsreiseKVSonstigeLeistungenKVZusatz4:
+          cardTemplateData.auslandsreiseKV4,
+        krankenhaustagegeldSonstigeLeistungenKVZusatz4:
+          cardTemplateData.krankenhaustagegeld4,
+
+          selected5Persons: anzahlPersonen(cardTemplateData.anzahlVP, 5),
+          versichertePersonKVZusatz5:  typeof cardTemplateData.versichertePerson5 === "undefined"
+          ? isMandantDefined("undefined")
+          : isMandantDefined(cardTemplateData.versichertePerson5.id),
+        ambulantVersichertePersonKVZusatz5: cardTemplateData.inklAmbulant5,
+        stationaerVersichertePersonKVZusatz5: cardTemplateData.inklStationaer5,
+        zahnVersichertePersonKVZusatz5: cardTemplateData.inklZahn5,
+        KTVersichertePersonKVZusatz5: cardTemplateData.inklKT5,
+        kHTVersichertePersonKVZusatz5: cardTemplateData.inklKHT5,
+        tarifLeistungenAmbulantKVZusatz5: cardTemplateData.tarifAmbulant5,
+        altersrueckstellungLeistungenAmbulantKVZusatz5:
+          cardTemplateData.altersrueckstellungAmbulant5,
+        sehhilfeLeistungenAmbulantKVZusatz5: cardTemplateData.sehhilfe5,
+        sehhilfeBrilleLeistungenAmbulantKVZusatz5: cardTemplateData.brille5,
+        sehhilfeZeitraumLeistungenAmbulantKVZusatz5:
+          cardTemplateData.sehhilfeJahre5,
+        lasikHoeheLeistungenAmbulantKVZusatz5: cardTemplateData.lasik5,
+        heilpraktikerAmbulantKVZusatz5: cardTemplateData.heilpraktiker5,
+        leistungProJahrAmbulantKVZusatz5:
+          cardTemplateData.leistungProJahrAmbulantKVZusatz5,
+        hufelandAmbulantKVZusatz5: cardTemplateData.hufeland5,
+        psychotherapieAmbulantKVZusatz5: cardTemplateData.psychotherapie5,
+        kurAmbulantKVZusatz5: cardTemplateData.kur5,
+        hilfsmittelAmbulantKVZusatz5: cardTemplateData.hilfsmittel5,
+        ambulanteOPAmbulantKVZusatz5: cardTemplateData.ambulanteOp5,
+        hoergeraeteAmbulantKVZusatz5: cardTemplateData.hoergeraete5,
+        beitragAmbulantKVZusatz5: cardTemplateData.beitragAmbulantKVZusatz5,
+        tarifLeistungenStationaerKVZusatz5: cardTemplateData.tarifStationair5,
+        altersrueckstellungLeistungenStationaerKVZusatz5:
+          cardTemplateData.altersrueckstellungStationaer5,
+        bettzimmerChefarztLeistungenStationaerKVZusatz5: cardTemplateData.stationaer5,
+        erstattungLeistungenStationaerKVZusatz5: cardTemplateData.erstattung5,
+        ersatzkrankenhausTarifLeistungenStationaerKVZusatz5:
+          cardTemplateData.ersatzkrankenhaustagegeld5,
+        GKVTarifLeistungenStationaerKVZusatz5: cardTemplateData.gkvZuzahlungen5,
+        beitragTarifLeistungenStationaerKVZusatz5:
+          cardTemplateData.beitragStationaer5,
+        tarifLeistungenZahnKVZusatz5: cardTemplateData.tarifZahn5,
+        altersrueckstellungLeistungenZahnKVZusatz5:
+          cardTemplateData.altersrueckstellungZahn5,
+        regelversorgungLeistungenZahnKVZusatz5: cardTemplateData.regelversorgung5,
+        zahnbehandlungZahnKVZusatz5: cardTemplateData.zahnbehandlung5,
+        zahnersatzZahnKVZusatz5: cardTemplateData.zahnersatz5,
+        kieferorthopaedieLeistungenZahnKVZusatz5:
+          cardTemplateData.kieferorthopaedie5,
+        anzahlReinigungenProJahrLeistungenZahnKVZusatz5:
+          cardTemplateData.anzahlReinigungenProJahr5,
+        leistungProJahrLeistungenZahnKVZusatz5:
+          cardTemplateData.reinigungLeistung5,
+        beitragLeistungenZahnKVZusatz5: cardTemplateData.beitragDental5,
+        tarifKTKVZusatz5: cardTemplateData.tarifKT5,
+        altersrueckstellungKTKVZusatz5: cardTemplateData.altersrueckstellungKT5,
+        tagEinsKTKVZusatz5: cardTemplateData.krankentagegeldtag15,
+        betragTagEinsKTKVZusatz5: cardTemplateData.krankentagegeld15,
+        tagZweiKTKVZusatz5: cardTemplateData.krankentagegeldtag25,
+        betragTagZweiKTKVZusatz5: cardTemplateData.krankentagegeld25,
+        beitragKTKVZusatz5: cardTemplateData.beitragKT5,
+        beitragsrueckerstattungSonstigeLeistungenKVZusatz5:
+          cardTemplateData.beitragsrueckerstattung5,
+        erstattungSonstigeLeistungenKVZusatz5: cardTemplateData.erstattung5,
+        auslandsreiseKVSonstigeLeistungenKVZusatz5:
+          cardTemplateData.auslandsreiseKV5,
+        krankenhaustagegeldSonstigeLeistungenKVZusatz5:
+          cardTemplateData.krankenhaustagegeld5,
+
+          selected6Persons: anzahlPersonen(cardTemplateData.anzahlVP, 6),
+          versichertePersonKVZusatz6:  typeof cardTemplateData.versichertePerson6 === "undefined"
+          ? isMandantDefined("undefined")
+          : isMandantDefined(cardTemplateData.versichertePerson6.id),
+        ambulantVersichertePersonKVZusatz6: cardTemplateData.inklAmbulant6,
+        stationaerVersichertePersonKVZusatz6: cardTemplateData.inklStationaer6,
+        zahnVersichertePersonKVZusatz6: cardTemplateData.inklZahn6,
+        KTVersichertePersonKVZusatz6: cardTemplateData.inklKT6,
+        kHTVersichertePersonKVZusatz6: cardTemplateData.inklKHT6,
+        tarifLeistungenAmbulantKVZusatz6: cardTemplateData.tarifAmbulant6,
+        altersrueckstellungLeistungenAmbulantKVZusatz6:
+          cardTemplateData.altersrueckstellungAmbulant6,
+        sehhilfeLeistungenAmbulantKVZusatz6: cardTemplateData.sehhilfe6,
+        sehhilfeBrilleLeistungenAmbulantKVZusatz6: cardTemplateData.brille6,
+        sehhilfeZeitraumLeistungenAmbulantKVZusatz6:
+          cardTemplateData.sehhilfeJahre6,
+        lasikHoeheLeistungenAmbulantKVZusatz6: cardTemplateData.lasik6,
+        heilpraktikerAmbulantKVZusatz6: cardTemplateData.heilpraktiker6,
+        leistungProJahrAmbulantKVZusatz6:
+          cardTemplateData.leistungProJahrAmbulantKVZusatz6,
+        hufelandAmbulantKVZusatz6: cardTemplateData.hufeland6,
+        psychotherapieAmbulantKVZusatz6: cardTemplateData.psychotherapie6,
+        kurAmbulantKVZusatz6: cardTemplateData.kur6,
+        hilfsmittelAmbulantKVZusatz6: cardTemplateData.hilfsmittel6,
+        ambulanteOPAmbulantKVZusatz6: cardTemplateData.ambulanteOp6,
+        hoergeraeteAmbulantKVZusatz6: cardTemplateData.hoergeraete6,
+        beitragAmbulantKVZusatz6: cardTemplateData.beitragAmbulantKVZusatz6,
+        tarifLeistungenStationaerKVZusatz6: cardTemplateData.tarifStationair6,
+        altersrueckstellungLeistungenStationaerKVZusatz6:
+          cardTemplateData.altersrueckstellungStationaer6,
+        bettzimmerChefarztLeistungenStationaerKVZusatz6: cardTemplateData.stationaer6,
+        erstattungLeistungenStationaerKVZusatz6: cardTemplateData.erstattung6,
+        ersatzkrankenhausTarifLeistungenStationaerKVZusatz6:
+          cardTemplateData.ersatzkrankenhaustagegeld6,
+        GKVTarifLeistungenStationaerKVZusatz6: cardTemplateData.gkvZuzahlungen6,
+        beitragTarifLeistungenStationaerKVZusatz6:
+          cardTemplateData.beitragStationaer6,
+        tarifLeistungenZahnKVZusatz6: cardTemplateData.tarifZahn6,
+        altersrueckstellungLeistungenZahnKVZusatz6:
+          cardTemplateData.altersrueckstellungZahn6,
+        regelversorgungLeistungenZahnKVZusatz6: cardTemplateData.regelversorgung6,
+        zahnbehandlungZahnKVZusatz6: cardTemplateData.zahnbehandlung6,
+        zahnersatzZahnKVZusatz6: cardTemplateData.zahnersatz6,
+        kieferorthopaedieLeistungenZahnKVZusatz6:
+          cardTemplateData.kieferorthopaedie6,
+        anzahlReinigungenProJahrLeistungenZahnKVZusatz6:
+          cardTemplateData.anzahlReinigungenProJahr6,
+        leistungProJahrLeistungenZahnKVZusatz6:
+          cardTemplateData.reinigungLeistung6,
+        beitragLeistungenZahnKVZusatz6: cardTemplateData.beitragDental6,
+        tarifKTKVZusatz6: cardTemplateData.tarifKT6,
+        altersrueckstellungKTKVZusatz6: cardTemplateData.altersrueckstellungKT6,
+        tagEinsKTKVZusatz6: cardTemplateData.krankentagegeldtag16,
+        betragTagEinsKTKVZusatz6: cardTemplateData.krankentagegeld16,
+        tagZweiKTKVZusatz6: cardTemplateData.krankentagegeldtag26,
+        betragTagZweiKTKVZusatz6: cardTemplateData.krankentagegeld26,
+        beitragKTKVZusatz6: cardTemplateData.beitragKT6,
+        beitragsrueckerstattungSonstigeLeistungenKVZusatz6:
+          cardTemplateData.beitragsrueckerstattung6,
+        erstattungSonstigeLeistungenKVZusatz6: cardTemplateData.erstattung6,
+        auslandsreiseKVSonstigeLeistungenKVZusatz6:
+          cardTemplateData.auslandsreiseKV6,
+        krankenhaustagegeldSonstigeLeistungenKVZusatz6:
+          cardTemplateData.krankenhaustagegeld6,
       };
 
       break;
     case "HUNDEHALTERHAFTPFLICHT":
-      console.log(cardTemplateData);
 
       output = {
         initMandantValue: mandantMapper(
@@ -3880,6 +4207,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
     default:
       break;
   }
+  output={...output, externalProduktId:cardTemplateData.externalProduktId}
   return output;
 }
 export default tarifType;

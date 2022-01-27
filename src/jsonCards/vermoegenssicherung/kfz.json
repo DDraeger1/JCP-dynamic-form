@@ -3,6 +3,15 @@
     "card": true,
   "mobileClassname":"KfzVersicherung",
   "items": [
+    {"name":"showExternalProductId",
+      "type": "paragraph",
+    "label":""},
+    {
+      "name": "externalProduktId",
+      "type": "produktid",
+      "condition":"showExternalProductId",
+      "props": { "required": true },
+      "suiteValue":"externalProduktId"},
         {
             "name": "AllgemeinKFZHeader",
             "label": "Allgemein",

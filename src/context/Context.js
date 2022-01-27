@@ -9,13 +9,13 @@ const ContextProvider = (props) => {
     summeBruttobezuegeEinnahmenValue:0
   });
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
-
+const [mobileClassname, setMobileClassname] =useState("")
   const [versicherungsnehmerValue, setVersicherungsnehmerValue] = useState({
     index: 0,
     tarifTypeId: "none",
   });
   const [anzahlVp, setAnzahlVp] =useState(1)
-
+const [vertragId, setVertragId] =useState("")
 const [einkommenGehaltBezuege, setEinkommenGehaltBezuege] =useState({
 hinzufuegen:false,
 pressedValue:""
@@ -30,7 +30,9 @@ pressedValue:""
         setJsonValues,
         versicherungsnehmerValue, setVersicherungsnehmerValue,
         anzahlVp, setAnzahlVp,
-        einkommenGehaltBezuege, setEinkommenGehaltBezuege
+        einkommenGehaltBezuege, setEinkommenGehaltBezuege,
+        mobileClassname, setMobileClassname,
+        vertragId, setVertragId
       }}
     >
       {props.children}

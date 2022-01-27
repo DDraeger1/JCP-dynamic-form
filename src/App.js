@@ -16,7 +16,9 @@ import DateFnsUtils from "@date-io/date-fns";
 import deLocale from "date-fns/locale/de";
 import { Save } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
+
 import axios from "axios";
+import qs from "query-string"
 
 import personaldaten from "./jsonCards/persoenlicheAngaben/personaldaten.json";
 import chooseCard from "./jsonCards/ui/chooseCard.json";
@@ -1389,7 +1391,6 @@ function App(props) {
   const [loaded, setLoaded] = useState(false);
   const [initialised, setInitialised] = useState(false);
 
-  const [id, setId] = useState();
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const [isBusy, setIsBusy] = useState(false);
   const [rawData, setRawData] = useState({ success: false });
@@ -1403,6 +1404,7 @@ function App(props) {
     anzahlVp,
     einkommenGehaltBezuege,
     setEinkommenGehaltBezuege,
+    setVertragId
   } = useContext(Context);
   /*
   suite mapped:
@@ -1417,7 +1419,8 @@ Values not Mapped
   };C:\Users\draeg\Documents\newSuite\JCPIS_ANALYSE\src\main\java\de\jcpis\analyse\presentation\GesellschaftController.java
 */
 //note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
-  const [card, setCard] = useState("PFERDEHALTERHAFTPFLICHT");
+  const [card, setCard] = useState("DIREKT_3");
+  const [id, setId] = useState();
   let test = [];
   const ref = useRef();
   
@@ -1642,17 +1645,20 @@ test = [ausweisdaten]
 
   const handleSubmit = (data) => {
     console.log("Nun folgende Daten ans Backend übertragen", data);
+let dataPaket=qs.stringify({...data, json:JSON.stringify(data.json)})
 
-    return new Promise((resolve, reject) => {
+//.replace("%5Bobject%20Object%5D", qs.extract("{")+qs.stringify(data.json)+qs.parse("}"))
       // simuliere einen etwas länger dauernden speichervorgang
-      setTimeout(() => {
-        setIsBusy(true);
-
+      console.log(dataPaket)
+     axios.post(saveAsset.url,dataPaket,saveAsset).then((response)=>{
+        console.log(response)}
+      ).catch((err)=> alert(err)
+)
+        
+setIsBusy(true);
         // die kompletten (evtl. vom backend geänderten) daten an das formular zurückgeben.
         // dadurch wird das formular geupdatet
-        resolve({ ...formData, ...data });
-      }, 500);
-    });
+
   };
 
   var myHeaders = new Headers();
@@ -1690,7 +1696,36 @@ test = [ausweisdaten]
     method: "get",
     url: "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id=ae378e06-0522-11e9-95b0-27616e07d826",
     withCredentials: true,
-    headers: { Cookie: document.cookie },
+    headers: { 
+      Cookie: document.cookie,
+ },
+    redirect: "follow",
+  };
+  var saveAsset = {
+    method: "post",
+    url: "http://localhost:8080/build-suite/analyseApp",
+    withCredentials: true,
+    headers: { 
+      Cookie: document.cookie,
+      'Content-Type': 'application/x-www-form-urlencoded' },
+    redirect: "follow",
+  };
+  var getContextIdById = {
+    method: "post",
+    url: "http://localhost:8080/build-suite/context.json?action=getContextById&id=23eb4a44-9c81-11e8-a65f-a5ebaa94e5be",
+    withCredentials: true,
+    headers: { 
+      Cookie: document.cookie,
+      'Content-Type': 'application/x-www-form-urlencoded' },
+    redirect: "follow",
+  };
+  var getProductId = {
+    method: "post",
+    url: "http://localhost:8080/build-suite/productId.json?action=getProductIds&tarifTypeId="+card,
+    withCredentials: true,
+    headers: { 
+      Cookie: document.cookie,
+      'Content-Type': 'application/x-www-form-urlencoded' },
     redirect: "follow",
   };
   var requestOptionsAnalyseAssets = {
@@ -1717,6 +1752,8 @@ test = [ausweisdaten]
         axios(requestOptionsAnalyseAssets),
         axios(requestOptionsMandantGroup),
         axios(requestOptionsGesellschaftId),
+        axios(getContextIdById),
+        axios(getProductId)
       ])
         .then((result) => {
           setRawData({
@@ -1724,12 +1761,13 @@ test = [ausweisdaten]
             mandantGroup: result[2].data.data.mandantMandantGroups,
             analyseAssets: result[1].data.data,
             gesellschaft:result[3].data,
+            contextProductId:result[4].data.data,
+            productId: result[5].data.data,
             success: true,
           });
         })
         .catch((error) => console.log(error));
     };
-
     if (mounted) {
       getData();
       setIsBusy(false);
@@ -1739,7 +1777,6 @@ test = [ausweisdaten]
       mounted = false;
     };
   }, [jsonValues]);
-console.log(rawData.gesellschaft)
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
       initCards(
@@ -1749,7 +1786,8 @@ console.log(rawData.gesellschaft)
         setLoaded,
         "none",
         card,
-        setVersicherungsnehmerValue
+        setVersicherungsnehmerValue,
+        rawData.contextProductId.contextConfig.desktop.showExternalProductId
       );
       setId(mapAssets(rawData.analyseAssets));
       setInitialised(true);
@@ -1775,8 +1813,15 @@ console.log(rawData.gesellschaft)
           rawData.mandantGroup
         ),
         card,
-        setVersicherungsnehmerValue
+        setVersicherungsnehmerValue,
+        rawData.contextProductId.contextConfig.desktop.showExternalProductId
       );
+      setVertragId(redefineCard(
+        id,
+        versicherungsnehmerValue.index,
+        versicherungsnehmerValue.tarifTypeId,
+        rawData.mandantGroup
+      ))
       setTimeout(() => {
         setLoaded(false);
       }, 100);
@@ -1785,9 +1830,10 @@ console.log(rawData.gesellschaft)
       }, 500);
     }
   }, [versicherungsnehmerValue]);
-
+console.log(rawData)
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
+//TODO: KVZ und KVV werte auf false setzen!
       switch (anzahlVp) {
         case 1:
           setFormData({
@@ -1858,6 +1904,9 @@ console.log(rawData.gesellschaft)
         default:
           break;
       }
+      console.log("drin")
+      console.log(anzahlVp)
+      console.log(formData.anzahlVersichertePersonen)
       setTimeout(() => {
         setLoaded(false);
       }, 100);
@@ -2169,6 +2218,9 @@ console.log(rawData.gesellschaft)
                 // Was soll beim Absenden geschehen?
                 // erwartet wird ein Promise, der mit dem kompletten (evtl. modifizierten Datensatz) resolvet
                 onSubmit={handleSubmit}
+                tarifTypeIdFromCardState={card}
+                productId={rawData.productId}
+
               />
               {ref.isDirty}
               <Button

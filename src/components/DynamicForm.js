@@ -26,13 +26,13 @@ import FunctionMapper from "./FunctionMapper";
 
 
 function DynamicForm(
-  { values, formDefinition, onSubmit, style, disabled, compact = false, mandantGroup,gesellschaft },
+  { values, formDefinition, onSubmit, style, disabled, compact = false, mandantGroup,gesellschaft,tarifTypeIdFromCardState,productId },
   ref
 ) {
   let inputIndex = 0;
   const [submissionObject, setSubmissionObject ] =useState()
   const { versicherungsnehmerValue, setVersicherungsnehmerValue,setAnzahlVp,    einkommenGehaltBezuege,
-    setEinkommenGehaltBezuege } =
+    setEinkommenGehaltBezuege,setMobileClassname,vertragId,mobileClassname } =
     useContext(Context);
 /*
   setEinkommenGehaltBezuege(
@@ -113,7 +113,6 @@ function DynamicForm(
       tarifType,
       versicherungsnehmerBeide,
       anzahlVp,
-      suiteValue,
       rules: { required = false, pattern = "" } = {},
     } = item;
     const itemDisabled = disabled || item.disabled || !!editWarning;
@@ -205,6 +204,35 @@ function DynamicForm(
   />
 </FormControl>
                   )
+                  case "produktid":
+                    return(
+                      
+<FormControl fullWidth size={"small"}>
+<InputLabel>Produkt ID</InputLabel>
+{console.log(productId)}
+                      <Select
+                        autoFocus={focussed}
+                        inputRef={ref}
+                        disabled={itemDisabled}
+                        value={value}
+                        onChange={onChange}
+                        error={!!helperText}
+                      >
+                        <MenuItem key="o" value={""}>
+                         
+                        </MenuItem>
+                        {productId.map((productId, index) => (
+<MenuItem key={"o-" + index} value={productId.productId}>
+                            {productId.name}
+                          </MenuItem>
+
+                        ))}
+                      </Select>
+                      {helperText && (
+                        <Typography color={"error"} variant={"caption"}>
+                          {helperText}
+                        </Typography>)}
+</FormControl>)
                   case "gesellschaft":
                     return(
 <FormControl fullWidth size={"small"}>
@@ -214,6 +242,7 @@ function DynamicForm(
                         inputRef={ref}
                         value={value}
                         onChange={onChange}
+                        disabled={itemDisabled}
                         error={!!helperText}
                       >
                         <MenuItem key="o" value={""}>
@@ -568,6 +597,7 @@ arrayItems =[...arrayItems, ...form.items]
    })
    return output
  }
+
  function addDirtyEntries ( dirtyValues){
   let output ={}
   let arrayItems=[]
@@ -575,7 +605,7 @@ arrayItems =[...arrayItems, ...form.items]
   formDefinition.map((form)=>{
     arrayItems =[...arrayItems, ...form.items]
        })   
-       
+
        arrayItems.forEach(item => {
         Object.entries(dirtyValues).forEach(([key, value]) =>{
           if(item.name === key ){
@@ -584,8 +614,51 @@ arrayItems =[...arrayItems, ...form.items]
           }
         })
        })
-       console.log(output)
        return(output)
+ }
+ function formatDataForSubmission(valuesToSubmit,dirtyValues){
+   console.log(valuesToSubmit)
+   let output={action:"saveAsset", json:{...valuesToSubmit, ...dirtyValues,id:vertragId},mobileClassname:formDefinition[0].mobileClassname,
+   mandantId:mandantGroup[valuesToSubmit.versicherungsnehmerId].mandantId,analyseId:"ae3f6be4-0522-11e9-95b0-27616e07d826"}
+   //versicherungsnehmer id wird nicht gebraucht
+   delete output.json.versicherungsnehmerId
+   //"kategorie":"thvpferd"
+
+if(tarifTypeIdFromCardState === "PFERDEHALTERHAFTPFLICHT"){
+  output={...output, json:{...output.json,kategorie:"thvpferd" }}
+}
+if(tarifTypeIdFromCardState === "PRIVATHAFTPFLICHT"){
+  output={...output, json:{...output.json,kategorie:"phv" }}
+}
+if(tarifTypeIdFromCardState === "HUNDEHALTERHAFTPFLICHT"){
+  output={...output, json:{...output.json,kategorie:"thvhund" }}
+}
+if(tarifTypeIdFromCardState === "PFLEGETAGEGELD"){
+  output={...output, json:{...output.json,art:"1" }}
+}
+/*
+if(tarifTypeIdFromCardState === "KVZ"){
+  output={...output, json:{...output.json,kategorie:"thvpferd" }}
+}
+if(tarifTypeIdFromCardState === "KVZ"){
+  output={...output, json:{...output.json,kategorie:"thvpferd" }}
+}
+if(tarifTypeIdFromCardState === "KVZ"){
+  output={...output, json:{...output.json,kategorie:"thvpferd" }}
+}
+if(tarifTypeIdFromCardState === "KVZ"){
+  output={...output, json:{...output.json,kategorie:"thvpferd" }}
+}*/
+   console.log(output)
+   console.log(formDefinition[0].mobileClassname)
+   console.log(formDefinition)
+
+   gesellschaft.data.map((gesellschaft) =>{
+     if(gesellschaft.name === output.gesellschaft){
+output={...output, gesellschaft:gesellschaft.id}
+     }
+   })
+   return(output)
  }
   const submitDirtyFields = async (values) => {
     if (Object.keys(formState.dirtyFields).length === 0) return false;
@@ -599,9 +672,7 @@ let dirtyValues = {...addDirtyEntries(Object.entries(formState.dirtyFields).redu
       },
       {}
     ))}
-valuesToSubmit={...valuesToSubmit, ...dirtyValues}
-console.log(valuesToSubmit)
-
+valuesToSubmit=formatDataForSubmission(valuesToSubmit,dirtyValues)
     try {
       if (valuesToSubmit && Object.keys(valuesToSubmit).length > 0) {
         let vals = await onSubmit(valuesToSubmit);

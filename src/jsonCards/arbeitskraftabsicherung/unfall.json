@@ -3,6 +3,15 @@
   "card": true,
   "mobileClassname":"Unfallversicherung",
   "items": [
+    {"name":"showExternalProductId",
+      "type": "paragraph",
+    "label":""},
+    {
+      "name": "externalProduktId",
+      "type": "produktid",
+      "condition":"showExternalProductId",
+      "props": { "required": true },
+      "suiteValue":"externalProduktId"},
     {
       "name": "gesellschaftUnfallHeader",
       "label": "Gesellschaft",

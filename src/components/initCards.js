@@ -7,7 +7,8 @@ function initCards(
   setLoaded,
   vertragId,
   card,
-  setVersicherungsnehmerValue
+  setVersicherungsnehmerValue,
+  showExternalProductId
 ) {
   let bankDaten = [
     {
@@ -304,8 +305,7 @@ function initCards(
     }
   });
   setFormData({
- 
-
+    showExternalProductId:booleanFormater(showExternalProductId),
     ...cardValues,
     success: result.success,
   });
