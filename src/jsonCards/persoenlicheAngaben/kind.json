@@ -12,14 +12,15 @@
       },
       "options": [
         {
-          "value": 0,
+          "value": "Mann",
           "label": "Männlich"
         },
         {
-          "value": 1,
+          "value": "Frau",
           "label": "Weiblich"
         }
-      ]
+      ],
+      "suiteValue":"anrede"
     },
     {
       "name": "vornameKind",
@@ -28,7 +29,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
     {
       "name": "nameKind",
@@ -40,7 +42,8 @@
       },
       "rules": {
         "required": true
-      }
+      },
+      "suiteValue":""
     },
     {
       "name": "geburtsdatumKind",
@@ -49,7 +52,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
     {
       "name": "geburtsortKind",
@@ -58,21 +62,24 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
     {
       "name": "gemeinsamesKind",
       "label": "gemeinsames Kind",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":4 }
+        "xs":4 },
+        "suiteValue":""
     },
     {
       "name": "filler",
       "label": " ",
       "type": "paragraph",
       "props": { "sm": 1,
-        "xs":1 }
+        "xs":1 },
+        "suiteValue":""
     },
     {
       "name": "versichertBeiKind",
@@ -82,17 +89,18 @@
         "sm": 7,
         "xs":7
       },
-      "options": [
-        {
-          "value": 0,
-          "label": "Mandant1"
-        },
-        {
-          "value": 1,
-          "label": "Mandant2"
-        }
-      ]
+      "options":[{
+        "value":"m","label":"Mandant/in"
     },
+    {
+      "value":"p","label":"Partner/in"
+  },
+  {
+    "value":"s","label":"Sonstige"
+}
+  ],
+  "suiteValue":""
+  },
     {
       "name": "steuerIDKind",
       "label": "Steuer-ID",
@@ -100,7 +108,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
     {
       "name": "ausbildungsstandKind",
@@ -111,21 +120,23 @@
         "xs":6
       },
       "options": [
-        { "value": 0, "label": "Kind" },
-        { "value": 1, "label": "Schüler" },
-        { "value": 2, "label": "Azubi" },
-        { "value": 3, "label": "Student" },
-        { "value": 4, "label": "Ausbildung/Student" }
-      ]
+        { "value": "Kind", "label": "Kind" },
+        { "value": "Schüler", "label": "Schüler"},
+        { "value": "Azubi", "label": "Azubi" },
+        { "value": "Student", "label": "Student" },
+        { "value": "Ausbildung/Studium", "label": "Ausbildung/Student" }
+      ],
+      "suiteValue":""
     },
     {
       "name": "bisKind",
       "label": "...bis",
-      "type": "date",
+      "type": "text",
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
     {
       "name": "fachrichtungKind",
@@ -134,12 +145,14 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
     {
       "name": "berufKind",
       "label": "berufstätig, Beruf",
-      "type": "text"
+      "type": "text",
+      "suiteValue":""
     },
     {
       "name": "kindergeldHeader",
@@ -149,11 +162,12 @@
     {
       "name": "kindergeldBisKind",
       "label": "Kindergeld bis (Altersangabe)",
-      "type": "date",
+      "type": "text",
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
     {
       "name": "bezugsberechtigtePersonKindergeldKind",
@@ -164,9 +178,10 @@
         "xs":6
       },
       "options": [
-        { "value": 0, "label": "Mandant" },
-        { "value": 1, "label": "Partner/in" }
-      ]
+        { "value": "m", "label": "Mandant" },
+        { "value": "p", "label": "Partner/in" }
+      ],
+      "suiteValue":""
     },
     {
       "name": "kinderfreibetragHeader",
@@ -180,10 +195,11 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
     {
-      "name": "kinderfreibetragKind ",
+      "name": "kinderfreibetragKind",
       "label": "Kinderfreibetrag",
       "type": "select",
       "props": {
@@ -191,10 +207,11 @@
         "xs":6
       },
       "options": [
-        { "value": 0, "label": "Ganzer" },
-        { "value": 1, "label": "Halber" },
-        { "value": 2, "label": "Kein" }
-      ]
+        { "value": "GANZER", "label": "Ganzer" },
+        { "value": "HALBER", "label": "Halber" },
+        { "value": "KEIN", "label": "Kein" }
+      ],
+      "suiteValue":""
     },
     {
       "name": "bezugsberechtigtePersonKindFreibetragKind",
@@ -205,11 +222,12 @@
         "xs":6
       },
       "options": [
-        { "value": 0, "label": "Mandant" },
-        { "value": 1, "label": "Partner/in" },
-        { "value": 2, "label": "Beide" },
-        { "value": 3, "label": "Sonstige" }
-      ]
+        { "value": "m", "label": "Mandant" },
+        { "value": "p", "label": "Partner/in" },
+        { "value": "b", "label": "Beide" },
+        { "value": "s", "label": "Sonstige" }
+      ],
+      "suiteValue":""
     },
     {
       "name": "kinderzulageRiesterKind",
@@ -220,10 +238,11 @@
         "xs":6
       },
       "options": [
-        { "value": 0, "label": "Mandant" },
-        { "value": 1, "label": "Partner/in" },
-        { "value": 2, "label": "Sonstige" }
-      ]
+        { "value": "m", "label": "Mandant" },
+        { "value": "p", "label": "Partner/in" },
+        { "value": "s", "label": "Sonstige" }
+      ],
+      "suiteValue":""
     }
   ]
 }

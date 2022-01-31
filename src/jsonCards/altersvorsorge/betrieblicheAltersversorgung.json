@@ -67,18 +67,9 @@
     {
       "name": "durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung",
       "label": "Durchführungsweg",
-      "type": "select",
+      "type": "bAVSelect",
       "props": { "required": true, "sm":6,
         "xs":6 },
-      "options": [
-        { "value": "DIREKT_3", "label": "Direktversicherung (§ 3 Nr. 63 EStG)" },
-        { "value": "DIREKT_40", "label": "Direktversicherung (§ 40b EStG)" },
-        { "value": "DIREKTZUSAGE", "label": "Direktzusage" },
-        { "value": "PENSIONSFONDS_3", "label": "Pensionsfond (§ 3 Nr. 63 EStG)" },
-        { "value": "PENSIONSKASSE_3", "label": "Pensionskasse (§ 3 Nr. 63 EStG)" },
-        { "value": "PENSIONSKASSE_40", "label": "Pensionskasse (§ 40b EStG)" },
-        { "value": "UNTERSTUETZUNGSKASSE", "label": "Unterstützungskasse" }
-      ],
       "suiteValue":"tarifTypeId"
     },
     {

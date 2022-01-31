@@ -18,7 +18,7 @@ import { Save } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 
 import axios from "axios";
-import qs from "query-string"
+import qs from "query-string";
 
 import personaldaten from "./jsonCards/persoenlicheAngaben/personaldaten.json";
 import chooseCard from "./jsonCards/ui/chooseCard.json";
@@ -77,6 +77,8 @@ import riesterrente from "./jsonCards/altersvorsorge/riesterrente.json";
 import betrieblicheAltersversorgung from "./jsonCards/altersvorsorge/betrieblicheAltersversorgung.json";
 import ruerupRente from "./jsonCards/altersvorsorge/ruerupRente.json";
 import { gridColumnsTotalWidthSelector } from "@material-ui/x-grid";
+
+import { useParams} from 'react-router-dom'
 
 import initCards from "./components/initCards";
 //TODO: Arbeite xs und md ein für kleinere bildschirme!!
@@ -803,7 +805,7 @@ const sachwertValues = {
   tarifbezeichnungVertragspartnerSachwert: "",
   vertragsnummerVertragspartnerSachwert: "",
   artVertragspartnerSachwert: "",
-  fallsSonstigesVertragspartnerSachwert:"",
+  fallsSonstigesVertragspartnerSachwert: "",
   gewichtVertragspartnerSachwert: "",
   lagerungVertragspartnerSachwert: "",
   anschaffungsjahrVertragspartnerSachwert: "",
@@ -1404,7 +1406,7 @@ function App(props) {
     anzahlVp,
     einkommenGehaltBezuege,
     setEinkommenGehaltBezuege,
-    setVertragId
+    setVertragId,
   } = useContext(Context);
   /*
   suite mapped:
@@ -1418,12 +1420,13 @@ Values not Mapped
     ...kapitalversicherungValues,
   };C:\Users\draeg\Documents\newSuite\JCPIS_ANALYSE\src\main\java\de\jcpis\analyse\presentation\GesellschaftController.java
 */
-//note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
-  const [card, setCard] = useState("DIREKT_3");
+  //note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
+  const params = useParams()
+  const [card, setCard] = useState(params.card);
   const [id, setId] = useState();
   let test = [];
   const ref = useRef();
-  
+
   switch (card) {
     case "STEUERN":
       dummyData = { ...steuerValues };
@@ -1437,7 +1440,7 @@ Values not Mapped
       break;
     case "ruerupRente":
       dummyData = { ...riesterrenteValues };
-      test =  [ruerupRente];
+      test = [ruerupRente];
       //muss ich im live build bauen
       break;
     case "wertpapiere":
@@ -1445,7 +1448,27 @@ Values not Mapped
       dummyData = { ...wertpapiereValues };
       test = [wertpapiere];
       break;
-    case "DIREKT_3":
+    case "DIREKTZUSAGE":
+      dummyData = { ...betrieblicheAltersversorgungValues };
+      test = [betrieblicheAltersversorgung];
+      break;
+    case "PENSIONSFONDS_3":
+      dummyData = { ...betrieblicheAltersversorgungValues };
+      test = [betrieblicheAltersversorgung];
+      break;
+    case "DIREKT_40":
+      dummyData = { ...betrieblicheAltersversorgungValues };
+      test = [betrieblicheAltersversorgung];
+      break;
+    case "PENSIONSKASSE_40":
+      dummyData = { ...betrieblicheAltersversorgungValues };
+      test = [betrieblicheAltersversorgung];
+      break;
+    case "UNTERSTUETZUNGSKASSE":
+      dummyData = { ...betrieblicheAltersversorgungValues };
+      test = [betrieblicheAltersversorgung];
+      break;
+      case "DIREKT_3":
       dummyData = { ...betrieblicheAltersversorgungValues };
       test = [betrieblicheAltersversorgung];
       break;
@@ -1461,41 +1484,39 @@ Values not Mapped
       };
       test = [kind];
       break;
-      case "GESUNDHEIT":
-        dummyData = {
-          ...gesundheitValues,
-        };
-        test = [gesundheit,];
-        break
-        case "FUEHRERSCHEIN":
-          dummyData = {
-            ...fuehrerscheinValues
-          };
-          test = [fuehrerschein];
-        break;
-        case "AUSBILDUNGBERUF":
-          dummyData ={ ...ausbildungBerufValues}
-          test = [ausbildungBeruf]
-        break
-        case "KOMMUNIKATION":
-          dummyData ={ ...kommunikationValues}
-          test = [kommunikation]
-        break
-        case "ARBEITGEBER":
-dummyData={...arbeitgeberValues}
-test =[arbeitgeber]
-        break;
-        case "AUSWEIS":
-dummyData={...ausweisdatenValues}
-test = [ausweisdaten]
-        break
+    case "GESUNDHEIT":
+      dummyData = {
+        ...gesundheitValues,
+      };
+      test = [gesundheit];
+      break;
+    case "FUEHRERSCHEIN":
+      dummyData = {
+        ...fuehrerscheinValues,
+      };
+      test = [fuehrerschein];
+      break;
+    case "AUSBILDUNGBERUF":
+      dummyData = { ...ausbildungBerufValues };
+      test = [ausbildungBeruf];
+      break;
+    case "KOMMUNIKATION":
+      dummyData = { ...kommunikationValues };
+      test = [kommunikation];
+      break;
+    case "ARBEITGEBER":
+      dummyData = { ...arbeitgeberValues };
+      test = [arbeitgeber];
+      break;
+    case "AUSWEIS":
+      dummyData = { ...ausweisdatenValues };
+      test = [ausweisdaten];
+      break;
     case "PERSONALDATEN":
       dummyData = {
-        ...personaldatenValues
-            };
-      test = [
-        personaldaten
-      ];
+        ...personaldatenValues,
+      };
+      test = [personaldaten];
       break;
     case "GESETZLICHE_AV":
       dummyData = { ...gesetzlicheAltersvorsorgeValues };
@@ -1645,20 +1666,21 @@ test = [ausweisdaten]
 
   const handleSubmit = (data) => {
     console.log("Nun folgende Daten ans Backend übertragen", data);
-let dataPaket=qs.stringify({...data, json:JSON.stringify(data.json)})
+    let dataPaket = qs.stringify({ ...data, json: JSON.stringify(data.json) });
 
-//.replace("%5Bobject%20Object%5D", qs.extract("{")+qs.stringify(data.json)+qs.parse("}"))
-      // simuliere einen etwas länger dauernden speichervorgang
-      console.log(dataPaket)
-     axios.post(saveAsset.url,dataPaket,saveAsset).then((response)=>{
-        console.log(response)}
-      ).catch((err)=> alert(err)
-)
-        
-setIsBusy(true);
-        // die kompletten (evtl. vom backend geänderten) daten an das formular zurückgeben.
-        // dadurch wird das formular geupdatet
+    //.replace("%5Bobject%20Object%5D", qs.extract("{")+qs.stringify(data.json)+qs.parse("}"))
+    // simuliere einen etwas länger dauernden speichervorgang
+    console.log(dataPaket);
+    axios
+      .post(saveAsset.url, dataPaket, saveAsset)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => alert(err));
 
+    setIsBusy(true);
+    // die kompletten (evtl. vom backend geänderten) daten an das formular zurückgeben.
+    // dadurch wird das formular geupdatet
   };
 
   var myHeaders = new Headers();
@@ -1673,7 +1695,7 @@ setIsBusy(true);
   };
   var requestOptionsAnalyseAssetsLiveSuite = {
     method: "get",
-    url: "https://jcp-suite.de/suite/asset.json?_dc=1636967969021&action=getAllAnalyseAssets&mandantId=5bb62244-c69e-11e6-9d84-001c4254d875&analyseId=5bbbdc57-c69e-11e6-9d84-001c4254d875",
+    url: "https://jcp-suite.de/suite/asset.json?action=getAllAnalyseAssets&mandantId=&analyseId="+params.analyseId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
@@ -1696,56 +1718,93 @@ setIsBusy(true);
     method: "get",
     url: "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id=ae378e06-0522-11e9-95b0-27616e07d826",
     withCredentials: true,
-    headers: { 
+    headers: {
       Cookie: document.cookie,
- },
+    },
     redirect: "follow",
   };
+  console.log(params)
+
   var saveAsset = {
     method: "post",
     url: "http://localhost:8080/build-suite/analyseApp",
     withCredentials: true,
-    headers: { 
+    headers: {
       Cookie: document.cookie,
-      'Content-Type': 'application/x-www-form-urlencoded' },
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
     redirect: "follow",
   };
   var getContextIdById = {
     method: "post",
-    url: "http://localhost:8080/build-suite/context.json?action=getContextById&id=23eb4a44-9c81-11e8-a65f-a5ebaa94e5be",
+    url: "http://localhost:8080/build-suite/context.json?action=getContextById&id="+params.contextId,
     withCredentials: true,
-    headers: { 
+    headers: {
       Cookie: document.cookie,
-      'Content-Type': 'application/x-www-form-urlencoded' },
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
     redirect: "follow",
   };
   var getProductId = {
     method: "post",
-    url: "http://localhost:8080/build-suite/productId.json?action=getProductIds&tarifTypeId="+card,
+    url:
+      "http://localhost:8080/build-suite/productId.json?action=getProductIds&tarifTypeId=" +
+      card,
     withCredentials: true,
-    headers: { 
+    headers: {
       Cookie: document.cookie,
-      'Content-Type': 'application/x-www-form-urlencoded' },
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
     redirect: "follow",
   };
   var requestOptionsAnalyseAssets = {
     method: "get",
-    url: "http://localhost:8080/build-suite/asset.json?_dc=1636967969021&action=getAllAnalyseAssets&mandantId=ae378e06-0522-11e9-95b0-27616e07d826&analyseId=ae3f6be4-0522-11e9-95b0-27616e07d826",
+    url: "http://localhost:8080/build-suite/asset.json?_dc=1636967969021&action=getAllAnalyseAssets&mandantId="+params.mandantId+"&analyseId="+params.analyseId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
   };
   var requestOptionsGesellschaftId = {
     method: "get",
-    url: "http://localhost:8080/build-suite/gesellschaft.json?action=getAllGesellschaftsByTarifTypeId&tarifTypeId="+card+"&contextId=23eb4a44-9c81-11e8-a65f-a5ebaa94e5be",
+    url:
+      "http://localhost:8080/build-suite/gesellschaft.json?action=getAllGesellschaftsByTarifTypeId&tarifTypeId=" +
+      card +
+      "&contextId="+params.contextId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
   };
+  var requestOptionsMandant = {
+    method: "get",
+    url: "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id="+params.mandantId,
+    withCredentials: true,
+    headers: {
+      Cookie: document.cookie,
+    },
+    redirect: "follow",
+  };
+  function checkIfPersonendaten(card){
+    let output = false
+    if(card==="KIND"){
+      output = true
+    }if(card==="PERSONALDATEN"){
+      output = true
+    }if(card==="AUSWEIS"){
+      output = true
+    }if(card==="KOMMUNIKATION"){
+      output = true
+    }if(card==="KIND"){
+      output = true
+    }if(card==="KIND"){
+      output = true
+    }if(card==="KIND"){
+      output = true
+    }
+    return(output)
+  }
   useEffect(() => {
     let mounted = true;
     setIsBusy(true);
-
     const getData = () => {
       Promise.all([
         axios(requestOptionsMandant),
@@ -1753,24 +1812,55 @@ setIsBusy(true);
         axios(requestOptionsMandantGroup),
         axios(requestOptionsGesellschaftId),
         axios(getContextIdById),
-        axios(getProductId)
+        axios(getProductId),
       ])
         .then((result) => {
           setRawData({
             mandantData: result[0].data.data,
             mandantGroup: result[2].data.data.mandantMandantGroups,
             analyseAssets: result[1].data.data,
-            gesellschaft:result[3].data,
-            contextProductId:result[4].data.data,
+            gesellschaft: result[3].data,
+            contextProductId: result[4].data.data,
             productId: result[5].data.data,
             success: true,
           });
         })
-        .catch((error) => console.log(error));
+        .catch((error) =>{
+        console.log("error")
+        console.log(error)});
     };
+    const getDataPersonendaten = () => {
+      Promise.all([
+        axios(requestOptionsMandant),
+        axios(requestOptionsAnalyseAssets),
+        axios(requestOptionsMandantGroup),
+        axios(getContextIdById)
+      ])
+        .then((result) => {
+          setRawData({
+            mandantData: result[0].data.data,
+            mandantGroup: result[2].data.data.mandantMandantGroups,
+            contextProductId: result[3].data.data,
+            analyseAssets: result[1].data.data,
+            success: true,
+          });
+        })
+        .catch((error) =>{
+        console.log("error")
+        console.log(error)});
+    }
+   
     if (mounted) {
+if(checkIfPersonendaten(card)){
+      getDataPersonendaten()
+      setIsBusy(false);
+    } else{
       getData();
       setIsBusy(false);
+      console.log(checkIfPersonendaten(card))
+    }
+
+
     }
 
     return () => {
@@ -1816,12 +1906,14 @@ setIsBusy(true);
         setVersicherungsnehmerValue,
         rawData.contextProductId.contextConfig.desktop.showExternalProductId
       );
-      setVertragId(redefineCard(
-        id,
-        versicherungsnehmerValue.index,
-        versicherungsnehmerValue.tarifTypeId,
-        rawData.mandantGroup
-      ))
+      setVertragId(
+        redefineCard(
+          id,
+          versicherungsnehmerValue.index,
+          versicherungsnehmerValue.tarifTypeId,
+          rawData.mandantGroup
+        )
+      );
       setTimeout(() => {
         setLoaded(false);
       }, 100);
@@ -1830,10 +1922,10 @@ setIsBusy(true);
       }, 500);
     }
   }, [versicherungsnehmerValue]);
-console.log(rawData)
+  console.log(rawData);
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
-//TODO: KVZ und KVV werte auf false setzen!
+      //TODO: KVZ und KVV werte auf false setzen!
       switch (anzahlVp) {
         case 1:
           setFormData({
@@ -1904,9 +1996,6 @@ console.log(rawData)
         default:
           break;
       }
-      console.log("drin")
-      console.log(anzahlVp)
-      console.log(formData.anzahlVersichertePersonen)
       setTimeout(() => {
         setLoaded(false);
       }, 100);
@@ -1928,7 +2017,7 @@ console.log(rawData)
             setFormData({
               ...formData,
               variablerBezugBetragMtlTextfieldEinnahmen: 0,
-              variablerBezug: false
+              variablerBezug: false,
             });
           }
           break;
@@ -1942,7 +2031,7 @@ console.log(rawData)
             setFormData({
               ...formData,
               fahrtkostenBetragMtlTextfieldEinnahmen: 0,
-              fahrtkosten: false
+              fahrtkosten: false,
             });
           }
           break;
@@ -2119,38 +2208,37 @@ console.log(rawData)
             });
           }
           break;
-          case "Bonus":
-            if (einkommenGehaltBezuege.hinzufuegen) {
-              setFormData({
-                ...formData,
-                bonus: true,
-              });
-            } else {
-              setFormData({
-                ...formData,
-                bonus: false,
-                sonderzahlungenAuszahlungsmonatEinnahmenSelect:"",
-                sonderzahlungenAuszahlungsmonatEinnahmen: 0,
-              });
-            }
-            break;
-            case "Urlaubsgeld":
+        case "Bonus":
+          if (einkommenGehaltBezuege.hinzufuegen) {
+            setFormData({
+              ...formData,
+              bonus: true,
+            });
+          } else {
+            setFormData({
+              ...formData,
+              bonus: false,
+              sonderzahlungenAuszahlungsmonatEinnahmenSelect: "",
+              sonderzahlungenAuszahlungsmonatEinnahmen: 0,
+            });
+          }
+          break;
+        case "Urlaubsgeld":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...formData,
               urlaubsgeld: true,
-              
             });
           } else {
             setFormData({
               ...formData,
               urlaubsgeld: false,
-              urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect:"",
+              urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect: "",
               urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmen: 0,
             });
           }
           break;
-          case "Weihnachtsgeld":
+        case "Weihnachtsgeld":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...formData,
@@ -2160,12 +2248,12 @@ console.log(rawData)
             setFormData({
               ...formData,
               weihnachtsgeld: false,
-              weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect:"",
+              weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect: "",
               weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect: 0,
             });
           }
           break;
-          case "Gewinnbeteiligung":
+        case "Gewinnbeteiligung":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...formData,
@@ -2175,7 +2263,8 @@ console.log(rawData)
             setFormData({
               ...formData,
               gewinnbeteiligung: false,
-              gewinnbeteiligungSonderzahlungenAuszahlungsmonatEinnahmenSelect:"",
+              gewinnbeteiligungSonderzahlungenAuszahlungsmonatEinnahmenSelect:
+                "",
               sonstigerAbzugNettobezugBetragMtlEinnahmen: 0,
             });
           }
@@ -2220,7 +2309,6 @@ console.log(rawData)
                 onSubmit={handleSubmit}
                 tarifTypeIdFromCardState={card}
                 productId={rawData.productId}
-
               />
               {ref.isDirty}
               <Button

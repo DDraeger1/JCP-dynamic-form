@@ -291,6 +291,8 @@ function initCards(
               if(card !== "SACHWERT"){
               if (card !== "KIND") {
                 if (card !== "BANKVERBINDUNG") {
+                  console.log("Drin")
+                  console.log(cardValues)
           setVersicherungsnehmerValue({
             index: cardValues.initMandantValue,
             tarifTypeId: card,

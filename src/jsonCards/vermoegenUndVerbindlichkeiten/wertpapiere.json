@@ -13,14 +13,6 @@
       "props": { "required": true },
       "suiteValue":"externalProduktId"},
     {
-      "name": "produktIDWertpapiere",
-      "label": "Produkt ID (suite mapping)",
-      "type": "select",
-      "props": { "required": true },
-      "options": [{ "value": 0, "label": "Produkt ID" }]
-    },
-
-    {
       "name": "tarifbezeichnungWertpapiere",
       "label": "Tarifbezeichnung",
       "type": "text",

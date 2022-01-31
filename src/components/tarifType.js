@@ -1621,13 +1621,40 @@ function dateFormater(date) {
   }
   return output;
 }
-
+function checkIfPersonendaten(card){
+  let output = false
+  if(card==="KIND"){
+    output = true
+  }if(card==="PERSONALDATEN"){
+    output = true
+  }if(card==="AUSWEIS"){
+    output = true
+  }if(card==="KOMMUNIKATION"){
+    output = true
+  }if(card==="KIND"){
+    output = true
+  }if(card==="KIND"){
+    output = true
+  }if(card==="KIND"){
+    output = true
+  }
+  return(output)
+}
 function booleanFormater(booleanString) {
   let output = false;
   if (booleanString === "true") {
     output = true;
   }
   return output;
+}
+function mapKind(mandantGroup){
+  let output= []
+  mandantGroup.map((mandant)=>{
+if(mandant.art === "KIND"){
+  output.push(mandant.mandant)
+}
+  })
+  return(output)
 }
 function test(cardtemplate){
   let key1
@@ -1641,6 +1668,12 @@ function test(cardtemplate){
 
 }
 function tarifType(asset, card, changedMandant, mandantGroup) {
+
+  let kindArray
+if(card === "KIND"){
+  kindArray=mapKind(mandantGroup)
+}
+
   function isMandantDefined(id) {
     let output;
     if (id === "undefined") {
@@ -1913,6 +1946,7 @@ return (output)
   }
   return (output)
   }
+
   switch (card) {
 case "PFERDEHALTERPFLICHT":
   cardTemplateData=pferdehalterhaftpflicht
@@ -2052,6 +2086,29 @@ cardTemplateData= altersvorsorge;
       break;
       
     }
+    if(card === "KIND"){
+
+      output={
+        geschlechtKind:kindArray[0].anrede,
+        vornameKind:kindArray[0].vorname,
+        nameKind:kindArray[0].nachname,
+        geburtsdatumKind:dateFormater(kindArray[0].geburtsdatum),
+        geburtsortKind:kindArray[0].geburtsort,
+        gemeinsamesKind:kindArray[0].gemeinsamesKind,
+        versichertBeiKind:kindArray[0].krankenversichertBei,
+        steuerIDKind:kindArray[0].steuerId,
+        ausbildungsstandKind:kindArray[0].ausbildungsstand,
+        bisKind: kindArray[0].ausbildungBis,
+        fachrichtungKind:kindArray[0].ausbildungFachrichtung,
+        berufKind:kindArray[0].ausbildungBeruf,
+        kindergeldBisKind:kindArray[0].kindergeldBis,
+        bezugsberechtigtePersonKindergeldKind:kindArray[0].bezugsberechtigePersonKinderfreibetrag,
+        bisJahrKinderfreibetragKind:kindArray[0].kinderfreibetragBis,
+        kinderfreibetragKind:kindArray[0].kinderfreibetrag,
+        bezugsberechtigtePersonKindFreibetragKind:kindArray[0].bezugsberechtigePersonKindergeld,
+        kinderzulageRiesterKind:kindArray[0].kinderzulageRiester,
+      }
+    }
     if(card === "ARBEITGEBER"){
 output={
       firmennameArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].firmenname,
@@ -2081,7 +2138,6 @@ output={
   emailAnsprechspartnerArbeitgeber: "(Fehlt in localer suite)",}
     }
    else if(card === "AUSWEIS"){
-      console.log(mandantGroup[0].mandant.personalausweisGueltigBis)
       output={
       nummerAusweisdaten: mandantGroup[0].mandant.personalausweis,
       ausstellungsdatumAusweisdaten:
@@ -4207,7 +4263,9 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
     default:
       break;
   }
+if(!checkIfPersonendaten(card)){
   output={...output, externalProduktId:cardTemplateData.externalProduktId}
-  return output;
+}
+  return output;  
 }
 export default tarifType;

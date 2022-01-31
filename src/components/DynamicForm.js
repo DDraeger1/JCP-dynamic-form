@@ -15,26 +15,52 @@ import {
   Switch,
   TextField,
   Typography,
+  Radio,
+  RadioGroup 
 } from "@material-ui/core";
 import { KeyboardDatePicker } from "@material-ui/pickers";
-import React, { forwardRef, useCallback, useImperativeHandle, useContext, useEffect,useState } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Edit } from "@material-ui/icons";
 import BezugHinzufuegen from "./BezugHinzufuegen";
 import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
 import FunctionMapper from "./FunctionMapper";
 
-
 function DynamicForm(
-  { values, formDefinition, onSubmit, style, disabled, compact = false, mandantGroup,gesellschaft,tarifTypeIdFromCardState,productId },
+  {
+    values,
+    formDefinition,
+    onSubmit,
+    style,
+    disabled,
+    compact = false,
+    mandantGroup,
+    gesellschaft,
+    tarifTypeIdFromCardState,
+    productId,
+  },
   ref
 ) {
   let inputIndex = 0;
-  const [submissionObject, setSubmissionObject ] =useState()
-  const { versicherungsnehmerValue, setVersicherungsnehmerValue,setAnzahlVp,    einkommenGehaltBezuege,
-    setEinkommenGehaltBezuege,setMobileClassname,vertragId,mobileClassname } =
-    useContext(Context);
-/*
+  const [submissionObject, setSubmissionObject] = useState();
+  const {
+    versicherungsnehmerValue,
+    setVersicherungsnehmerValue,
+    setAnzahlVp,
+    einkommenGehaltBezuege,
+    setEinkommenGehaltBezuege,
+    setMobileClassname,
+    vertragId,
+    mobileClassname,
+  } = useContext(Context);
+  /*
   setEinkommenGehaltBezuege(
     {
       brutto:{
@@ -196,20 +222,19 @@ function DynamicForm(
             function getItemInput() {
               switch (type) {
                 case "costumFunction":
-                  return(
-<FormControl fullWidth size={"small"}>
-  <FunctionMapper
-  functionName={name}
-  variableName={label}
-  />
-</FormControl>
-                  )
-                  case "produktid":
-                    return(
-                      
-<FormControl fullWidth size={"small"}>
-<InputLabel>Produkt ID</InputLabel>
-{console.log(productId)}
+                  return (
+                    <FormControl fullWidth size={"small"}>
+                      <FunctionMapper
+                        functionName={name}
+                        variableName={label}
+                      />
+                    </FormControl>
+                  );
+                case "produktid":
+                  return (
+                    <FormControl fullWidth size={"small"}>
+                      <InputLabel>Produkt ID</InputLabel>
+                      {console.log(productId)}
                       <Select
                         autoFocus={focussed}
                         inputRef={ref}
@@ -218,25 +243,27 @@ function DynamicForm(
                         onChange={onChange}
                         error={!!helperText}
                       >
-                        <MenuItem key="o" value={""}>
-                         
-                        </MenuItem>
+                        <MenuItem key="o" value={""}></MenuItem>
                         {productId.map((productId, index) => (
-<MenuItem key={"o-" + index} value={productId.productId}>
+                          <MenuItem
+                            key={"o-" + index}
+                            value={productId.productId}
+                          >
                             {productId.name}
                           </MenuItem>
-
                         ))}
                       </Select>
                       {helperText && (
                         <Typography color={"error"} variant={"caption"}>
                           {helperText}
-                        </Typography>)}
-</FormControl>)
-                  case "gesellschaft":
-                    return(
-<FormControl fullWidth size={"small"}>
-<InputLabel>Gesellschaft</InputLabel>
+                        </Typography>
+                      )}
+                    </FormControl>
+                  );
+                case "gesellschaft":
+                  return (
+                    <FormControl fullWidth size={"small"}>
+                      <InputLabel>Gesellschaft</InputLabel>
                       <Select
                         autoFocus={focussed}
                         inputRef={ref}
@@ -245,21 +272,23 @@ function DynamicForm(
                         disabled={itemDisabled}
                         error={!!helperText}
                       >
-                        <MenuItem key="o" value={""}>
-                         
-                        </MenuItem>
+                        <MenuItem key="o" value={""}></MenuItem>
                         {gesellschaft.data.map((gesellschaft, index) => (
-<MenuItem key={"o-" + index} value={gesellschaft.name}>
+                          <MenuItem
+                            key={"o-" + index}
+                            value={gesellschaft.name}
+                          >
                             {gesellschaft.name}
                           </MenuItem>
-
                         ))}
                       </Select>
                       {helperText && (
                         <Typography color={"error"} variant={"caption"}>
                           {helperText}
-                        </Typography>)}
-</FormControl>)
+                        </Typography>
+                      )}
+                    </FormControl>
+                  );
                 case "select":
                   return (
                     <FormControl fullWidth size={"small"}>
@@ -273,22 +302,24 @@ function DynamicForm(
                         error={!!helperText}
                         disabled={itemDisabled}
                       >
-
                         <MenuItem key="o" value={""}>
                           {" "}
                         </MenuItem>
-                        {options.map((option, index) => (
-                          anzahlVp === "true"? 
-<MenuItem onClick={() =>setAnzahlVp(option.value)} key={"o-" + index} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                          :
-                          <MenuItem key={"o-" + index} value={option.value}>
-                            {option.label}
-                          </MenuItem>
-                      
-
-                        ))}
+                        {options.map((option, index) =>
+                          anzahlVp === "true" ? (
+                            <MenuItem
+                              onClick={() => setAnzahlVp(option.value)}
+                              key={"o-" + index}
+                              value={option.value}
+                            >
+                              {option.label}
+                            </MenuItem>
+                          ) : (
+                            <MenuItem key={"o-" + index} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          )
+                        )}
                       </Select>
                       {helperText && (
                         <Typography color={"error"} variant={"caption"}>
@@ -297,9 +328,58 @@ function DynamicForm(
                       )}
                     </FormControl>
                   );
-                  case "personArray":
-                    return(
-                      <FormControl fullWidth size={"small"}>
+                /*
+                          { "value": , "label": "" },
+        { "value": , "label": "" },
+        { "value": , "label": },
+        { "value":, "label": },
+        { "value": , "label":  },
+        { "value": "", "label": "" },
+        { "value": "", "label": "" }
+                  */
+                case "bAVSelect":
+                  return (
+                    <FormControl fullWidth size={"small"}>
+                      <InputLabel>{label}</InputLabel>
+                      <Select
+                        autoFocus={focussed}
+                        inputRef={ref}
+                        value={value}
+                        onChange={onChange}
+                        label={label}
+                        error={!!helperText}
+                        disabled={vertragId === "newVertrag" ? false : true}
+                      >
+                        <MenuItem key="o" value={""}></MenuItem>
+                        <MenuItem key="o" value={"DIREKT_3"}>
+                          Direktversicherung (§ 3 Nr. 63 EStG)
+                        </MenuItem>
+                        <MenuItem key="o" value={"DIREKT_40"}>
+                          Direktversicherung (§ 40b EStG)
+                        </MenuItem>
+                        <MenuItem key="o" value={"DIREKTZUSAGE"}>
+                          Direktzusage
+                        </MenuItem>
+                        <MenuItem key="o" value={"PENSIONSFONDS_3"}>
+                          Pensionsfond (§ 3 Nr. 63 EStG)
+                        </MenuItem>
+                        <MenuItem key="o" value={"PENSIONSKASSE_40"}>
+                          Pensionskasse (§ 40b EStG)
+                        </MenuItem>
+                        <MenuItem key="o" value={"UNTERSTUETZUNGSKASSE"}>
+                          Unterstützungskasse
+                        </MenuItem>
+                      </Select>
+                      {helperText && (
+                        <Typography color={"error"} variant={"caption"}>
+                          {helperText}
+                        </Typography>
+                      )}
+                    </FormControl>
+                  );
+                case "personArray":
+                  return (
+                    <FormControl fullWidth size={"small"}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -325,41 +405,63 @@ function DynamicForm(
                         </Typography>
                       )}
                     </FormControl>
-                    )
+                  );
                 case "selectMandant":
                   return (
                     <div>
-                    <FormControl fullWidth size={"small"}>
-                      <InputLabel>{label}</InputLabel>
-                      <Select
-                        autoFocus={focussed}
-                        inputRef={ref}
-                        value={versicherungsnehmerValue.index}
-                        onChange={onChange}
-                        label={label}
-                        error={!!helperText}
-                        disabled={itemDisabled}
-                      >
-                        {mandantGroup.map((mandantGroup, index) => (
-                          <MenuItem onClick={()=>{setVersicherungsnehmerValue({index:index,tarifTypeId:tarifType})}} key={"o-" + index} value={index}>
-                            {mandantGroup.mandant.vorname + " " + mandantGroup.mandant.nachname}
-                          </MenuItem>
-                        ))}
-                      {versicherungsnehmerBeide === "true" ? 
-                      <MenuItem onClick={()=>{setVersicherungsnehmerValue({index:false,tarifTypeId:tarifType})}} key={"o-versicherungsNehmerBeide"} value={false}>Beide</MenuItem>
-                    : null}
-                      </Select>
-                      {helperText && (
-                        <Typography color={"error"} variant={"caption"}>
-                          {helperText}
-                        </Typography>
-                      )}
-                    </FormControl>
+                      <FormControl fullWidth size={"small"}>
+                        <InputLabel>{label}</InputLabel>
+                        <Select
+                          autoFocus={focussed}
+                          inputRef={ref}
+                          value={versicherungsnehmerValue.index}
+                          onChange={onChange}
+                          label={label}
+                          error={!!helperText}
+                          disabled={itemDisabled}
+                        >
+                          {mandantGroup.map((mandantGroup, index) => (
+                            <MenuItem
+                              onClick={() => {
+                                setVersicherungsnehmerValue({
+                                  index: index,
+                                  tarifTypeId: tarifType,
+                                });
+                              }}
+                              key={"o-" + index}
+                              value={index}
+                            >
+                              {mandantGroup.mandant.vorname +
+                                " " +
+                                mandantGroup.mandant.nachname}
+                            </MenuItem>
+                          ))}
+                          {versicherungsnehmerBeide === "true" ? (
+                            <MenuItem
+                              onClick={() => {
+                                setVersicherungsnehmerValue({
+                                  index: false,
+                                  tarifTypeId: tarifType,
+                                });
+                              }}
+                              key={"o-versicherungsNehmerBeide"}
+                              value={false}
+                            >
+                              Beide
+                            </MenuItem>
+                          ) : null}
+                        </Select>
+                        {helperText && (
+                          <Typography color={"error"} variant={"caption"}>
+                            {helperText}
+                          </Typography>
+                        )}
+                      </FormControl>
                     </div>
                   );
-                  case "selectVersichert":
-                    return (
-                      <div>
+                case "selectVersichert":
+                  return (
+                    <div>
                       <FormControl fullWidth size={"small"}>
                         <InputLabel>{label}</InputLabel>
                         <Select
@@ -372,12 +474,18 @@ function DynamicForm(
                           disabled={itemDisabled}
                         >
                           {mandantGroup.map((mandantGroup, index) => (
-                            <MenuItem key={"o-" + index} value={mandantGroup.mandantId}>
-                              {mandantGroup.mandant.vorname + " " + mandantGroup.mandant.nachname}
+                            <MenuItem
+                              key={"o-" + index}
+                              value={mandantGroup.mandantId}
+                            >
+                              {mandantGroup.mandant.vorname +
+                                " " +
+                                mandantGroup.mandant.nachname}
                             </MenuItem>
                           ))}
-                        <MenuItem key={"o-sonstige"} value={"sonstige"}>Sonstige</MenuItem>
-
+                          <MenuItem key={"o-sonstige"} value={"sonstige"}>
+                            Sonstige
+                          </MenuItem>
                         </Select>
                         {helperText && (
                           <Typography color={"error"} variant={"caption"}>
@@ -385,8 +493,22 @@ function DynamicForm(
                           </Typography>
                         )}
                       </FormControl>
-                      </div>
-                    );
+                    </div>
+                  );
+                  case "radioGroup":
+                    return(
+                      
+                      <FormControl fullWidth size={"small"}>
+                     <RadioGroup
+        name="radio-buttons-group"              
+      >
+        {options.map((option,index)=>{
+          <FormControlLabel key={"o-" + index} value={option.value} control={<Radio />} label={option.label} />
+        })}
+      </RadioGroup>
+                    {helperText && <Typography>{helperText}</Typography>}
+                    </FormControl>
+                    )
                 case "checkbox":
                   return (
                     <>
@@ -462,7 +584,6 @@ function DynamicForm(
                       KeyboardButtonProps={{
                         "aria-label": "Datum wählen",
                       }}
-
                       invalidDateMessage={"Ungültiges Datum invalid"}
                       maxDateMessage={"Ungültiges Datum"}
                       minDateMessage={"Ungültiges Datum mindate"}
@@ -477,21 +598,18 @@ function DynamicForm(
                       {label}
                     </p>
                   );
-case "paragraphValue":
-  return(
-    <p  style={{ fontSize: "13px" }} {...props}>{value}</p>
-  )
-                case "bruttoButton":
+                case "paragraphValue":
                   return (
-                    <BezugHinzufuegen {...props}
-                    />
+                    <p style={{ fontSize: "13px" }} {...props}>
+                      {value}
+                    </p>
                   );
-                  case "entferneBezug":
-                    return(
-                      <EntferneBezug label={label}/>
-                    );
+                case "bruttoButton":
+                  return <BezugHinzufuegen {...props} />;
+                case "entferneBezug":
+                  return <EntferneBezug label={label} />;
 
-                    case "":
+                case "":
                 case "text":
                 case "textarea":
                   return (
@@ -580,63 +698,68 @@ case "paragraphValue":
       </Grid>
     );
   };
- function mapSuiteValues(){
-   let output ={}
-   let arrayItems=[]
-   formDefinition.map((form)=>{
-arrayItems =[...arrayItems, ...form.items]
-   })   
+  function mapSuiteValues() {
+    let output = {};
+    let arrayItems = [];
+    formDefinition.map((form) => {
+      arrayItems = [...arrayItems, ...form.items];
+    });
 
-   arrayItems.forEach(item => {
-    Object.entries(values).forEach(([key, value]) =>{
-      if(item.name === key ){
-        output ={...output, [item.suiteValue]:value}
-       // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
-      }
-    })
-   })
-   return output
- }
+    arrayItems.forEach((item) => {
+      Object.entries(values).forEach(([key, value]) => {
+        if (item.name === key) {
+          output = { ...output, [item.suiteValue]: value };
+          // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
+        }
+      });
+    });
+    return output;
+  }
 
- function addDirtyEntries ( dirtyValues){
-  let output ={}
-  let arrayItems=[]
+  function addDirtyEntries(dirtyValues) {
+    let output = {};
+    let arrayItems = [];
 
-  formDefinition.map((form)=>{
-    arrayItems =[...arrayItems, ...form.items]
-       })   
+    formDefinition.map((form) => {
+      arrayItems = [...arrayItems, ...form.items];
+    });
 
-       arrayItems.forEach(item => {
-        Object.entries(dirtyValues).forEach(([key, value]) =>{
-          if(item.name === key ){
-            output ={...output, [item.suiteValue]:value}
-           // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
-          }
-        })
-       })
-       return(output)
- }
- function formatDataForSubmission(valuesToSubmit,dirtyValues){
-   console.log(valuesToSubmit)
-   let output={action:"saveAsset", json:{...valuesToSubmit, ...dirtyValues,id:vertragId},mobileClassname:formDefinition[0].mobileClassname,
-   mandantId:mandantGroup[valuesToSubmit.versicherungsnehmerId].mandantId,analyseId:"ae3f6be4-0522-11e9-95b0-27616e07d826"}
-   //versicherungsnehmer id wird nicht gebraucht
-   delete output.json.versicherungsnehmerId
-   //"kategorie":"thvpferd"
+    arrayItems.forEach((item) => {
+      Object.entries(dirtyValues).forEach(([key, value]) => {
+        if (item.name === key) {
+          output = { ...output, [item.suiteValue]: value };
+          // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
+        }
+      });
+    });
+    return output;
+  }
+  function formatDataForSubmission(valuesToSubmit, dirtyValues) {
+    console.log(valuesToSubmit);
+    let output = {
+      action: "saveAsset",
+      json: { ...valuesToSubmit, ...dirtyValues, id: vertragId },
+      mobileClassname: formDefinition[0].mobileClassname,
+      mandantId: mandantGroup[valuesToSubmit.versicherungsnehmerId].mandantId,
+      analyseId: "ae3f6be4-0522-11e9-95b0-27616e07d826",
+    };
+    //versicherungsnehmer id wird nicht gebraucht
+    delete output.json.versicherungsnehmerId;
+    //"kategorie":"thvpferd"
 
-if(tarifTypeIdFromCardState === "PFERDEHALTERHAFTPFLICHT"){
-  output={...output, json:{...output.json,kategorie:"thvpferd" }}
-}
-if(tarifTypeIdFromCardState === "PRIVATHAFTPFLICHT"){
-  output={...output, json:{...output.json,kategorie:"phv" }}
-}
-if(tarifTypeIdFromCardState === "HUNDEHALTERHAFTPFLICHT"){
-  output={...output, json:{...output.json,kategorie:"thvhund" }}
-}
-if(tarifTypeIdFromCardState === "PFLEGETAGEGELD"){
-  output={...output, json:{...output.json,art:"1" }}
-}
-/*
+    if (tarifTypeIdFromCardState === "PFERDEHALTERHAFTPFLICHT") {
+      output = { ...output, json: { ...output.json, kategorie: "thvpferd" } };
+    }
+    if (tarifTypeIdFromCardState === "PRIVATHAFTPFLICHT") {
+      output = { ...output, json: { ...output.json, kategorie: "phv" } };
+    }
+    if (tarifTypeIdFromCardState === "HUNDEHALTERHAFTPFLICHT") {
+      output = { ...output, json: { ...output.json, kategorie: "thvhund" } };
+    }
+    if (tarifTypeIdFromCardState === "PFLEGETAGEGELD") {
+      output = { ...output, json: { ...output.json, art: "1" } };
+    }
+    /*
 if(tarifTypeIdFromCardState === "KVZ"){
   output={...output, json:{...output.json,kategorie:"thvpferd" }}
 }
@@ -649,30 +772,31 @@ if(tarifTypeIdFromCardState === "KVZ"){
 if(tarifTypeIdFromCardState === "KVZ"){
   output={...output, json:{...output.json,kategorie:"thvpferd" }}
 }*/
-   console.log(output)
-   console.log(formDefinition[0].mobileClassname)
-   console.log(formDefinition)
+    console.log(output);
+    console.log(formDefinition[0].mobileClassname);
+    console.log(formDefinition);
 
-   gesellschaft.data.map((gesellschaft) =>{
-     if(gesellschaft.name === output.gesellschaft){
-output={...output, gesellschaft:gesellschaft.id}
-     }
-   })
-   return(output)
- }
+    gesellschaft.data.map((gesellschaft) => {
+      if (gesellschaft.name === output.gesellschaft) {
+        output = { ...output, gesellschaft: gesellschaft.id };
+      }
+    });
+    return output;
+  }
   const submitDirtyFields = async (values) => {
     if (Object.keys(formState.dirtyFields).length === 0) return false;
 
-    let valuesToSubmit = mapSuiteValues()
+    let valuesToSubmit = mapSuiteValues();
 
-let dirtyValues = {...addDirtyEntries(Object.entries(formState.dirtyFields).reduce(
-      (acc, [key, isDirty]) => {
-        if (isDirty) return { ...acc, [key]: values[key] };
-        return acc;
-      },
-      {}
-    ))}
-valuesToSubmit=formatDataForSubmission(valuesToSubmit,dirtyValues)
+    let dirtyValues = {
+      ...addDirtyEntries(
+        Object.entries(formState.dirtyFields).reduce((acc, [key, isDirty]) => {
+          if (isDirty) return { ...acc, [key]: values[key] };
+          return acc;
+        }, {})
+      ),
+    };
+    valuesToSubmit = formatDataForSubmission(valuesToSubmit, dirtyValues);
     try {
       if (valuesToSubmit && Object.keys(valuesToSubmit).length > 0) {
         let vals = await onSubmit(valuesToSubmit);
@@ -684,7 +808,6 @@ valuesToSubmit=formatDataForSubmission(valuesToSubmit,dirtyValues)
       return false;
     }
   };
- 
 
   useImperativeHandle(
     ref,

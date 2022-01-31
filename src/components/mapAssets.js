@@ -30,6 +30,8 @@ return(ids)
 }
 
 export function redefineCard(ids, mandantIndex,tarifTypeId,mandantGroup){
+console.log(mandantIndex)
+
     let entryFound =false
     let vertragId= "none"
 vertragId= "none"
@@ -62,7 +64,6 @@ if(!entryFound){
     })
 }
 
-console.log(mandantIndex)
 console.log(tarifTypeId)
 console.log(vertragId)
 return vertragId
