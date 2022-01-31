@@ -53,6 +53,20 @@
         "suiteValue":"versicherungsnehmerId"
       },
       {
+        "name": "versichertePersonTodesfallHeader",
+        "label": "Versicherte Person",
+        "type": "header"
+      },
+      {
+        "name": "versichertePersonTodesfall",
+        "label": "Versicherte Person",
+        "type": "selectVersichert",
+        "versicherungsnehmerBeide":"true",
+        "showSonstige":"true",
+        "props": { "required": true },
+        "suiteValue":"versichertePersonId"
+      },
+      {
         "name": "vertragslaufzeitTodesfallHeader",
         "label": "Vertragslaufzeit",
         "type": "header"

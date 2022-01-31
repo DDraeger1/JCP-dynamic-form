@@ -1428,6 +1428,10 @@ Values not Mapped
   const ref = useRef();
 
   switch (card) {
+    case "RIESTER":
+dummyData ={ ...riesterrenteValues}
+test =[riesterrente]
+    break
     case "STEUERN":
       dummyData = { ...steuerValues };
       test = [steuer];

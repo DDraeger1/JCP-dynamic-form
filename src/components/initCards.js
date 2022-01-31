@@ -70,6 +70,13 @@ function initCards(
             
             if (asset.id === vertragId) {
               if (
+                asset.tarifTypeId.includes("RIESTER") &&
+                asset.id === vertragId
+              ) {
+                cardValues = tarifType(asset, card, true, result.mandantGroup);
+                vertragFound = true;
+              }
+              if (
                 asset.tarifTypeId.includes("DIREKT_3") &&
                 asset.id === vertragId
               ) {

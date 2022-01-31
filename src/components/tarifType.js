@@ -1608,6 +1608,62 @@ tarifTypeId: "SACHWERT",
 versicherungsnehmerBeide: false,
 versicherungssumme: 0,
 }
+let riester ={
+  ablaufleistungGarantiert: 0,
+ablaufleistungPrognostiziert: 0,
+ablaufleistungPrognostiziertBeiProzent: 0,
+analyseId: "",
+angebot_berater: false,
+angebot_gutachten: false,
+angebot_sonstiges: false,
+angebotsType: "",
+art: "",
+beitrag: 0,
+beitragsbefreiungBU: false,
+beitragsendeBUZ: "",
+beschreibung: "",
+comment: "",
+createdOn: "",
+dauerzulagenantrag: false,
+dynamik: false,
+dynamikBU: true,
+dynamikProzent: 0,
+eigenvertrag: false,
+ersparnis: false,
+externalProduktId: "",
+fremdvertrag: true,
+garantieZins: "",
+gekuendigtDurch: "",
+gesellschaft: "",
+id: "",
+integrierteBU: false,
+jahresBeitrag: 0,
+lastModified: "",
+leistungTod: "",
+leistungsendeBUZ: "",
+logoname: "",
+monatsBeitrag: 0,
+name: "",
+notizen: "",
+rentenleistungBU: 0,
+rentenleistungGarantiert: 0,
+rentenleistungPrognostiziert: 0,
+rentenleistungPrognostiziertBeiProzent: 0,
+rentenleistungRgzJahre: 0,
+riesterzulageLetztmaligBetrag: 0,
+riesterzulageLetztmaligGebucht: "",
+rueckkaufswert: 0,
+rueckkaufswertDatum: "",
+shortDescription: "",
+tarifBezeichnung: "",
+tarifTypeId: "",
+versichertePersonSonstige: "",
+versicherungsbeginn: "",
+versicherungsende: "",
+versicherungsnehmerId: "",
+versicherungsnummer: "",
+zahlweise: "",
+}
 function dateFormater(date) {
   //from dd/mm/yyyy to mm/dd/yyyy
   let output;
@@ -1677,7 +1733,7 @@ if(card === "KIND"){
   function isMandantDefined(id) {
     let output;
     if (id === "undefined") {
-      output = "sonstige";
+      output = "sonstigeSelected";
     } else {
       output = id;
     }
@@ -1722,6 +1778,15 @@ if(card === "KIND"){
     }
     return output;
   }
+  function checkForSonstige(asset){
+    let output
+if(asset.versichertePersonId === undefined){
+  output="sonstigeSelected"
+} else{
+  output=asset.versichertePersonId
+}
+return output
+  }
   function checkForBeide(asset){
     let output = ""
     if(asset.versicherungsnehmerBeide){
@@ -1729,6 +1794,17 @@ if(card === "KIND"){
 } else{
   output = mandantMapper(asset.versicherungsnehmerId)
 
+}
+return (output)
+  }
+  function checkForBeideVersichertePersonGroup(asset,index){
+    let output = ""
+    if(asset.versichertePersonBeide){
+      output = false
+}else if(asset.versichertePersonBeide === false && asset.versichertePerson === undefined){
+output="sonstigeSelected"
+}else{
+  output = asset.versichertePersonId
 }
 return (output)
   }
@@ -1740,7 +1816,9 @@ return (output)
           output = index;
         }
       });
-    }
+    } else(
+      output=cardTemplateData.versicherungsnehmerBeide
+    )
 
     return output;
   }
@@ -2082,6 +2160,9 @@ case "STEUERN":
       case "GESETZLICHE_AV":
 cardTemplateData= altersvorsorge;
       break
+      case "RIESTER":
+        cardTemplateData= riester;
+      break
     default:
       break;
       
@@ -2273,6 +2354,9 @@ cardTemplateData={
   } else{
   if (!changedMandant ) {
     asset.map((asset) => {
+      if(asset.tarifTypeId.includes("RIESTER") &&card === "RIESTER") {
+        cardTemplateData = asset;
+      }
       if(asset.tarifTypeId.includes("SACHWERT") &&card === "SACHWERT"){
         cardTemplateData = asset;
       }
@@ -2442,13 +2526,59 @@ cardTemplateData={
 
   }}
   switch (card) {
+    case "RIESTER":
+      console.log(
+        cardTemplateData
+      )
+      output={
+        tarifbezeichnungRiesterrente: cardTemplateData.tarifBezeichnung,
+        vertragsnummerRiesterrente: cardTemplateData.versicherungsnummer,
+        initMandantValue: mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
+        versicherungsnehmerRiesterrente: "",
+        versichertePersonRiesterrente: typeof cardTemplateData.versichertePerson === "undefined"
+        ? isMandantDefined("undefined")
+        : isMandantDefined(cardTemplateData.versichertePerson.id),
+        artVersichertePersonRiesterrente:cardTemplateData.art,
+        vertragsbeginnVertragslaufzeitRiesterrente: dateFormater(cardTemplateData.versicherungsbeginn),
+        vertragsendeVertragslaufzeitRiesterrente:dateFormater(cardTemplateData.versicherungsende),
+        leistungTodVertragslaufzeitRiesterrente: cardTemplateData.leistungTod,
+        garantiertMonatlicheRentenleistungRiesterrente:cardTemplateData.rentenleistungGarantiert,
+        prognostiziertMonatlicheRentenleistungRiesterrente: cardTemplateData.rentenleistungPrognostiziert,
+        beiProzentMonatlicheRentenleistungRiesterrente: cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+        RGZMonatlicheRentenleistungRiesterrente: cardTemplateData.rentenleistungRgzJahre,
+        dynamikRiesterrente: cardTemplateData.dynamik,
+        prozentDynamikRiesterrente: cardTemplateData.dynamikProzent,
+        integrierteBURiesterrente: cardTemplateData.integrierteBU,
+        rentenleistungBURiesterrente: cardTemplateData.rentenleistungBU,
+        dynamikBULeistungBURiesterrente:cardTemplateData.dynamikBU,
+        beitragsbefreiungBURiesterrente:cardTemplateData.beitragsbefreiungBU,
+        beitragsendeBUZRiesterrente: dateFormater(cardTemplateData.beitragsendeBUZ),
+        leistungsendeBUZRiesterrente: dateFormater(cardTemplateData.leistungsendeBUZ),
+        beitragsanteilBUZRiesterrente: cardTemplateData.beitragsanteilBUZ,
+        aktuellerRückkaufswertBUZRiesterrente: cardTemplateData.rueckkaufswert,
+        datumBUZRiesterrente:dateFormater(cardTemplateData.rueckkaufswertDatum),
+        beitragsendeFondsRiesterrente: "",
+        VWLRiesterrente: false,
+        arbeitgeberanteilVWLRiesterrente: "",
+        arbeitnehmeranteilVWLRiesterrente: "",
+        summeVWLRiesterrente: "",
+        zahlweiseVWLRiesterrente:cardTemplateData.zahlweise,
+        beitragVWLRiesterrente: cardTemplateData.beitrag,
+        dauerzulagenantragVWLRiesterrente:cardTemplateData.dauerzulagenantrag,
+        inHoeheVonZahlungLetzteZulageRiesterrenteHeader: cardTemplateData.riesterzulageLetztmaligBetrag,
+        gebuchtAmLetzteZulageRiesterrenteHeader:dateFormater(cardTemplateData.riesterzulageLetztmaligGebucht),
+        garantiezinsZahlungLetzteZulageRiesterrenteHeader:cardTemplateData.garantieZins,
+      }
+    break
     case "SACHWERT":
       console.log(
         cardTemplateData
       )
       
       output={
-        initMandantValue: false, 
+        initMandantValue:false , 
         vertragsinhaberSachwert:false,
         gesellschaftSachwert: cardTemplateData.gesellschaft,
         tarifbezeichnungVertragspartnerSachwert: "",
@@ -2943,10 +3073,9 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
 
       break;
     case "IMMOBILIENBESTAND":
+      console.log(cardTemplateData)
       output = {
-        initMandantValue: mandantMapper(
-          cardTemplateData.versicherungsnehmer.id
-        ),
+        initMandantValue: checkForBeide(cardTemplateData),
         eigentuemerImmobilienbestand: "Placeholder",
         objektzuordnungEigentuemerImmobilienbestand:
           cardTemplateData.objektnotizen,
@@ -3025,6 +3154,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
       };
       break;
     case "BU":
+      console.log(cardTemplateData)
       output = {
         initMandantValue: mandantMapper(
           cardTemplateData.versicherungsnehmer.id
@@ -3033,7 +3163,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         tarifbezeichnungBuEuGjk: cardTemplateData.tarifBezeichnung,
         vertragsnummerBuEuGjk: cardTemplateData.versicherungsnummer,
         versicherungsnehmerBuEuGjk: cardTemplateData.versicherungsnehmer.id,
-        versichertePersonBuEuGjk: cardTemplateData.versichertePersonId,
+        versichertePersonBuEuGjk: checkForSonstige(cardTemplateData),
         artVersichertePersonBuEuGjk: cardTemplateData.art,
         vertragsbeginnVertragslaufzeitBuEuGjk: dateFormater(
           cardTemplateData.versicherungsbeginn
@@ -3178,7 +3308,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         versichertePersonVersichertePersonUnfall4:
           typeof cardTemplateData.versichertePerson4 === "undefined"
             ? isMandantDefined("undefined")
-            : isMandantDefined(cardTemplateData.versichertePerson.id),
+            : isMandantDefined(cardTemplateData.versichertePerson4.id),
         tarifgruppeVersichertePersonUnfall4: cardTemplateData.tarifgruppe4,
         risikogruppeVersichertePersonUnfall2:cardTemplateData.risikogruppe4,
         grundsummeVersichertePersonUnfall4: cardTemplateData.grundsumme4,
@@ -3272,6 +3402,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
       };
       break;
     case "RISIKO":
+      console.log(cardTemplateData)
       output = {
         initMandantValue: mandantMapper(
           cardTemplateData.versicherungsnehmer.id
@@ -3282,6 +3413,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         vertragsnummerGesellschaftTodesfall:
           cardTemplateData.versicherungsnummer,
         versicherungsnehmerTodesfall: "Placeholder",
+        versichertePersonTodesfall:checkForBeideVersichertePersonGroup(cardTemplateData),
         vertragsbeginnVertragslaufzeitTodesfall: dateFormater(
           cardTemplateData.versicherungsbeginn
         ),

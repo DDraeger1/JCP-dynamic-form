@@ -152,6 +152,8 @@
       "name": "versichertePersonVersichertePersonUnfall",
       "label": "Versicherte Person",
       "type": "selectVersichert",
+      "showKind":"true",
+      "showSonstige":"true",
       "props": { "required": true },
       "suiteValue":"versichertePersonId"
     },
@@ -359,6 +361,8 @@
               "label": "Versicherte Person",
               "condition":"selected2Persons",
               "type": "selectVersichert",
+              "showKind":"true",
+              "showSonstige":"true",
               "props": { "required": true },
               "suiteValue":"versichertePerson2.id"
             },
@@ -588,6 +592,8 @@
                   "label": "Versicherte Person",
                   "condition":"selected3Persons",
                   "type": "selectVersichert",
+                  "showKind":"true",
+                  "showSonstige":"true",
                   "props": { "required": true },
                   "suiteValue":"versichertePerson3.id"
                 },
@@ -817,6 +823,8 @@
                       "label": "Versicherte Person",
                       "condition":"selected4Persons",
                       "type": "selectVersichert",
+                      "showKind":"true",
+                      "showSonstige":"true",
                       "props": { "required": true },
                       "suiteValue":"versichertePerson4.id"
                     },
@@ -1047,6 +1055,8 @@
                           "label": "Versicherte Person",
                           "condition":"selected5Persons",
                           "type": "selectVersichert",
+                          "showKind":"true",
+                          "showSonstige":"true",
                           "props": { "required": true },
                           "suiteValue":"versichertePerson5.id"
                         },
@@ -1275,6 +1285,8 @@
                               "label": "Versicherte Person",
                               "condition":"selected6Persons",
                               "type": "selectVersichert",
+                              "showKind":"true",
+                              "showSonstige":"true",
                               "props": { "required": true },
                               "suiteValue":"versichertePerson6.id"
                             },

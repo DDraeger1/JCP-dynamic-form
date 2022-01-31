@@ -59,6 +59,8 @@
       {
         "name": "versichertePersonBuEuGjk",
         "label": "Versicherte Person",
+        "showKind":"true",
+        "showSonstige":"true",
         "type": "selectVersichert",
         "props": { "required": true },
         "suiteValue":"versichertePersonId"

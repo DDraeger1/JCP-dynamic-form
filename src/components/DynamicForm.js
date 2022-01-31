@@ -32,7 +32,7 @@ import BezugHinzufuegen from "./BezugHinzufuegen";
 import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
 import FunctionMapper from "./FunctionMapper";
-
+import {formatMandantName, checkForKind} from "./mapAssets"
 function DynamicForm(
   {
     values,
@@ -139,6 +139,8 @@ function DynamicForm(
       tarifType,
       versicherungsnehmerBeide,
       anzahlVp,
+      showKind,
+      showSonstige,
       rules: { required = false, pattern = "" } = {},
     } = item;
     const itemDisabled = disabled || item.disabled || !!editWarning;
@@ -421,6 +423,7 @@ function DynamicForm(
                           disabled={itemDisabled}
                         >
                           {mandantGroup.map((mandantGroup, index) => (
+                            checkForKind(mandantGroup, showKind) ?
                             <MenuItem
                               onClick={() => {
                                 setVersicherungsnehmerValue({
@@ -431,10 +434,9 @@ function DynamicForm(
                               key={"o-" + index}
                               value={index}
                             >
-                              {mandantGroup.mandant.vorname +
-                                " " +
-                                mandantGroup.mandant.nachname}
+                              {formatMandantName(mandantGroup)}
                             </MenuItem>
+                            : null
                           ))}
                           {versicherungsnehmerBeide === "true" ? (
                             <MenuItem
@@ -474,18 +476,40 @@ function DynamicForm(
                           disabled={itemDisabled}
                         >
                           {mandantGroup.map((mandantGroup, index) => (
+                            checkForKind(mandantGroup, showKind) ?
                             <MenuItem
+                              onClick={() => {
+                                setVersicherungsnehmerValue({
+                                  index: index,
+                                  tarifTypeId: tarifType,
+                                });
+                              }}
                               key={"o-" + index}
                               value={mandantGroup.mandantId}
                             >
-                              {mandantGroup.mandant.vorname +
-                                " " +
-                                mandantGroup.mandant.nachname}
+                              {formatMandantName(mandantGroup)}
                             </MenuItem>
+                            : null
                           ))}
-                          <MenuItem key={"o-sonstige"} value={"sonstige"}>
+                          {showSonstige === "true" ?
+                          <MenuItem key={"o-sonstige"} value={"sonstigeSelected"}>
                             Sonstige
                           </MenuItem>
+              :null}
+              {versicherungsnehmerBeide === "true" ? (
+                            <MenuItem
+                              onClick={() => {
+                                setVersicherungsnehmerValue({
+                                  index: false,
+                                  tarifTypeId: tarifType,
+                                });
+                              }}
+                              key={"o-versicherungsNehmerBeide"}
+                              value={false}
+                            >
+                              Beide
+                            </MenuItem>
+                          ) : null}
                         </Select>
                         {helperText && (
                           <Typography color={"error"} variant={"caption"}>

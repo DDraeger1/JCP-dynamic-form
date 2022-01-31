@@ -1,3 +1,10 @@
+import {
+    MenuItem
+  } from "@material-ui/core";
+  import React, {
+    useEffect,
+    useState
+  } from "react";
 export function mapAssets(assets){
 let ids =[]
 let nonVersicherungsnehmerIdIndex=[]
@@ -35,7 +42,8 @@ console.log(mandantIndex)
     let entryFound =false
     let vertragId= "none"
 vertragId= "none"
-if(mandantIndex || mandantIndex===0){
+
+if(mandantIndex || mandantIndex === 0){
 ids.forEach((mandantEntry, index)=>{
 if(mandantGroup[mandantIndex].mandant.id === mandantEntry.id && tarifTypeId === mandantEntry.tarifTypeId){
     entryFound =true
@@ -67,4 +75,42 @@ if(!entryFound){
 console.log(tarifTypeId)
 console.log(vertragId)
 return vertragId
+}
+export function checkForKind(mandantGroup,isKindNeeded){
+    let addMenuItem = false
+
+if(mandantGroup.art === "MANDANT"){
+    addMenuItem =true
+}
+if(mandantGroup.art === "PARTNER"){
+    addMenuItem =true
+    }
+
+if(mandantGroup.art === "KIND"){
+    if(isKindNeeded === "true"){
+        addMenuItem = true
+    }else {
+        addMenuItem=false
+    }
+}
+
+    return addMenuItem
+}
+export function formatMandantName(mandantGroup){
+    let mandantName
+
+    if(mandantGroup.art === "MANDANT"){
+        mandantName ="M: "+mandantGroup.mandant.vorname + " " + mandantGroup.mandant.nachname
+
+    }
+    if(mandantGroup.art === "PARTNER"){
+        mandantName ="P: "+mandantGroup.mandant.vorname + " " + mandantGroup.mandant.nachname
+
+        }
+    
+    if(mandantGroup.art === "KIND"){
+            mandantName = "K: "+mandantGroup.mandant.vorname + " " + mandantGroup.mandant.nachname
+        
+    }
+    return mandantName
 }

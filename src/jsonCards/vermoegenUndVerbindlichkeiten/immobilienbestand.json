@@ -3,15 +3,6 @@
     "card": true,
   "mobileClassname":"Immobilienbestand",
   "items": [
-    {"name":"showExternalProductId",
-        "type": "paragraph",
-      "label":""},
-      {
-        "name": "externalProduktId",
-        "type": "produktid",
-        "condition":"showExternalProductId",
-        "props": { "required": true },
-        "suiteValue":"externalProduktId"},
         {
             "name": "eigentuemerImmobilienbestandHeader",
             "label": "Eigentümer",
