@@ -1,1503 +1,1484 @@
 {
   "section": "Unfall",
   "card": true,
-  "mobileClassname":"Unfallversicherung",
+  "mobileClassname": "Unfallversicherung",
   "items": [
-    {"name":"showExternalProductId",
-      "type": "paragraph",
-    "label":""},
+    { "name": "showExternalProductId", "type": "paragraph", "label": "" },
     {
       "name": "externalProduktId",
       "type": "produktid",
-      "condition":"showExternalProductId",
+      "condition": "showExternalProductId",
       "props": { "required": true },
-      "suiteValue":"externalProduktId"},
-    {
-      "name": "gesellschaftUnfallHeader",
-      "label": "Gesellschaft",
-      "type": "header"
+      "suiteValue": "externalProduktId"
     },
     {
-      "name": "gesellschaftUnfall",
-      "type": "gesellschaft",
-      "props": { "required": true },
-      "suiteValue":"gesellschaft"
+      "section": "Gesellschaft",
+      "card": true,
+      "items": [
+        {
+          "name": "gesellschaftUnfall",
+          "type": "gesellschaft",
+          "props": { "required": true },
+          "suiteValue": "gesellschaft"
+        },
+        {
+          "name": "versicherungsnummerGesellschaftUnfall",
+          "type": "text",
+          "props": { "required": true },
+          "suiteValue": "versicherungsnummer"
+        }
+      ]
     },
     {
-      "name": "versicherungsnummerGesellschaftUnfall",
-      "type": "text",
-      "props": { "required": true },
-      "suiteValue":"versicherungsnummer"
+      "section": "Versicherungsnehmer",
+      "card": true,
+      "items": [
+        {
+          "name": "versicherungsnehmerUnfall",
+          "label": "Versicherungsnehmer",
+          "type": "selectMandant",
+          "tarifType": "UNFALL",
+          "props": { "required": true },
+          "suiteValue": "versicherungsnehmerId"
+        }
+      ]
     },
     {
-      "name": "versicherungsnehmerUnfallHeader",
-      "label": "Versicherungsnehmer",
-      "type": "header"
-    },
-    {
-      "name": "versicherungsnehmerUnfall",
-      "label": "Versicherungsnehmer",
-      "type": "selectMandant",
-      "tarifType":"UNFALL",
-      "props": { "required": true },
-      "suiteValue":"versicherungsnehmerId"
-    },
-    {
-      "name": "vertragslaufzeitUnfallHeader",
-      "label": "Vertragslaufzeit",
-      "type": "header"
-    },
-    {
-      "name": "vertragsbeginnVertragslaufzeitUnfall",
-      "label": "Vertragsbeginn",
-      "type": "date",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"versicherungsbeginn"
-    },
-    {
-      "name": "vertragsendeVertragslaufzeitUnfall",
-      "label": "Vertragsende",
-      "type": "date",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"versicherungsende"
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
+        {
+          "name": "vertragsbeginnVertragslaufzeitUnfall",
+          "label": "Vertragsbeginn",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versicherungsbeginn"
+        },
+        {
+          "name": "vertragsendeVertragslaufzeitUnfall",
+          "label": "Vertragsende",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versicherungsende"
+        }
+      ]
     },
     {
       "name": "gesamtbeitragVertragslaufzeitUnfall",
       "label": "Gesamtbeitrag (€)",
       "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":"beitrag"
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue": "beitrag"
     },
     {
       "name": "zahlweiseVertragslaufzeitUnfall",
       "label": "Zahlweise",
       "type": "select",
-      "props": { "required": true, "sm":6,
-        "xs":6 },
+      "props": { "required": true, "sm": 6, "xs": 6 },
       "options": [
         { "value": "MONATLICH", "label": "Monatlich" },
         { "value": "QUARTAL", "label": "Quartal" },
         { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
-        { "value": "JAEHRLICH", "label": "Jährlich" }],
-        "suiteValue":"zahlweise"
+        { "value": "JAEHRLICH", "label": "Jährlich" }
+      ],
+      "suiteValue": "zahlweise"
     },
     {
       "name": "beitragsrueckerstattungVertragslaufzeitUnfall",
       "label": "Beitragsrückerstattung",
       "type": "checkbox",
-      "suiteValue":"rueckgewaehr"
+      "suiteValue": "rueckgewaehr"
     },
     {
       "name": "zusatzleistungenVertragslaufzeitUnfall",
       "label": "Zusatzleistungen",
       "type": "text",
-      "suiteValue":"sonstigeLeistungen"
+      "suiteValue": "sonstigeLeistungen"
     },
     {
-      "name": "vorschaedenUnfallHeader",
-      "label": "Vorschäden",
-      "type": "header"
+      "section": "Vorschäden",
+      "card": true,
+      "items": [
+        {
+          "name": "anzahlVorschaedenUnfall",
+          "label": "Anzahl Vorschäden letzten 5 Jahre",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "vorschaedenAnzahl"
+        },
+        {
+          "name": "hoeheVorschaedenUnfall",
+          "label": "Höhe der Vorschäden (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "vorschaedenHoehe"
+        },
+        {
+          "name": "listeVorschaedenUnfall",
+          "label": "Liste der Vorschäden (Datum/Art/Höhe)",
+          "type": "text",
+          "suiteValue": "vorschaedenNotiz"
+        }
+      ]
     },
     {
-      "name": "anzahlVorschaedenUnfall",
-      "label": "Anzahl Vorschäden letzten 5 Jahre",
-      "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":"vorschaedenAnzahl"
+      "section": "Versicherte Personen",
+      "card": true,
+      "items": [
+        {
+          "name": "anzahlVersichertePersonen",
+          "label": "Versicherte Personen",
+          "anzahlVp": "true",
+          "type": "select",
+          "options": [
+            { "value": 1, "label": "1" },
+            { "value": 2, "label": "2" },
+            { "value": 3, "label": "3" },
+            { "value": 4, "label": "4" },
+            { "value": 5, "label": "5" },
+            { "value": 6, "label": "6" }
+          ],
+          "suiteValue": "anzahlVP"
+        }
+      ]
     },
     {
-      "name": "hoeheVorschaedenUnfall",
-      "label": "Höhe der Vorschäden (€)",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"vorschaedenHoehe"
-    },
-    {
-      "name": "listeVorschaedenUnfall",
-      "label": "Liste der Vorschäden (Datum/Art/Höhe)",
-      "type": "text",
-      "suiteValue":"vorschaedenNotiz"
-    },
-    {
-      "name": "versichertePersonenUnfallHeader",
-      "label": "Versicherte Personen",
-      "type": "header"
-    },
-    {
-      "name": "anzahlVersichertePersonen",
-      "label": "Versicherte Personen",
-      "anzahlVp":"true",
-      "type": "select",
-      "options": [
-        { "value": 1, "label": "1" },
-        { "value": 2, "label": "2" },
-        { "value": 3, "label": "3" },
-        { "value": 4, "label": "4" },
-        { "value": 5, "label": "5" },
-        { "value": 6, "label": "6" }
-    ],
-    "suiteValue":"anzahlVP"
-    },
-    {
-      "name": "versichertePersonUnfallHeader",
-      "label": "Versicherte Person",
-      "type": "header"
-    },
-    {
-      "name": "versichertePersonVersichertePersonUnfall",
-      "label": "Versicherte Person",
-      "type": "selectVersichert",
-      "showKind":"true",
-      "showSonstige":"true",
-      "props": { "required": true },
-      "suiteValue":"versichertePersonId"
-    },
-    {"name": "tarifgruppeVersichertePersonUnfall",
-        "label": "Tarifgruppe",
-        "type": "select",
-        "options": [
+      "accordionText": "Versicherte Person 1",
+      "accordionId": "1",
+      "card": false,
+      "items": [
+        {
+          "name": "versichertePersonVersichertePersonUnfall",
+          "label": "Versicherte Person",
+          "type": "selectVersichert",
+          "showKind": "true",
+          "showSonstige": "true",
+          "props": { "required": true },
+          "suiteValue": "versichertePersonId"
+        },
+        {
+          "name": "tarifgruppeVersichertePersonUnfall",
+          "label": "Tarifgruppe",
+          "type": "select",
+          "options": [
             { "value": "0", "label": "Normal" },
-            { "value": "1", "label": "Öffentlicher Dienst"},
+            { "value": "1", "label": "Öffentlicher Dienst" },
             { "value": "2", "label": "Innendienst" },
             { "value": "3", "label": "Arzt/Mediziner" }
-        ],
-        "props": { "sm": 6 ,
-          "xs":6},
-          "suiteValue":"tarifgruppe"
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifgruppe"
         },
-        {"name": "risikogruppeVersichertePersonUnfall",
-            "label": "Risikogruppe",
-            "type": "select",
-            "options": [
-                { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
-                { "value": "B", "label": "B (handwerklich tätig)"},
-                { "value": "K", "label": "K (Kinder)" }
-            ],
-            "props": { "sm": 6,
-              "xs":6 },
-              "suiteValue":"risikogruppe"
-            },
-            {"name": "grundsummeVersichertePersonUnfall",
-                "label": "Grundsumme (€)",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"grundsumme"
-            },
-            {"name": "progressionVersichertePersonUnfall",
-                "label": "Progression %",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"progression"
-            },
-            {"name": "vollinvaliditaetVersichertePersonUnfall",
-                "label": "Vollinvalidität (€)",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"invaliditaetssumme"
-            },
-            {"name": "todesfallVersichertePersonUnfall",
-                "label": "Todesfall  (€)",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"todesfallsumme"
-            },
-            {"name": "kosmetischeOperationVersichertePersonUnfall",
-                "label": "kosmetische Operation (€)",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"operationen"
-            },
-            {"name": "bergungskostenVersichertePersonUnfall",
-                "label": "Bergungskosten (€)",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"bergungskosten"
-            },
-            {"name": "uebergangsleistungVersichertePersonUnfall",
-                "label": "Übergangsleistung (€)",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"uebergangsleistung"
-            },
-            {"name": "rueckkaufswertVersichertePersonUnfall",
-                "label": "Rückkaufswert (€)",
-                "type": "text",
-                "props": { "sm": 6 ,
-                  "xs":6},
-                  "suiteValue":"rueckkaufswert"
-            },
-            {"name": "teilbeitragVersichertePersonUnfall",
-                "label": "Teilbeitrag (€)",
-                "type": "text",
-                "suiteValue":"teilbeitrag"
-            },
-            {"name": "leistungenUnfallHeader",
-                "label": "Leistungen",
-                "type": "header"
-            },
-            {"name": "krankenhaustagegeldleistungenUnfall",
-                "label": "Krankenhaustagegeld (€)",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"krankenhaustagegeld"
-            },
-            {"name": "genesungsgeldLeistungenUnfall",
-                "label": "Genesungsgeld (€)",
-                "type": "text",
-                "props": { "sm": 6 ,
-                  "xs":6},
-                  "suiteValue":"genesungsgeld"
-            },
-            {"name": "unfallKrankentagegeldLeistungenUnfall",
-                "label": "Unfall-Krankentagegeld (€)",
-                "type": "text",
-                "props": { "sm": 6 ,
-                  "xs":6},
-                  "suiteValue":"krankentagegeld"
-            },
-            {"name": "wieVielterTagLeistungenUnfall",
-                "label": "...ab dem wievielten Tag?",
-                "type": "select",
-                "options": [
-                    { "value": 4, "label": "ab dem 4. Tag" },
-                    { "value": 8, "label": "ab dem 8. Tag"},
-                    { "value": 15, "label": "ab dem 15. Tag" },
-                    { "value": 43, "label": "ab dem 43. Tag" }
-                ],
-                "props": { "sm": 6 ,
-                  "xs":6},
-                  "suiteValue":"krankentagegeldtag"
-            },
-            {"name": "UVRenteUnfallHeader",
-                "label": "UV-Rente",
-                "type": "header"
-            },
-            {"name": "abFuenfzigUVRenteUnfall",
-                "label": "ab 50%",
-                "type": "checkbox",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"unfallrenteAb50Check"
+        {
+          "name": "risikogruppeVersichertePersonUnfall",
+          "label": "Risikogruppe",
+          "type": "select",
+          "options": [
+            { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
+            { "value": "B", "label": "B (handwerklich tätig)" },
+            { "value": "K", "label": "K (Kinder)" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "risikogruppe"
+        },
+        {
+          "name": "grundsummeVersichertePersonUnfall",
+          "label": "Grundsumme (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "grundsumme"
+        },
+        {
+          "name": "progressionVersichertePersonUnfall",
+          "label": "Progression %",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "progression"
+        },
+        {
+          "name": "vollinvaliditaetVersichertePersonUnfall",
+          "label": "Vollinvalidität (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "invaliditaetssumme"
+        },
+        {
+          "name": "todesfallVersichertePersonUnfall",
+          "label": "Todesfall  (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "todesfallsumme"
+        },
+        {
+          "name": "kosmetischeOperationVersichertePersonUnfall",
+          "label": "kosmetische Operation (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "operationen"
+        },
+        {
+          "name": "bergungskostenVersichertePersonUnfall",
+          "label": "Bergungskosten (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "bergungskosten"
+        },
+        {
+          "name": "uebergangsleistungVersichertePersonUnfall",
+          "label": "Übergangsleistung (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "uebergangsleistung"
+        },
+        {
+          "name": "rueckkaufswertVersichertePersonUnfall",
+          "label": "Rückkaufswert (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "rueckkaufswert"
+        },
+        {
+          "name": "teilbeitragVersichertePersonUnfall",
+          "label": "Teilbeitrag (€)",
+          "type": "text",
+          "suiteValue": "teilbeitrag"
+        },
+        {
+          "section": "Leistungen",
+          "card": true,
+          "items": [
+            {
+              "name": "krankenhaustagegeldleistungenUnfall",
+              "label": "Krankenhaustagegeld (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankenhaustagegeld"
             },
             {
-                "name": "abUVRenteUnfall",
-                "label": "ab",
-                "type": "checkbox",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"unfallrenteAbXCheck"
+              "name": "genesungsgeldLeistungenUnfall",
+              "label": "Genesungsgeld (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "genesungsgeld"
             },
             {
-                "name": "prozentAbUVRenteUnfall",
-                "label": "%",
-                "type": "text",
-                "condition":"abUVRenteUnfall",
-                "props": { "sm": 6 ,
-                  "xs":6},
-                  "suiteValue":"unfallrenteAbXProzent"
+              "name": "unfallKrankentagegeldLeistungenUnfall",
+              "label": "Unfall-Krankentagegeld (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld"
             },
             {
-                "name": "betragUVRenteUnfall",
-                "label": "Betrag (€)",
-                "type": "text",
-                "condition":"abUVRenteUnfall",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"unfallrenteAbXEuro"
-            },
-            {
-                "name": "dynamikUVRenteUnfallHeader",
-                "label": "Dynamik",
-                "type": "header"
-            },
-            {
-                "name": "dynamikUVRenteUnfall",
-                "label": "Dynamik",
-                "type": "select",
-                "options":[
-                    { "value": false, "label": "Nein" },
-                    { "value": true, "label": "Ja"}
-                    ],
-                    "props": { "sm": 6,
-                      "xs":6 },
-                      "suiteValue":"dynamik"
-            },
-            {
-                "name": "dynamikProzentUVRenteUnfall",
-                "label": "Prozent (%)",
-                "type": "text",
-                "props": { "sm": 6,
-                  "xs":6 },
-                  "suiteValue":"dynamikProzent"
-            },
-            {"name":"selected2Persons",
-                    "condition":"null",
-                    "type":"paragraph",
-            "label": "",
-            "suiteValue":""
-          
-          },
-            {
-              "name": "versichertePersonUnfallHeader2",
-              "label": "Versicherte Person 2",
-              "condition":"selected2Persons",
-              "type": "header"
-            },
-            {
-              "name": "versichertePersonVersichertePersonUnfall2",
-              "label": "Versicherte Person",
-              "condition":"selected2Persons",
-              "type": "selectVersichert",
-              "showKind":"true",
-              "showSonstige":"true",
-              "props": { "required": true },
-              "suiteValue":"versichertePerson2.id"
-            },
-            {"name": "tarifgruppeVersichertePersonUnfall2",
-                "label": "Tarifgruppe",
-                "type": "select",
-              "condition":"selected2Persons",
-                "options": [
-                    { "value": "0", "label": "Normal" },
-                    { "value": "1", "label": "Öffentlicher Dienst"},
-                    { "value": "2", "label": "Innendienst" },
-                    { "value": "3", "label": "Arzt/Mediziner" }
-                ],
-                "props": { "sm": 6 ,
-                  "xs":6},
-                  "suiteValue":"tarifgruppe2"
-                },
-                {"name": "risikogruppeVersichertePersonUnfall2",
-                    "label": "Risikogruppe",
-              "condition":"selected2Persons",
+              "name": "wieVielterTagLeistungenUnfall",
+              "label": "...ab dem wievielten Tag?",
               "type": "select",
-                    "options": [
-                        { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
-                        { "value": "B", "label": "B (handwerklich tätig)"},
-                        { "value": "K", "label": "K (Kinder)" }
-                    ],
-                    "props": { "sm": 6,
-                      "xs":6 },
-                      "suiteValue":"risikogruppe2"
-                    },
-                    {"name": "grundsummeVersichertePersonUnfall2",
-                        "label": "Grundsumme (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"grundsumme2"
-                    },
-                    {"name": "progressionVersichertePersonUnfall2",
-                        "label": "Progression %",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"progression2"
-                    },
-                    {"name": "vollinvaliditaetVersichertePersonUnfall2",
-                        "label": "Vollinvalidität (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"invaliditaetssumme2"
-                    },
-                    {"name": "todesfallVersichertePersonUnfall2",
-                        "label": "Todesfall  (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"todesfallsumme2"
-                    },
-                    {"name": "kosmetischeOperationVersichertePersonUnfall2",
-                        "label": "kosmetische Operation (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"operationen2"
-                    },
-                    {"name": "bergungskostenVersichertePersonUnfall2",
-                        "label": "Bergungskosten (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"bergungskosten2"
-                    },
-                    {"name": "uebergangsleistungVersichertePersonUnfall2",
-                        "label": "Übergangsleistung (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"uebergangsleistung2"
-                    },
-                    {"name": "rueckkaufswertVersichertePersonUnfall2",
-                        "label": "Rückkaufswert (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6 ,
-                          "xs":6},
-                          "suiteValue":"rueckkaufswert2"
-                    },
-                    {"name": "teilbeitragVersichertePersonUnfall2",
-                        "label": "Teilbeitrag (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-              "suiteValue":"teilbeitrag2"
-                    },
-                    {"name": "leistungenUnfallHeader",
-                        "label": "Leistungen",
-              "condition":"selected2Persons",
-              "type": "header"
-                    },
-                    {"name": "krankenhaustagegeldleistungenUnfall2",
-                        "label": "Krankenhaustagegeld (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"krankenhaustagegeld2"
-                    },
-                    {"name": "genesungsgeldLeistungenUnfall2",
-                        "label": "Genesungsgeld (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6 ,
-                          "xs":6},
-                          "suiteValue":"genesungsgeld2"
-                    },
-                    {"name": "unfallKrankentagegeldLeistungenUnfall2",
-                        "label": "Unfall-Krankentagegeld (€)",
-              "condition":"selected2Persons",
-              "type": "text",
-                        "props": { "sm": 6 ,
-                          "xs":6},
-                          "suiteValue":"krankentagegeld2"
-                    },
-                    {"name": "wieVielterTagLeistungenUnfall2",
-                        "label": "...ab dem wievielten Tag?",
-              "condition":"selected2Persons",
-              "type": "select",
-                        "options": [
-                            { "value": 4, "label": "ab dem 4. Tag" },
-                            { "value": 8, "label": "ab dem 8. Tag"},
-                            { "value": 15, "label": "ab dem 15. Tag" },
-                            { "value": 43, "label": "ab dem 43. Tag" }
-                        ],
-                        "props": { "sm": 6 ,
-                          "xs":6},
-                          "suiteValue":"krankentagegeldtag2"
-                    },
-                    {"name": "UVRenteUnfallHeader",
-                        "label": "UV-Rente",
-              "condition":"selected2Persons",
-              "type": "header"
-                    },
-                    {"name": "abFuenfzigUVRenteUnfall2",
-                        "label": "ab 50%",
-              "condition":"selected2Persons",
-              "type": "checkbox",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"unfallrenteAb50Check2"
-                    },
-                    {
-                        "name": "abUVRenteUnfall2",
-                        "label": "ab",
-              "condition":"selected2Persons",
-              "type": "checkbox",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"unfallrenteAbXCheck2"
-                    },
-                    {
-                        "name": "prozentAbUVRenteUnfall2",
-                        "label": "%",
-                        "type": "text",
-                        "condition":"abUVRenteUnfall2",
-                        "props": { "sm": 6 ,
-                          "xs":6},
-                          "suiteValue":"unfallrenteAbXProzent2"
-                    },
-                    {
-                        "name": "betragUVRenteUnfall2",
-                        "label": "Betrag (€)",
-                        "type": "text",
-                        "condition":"abUVRenteUnfall2",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"unfallrenteAbXEuro2"
-                    },
-                    {
-                        "name": "dynamikUVRenteUnfallHeader",
-              "condition":"selected2Persons",
-              "label": "Dynamik",
-                        "type": "header"
-                    },
-                    {
-                        "name": "dynamikUVRenteUnfall2",
-              "condition":"selected2Persons",
-              "label": "Dynamik",
-                        "type": "select",
-                        "options":[
-                            { "value": false, "label": "Nein" },
-                            { "value": true, "label": "Ja"}
-                            ],
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"dynamik2"
-                    },
-                    {
-                        "name": "dynamikProzentUVRenteUnfall2",
-              "condition":"selected2Persons",
-              "label": "Prozent (%)",
-                        "type": "text",
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"dynamikProzent2"
-                },
-                {"name":"selected3Persons",
-                    "condition":"null",
-                    "type":"paragraph",
-                "label": "",
-                "suiteValue":""
-              
-              },
-                {
-                  "name": "versichertePersonUnfallHeader3",
-                  "label": "Versicherte Person 3",
-                  "condition":"selected3Persons",
-                  "type": "header"
-                },
-                {
-                  "name": "versichertePersonVersichertePersonUnfall3",
-                  "label": "Versicherte Person",
-                  "condition":"selected3Persons",
-                  "type": "selectVersichert",
-                  "showKind":"true",
-                  "showSonstige":"true",
-                  "props": { "required": true },
-                  "suiteValue":"versichertePerson3.id"
-                },
-                {"name": "tarifgruppeVersichertePersonUnfall3",
-                    "label": "Tarifgruppe",
-                    "type": "select",
-                  "condition":"selected3Persons",
-                    "options": [
-                        { "value": "0", "label": "Normal" },
-                        { "value": "1", "label": "Öffentlicher Dienst"},
-                        { "value": "2", "label": "Innendienst" },
-                        { "value": "3", "label": "Arzt/Mediziner" }
-                    ],
-                    "props": { "sm": 6 ,
-                      "xs":6},
-                      "suiteValue":"tarifgruppe3"
-                    },
-                    {"name": "risikogruppeVersichertePersonUnfall3",
-                        "label": "Risikogruppe",
-                  "condition":"selected3Persons",
-                  "type": "select",
-                        "options": [
-                            { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
-                            { "value": "B", "label": "B (handwerklich tätig)"},
-                            { "value": "K", "label": "K (Kinder)" }
-                        ],
-                        "props": { "sm": 6,
-                          "xs":6 },
-                          "suiteValue":"risikogruppe3"
-                        },
-                        {"name": "grundsummeVersichertePersonUnfall3",
-                            "label": "Grundsumme (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"grundsumme3"
-                        },
-                        {"name": "progressionVersichertePersonUnfall3",
-                            "label": "Progression %",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"progression3"
-                        },
-                        {"name": "vollinvaliditaetVersichertePersonUnfall3",
-                            "label": "Vollinvalidität (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"invaliditaetssumme3"
-                        },
-                        {"name": "todesfallVersichertePersonUnfall3",
-                            "label": "Todesfall  (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"todesfallsumme3"
-                        },
-                        {"name": "kosmetischeOperationVersichertePersonUnfall3",
-                            "label": "kosmetische Operation (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"operationen3"
-                        },
-                        {"name": "bergungskostenVersichertePersonUnfall3",
-                            "label": "Bergungskosten (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"bergungskosten3"
-                        },
-                        {"name": "uebergangsleistungVersichertePersonUnfall3",
-                            "label": "Übergangsleistung (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"uebergangsleistung3"
-                        },
-                        {"name": "rueckkaufswertVersichertePersonUnfall3",
-                            "label": "Rückkaufswert (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6 ,
-                              "xs":6},
-                              "suiteValue":"rueckkaufswert3"
-                        },
-                        {"name": "teilbeitragVersichertePersonUnfall3",
-                            "label": "Teilbeitrag (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                  "suiteValue":"teilbeitrag3"
-                        },
-                        {"name": "leistungenUnfallHeader",
-                            "label": "Leistungen",
-                  "condition":"selected3Persons",
-                  "type": "header"
-                        },
-                        {"name": "krankenhaustagegeldleistungenUnfall3",
-                            "label": "Krankenhaustagegeld (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"krankenhaustagegeld3"
-                        },
-                        {"name": "genesungsgeldLeistungenUnfall3",
-                            "label": "Genesungsgeld (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6 ,
-                              "xs":6},
-                              "suiteValue":"genesungsgeld3"
-                        },
-                        {"name": "unfallKrankentagegeldLeistungenUnfall3",
-                            "label": "Unfall-Krankentagegeld (€)",
-                  "condition":"selected3Persons",
-                  "type": "text",
-                            "props": { "sm": 6 ,
-                              "xs":6},
-                              "suiteValue":"krankentagegeld3"
-                        },
-                        {"name": "wieVielterTagLeistungenUnfall3",
-                            "label": "...ab dem wievielten Tag?",
-                  "condition":"selected3Persons",
-                  "type": "select",
-                            "options": [
-                                { "value": 4, "label": "ab dem 4. Tag" },
-                                { "value": 8, "label": "ab dem 8. Tag"},
-                                { "value": 15, "label": "ab dem 15. Tag" },
-                                { "value": 42, "label": "ab dem 42. Tag" }
-                            ],
-                            "props": { "sm": 6 ,
-                              "xs":6},
-                              "suiteValue":"krankentagegeldtag3"
-                        },
-                        {"name": "UVRenteUnfallHeader",
-                            "label": "UV-Rente",
-                  "condition":"selected3Persons",
-                  "type": "header"
-                        },
-                        {"name": "abFuenfzigUVRenteUnfall3",
-                            "label": "ab 50%",
-                  "condition":"selected3Persons",
-                  "type": "checkbox",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"unfallrenteAb50Check3"
-                        },
-                        {
-                            "name": "abUVRenteUnfall3",
-                            "label": "ab",
-                  "condition":"selected3Persons",
-                  "type": "checkbox",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"unfallrenteAbXCheck3"
-                        },
-                        {
-                            "name": "prozentAbUVRenteUnfall3",
-                            "label": "%",
-                            "type": "text",
-                            "condition":"abUVRenteUnfall3",
-                            "props": { "sm": 6 ,
-                              "xs":6},
-                              "suiteValue":"unfallrenteAbXProzent3"
-                        },
-                        {
-                            "name": "betragUVRenteUnfall3",
-                            "label": "Betrag (€)",
-                            "type": "text",
-                            "condition":"abUVRenteUnfall3",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"unfallrenteAbXEuro3"
-                        },
-                        {
-                            "name": "dynamikUVRenteUnfallHeader",
-                  "condition":"selected3Persons",
-                  "label": "Dynamik",
-                            "type": "header"
-                        },
-                        {
-                            "name": "dynamikUVRenteUnfall3",
-                  "condition":"selected3Persons",
-                  "label": "Dynamik",
-                            "type": "select",
-                            "options":[
-                                { "value": false, "label": "Nein" },
-                                { "value": true, "label": "Ja"}
-                                ],
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"dynamik3"
-                        },
-                        {
-                            "name": "dynamikProzentUVRenteUnfall3",
-                  "condition":"selected3Persons",
-                  "label": "Prozent (%)",
-                            "type": "text",
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"dynamikProzent3"
-                    },
-                    {"name":"selected4Persons",
-                    "type":"paragraph",
-                    "condition":"null",
-                    "label": "",
-                    "suiteValue":""
-                  
-                  },
-                    {
-                      "name": "versichertePersonUnfallHeader4",
-                      "label": "Versicherte Person 4",
-                      "condition":"selected4Persons",
-                      "type": "header"
-                    },
-                    {
-                      "name": "versichertePersonVersichertePersonUnfall4",
-                      "label": "Versicherte Person",
-                      "condition":"selected4Persons",
-                      "type": "selectVersichert",
-                      "showKind":"true",
-                      "showSonstige":"true",
-                      "props": { "required": true },
-                      "suiteValue":"versichertePerson4.id"
-                    },
-                    {"name": "tarifgruppeVersichertePersonUnfall4",
-                        "label": "Tarifgruppe",
-                        "type": "select",
-                      "condition":"selected4Persons",
-                        "options": [
-                            { "value": "0", "label": "Normal" },
-                            { "value": "1", "label": "Öffentlicher Dienst"},
-                            { "value": "2", "label": "Innendienst" },
-                            { "value": "3", "label": "Arzt/Mediziner" }
-                        ],
-                        "props": { "sm": 6 ,
-                          "xs":6},
-                          "suiteValue":"tarifgruppe4"
-                        },
-                        {"name": "risikogruppeVersichertePersonUnfall4",
-                            "label": "Risikogruppe",
-                      "condition":"selected4Persons",
-                      "type": "select",
-                            "options": [
-                                { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
-                                { "value": "B", "label": "B (handwerklich tätig)"},
-                                { "value": "K", "label": "K (Kinder)" }
-                            ],
-                            "props": { "sm": 6,
-                              "xs":6 },
-                              "suiteValue":"risikogruppe4"
-                            },
-                            {"name": "grundsummeVersichertePersonUnfall4",
-                                "label": "Grundsumme (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"grundsumme4"
-                            },
-                            {"name": "progressionVersichertePersonUnfall4",
-                                "label": "Progression %",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"progression4"
-                            },
-                            {"name": "vollinvaliditaetVersichertePersonUnfall4",
-                                "label": "Vollinvalidität (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"invaliditaetssumme4"
-                            },
-                            {"name": "todesfallVersichertePersonUnfall4",
-                                "label": "Todesfall  (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"todesfallsumme4"
-                            },
-                            {"name": "kosmetischeOperationVersichertePersonUnfall4",
-                                "label": "kosmetische Operation (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"operationen4"
-                            },
-                            {"name": "bergungskostenVersichertePersonUnfall4",
-                                "label": "Bergungskosten (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"bergungskosten4"
-                            },
-                            {"name": "uebergangsleistungVersichertePersonUnfall4",
-                                "label": "Übergangsleistung (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"uebergangsleistung4"
-                            },
-                            {"name": "rueckkaufswertVersichertePersonUnfall4",
-                                "label": "Rückkaufswert (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6 ,
-                                  "xs":6},
-                                  "suiteValue":"rueckkaufswert4"
-                            },
-                            {"name": "teilbeitragVersichertePersonUnfall4",
-                                "label": "Teilbeitrag (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                      "suiteValue":"teilbeitrag4"
-                            },
-                            {"name": "leistungenUnfallHeader",
-                                "label": "Leistungen",
-                      "condition":"selected4Persons",
-                      "type": "header"
-                            },
-                            {"name": "krankenhaustagegeldleistungenUnfall4",
-                                "label": "Krankenhaustagegeld (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"krankenhaustagegeld4"
-                            },
-                            {"name": "genesungsgeldLeistungenUnfall4",
-                                "label": "Genesungsgeld (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6 ,
-                                  "xs":6},
-                                  "suiteValue":"genesungsgeld4"
-                            },
-                            {"name": "unfallKrankentagegeldLeistungenUnfall4",
-                                "label": "Unfall-Krankentagegeld (€)",
-                      "condition":"selected4Persons",
-                      "type": "text",
-                                "props": { "sm": 6 ,
-                                  "xs":6},
-                                  "suiteValue":"krankentagegeld4"
-                            },
-                            {"name": "wieVielterTagLeistungenUnfall4",
-                                "label": "...ab dem wievielten Tag?",
-                      "condition":"selected4Persons",
-                      "type": "select",
-                                "options": [
-                                    { "value": 4, "label": "ab dem 4. Tag" },
-                                    { "value": 8, "label": "ab dem 8. Tag"},
-                                    { "value": 15, "label": "ab dem 15. Tag" },
-                                    { "value": 42, "label": "ab dem 42. Tag" }
-                                ],
-                                "props": { "sm": 6 ,
-                                  "xs":6},
-                                  "suiteValue":"krankentagegeldtag4"
-                            },
-                            {"name": "UVRenteUnfallHeader",
-                                "label": "UV-Rente",
-                      "condition":"selected4Persons",
-                      "type": "header"
-                            },
-                            {"name": "abFuenfzigUVRenteUnfall4",
-                                "label": "ab 50%",
-                      "condition":"selected4Persons",
-                      "type": "checkbox",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"unfallrenteAb50Check4"
-                            },
-                            {
-                                "name": "abUVRenteUnfall4",
-                                "label": "ab",
-                      "condition":"selected4Persons",
-                      "type": "checkbox",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"unfallrenteAbXCheck4"
-                            },
-                            {
-                                "name": "prozentAbUVRenteUnfall4",
-                                "label": "%",
-                                "type": "text",
-                                "condition":"abUVRenteUnfall4",
-                                "props": { "sm": 6 ,
-                                  "xs":6},
-                                  "suiteValue":"unfallrenteAbXProzent4"
-                            },
-                            {
-                                "name": "betragUVRenteUnfall4",
-                                "label": "Betrag (€)",
-                                "type": "text",
-                                "condition":"abUVRenteUnfall4",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"unfallrenteAbXEuro4"
-                            },
-                            {
-                                "name": "dynamikUVRenteUnfallHeader",
-                      "condition":"selected4Persons",
-                      "label": "Dynamik",
-                                "type": "header",
-                                "suiteValue":""
-                            },
-                            {
-                                "name": "dynamikUVRenteUnfall4",
-                      "condition":"selected4Persons",
-                      "label": "Dynamik",
-                                "type": "select",
-                                "options":[
-                                    { "value": false, "label": "Nein" },
-                                    { "value": true, "label": "Ja"}
-                                    ],
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"dynamik4"
-                            },
-                            {
-                                "name": "dynamikProzentUVRenteUnfall4",
-                      "condition":"selected4Persons",
-                      "label": "Prozent (%)",
-                                "type": "text",
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"dynamikProzent4"
-                        },
-                        {"name":"selected5Persons",
-                    "condition":"null",
-                    "type":"paragraph",
-                        "label": "",
-                        "suiteValue":""
-                      
-                      },
-                        {
-                          "name": "versichertePersonUnfallHeader5",
-                          "label": "Versicherte Person 5",
-                          "condition":"selected5Persons",
-                          "type": "header"
-                        },
-                        {
-                          "name": "versichertePersonVersichertePersonUnfall5",
-                          "label": "Versicherte Person",
-                          "condition":"selected5Persons",
-                          "type": "selectVersichert",
-                          "showKind":"true",
-                          "showSonstige":"true",
-                          "props": { "required": true },
-                          "suiteValue":"versichertePerson5.id"
-                        },
-                        {"name": "tarifgruppeVersichertePersonUnfall5",
-                            "label": "Tarifgruppe",
-                            "type": "select",
-                          "condition":"selected5Persons",
-                            "options": [
-                                { "value": "0", "label": "Normal" },
-                                { "value": "1", "label": "Öffentlicher Dienst"},
-                                { "value": "2", "label": "Innendienst" },
-                                { "value": "3", "label": "Arzt/Mediziner" }
-                            ],
-                            "props": { "sm": 6 ,
-                              "xs":6},
-                              "suiteValue":"tarifgruppe5"
-                            },
-                            {"name": "risikogruppeVersichertePersonUnfall5",
-                                "label": "Risikogruppe",
-                          "condition":"selected5Persons",
-                          "type": "select",
-                                "options": [
-                                    { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
-                                    { "value": "B", "label": "B (handwerklich tätig)"},
-                                    { "value": "K", "label": "K (Kinder)" }
-                                ],
-                                "props": { "sm": 6,
-                                  "xs":6 },
-                                  "suiteValue":"risikogruppe5"
-                                },
-                                {"name": "grundsummeVersichertePersonUnfall5",
-                                    "label": "Grundsumme (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"grundsumme5"
-                                },
-                                {"name": "progressionVersichertePersonUnfall5",
-                                    "label": "Progression %",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"progression5"
-                                },
-                                {"name": "vollinvaliditaetVersichertePersonUnfall5",
-                                    "label": "Vollinvalidität (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"invaliditaetssumme5"
-                                },
-                                {"name": "todesfallVersichertePersonUnfall5",
-                                    "label": "Todesfall  (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"todesfallsumme5"
-                                },
-                                {"name": "kosmetischeOperationVersichertePersonUnfall5",
-                                    "label": "kosmetische Operation (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"operationen5"
-                                },
-                                {"name": "bergungskostenVersichertePersonUnfall5",
-                                    "label": "Bergungskosten (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"bergungskosten5"
-                                },
-                                {"name": "uebergangsleistungVersichertePersonUnfall5",
-                                    "label": "Übergangsleistung (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":""
-                                },
-                                {"name": "rueckkaufswertVersichertePersonUnfall5",
-                                    "label": "Rückkaufswert (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6 ,
-                                      "xs":6},
-                                      "suiteValue":"rueckkaufswert5"
-                                },
-                                {"name": "teilbeitragVersichertePersonUnfall5",
-                                    "label": "Teilbeitrag (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                          "suiteValue":"teilbeitrag5"
-                                },
-                                {"name": "leistungenUnfallHeader",
-                                    "label": "Leistungen",
-                          "condition":"selected5Persons",
-                          "type": "header"
-                                },
-                                {"name": "krankenhaustagegeldleistungenUnfall5",
-                                    "label": "Krankenhaustagegeld (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"krankenhaustagegeld5"
-                                },
-                                {"name": "genesungsgeldLeistungenUnfall5",
-                                    "label": "Genesungsgeld (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6 ,
-                                      "xs":6},
-                                      "suiteValue":"genesungsgeld5"
-                                },
-                                {"name": "unfallKrankentagegeldLeistungenUnfall5",
-                                    "label": "Unfall-Krankentagegeld (€)",
-                          "condition":"selected5Persons",
-                          "type": "text",
-                                    "props": { "sm": 6 ,
-                                      "xs":6},
-                                      "suiteValue":"krankentagegeld5"
-                                },
-                                {"name": "wieVielterTagLeistungenUnfall5",
-                                    "label": "...ab dem wievielten Tag?",
-                          "condition":"selected5Persons",
-                          "type": "select",
-                                    "options": [
-                                        { "value": 4, "label": "ab dem 4. Tag" },
-                                        { "value": 8, "label": "ab dem 8. Tag"},
-                                        { "value": 15, "label": "ab dem 15. Tag" },
-                                        { "value": 42, "label": "ab dem 42. Tag" }
-                                    ],
-                                    "props": { "sm": 6 ,
-                                      "xs":6},
-                                      "suiteValue":"krankentagegeldtag5"
-                                },
-                                {"name": "UVRenteUnfallHeader",
-                                    "label": "UV-Rente",
-                          "condition":"selected5Persons",
-                          "type": "header"
-                                },
-                                {"name": "abFuenfzigUVRenteUnfall5",
-                                    "label": "ab 50%",
-                          "condition":"selected5Persons",
-                          "type": "checkbox",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"unfallrenteAb50Check5"
-                                },
-                                {
-                                    "name": "abUVRenteUnfall5",
-                                    "label": "ab",
-                          "condition":"selected5Persons",
-                          "type": "checkbox",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"unfallrenteAbXCheck5"
-                                },
-                                {
-                                    "name": "prozentAbUVRenteUnfall5",
-                                    "label": "%",
-                                    "type": "text",
-                                    "condition":"abUVRenteUnfall5",
-                                    "props": { "sm": 6 ,
-                                      "xs":6},
-                                      "suiteValue":"unfallrenteAbXProzent5"
-                                },
-                                {
-                                    "name": "betragUVRenteUnfall5",
-                                    "label": "Betrag (€)",
-                                    "type": "text",
-                                    "condition":"abUVRenteUnfall5",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"unfallrenteAbXEuro5"
-                                },
-                                {
-                                    "name": "dynamikUVRenteUnfallHeader",
-                          "condition":"selected5Persons",
-                          "label": "Dynamik",
-                                    "type": "header"
-                                },
-                                {
-                                    "name": "dynamikUVRenteUnfall5",
-                          "condition":"selected5Persons",
-                          "label": "Dynamik",
-                                    "type": "select",
-                                    "options":[
-                                        { "value": false, "label": "Nein" },
-                                        { "value": true, "label": "Ja"}
-                                        ],
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"dynamik5"
-                                },
-                                {
-                                    "name": "dynamikProzentUVRenteUnfall5",
-                          "condition":"selected5Persons",
-                          "label": "Prozent (%)",
-                                    "type": "text",
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"dynamikProzent5"
-                            },
-                            {"name":"selected6Persons",
-                    "condition":"null",
-                    "type":"paragraph",
-                            "label": ""
-                          
-                          },
-                            {
-                              "name": "versichertePersonUnfallHeader6",
-                              "label": "Versicherte Person 6",
-                              "condition":"selected6Persons",
-                              "type": "header"
-                            },
-                            {
-                              "name": "versichertePersonVersichertePersonUnfall6",
-                              "label": "Versicherte Person",
-                              "condition":"selected6Persons",
-                              "type": "selectVersichert",
-                              "showKind":"true",
-                              "showSonstige":"true",
-                              "props": { "required": true },
-                              "suiteValue":"versichertePerson6.id"
-                            },
-                            {"name": "tarifgruppeVersichertePersonUnfall6",
-                                "label": "Tarifgruppe",
-                                "type": "select",
-                              "condition":"selected6Persons",
-                                "options": [
-                                    { "value": "0", "label": "Normal" },
-                                    { "value": "1", "label": "Öffentlicher Dienst"},
-                                    { "value": "2", "label": "Innendienst" },
-                                    { "value": "3", "label": "Arzt/Mediziner" }
-                                ],
-                                "props": { "sm": 6 ,
-                                  "xs":6},
-                                  "suiteValue":"tarifgruppe6"
-                                },
-                                {"name": "risikogruppeVersichertePersonUnfall6",
-                                    "label": "Risikogruppe",
-                              "condition":"selected6Persons",
-                              "type": "select",
-                                    "options": [
-                                        { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
-                                        { "value": "B", "label": "B (handwerklich tätig)"},
-                                        { "value": "K", "label": "K (Kinder)" }
-                                    ],
-                                    "props": { "sm": 6,
-                                      "xs":6 },
-                                      "suiteValue":"risikogruppe6"
-                                    },
-                                    {"name": "grundsummeVersichertePersonUnfall6",
-                                        "label": "Grundsumme (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"grundsumme6"
-                                    },
-                                    {"name": "progressionVersichertePersonUnfall6",
-                                        "label": "Progression %",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"progression6"
-                                    },
-                                    {"name": "vollinvaliditaetVersichertePersonUnfall6",
-                                        "label": "Vollinvalidität (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"invaliditaetssumme6"
-                                    },
-                                    {"name": "todesfallVersichertePersonUnfall6",
-                                        "label": "Todesfall  (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"todesfallsumme6"
-                                    },
-                                    {"name": "kosmetischeOperationVersichertePersonUnfall6",
-                                        "label": "kosmetische Operation (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"operationen6"
-                                    },
-                                    {"name": "bergungskostenVersichertePersonUnfall6",
-                                        "label": "Bergungskosten (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"bergungskosten6"
-                                    },
-                                    {"name": "uebergangsleistungVersichertePersonUnfall6",
-                                        "label": "Übergangsleistung (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"uebergangsleistung6"
-                                    },
-                                    {"name": "rueckkaufswertVersichertePersonUnfall6",
-                                        "label": "Rückkaufswert (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6 ,
-                                          "xs":6},
-                                          "suiteValue":"rueckkaufswert6"
-                                    },
-                                    {"name": "teilbeitragVersichertePersonUnfall6",
-                                        "label": "Teilbeitrag (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                              "suiteValue":"teilbeitrag6"
-                                    },
-                                    {"name": "leistungenUnfallHeader",
-                                        "label": "Leistungen",
-                              "condition":"selected6Persons",
-                              "type": "header"
-                                    },
-                                    {"name": "krankenhaustagegeldleistungenUnfall6",
-                                        "label": "Krankenhaustagegeld (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"krankenhaustagegeld6"
-                                    },
-                                    {"name": "genesungsgeldLeistungenUnfall6",
-                                        "label": "Genesungsgeld (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6 ,
-                                          "xs":6},
-                                          "suiteValue":"genesungsgeld6"
-                                    },
-                                    {"name": "unfallKrankentagegeldLeistungenUnfall6",
-                                        "label": "Unfall-Krankentagegeld (€)",
-                              "condition":"selected6Persons",
-                              "type": "text",
-                                        "props": { "sm": 6 ,
-                                          "xs":6},
-                                          "suiteValue":"krankentagegeld6"
-                                    },
-                                    {"name": "wieVielterTagLeistungenUnfall6",
-                                        "label": "...ab dem wievielten Tag?",
-                              "condition":"selected6Persons",
-                              "type": "select",
-                                        "options": [
-                                            { "value": 4, "label": "ab dem 4. Tag" },
-                                            { "value": 8, "label": "ab dem 8. Tag"},
-                                            { "value": 15, "label": "ab dem 15. Tag" },
-                                            { "value": 42, "label": "ab dem 42. Tag" }
-                                        ],
-                                        "props": { "sm": 6 ,
-                                          "xs":6},
-                                          "suiteValue":"krankentagegeldtag6"
-                                    },
-                                    {"name": "UVRenteUnfallHeader",
-                                        "label": "UV-Rente",
-                              "condition":"selected6Persons",
-                              "type": "header"
-                                    },
-                                    {"name": "abFuenfzigUVRenteUnfall6",
-                                        "label": "ab 50%",
-                              "condition":"selected6Persons",
-                              "type": "checkbox",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"unfallrenteAb50Check6"
-                                    },
-                                    {
-                                        "name": "abUVRenteUnfall6",
-                                        "label": "ab",
-                              "condition":"selected6Persons",
-                              "type": "checkbox",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"unfallrenteAbXCheck6"
-                                    },
-                                    {
-                                        "name": "prozentAbUVRenteUnfall6",
-                                        "label": "%",
-                                        "type": "text",
-                                        "condition":"abUVRenteUnfall6",
-                                        "props": { "sm": 6 ,
-                                          "xs":6},
-                                          "suiteValue":"unfallrenteAbXProzent6"
-                                    },
-                                    {
-                                        "name": "betragUVRenteUnfall6",
-                                        "label": "Betrag (€)",
-                                        "type": "text",
-                                        "condition":"abUVRenteUnfall6",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"unfallrenteAbXEuro6"
-                                    },
-                                    {
-                                        "name": "dynamikUVRenteUnfallHeader",
-                              "condition":"selected6Persons",
-                              "label": "Dynamik",
-                                        "type": "header"
-                                    },
-                                    {
-                                        "name": "dynamikUVRenteUnfall6",
-                              "condition":"selected6Persons",
-                              "label": "Dynamik",
-                                        "type": "select",
-                                        "options":[
-                                            { "value": false, "label": "Nein" },
-                                            { "value": true, "label": "Ja"}
-                                            ],
-                                            "props": { "sm": 6,
-                                              "xs":6 },
-                                              "suiteValue":"dynamik6"
-                                    },
-                                    {
-                                        "name": "dynamikProzentUVRenteUnfall6",
-                              "condition":"selected6Persons",
-                              "label": "Prozent (%)",
-                                        "type": "text",
-                                        "props": { "sm": 6,
-                                          "xs":6 },
-                                          "suiteValue":"dynamikProzent6"
-                                }
-
+              "options": [
+                { "value": 4, "label": "ab dem 4. Tag" },
+                { "value": 8, "label": "ab dem 8. Tag" },
+                { "value": 15, "label": "ab dem 15. Tag" },
+                { "value": 43, "label": "ab dem 43. Tag" }
+              ],
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag"
+            }]}
+          ]
+        },
+        {
+          "section": "UV-Rente",
+          "card": true,
+          "items": [
+        {
+          "name": "abFuenfzigUVRenteUnfall",
+          "label": "ab 50%",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAb50Check"
+        },
+        {
+          "name": "abUVRenteUnfall",
+          "label": "ab",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXCheck"
+        },
+        {
+          "name": "prozentAbUVRenteUnfall",
+          "label": "%",
+          "type": "text",
+          "condition": "abUVRenteUnfall",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXProzent"
+        },
+        {
+          "name": "betragUVRenteUnfall",
+          "label": "Betrag (€)",
+          "type": "text",
+          "condition": "abUVRenteUnfall",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXEuro"
+        }]},
+          {
+            "section": "Dynamik",
+            "card": true,
+            "items": [
+        {
+          "name": "dynamikUVRenteUnfall",
+          "label": "Dynamik",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamik"
+        },
+        {
+          "name": "dynamikProzentUVRenteUnfall",
+          "label": "Prozent (%)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamikProzent"
+        }
+      ]
+    },
+    {
+      "name": "selected2Persons",
+      "condition": "null",
+      "type": "paragraph",
+      "label": "",
+      "suiteValue": ""
+    },
+    {
+      "accordionText": "Versicherte Person 2",
+      "accordionId": "2",
+      "card": false,
+      "condition": "selected2Persons",
+      "items": [
+        {
+          "name": "versichertePersonVersichertePersonUnfall2",
+          "label": "Versicherte Person",
+          "condition": "selected2Persons",
+          "type": "selectVersichert",
+          "showKind": "true",
+          "showSonstige": "true",
+          "props": { "required": true },
+          "suiteValue": "versichertePerson2.id"
+        },
+        {
+          "name": "tarifgruppeVersichertePersonUnfall2",
+          "label": "Tarifgruppe",
+          "type": "select",
+          "condition": "selected2Persons",
+          "options": [
+            { "value": "0", "label": "Normal" },
+            { "value": "1", "label": "Öffentlicher Dienst" },
+            { "value": "2", "label": "Innendienst" },
+            { "value": "3", "label": "Arzt/Mediziner" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifgruppe2"
+        },
+        {
+          "name": "risikogruppeVersichertePersonUnfall2",
+          "label": "Risikogruppe",
+          "condition": "selected2Persons",
+          "type": "select",
+          "options": [
+            { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
+            { "value": "B", "label": "B (handwerklich tätig)" },
+            { "value": "K", "label": "K (Kinder)" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "risikogruppe2"
+        },
+        {
+          "name": "grundsummeVersichertePersonUnfall2",
+          "label": "Grundsumme (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "grundsumme2"
+        },
+        {
+          "name": "progressionVersichertePersonUnfall2",
+          "label": "Progression %",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "progression2"
+        },
+        {
+          "name": "vollinvaliditaetVersichertePersonUnfall2",
+          "label": "Vollinvalidität (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "invaliditaetssumme2"
+        },
+        {
+          "name": "todesfallVersichertePersonUnfall2",
+          "label": "Todesfall  (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "todesfallsumme2"
+        },
+        {
+          "name": "kosmetischeOperationVersichertePersonUnfall2",
+          "label": "kosmetische Operation (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "operationen2"
+        },
+        {
+          "name": "bergungskostenVersichertePersonUnfall2",
+          "label": "Bergungskosten (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "bergungskosten2"
+        },
+        {
+          "name": "uebergangsleistungVersichertePersonUnfall2",
+          "label": "Übergangsleistung (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "uebergangsleistung2"
+        },
+        {
+          "name": "rueckkaufswertVersichertePersonUnfall2",
+          "label": "Rückkaufswert (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "rueckkaufswert2"
+        },
+        {
+          "name": "teilbeitragVersichertePersonUnfall2",
+          "label": "Teilbeitrag (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "suiteValue": "teilbeitrag2"
+        },
+        {
+          "section": "Leistungen",
+          "condition": "selected2Persons",
+          "card": true,
+          "items": [
+        {
+          "name": "krankenhaustagegeldleistungenUnfall2",
+          "label": "Krankenhaustagegeld (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankenhaustagegeld2"
+        },
+        {
+          "name": "genesungsgeldLeistungenUnfall2",
+          "label": "Genesungsgeld (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "genesungsgeld2"
+        },
+        {
+          "name": "unfallKrankentagegeldLeistungenUnfall2",
+          "label": "Unfall-Krankentagegeld (€)",
+          "condition": "selected2Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeld2"
+        },
+        {
+          "name": "wieVielterTagLeistungenUnfall2",
+          "label": "...ab dem wievielten Tag?",
+          "condition": "selected2Persons",
+          "type": "select",
+          "options": [
+            { "value": 4, "label": "ab dem 4. Tag" },
+            { "value": 8, "label": "ab dem 8. Tag" },
+            { "value": 15, "label": "ab dem 15. Tag" },
+            { "value": 43, "label": "ab dem 43. Tag" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeldtag2"
+        }]},
+        {
+          "section": "UV-Rente",
+          "card": true,
+          "condition": "selected2Persons",
+          "items": [
+        {
+          "name": "abFuenfzigUVRenteUnfall2",
+          "label": "ab 50%",
+          "condition": "selected2Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAb50Check2"
+        },
+        {
+          "name": "abUVRenteUnfall2",
+          "label": "ab",
+          "condition": "selected2Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXCheck2"
+        },
+        {
+          "name": "prozentAbUVRenteUnfall2",
+          "label": "%",
+          "type": "text",
+          "condition": "abUVRenteUnfall2",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXProzent2"
+        },
+        {
+          "name": "betragUVRenteUnfall2",
+          "label": "Betrag (€)",
+          "type": "text",
+          "condition": "abUVRenteUnfall2",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXEuro2"
+        },
+        {
+          "section": "Dynamik",
+          "condition": "selected2Persons",
+          "card": true,
+          "items": [
+        {
+          "name": "dynamikUVRenteUnfall2",
+          "condition": "selected2Persons",
+          "label": "Dynamik",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamik2"
+        },
+        {
+          "name": "dynamikProzentUVRenteUnfall2",
+          "condition": "selected2Persons",
+          "label": "Prozent (%)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamikProzent2"
+        }]}]}
+      ]
+    },
+    {
+      "name": "selected3Persons",
+      "condition": "null",
+      "type": "paragraph",
+      "label": "",
+      "suiteValue": ""
+    },
+    {
+      "accordionText": "Versicherte Person 3",
+      "accordionId": "3",
+      "card": false,
+      "condition": "selected3Persons",
+      "items": [
+        {
+          "name": "versichertePersonVersichertePersonUnfall3",
+          "label": "Versicherte Person",
+          "condition": "selected3Persons",
+          "type": "selectVersichert",
+          "showKind": "true",
+          "showSonstige": "true",
+          "props": { "required": true },
+          "suiteValue": "versichertePerson3.id"
+        },
+        {
+          "name": "tarifgruppeVersichertePersonUnfall3",
+          "label": "Tarifgruppe",
+          "type": "select",
+          "condition": "selected3Persons",
+          "options": [
+            { "value": "0", "label": "Normal" },
+            { "value": "1", "label": "Öffentlicher Dienst" },
+            { "value": "2", "label": "Innendienst" },
+            { "value": "3", "label": "Arzt/Mediziner" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifgruppe3"
+        },
+        {
+          "name": "risikogruppeVersichertePersonUnfall3",
+          "label": "Risikogruppe",
+          "condition": "selected3Persons",
+          "type": "select",
+          "options": [
+            { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
+            { "value": "B", "label": "B (handwerklich tätig)" },
+            { "value": "K", "label": "K (Kinder)" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "risikogruppe3"
+        },
+        {
+          "name": "grundsummeVersichertePersonUnfall3",
+          "label": "Grundsumme (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "grundsumme3"
+        },
+        {
+          "name": "progressionVersichertePersonUnfall3",
+          "label": "Progression %",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "progression3"
+        },
+        {
+          "name": "vollinvaliditaetVersichertePersonUnfall3",
+          "label": "Vollinvalidität (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "invaliditaetssumme3"
+        },
+        {
+          "name": "todesfallVersichertePersonUnfall3",
+          "label": "Todesfall  (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "todesfallsumme3"
+        },
+        {
+          "name": "kosmetischeOperationVersichertePersonUnfall3",
+          "label": "kosmetische Operation (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "operationen3"
+        },
+        {
+          "name": "bergungskostenVersichertePersonUnfall3",
+          "label": "Bergungskosten (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "bergungskosten3"
+        },
+        {
+          "name": "uebergangsleistungVersichertePersonUnfall3",
+          "label": "Übergangsleistung (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "uebergangsleistung3"
+        },
+        {
+          "name": "rueckkaufswertVersichertePersonUnfall3",
+          "label": "Rückkaufswert (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "rueckkaufswert3"
+        },
+        {
+          "name": "teilbeitragVersichertePersonUnfall3",
+          "label": "Teilbeitrag (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "suiteValue": "teilbeitrag3"
+        },
+        {
+          "section": "Leistungen",
+          "condition": "selected3Persons",
+          "card": true,
+          "items": [
+        {
+          "name": "krankenhaustagegeldleistungenUnfall3",
+          "label": "Krankenhaustagegeld (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankenhaustagegeld3"
+        },
+        {
+          "name": "genesungsgeldLeistungenUnfall3",
+          "label": "Genesungsgeld (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "genesungsgeld3"
+        },
+        {
+          "name": "unfallKrankentagegeldLeistungenUnfall3",
+          "label": "Unfall-Krankentagegeld (€)",
+          "condition": "selected3Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeld3"
+        },
+        {
+          "name": "wieVielterTagLeistungenUnfall3",
+          "label": "...ab dem wievielten Tag?",
+          "condition": "selected3Persons",
+          "type": "select",
+          "options": [
+            { "value": 4, "label": "ab dem 4. Tag" },
+            { "value": 8, "label": "ab dem 8. Tag" },
+            { "value": 15, "label": "ab dem 15. Tag" },
+            { "value": 42, "label": "ab dem 42. Tag" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeldtag3"
+        }]},
+        {
+          "section": "UV-Rente",
+          "card": true,
+          "condition": "selected3Persons",
+          "items": [
+        {
+          "name": "abFuenfzigUVRenteUnfall3",
+          "label": "ab 50%",
+          "condition": "selected3Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAb50Check3"
+        },
+        {
+          "name": "abUVRenteUnfall3",
+          "label": "ab",
+          "condition": "selected3Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXCheck3"
+        },
+        {
+          "name": "prozentAbUVRenteUnfall3",
+          "label": "%",
+          "type": "text",
+          "condition": "abUVRenteUnfall3",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXProzent3"
+        },
+        {
+          "name": "betragUVRenteUnfall3",
+          "label": "Betrag (€)",
+          "type": "text",
+          "condition": "abUVRenteUnfall3",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXEuro3"
+        }]},
+        {
+          "section": "Dynamik",
+          "card": true,
+          "condition": "selected3Persons",
+          "items": [
+        {
+          "name": "dynamikUVRenteUnfall3",
+          "condition": "selected3Persons",
+          "label": "Dynamik",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamik3"
+        },
+        {
+          "name": "dynamikProzentUVRenteUnfall3",
+          "condition": "selected3Persons",
+          "label": "Prozent (%)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamikProzent3"
+        }]}
+      ]
+    },
+    {
+      "name": "selected4Persons",
+      "type": "paragraph",
+      "condition": "null",
+      "label": "",
+      "suiteValue": ""
+    },
+    {
+      "accordionText": "Versicherte Person 4",
+      "accordionId": "4",
+      "card": false,
+      "condition": "selected4Persons",
+      "items": [
+        {
+          "name": "versichertePersonVersichertePersonUnfall4",
+          "label": "Versicherte Person",
+          "condition": "selected4Persons",
+          "type": "selectVersichert",
+          "showKind": "true",
+          "showSonstige": "true",
+          "props": { "required": true },
+          "suiteValue": "versichertePerson4.id"
+        },
+        {
+          "name": "tarifgruppeVersichertePersonUnfall4",
+          "label": "Tarifgruppe",
+          "type": "select",
+          "condition": "selected4Persons",
+          "options": [
+            { "value": "0", "label": "Normal" },
+            { "value": "1", "label": "Öffentlicher Dienst" },
+            { "value": "2", "label": "Innendienst" },
+            { "value": "3", "label": "Arzt/Mediziner" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifgruppe4"
+        },
+        {
+          "name": "risikogruppeVersichertePersonUnfall4",
+          "label": "Risikogruppe",
+          "condition": "selected4Persons",
+          "type": "select",
+          "options": [
+            { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
+            { "value": "B", "label": "B (handwerklich tätig)" },
+            { "value": "K", "label": "K (Kinder)" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "risikogruppe4"
+        },
+        {
+          "name": "grundsummeVersichertePersonUnfall4",
+          "label": "Grundsumme (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "grundsumme4"
+        },
+        {
+          "name": "progressionVersichertePersonUnfall4",
+          "label": "Progression %",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "progression4"
+        },
+        {
+          "name": "vollinvaliditaetVersichertePersonUnfall4",
+          "label": "Vollinvalidität (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "invaliditaetssumme4"
+        },
+        {
+          "name": "todesfallVersichertePersonUnfall4",
+          "label": "Todesfall  (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "todesfallsumme4"
+        },
+        {
+          "name": "kosmetischeOperationVersichertePersonUnfall4",
+          "label": "kosmetische Operation (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "operationen4"
+        },
+        {
+          "name": "bergungskostenVersichertePersonUnfall4",
+          "label": "Bergungskosten (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "bergungskosten4"
+        },
+        {
+          "name": "uebergangsleistungVersichertePersonUnfall4",
+          "label": "Übergangsleistung (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "uebergangsleistung4"
+        },
+        {
+          "name": "rueckkaufswertVersichertePersonUnfall4",
+          "label": "Rückkaufswert (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "rueckkaufswert4"
+        },
+        {
+          "name": "teilbeitragVersichertePersonUnfall4",
+          "label": "Teilbeitrag (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "suiteValue": "teilbeitrag4"
+        },
+        {
+          "section": "Leistungen",
+          "condition": "selected4Persons",
+          "card": true,
+          "items": [
+        {
+          "name": "krankenhaustagegeldleistungenUnfall4",
+          "label": "Krankenhaustagegeld (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankenhaustagegeld4"
+        },
+        {
+          "name": "genesungsgeldLeistungenUnfall4",
+          "label": "Genesungsgeld (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "genesungsgeld4"
+        },
+        {
+          "name": "unfallKrankentagegeldLeistungenUnfall4",
+          "label": "Unfall-Krankentagegeld (€)",
+          "condition": "selected4Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeld4"
+        },
+        {
+          "name": "wieVielterTagLeistungenUnfall4",
+          "label": "...ab dem wievielten Tag?",
+          "condition": "selected4Persons",
+          "type": "select",
+          "options": [
+            { "value": 4, "label": "ab dem 4. Tag" },
+            { "value": 8, "label": "ab dem 8. Tag" },
+            { "value": 15, "label": "ab dem 15. Tag" },
+            { "value": 42, "label": "ab dem 42. Tag" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeldtag4"
+        }]},
+        {
+          "section": "UV-Rente",
+          "card": true,
+          "condition": "selected4Persons",
+          "items": [
+        {
+          "name": "abFuenfzigUVRenteUnfall4",
+          "label": "ab 50%",
+          "condition": "selected4Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAb50Check4"
+        },
+        {
+          "name": "abUVRenteUnfall4",
+          "label": "ab",
+          "condition": "selected4Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXCheck4"
+        },
+        {
+          "name": "prozentAbUVRenteUnfall4",
+          "label": "%",
+          "type": "text",
+          "condition": "abUVRenteUnfall4",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXProzent4"
+        },
+        {
+          "name": "betragUVRenteUnfall4",
+          "label": "Betrag (€)",
+          "type": "text",
+          "condition": "abUVRenteUnfall4",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXEuro4"
+        }]},
+        {
+          "section": "Dynamik",
+          "card": true,
+          "condition": "selected4Persons",
+          "items": [
+        {
+          "name": "dynamikUVRenteUnfall4",
+          "condition": "selected4Persons",
+          "label": "Dynamik",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamik4"
+        },
+        {
+          "name": "dynamikProzentUVRenteUnfall4",
+          "condition": "selected4Persons",
+          "label": "Prozent (%)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamikProzent4"
+        }]}
+      ]
+    },
+    {
+      "name": "selected5Persons",
+      "condition": "null",
+      "type": "paragraph",
+      "label": "",
+      "suiteValue": ""
+    },
+    {
+      "accordionText": "Versicherte Person 5",
+      "accordionId": "5",
+      "card": false,
+      "condition": "selected5Persons",
+      "items": [
+        {
+          "name": "versichertePersonVersichertePersonUnfall5",
+          "label": "Versicherte Person",
+          "condition": "selected5Persons",
+          "type": "selectVersichert",
+          "showKind": "true",
+          "showSonstige": "true",
+          "props": { "required": true },
+          "suiteValue": "versichertePerson5.id"
+        },
+        {
+          "name": "tarifgruppeVersichertePersonUnfall5",
+          "label": "Tarifgruppe",
+          "type": "select",
+          "condition": "selected5Persons",
+          "options": [
+            { "value": "0", "label": "Normal" },
+            { "value": "1", "label": "Öffentlicher Dienst" },
+            { "value": "2", "label": "Innendienst" },
+            { "value": "3", "label": "Arzt/Mediziner" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifgruppe5"
+        },
+        {
+          "name": "risikogruppeVersichertePersonUnfall5",
+          "label": "Risikogruppe",
+          "condition": "selected5Persons",
+          "type": "select",
+          "options": [
+            { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
+            { "value": "B", "label": "B (handwerklich tätig)" },
+            { "value": "K", "label": "K (Kinder)" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "risikogruppe5"
+        },
+        {
+          "name": "grundsummeVersichertePersonUnfall5",
+          "label": "Grundsumme (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "grundsumme5"
+        },
+        {
+          "name": "progressionVersichertePersonUnfall5",
+          "label": "Progression %",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "progression5"
+        },
+        {
+          "name": "vollinvaliditaetVersichertePersonUnfall5",
+          "label": "Vollinvalidität (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "invaliditaetssumme5"
+        },
+        {
+          "name": "todesfallVersichertePersonUnfall5",
+          "label": "Todesfall  (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "todesfallsumme5"
+        },
+        {
+          "name": "kosmetischeOperationVersichertePersonUnfall5",
+          "label": "kosmetische Operation (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "operationen5"
+        },
+        {
+          "name": "bergungskostenVersichertePersonUnfall5",
+          "label": "Bergungskosten (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "bergungskosten5"
+        },
+        {
+          "name": "uebergangsleistungVersichertePersonUnfall5",
+          "label": "Übergangsleistung (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": ""
+        },
+        {
+          "name": "rueckkaufswertVersichertePersonUnfall5",
+          "label": "Rückkaufswert (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "rueckkaufswert5"
+        },
+        {
+          "name": "teilbeitragVersichertePersonUnfall5",
+          "label": "Teilbeitrag (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "suiteValue": "teilbeitrag5"
+        },
+        {
+          "section": "Leistungen",
+          "condition": "selected5Persons",
+          "card": true,
+          "items": [
+        {
+          "name": "krankenhaustagegeldleistungenUnfall5",
+          "label": "Krankenhaustagegeld (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankenhaustagegeld5"
+        },
+        {
+          "name": "genesungsgeldLeistungenUnfall5",
+          "label": "Genesungsgeld (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "genesungsgeld5"
+        },
+        {
+          "name": "unfallKrankentagegeldLeistungenUnfall5",
+          "label": "Unfall-Krankentagegeld (€)",
+          "condition": "selected5Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeld5"
+        },
+        {
+          "name": "wieVielterTagLeistungenUnfall5",
+          "label": "...ab dem wievielten Tag?",
+          "condition": "selected5Persons",
+          "type": "select",
+          "options": [
+            { "value": 4, "label": "ab dem 4. Tag" },
+            { "value": 8, "label": "ab dem 8. Tag" },
+            { "value": 15, "label": "ab dem 15. Tag" },
+            { "value": 42, "label": "ab dem 42. Tag" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeldtag5"
+        }]},
+        {
+          "section": "UV-Rente",
+          "card": true,
+          "condition": "selected5Persons",
+          "items": [
+        {
+          "name": "abFuenfzigUVRenteUnfall5",
+          "label": "ab 50%",
+          "condition": "selected5Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAb50Check5"
+        },
+        {
+          "name": "abUVRenteUnfall5",
+          "label": "ab",
+          "condition": "selected5Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXCheck5"
+        },
+        {
+          "name": "prozentAbUVRenteUnfall5",
+          "label": "%",
+          "type": "text",
+          "condition": "abUVRenteUnfall5",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXProzent5"
+        },
+        {
+          "name": "betragUVRenteUnfall5",
+          "label": "Betrag (€)",
+          "type": "text",
+          "condition": "abUVRenteUnfall5",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXEuro5"
+        }]},
+        {
+          "section": "Dynamik",
+          "card": true,
+          "condition": "selected5Persons",
+          "items": [
+        {
+          "name": "dynamikUVRenteUnfall5",
+          "condition": "selected5Persons",
+          "label": "Dynamik",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamik5"
+        },
+        {
+          "name": "dynamikProzentUVRenteUnfall5",
+          "condition": "selected5Persons",
+          "label": "Prozent (%)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamikProzent5"
+        }]}
+      ]
+    },
+    {
+      "name": "selected6Persons",
+      "condition": "null",
+      "type": "paragraph",
+      "label": ""
+    },
+    {
+      "accordionText": "Versicherte Person 6",
+      "accordionId": "6",
+      "card": false,
+      "condition": "selected6Persons",
+      "items": [
+        {
+          "name": "versichertePersonVersichertePersonUnfall6",
+          "label": "Versicherte Person",
+          "condition": "selected6Persons",
+          "type": "selectVersichert",
+          "showKind": "true",
+          "showSonstige": "true",
+          "props": { "required": true },
+          "suiteValue": "versichertePerson6.id"
+        },
+        {
+          "name": "tarifgruppeVersichertePersonUnfall6",
+          "label": "Tarifgruppe",
+          "type": "select",
+          "condition": "selected6Persons",
+          "options": [
+            { "value": "0", "label": "Normal" },
+            { "value": "1", "label": "Öffentlicher Dienst" },
+            { "value": "2", "label": "Innendienst" },
+            { "value": "3", "label": "Arzt/Mediziner" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifgruppe6"
+        },
+        {
+          "name": "risikogruppeVersichertePersonUnfall6",
+          "label": "Risikogruppe",
+          "condition": "selected6Persons",
+          "type": "select",
+          "options": [
+            { "value": "A", "label": "A (ausschliesslich kaufmänisch tätig)" },
+            { "value": "B", "label": "B (handwerklich tätig)" },
+            { "value": "K", "label": "K (Kinder)" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "risikogruppe6"
+        },
+        {
+          "name": "grundsummeVersichertePersonUnfall6",
+          "label": "Grundsumme (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "grundsumme6"
+        },
+        {
+          "name": "progressionVersichertePersonUnfall6",
+          "label": "Progression %",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "progression6"
+        },
+        {
+          "name": "vollinvaliditaetVersichertePersonUnfall6",
+          "label": "Vollinvalidität (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "invaliditaetssumme6"
+        },
+        {
+          "name": "todesfallVersichertePersonUnfall6",
+          "label": "Todesfall  (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "todesfallsumme6"
+        },
+        {
+          "name": "kosmetischeOperationVersichertePersonUnfall6",
+          "label": "kosmetische Operation (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "operationen6"
+        },
+        {
+          "name": "bergungskostenVersichertePersonUnfall6",
+          "label": "Bergungskosten (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "bergungskosten6"
+        },
+        {
+          "name": "uebergangsleistungVersichertePersonUnfall6",
+          "label": "Übergangsleistung (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "uebergangsleistung6"
+        },
+        {
+          "name": "rueckkaufswertVersichertePersonUnfall6",
+          "label": "Rückkaufswert (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "rueckkaufswert6"
+        },
+        {
+          "name": "teilbeitragVersichertePersonUnfall6",
+          "label": "Teilbeitrag (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "suiteValue": "teilbeitrag6"
+        },
+        {
+          "section": "Leistungen",
+          "condition": "selected6Persons",
+          "card": true,
+          "items": [
+        {
+          "name": "krankenhaustagegeldleistungenUnfall6",
+          "label": "Krankenhaustagegeld (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankenhaustagegeld6"
+        },
+        {
+          "name": "genesungsgeldLeistungenUnfall6",
+          "label": "Genesungsgeld (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "genesungsgeld6"
+        },
+        {
+          "name": "unfallKrankentagegeldLeistungenUnfall6",
+          "label": "Unfall-Krankentagegeld (€)",
+          "condition": "selected6Persons",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeld6"
+        },
+        {
+          "name": "wieVielterTagLeistungenUnfall6",
+          "label": "...ab dem wievielten Tag?",
+          "condition": "selected6Persons",
+          "type": "select",
+          "options": [
+            { "value": 4, "label": "ab dem 4. Tag" },
+            { "value": 8, "label": "ab dem 8. Tag" },
+            { "value": 15, "label": "ab dem 15. Tag" },
+            { "value": 42, "label": "ab dem 42. Tag" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "krankentagegeldtag6"
+        }]},
+        {
+          "section": "UV-Rente",
+          "card": true,
+          "condition": "selected6Persons",
+          "items": [
+        {
+          "name": "abFuenfzigUVRenteUnfall6",
+          "label": "ab 50%",
+          "condition": "selected6Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAb50Check6"
+        },
+        {
+          "name": "abUVRenteUnfall6",
+          "label": "ab",
+          "condition": "selected6Persons",
+          "type": "checkbox",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXCheck6"
+        },
+        {
+          "name": "prozentAbUVRenteUnfall6",
+          "label": "%",
+          "type": "text",
+          "condition": "abUVRenteUnfall6",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXProzent6"
+        },
+        {
+          "name": "betragUVRenteUnfall6",
+          "label": "Betrag (€)",
+          "type": "text",
+          "condition": "abUVRenteUnfall6",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "unfallrenteAbXEuro6"
+        }]},
+        {
+          "section": "Dynamik",
+          "card": true,
+          "condition": "selected6Persons",
+          "items": [
+        {
+          "name": "dynamikUVRenteUnfall6",
+          "condition": "selected6Persons",
+          "label": "Dynamik",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamik6"
+        },
+        {
+          "name": "dynamikProzentUVRenteUnfall6",
+          "condition": "selected6Persons",
+          "label": "Prozent (%)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "dynamikProzent6"
+        }]}
+      ]
+    }
   ]
 }

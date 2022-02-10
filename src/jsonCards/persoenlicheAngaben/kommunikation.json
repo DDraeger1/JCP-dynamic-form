@@ -3,11 +3,10 @@
     "card": true,
 
     "items": [
-        {
-            "name": "ansprechpartnerKommunikationHeader",
-            "label": "Ansprechpartner für...",
-            "type": "header"
-          },
+      {
+        "section": "Ansprechpartner für...",
+        "card": true,
+        "items": [
           {
             "name": "versicherungKommunikation",
             "label": "Versicherung",
@@ -43,12 +42,11 @@
                 "sm": 6,
                 "xs":6
               }
-          },
+          }]},
           {
-            "name": "telefonFestnetzKommunikationHeader",
-            "label": "Telefon/Festnetz",
-            "type": "header"
-          },
+            "section": "Telefon/Festnetz",
+            "card": true,
+            "items": [
           {
             "name": "privatTelefonFestnetzKommunikation",
             "label": "privat",
@@ -66,12 +64,11 @@
                 "sm": 6,
                 "xs":6
               }
-          },
+          }]},
           {
-            "name": "mobiltelefonKommunikationHeader",
-            "label": "Mobiltelefon",
-            "type": "header"
-          },
+            "section": "Mobiltelefon",
+            "card": true,
+            "items": [
           {
             "name": "privatMobiltelefonKommunikation",
             "label": "privat",
@@ -89,11 +86,15 @@
                 "sm": 6,
                 "xs":6
               }
-          },
+          }]},
           {
-            "name": "faxKommunikationHeader",
+            "section": "Fax",
+            "card": true,
+            "items": [
+          {
+            "name": "faxKommunikation",
             "label": "Fax",
-            "type": "header"
+            "type": "text"
           },
           {
             "name": "privatFaxKommunikation",
@@ -135,6 +136,6 @@
                 "sm": 6,
                 "xs":6
               }
-          }
+          }]}
     ]
 }

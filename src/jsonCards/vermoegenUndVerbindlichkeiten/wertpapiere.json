@@ -27,10 +27,9 @@
       "type": "text"
     },
     {
-      "name": "vertragspartnerWertpapiereHeader",
-      "label": "Vertragspartner",
-      "type": "header"
-    },
+      "section": "Vertragspartner",
+      "card": true,
+      "items": [
     {
       "name": "vertragspartnerWertpapiere",
       "label": "Vertragspartner (suite mapping)",
@@ -38,7 +37,11 @@
       "props": { "required": true ,
         "xs":6},
       "options": [{ "value": 0, "label": "Mandant" }]
-    },
+    }]},
+    {
+      "section": "",
+      "card": true,
+      "items": [
     {
       "name": "WKNISINVertragspartnerWertpapiere",
       "label": "WKN/ISIN",
@@ -101,12 +104,11 @@
       "type": "text",
       "props": { "sm": 6 ,
         "xs":6}
-    },
+    }]},
     {
-      "name": "vertragslaufzeitWertpapiereHeader",
-      "label": "Vertragslaufzeit",
-      "type": "header"
-    },
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
     {
       "name": "vertragsbeginnVertragslaufzeitWertpapiere",
       "label": "Vertragsbeginn",
@@ -120,12 +122,11 @@
       "type": "date",
       "props": { "sm": 6 ,
         "xs":6}
-    },
+    }]},
     {
-      "name": "VWLWertpapiereHeader",
-      "label": "VWL",
-      "type": "header"
-    },
+      "section": "VWL",
+      "card": true,
+      "items": [
     {
       "name": "VWLWertpapiere",
       "label": "Vwl",
@@ -172,6 +173,6 @@
       "label": "Beitrag",
       "props":{"required":true},
       "type": "text"
-    }
+    }]}
   ]
 }

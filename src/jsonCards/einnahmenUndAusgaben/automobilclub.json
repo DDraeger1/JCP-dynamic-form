@@ -44,10 +44,9 @@
               "suiteValue":"anzahlVersicherterKfz"
           },
           {
-            "name": "vertragslaufzeitAutomobilclub",
-            "label": "Vertragslaufzeit",
-            "type": "header"
-          },
+            "section": "Vertragslaufzeit",
+            "card": true,
+            "items": [
           {
             "name": "vertragsbeginnVertragslaufzeitAutomobilclub",
             "label": "Vertragsbeginn",
@@ -63,7 +62,7 @@
             "props": { "sm": 6,
               "xs":6 },
               "suiteValue":"versicherungsende"
-          },
+          }]},
           {
             "name": "beitragVersicherterKFZAutomobilclub",
             "label": "Beitrag",

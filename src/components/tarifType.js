@@ -1687,7 +1687,7 @@ function checkIfPersonendaten(card){
     output = true
   }if(card==="KOMMUNIKATION"){
     output = true
-  }if(card==="KIND"){
+  }if(card==="ARBEITGEBER"){
     output = true
   }if(card==="KIND"){
     output = true
@@ -1778,6 +1778,14 @@ if(card === "KIND"){
     }
     return output;
   }
+  function doesItMatchWithVersichertePerson(anzahlVp, KHT){
+    let output =false
+    if(anzahlVp && KHT){
+      output=true
+    }
+    console.log(output)
+    return output
+  }
   function checkForSonstige(asset){
     let output
 if(asset.versichertePersonId === undefined){
@@ -1789,9 +1797,12 @@ return output
   }
   function checkForBeide(asset){
     let output = ""
+    console.log(asset.versicherungsnehmerBeide)
     if(asset.versicherungsnehmerBeide){
       output = false
 } else{
+  console.log("asset.versicherungsnehmerBeide")
+
   output = mandantMapper(asset.versicherungsnehmerId)
 
 }
@@ -2191,32 +2202,189 @@ cardTemplateData= altersvorsorge;
       }
     }
     if(card === "ARBEITGEBER"){
-output={
-      firmennameArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].firmenname,
-  rechtsformArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].rechtsform,
-  straßeArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].strasse,
-  nummerArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].hausnummer,
-  postleitzahlArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].postleitzahl,
-  wohnortArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].ort,
-  telefonnummerArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].tel,
-  seitWannbeschaeftigtArbeitgeber: dateFormater(
-    mandantGroup[0].mandant.arbeitgebers[0].beschaeftigt
+      function anzahlArbeitgeber(arrayLength) {
+        let output={firmennameArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].firmenname,
+          rechtsformArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].rechtsform,
+          straßeArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].strasse,
+          nummerArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].hausnummer,
+          postleitzahlArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].postleitzahl,
+          wohnortArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].ort,
+          telefonnummerArbeitgeber: mandantGroup[0].mandant.arbeitgebers[0].tel,
+          seitWannbeschaeftigtArbeitgeber: dateFormater(
+            mandantGroup[0].mandant.arbeitgebers[0].beschaeftigt
+          ),
+          inGewerkschaftBAVArbeitgeber:
+            mandantGroup[0].mandant.arbeitgebers[0].mitgliedGewerkschaft,
+          inWelcheGewerkschaftBAVArbeitgeber:
+            mandantGroup[0].mandant.arbeitgebers[0].nameGewerkschaft,
+          tarifgebundenBAVArbeitgeber:
+            mandantGroup[0].mandant.arbeitgebers[0].tarifgebunden,
+          tarifvertragBestehenBAVArbeitgeber:
+            mandantGroup[0].mandant.arbeitgebers[0].verbindlicherVertrag,
+          unternehmensgrößeBAVArbeitgeber:
+            mandantGroup[0].mandant.arbeitgebers[0].unternehmensgroesse,
+          ansprechspartnerArbeitgeber:
+            mandantGroup[0].mandant.arbeitgebers[0].avAnsprechpartnerName,
+          telNrAnsprechspartnerArbeitgeber:
+            mandantGroup[0].mandant.arbeitgebers[0].avAnsprechpartnerTelefon,
+          emailAnsprechspartnerArbeitgeber: "(Fehlt in localer suite)",}
+        if(arrayLength>=2){
+output={ 
+...output,
+  selected2Persons:true,
+  firmennameArbeitgeber2: mandantGroup[0].mandant.arbeitgebers[1].firmenname,
+  rechtsformArbeitgeber2: mandantGroup[0].mandant.arbeitgebers[1].rechtsform,
+  straßeArbeitgeber2: mandantGroup[0].mandant.arbeitgebers[1].strasse,
+  nummerArbeitgeber2: mandantGroup[0].mandant.arbeitgebers[1].hausnummer,
+  postleitzahlArbeitgeber2: mandantGroup[0].mandant.arbeitgebers[1].postleitzahl,
+  wohnortArbeitgeber2: mandantGroup[0].mandant.arbeitgebers[1].ort,
+  telefonnummerArbeitgeber2: mandantGroup[0].mandant.arbeitgebers[1].tel,
+  seitWannbeschaeftigtArbeitgeber2: dateFormater(
+    mandantGroup[0].mandant.arbeitgebers[1].beschaeftigt
   ),
-  inGewerkschaftBAVArbeitgeber:
-    mandantGroup[0].mandant.arbeitgebers[0].mitgliedGewerkschaft,
-  inWelcheGewerkschaftBAVArbeitgeber:
-    mandantGroup[0].mandant.arbeitgebers[0].nameGewerkschaft,
-  tarifgebundenBAVArbeitgeber:
-    mandantGroup[0].mandant.arbeitgebers[0].tarifgebunden,
-  tarifvertragBestehenBAVArbeitgeber:
-    mandantGroup[0].mandant.arbeitgebers[0].verbindlicherVertrag,
-  unternehmensgrößeBAVArbeitgeber:
-    mandantGroup[0].mandant.arbeitgebers[0].unternehmensgroesse,
-  ansprechspartnerArbeitgeber:
-    mandantGroup[0].mandant.arbeitgebers[0].avAnsprechpartnerName,
-  telNrAnsprechspartnerArbeitgeber:
-    mandantGroup[0].mandant.arbeitgebers[0].avAnsprechpartnerTelefon,
-  emailAnsprechspartnerArbeitgeber: "(Fehlt in localer suite)",}
+  inGewerkschaftBAVArbeitgeber2:
+    mandantGroup[0].mandant.arbeitgebers[1].mitgliedGewerkschaft,
+  inWelcheGewerkschaftBAVArbeitgeber2:
+    mandantGroup[0].mandant.arbeitgebers[1].nameGewerkschaft,
+  tarifgebundenBAVArbeitgeber2:
+    mandantGroup[0].mandant.arbeitgebers[1].tarifgebunden,
+  tarifvertragBestehenBAVArbeitgeber2:
+    mandantGroup[0].mandant.arbeitgebers[1].verbindlicherVertrag,
+  unternehmensgrößeBAVArbeitgeber2:
+    mandantGroup[0].mandant.arbeitgebers[1].unternehmensgroesse,
+  ansprechspartnerArbeitgeber2:
+    mandantGroup[0].mandant.arbeitgebers[1].avAnsprechpartnerName,
+  telNrAnsprechspartnerArbeitgeber2:
+    mandantGroup[0].mandant.arbeitgebers[1].avAnsprechpartnerTelefon,
+  emailAnsprechspartnerArbeitgeber2: "(Fehlt in localer suite)"
+}
+
+        } if(arrayLength >=3){
+output={...output,
+  selected3Persons:true,
+  firmennameArbeitgeber3: mandantGroup[0].mandant.arbeitgebers[2].firmenname,
+  rechtsformArbeitgeber3: mandantGroup[0].mandant.arbeitgebers[2].rechtsform,
+  straßeArbeitgeber3: mandantGroup[0].mandant.arbeitgebers[2].strasse,
+  nummerArbeitgeber3: mandantGroup[0].mandant.arbeitgebers[2].hausnummer,
+  postleitzahlArbeitgeber3: mandantGroup[0].mandant.arbeitgebers[2].postleitzahl,
+  wohnortArbeitgeber3: mandantGroup[0].mandant.arbeitgebers[2].ort,
+  telefonnummerArbeitgeber3: mandantGroup[0].mandant.arbeitgebers[2].tel,
+  seitWannbeschaeftigtArbeitgeber3: dateFormater(
+    mandantGroup[0].mandant.arbeitgebers[2].beschaeftigt
+  ),
+  inGewerkschaftBAVArbeitgeber3:
+    mandantGroup[0].mandant.arbeitgebers[2].mitgliedGewerkschaft,
+  inWelcheGewerkschaftBAVArbeitgeber3:
+    mandantGroup[0].mandant.arbeitgebers[2].nameGewerkschaft,
+  tarifgebundenBAVArbeitgeber3:
+    mandantGroup[0].mandant.arbeitgebers[2].tarifgebunden,
+  tarifvertragBestehenBAVArbeitgeber3:
+    mandantGroup[0].mandant.arbeitgebers[2].verbindlicherVertrag,
+  unternehmensgrößeBAVArbeitgeber3:
+    mandantGroup[0].mandant.arbeitgebers[2].unternehmensgroesse,
+  ansprechspartnerArbeitgeber3:
+    mandantGroup[0].mandant.arbeitgebers[2].avAnsprechpartnerName,
+  telNrAnsprechspartnerArbeitgeber3:
+    mandantGroup[0].mandant.arbeitgebers[2].avAnsprechpartnerTelefon,
+  emailAnsprechspartnerArbeitgeber3: "(Fehlt in localer suite)"
+}
+        } if(arrayLength >=4){
+          output={...output,
+  selected4Persons:true,
+  firmennameArbeitgeber4: mandantGroup[0].mandant.arbeitgebers[3].firmenname,
+            rechtsformArbeitgeber4: mandantGroup[0].mandant.arbeitgebers[3].rechtsform,
+            straßeArbeitgeber4: mandantGroup[0].mandant.arbeitgebers[3].strasse,
+            nummerArbeitgeber4: mandantGroup[0].mandant.arbeitgebers[3].hausnummer,
+            postleitzahlArbeitgeber4: mandantGroup[0].mandant.arbeitgebers[3].postleitzahl,
+            wohnortArbeitgeber4: mandantGroup[0].mandant.arbeitgebers[3].ort,
+            telefonnummerArbeitgeber4: mandantGroup[0].mandant.arbeitgebers[3].tel,
+            seitWannbeschaeftigtArbeitgeber4: dateFormater(
+              mandantGroup[0].mandant.arbeitgebers[3].beschaeftigt
+            ),
+            inGewerkschaftBAVArbeitgeber4:
+              mandantGroup[0].mandant.arbeitgebers[3].mitgliedGewerkschaft,
+            inWelcheGewerkschaftBAVArbeitgeber4:
+              mandantGroup[0].mandant.arbeitgebers[3].nameGewerkschaft,
+            tarifgebundenBAVArbeitgeber4:
+              mandantGroup[0].mandant.arbeitgebers[3].tarifgebunden,
+            tarifvertragBestehenBAVArbeitgeber4:
+              mandantGroup[0].mandant.arbeitgebers[3].verbindlicherVertrag,
+            unternehmensgrößeBAVArbeitgeber4:
+              mandantGroup[0].mandant.arbeitgebers[3].unternehmensgroesse,
+            ansprechspartnerArbeitgeber4:
+              mandantGroup[0].mandant.arbeitgebers[3].avAnsprechpartnerName,
+            telNrAnsprechspartnerArbeitgeber4:
+              mandantGroup[0].mandant.arbeitgebers[3].avAnsprechpartnerTelefon,
+            emailAnsprechspartnerArbeitgeber4: "(Fehlt in localer suite)"
+          }
+                  } if(arrayLength >=5){
+                    output={...output,
+  selected5Persons:true,
+  firmennameArbeitgeber5: mandantGroup[0].mandant.arbeitgebers[4].firmenname,
+                      rechtsformArbeitgeber5: mandantGroup[0].mandant.arbeitgebers[4].rechtsform,
+                      straßeArbeitgeber5: mandantGroup[0].mandant.arbeitgebers[4].strasse,
+                      nummerArbeitgeber5: mandantGroup[0].mandant.arbeitgebers[4].hausnummer,
+                      postleitzahlArbeitgeber5: mandantGroup[0].mandant.arbeitgebers[4].postleitzahl,
+                      wohnortArbeitgeber5: mandantGroup[0].mandant.arbeitgebers[4].ort,
+                      telefonnummerArbeitgeber5: mandantGroup[0].mandant.arbeitgebers[4].tel,
+                      seitWannbeschaeftigtArbeitgeber5: dateFormater(
+                        mandantGroup[0].mandant.arbeitgebers[4].beschaeftigt
+                      ),
+                      inGewerkschaftBAVArbeitgeber5:
+                        mandantGroup[0].mandant.arbeitgebers[4].mitgliedGewerkschaft,
+                      inWelcheGewerkschaftBAVArbeitgeber5:
+                        mandantGroup[0].mandant.arbeitgebers[4].nameGewerkschaft,
+                      tarifgebundenBAVArbeitgeber5:
+                        mandantGroup[0].mandant.arbeitgebers[4].tarifgebunden,
+                      tarifvertragBestehenBAVArbeitgeber5:
+                        mandantGroup[0].mandant.arbeitgebers[4].verbindlicherVertrag,
+                      unternehmensgrößeBAVArbeitgeber5:
+                        mandantGroup[0].mandant.arbeitgebers[4].unternehmensgroesse,
+                      ansprechspartnerArbeitgeber5:
+                        mandantGroup[0].mandant.arbeitgebers[4].avAnsprechpartnerName,
+                      telNrAnsprechspartnerArbeitgeber5:
+                        mandantGroup[0].mandant.arbeitgebers[4].avAnsprechpartnerTelefon,
+                      emailAnsprechspartnerArbeitgeber5: "(Fehlt in localer suite)"
+                    }
+                            } if(arrayLength >=6){
+                              output={...output,
+  selected6Persons:true,
+  firmennameArbeitgeber6: mandantGroup[0].mandant.arbeitgebers[5].firmenname,
+                                rechtsformArbeitgeber6: mandantGroup[0].mandant.arbeitgebers[5].rechtsform,
+                                straßeArbeitgeber6: mandantGroup[0].mandant.arbeitgebers[5].strasse,
+                                nummerArbeitgeber6: mandantGroup[0].mandant.arbeitgebers[5].hausnummer,
+                                postleitzahlArbeitgeber6: mandantGroup[0].mandant.arbeitgebers[5].postleitzahl,
+                                wohnortArbeitgeber6: mandantGroup[0].mandant.arbeitgebers[5].ort,
+                                telefonnummerArbeitgeber6: mandantGroup[0].mandant.arbeitgebers[5].tel,
+                                seitWannbeschaeftigtArbeitgeber6: dateFormater(
+                                  mandantGroup[0].mandant.arbeitgebers[5].beschaeftigt
+                                ),
+                                inGewerkschaftBAVArbeitgeber6:
+                                  mandantGroup[0].mandant.arbeitgebers[5].mitgliedGewerkschaft,
+                                inWelcheGewerkschaftBAVArbeitgeber6:
+                                  mandantGroup[0].mandant.arbeitgebers[5].nameGewerkschaft,
+                                tarifgebundenBAVArbeitgeber6:
+                                  mandantGroup[0].mandant.arbeitgebers[5].tarifgebunden,
+                                tarifvertragBestehenBAVArbeitgeber6:
+                                  mandantGroup[0].mandant.arbeitgebers[5].verbindlicherVertrag,
+                                unternehmensgrößeBAVArbeitgeber6:
+                                  mandantGroup[0].mandant.arbeitgebers[5].unternehmensgroesse,
+                                ansprechspartnerArbeitgeber6:
+                                  mandantGroup[0].mandant.arbeitgebers[5].avAnsprechpartnerName,
+                                telNrAnsprechspartnerArbeitgeber6:
+                                  mandantGroup[0].mandant.arbeitgebers[5].avAnsprechpartnerTelefon,
+                                emailAnsprechspartnerArbeitgeber6: "(Fehlt in localer suite)"
+                              } 
+                                      }
+                                      if(arrayLength >=7){
+                                        alert("Es können nicht mehr als 6 Arbeitgeber angezeigt werden")
+                                      }
+                                      return(output)
+      }
+output= anzahlArbeitgeber(mandantGroup[0].mandant.arbeitgebers.length) 
+console.log(mandantGroup[0].mandant.arbeitgebers.length)
+console.log(output)
+
     }
    else if(card === "AUSWEIS"){
       output={
@@ -2578,20 +2746,20 @@ cardTemplateData={
       )
       
       output={
-        initMandantValue:false , 
-        vertragsinhaberSachwert:false,
+        initMandantValue:checkForBeide(cardTemplateData),
+        vertragsinhaberSachwert:"",
         gesellschaftSachwert: cardTemplateData.gesellschaft,
-        tarifbezeichnungVertragspartnerSachwert: "",
-        vertragsnummerVertragspartnerSachwert: "",
-        artVertragspartnerSachwert: "",
-        fallsSonstigesVertragspartnerSachwert:"",
+        tarifbezeichnungVertragspartnerSachwert: cardTemplateData.tarifBezeichnung,
+        vertragsnummerVertragspartnerSachwert:"cardTemplateData.tarifBezeichnung",
+        artVertragspartnerSachwert: cardTemplateData.art,
+        fallsSonstigesVertragspartnerSachwert:cardTemplateData,
         gewichtVertragspartnerSachwert: cardTemplateData.gewicht,
-        lagerungVertragspartnerSachwert: "",
-        anschaffungsjahrVertragspartnerSachwert: "",
-        aktuellerWertVertragspartnerSachwert: "",
-        vertragssummeVertragspartnerSachwert: "",
-        strinzahlweiseVertragspartnerSachwertg: "",
-        beitragVertragspartnerSachwert: "",
+        lagerungVertragspartnerSachwert: cardTemplateData.lagerung,
+        anschaffungsjahrVertragspartnerSachwert: cardTemplateData.anschaffungsjahr,
+        aktuellerWertVertragspartnerSachwert: cardTemplateData.aktuellerWert,
+        vertragssummeVertragspartnerSachwert: cardTemplateData.versicherungssumme,
+        zahlweiseVertragspartnerSachwert: cardTemplateData.zahlweise,
+        beitragVertragspartnerSachwert: cardTemplateData.beitrag,
       }
       break
     case "STEUERN":
@@ -3648,6 +3816,147 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         tagZweiPrivatePflegeversicherung: cardTemplateData.krankentagegeldtag2,
         betragZweiPrivatePflegeversicherung: cardTemplateData.krankentagegeld2,
         kurtagegeldZweiPrivatePflegeversicherung: cardTemplateData.kurtagegeld,
+
+        selected2Persons: anzahlPersonen(cardTemplateData.anzahlVP, 2),
+        versichertePersonPrivatePflegeversicherung2:  typeof cardTemplateData.versichertePerson2 === "undefined"
+        ? isMandantDefined("undefined")
+        : isMandantDefined(cardTemplateData.versichertePerson2.id),
+        sonstigeVersichertePersonPrivatePflegeversicherung2:
+          cardTemplateData.versichertePersonSonstige2,
+        tarifVersichertePersonPrivatePflegeversicherung2:
+          cardTemplateData.tarifname2,
+        primaerarztprinzipVersichertePersonPrivatePflegeversicherung2:
+          cardTemplateData.primaerarztprinzip2,
+        einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung2:
+          cardTemplateData.einbettzimmer2,
+        beitragVersichertePersonPrivatePflegeversicherung2:
+          cardTemplateData.beitragVP2,
+        zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung2:
+          cardTemplateData.zahnbehandlung2,
+        ambulantLeistungsbeschreibungPrivatePflegeversicherung2:
+          cardTemplateData.sbAmbulant2,
+        stationaerLeistungsbeschreibungPrivatePflegeversicherung2:
+          cardTemplateData.sbStationaer2,
+        zahnLeistungsbeschreibungPrivatePflegeversicherung2:
+          cardTemplateData.sbZahn2,
+        tagEinsPrivatePflegeversicherung2: cardTemplateData.krankentagegeldtag12,
+        betragEinsPrivatePflegeversicherung2: cardTemplateData.krankentagegeld12,
+        tagZweiPrivatePflegeversicherung2: cardTemplateData.krankentagegeldtag22,
+        betragZweiPrivatePflegeversicherung2: cardTemplateData.krankentagegeld22,
+        kurtagegeldZweiPrivatePflegeversicherung2: cardTemplateData.kurtagegeld2,
+
+
+        selected3Persons: anzahlPersonen(cardTemplateData.anzahlVP, 3),
+        versichertePersonPrivatePflegeversicherung3:  typeof cardTemplateData.versichertePerson3 === "undefined"
+        ? isMandantDefined("undefined")
+        : isMandantDefined(cardTemplateData.versichertePerson3.id),
+        sonstigeVersichertePersonPrivatePflegeversicherung3:
+          cardTemplateData.versichertePersonSonstige3,
+        tarifVersichertePersonPrivatePflegeversicherung3:
+          cardTemplateData.tarifname3,
+        primaerarztprinzipVersichertePersonPrivatePflegeversicherung3:
+          cardTemplateData.primaerarztprinzip3,
+        einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung3:
+          cardTemplateData.einbettzimmer3,
+        beitragVersichertePersonPrivatePflegeversicherung3:
+          cardTemplateData.beitragVP3,
+        zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung3:
+          cardTemplateData.zahnbehandlung3,
+        ambulantLeistungsbeschreibungPrivatePflegeversicherung3:
+          cardTemplateData.sbAmbulant3,
+        stationaerLeistungsbeschreibungPrivatePflegeversicherung3:
+          cardTemplateData.sbStationaer3,
+        zahnLeistungsbeschreibungPrivatePflegeversicherung3:
+          cardTemplateData.sbZahn3,
+        tagEinsPrivatePflegeversicherung3: cardTemplateData.krankentagegeldtag13,
+        betragEinsPrivatePflegeversicherung3: cardTemplateData.krankentagegeld13,
+        tagZweiPrivatePflegeversicherung3: cardTemplateData.krankentagegeldtag23,
+        betragZweiPrivatePflegeversicherung3: cardTemplateData.krankentagegeld23,
+        kurtagegeldZweiPrivatePflegeversicherung3: cardTemplateData.kurtagegeld3,
+
+        selected4Persons: anzahlPersonen(cardTemplateData.anzahlVP, 4),
+        versichertePersonPrivatePflegeversicherung4:  typeof cardTemplateData.versichertePerson4 === "undefined"
+        ? isMandantDefined("undefined")
+        : isMandantDefined(cardTemplateData.versichertePerson4.id),
+        sonstigeVersichertePersonPrivatePflegeversicherung4:
+          cardTemplateData.versichertePersonSonstige4,
+        tarifVersichertePersonPrivatePflegeversicherung4:
+          cardTemplateData.tarifname4,
+        primaerarztprinzipVersichertePersonPrivatePflegeversicherung4:
+          cardTemplateData.primaerarztprinzip4,
+        einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung4:
+          cardTemplateData.einbettzimmer4,
+        beitragVersichertePersonPrivatePflegeversicherung4:
+          cardTemplateData.beitragVP4,
+        zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung4:
+          cardTemplateData.zahnbehandlung4,
+        ambulantLeistungsbeschreibungPrivatePflegeversicherung4:
+          cardTemplateData.sbAmbulant4,
+        stationaerLeistungsbeschreibungPrivatePflegeversicherung4:
+          cardTemplateData.sbStationaer4,
+        zahnLeistungsbeschreibungPrivatePflegeversicherung4:
+          cardTemplateData.sbZahn4,
+        tagEinsPrivatePflegeversicherung4: cardTemplateData.krankentagegeldtag14,
+        betragEinsPrivatePflegeversicherung4: cardTemplateData.krankentagegeld14,
+        tagZweiPrivatePflegeversicherung4: cardTemplateData.krankentagegeldtag24,
+        betragZweiPrivatePflegeversicherung4: cardTemplateData.krankentagegeld24,
+        kurtagegeldZweiPrivatePflegeversicherung4: cardTemplateData.kurtagegeld4,
+
+        selected5Persons: anzahlPersonen(cardTemplateData.anzahlVP, 5),
+        versichertePersonPrivatePflegeversicherung5: typeof cardTemplateData.versichertePerson5 === "undefined"
+        ? isMandantDefined("undefined")
+        : isMandantDefined(cardTemplateData.versichertePerson5.id),
+        sonstigeVersichertePersonPrivatePflegeversicherung5:
+          cardTemplateData.versichertePersonSonstige5,
+        tarifVersichertePersonPrivatePflegeversicherung5:
+          cardTemplateData.tarifname5,
+        primaerarztprinzipVersichertePersonPrivatePflegeversicherung5:
+          cardTemplateData.primaerarztprinzip5,
+        einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung5:
+          cardTemplateData.einbettzimmer5,
+        beitragVersichertePersonPrivatePflegeversicherung5:
+          cardTemplateData.beitragVP5,
+        zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung5:
+          cardTemplateData.zahnbehandlung5,
+        ambulantLeistungsbeschreibungPrivatePflegeversicherung5:
+          cardTemplateData.sbAmbulant5,
+        stationaerLeistungsbeschreibungPrivatePflegeversicherung5:
+          cardTemplateData.sbStationaer5,
+        zahnLeistungsbeschreibungPrivatePflegeversicherung5:
+          cardTemplateData.sbZahn5,
+        tagEinsPrivatePflegeversicherung5: cardTemplateData.krankentagegeldtag15,
+        betragEinsPrivatePflegeversicherung5: cardTemplateData.krankentagegeld15,
+        tagZweiPrivatePflegeversicherung5: cardTemplateData.krankentagegeldtag25,
+        betragZweiPrivatePflegeversicherung5: cardTemplateData.krankentagegeld25,
+        kurtagegeldZweiPrivatePflegeversicherung5: cardTemplateData.kurtagegeld5,
+
+        selected6Persons: anzahlPersonen(cardTemplateData.anzahlVP, 6),
+        versichertePersonPrivatePflegeversicherung6:  typeof cardTemplateData.versichertePerson6 === "undefined"
+        ? isMandantDefined("undefined")
+        : isMandantDefined(cardTemplateData.versichertePerson6.id),
+        sonstigeVersichertePersonPrivatePflegeversicherung6:
+          cardTemplateData.versichertePersonSonstige6,
+        tarifVersichertePersonPrivatePflegeversicherung6:
+          cardTemplateData.tarifname6,
+        primaerarztprinzipVersichertePersonPrivatePflegeversicherung6:
+          cardTemplateData.primaerarztprinzip6,
+        einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung6:
+          cardTemplateData.einbettzimmer6,
+        beitragVersichertePersonPrivatePflegeversicherung6:
+          cardTemplateData.beitragVP6,
+        zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung6:
+          cardTemplateData.zahnbehandlung6,
+        ambulantLeistungsbeschreibungPrivatePflegeversicherung6:
+          cardTemplateData.sbAmbulant6,
+        stationaerLeistungsbeschreibungPrivatePflegeversicherung6:
+          cardTemplateData.sbStationaer6,
+        zahnLeistungsbeschreibungPrivatePflegeversicherung6:
+          cardTemplateData.sbZahn6,
+        tagEinsPrivatePflegeversicherung6: cardTemplateData.krankentagegeldtag16,
+        betragEinsPrivatePflegeversicherung6: cardTemplateData.krankentagegeld16,
+        tagZweiPrivatePflegeversicherung6: cardTemplateData.krankentagegeldtag26,
+        betragZweiPrivatePflegeversicherung6: cardTemplateData.krankentagegeld26,
+        kurtagegeldZweiPrivatePflegeversicherung6: cardTemplateData.kurtagegeld6,
       };
       break;
     case "PRIVATHAFTPFLICHT":
@@ -3788,6 +4097,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
           cardTemplateData.krankenhaustagegeld,
           artKVZusatz:"1",
 
+    
           selected2Persons: anzahlPersonen(cardTemplateData.anzahlVP, 2),
           versichertePersonKVZusatz2:  typeof cardTemplateData.versichertePerson2 === "undefined"
           ? isMandantDefined("undefined")
@@ -3796,7 +4106,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         stationaerVersichertePersonKVZusatz2: cardTemplateData.inklStationaer2,
         zahnVersichertePersonKVZusatz2: cardTemplateData.inklZahn2,
         KTVersichertePersonKVZusatz2: cardTemplateData.inklKT2,
-        kHTVersichertePersonKVZusatz2: cardTemplateData.inklKHT2,
+        kHTVersichertePersonKVZusatz2: doesItMatchWithVersichertePerson(anzahlPersonen(cardTemplateData.anzahlVP, 2), cardTemplateData.inklKT2),
         tarifLeistungenAmbulantKVZusatz2: cardTemplateData.tarifAmbulant2,
         altersrueckstellungLeistungenAmbulantKVZusatz2:
           cardTemplateData.altersrueckstellungAmbulant2,
@@ -3861,7 +4171,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         stationaerVersichertePersonKVZusatz3: cardTemplateData.inklStationaer3,
         zahnVersichertePersonKVZusatz3: cardTemplateData.inklZahn3,
         KTVersichertePersonKVZusatz3: cardTemplateData.inklKT3,
-        kHTVersichertePersonKVZusatz3: cardTemplateData.inklKHT3,
+        kHTVersichertePersonKVZusatz3: doesItMatchWithVersichertePerson(anzahlPersonen(cardTemplateData.anzahlVP, 3),cardTemplateData.inklKHT3),
         tarifLeistungenAmbulantKVZusatz3: cardTemplateData.tarifAmbulant3,
         altersrueckstellungLeistungenAmbulantKVZusatz3:
           cardTemplateData.altersrueckstellungAmbulant3,
@@ -3926,7 +4236,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         stationaerVersichertePersonKVZusatz4: cardTemplateData.inklStationaer4,
         zahnVersichertePersonKVZusatz4: cardTemplateData.inklZahn4,
         KTVersichertePersonKVZusatz4: cardTemplateData.inklKT4,
-        kHTVersichertePersonKVZusatz4: cardTemplateData.inklKHT4,
+        kHTVersichertePersonKVZusatz4: doesItMatchWithVersichertePerson(anzahlPersonen(cardTemplateData.anzahlVP, 4),cardTemplateData.inklKHT4),
         tarifLeistungenAmbulantKVZusatz4: cardTemplateData.tarifAmbulant4,
         altersrueckstellungLeistungenAmbulantKVZusatz4:
           cardTemplateData.altersrueckstellungAmbulant4,
@@ -3980,8 +4290,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         erstattungSonstigeLeistungenKVZusatz4: cardTemplateData.erstattung4,
         auslandsreiseKVSonstigeLeistungenKVZusatz4:
           cardTemplateData.auslandsreiseKV4,
-        krankenhaustagegeldSonstigeLeistungenKVZusatz4:
-          cardTemplateData.krankenhaustagegeld4,
+        krankenhaustagegeldSonstigeLeistungenKVZusatz4:cardTemplateData.krankenhaustagegeld6,
 
           selected5Persons: anzahlPersonen(cardTemplateData.anzahlVP, 5),
           versichertePersonKVZusatz5:  typeof cardTemplateData.versichertePerson5 === "undefined"
@@ -3991,7 +4300,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         stationaerVersichertePersonKVZusatz5: cardTemplateData.inklStationaer5,
         zahnVersichertePersonKVZusatz5: cardTemplateData.inklZahn5,
         KTVersichertePersonKVZusatz5: cardTemplateData.inklKT5,
-        kHTVersichertePersonKVZusatz5: cardTemplateData.inklKHT5,
+        kHTVersichertePersonKVZusatz5:doesItMatchWithVersichertePerson(anzahlPersonen(cardTemplateData.anzahlVP,5),cardTemplateData.inklKHT5),
         tarifLeistungenAmbulantKVZusatz5: cardTemplateData.tarifAmbulant5,
         altersrueckstellungLeistungenAmbulantKVZusatz5:
           cardTemplateData.altersrueckstellungAmbulant5,
@@ -4045,8 +4354,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         erstattungSonstigeLeistungenKVZusatz5: cardTemplateData.erstattung5,
         auslandsreiseKVSonstigeLeistungenKVZusatz5:
           cardTemplateData.auslandsreiseKV5,
-        krankenhaustagegeldSonstigeLeistungenKVZusatz5:
-          cardTemplateData.krankenhaustagegeld5,
+        krankenhaustagegeldSonstigeLeistungenKVZusatz5:doesItMatchWithVersichertePerson(anzahlPersonen(cardTemplateData.anzahlVP, 5), cardTemplateData.krankenhaustagegeld6),
 
           selected6Persons: anzahlPersonen(cardTemplateData.anzahlVP, 6),
           versichertePersonKVZusatz6:  typeof cardTemplateData.versichertePerson6 === "undefined"
@@ -4056,7 +4364,7 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         stationaerVersichertePersonKVZusatz6: cardTemplateData.inklStationaer6,
         zahnVersichertePersonKVZusatz6: cardTemplateData.inklZahn6,
         KTVersichertePersonKVZusatz6: cardTemplateData.inklKT6,
-        kHTVersichertePersonKVZusatz6: cardTemplateData.inklKHT6,
+        kHTVersichertePersonKVZusatz6:doesItMatchWithVersichertePerson(anzahlPersonen(cardTemplateData.anzahlVP, 6),cardTemplateData.inklKHT6),
         tarifLeistungenAmbulantKVZusatz6: cardTemplateData.tarifAmbulant6,
         altersrueckstellungLeistungenAmbulantKVZusatz6:
           cardTemplateData.altersrueckstellungAmbulant6,
@@ -4110,8 +4418,8 @@ sonstigesBruttoBetragMtlTextfieldEinnahmen:cardTemplateData.sonstigesBrutto,
         erstattungSonstigeLeistungenKVZusatz6: cardTemplateData.erstattung6,
         auslandsreiseKVSonstigeLeistungenKVZusatz6:
           cardTemplateData.auslandsreiseKV6,
-        krankenhaustagegeldSonstigeLeistungenKVZusatz6:
-          cardTemplateData.krankenhaustagegeld6,
+        krankenhaustagegeldSonstigeLeistungenKVZusatz6:cardTemplateData.krankenhaustagegeld6
+         ,
       };
 
       break;

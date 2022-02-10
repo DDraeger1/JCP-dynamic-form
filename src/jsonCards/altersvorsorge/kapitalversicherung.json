@@ -23,25 +23,19 @@
                 {"value":3,"label":"FRV"}]
           },
           {
-            "name": "versicherungsnehmerKapitalversicherungHeader",
-            "label": "Versicherungsnehmer",
-            "type": "header"
-          },
+            "section": "Versicherungsnehmer",
+            "card": true,
+            "items": [
           {
             "name": "versicherungsnehmerKapitalversicherung",
             "label": "Versicherungsnehmer",
             "type": "selectMandant"
-          },
+          }]},
           {
-            "name": "gesellschaftKapitalversicherungHeader",
-            "label": "Gesellschaft",
-            "type": "header"
-          },
-          {
-            "name": "produktIDGesellschaftKapitalversicherung",
-            "label": "Produkt ID (Suite mapping)",
-            "type": "select",
-            "options": [{ "value": 0, "label": "Mandant" }]
+            "name": "gesellschaftKapitalversicherung",
+            "type": "gesellschaft",
+            "props":{"required":true},
+            "suiteValue":"gesellschaft"
           },
           {
             "name": "tarifbezeichnungGesellschaftKapitalversicherung",
@@ -57,11 +51,10 @@
             "props": { "required": true, "sm":6,
               "xs":6 }
           },
-        {
-            "name": "verwendungszweckKapitalversicherungHeader",
-            "label": "Verwendungszweck",
-            "type": "header"
-          },
+          {
+            "section": "Verwendungszweck",
+            "card": true,
+            "items": [
           {
             "name": "verwendungszweckKapitalversicherung",
             "label": "Verwendungszweck",
@@ -81,12 +74,11 @@
             "type": "text",
             "props": { "sm": 6,
               "xs":6 }
-          },
+          }]},
           {
-            "name": "versichertePersonKapitalversicherungHeader",
-            "label": "Versicherte Person",
-            "type": "header"
-          },
+            "section": "Versicherte Person",
+            "card": true,
+            "items": [
           {
             "name": "versichertePersonKapitalversicherung",
             "label": "Versicherte Person (Suite mapping)",
@@ -116,12 +108,12 @@
             "name": "versicherungssummeVertragslaufzeitKapitalversicherung",
             "label": "Versicherungssumme (€)",
             "type": "text"
-          },
-          {
-            "name": "dynamikKapitalversicherungHeader",
-            "label": "Dynamik",
-            "type": "header"
-          },
+          }
+        ]},
+        {
+          "section": "Dynamik",
+          "card": true,
+          "items": [
           {
             "name": "dynamikKapitalversicherung",
             "label": "Dynamik",
@@ -165,12 +157,11 @@
             "type": "text",
             "props": { "sm": 6,
               "xs":6 }
-          },
+          }]},
           {
-            "name": "monatlicheRentenleistungKapitalversicherungHeader",
-            "label": "Monatliche Rentenleistung",
-            "type": "header"
-          },
+            "section": "Monatliche Rentenleistung",
+            "card": true,
+            "items": [
           {
             "name": "garantiertMonatlicheRentenleistungKapitalversicherung",
             "label": "Monatliche Rentenleistung garantiert (€)",
@@ -203,12 +194,11 @@
             "name": "MonatlicheRentenleistungKapitalversicherung",
             "label": "Prognostizierte Rene Berechnet",
             "type": "paragraph"
-          },
+          }]},
           {
-            "name": "ablaufleistungKapitalversicherungHeader",
-            "label": "Ablaufleistung",
-            "type": "header"
-          },
+            "section": "Ablaufleistung",
+            "card": true,
+            "items": [
           {
             "name": "garantiertAblaufleistungKapitalversicherung",
             "label": "garantiert (€)",
@@ -227,7 +217,7 @@
             "name": "beiAblaufleistungKapitalversicherung",
             "label": "bei (%)",
             "type": "text"
-          },
+          }]},
           {
             "name": "BUKapitalversicherungHeader",
             "label": "BU",
@@ -257,10 +247,9 @@
                 {"value":1,"label":"Ja"}]
           },
           {
-            "name": "BUZKapitalversicherungHeader",
-            "label": "BUZ",
-            "type": "header"
-          },
+            "section": "BUZ",
+            "card": true,
+            "items": [
           {
             "name": "beitragsendeBUZKapitalversicherung",
             "label": "Beitragsende",
@@ -312,12 +301,11 @@
             "type": "date",
             "props": { "sm": 6,
               "xs":6 }
-          },
+          }]},
           {
-            "name": "VWLKapitalversicherungHeader",
-            "label": "VWL",
-            "type": "header"
-          },
+            "section": "VWL",
+            "card": true,
+            "items": [
           {
             "name": "VWLKapitalversicherung",
             "label": "VWL",
@@ -370,6 +358,6 @@
             "name": "beitragsanteilVWLKapitalversicherung",
             "label": "Beitragsanteil für BU (€)",
             "type": "text"
-          }
+          }]}
         ]
 }

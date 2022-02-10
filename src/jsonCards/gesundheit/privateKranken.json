@@ -1,249 +1,1028 @@
 {
   "section": "Private Krankenversicherung",
   "card": true,
-  "mobileClassname":"PrivateKrankenPflegeversicherung",
+  "mobileClassname": "PrivateKrankenPflegeversicherung",
   "items": [
-    {"name":"showExternalProductId",
+    {
+      "name": "selected2Persons",
       "type": "paragraph",
-    "label":""},
+      "props": { "sm": 0, "xs": 0 },
+      "label": ""
+    },
+    {
+      "name": "selected3Persons",
+      "props": { "sm": 0, "xs": 0 },
+      "type": "paragraph",
+      "label": ""
+    },
+    {
+      "name": "selected4Persons",
+      "props": { "sm": 0, "xs": 0 },
+      "type": "paragraph",
+      "label": ""
+    },
+    {
+      "name": "selected5Persons",
+      "props": { "sm": 0, "xs": 0 },
+      "type": "paragraph",
+      "label": ""
+    },
+    {
+      "name": "selected6Persons",
+      "props": { "sm": 0, "xs": 0 },
+      "type": "paragraph",
+      "label": ""
+    },
+    {
+      "name": "showExternalProductId",
+      "props": { "sm": 0, "xs": 0 },
+      "type": "paragraph",
+      "label": ""
+    },
     {
       "name": "externalProduktId",
       "type": "produktid",
-      "condition":"showExternalProductId",
+      "condition": "showExternalProductId",
       "props": { "required": true },
-      "suiteValue":"externalProduktId"},
+      "suiteValue": "externalProduktId"
+    },
     {
       "name": "gesellschaftPrivateKrankenversicherung",
       "type": "gesellschaft",
-      "props": { "required": true},
-      "suiteValue":"gesellschaft"
+      "props": { "required": true },
+      "suiteValue": "gesellschaft"
     },
     {
       "name": "tarifbezeichnungPrivateKrankenversicherung",
       "label": "Tarifbezeichnung",
       "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":"tarifBezeichnung"
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue": "tarifBezeichnung"
     },
     {
       "name": "vertragsnummerPrivateKrankenversicherung",
       "label": "Vertragsnummer",
       "type": "text",
-      "props": { "required": true, "sm":6 ,
-        "xs":6},
-        "suiteValue":"versicherungsnummer"
+      "props": { "required": true, "sm": 6, "xs": 6 },
+      "suiteValue": "versicherungsnummer"
     },
     {
-      "name": "versicherungsnehmerPrivateKrankenversicherungHeader",
-      "label": "Versicherungsnehmer",
-      "type": "header"
+      "section": "Versicherungsnehmer",
+      "card": true,
+      "items": [
+        {
+          "name": "versicherungsnehmerPrivateKrankenversicherung",
+          "label": "Versicherungsnehmer",
+          "type": "selectMandant",
+          "tarifType": "KVV",
+          "props": { "required": true },
+          "suiteValue": "versicherungsnehmerId"
+        },
+        {
+          "name": "beginnVersicherungsnehmerPrivateKrankenversicherung",
+          "label": "Beginn",
+          "type": "date",
+          "props": { "required": true, "sm": 6, "xs": 6 },
+          "suiteValue": "versicherungsbeginn"
+        },
+        {
+          "name": "zahlweiseVersicherungsnehmerPrivatePflegeversicherung",
+          "label": "Zahlweise",
+          "type": "select",
+          "props": { "required": true, "sm": 6, "xs": 6 },
+          "options": [
+            { "value": "MONATLICH", "label": "Monatlich" },
+            { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+            { "value": "QUARTAL", "label": "Quartal" },
+            { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+            { "value": "JAEHRLICH", "label": "Jährlich" }
+          ],
+          "suiteValue": "zahlweise"
+        },
+        {
+          "name": "gesamtbeitragVersicherungsnehmerPrivatePflegeversicherung",
+          "label": "Gesamtbeitrag (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "beitrag"
+        },
+        {
+          "name": "tarifVersicherungsnehmerPrivatePflegeversicherung",
+          "label": "Tarif",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifgruppe"
+        }
+      ]
     },
     {
-      "name": "versicherungsnehmerPrivateKrankenversicherung",
-      "label": "Versicherungsnehmer",
-      "type": "selectMandant",
-      "tarifType":"KVV",
-      "props": { "required": true },
-      "suiteValue":"versicherungsnehmerId"
+      "section": "Versicherte Personen",
+      "card": true,
+      "items": [
+        {
+          "name": "anzahlVersichertePersonenPrivatePflegeversicherung",
+          "label": "Anzahl versicherte Personen",
+          "type": "personArray",
+          "options": [
+            { "value": 1, "label": "1" },
+            { "value": 2, "label": "2" },
+            { "value": 3, "label": "3" },
+            { "value": 4, "label": "4" },
+            { "value": 5, "label": "5" },
+            { "value": 6, "label": "6" }
+          ],
+          "suiteValue": "anzahlVP"
+        }
+      ]
     },
     {
-      "name": "beginnVersicherungsnehmerPrivateKrankenversicherung",
-      "label": "Beginn",
-      "type": "date",
-      "props": { "required": true,"sm":6,
-        "xs":6 },
-        "suiteValue":"versicherungsbeginn"
+      "card": false,
+      "accordionText": "Versicherte Person",
+      "accordionId": "1",
+      "items": [
+        {
+          "name": "versichertePersonPrivatePflegeversicherung",
+          "label": "Versicherte Person",
+          "type": "selectVersichert",
+          "suiteValue": "versichertePersonId"
+        },
+        {
+          "name": "sonstigeVersichertePersonPrivatePflegeversicherung",
+          "label": "Sonstige",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versichertePersonSonstige"
+        },
+        {
+          "name": "tarifVersichertePersonPrivatePflegeversicherung",
+          "label": "Tarif",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifname"
+        },
+        {
+          "name": "primaerarztprinzipVersichertePersonPrivatePflegeversicherung",
+          "label": "Primärarztprinzip",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "primaerarztprinzip"
+        },
+        {
+          "name": "einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung",
+          "label": "Einbettzimmer/Chefarzt",
+          "type": "select",
+          "options": [
+            { "value": "0", "label": "Mehrbett" },
+            { "value": "1", "label": "Einbett mit Chefarzt" },
+            { "value": "2", "label": "Zweibett mit Chefarzt" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "einbettzimmer"
+        },
+        {
+          "name": "beitragVersichertePersonPrivatePflegeversicherung",
+          "label": "Beitrag (€)",
+          "type": "text",
+          "suiteValue": "beitragVP"
+        },
+        {
+          "section": "Leistungsbeschreibung",
+          "card": true,
+          "items": [
+            {
+              "name": "zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung",
+              "label": "Zahnbehandlung (%)",
+              "type": "text",
+              "suiteValue": "zahnbehandlung"
+            },
+            {
+              "name": "bereicheSelbsbehaltLeistungsbeschreibungPrivatePflegeversicherung",
+              "label": "Bereiche Selbstbehalt",
+              "type": "paragraph"
+            },
+            {
+              "name": "ambulantLeistungsbeschreibungPrivatePflegeversicherung",
+              "label": "Ambulant",
+              "type": "checkbox",
+              "props": { "sm": 4, "xs": 4 },
+              "suiteValue": "sbAmbulant"
+            },
+            {
+              "name": "stationaerLeistungsbeschreibungPrivatePflegeversicherung",
+              "label": "Stationär",
+              "type": "checkbox",
+              "props": { "sm": 4, "xs": 4 },
+              "suiteValue": "sbStationaer"
+            },
+            {
+              "name": "zahnLeistungsbeschreibungPrivatePflegeversicherung",
+              "label": "Zahn",
+              "type": "checkbox",
+              "props": { "sm": 4, "xs": 4 },
+              "suiteValue": "sbZahn"
+            }
+          ]
+        },
+        {
+          "section": "Krankentagegeld ab dem",
+          "card": true,
+          "items": [
+            {
+              "name": "tagEinsPrivatePflegeversicherung",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag1"
+            },
+            {
+              "name": "betragEinsPrivatePflegeversicherung",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld1"
+            },
+            {
+              "name": "tagZweiPrivatePflegeversicherung",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag2"
+            },
+            {
+              "name": "betragZweiPrivatePflegeversicherung",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld2"
+            },
+            {
+              "name": "kurtagegeldZweiPrivatePflegeversicherung",
+              "label": "Kurtagegeld (€)",
+              "type": "text",
+              "suiteValue": "kurtagegeld"
+            }
+          ]
+        }
+      ]
     },
     {
-      "name": "zahlweiseVersicherungsnehmerPrivatePflegeversicherung",
-      "label": "Zahlweise",
-      "type": "select",
-      "props": { "required": true,"sm":6 ,
-        "xs":6},
-      "options": [
-        { "value": "MONATLICH", "label": "Monatlich" },
-        { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
-        { "value": "QUARTAL", "label": "Quartal" },
-        { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
-        { "value": "JAEHRLICH", "label": "Jährlich" }
-      ],
-      "suiteValue":"zahlweise"
+      "card": false,
+      "accordionText": "Versicherte Person 2",
+      "accordionId": "2",
+      "condition": "selected2Persons",
+      "items": [
+        {
+          "name": "versichertePersonPrivatePflegeversicherung2",
+          "label": "Versicherte Person",
+          "type": "selectVersichert",
+          "suiteValue": "versichertePersonId2",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "sonstigeVersichertePersonPrivatePflegeversicherung2",
+          "label": "Sonstige",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versichertePersonSonstige2",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "tarifVersichertePersonPrivatePflegeversicherung2",
+          "label": "Tarif",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifname2",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "primaerarztprinzipVersichertePersonPrivatePflegeversicherung2",
+          "label": "Primärarztprinzip",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "primaerarztprinzip2",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung2",
+          "label": "Einbettzimmer/Chefarzt",
+          "type": "select",
+          "options": [
+            { "value": "0", "label": "Mehrbett" },
+            { "value": "1", "label": "Einbett mit Chefarzt" },
+            { "value": "2", "label": "Zweibett mit Chefarzt" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "einbettzimmer2",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "beitragVersichertePersonPrivatePflegeversicherung2",
+          "label": "Beitrag (€)",
+          "type": "text",
+          "suiteValue": "beitragVP2",
+          "condition": "selected2Persons"
+        },
+        {
+          "section": "Leistungsbeschreibung",
+          "card": true,
+          "condition":"selected2Persons",
+          "items": [
+        {
+          "name": "zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung2",
+          "label": "Zahnbehandlung (%)",
+          "type": "text",
+          "suiteValue": "zahnbehandlung2",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "bereicheSelbsbehaltLeistungsbeschreibungPrivatePflegeversicherung2",
+          "label": "Bereiche Selbstbehalt",
+          "type": "paragraph",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "ambulantLeistungsbeschreibungPrivatePflegeversicherung2",
+          "label": "Ambulant",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbAmbulant2",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "stationaerLeistungsbeschreibungPrivatePflegeversicherung2",
+          "label": "Stationär",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbStationaer2",
+          "condition": "selected2Persons"
+        },
+        {
+          "name": "zahnLeistungsbeschreibungPrivatePflegeversicherung2",
+          "label": "Zahn",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbZahn2",
+          "condition": "selected2Persons"
+          }]},
+        {
+          "section": "Krankentagegeld ab dem",
+          "card": true,
+          "condition": "selected2Persons",
+          "items": [
+            {
+              "name": "tagEinsPrivatePflegeversicherung2",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag12",
+              "condition": "selected2Persons"
+            },
+            {
+              "name": "betragEinsPrivatePflegeversicherung2",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld12",
+              "condition": "selected2Persons"
+            },
+            {
+              "name": "tagZweiPrivatePflegeversicherung2",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag22",
+              "condition": "selected2Persons"
+            },
+            {
+              "name": "betragZweiPrivatePflegeversicherung2",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld22",
+              "condition": "selected2Persons"
+            },
+            {
+              "name": "kurtagegeldZweiPrivatePflegeversicherung2",
+              "label": "Kurtagegeld (€)",
+              "type": "text",
+              "suiteValue": "kurtagegeld2",
+              "condition": "selected2Persons"
+            }
+          ]
+        }
+      ]
     },
     {
-      "name": "gesamtbeitragVersicherungsnehmerPrivatePflegeversicherung",
-      "label": "Gesamtbeitrag (€)",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"beitrag"
+      "card": false,
+      "accordionText": "Versicherte Person 3",
+      "accordionId": "3",
+      "condition": "selected3Persons",
+      "items": [
+        {
+          "name": "versichertePersonPrivatePflegeversicherung3",
+          "label": "Versicherte Person",
+          "type": "selectVersichert",
+          "suiteValue": "versichertePerson3",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "sonstigeVersichertePersonPrivatePflegeversicherung3",
+          "label": "Sonstige",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versichertePersonSonstige3",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "tarifVersichertePersonPrivatePflegeversicherung3",
+          "label": "Tarif",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifname3",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "primaerarztprinzipVersichertePersonPrivatePflegeversicherung3",
+          "label": "Primärarztprinzip",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "primaerarztprinzip3",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung3",
+          "label": "Einbettzimmer/Chefarzt",
+          "type": "select",
+          "options": [
+            { "value": "0", "label": "Mehrbett" },
+            { "value": "1", "label": "Einbett mit Chefarzt" },
+            { "value": "2", "label": "Zweibett mit Chefarzt" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "einbettzimmer3",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "beitragVersichertePersonPrivatePflegeversicherung3",
+          "label": "Beitrag (€)",
+          "type": "text",
+          "suiteValue": "beitragVP3",
+          "condition": "selected3Persons"
+        },
+        {
+          "section": "Leistungsbeschreibung",
+          "card": true,
+          "condition":"selected3Persons",
+          "items": [
+        {
+          "name": "zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung3",
+          "label": "Zahnbehandlung (%)",
+          "type": "text",
+          "suiteValue": "zahnbehandlung3",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "bereicheSelbsbehaltLeistungsbeschreibungPrivatePflegeversicherung3",
+          "label": "Bereiche Selbstbehalt",
+          "type": "paragraph",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "ambulantLeistungsbeschreibungPrivatePflegeversicherung3",
+          "label": "Ambulant",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbAmbulant3",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "stationaerLeistungsbeschreibungPrivatePflegeversicherung3",
+          "label": "Stationär",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbStationaer3",
+          "condition": "selected3Persons"
+        },
+        {
+          "name": "zahnLeistungsbeschreibungPrivatePflegeversicherung3",
+          "label": "Zahn",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbZahn3",
+          "condition": "selected3Persons"
+        }]},
+        {
+          "section": "Krankentagegeld ab dem",
+          "card": true,
+          "condition": "selected3Persons",
+          "items": [
+            {
+              "name": "tagEinsPrivatePflegeversicherung3",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag13",
+              "condition": "selected3Persons"
+            },
+            {
+              "name": "betragEinsPrivatePflegeversicherung3",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld13",
+              "condition": "selected3Persons"
+            },
+            {
+              "name": "tagZweiPrivatePflegeversicherung3",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag23",
+              "condition": "selected3Persons"
+            },
+            {
+              "name": "betragZweiPrivatePflegeversicherung3",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld23",
+              "condition": "selected3Persons"
+            },
+            {
+              "name": "kurtagegeldZweiPrivatePflegeversicherung3",
+              "label": "Kurtagegeld (€)",
+              "type": "text",
+              "suiteValue": "kurtagegeld3",
+              "condition": "selected3Persons"
+            }
+          ]
+        }
+      ]
     },
     {
-      "name": "tarifVersicherungsnehmerPrivatePflegeversicherung",
-      "label": "Tarif",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"tarifgruppe"
+      "card": false,
+      "accordionText": "Versicherte Person 4",
+      "accordionId": "4",
+      "condition": "selected4Persons",
+      "items": [
+        {
+          "name": "versichertePersonPrivatePflegeversicherung4",
+          "label": "Versicherte Person",
+          "type": "selectVersichert",
+          "suiteValue": "versichertePerson4",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "sonstigeVersichertePersonPrivatePflegeversicherung4",
+          "label": "Sonstige",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versichertePersonSonstige4",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "tarifVersichertePersonPrivatePflegeversicherung4",
+          "label": "Tarif",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifname4",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "primaerarztprinzipVersichertePersonPrivatePflegeversicherung4",
+          "label": "Primärarztprinzip",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "primaerarztprinzip4",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung4",
+          "label": "Einbettzimmer/Chefarzt",
+          "type": "select",
+          "options": [
+            { "value": "0", "label": "Mehrbett" },
+            { "value": "1", "label": "Einbett mit Chefarzt" },
+            { "value": "2", "label": "Zweibett mit Chefarzt" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "einbettzimmer4",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "beitragVersichertePersonPrivatePflegeversicherung4",
+          "label": "Beitrag (€)",
+          "type": "text",
+          "suiteValue": "beitragVP4",
+          "condition": "selected4Persons"
+        },
+        {
+          "section": "Leistungsbeschreibung",
+          "card": true,
+          "condition":"selected4Persons",
+          "items": [
+        {
+          "name": "zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung4",
+          "label": "Zahnbehandlung (%)",
+          "type": "text",
+          "suiteValue": "zahnbehandlung4",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "bereicheSelbsbehaltLeistungsbeschreibungPrivatePflegeversicherung4",
+          "label": "Bereiche Selbstbehalt",
+          "type": "paragraph",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "ambulantLeistungsbeschreibungPrivatePflegeversicherung4",
+          "label": "Ambulant",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbAmbulant4",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "stationaerLeistungsbeschreibungPrivatePflegeversicherung4",
+          "label": "Stationär",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbStationaer4",
+          "condition": "selected4Persons"
+        },
+        {
+          "name": "zahnLeistungsbeschreibungPrivatePflegeversicherung4",
+          "label": "Zahn",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbZahn4",
+          "condition": "selected4Persons"
+        }]},
+        {
+          "section": "Krankentagegeld ab dem",
+          "card": true,
+          "condition": "selected4Persons",
+          "items": [
+            {
+              "name": "tagEinsPrivatePflegeversicherung4",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag14",
+              "condition": "selected4Persons"
+            },
+            {
+              "name": "betragEinsPrivatePflegeversicherung4",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld14",
+              "condition": "selected4Persons"
+            },
+            {
+              "name": "tagZweiPrivatePflegeversicherung4",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag24",
+              "condition": "selected4Persons"
+            },
+            {
+              "name": "betragZweiPrivatePflegeversicherung4",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld24",
+              "condition": "selected4Persons"
+            },
+            {
+              "name": "kurtagegeldZweiPrivatePflegeversicherung4",
+              "label": "Kurtagegeld (€)",
+              "type": "text",
+              "suiteValue": "kurtagegeld4",
+              "condition": "selected4Persons"
+            }
+          ]
+        }
+      ]
     },
     {
-      "name": "versichertePersonenPrivatePflegeversicherungHeader",
-      "label": "Versicherte Personen",
-      "type": "header"
+      "card": false,
+      "accordionText": "Versicherte Person 5",
+      "accordionId": "5",
+      "condition": "selected5Persons",
+      "items": [
+        {
+          "name": "versichertePersonPrivatePflegeversicherung5",
+          "label": "Versicherte Person",
+          "type": "selectVersichert",
+          "suiteValue": "versichertePerson5",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "sonstigeVersichertePersonPrivatePflegeversicherung5",
+          "label": "Sonstige",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versichertePersonSonstige5",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "tarifVersichertePersonPrivatePflegeversicherung5",
+          "label": "Tarif",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifname5",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "primaerarztprinzipVersichertePersonPrivatePflegeversicherung5",
+          "label": "Primärarztprinzip",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "primaerarztprinzip5",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung5",
+          "label": "Einbettzimmer/Chefarzt",
+          "type": "select",
+          "options": [
+            { "value": "0", "label": "Mehrbett" },
+            { "value": "1", "label": "Einbett mit Chefarzt" },
+            { "value": "2", "label": "Zweibett mit Chefarzt" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "einbettzimmer5",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "beitragVersichertePersonPrivatePflegeversicherung5",
+          "label": "Beitrag (€)",
+          "type": "text",
+          "suiteValue": "beitragVP5",
+          "condition": "selected5Persons"
+        },
+        {
+          "section": "Leistungsbeschreibung",
+          "card": true,
+          "condition":"selected5Persons",
+          "items": [
+        {
+          "name": "zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung5",
+          "label": "Zahnbehandlung (%)",
+          "type": "text",
+          "suiteValue": "zahnbehandlung5",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "bereicheSelbsbehaltLeistungsbeschreibungPrivatePflegeversicherung5",
+          "label": "Bereiche Selbstbehalt",
+          "type": "paragraph",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "ambulantLeistungsbeschreibungPrivatePflegeversicherung5",
+          "label": "Ambulant",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbAmbulant5",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "stationaerLeistungsbeschreibungPrivatePflegeversicherung5",
+          "label": "Stationär",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbStationaer5",
+          "condition": "selected5Persons"
+        },
+        {
+          "name": "zahnLeistungsbeschreibungPrivatePflegeversicherung5",
+          "label": "Zahn",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbZahn5",
+          "condition": "selected5Persons"
+        }]},
+        {
+          "section": "Krankentagegeld ab dem",
+          "card": true,
+          "condition": "selected5Persons",
+          "items": [
+            {
+              "name": "tagEinsPrivatePflegeversicherung5",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag15",
+              "condition": "selected5Persons"
+            },
+            {
+              "name": "betragEinsPrivatePflegeversicherung5",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld15",
+              "condition": "selected5Persons"
+            },
+            {
+              "name": "tagZweiPrivatePflegeversicherung5",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag25",
+              "condition": "selected5Persons"
+            },
+            {
+              "name": "betragZweiPrivatePflegeversicherung5",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld25",
+              "condition": "selected5Persons"
+            },
+            {
+              "name": "kurtagegeldZweiPrivatePflegeversicherung5",
+              "label": "Kurtagegeld (€)",
+              "type": "text",
+              "suiteValue": "kurtagegeld5",
+              "condition": "selected5Persons"
+            }
+          ]
+        }
+      ]
     },
     {
-      "name": "anzahlVersichertePersonenPrivatePflegeversicherung",
-      "label": "Anzahl versicherte Personen",
-      "type": "select",
-      "options": [
-        { "value": 1, "label": "1" },
-        { "value": 2, "label": "2" },
-        { "value": 3, "label": "3" },
-        { "value": 4, "label": "4" },
-        { "value": 5, "label": "5" },
-        { "value": 6, "label": "6" }
-      ],
-      "suiteValue":"anzahlVP"
-    },
-    {
-      "name": "versichertePersonPrivatePflegeversicherungHeader",
-      "label": "Versicherte Person",
-      "type": "header"
-    },
-    {
-      "name": "versichertePersonPrivatePflegeversicherung",
-      "label": "Versicherte Person (suite mapping)",
-      "type": "select",
-      "options": [{ "value": 0, "label": "Mandant" }],
-      "suiteValue":"versichertePerson.id"
-    },
-    {
-      "name": "sonstigeVersichertePersonPrivatePflegeversicherung",
-      "label": "Sonstige",
-      "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":"versichertePersonSonstige"
-    },
-    {
-      "name": "tarifVersichertePersonPrivatePflegeversicherung",
-      "label": "Tarif",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"tarifname"
-    },
-    {
-      "name": "primaerarztprinzipVersichertePersonPrivatePflegeversicherung",
-      "label": "Primärarztprinzip",
-      "type": "select",
-      "options": [
-        { "value": false, "label": "Nein" },
-        { "value": true, "label": "Ja" }],
-        "props": { "sm": 6,
-          "xs":6 },
-          "suiteValue":"primaerarztprinzip"
-    },
-    {
-      "name": "einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung",
-      "label": "Einbettzimmer/Chefarzt",
-      "type": "select",
-      "options": [
-        { "value": "0", "label": "Mehrbett" },
-        { "value": "1", "label": "Einbett mit Chefarzt" },
-        { "value": "2", "label": "Zweibett mit Chefarzt" }],
-        "props": { "sm": 6,
-          "xs":6 },
-          "suiteValue":"einbettzimmer"
-    },
-    {
-      "name": "beitragVersichertePersonPrivatePflegeversicherung",
-      "label": "Beitrag (€)",
-      "type": "text",
-      "suiteValue":"beitragVP"
-    },
-    {
-      "name": "leistungsbeschreibungPrivatePflegeversicherungHeader",
-      "label": "Leistungsbeschreibung",
-      "type": "header"
-    },
-    {
-      "name": "zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung",
-      "label": "Zahnbehandlung (%)",
-      "type": "text",
-      "suiteValue":"zahnbehandlung"
-    },
-    {
-      "name": "bereicheSelbsbehaltLeistungsbeschreibungPrivatePflegeversicherung",
-      "label": "Bereiche Selbstbehalt",
-      "type": "paragraph"
-    },
-    {
-      "name": "ambulantLeistungsbeschreibungPrivatePflegeversicherung",
-      "label": "Ambulant",
-      "type": "checkbox",
-      "props": { "sm": 4 ,
-        "xs":4},
-        "suiteValue":"sbAmbulant"
-    },
-    {
-      "name": "stationaerLeistungsbeschreibungPrivatePflegeversicherung",
-      "label": "Stationär",
-      "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":4 },
-        "suiteValue":"sbStationaer"
-    },
-    {
-      "name": "zahnLeistungsbeschreibungPrivatePflegeversicherung",
-      "label": "Zahn",
-      "type": "checkbox",
-      "props": { "sm": 4 ,
-        "xs":4},
-        "suiteValue":"sbZahn"
-    },
-    {
-      "name": "krankentagegeldPrivatePflegeversicherungHeader",
-      "label": "Krankentagegeld ab dem",
-      "type": "header"
-    },
-    {
-      "name": "tagEinsPrivatePflegeversicherung",
-      "label": "(.Tag)",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"krankentagegeldtag1"
-    },
-    {
-      "name": "betragEinsPrivatePflegeversicherung",
-      "label": "Betrag (€)",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"krankentagegeld1"
-    },
-    {
-      "name": "tagZweiPrivatePflegeversicherung",
-      "label": "(.Tag)",
-      "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":"krankentagegeldtag2"
-    },
-    {
-      "name": "betragZweiPrivatePflegeversicherung",
-      "label": "Betrag (€)",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"krankentagegeld2"
-    },
-    {
-      "name": "kurtagegeldZweiPrivatePflegeversicherung",
-      "label": "Kurtagegeld (€)",
-      "type": "text",
-      "suiteValue":"kurtagegeld"
+      "card": false,
+      "accordionText": "Versicherte Person 6",
+      "accordionId": "6",
+      "condition": "selected6Persons",
+      "items": [
+        {
+          "name": "versichertePersonPrivatePflegeversicherung6",
+          "label": "Versicherte Person",
+          "type": "selectVersichert",
+          "suiteValue": "versichertePerson6",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "sonstigeVersichertePersonPrivatePflegeversicherung6",
+          "label": "Sonstige",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versichertePersonSonstige6",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "tarifVersichertePersonPrivatePflegeversicherung6",
+          "label": "Tarif",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "tarifname6",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "primaerarztprinzipVersichertePersonPrivatePflegeversicherung6",
+          "label": "Primärarztprinzip",
+          "type": "select",
+          "options": [
+            { "value": false, "label": "Nein" },
+            { "value": true, "label": "Ja" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "primaerarztprinzip6",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "einbettzimmerChefarztVersichertePersonPrivatePflegeversicherung6",
+          "label": "Einbettzimmer/Chefarzt",
+          "type": "select",
+          "options": [
+            { "value": "0", "label": "Mehrbett" },
+            { "value": "1", "label": "Einbett mit Chefarzt" },
+            { "value": "2", "label": "Zweibett mit Chefarzt" }
+          ],
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "einbettzimmer6",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "beitragVersichertePersonPrivatePflegeversicherung6",
+          "label": "Beitrag (€)",
+          "type": "text",
+          "suiteValue": "beitragVP6",
+          "condition": "selected6Persons"
+        },
+        {
+          "section": "Leistungsbeschreibung",
+          "card": true,
+          "condition":"selected6Persons",
+          "items": [
+        {
+          "name": "zahnbehandlungLeistungsbeschreibungPrivatePflegeversicherung6",
+          "label": "Zahnbehandlung (%)",
+          "type": "text",
+          "suiteValue": "zahnbehandlung6",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "bereicheSelbsbehaltLeistungsbeschreibungPrivatePflegeversicherung6",
+          "label": "Bereiche Selbstbehalt",
+          "type": "paragraph",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "ambulantLeistungsbeschreibungPrivatePflegeversicherung6",
+          "label": "Ambulant",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbAmbulant6",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "stationaerLeistungsbeschreibungPrivatePflegeversicherung6",
+          "label": "Stationär",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbStationaer6",
+          "condition": "selected6Persons"
+        },
+        {
+          "name": "zahnLeistungsbeschreibungPrivatePflegeversicherung6",
+          "label": "Zahn",
+          "type": "checkbox",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "sbZahn6",
+          "condition": "selected6Persons"
+        }]},
+        {
+          "section": "Krankentagegeld ab dem",
+          "card": true,
+          "condition": "selected6Persons",
+          "items": [
+            {
+              "name": "tagEinsPrivatePflegeversicherung6",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag16",
+              "condition": "selected6Persons"
+            },
+            {
+              "name": "betragEinsPrivatePflegeversicherung6",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld16",
+              "condition": "selected6Persons"
+            },
+            {
+              "name": "tagZweiPrivatePflegeversicherung6",
+              "label": "(.Tag)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeldtag26",
+              "condition": "selected6Persons"
+            },
+            {
+              "name": "betragZweiPrivatePflegeversicherung6",
+              "label": "Betrag (€)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "krankentagegeld26",
+              "condition": "selected6Persons"
+            },
+            {
+              "name": "kurtagegeldZweiPrivatePflegeversicherung6",
+              "label": "Kurtagegeld (€)",
+              "type": "text",
+              "suiteValue": "kurtagegeld6",
+              "condition": "selected6Persons"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

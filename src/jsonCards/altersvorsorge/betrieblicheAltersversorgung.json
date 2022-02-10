@@ -43,10 +43,9 @@
       "suiteValue":"versicherungsnehmerId"
     },
     {
-      "name": "versichertePersonBetrieblicheAltersversorgungHeader",
-      "label": "Versicherte Person",
-      "type": "header"
-    },
+      "section": "Versicherte Person",
+      "card": true,
+      "items": [
     {
       "name": "versichertePersonBetrieblicheAltersversorgung",
       "label": "Versicherte Person",
@@ -71,12 +70,11 @@
       "props": { "required": true, "sm":6,
         "xs":6 },
       "suiteValue":"tarifTypeId"
-    },
+    }]},
     {
-      "name": "beitragBetrieblicheAltersversorgungHeader",
-      "label": "Beitrag",
-      "type": "header"
-    },
+      "section": "Beitrag",
+      "card": true,
+      "items": [
     {
       "name": "beitragANAnteilBeitragBetrieblicheAltersversorgung",
       "label": "Beitrag AN Anteil",
@@ -158,12 +156,11 @@
         { "value": 6, "label": "6 %" },
         { "value": 10, "label": "10 %" }
       ]
-    },
+    }]},
     {
-      "name": "versicherungssummeBetrieblicheAltersversorgungHeader",
-      "label": "Vertragslaufzeit",
-      "type": "header"
-    },
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
     {
       "name": "vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung",
       "label": "Vertragsbeginn",
@@ -179,12 +176,11 @@
       "props": { "sm": 6,
         "xs":6 },
         "suiteValue":""
-    },
+    }]},
     {
-      "name": "monatlicheRentenleistungBetrieblicheAltersversorgungHeader",
-      "label": "Monatliche Rentenleistung",
-      "type": "header"
-    },
+      "section": "Monatliche Rentenleistung",
+      "card": true,
+      "items": [
     {
       "name": "garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung",
       "label": "Monatliche Rentenleistung garantiert (€)",
@@ -212,12 +208,11 @@
       "props": { "sm": 6,
         "xs":6 },
         "suiteValue":""
-    },
+    }]},
     {
-      "name": "ablaufleistungBetrieblicheAltersversorgungHeader",
-      "label": "Ablaufleistung",
-      "type": "header"
-    },
+      "section": "Ablaufleistung",
+      "card": true,
+      "items": [
     {
       "name": "ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung",
       "label": "Ablaufsleistung garantiert (€)",
@@ -239,12 +234,11 @@
       "label": "bei (%)",
       "type": "text",
       "suiteValue":""
-    },
+    }]},
     {
-      "name": "BUBetrieblicheAltersversorgungHeader",
-      "label": "BU",
-      "type": "header"
-    },
+      "section": "BU",
+      "card": true,
+      "items": [
     {
       "name": "integrierteBUBetrieblicheAltersversorgung",
       "label": "integrierte BU",
@@ -372,6 +366,6 @@
       "props": { "sm": 6,
         "xs":6 },
         "suiteValue":""
-    }
+    }]}
   ]
 }

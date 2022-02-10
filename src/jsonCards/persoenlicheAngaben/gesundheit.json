@@ -3,11 +3,10 @@
     "card": true,
 
     "items": [
-        {
-            "name": "allgemeinGesundheitHeader",
-            "label": "Allgemein",
-            "type": "header"
-          },
+      {
+        "section": "Allgemein",
+        "card": true,
+        "items": [
           {
             "name": "groesseGesundheit",
             "label": "Größe (cm)",
@@ -34,12 +33,11 @@
                 { "value": false, "label": "Nein" },
                 { "value": true, "label": "Ja" }
               ]
-          },
+          }]},
           {
-            "name": "rauchenGesundheitHeader",
-            "label": "Angaben zum Rauchen",
-            "type": "header"
-          },
+            "section": "Angaben zum Rauchen",
+            "card": true,
+            "items": [
           {
             "name": "antwortRauchenGesundheit",
             "label": "Antwort",
@@ -62,12 +60,11 @@
                 "sm": 6,
                 "xs":6
               }
-          },
+          }]},
           {
-            "name": "sehvermoegenGesundheitHeader",
-            "label": "Sehvermoegen",
-            "type": "header"
-          },
+            "section": "Sehvermoegen",
+            "card": true,
+            "items": [
           {
             "name": "brilleSehvermoegenGesundheit",
             "label": "Brille",
@@ -104,12 +101,11 @@
                 "sm": 6,
                 "xs":6
               }
-          },
+          }]},
           {
-            "name": "unfallbestandGesundheitHeader",
-            "label": "Bestehen oder bestanden Behinderungen, Erkrankungen, Gebrechen, Unfallverletzungen oder Wehrdiensbeschädigungen in den letzten 10 Jahren (z. B. der Psyche, Wirbelsäule oder chronische Erkrankungen)?",
-            "type": "header"
-          },
+            "section": "Bestehen oder bestanden Behinderungen, Erkrankungen, Gebrechen, Unfallverletzungen oder Wehrdiensbeschädigungen in den letzten 10 Jahren (z. B. der Psyche, Wirbelsäule oder chronische Erkrankungen)?",
+            "card": true,
+            "items": [
           {
             "name": "antwortUnfallbestandGesundheit",
             "label":"Antwort",
@@ -289,12 +285,11 @@
               "name": "angabenDerzeitigeZahnbehandlungenGesundheit",
               "label": "Angaben",
               "type": "text"
-          },
+          }]},
           {
-              "name": "fehlendeZaehneGesundheitHeader",
-              "label": "Fehlen Zähne, die nich ersetzt sind? (ohne Milch- oder Weisheitszähne)",
-              "type": "header"
-          },
+            "section": "Fehlen Zähne, die nich ersetzt sind? (ohne Milch- oder Weisheitszähne)",
+            "card": true,
+            "items": [
           {
               "name": "antwortFehlendeZaehneGesundheit",
               "label": "Antwort",
@@ -308,12 +303,11 @@
               "name": "anzahlFehlendeZaehneGesundheit",
               "label": "Anzahl",
               "type": "text"
-          },
+          }]},
           {
-              "name": "zahnersatzGesundheitHeader",
-              "label": "Besteht bereits Zahnersatz?",
-              "type": "header"
-          },
+            "section": "Besteht bereits Zahnersatz?",
+            "card": true,
+            "items": [
           {
               "name": "zahnersatzGesundheit",
               "label": "Antwort",
@@ -332,6 +326,6 @@
               "name": "bestehtSeitZahnersatzGesundheit",
               "label": "Zahnersatz besteht (Jahren)",
               "type": "text"
-          }
+          }]}
     ]
 }

@@ -12,6 +12,12 @@
       "suiteValue": "externalProduktId"
     },
     {
+      "name": "gesellschaftRiesterrente",
+      "type": "gesellschaft",
+      "props":{"required":true},
+      "suiteValue":"gesellschaft"
+    },
+    {
       "name": "tarifbezeichnungRiesterrente",
       "label": "Tarifbezeichnung",
       "type": "text",
@@ -23,22 +29,20 @@
       "type": "text",
       "props": { "required": true, "sm": 6, "xs": 6 }
     },
-    {
-      "name": "versicherungsnehmerRiesterrenteHeader",
-      "label": "Versicherungsnehmer",
-      "type": "header"
-    },
+              {
+      "section": "Versicherungsnehmer",
+      "card": true,
+      "items": [
     {
       "name": "versicherungsnehmerRiesterrente",
       "label": "Versicherungsnehmer",
       "type": "selectMandant",
       "props": { "required": true }
-    },
+    }]},
     {
-      "name": "versichertePersonRiesterrenteHeader",
-      "label": "Versicherte Person",
-      "type": "header"
-    },
+      "section": "Versicherte Person",
+      "card": true,
+      "items": [
     {
       "name": "versichertePersonRiesterrente",
       "label": "Versicherte Person",
@@ -57,12 +61,11 @@
         { "value": "fondssparplan", "label": "Fondssparplan" },
         { "value": "bausparen", "label": "Bausparen" }
       ]
-    },
+    }]},
     {
-      "name": "vertragslaufzeitRiesterrenteHeader",
-      "label": "Vertragslaufzeit",
-      "type": "header"
-    },
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
     {
       "name": "vertragsbeginnVertragslaufzeitRiesterrente",
       "label": "Vertragsbeginn",
@@ -83,12 +86,11 @@
         { "value": "guthaben", "label": "Guthaben" },
         { "value": "gezahltebeitraege", "label": "gezahlter Beitrag" }
       ]
-    },
+    }]},
     {
-      "name": "monatlicheRentenleistungRiesterrenteHeader",
-      "label": "Monatliche Rentenleistung",
-      "type": "header"
-    },
+      "section": "Monatliche Rentenleistung",
+      "card": true,
+      "items": [
     {
       "name": "garantiertMonatlicheRentenleistungRiesterrente",
       "label": "Monatliche Rentenleistung garantiert",
@@ -112,12 +114,11 @@
       "label": "RGZ (Jahre)",
       "type": "text",
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "dynamikRiesterrenteHeader",
-      "label": "Dynamik",
-      "type": "header"
-    },
+      "section": "Dynamik",
+      "card": true,
+      "items": [
     {
       "name": "dynamikRiesterrente",
       "label": "Dynamik",
@@ -133,12 +134,11 @@
       "label": "Prozent (%)",
       "type": "text",
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "BURiesterrenteHeader",
-      "label": "BU",
-      "type": "header"
-    },
+      "section": "BU",
+      "card": true,
+      "items": [
     {
       "name": "integrierteBURiesterrente",
       "label": "inetgrierte BU",
@@ -174,12 +174,11 @@
         { "value": true, "label": "Ja" }
       ],
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "BUZRiesterrenteHeader",
-      "label": "BUZ",
-      "type": "header"
-    },
+      "section": "BUZ",
+      "card": true,
+      "items": [
     {
       "name": "beitragsendeBUZRiesterrente",
       "label": "Beitragsende",
@@ -208,12 +207,11 @@
       "name": "datumBUZRiesterrente",
       "label": "Datum",
       "type": "date"
-    },
+    }]},
     {
-      "name": "fondsRiesterrenteHeader",
-      "label": "Fonds",
-      "type": "header"
-    },
+      "section": "Fonds",
+      "card": true,
+      "items": [
     {
       "name": "fondsRiesterrente",
       "label": "Fonds",
@@ -225,12 +223,11 @@
       "label": "Beitragsende",
       "type": "date",
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "VWLRiesterrenteHeader",
-      "label": "VWL",
-      "type": "header"
-    },
+      "section": "VWL",
+      "card": true,
+      "items": [
     {
       "name": "VWLRiesterrente",
       "label": "VWL",
@@ -282,12 +279,11 @@
         { "value": true, "label": "Ja" }
       ],
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "zahlungLetzteZulageRiesterrenteHeader",
-      "label": "Zahlung letzte Zulage",
-      "type": "header"
-    },
+      "section": "Zahlung letzte Zulage",
+      "card": true,
+      "items": [
     {
       "name": "inHoeheVonZahlungLetzteZulageRiesterrenteHeader",
       "label": "in Höhe von (€)",
@@ -304,6 +300,6 @@
       "name": "garantiezinsZahlungLetzteZulageRiesterrenteHeader",
       "label": "Garantiezins (%)",
       "type": "text"
-    }
+    }]}
   ]
 }

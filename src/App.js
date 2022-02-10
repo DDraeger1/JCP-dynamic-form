@@ -1789,7 +1789,9 @@ test =[riesterrente]
   };
   function checkIfPersonendaten(card){
     let output = false
-    if(card==="KIND"){
+    if(card==="BANKVERBINDUNG"){
+      output = true
+    }if(card==="KIND"){
       output = true
     }if(card==="PERSONALDATEN"){
       output = true
@@ -1797,7 +1799,7 @@ test =[riesterrente]
       output = true
     }if(card==="KOMMUNIKATION"){
       output = true
-    }if(card==="KIND"){
+    }if(card==="ARBEITGEBER"){
       output = true
     }if(card==="KIND"){
       output = true

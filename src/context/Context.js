@@ -20,7 +20,17 @@ const [einkommenGehaltBezuege, setEinkommenGehaltBezuege] =useState({
 hinzufuegen:false,
 pressedValue:""
 })
-  return (
+const [bruttoSum , setBruttoSum] = useState(
+  {
+    grundgehalt:{
+      grundgehaltBetrag:0,
+      grundgehaltST:"",
+      grundgehaltSV:""
+    }
+  }
+)
+
+return (
     <Context.Provider
       value={{
         forceUpdate,
@@ -32,7 +42,8 @@ pressedValue:""
         anzahlVp, setAnzahlVp,
         einkommenGehaltBezuege, setEinkommenGehaltBezuege,
         mobileClassname, setMobileClassname,
-        vertragId, setVertragId
+        vertragId, setVertragId,
+        bruttoSum , setBruttoSum
       }}
     >
       {props.children}

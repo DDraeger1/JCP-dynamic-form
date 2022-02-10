@@ -13,16 +13,11 @@
         "props": { "required": true },
         "suiteValue":"externalProduktId"},
         {
-            "name": "gesellschaftSchwereKrankheitenHeader",
-            "label": "Gesellschaft",
-            "type": "header"
-          },
-          {
-            "name": "gesellschaftSchwereKrankheiten",
-            "type": "gesellschaft",
-            "props":{"required":true},
-            "suiteValue":"gesellschaft"
-          },
+          "name": "gesellschaftTodesfall",
+          "type": "gesellschaft",
+          "props":{"required":true},
+          "suiteValue":"gesellschaft"
+        },
           {
             "name": "TarifbezeichnungGesellschaftSchwereKrankheiten",
             "label": "Tarifbezeichnung",
@@ -31,10 +26,9 @@
             "suiteValue":"tarifBezeichnung"
           },
           {
-            "name": "versicherungsnehmerSchwereKrankheitenHeader",
-            "label": "Versicherungsnehmer",
-            "type": "header"
-          },
+            "section": "Versicherungsnehmer",
+            "card": true,
+            "items": [
           {
             "name": "versicherungsnehmerSchwereKrankheiten",
             "label": "Versicherungsnehmer",
@@ -42,23 +36,21 @@
             "tarifType":"DREADDISEASE",
             "props": { "required": true },
             "suiteValue":"versicherungsnehmerId"
-          },
+          }]},
           {
-            "name": "versichertePersonSchwereKrankheitenHeader",
-            "label": "Versicherte Person",
-            "type": "header"
-          },
+            "section": "Versicherte Person",
+            "card": true,
+            "items": [
           {
             "name": "versichertePersonSchwereKrankheiten",
             "label": "Versicherte Person",
             "type": "selectVersichert",
             "suiteValue":"versichertePersonId"
-          },
+          }]},
           {
-            "name": "vertragslaufzeitSchwereKrankheitenHeader",
-            "label": "Vertragslaufzeit",
-            "type": "header"
-          },
+            "section": "Vertragslaufzeit",
+            "card": true,
+            "items": [
           {
             "name": "vertragsbeginnVertragslaufzeitSchwereKrankheiten",
             "label": "Vertragsbeginn",
@@ -74,7 +66,7 @@
             "props": { "sm": 6,
               "xs":6 },
               "suiteValue":"versicherungsende"
-          },
+          }]},
           {
             "name": "bruttobeitragVertragslaufzeitSchwereKrankheiten",
             "label": "Bruttobeitrag (€)",

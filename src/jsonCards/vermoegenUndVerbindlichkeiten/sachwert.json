@@ -16,20 +16,15 @@
       "name": "vertragsinhaberSachwert",
       "label": "Vertragsinhaber",
       "type": "selectMandant",
-      "versicherungsnehmerBeide":"true"
+      "versicherungsnehmerBeide":"true",
+            "props": { "required": true },
+            "tarifType":"SACHWERT",
+            "showKind":"true "
     },
     {
-      "name": "VertragspartnerSachwertHeader",
-      "label": "Vertragspartner",
-      "type": "header"
-    },
-    {
-      "name": "produktIDSachwert",
-      "label": "Produkt ID (suite mapping)",
-      "type": "select",
-      "options": [
-        { "value": 0, "label": "Produkt ID" }
-      ]},
+      "section": "Vertragspartner",
+      "card": true,
+      "items": [
         {
           "name": "tarifbezeichnungVertragspartnerSachwert",
           "label": "Tarifbezeichnung",
@@ -40,14 +35,14 @@
           "label": "Vertragsnummer",
           "props": { "required": true },
           "type": "text"
-        },
+        }]},
         {
           "name": "artVertragspartnerSachwert",
           "label": "Art",
           "type": "select",
           "options": [
-            { "value": 1, "label": "Edelmetalle" },
-            { "value": 2, "label": "Sonstiges" }
+            { "value": "Edelmetalle", "label": "Edelmetalle" },
+            { "value": "Sonstiges", "label": "Sonstiges" }
           ]
         },
         {
@@ -86,10 +81,11 @@
           "type": "select",
           "props": { "required": true },
           "options": [
-            { "value": 0, "label": "Monatlich" },
-            { "value": 1, "label": "Quartal" },
-            { "value": 2, "label": "Halbjährlich" },
-            { "value": 3, "label": "Jährlich" }
+            { "value": "MONATLICH", "label": "Monatlich" },
+              { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+              { "value": "QUARTAL", "label": "Quartal" },
+              { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+              { "value": "JAEHRLICH", "label": "Jährlich" }
           ]
         },
         {

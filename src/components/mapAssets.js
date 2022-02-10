@@ -12,6 +12,8 @@ let nonVersichertePersonIdIndex=[]
 assets.forEach((asset,index) =>{
 if(asset.versicherungsnehmerId !== undefined){
     ids.push({id:asset.versicherungsnehmerId,tarifTypeId:asset.tarifTypeId,vertragId:asset.id})
+} else if(asset.versicherungsnehmerBeide){
+    ids.push({id:false,tarifTypeId:asset.tarifTypeId,vertragId:asset.id})
 }
 /* else{
     ids.push("undefined")
@@ -37,7 +39,6 @@ return(ids)
 }
 
 export function redefineCard(ids, mandantIndex,tarifTypeId,mandantGroup){
-console.log(mandantIndex)
 
     let entryFound =false
     let vertragId= "none"
@@ -59,12 +60,12 @@ if(!entryFound){
     vertragId="newVertrag"
 }}else{
     ids.forEach((vertrag, index)=>{
-        if(tarifTypeId === vertrag.tarifTypeId && vertrag.versicherungsnehmerBeide){
+        if(tarifTypeId === vertrag.tarifTypeId && vertrag.id === false){
     entryFound =true
     vertragId =vertrag.vertragId
-    console.log(vertrag)
-}else{
+}if(!entryFound){
     vertragId="newVertrag"
+
 
 }
 
@@ -72,8 +73,6 @@ if(!entryFound){
     })
 }
 
-console.log(tarifTypeId)
-console.log(vertragId)
 return vertragId
 }
 export function checkForKind(mandantGroup,isKindNeeded){
@@ -96,7 +95,7 @@ if(mandantGroup.art === "KIND"){
 
     return addMenuItem
 }
-export function formatMandantName(mandantGroup){
+export function formatMandantName(mandantGroup,kindAnzahl, setKindAnzahl){
     let mandantName
 
     if(mandantGroup.art === "MANDANT"){
@@ -110,7 +109,6 @@ export function formatMandantName(mandantGroup){
     
     if(mandantGroup.art === "KIND"){
             mandantName = "K: "+mandantGroup.mandant.vorname + " " + mandantGroup.mandant.nachname
-        
     }
     return mandantName
 }

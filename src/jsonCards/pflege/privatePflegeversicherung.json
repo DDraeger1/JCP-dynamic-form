@@ -72,6 +72,8 @@
             "name": "versichertePersonPrivatePflegeversicherung",
             "label": "Versicherte Person",
             "type": "selectVersichert",
+            "showKind":"true",
+            "showSonstige":"true",
             "suiteValue":"versichertePersonId"
           },
           {

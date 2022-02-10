@@ -45,10 +45,9 @@
       "type": "text"
     },
     {
-      "name": "reisepassHeader",
-      "label": "Reisepass",
-      "type": "header"
-    },
+      "section": "Reisepass",
+      "card": true,
+      "items": [
     {
       "name": "reisepassNummerAusweisdaten",
       "label": "Reisepass",
@@ -89,12 +88,11 @@
       "name": "ortBehoerdeReisepassAusweisdaten",
       "label": "Ort der ausstellenden Behoerde (nicht vorhanden)",
       "type": "text"
-    },
+    }]},
     {
-      "name": "aufenthaltstitelHeader",
-      "label": "Aufenthaltstitel",
-      "type": "header"
-    },
+      "section": "Aufenthaltstitel",
+      "card": true,
+      "items": [
     {
       "name": "nummerAufenthaltstitelAusweisdaten",
       "label": "Nummer",
@@ -139,6 +137,6 @@
         "sm": 6,
         "xs":6
       }
-    }
+    }]}
   ]
 }

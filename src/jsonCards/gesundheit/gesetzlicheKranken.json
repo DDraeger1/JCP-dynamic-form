@@ -34,10 +34,9 @@
               "suiteValue":"versicherungsnummer"
           },
           {
-            "name": "vertragsnehmerGesetzlicheKrankenversicherungHeader",
-            "label": "Vertragsnehmer",
-            "type": "header"
-          },
+            "section": "Vertragsnehmer",
+            "card": true,
+            "items": [
           {
             "name": "vertragsnehmerGesetzlicheKrankenversicherung",
             "label": "Vertragsnehmer",
@@ -45,7 +44,7 @@
             "tarifType":"PFLEGEKOSTEN",
             "props": { "required": true },
             "suiteValue":"versicherungsnehmerId"
-          },
+          }]},
           {
             "name": "statusGesetzlicheKrankenversicherung",
             "label": "status",

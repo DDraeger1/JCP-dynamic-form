@@ -106,10 +106,9 @@
         "xs":4 }
     },
     {
-      "name": "adressheader",
-      "label": "Adresse",
-      "type": "header"
-    },
+      "section": "Adresse",
+      "card": true,
+      "items": [
     { "name": "streetAdressePersonendaten", "label": "Straße", "type": "text", "props": { "sm": 8 }  },
     { "name": "hausnummerAdressePersonendaten", "label": "Hausnr", "type": "text", "props": { "sm": 4 }  },
     { "name": "PLZAdressePersonendaten", "label": "PLZ", "type": "text", "props": { "sm": 3 } },
@@ -118,7 +117,7 @@
       "name": "seitWannAdressePersonendaten",
       "label": "Seit wann?",
       "type": "date"
-    },
+    }]},
     {
       "name": "hobbiesHeader",
       "label": "Hobbies",

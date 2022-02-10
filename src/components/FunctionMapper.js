@@ -147,7 +147,6 @@ function BruttoEntfernen({ variableName }) {
           hinzufuegen: false,
           pressedValue: "VariablerBezug",
         });
-        console.log(einkommenGehaltBezuege)
         break;
       case "Fahrtkosten":
         setEinkommenGehaltBezuege({
@@ -436,10 +435,20 @@ function SonderzahlungHinzufügen() {
     </div>
   );
 }
+function Testfunction(value){
+const [numbertest, setNumbertest] = useState(0)
+  function numberfunction(){
+    setNumbertest(numbertest + 1)
+  }
+return(
+<>
+<Button onClick={() =>numberfunction()}>add 1</Button>
+<p>{numbertest}</p>
+</>)
+}
 function FunctionMapper({ functionName, variableName }) {
   let htmlField;
-  console.log(functionName);
-
+const [bruttoSum, setBruttoSum] = useState(0)
   return (
     <div>
       {functionName === "bankAddBrutto" ? <BruttoHinzufuegen /> : null}
@@ -451,7 +460,9 @@ function FunctionMapper({ functionName, variableName }) {
         <NettoEntfernen variableName={variableName} />
       ) : null}
       {functionName === "bankAddSonderzahlung" ? <SonderzahlungHinzufügen /> : null}
-    </div>
+      {functionName === "bAVTariftype" ? <SonderzahlungHinzufügen /> : null}
+      {functionName === "test" ? <Testfunction /> : null}
+          </div>
   );
 }
 

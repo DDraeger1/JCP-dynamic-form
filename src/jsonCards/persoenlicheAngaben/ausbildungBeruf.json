@@ -46,10 +46,9 @@
         "xs":4 }
     },
     {
-      "name": "artSchulausbildungAusbildungBerufHeader",
-      "label": "Art der Schulausbildung",
-      "type": "header"
-    },
+      "section": "Art der Schulausbildung",
+      "card": true,
+      "items": [
     {
       "name": "ausbildungBeruf",
       "label": "Ausbildung",
@@ -73,12 +72,11 @@
         { "value": "studium", "label": "Studium" },
         { "value": "sonstiges", "label": "Sonstiges" }
       ]
-    },
+    }]},
     {
-      "name": "berufAusbildungBerufHeader",
-      "label": "Beruf",
-      "type": "header"
-    },
+      "section": "Beruf",
+      "card": true,
+      "items": [
     {
       "name": "erlernterBerufAusbildungBeruf",
       "label": "erlernter Beruf",
@@ -101,22 +99,20 @@
       "name": "ausgeuebterBerufAusbildungBeruf",
       "label": "Derz. ausgeübter Beruf (exakte Bezeichnung)",
       "type": "text"
-    },
+    }]},
     {
-      "name": "nebentaetigkeitenAusbildungBerufHeader",
-      "label": "Nebentätigkeiten",
-      "type": "header"
-    },
+      "section": "Nebentätigkeiten",
+      "card": true,
+      "items": [
     {
       "name": "nebentaetigkeitenAusbildungBeruf",
       "label": "Notieren Sie hier weitere Informationen",
       "type": "text"
-    },
+    }]},
     {
-      "name": "taetigkeitArtAusbildungBerufHeader",
-      "label": "Art der Tätigkeit",
-      "type": "header"
-    },
+      "section": "Art der Tätigkeit",
+      "card": true,
+      "items": [
     {
       "name": "ueberwiegendTaetigAusbildungBeruf",
       "label": "Überwiegent tätig",
@@ -138,12 +134,11 @@
         "sm": 6,
         "xs":6
       }
-    },
+    }]},
     {
-      "name": "leitungsfunktionArtAusbildungBerufHeader",
-      "label": "Leitungsfunktion",
-      "type": "header"
-    },
+      "section": "Leitungsfunktion",
+      "card": true,
+      "items": [
     {
       "name": "leitendTaetigAusbildungBeruf",
       "label": "Leitend tätig (B)",
@@ -166,12 +161,11 @@
         "sm": 6,
         "xs":6
       }
-    },
+    }]},
     {
-      "name": "reisetaetigkeitAusbildungBerufHeader",
-      "label": "Reisetaetigkeit",
-      "type": "header"
-    },
+      "section": "Reisetaetigkeit",
+      "card": true,
+      "items": [
     {
       "name": "reisetaetigkeitAusbildungBeruf",
       "label": "Reisetaetigkeit",
@@ -181,6 +175,6 @@
         { "value": "1", "label": "bis 50%" },
         { "value": "2", "label": "über 50%" }
       ]
-    }
+    }]}
   ]
 }

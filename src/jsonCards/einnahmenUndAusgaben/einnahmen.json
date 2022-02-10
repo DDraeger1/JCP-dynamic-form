@@ -15,10 +15,9 @@
       "suiteValue":"versicherungsnehmerId"
     },
     {
-      "name": "einnahmeartEinnahmenHeader",
-      "label": "Einnahmeart (change to radiobuttons)",
-      "type": "header"
-    },
+      "section": "Einnahmeart (change to radiobuttons)",
+      "card": true,
+      "items": [
     {
       "name": "radiogroup",
       "type": "radioGroup",
@@ -152,6 +151,6 @@
                     "suiteValue":"zahlweise"
     },
     { "name": "betragEinnahmen", "label": "Betrag", "type": "text",
-      "suiteValue":"betrag" }
+      "suiteValue":"betrag" }]}
   ]
 }

@@ -30,13 +30,6 @@
 
 
 
-
-
-
-
-
-
-
 urlaubsgeldSteuerSelectEinnahmen:"",
 urlaubsgeldSozialversicherungSelectEinnahmen:"",
 urlaubsgeldGesamtBruttoSelectEinnahmen:"",

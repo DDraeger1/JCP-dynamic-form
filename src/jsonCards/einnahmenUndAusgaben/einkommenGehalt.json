@@ -3,22 +3,6 @@
   "card": true,
   "mobileClassname":"EinkommenGehalt",
   "items": [
-    {"name":"showExternalProductId",
-      "type": "paragraph",
-    "label":""},
-    {
-      "name": "externalProduktId",
-      "type": "produktid",
-      "condition":"showExternalProductId",
-      "props": { "required": true },
-      "suiteValue":"externalProduktId"},
-    {
-      "name": "personenzuordnungEinnahmenHeader",
-      "label": "Personenzuordnung",
-      "type": "header",
-      "props": { "sm": 0,
-        "xs":0 }
-    },
     {"name":"variablerBezug",
       "type":"paragraph",
       "label": "",
@@ -145,6 +129,10 @@
     "props": { "sm": 0,
       "xs":0 }
   },
+  {
+    "section": "Personenzuordnung",
+    "card": true,
+    "items": [
     {
       "name": "personenzuordnungEinnahmen",
       "label": "Personenzuordnung",
@@ -152,12 +140,11 @@
       "tarifType":"EINKOMMEN_GEHALT",
       "props": { "required": true },
       "suiteValue":"versicherungsnehmerId"
-    },
+    }]},
     {
-      "name": "bruttobezuegeEinnahmenHeader",
-      "label": "Bruttobezüge",
-      "type": "header"
-    },
+      "section": "Bruttobezüge",
+      "card": true,
+      "items": [
     {
       "name": "bruttobezuegeEinnahmen",
       "label": "Bruttobezüge",
@@ -1152,11 +1139,11 @@
       "type": "costumFunction",
       "props": { "sm": 2,
         "xs":2 }
-    },
+    }]},
     {
-      "name": "summeBruttobezuegeEinnahmen",
+      "name": "test",
       "label": "Summe Bruttobezuege: (mtl.)",
-      "type": "paragraph",
+      "type": "costumFunction",
       "props": { "sm": 3,
         "xs":3 }
     },
@@ -1175,10 +1162,9 @@
         "suiteValue":"lohnAnzahlProJahr"
       },
       {
-          "name": "nettoBezuegeEinnahmenHeader",
-          "label": "Nettobezüge",
-          "type": "header"
-        },
+        "section": "Nettobezüge",
+        "card": true,
+        "items": [
         {
           "name": "nettobezugEinnahmenParagraph",
           "label": "Netto-Bezug",
@@ -1300,12 +1286,11 @@
           "name": "summeNettobezuegeEinnahmen",
           "label": "Summe Nettobezuege (mtl.)",
           "type": "paragraph"
-        },
+        }]},
         {
-            "name": "sonderzahlungenEinnahmenHeader",
-            "label": "Sonderzahlungen",
-            "type": "header"
-          },
+          "section": "Sonderzahlungen",
+          "card": true,
+          "items": [
           {
             "name": "sonderzahlungenEinnahmenParagraph",
             "label": "Sonderzahlungen",
@@ -1652,7 +1637,7 @@
             "name": "sonstigesSonderzahlungSonderzahlungenAuszahlungsmonatEinnahmen",
       "condition":"sonstiges",
       "label": "",
-            "type": "text",
+            "type": "number",
             "props": { "sm": 2,
               "xs":2 },
               "suiteValue":"sonstigerSachbezug"
@@ -1679,6 +1664,6 @@
             "props": { "sm": 5 ,
               "xs":5},
               "suiteValue":"lohnBruttoProJahrVorjahr"
-          }
+          }]}
   ]
 }

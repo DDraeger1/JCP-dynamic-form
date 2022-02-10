@@ -16,7 +16,10 @@ import {
   TextField,
   Typography,
   Radio,
-  RadioGroup 
+  RadioGroup ,
+  Accordion ,
+  AccordionDetails ,
+  AccordionSummary  
 } from "@material-ui/core";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import React, {
@@ -26,8 +29,9 @@ import React, {
   useContext,
   useEffect,
   useState,
+  useRef
 } from "react";
-import { Edit } from "@material-ui/icons";
+import { Edit, ExpandMore } from "@material-ui/icons";
 import BezugHinzufuegen from "./BezugHinzufuegen";
 import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
@@ -49,7 +53,7 @@ function DynamicForm(
   ref
 ) {
   let inputIndex = 0;
-  const [submissionObject, setSubmissionObject] = useState();
+  const [kindAnzahl, setKindAnzahl] = useState(1);
   const {
     versicherungsnehmerValue,
     setVersicherungsnehmerValue,
@@ -59,7 +63,83 @@ function DynamicForm(
     setMobileClassname,
     vertragId,
     mobileClassname,
+    bruttoSum , setBruttoSum
   } = useContext(Context);
+  const [expanded, setExpanded] = useState(false);
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+  console.log(productId)
+  function updateEinkommenSums(value, name){
+    //case bruttobezüge
+    console.log("drin")
+    switch(name){
+      case "betragMtlTextfieldEinnahmen":
+
+        setBruttoSum({
+          ...bruttoSum,
+          grundgehalt:{
+            ...bruttoSum.grundgehalt,
+            grundgehaltBetrag:value}})
+      break;
+      case "steuerSelectEinnahmen":
+    console.log("drin")
+
+        setBruttoSum({
+          ...bruttoSum,
+          grundgehalt:{
+            ...bruttoSum.grundgehalt,
+            grundgehaltST:value,
+          }})
+        break;
+        case "steuerSelectEinnahmen":
+          setBruttoSum({
+            ...bruttoSum,
+            grundgehalt:{
+              ...bruttoSum.grundgehalt,
+              grundgehaltSV:value,
+            }})
+          break;
+          case "sozialversicherungSelectEinnahmen":
+
+            break;
+      case "variablerBezugBetragMtlTextfieldEinnahmen":
+
+      break;
+      case "fahrtkostenBetragMtlTextfieldEinnahmen":
+
+      break;
+      case "feiertagszuschlagBetragMtlTextfieldEinnahmen":
+
+      break;
+      case "nachtzuschlagBetragMtlTextfieldEinnahmen":
+
+      break;
+      case "dienstwagenBetragMtlTextfieldEinnahmen":
+
+      break;
+      case "kitaGebuehrenBetragMtlTextfieldEinnahmen":
+
+      break;
+      case "jobRadBetragMtlTextfieldEinnahmen":
+
+      break;
+      case "vwlAGBetragMtlTextfieldEinnahmen":
+
+      break;
+      case "sonstigesSonderzahlungSonderzahlungenAuszahlungsmonatEinnahmen":
+
+      break;
+      case "provisionBetragMtlTextfieldEinnahmen":
+
+        break;
+        case "sonstigesBruttoBetragMtlTextfieldEinnahmen":
+
+          break;
+      default:
+    }
+console.log(bruttoSum)
+  }
   /*
   setEinkommenGehaltBezuege(
     {
@@ -125,6 +205,8 @@ function DynamicForm(
     const {
       section,
       card = false,
+      accordionText,
+      accordionId,
       name,
       rows,
       description,
@@ -154,7 +236,6 @@ function DynamicForm(
       // todo: mehr möglichkeiten mit den conditions (aktuell nur boolean)
       if (!fieldsToWatch[condition]) return null;
     }
-
     if (!name) {
       const cardContent = (
         <>
@@ -168,6 +249,7 @@ function DynamicForm(
               {description && (
                 <Typography color={"textSecondary"}>{description}</Typography>
               )}
+              
             </div>
           )}
 
@@ -176,7 +258,6 @@ function DynamicForm(
           </Grid>
         </>
       );
-
       return (
         <Grid item xs={12} {...props} key={"k-" + index}>
           {card ? (
@@ -184,7 +265,16 @@ function DynamicForm(
               <CardContent>{cardContent}</CardContent>
             </Card>
           ) : (
-            cardContent
+            <Accordion aria-controls={"panel"+accordionId+"-content"}
+            id={"panel"+accordionId+"-header"}>
+              <AccordionSummary expandIcon={<ExpandMore />}>
+                  <Typography variant={"h6"} component={"h3"}>
+                  {accordionText}
+                </Typography> </AccordionSummary>
+              <AccordionDetails>
+            {cardContent}
+            </AccordionDetails>
+            </Accordion>
           )}
         </Grid>
       );
@@ -236,7 +326,6 @@ function DynamicForm(
                   return (
                     <FormControl fullWidth size={"small"}>
                       <InputLabel>Produkt ID</InputLabel>
-                      {console.log(productId)}
                       <Select
                         autoFocus={focussed}
                         inputRef={ref}
@@ -299,7 +388,12 @@ function DynamicForm(
                         autoFocus={focussed}
                         inputRef={ref}
                         value={value}
-                        onChange={onChange}
+                        onChange={(e)=>{
+                          onChange(e.target.value)
+                        if(tarifTypeIdFromCardState === "EINKOMMEN_GEHALT"){
+                          updateEinkommenSums(value, name)
+                        }
+                        }}
                         label={label}
                         error={!!helperText}
                         disabled={itemDisabled}
@@ -478,12 +572,6 @@ function DynamicForm(
                           {mandantGroup.map((mandantGroup, index) => (
                             checkForKind(mandantGroup, showKind) ?
                             <MenuItem
-                              onClick={() => {
-                                setVersicherungsnehmerValue({
-                                  index: index,
-                                  tarifTypeId: tarifType,
-                                });
-                              }}
                               key={"o-" + index}
                               value={mandantGroup.mandantId}
                             >
@@ -498,12 +586,6 @@ function DynamicForm(
               :null}
               {versicherungsnehmerBeide === "true" ? (
                             <MenuItem
-                              onClick={() => {
-                                setVersicherungsnehmerValue({
-                                  index: false,
-                                  tarifTypeId: tarifType,
-                                });
-                              }}
                               key={"o-versicherungsNehmerBeide"}
                               value={false}
                             >
@@ -562,7 +644,6 @@ function DynamicForm(
                       {helperText && <Typography>{helperText}</Typography>}
                     </>
                   );
-
                 case "number":
                   return (
                     <TextField
@@ -576,6 +657,9 @@ function DynamicForm(
                         let floatValue = parseFloat(e.target.value);
                         if (isNaN(floatValue)) floatValue = 0;
                         onChange(floatValue);
+                        if(tarifTypeIdFromCardState === "EINKOMMEN_GEHALT"){
+                        updateEinkommenSums(floatValue,name)
+                      }
                       }}
                       disabled={itemDisabled}
                       type={"number"}
@@ -591,6 +675,7 @@ function DynamicForm(
                         ),
                       }}
                       {...props}
+                      
                     />
                   );
 
@@ -758,6 +843,19 @@ function DynamicForm(
     });
     return output;
   }
+  function dateFormaterSuite(date) {
+    //from dd/mm/yyyy to mm/dd/yyyy
+    let output;
+    if (date !== null) {
+      if (date !== undefined) {
+        if (date.length === 10) {
+          output =
+            date.substring(3, 6) + date.substring(0, 3) + date.substring(6, 10);
+        }
+      }
+    }
+    return output;
+  }
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
     console.log(valuesToSubmit);
     let output = {
@@ -796,9 +894,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
 if(tarifTypeIdFromCardState === "KVZ"){
   output={...output, json:{...output.json,kategorie:"thvpferd" }}
 }*/
-    console.log(output);
-    console.log(formDefinition[0].mobileClassname);
-    console.log(formDefinition);
+
 
     gesellschaft.data.map((gesellschaft) => {
       if (gesellschaft.name === output.gesellschaft) {

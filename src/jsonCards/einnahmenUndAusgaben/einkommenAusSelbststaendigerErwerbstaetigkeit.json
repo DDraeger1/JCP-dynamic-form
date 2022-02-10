@@ -18,6 +18,7 @@
         "type": "selectMandant",
         "tarifType":"EINKOMMEN_SELBSTAENDIGER",
         "props": { "required": true },
+        "versicherungsnehmerBeide":"true",
         "suiteValue":"versicherungsnehmerId"
       },
       {

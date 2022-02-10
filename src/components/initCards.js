@@ -10,6 +10,7 @@ function initCards(
   setVersicherungsnehmerValue,
   showExternalProductId
 ) {
+  
   let bankDaten = [
     {
       bank: "",
@@ -66,9 +67,18 @@ function initCards(
   // || conditional funktioniert nicht
 
         if (vertragId !== "none") {
+
+          console.log(cardValues.initMandantValue)
           result.analyseAssets.map((asset) => {
             
             if (asset.id === vertragId) {
+              if (
+                asset.tarifTypeId.includes("SACHWERT") &&
+                asset.id === vertragId
+              ) {
+                cardValues = tarifType(asset, card, true, result.mandantGroup);
+                vertragFound = true;
+              }
               if (
                 asset.tarifTypeId.includes("RIESTER") &&
                 asset.id === vertragId
@@ -295,10 +305,10 @@ function initCards(
             if(card !== "FUEHRERSCHEIN"){
             if (card !== "STEUERN") {
              // cardValues = tarifType(result.analyseAssets, card, true, result.mandantGroup);
-              if(card !== "SACHWERT"){
+
               if (card !== "KIND") {
                 if (card !== "BANKVERBINDUNG") {
-                  console.log("Drin")
+                  console.log("Drinserssdsdsds")
                   console.log(cardValues)
           setVersicherungsnehmerValue({
             index: cardValues.initMandantValue,
@@ -306,7 +316,7 @@ function initCards(
           });
         }
       }
-    }}}}}}}
+    }}}}}}
   }
    result.mandantGroup.map((mandant) => {
     if (mandant.mandant.bankverbindungs.length !== 0) {

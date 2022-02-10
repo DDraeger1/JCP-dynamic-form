@@ -37,8 +37,9 @@
   },
   {
     "name": "personenzuordnungWohnsituation",
-    "label": "Personenzuordnung (Suite Mapping)",
-    "type": "selectMandant",
+    "label": "Personenzuordnung",
+        "versicherungsnehmerBeide":"true",
+        "type": "selectMandant",
     "tarifType":"WOHNSITUATION",
     "props": {
       "required": true

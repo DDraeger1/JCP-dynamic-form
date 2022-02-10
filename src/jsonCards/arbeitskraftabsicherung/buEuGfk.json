@@ -6,23 +6,23 @@
       {"name":"showExternalProductId",
         "type": "paragraph",
       "label":""},
+      {"description":"externe Produkt ID",
+      "card":true,
+    "items":[
       {
+        
         "name": "externalProduktId",
         "type": "produktid",
         "condition":"showExternalProductId",
         "props": { "required": true },
-        "suiteValue":"externalProduktId"},
-      {
-        "name": "gesellschaftBuEuGjkHeader",
-        "label": "Gesellschaft",
-        "type": "header"
-      },
-      {
-        "name": "gesellschaftBuEuGjk",
-        "type": "gesellschaft",
-        "props": { "required": true },
-        "suiteValue":""
-      },
+        "suiteValue":"externalProduktId"}
+    ]},
+    {
+      "name": "gesellschaftBuEuGjk",
+      "type": "gesellschaft",
+      "props":{"required":true},
+      "suiteValue":"gesellschaft"
+    },
       {
         "name": "tarifbezeichnungBuEuGjk",
         "label": "Tarifbezeichnung",
@@ -38,10 +38,9 @@
         "suiteValue":"versicherungsnummer"
       },
       {
-        "name": "versicherungsnehmerBuEuGjkHeader",
-        "label": "Versicherungsnehmer",
-        "type": "header"
-      },
+        "section": "Versicherungsnehmer",
+        "card": true,
+        "items": [
       {
         "name": "versicherungsnehmerBuEuGjk",
         "label": "Versicherungsnehmer",
@@ -50,12 +49,11 @@
         "tarifType":"BU",
         "props": { "required": true },
         "suiteValue":"versicherungsnehmerId"
-      },
+      }]},
       {
-        "name": "versichertePersonBuEuGjkHeader",
-        "label": "Versicherte Person",
-        "type": "header"
-      },
+        "section": "Versicherte Person",
+        "card": true,
+        "items": [
       {
         "name": "versichertePersonBuEuGjk",
         "label": "Versicherte Person",
@@ -74,12 +72,11 @@
             { "value": "EU", "label": "EU" },
             { "value": "GFK", "label": "GFK" }],
             "suiteValue":"art"
-      },
+      }]},
       {
-        "name": "VertragslaufzeitBuEuGjkHeader",
-        "label": "Vertragslaufzeit",
-        "type": "header"
-      },
+        "section": "Vertragslaufzeit",
+        "card": true,
+        "items": [
       {
         "name": "vertragsbeginnVertragslaufzeitBuEuGjk",
         "label": "Vertragsbeginn",
@@ -93,7 +90,7 @@
         "type": "date",
         "props": { "sm": 6 },
         "suiteValue":"versicherungsende"
-      },
+      }]},
       {
         "name": "bruttobeitragVertragslaufzeitBuEuGjk",
         "label": "Bruttobeitrag (€)",

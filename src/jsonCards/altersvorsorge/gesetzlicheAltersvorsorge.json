@@ -13,10 +13,9 @@
         "props": { "required": true },
         "suiteValue":"externalProduktId"},
         {
-            "name": "versicherungsnehmerGesetzlicheAltersvorsorgeHeader",
-            "label": "Versicherungsnehmer",
-            "type": "header"
-          },
+          "section": "Versicherungsnehmer",
+          "card": true,
+          "items": [
           {
             "name": "versicherungsnehmerGesetzlicheAltersvorsorge",
             "label": "Versicherungsnehmer",
@@ -59,12 +58,11 @@
             "label": "Volle Erwerbsminderungsrente (€)",
             "type": "text",
             "suiteValue":"volleErwerbsminderungsrente"
-          },
+          }]},
           {
-            "name": "wartezeitGesetzlicheAltersvorsorgeHeader",
-            "label": "Wartezeit",
-            "type": "header"
-          },
+            "section": "Wartezeit",
+            "card": true,
+            "items": [
           {
             "name": "wartezeitGesetzlicheAltersvorsorge",
             "label": "Wartezeit EM/BU (60 Monate) erfüllt",
@@ -99,12 +97,11 @@
             "props": { "sm": 6,
               "xs":6 },
               "suiteValue":"weiterenEinzahlungen"
-          },
+          }]},
           {
-            "name": "rentenschätzungGesetzlicheAltersvorsorgeHeader",
-            "label": "Rentenschätzung",
-            "type": "header"
-          },
+            "section": "Rentenschätzung",
+            "card": true,
+            "items": [
           {
             "name": "artRentenschaetzungGesetzlicheAltersvorsorge",
             "label": "Art der Rentenschätzung",
@@ -147,12 +144,11 @@
        "label": "Datum letzte/r Renteninformation/-bescheid",
        "type": "date",
        "suiteValue":"letzteRenteninformation"
-    },
+    }]},
     {
-      "name": "beiSelbststaendigenGesetzlicheAltersvorsorgeHeader",
-      "label": "Bei Selbstständigen:",
-      "type": "header"
-   },
+      "section": "Bei Selbstständigen:",
+      "card": true,
+      "items": [
    {
      "name": "weiterhinBeitraegeGRVBeiSelbststaendigenGesetzlicheAltersvorsorge",
      "label": "Leisten Sie weiterhin Beiträge in die GRV",
@@ -196,7 +192,7 @@
   "label": "für ca. Anzahl Jahre",
   "type": "text",
   "suiteValue":"selbstBruttoJahreseinkommenJahre"
-}
+}]}
         ]
         
     }

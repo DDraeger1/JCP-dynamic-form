@@ -19,6 +19,12 @@
       "options": [{ "value": 0, "label": "Mandant" }]
     },
     {
+      "name": "gesellschaftRuerupRente",
+      "type": "gesellschaft",
+      "props":{"required":true},
+      "suiteValue":"gesellschaft"
+    },
+    {
       "name": "tarifbezeichnungRuerupRente",
       "label": "Tarifbezeichnung",
       "type": "text",
@@ -31,22 +37,20 @@
       "props": { "required": true, "sm": 6, "xs": 6 }
     },
     {
-      "name": "versicherungsnehmerRuerupRente",
-      "label": "Versicherungsnehmer",
-      "type": "header"
-    },
+      "section": "Versicherungsnehmer",
+      "card": true,
+      "items": [
     {
       "name": "versicherungsnehmerRuerupRente",
       "label": "Versicherungsnehmer (suite mapping)",
       "type": "selectMandant",
       "props": { "required": true },
       "options": [{ "value": 0, "label": "Mandant" }]
-    },
+    }]},
     {
-      "name": "versichertePersonRuerupRenteHeader",
-      "label": "Versicherte Person",
-      "type": "header"
-    },
+      "section": "Versicherte Person",
+      "card": true,
+      "items": [
     {
       "name": "versichertePersonRuerupRente",
       "label": "Versicherte Person (suite mapping)",
@@ -70,12 +74,11 @@
       "label": "Fonds",
       "type": "text",
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "versicherungssummeRuerupRenteHeader",
-      "label": "Vertragslaufzeit",
-      "type": "header"
-    },
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
     {
       "name": "vertragsbeginnVertragslaufzeitRuerupRente",
       "label": "Vertragsbeginn",
@@ -87,12 +90,11 @@
       "label": "Vertragsende",
       "type": "date",
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "monatlicheRentenleistungRuerupRenteHeader",
-      "label": "Monatliche Rentenleistung",
-      "type": "header"
-    },
+      "section": "Monatliche Rentenleistung",
+      "card": true,
+      "items": [
     {
       "name": "garantiertMonatlicheRentenleistungRuerupRente",
       "label": "Monatliche Rentenleistung garantiert (€)",
@@ -114,12 +116,11 @@
       "label": "RGZ (Jahre)",
       "type": "text",
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "dynamikRuerupRenteHeader",
-      "label": "Dynamik",
-      "type": "header"
-    },
+      "section": "Dynamik",
+      "card": true,
+      "items": [
     {
       "name": "dynamikRuerupRente",
       "label": "Dynamik",
@@ -135,12 +136,11 @@
       "label": "Prozent (%)",
       "type": "text",
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "BURuerupRenteHeader",
-      "label": "BU",
-      "type": "header"
-    },
+      "section": "BU",
+      "card": true,
+      "items": [
     {
       "name": "integrierteBURuerupRente",
       "label": "integrierte BU",
@@ -176,12 +176,11 @@
         { "value": 1, "label": "Ja" }
       ],
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "BUZRuerupRenteHeader",
-      "label": "BUZ",
-      "type": "header"
-    },
+      "section": "BUZ",
+      "card": true,
+      "items": [
     {
       "name": "beitragsendeBUZRuerupRente",
       "label": "Beitragsende",
@@ -205,12 +204,11 @@
       "label": "Deckungskapital (€)",
       "type": "text",
       "props": { "sm": 6, "xs": 6 }
-    },
+    }]},
     {
-      "name": "hinterbliebenenZusatzversicherungBUZRuerupRenteHeader",
-      "label": "Hinterbliebenen-Zusatzversicherung (€)",
-      "type": "header"
-    },
+      "section": "Hinterbliebenen-Zusatzversicherung (€)",
+      "card": true,
+      "items": [
     {
       "name": "zusatzversicherungHinterbliebenenZusatzversicherungRuerupRente",
       "label": "Zusatzversicherung",
@@ -268,6 +266,6 @@
       "name": "beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente",
       "label": "Beitragsanteil für BU",
       "type": "text"
-    }
+    }]}
   ]
 }
