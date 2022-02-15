@@ -19,34 +19,3 @@
 10. Rentenschätzung - GRV
 
 
-
-
-
-
-
-
-
-
-
-
-
-urlaubsgeldSteuerSelectEinnahmen:"",
-urlaubsgeldSozialversicherungSelectEinnahmen:"",
-urlaubsgeldGesamtBruttoSelectEinnahmen:"",
-urlaubsgeldBetragMtlTextfieldEinnahmen:"",
-urlaubsgeldEntfernenEinnahmen:"",
-weihnachtsgeldSteuerSelectEinnahmen:"",
-weihnachtsgeldSozialversicherungSelectEinnahmen:"",
-weihnachtsgeldGesamtBruttoSelectEinnahmen:"",
-weihnachtsgeldBetragMtlTextfieldEinnahmen:"",
-weihnachtsgeldEntfernenEinnahmen:"",
-gewinnbeteiligungSteuerSelectEinnahmen:"",
-gewinnbeteiligungSozialversicherungSelectEinnahmen:"",
-gewinnbeteiligungGesamtBruttoSelectEinnahmen:"",
-gewinnbeteiligungBetragMtlTextfieldEinnahmen:"",
-gewinnbeteiligungEntfernenEinnahmen:"",
-sonstigesSonderSteuerSelectEinnahmen:"",
-sonstigesSonderSozialversicherungSelectEinnahmen:"",
-sonstigesSonderGesamtBruttoSelectEinnahmen:"",
-sonstigesSonderBetragMtlTextfieldEinnahmen:"",
-sonstigesSonderEntfernenEinnahmen:"",

@@ -1141,7 +1141,7 @@
         "xs":2 }
     }]},
     {
-      "name": "test",
+      "name": "bruttoSumme",
       "label": "Summe Bruttobezuege: (mtl.)",
       "type": "costumFunction",
       "props": { "sm": 3,
@@ -1195,7 +1195,7 @@
         {
           "name": "nettobezugBetragMtlEinnahmen",
           "label": "",
-          "type": "text",
+          "type": "number",
           "props": { "sm": 2,
             "xs":2 },
             "suiteValue":"grundgehaltNetto"
@@ -1219,7 +1219,7 @@
           "name": "sonstigerSachbezugNettobezugBetragMtlEinnahmen",
           "condition":"sonstigerSachbezug",
           "label": "",
-          "type": "text",
+          "type": "number",
           "props": { "sm": 2,
             "xs":2 },
             "suiteValue":"sonstigerSachbezug"
@@ -1244,7 +1244,7 @@
           "name": "abzuegeVwlGesamtNettobezugBetragMtlEinnahmen",
           "label": "",
           "condition":"abzuegeVwlGesamt",
-          "type": "text",
+          "type": "number",
           "props": { "sm": 2,
             "xs":2 },
             "suiteValue":"abzuegeVwl"
@@ -1269,7 +1269,7 @@
           "name": "sonstigerAbzugNettobezugBetragMtlEinnahmen",
           "label": "",
           "condition":"sonstigerAbzug",
-          "type": "text",
+          "type": "number",
           "props": { "sm": 2,
             "xs":2 },
             "suiteValue":"sonstigerAbzug"
@@ -1283,9 +1283,9 @@
             "xs":2 }
         },
         {
-          "name": "summeNettobezuegeEinnahmen",
-          "label": "Summe Nettobezuege (mtl.)",
-          "type": "paragraph"
+          "name": "nettoSumme",
+          "label": "",
+          "type": "costumFunction"
         }]},
         {
           "section": "Sonderzahlungen",

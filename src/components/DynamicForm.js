@@ -16,10 +16,10 @@ import {
   TextField,
   Typography,
   Radio,
-  RadioGroup ,
-  Accordion ,
-  AccordionDetails ,
-  AccordionSummary  
+  RadioGroup,
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
 } from "@material-ui/core";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import React, {
@@ -29,14 +29,15 @@ import React, {
   useContext,
   useEffect,
   useState,
-  useRef
+  useRef,
+  useReducer
 } from "react";
 import { Edit, ExpandMore } from "@material-ui/icons";
 import BezugHinzufuegen from "./BezugHinzufuegen";
 import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
 import FunctionMapper from "./FunctionMapper";
-import {formatMandantName, checkForKind} from "./mapAssets"
+import { formatMandantName, checkForKind} from "./mapAssets";
 function DynamicForm(
   {
     values,
@@ -53,125 +54,24 @@ function DynamicForm(
   ref
 ) {
   let inputIndex = 0;
-  const [kindAnzahl, setKindAnzahl] = useState(1);
+let nameArray =[]
   const {
     versicherungsnehmerValue,
     setVersicherungsnehmerValue,
     setAnzahlVp,
-    einkommenGehaltBezuege,
-    setEinkommenGehaltBezuege,
     setMobileClassname,
     vertragId,
     mobileClassname,
-    bruttoSum , setBruttoSum
-  } = useContext(Context);
+    bruttoSum,
+    setBruttoSum,
+    gehaltInit, setGehaltInit  } = useContext(Context);
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+
   };
-  console.log(productId)
-  function updateEinkommenSums(value, name){
-    //case bruttobezüge
-    console.log("drin")
-    switch(name){
-      case "betragMtlTextfieldEinnahmen":
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
-        setBruttoSum({
-          ...bruttoSum,
-          grundgehalt:{
-            ...bruttoSum.grundgehalt,
-            grundgehaltBetrag:value}})
-      break;
-      case "steuerSelectEinnahmen":
-    console.log("drin")
-
-        setBruttoSum({
-          ...bruttoSum,
-          grundgehalt:{
-            ...bruttoSum.grundgehalt,
-            grundgehaltST:value,
-          }})
-        break;
-        case "steuerSelectEinnahmen":
-          setBruttoSum({
-            ...bruttoSum,
-            grundgehalt:{
-              ...bruttoSum.grundgehalt,
-              grundgehaltSV:value,
-            }})
-          break;
-          case "sozialversicherungSelectEinnahmen":
-
-            break;
-      case "variablerBezugBetragMtlTextfieldEinnahmen":
-
-      break;
-      case "fahrtkostenBetragMtlTextfieldEinnahmen":
-
-      break;
-      case "feiertagszuschlagBetragMtlTextfieldEinnahmen":
-
-      break;
-      case "nachtzuschlagBetragMtlTextfieldEinnahmen":
-
-      break;
-      case "dienstwagenBetragMtlTextfieldEinnahmen":
-
-      break;
-      case "kitaGebuehrenBetragMtlTextfieldEinnahmen":
-
-      break;
-      case "jobRadBetragMtlTextfieldEinnahmen":
-
-      break;
-      case "vwlAGBetragMtlTextfieldEinnahmen":
-
-      break;
-      case "sonstigesSonderzahlungSonderzahlungenAuszahlungsmonatEinnahmen":
-
-      break;
-      case "provisionBetragMtlTextfieldEinnahmen":
-
-        break;
-        case "sonstigesBruttoBetragMtlTextfieldEinnahmen":
-
-          break;
-      default:
-    }
-console.log(bruttoSum)
-  }
-  /*
-  setEinkommenGehaltBezuege(
-    {
-      brutto:{
-        :values.,
-        :values.fahrtkosten,
-        :values.feiertagszuschlag,
-        :values.nachtzuschlag,
-        :values.dienstwagen,
-        :values.,
-        :values.jobRad,
-        vwlAG:values.vwlAG,
-        :values.sachbezug,
-        :values.,
-        :values.sonstigesBrutto
-      },
-      netto:{
-        sonstigerSachbezug:values.sonstigerSachbezug,
-        abzuegeVwlGesamt:values.abzuegeVwlGesamt,
-        sonstigerAbzug:values.sonstigerAbzug
-      },
-      sonderzahlung:{
-      bonus:values.bonus,
-      urlaubsgeld:values.urlaubsgeld,
-      weihnachtsgeld:values.weihnachtsgeld,
-      gewinnbeteiligung:values.gewinnbeteiligung,
-      sonstiges:values.sonstigesSonderzahlung,
-    }
-    }
-  )
-  console.log(einkommenGehaltBezuege)
-   */
   // Definition rekursiv nach Werten absuchen (für 1-dimensionales defaultValues-Objekt)
   const reduceDefinitionValues = (acc = {}, { items, name }) => {
     if (items) return { ...acc, ...items.reduce(reduceDefinitionValues, {}) };
@@ -249,7 +149,6 @@ console.log(bruttoSum)
               {description && (
                 <Typography color={"textSecondary"}>{description}</Typography>
               )}
-              
             </div>
           )}
 
@@ -265,15 +164,16 @@ console.log(bruttoSum)
               <CardContent>{cardContent}</CardContent>
             </Card>
           ) : (
-            <Accordion aria-controls={"panel"+accordionId+"-content"}
-            id={"panel"+accordionId+"-header"}>
+            <Accordion
+              aria-controls={"panel" + accordionId + "-content"}
+              id={"panel" + accordionId + "-header"}
+            >
               <AccordionSummary expandIcon={<ExpandMore />}>
-                  <Typography variant={"h6"} component={"h3"}>
+                <Typography variant={"h6"} component={"h3"}>
                   {accordionText}
-                </Typography> </AccordionSummary>
-              <AccordionDetails>
-            {cardContent}
-            </AccordionDetails>
+                </Typography>{" "}
+              </AccordionSummary>
+              <AccordionDetails>{cardContent}</AccordionDetails>
             </Accordion>
           )}
         </Grid>
@@ -282,7 +182,6 @@ console.log(bruttoSum)
 
     inputIndex++;
     const focussed = inputIndex === 1;
-
     return (
       <Grid
         item
@@ -319,6 +218,7 @@ console.log(bruttoSum)
                       <FunctionMapper
                         functionName={name}
                         variableName={label}
+                        watch={watch}
                       />
                     </FormControl>
                   );
@@ -388,11 +288,8 @@ console.log(bruttoSum)
                         autoFocus={focussed}
                         inputRef={ref}
                         value={value}
-                        onChange={(e)=>{
-                          onChange(e.target.value)
-                        if(tarifTypeIdFromCardState === "EINKOMMEN_GEHALT"){
-                          updateEinkommenSums(value, name)
-                        }
+                        onChange={(e) => {
+                          onChange(e.target.value);
                         }}
                         label={label}
                         error={!!helperText}
@@ -516,22 +413,22 @@ console.log(bruttoSum)
                           error={!!helperText}
                           disabled={itemDisabled}
                         >
-                          {mandantGroup.map((mandantGroup, index) => (
-                            checkForKind(mandantGroup, showKind) ?
-                            <MenuItem
-                              onClick={() => {
-                                setVersicherungsnehmerValue({
-                                  index: index,
-                                  tarifTypeId: tarifType,
-                                });
-                              }}
-                              key={"o-" + index}
-                              value={index}
-                            >
-                              {formatMandantName(mandantGroup)}
-                            </MenuItem>
-                            : null
-                          ))}
+                          {mandantGroup.map((mandantGroup, index) =>
+                            checkForKind(mandantGroup, showKind) ? (
+                              <MenuItem
+                                onClick={() => {
+                                  setVersicherungsnehmerValue({
+                                    index: index,
+                                    tarifTypeId: tarifType,
+                                  });
+                                }}
+                                key={"o-" + index}
+                                value={index}
+                              >
+                                {formatMandantName(mandantGroup)}
+                              </MenuItem>
+                            ) : null
+                          )}
                           {versicherungsnehmerBeide === "true" ? (
                             <MenuItem
                               onClick={() => {
@@ -569,22 +466,25 @@ console.log(bruttoSum)
                           error={!!helperText}
                           disabled={itemDisabled}
                         >
-                          {mandantGroup.map((mandantGroup, index) => (
-                            checkForKind(mandantGroup, showKind) ?
+                          {mandantGroup.map((mandantGroup, index) =>
+                            checkForKind(mandantGroup, showKind) ? (
+                              <MenuItem
+                                key={"o-" + index}
+                                value={mandantGroup.mandantId}
+                              >
+                                {formatMandantName(mandantGroup)}
+                              </MenuItem>
+                            ) : null
+                          )}
+                          {showSonstige === "true" ? (
                             <MenuItem
-                              key={"o-" + index}
-                              value={mandantGroup.mandantId}
+                              key={"o-sonstige"}
+                              value={"sonstigeSelected"}
                             >
-                              {formatMandantName(mandantGroup)}
+                              Sonstige
                             </MenuItem>
-                            : null
-                          ))}
-                          {showSonstige === "true" ?
-                          <MenuItem key={"o-sonstige"} value={"sonstigeSelected"}>
-                            Sonstige
-                          </MenuItem>
-              :null}
-              {versicherungsnehmerBeide === "true" ? (
+                          ) : null}
+                          {versicherungsnehmerBeide === "true" ? (
                             <MenuItem
                               key={"o-versicherungsNehmerBeide"}
                               value={false}
@@ -601,20 +501,22 @@ console.log(bruttoSum)
                       </FormControl>
                     </div>
                   );
-                  case "radioGroup":
-                    return(
-                      
-                      <FormControl fullWidth size={"small"}>
-                     <RadioGroup
-        name="radio-buttons-group"              
-      >
-        {options.map((option,index)=>{
-          <FormControlLabel key={"o-" + index} value={option.value} control={<Radio />} label={option.label} />
-        })}
-      </RadioGroup>
-                    {helperText && <Typography>{helperText}</Typography>}
+                case "radioGroup":
+                  return (
+                    <FormControl fullWidth size={"small"}>
+                      <RadioGroup name="radio-buttons-group">
+                        {options.map((option, index) => {
+                          <FormControlLabel
+                            key={"o-" + index}
+                            value={option.value}
+                            control={<Radio />}
+                            label={option.label}
+                          />;
+                        })}
+                      </RadioGroup>
+                      {helperText && <Typography>{helperText}</Typography>}
                     </FormControl>
-                    )
+                  );
                 case "checkbox":
                   return (
                     <>
@@ -657,9 +559,6 @@ console.log(bruttoSum)
                         let floatValue = parseFloat(e.target.value);
                         if (isNaN(floatValue)) floatValue = 0;
                         onChange(floatValue);
-                        if(tarifTypeIdFromCardState === "EINKOMMEN_GEHALT"){
-                        updateEinkommenSums(floatValue,name)
-                      }
                       }}
                       disabled={itemDisabled}
                       type={"number"}
@@ -675,7 +574,6 @@ console.log(bruttoSum)
                         ),
                       }}
                       {...props}
-                      
                     />
                   );
 
@@ -894,7 +792,6 @@ if(tarifTypeIdFromCardState === "KVZ"){
 if(tarifTypeIdFromCardState === "KVZ"){
   output={...output, json:{...output.json,kategorie:"thvpferd" }}
 }*/
-
 
     gesellschaft.data.map((gesellschaft) => {
       if (gesellschaft.name === output.gesellschaft) {

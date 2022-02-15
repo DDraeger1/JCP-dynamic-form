@@ -1,11 +1,11 @@
 import { Button } from "@material-ui/core";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Context } from "../context/Context";
-function BruttoHinzufuegen() {
-  const { setEinkommenGehaltBezuege } = useContext(Context);
-
+function BruttoHinzufuegen({watch}) {
+  const { setEinkommenGehaltBezuege,  bruttoSum,
+    setBruttoSum } = useContext(Context);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -17,7 +17,6 @@ function BruttoHinzufuegen() {
   function addBezug(name) {
     let allreadyAdded = false;
     let label = "";
-
     switch (name) {
       case "VariablerBezug":
         setEinkommenGehaltBezuege({
@@ -88,6 +87,7 @@ function BruttoHinzufuegen() {
       default:
         break;
     }
+    setBruttoSum(watch())
   }
   return (
     <div>
@@ -133,8 +133,9 @@ function BruttoHinzufuegen() {
     </div>
   );
 }
-function BruttoEntfernen({ variableName }) {
-  const { einkommenGehaltBezuege, setEinkommenGehaltBezuege } =
+function BruttoEntfernen({ variableName,watch }) {
+  
+  const { einkommenGehaltBezuege, setEinkommenGehaltBezuege,setBruttoSum } =
     useContext(Context);
   let background = "transparent";
   function removeBezug(name) {
@@ -210,6 +211,7 @@ function BruttoEntfernen({ variableName }) {
       default:
         break;
     }
+    setBruttoSum(watch())
   }
   return (
     <div>
@@ -236,8 +238,8 @@ function BruttoEntfernen({ variableName }) {
     </div>
   );
 }
-function NettoHinzufügen() {
-  const { einkommenGehaltBezuege, setEinkommenGehaltBezuege } =
+function NettoHinzufuegen({watch}) {
+  const { einkommenGehaltBezuege, setEinkommenGehaltBezuege,setBruttoSum } =
     useContext(Context);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -270,6 +272,7 @@ function NettoHinzufügen() {
       default:
         break;
     }
+    setBruttoSum(watch())
   }
   return (
     <div>
@@ -334,31 +337,31 @@ function NettoEntfernen({ variableName }) {
   }
   return (
     <div>
-    {variableName === "Netto" ? 
-    <Button
-      id="basic-button"
-      aria-controls="basic-menu"
-      aria-haspopup="true"
-      onClick={() => removeBezug(variableName)}
-      disabled
-    >
-      Entfernen
-    </Button>
-    :
+      {variableName === "Netto" ? (
         <Button
-        id="basic-button"
-        aria-controls="basic-menu"
-        aria-haspopup="true"
-        onClick={() => removeBezug(variableName)}
-      >
-        Entfernen
-      </Button>
-}
-</div>
+          id="basic-button"
+          aria-controls="basic-menu"
+          aria-haspopup="true"
+          onClick={() => removeBezug(variableName)}
+          disabled
+        >
+          Entfernen
+        </Button>
+      ) : (
+        <Button
+          id="basic-button"
+          aria-controls="basic-menu"
+          aria-haspopup="true"
+          onClick={() => removeBezug(variableName)}
+        >
+          Entfernen
+        </Button>
+      )}
+    </div>
   );
 }
-function SonderzahlungHinzufügen() {
-  const { einkommenGehaltBezuege, setEinkommenGehaltBezuege } =
+function SonderzahlungHinzufuegen({watch}) {
+  const { einkommenGehaltBezuege, setEinkommenGehaltBezuege, setBruttoSum } =
     useContext(Context);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -388,15 +391,16 @@ function SonderzahlungHinzufügen() {
           pressedValue: "Weihnachtsgeld",
         });
         break;
-        case "Gewinnbeteiligung":
-          setEinkommenGehaltBezuege({
-            hinzufuegen: true,
-            pressedValue: "Gewinnbeteiligung",
-          });
-          break;
+      case "Gewinnbeteiligung":
+        setEinkommenGehaltBezuege({
+          hinzufuegen: true,
+          pressedValue: "Gewinnbeteiligung",
+        });
+        break;
       default:
         break;
     }
+    setBruttoSum(watch())
   }
   return (
     <div>
@@ -419,50 +423,88 @@ function SonderzahlungHinzufügen() {
         }}
         style={{ top: "48px" }}
       >
-        <MenuItem onClick={() => addBezug("Bonus")}>
-        Bonus
-        </MenuItem>
-        <MenuItem onClick={() => addBezug("Urlaubsgeld")}>
-        Urlaubsgeld
-        </MenuItem>
+        <MenuItem onClick={() => addBezug("Bonus")}>Bonus</MenuItem>
+        <MenuItem onClick={() => addBezug("Urlaubsgeld")}>Urlaubsgeld</MenuItem>
         <MenuItem onClick={() => addBezug("Weihnachtsgeld")}>
-        Weihnachtsgeld
+          Weihnachtsgeld
         </MenuItem>
         <MenuItem onClick={() => addBezug("Gewinnbeteiligung")}>
-        Gewinnbeteiligung
+          Gewinnbeteiligung
         </MenuItem>
       </Menu>
     </div>
   );
 }
-function Testfunction(value){
-const [numbertest, setNumbertest] = useState(0)
-  function numberfunction(){
-    setNumbertest(numbertest + 1)
-  }
-return(
-<>
-<Button onClick={() =>numberfunction()}>add 1</Button>
-<p>{numbertest}</p>
-</>)
+function BruttoSumme({watch}) {
+  let summe = 0;
+
+  const {bruttoSum,
+  setBruttoSum } = useContext(Context);
+function checkForUndefined(value,GB){
+let output = 0
+if(typeof(value) !== "undefined" && GB === "J"){
+output = value
 }
-function FunctionMapper({ functionName, variableName }) {
+return(output)
+}
+summe =  checkForUndefined(watch().betragMtlTextfieldEinnahmen,watch().gesamtBruttoSelectEinnahmen) + checkForUndefined(watch().variablerBezugBetragMtlTextfieldEinnahmen,watch().variablerBezugGesamtBruttoSelectEinnahmen) + checkForUndefined(watch().fahrtkostenBetragMtlTextfieldEinnahmen,watch().fahrtkostenGesamtBruttoSelectEinnahmen) + checkForUndefined(watch().feiertagszuschlagBetragMtlTextfieldEinnahmen,watch().feiertagszuschlagGesamtBruttoSelectEinnahmen)+
+checkForUndefined(watch().nachtzuschlagBetragMtlTextfieldEinnahmen,watch().nachtzuschlagGesamtBruttoSelectEinnahmen) + checkForUndefined(watch().dienstwagenBetragMtlTextfieldEinnahmen,watch().dienstwagenGesamtBruttoSelectEinnahmen) +checkForUndefined(watch().kitaGebuehrenBetragMtlTextfieldEinnahmen,watch().kitaGebuehrenGesamtBruttoSelectEinnahmen) +checkForUndefined(watch().jobRadBetragMtlTextfieldEinnahmen,watch().jobRadGesamtBruttoSelectEinnahmen) +checkForUndefined(watch().vwlAGBetragMtlTextfieldEinnahmen,watch().vwlAGGesamtBruttoSelectEinnahmen)+
+checkForUndefined(watch().sachbezugBetragMtlTextfieldEinnahmen,watch().sachbezugGesamtBruttoSelectEinnahmen) + checkForUndefined(watch().provisionBetragMtlTextfieldEinnahmen,watch().provisionGesamtBruttoSelectEinnahmen) + checkForUndefined(watch().sonstigesBruttoBetragMtlTextfieldEinnahmen,watch().sonstigesBruttoGesamtBruttoSelectEinnahmen)
+  return <p>{"Summe Bruttobezüge (mtl.): "+summe+ " €"}</p>;
+}
+function NettoSumme(){
+  const {bruttoSum,
+    setBruttoSum } = useContext(Context);
+let summe = 0
+Object.entries(bruttoSum).forEach(([key, value]) => {
+  console.log(key)
+  if(key === "bruttoBezug"){
+  Object.entries(value).forEach(([key, value]) => {
+
+    if (value.GB === "J") {
+
+      Object.entries(value).forEach(([key, value]) => {
+        if (value !== undefined) {
+          if (typeof value === "number") {
+            if (value !== 0) {
+              summe = summe + value;
+              console.log(summe)
+            }
+          }
+        }
+      });
+    }
+  })}
+})
+  return(<p>{"Summe Nettobezüge (mtl.): "+summe+ " €"}</p>)
+}
+function FunctionMapper({
+  functionName,
+  variableName,
+  watch
+}) {
   let htmlField;
-const [bruttoSum, setBruttoSum] = useState(0)
+  console.log()
   return (
     <div>
-      {functionName === "bankAddBrutto" ? <BruttoHinzufuegen /> : null}
+      {functionName === "bankAddBrutto" ? <BruttoHinzufuegen watch={watch} /> : null}
       {functionName === "bankRemoveBrutto" ? (
-        <BruttoEntfernen variableName={variableName} />
+        <BruttoEntfernen variableName={variableName} watch={watch} />
       ) : null}
-      {functionName === "bankAddNetto" ? <NettoHinzufügen /> : null}
+      {functionName === "bankAddNetto" ? <NettoHinzufuegen watch={watch}/> : null}
       {functionName === "bankRemoveNetto" ? (
         <NettoEntfernen variableName={variableName} />
       ) : null}
-      {functionName === "bankAddSonderzahlung" ? <SonderzahlungHinzufügen /> : null}
-      {functionName === "bAVTariftype" ? <SonderzahlungHinzufügen /> : null}
-      {functionName === "test" ? <Testfunction /> : null}
-          </div>
+      {functionName === "bankAddSonderzahlung" ? (
+        <SonderzahlungHinzufuegen watch={watch} />
+      ) : null}
+      {functionName === "bruttoSumme" ? (
+        <BruttoSumme  watch={watch}/>
+      ) : null}
+      {functionName === "nettoSumme" ? (
+        <NettoSumme />
+      ) : null}
+    </div>
   );
 }
 

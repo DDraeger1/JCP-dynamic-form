@@ -2,6 +2,7 @@ import React, { useState,useReducer } from "react";
 import einkommenGehalt from "../jsonCards/einnahmenUndAusgaben/einkommenGehalt.json";
 export const Context = React.createContext();
 //TODO: umbennenen!
+
 const ContextProvider = (props) => {
   const [einkommenGehaltContext, setEinkommenGehaltContext] =
     useState(einkommenGehalt);
@@ -22,13 +23,107 @@ pressedValue:""
 })
 const [bruttoSum , setBruttoSum] = useState(
   {
+    negativeBrutto:0,
+    bruttoBezug:{
     grundgehalt:{
-      grundgehaltBetrag:0,
-      grundgehaltST:"",
-      grundgehaltSV:""
+      betrag:0,
+      ST:"",
+      SV:"",
+      GB:""
+    },
+    variablerBezug:{
+      betrag:0,
+     ST:"",
+   SV:"",
+     GB:"",
+    },
+    fahrtkosten:{
+      betrag:0,
+    ST:"",
+     SV:"",
+     GB:""
+    },
+    feiertagszuschlag:{
+      betrag:0,
+    ST:"",
+     SV:"",
+     GB:""
+    },
+    nachtzuschlag:{
+      betrag:0,
+      ST:"",
+      SV:"",
+      GB:""
+    },
+    dienstwagen:{
+      betrag:0,
+    ST:"",
+    SV:"",
+    GB:""
+    },
+    kitaGebuehren:{
+      betrag:0,
+   ST:"",
+    SV:"",
+    GB:""
+    }
+    ,
+    jobRad:{
+      betrag:0,
+      ST:"",
+      SV:"",
+    GB:""
+    }
+    ,
+    vwlAG:{
+      betrag:0,
+      ST:"",
+      SV:"",
+      GB:""
+    }
+    ,
+    sachbezug:{
+      betrag:0,
+      ST:"",
+      SV:"",
+      GB:""
+    }
+    ,
+    provision:{
+      betrag:0,
+     ST:"",
+     SV:"",
+      GB:""
+    }
+    ,
+    sonstiges:{
+      betrag:0,
+      ST:"",
+      SV:"",
+      GB:""
+    }
+    },
+    nettobezuege:{
+      netto:{
+        isAbzug:false,
+        betrag:0
+      },
+      sonstigerSachbezug:{
+        isAbzug:false,
+        betrag:0
+      },
+      abzuegeVwL:{
+        isAbzug:true,
+        betrag:0
+      },
+      sonstigerAbzug:{
+        isAbzug:true,
+        betrag:0
+      }
     }
   }
 )
+const [gehaltInit, setGehaltInit] = useState(false);
 
 return (
     <Context.Provider
@@ -43,7 +138,8 @@ return (
         einkommenGehaltBezuege, setEinkommenGehaltBezuege,
         mobileClassname, setMobileClassname,
         vertragId, setVertragId,
-        bruttoSum , setBruttoSum
+        bruttoSum , setBruttoSum,
+        gehaltInit, setGehaltInit
       }}
     >
       {props.children}

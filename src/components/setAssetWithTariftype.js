@@ -1723,7 +1723,7 @@ function test(cardtemplate){
  });
 
 }
-function tarifType(asset, card, changedMandant, mandantGroup) {
+function setAssetWithTariftype(asset, card, changedMandant, mandantGroup) {
 
   let kindArray
 if(card === "KIND"){
@@ -2881,6 +2881,7 @@ cardTemplateData={
 
       break;
     case "EINKOMMEN_GEHALT":
+      console.log(cardTemplateData)
       output={
         initMandantValue: mandantMapper(
           cardTemplateData.versicherungsnehmer.id
@@ -4708,4 +4709,4 @@ if(!checkIfPersonendaten(card)){
 }
   return output;  
 }
-export default tarifType;
+export default setAssetWithTariftype;

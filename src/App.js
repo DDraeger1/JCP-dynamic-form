@@ -80,7 +80,7 @@ import { gridColumnsTotalWidthSelector } from "@material-ui/x-grid";
 
 import { useParams} from 'react-router-dom'
 
-import initCards from "./components/initCards";
+import isAssetAvailable from "./components/isAssetAvailable";
 //TODO: Arbeite xs und md ein für kleinere bildschirme!!
 
 const betrieblicheAltersversorgungValues = {
@@ -1393,7 +1393,6 @@ function App(props) {
   const [loaded, setLoaded] = useState(false);
   const [initialised, setInitialised] = useState(false);
 
-  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
   const [isBusy, setIsBusy] = useState(false);
   const [rawData, setRawData] = useState({ success: false });
   const [formData, setFormData] = useState({ success: false });
@@ -1407,7 +1406,8 @@ function App(props) {
     einkommenGehaltBezuege,
     setEinkommenGehaltBezuege,
     setVertragId,
-  } = useContext(Context);
+    bruttoSum,
+    setBruttoSum  } = useContext(Context);
   /*
   suite mapped:
 chooseCard
@@ -1416,7 +1416,6 @@ chooseCard
 Values not Mapped 
 
  = {
-    
     ...kapitalversicherungValues,
   };C:\Users\draeg\Documents\newSuite\JCPIS_ANALYSE\src\main\java\de\jcpis\analyse\presentation\GesellschaftController.java
 */
@@ -1727,7 +1726,6 @@ test =[riesterrente]
     },
     redirect: "follow",
   };
-  console.log(params)
 
   var saveAsset = {
     method: "post",
@@ -1787,6 +1785,7 @@ test =[riesterrente]
     },
     redirect: "follow",
   };
+
   function checkIfPersonendaten(card){
     let output = false
     if(card==="BANKVERBINDUNG"){
@@ -1863,7 +1862,6 @@ if(checkIfPersonendaten(card)){
     } else{
       getData();
       setIsBusy(false);
-      console.log(checkIfPersonendaten(card))
     }
 
 
@@ -1875,7 +1873,7 @@ if(checkIfPersonendaten(card)){
   }, [jsonValues]);
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
-      initCards(
+      isAssetAvailable(
         rawData,
         setFormData,
         dummyData,
@@ -1897,7 +1895,7 @@ if(checkIfPersonendaten(card)){
   }, [rawData]);
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
-      initCards(
+      isAssetAvailable(
         rawData,
         setFormData,
         dummyData,
@@ -1928,7 +1926,7 @@ if(checkIfPersonendaten(card)){
       }, 500);
     }
   }, [versicherungsnehmerValue]);
-  console.log(rawData);
+
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
       //TODO: KVZ und KVV werte auf false setzen!
@@ -2016,12 +2014,13 @@ if(checkIfPersonendaten(card)){
         case "VariablerBezug":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               variablerBezug: true,
+              
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               variablerBezugBetragMtlTextfieldEinnahmen: 0,
               variablerBezug: false,
             });
@@ -2030,12 +2029,12 @@ if(checkIfPersonendaten(card)){
         case "Fahrtkosten":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              fahrtkosten: true,
+              ...bruttoSum,
+              fahrtkosten: true, 
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               fahrtkostenBetragMtlTextfieldEinnahmen: 0,
               fahrtkosten: false,
             });
@@ -2044,12 +2043,13 @@ if(checkIfPersonendaten(card)){
         case "Provision":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              provision: true,
+              ...bruttoSum,
+              provision: true, 
             });
           } else {
+           
             setFormData({
-              ...formData,
+              ...bruttoSum,
               provisionBetragMtlTextfieldEinnahmen: 0,
               provision: false,
             });
@@ -2059,12 +2059,13 @@ if(checkIfPersonendaten(card)){
         case "Feiertagszuschlag":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               feiertagszuschlag: true,
             });
           } else {
+           
             setFormData({
-              ...formData,
+              ...bruttoSum,
               feiertagszuschlagBetragMtlTextfieldEinnahmen: 0,
               feiertagszuschlag: false,
             });
@@ -2074,12 +2075,12 @@ if(checkIfPersonendaten(card)){
         case "Nachtzuschlag":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               nachtzuschlag: true,
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               nachtzuschlag: false,
               nachtzuschlagBetragMtlTextfieldEinnahmen: 0,
             });
@@ -2088,12 +2089,13 @@ if(checkIfPersonendaten(card)){
         case "Dienstwagen":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               dienstwagen: true,
             });
           } else {
+
             setFormData({
-              ...formData,
+              ...bruttoSum,
               dienstwagen: false,
               dienstwagenBetragMtlTextfieldEinnahmen: 0,
             });
@@ -2102,12 +2104,12 @@ if(checkIfPersonendaten(card)){
         case "Gebuehren":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              kitaGebuehren: true,
+              ...bruttoSum,
+              kitaGebuehren: true
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               kitaGebuehren: false,
               kitaGebuehrenBetragMtlTextfieldEinnahmen: 0,
             });
@@ -2116,12 +2118,12 @@ if(checkIfPersonendaten(card)){
         case "JobRad":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               jobRad: true,
-            });
-          } else {
+          })} else {
+
             setFormData({
-              ...formData,
+              ...bruttoSum,
               jobRad: false,
               jobRadBetragMtlTextfieldEinnahmen: 0,
             });
@@ -2130,12 +2132,13 @@ if(checkIfPersonendaten(card)){
         case "VwLAG":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              vwlAG: true,
+              ...bruttoSum,
+              vwlAG: true, 
             });
           } else {
+
             setFormData({
-              ...formData,
+              ...bruttoSum,
               vwlAG: false,
               vwlAGBetragMtlTextfieldEinnahmen: 0,
             });
@@ -2144,12 +2147,13 @@ if(checkIfPersonendaten(card)){
         case "Sachbezug":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              sachbezug: true,
+              ...bruttoSum,
+              sachbezug: true, 
             });
           } else {
+
             setFormData({
-              ...formData,
+              ...bruttoSum,
               sachbezug: false,
               sachbezugBetragMtlTextfieldEinnahmen: 0,
             });
@@ -2158,12 +2162,13 @@ if(checkIfPersonendaten(card)){
         case "Sonstiges":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               sonstigesBrutto: true,
             });
           } else {
+
             setFormData({
-              ...formData,
+              ...bruttoSum,
               sonstigesBrutto: false,
               sonstigesBruttoBetragMtlTextfieldEinnahmen: 0,
             });
@@ -2173,12 +2178,14 @@ if(checkIfPersonendaten(card)){
         case "SonstigerSachbezug":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               sonstigerSachbezug: true,
+
             });
           } else {
+
             setFormData({
-              ...formData,
+              ...bruttoSum,
               sonstigerSachbezug: false,
               sonstigerSachbezugNettobezugBetragMtlEinnahmen: 0,
             });
@@ -2188,12 +2195,13 @@ if(checkIfPersonendaten(card)){
         case "AbzuegeVwlGesamt":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               abzuegeVwlGesamt: true,
             });
           } else {
+
             setFormData({
-              ...formData,
+              ...bruttoSum,
               abzuegeVwlGesamt: false,
               abzuegeVwlGesamtNettobezugBetragMtlEinnahmen: 0,
             });
@@ -2203,12 +2211,13 @@ if(checkIfPersonendaten(card)){
         case "SonstigerAbzugNetto":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              sonstigerAbzug: true,
+              ...bruttoSum,
+              sonstigerAbzug: true, 
+
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               sonstigerAbzug: false,
               sonstigerAbzugNettobezugBetragMtlEinnahmen: 0,
             });
@@ -2217,12 +2226,13 @@ if(checkIfPersonendaten(card)){
         case "Bonus":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              bonus: true,
+              ...bruttoSum,
+              bonus: true, 
+
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               bonus: false,
               sonderzahlungenAuszahlungsmonatEinnahmenSelect: "",
               sonderzahlungenAuszahlungsmonatEinnahmen: 0,
@@ -2232,12 +2242,13 @@ if(checkIfPersonendaten(card)){
         case "Urlaubsgeld":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              urlaubsgeld: true,
+              ...bruttoSum,
+              urlaubsgeld: true, 
+
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               urlaubsgeld: false,
               urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect: "",
               urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmen: 0,
@@ -2247,12 +2258,13 @@ if(checkIfPersonendaten(card)){
         case "Weihnachtsgeld":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              weihnachtsgeld: true,
+              ...bruttoSum,
+              weihnachtsgeld: true, 
+
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               weihnachtsgeld: false,
               weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect: "",
               weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect: 0,
@@ -2262,12 +2274,13 @@ if(checkIfPersonendaten(card)){
         case "Gewinnbeteiligung":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
-              ...formData,
-              gewinnbeteiligung: true,
+              ...bruttoSum,
+              gewinnbeteiligung: true, 
+
             });
           } else {
             setFormData({
-              ...formData,
+              ...bruttoSum,
               gewinnbeteiligung: false,
               gewinnbeteiligungSonderzahlungenAuszahlungsmonatEinnahmenSelect:
                 "",
@@ -2278,8 +2291,10 @@ if(checkIfPersonendaten(card)){
         default:
           break;
       }
+
       setTimeout(() => {
         setLoaded(false);
+
       }, 50);
       setTimeout(() => {
         setLoaded(true);
