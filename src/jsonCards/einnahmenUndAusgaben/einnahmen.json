@@ -1,5 +1,5 @@
 {
-  "section": "Einnahmen",
+  "section": "Einnahmen", 
   "card": true,
   "mobileClassname":"Einnahmen",
   "items": [ 
@@ -15,114 +15,32 @@
       "suiteValue":"versicherungsnehmerId"
     },
     {
-      "section": "Einnahmeart (change to radiobuttons)",
+      "section": "Einnahmeart",
       "card": true,
       "items": [
     {
-      "name": "radiogroup",
-      "type": "radioGroup",
-      "label": "Einnahmeart (change to radiobuttons)",
+      "name": "radiogroupEinnahmeart",
+      "type": "toggleButtonGroup",
 
-        "options":[
-{"value":"nichtselbststaendigeTaetigkeitEinnahmen","label":"Nichtselbstständige Tätigkeit"},
-{"value":"kapitalvermoegenEinnahmen","label":"Kapitalvermoegen"},
-{"value":"vermietungUndVerpachtungEinnahmen","label":"Vermietung und Verpachtung"},
-{"value":"selbststaendigeTaetigkeitEinnahmen","label":"Selbstständige Tätigkeit"},
-{"value":"landUndForstwirtschaftEinnahmen","label":"Land- und Forstwirtschaft"},
-{"value":"gewerbebetriebEinnahmen","label":"Gewerbebetrieb"},
-{"value":"sonstigeEinkünfteEinnahmen","label":"Sonstige Einkünfte (§ 22 EStG/Renten)"},
-{"value":"außerordentlicheEinkuenfteEinnahmen","label":"Außerordentliche Einkuenfte (§ 34 EStG/Fünftreglung)"},
-{"value":"steuerfreieEinnahmenUnterProgessionsvorbehaltEinnahmen","label":"steuerfreie Einnahmen umter Progessionsvorbehalt (§ 32b EStG/z. B. Arbeitslosengeld I und ausländische Einkünfte)"}
+        "menuOptions":[
+{"name":"nichtselbststaendigeTaetigkeitEinnahmen","label":"Nichtselbstständige Tätigkeit", "suiteValue":"nichtselbststaendigeTaetigkeit"},
+{"name":"kapitalvermoegenEinnahmen","label":"Kapitalvermoegen","suiteValue":"kapitalvermogen"},
+{"name":"vermietungUndVerpachtungEinnahmen","label":"Vermietung und Verpachtung","suiteValue":"vermietungUndVerpachtung"},
+{"name":"selbststaendigeTaetigkeitEinnahmen","label":"Selbstständige Tätigkeit","suiteValue":"selbststaendigeTaetigkeit"},
+{"name":"landUndForstwirtschaftEinnahmen","label":"Land- und Forstwirtschaft","suiteValue":"landUndForstwirtschaft"},
+{"name":"gewerbebetriebEinnahmen","label":"Gewerbebetrieb",        "suiteValue":"gewerbebetrieb"},
+{"name":"sonstigeEinkünfteEinnahmen","label":"Sonstige Einkünfte (§ 22 EStG/Renten)", "suiteValue":"sonstigeEinkuenfte22Renten"},
+{"name":"außerordentlicheEinkuenfteEinnahmen","label":"Außerordentliche Einkuenfte (§ 34 EStG/Fünftreglung)","suiteValue":"ausserordentlicheEinkuenfte"},
+{"name":"steuerfreieEinnahmenUnterProgessionsvorbehaltEinnahmen","label":"steuerfreie Einnahmen umter Progessionsvorbehalt (§ 32b EStG/z. B. Arbeitslosengeld I und ausländische Einkünfte)",  "suiteValue":"steuerfreieEinnahmenUnterProgressionsvorbehalt"}
 
         ]
-    },
-    {
-      "name": "nichtselbststaendigeTaetigkeitEinnahmen",
-      "label": "Nichtselbstständige Tätigkeit",
-      "type": "checkbox",
-      "props": {
-          "sm": 4
-        },
-        "suiteValue":"nichtselbststaendigeTaetigkeit"
-    },
-    {
-      "name": "kapitalvermoegenEinnahmen",
-      "label": "Kapitalvermoegen",
-      "type": "checkbox",
-      "props": {
-          "sm": 4
-        },
-        "suiteValue":"kapitalvermogen"
-    },
-    {
-      "name": "vermietungUndVerpachtungEinnahmen",
-      "label": "Vermietung und Verpachtung",
-      "type": "checkbox",
-      "props": {
-          "sm": 4
-        },
-        "suiteValue":"vermietungUndVerpachtung"
-    },
-    {
-      "name": "selbststaendigeTaetigkeitEinnahmen",
-      "label": "Selbstständige Tätigkeit",
-      "type": "checkbox",
-      "props": {
-          "sm": 4
-        },
-        "suiteValue":"selbststaendigeTaetigkeit"
-    },
-    {
-      "name": "landUndForstwirtschaftEinnahmen",
-      "label": "Land- und Forstwirtschaft",
-      "type": "checkbox",
-      "props": {
-          "sm": 4
-        },
-        "suiteValue":"landUndForstwirtschaft"
-    },
-    {
-      "name": "gewerbebetriebEinnahmen",
-      "label": "Gewerbebetrieb",
-      "type": "checkbox",
-      "props": {
-          "sm": 4
-        },
-        "suiteValue":"gewerbebetrieb"
-    },
-    {
-      "name": "sonstigeEinkünfteEinnahmen",
-      "label": "Sonstige Einkünfte (§ 22 EStG/Renten)",
-      "type": "checkbox",
-      "props": {
-          "sm": 4
-        },
-        "suiteValue":"sonstigeEinkuenfte22Renten"
-    },
-    {
-      "name": "außerordentlicheEinkuenfteEinnahmen",
-      "label": "Außerordentliche Einkuenfte (§ 34 EStG/Fünftreglung)",
-      "type": "checkbox",
-      "props": {
-          "sm": 6
-        },
-        "suiteValue":"ausserordentlicheEinkuenfte"
-    },
-    {
-      "name": "steuerfreieEinnahmenUnterProgessionsvorbehaltEinnahmen",
-      "label": "steuerfreie Einnahmen umter Progessionsvorbehalt (§ 32b EStG/z. B. Arbeitslosengeld I und ausländische Einkünfte)",
-      "type": "checkbox",
-      "props": {
-          "sm": 6
-        },
-        "suiteValue":"steuerfreieEinnahmenUnterProgressionsvorbehalt"
-    },
+      },
     {
       "name": "filler",
       "label": "",
       "type": "paragraph",
       "props": {
-          "sm": 6
+          "sm": 12
         }
     },
     { "name": "vonEinnahmen", "label": "von", "type": "date",

@@ -1,4 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
+import "../App.css"
 import {
   Card,
   CardContent,
@@ -20,6 +21,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Button,
 } from "@material-ui/core";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import React, {
@@ -27,17 +29,17 @@ import React, {
   useCallback,
   useImperativeHandle,
   useContext,
-  useEffect,
   useState,
   useRef,
   useReducer
 } from "react";
-import { Edit, ExpandMore } from "@material-ui/icons";
+import { Edit, ExpandMore,DeleteForever } from "@material-ui/icons";
 import BezugHinzufuegen from "./BezugHinzufuegen";
 import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
 import FunctionMapper from "./FunctionMapper";
 import { formatMandantName, checkForKind} from "./mapAssets";
+
 function DynamicForm(
   {
     values,
@@ -53,8 +55,11 @@ function DynamicForm(
   },
   ref
 ) {
+  const [isInitialized, toggleInitialized] = useState(false)
+  function radioGroup(){
+    
+  }
   let inputIndex = 0;
-let nameArray =[]
   const {
     versicherungsnehmerValue,
     setVersicherungsnehmerValue,
@@ -64,14 +69,13 @@ let nameArray =[]
     mobileClassname,
     bruttoSum,
     setBruttoSum,
-    gehaltInit, setGehaltInit  } = useContext(Context);
+    gehaltInit, setGehaltInit, setDeletionIndex } = useContext(Context);
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
 
   };
-  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
-
+let radioGroupArray =[{}]
   // Definition rekursiv nach Werten absuchen (für 1-dimensionales defaultValues-Objekt)
   const reduceDefinitionValues = (acc = {}, { items, name }) => {
     if (items) return { ...acc, ...items.reduce(reduceDefinitionValues, {}) };
@@ -80,11 +84,19 @@ let nameArray =[]
   };
   const defaultValues = formDefinition.reduce(reduceDefinitionValues, {});
 
-  const { control, handleSubmit, watch, formState, reset } = useForm({
+  const { control, handleSubmit, watch, formState, reset,setValue } = useForm({
     defaultValues,
     mode: "onBlur",
   });
-
+function selectedRadioButton(menuOptions, values){
+  let output=""
+  menuOptions.map((option)=>{
+    if(values[option.name]){
+      output=option.name
+    }
+  })
+  return(output)
+}
   // Definition rekursiv nach conditions absuchen und entsprechende Watchers einrichten
   const reduceDefinitionWatchers = useCallback(
     (acc = {}, { items, condition }) => {
@@ -107,6 +119,7 @@ let nameArray =[]
       card = false,
       accordionText,
       accordionId,
+      visibilityDeleteIcon,
       name,
       rows,
       description,
@@ -123,6 +136,7 @@ let nameArray =[]
       anzahlVp,
       showKind,
       showSonstige,
+      menuOptions,
       rules: { required = false, pattern = "" } = {},
     } = item;
     const itemDisabled = disabled || item.disabled || !!editWarning;
@@ -131,6 +145,7 @@ let nameArray =[]
       : item.props;
 
     if (!values) return null;
+
 
     if (condition) {
       // todo: mehr möglichkeiten mit den conditions (aktuell nur boolean)
@@ -165,15 +180,19 @@ let nameArray =[]
             </Card>
           ) : (
             <Accordion
-              aria-controls={"panel" + accordionId + "-content"}
+            style={{justifyContent:"space-between"}} 
+            aria-controls={"panel" + accordionId + "-content"}
               id={"panel" + accordionId + "-header"}
             >
-              <AccordionSummary expandIcon={<ExpandMore />}>
+              <AccordionSummary  expandIcon={<ExpandMore />}>
                 <Typography variant={"h6"} component={"h3"}>
                   {accordionText}
                 </Typography>{" "}
               </AccordionSummary>
-              <AccordionDetails>{cardContent}</AccordionDetails>
+              <AccordionDetails>
+              
+                {cardContent}
+                </AccordionDetails>
             </Accordion>
           )}
         </Grid>
@@ -212,6 +231,46 @@ let nameArray =[]
 
             function getItemInput() {
               switch (type) {
+                case "toggleButtonGroup":
+                  return <>
+                    <FormControl fullWidth size={"small"}>
+                    <Typography
+                      style={{
+                        color: itemDisabled ? "#bbb" : "#444",
+                        fontSize: "0.9rem",
+                      }}>
+                      {label}
+                    </Typography>
+                    <RadioGroup aria-label="Einnahme Art" value={value} onChange={onChange}>
+                      {menuOptions.map((option, index) => (
+    <FormControlLabel value={option.name} label={option.label} key={"radioGroup"+index} control={<Radio />}  />
+                      ))}
+                      </RadioGroup>
+                    {helperText && <Typography>
+                      {helperText}
+                    </Typography>}
+                    </FormControl>
+                  </>
+                                    /* <Switch
+                            color={"primary"}
+                            checked={value}
+                            name={name}
+                            onChange={onChange}
+                            inputRef={ref}
+                            disabled={itemDisabled}
+                            <Button
+                          size={"large"}
+                          onClick={() => onChange(option.value)}
+                          style={{flexGrow: 1}}
+                          variant={option.value === value ? "contained" : "outlined"}
+                          color={"secondary"}
+                          key={"btngrp-" + index}
+                          value={option.value}
+                          disabled={itemDisabled}
+                        >
+                          {option.label}
+                        </Button>
+                          /> */
                 case "costumFunction":
                   return (
                     <FormControl fullWidth size={"small"}>
@@ -219,9 +278,11 @@ let nameArray =[]
                         functionName={name}
                         variableName={label}
                         watch={watch}
+                        setValue={setValue}
                       />
                     </FormControl>
                   );
+
                 case "produktid":
                   return (
                     <FormControl fullWidth size={"small"}>
@@ -576,7 +637,36 @@ let nameArray =[]
                       {...props}
                     />
                   );
-
+                  case "numberJahresbrutto":
+                    return (
+                      <TextField
+                        autoFocus={focussed}
+                        inputRef={ref}
+                        label={label}
+                        name={name}
+                        value={value || ""}
+                        onChange={(e) => {
+                          // todo: react-number-format o.ä. einsetzen?
+                          let floatValue = parseFloat(e.target.value);
+                          if (isNaN(floatValue)) floatValue = 0;
+                          onChange(jahresBruttoSumme());
+                        }}
+                        disabled={itemDisabled}
+                        type={"number"}
+                        error={!!error}
+                        helperText={helperText}
+                        fullWidth
+                        size={"small"}
+                        InputProps={{
+                          endAdornment: unit && (
+                            <InputAdornment position={"end"}>
+                              {unit}
+                            </InputAdornment>
+                          ),
+                        }}
+                        {...props}
+                      />
+                    );
                 case "date":
                   return (
                     <KeyboardDatePicker
@@ -741,6 +831,101 @@ let nameArray =[]
     });
     return output;
   }
+  function jahresBruttoSumme(){
+    let summe = 0;
+    function checkForUndefinedSonderzahlung(value) {
+      let output = 0;
+      if (typeof value !== "undefined") {
+        output = value;
+      }
+      return output;
+    }
+    function checkForUndefinedNettobezuege(value, isNegative) {
+      let output = 0;
+      if (typeof value !== "undefined") {
+        if (isNegative) {
+          output = -value;
+        } else {
+          output = value;
+        }
+      }
+      return output;
+    }
+    function checkForUndefinedBrutto(value, GB) {
+      let output = 0;
+      if (typeof value !== "undefined" && GB === "J") {
+        output = value;
+      }
+      return output;
+    }
+    summe =
+    (checkForUndefinedBrutto(
+        watch().betragMtlTextfieldEinnahmen,
+        watch().gesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().variablerBezugBetragMtlTextfieldEinnahmen,
+        watch().variablerBezugGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().fahrtkostenBetragMtlTextfieldEinnahmen,
+        watch().fahrtkostenGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().feiertagszuschlagBetragMtlTextfieldEinnahmen,
+        watch().feiertagszuschlagGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().nachtzuschlagBetragMtlTextfieldEinnahmen,
+        watch().nachtzuschlagGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().dienstwagenBetragMtlTextfieldEinnahmen,
+        watch().dienstwagenGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().kitaGebuehrenBetragMtlTextfieldEinnahmen,
+        watch().kitaGebuehrenGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().jobRadBetragMtlTextfieldEinnahmen,
+        watch().jobRadGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().vwlAGBetragMtlTextfieldEinnahmen,
+        watch().vwlAGGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().sachbezugBetragMtlTextfieldEinnahmen,
+        watch().sachbezugGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().provisionBetragMtlTextfieldEinnahmen,
+        watch().provisionGesamtBruttoSelectEinnahmen
+      ) +
+      checkForUndefinedBrutto(
+        watch().sonstigesBruttoBetragMtlTextfieldEinnahmen,
+        watch().sonstigesBruttoGesamtBruttoSelectEinnahmen
+      ))*watch().anzahlGehaelterEinnahmen +
+      checkForUndefinedNettobezuege(watch().nettobezugBetragMtlEinnahmen, false) +
+      checkForUndefinedNettobezuege(
+        watch().sonstigerSachbezugNettobezugBetragMtlEinnahmen,
+        false
+      ) +
+      checkForUndefinedNettobezuege(watch().abzuegeVwlGesamtNettobezugEinnahmen, true) +
+      checkForUndefinedNettobezuege(watch().sonstigerAbzugNettobezugBetragMtlEinnahmen, true)+
+      checkForUndefinedSonderzahlung(watch().sonderzahlungenAuszahlungsmonatEinnahmen) +
+      checkForUndefinedSonderzahlung(
+        watch().urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmen
+      ) +
+      checkForUndefinedSonderzahlung(
+        watch().weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmen
+      ) +
+      checkForUndefinedSonderzahlung(
+        watch().gewinnbeteiligungSonderzahlungenAuszahlungsmonatEinnahmen
+      );
+      return(summe)
+  }
   function dateFormaterSuite(date) {
     //from dd/mm/yyyy to mm/dd/yyyy
     let output;
@@ -779,6 +964,9 @@ let nameArray =[]
     if (tarifTypeIdFromCardState === "PFLEGETAGEGELD") {
       output = { ...output, json: { ...output.json, art: "1" } };
     }
+    if (tarifTypeIdFromCardState === "EINNAHMEN") {
+    console.log(output.json)
+    }
     /*
 if(tarifTypeIdFromCardState === "KVZ"){
   output={...output, json:{...output.json,kategorie:"thvpferd" }}
@@ -800,6 +988,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
     });
     return output;
   }
+  
   const submitDirtyFields = async (values) => {
     if (Object.keys(formState.dirtyFields).length === 0) return false;
 

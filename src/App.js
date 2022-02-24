@@ -1407,7 +1407,11 @@ function App(props) {
     setEinkommenGehaltBezuege,
     setVertragId,
     bruttoSum,
-    setBruttoSum  } = useContext(Context);
+    setAnzahlVp,
+    setBruttoSum ,
+    mandantGroup,
+    setMandantGroup,  bankverbindungen, setBankverbindungen
+} = useContext(Context);
   /*
   suite mapped:
 chooseCard
@@ -1675,7 +1679,7 @@ test =[riesterrente]
     // simuliere einen etwas länger dauernden speichervorgang
     console.log(dataPaket);
     axios
-      .post(saveAsset.url, dataPaket, saveAsset)
+      .post(saveAssetLiveSuite.url, dataPaket, saveAssetLiveSuite)
       .then((response) => {
         console.log(response);
       })
@@ -1688,10 +1692,10 @@ test =[riesterrente]
 
   var myHeaders = new Headers();
   myHeaders.append("Access-Control-Allow-Origin", "*");
-  document.cookie = "JSESSIONID=56CF05C40FCAC6C80030B693847F922D";
+  document.cookie = "JSESSIONID=9A2CC3C93070309D888ACD30294946A6";
   var requestOptionsMandantLiveSuite = {
     method: "get",
-    url: "https://jcp-suite.de/suite/mandant.json?action=getMandantById&id=5bb62244-c69e-11e6-9d84-001c4254d875",
+    url: "https://jcp-suite.de/suite/mandant.json?action=getMandantById&id="+params.mandantId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
@@ -1705,14 +1709,58 @@ test =[riesterrente]
   };
   var requestOptionsMandantGroupLiveSuite = {
     method: "get",
-    url: "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId=5bb62244-c69e-11e6-9d84-001c4254d875",
+    url: "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId="+params.mandantId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
   };
+
+  var saveAssetLiveSuite = {
+    method: "post",
+    url: "https://jcp-suite.de/suite/analyseApp",
+    withCredentials: true,
+    headers: {
+      Cookie: document.cookie,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow",
+  };
+  var getContextIdByIdLiveSuite = {
+    method: "post",
+    url: "https://jcp-suite.de/suite/context.json?action=getContextById&id="+params.contextId,
+    withCredentials: true,
+    headers: {
+      Cookie: document.cookie,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow",
+  };
+  var getProductIdLiveSuite = {
+    method: "post",
+    url:
+      "https://jcp-suite.de/suite/productId.json?action=getProductIds&tarifTypeId=" +
+      card,
+    withCredentials: true,
+    headers: {
+      Cookie: document.cookie,
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    redirect: "follow",
+  };
+  var requestOptionsGesellschaftIdLiveSuite = {
+    method: "get",
+    url:
+      "https://jcp-suite.de/suite/gesellschaft.json?action=getAllGesellschaftsByTarifTypeId&tarifTypeId=" +
+      card +
+      "&contextId="+params.contextId,
+    withCredentials: true,
+    headers: { Cookie: document.cookie },
+    redirect: "follow",
+  };
+//192.168.1.181 LÖSCHEN WENN FERTIG!!!
   var requestOptionsMandantGroup = {
     method: "get",
-    url: "http://localhost:8080/build-suite/mandant.json?action=getMandantGroup&mandantId=ae378e06-0522-11e9-95b0-27616e07d826",
+    url: "http://localhost:8080/build-suite/mandant.json?action=getMandantGroup&mandantId="+params.mandantId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
@@ -1788,6 +1836,9 @@ test =[riesterrente]
 
   function checkIfPersonendaten(card){
     let output = false
+    if(card==="GEHALT_EINKOMMEN"){
+      output = true
+    }
     if(card==="BANKVERBINDUNG"){
       output = true
     }if(card==="KIND"){
@@ -1829,6 +1880,8 @@ test =[riesterrente]
             productId: result[5].data.data,
             success: true,
           });
+      setMandantGroup(result[2].data.data.mandantMandantGroups)
+
         })
         .catch((error) =>{
         console.log("error")
@@ -1849,6 +1902,8 @@ test =[riesterrente]
             analyseAssets: result[1].data.data,
             success: true,
           });
+      setMandantGroup(result[2].data.data.mandantMandantGroups)
+      setBankverbindungen(result[2].data.data.mandantMandantGroups.mandantData.bankverbindungs)
         })
         .catch((error) =>{
         console.log("error")
@@ -1859,6 +1914,8 @@ test =[riesterrente]
 if(checkIfPersonendaten(card)){
       getDataPersonendaten()
       setIsBusy(false);
+
+
     } else{
       getData();
       setIsBusy(false);
@@ -1871,8 +1928,12 @@ if(checkIfPersonendaten(card)){
       mounted = false;
     };
   }, [jsonValues]);
+
+
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
+      console.log("drin")
+
       isAssetAvailable(
         rawData,
         setFormData,
@@ -1881,13 +1942,17 @@ if(checkIfPersonendaten(card)){
         "none",
         card,
         setVersicherungsnehmerValue,
-        rawData.contextProductId.contextConfig.desktop.showExternalProductId
+        rawData.contextProductId.contextConfig.desktop.showExternalProductId,
+        setAnzahlVp,
+        bankverbindungen, setBankverbindungen
       );
       setId(mapAssets(rawData.analyseAssets));
       setInitialised(true);
+
       setTimeout(() => {
         setLoaded(false);
-      }, 100);
+        
+      }, 300);
       setTimeout(() => {
         setLoaded(true);
       }, 500);
@@ -1908,7 +1973,9 @@ if(checkIfPersonendaten(card)){
         ),
         card,
         setVersicherungsnehmerValue,
-        rawData.contextProductId.contextConfig.desktop.showExternalProductId
+        rawData.contextProductId.contextConfig.desktop.showExternalProductId,
+        setAnzahlVp,
+        bankverbindungen, setBankverbindungen
       );
       setVertragId(
         redefineCard(
@@ -2000,6 +2067,22 @@ if(checkIfPersonendaten(card)){
         default:
           break;
       }
+      /*
+      if(card === "BANKVERBINDUNG"){
+        isAssetAvailable(
+          rawData,
+          setFormData,
+          dummyData,
+          setLoaded,
+          "none",
+          card,
+          setVersicherungsnehmerValue,
+          rawData.contextProductId.contextConfig.desktop.showExternalProductId,
+          setAnzahlVp,
+          deletionIndex
+        );
+
+      }*/
       setTimeout(() => {
         setLoaded(false);
       }, 100);
@@ -2007,6 +2090,7 @@ if(checkIfPersonendaten(card)){
         setLoaded(true);
       }, 500);
     }
+
   }, [anzahlVp]);
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
@@ -2298,6 +2382,7 @@ if(checkIfPersonendaten(card)){
       }, 50);
       setTimeout(() => {
         setLoaded(true);
+        window.scrollTo(0,bruttoSum.scrollY)
       }, 60);
     }
   }, [einkommenGehaltBezuege]);

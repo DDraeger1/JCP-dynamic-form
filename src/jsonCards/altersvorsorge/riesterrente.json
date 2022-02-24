@@ -114,7 +114,10 @@
       "label": "RGZ (Jahre)",
       "type": "text",
       "props": { "sm": 6, "xs": 6 }
-    }]},
+    },
+    {"name":"rentenPrognose",
+      "type":"costumFunction"
+      }]},
     {
       "section": "Dynamik",
       "card": true,
@@ -198,7 +201,7 @@
       "props": { "sm": 6, "xs": 6 }
     },
     {
-      "name": "aktuellerRückkaufswertBUZRiesterrente",
+      "name": "aktuellerRueckkaufswertBUZRiesterrente",
       "label": "Aktueller Rückkaufswert (€)",
       "type": "text",
       "props": { "sm": 6, "xs": 6 }

@@ -3,6 +3,14 @@
     "card": true,
 
     "items": [
+      {"accordionId":0,
+      "accordionText":"Bankdaten 1",
+    "card":false,
+      "visibilityDeleteIcon":"visible",
+      "items":[
+        {"name":"deleteBankverbindung",
+        "type":"costumFunction",
+      "label":0},
         {
           "name": "bankBankdaten",
           "label": "Bank",
@@ -15,7 +23,7 @@
         {
             "name": "kontoInhaberBankdaten",
             "label": "KontoInhaber",
-            "type": "selectMandant",
+            "type": "text",
             "tarifType":"BANKVERBINDUNG",
             "props": {
                 "sm": 6,
@@ -44,6 +52,273 @@
             "name": "bicBankdaten",
             "label": "BIC",
             "type": "text"
-          }
+          }]},
+          {
+            "name": "selected2Persons",
+            "condition": "null",
+            "type": "paragraph"
+          },
+          {"accordionId":1,
+            "accordionText":"Bankdaten 2",
+          "card":false,
+      "condition":"selected2Persons",
+      "visibilityDeleteIcon":"visible",
+        "items":[
+              {
+                "name": "bankBankdaten2",
+                "label": "Bank",
+                "type": "text",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  }
+              },
+              {
+                  "name": "kontoInhaberBankdaten2",
+                  "label": "KontoInhaber",
+                  "type": "text",
+                  "tarifType":"BANKVERBINDUNG",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "kontonummerBankdaten2",
+                  "label": "Kontonummer",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "ibanBankdaten2",
+                  "label": "IBAN",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "bicBankdaten2",
+                  "label": "BIC",
+                  "type": "text"
+                }]},
+          {
+            "name": "selected3Persons",
+            "condition": "null",
+            "type": "paragraph"
+          },
+          {"accordionId":2,
+            "accordionText":"Bankdaten 3",
+          "card":false,
+      "condition":"selected3Persons",
+      "visibilityDeleteIcon":"visible",
+      "items":[
+              {
+                "name": "bankBankdaten3",
+                "label": "Bank",
+                "type": "text",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  }
+              },
+              {
+                  "name": "kontoInhaberBankdaten3",
+                  "label": "KontoInhaber",
+                  "type": "text",
+                  "tarifType":"BANKVERBINDUNG",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "kontonummerBankdaten3",
+                  "label": "Kontonummer",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "ibanBankdaten3",
+                  "label": "IBAN",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "bicBankdaten3",
+                  "label": "BIC",
+                  "type": "text"
+                }]},
+          {
+            "name": "selected4Persons",
+            "condition": "null",
+            "type": "paragraph"
+          },
+          {"accordionId":3,
+            "accordionText":"Bankdaten 4",
+          "card":false,
+      "condition":"selected4Persons",
+      "visibilityDeleteIcon":"visible",
+      "items":[
+              {
+                "name": "bankBankdaten4",
+                "label": "Bank",
+                "type": "text",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  }
+              },
+              {
+                  "name": "kontoInhaberBankdaten4",
+                  "label": "KontoInhaber",
+                  "type": "text",
+                  "tarifType":"BANKVERBINDUNG",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "kontonummerBankdaten4",
+                  "label": "Kontonummer",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "ibanBankdaten4",
+                  "label": "IBAN",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "bicBankdaten4",
+                  "label": "BIC",
+                  "type": "text"
+                }]},
+          {
+            "name": "selected5Persons",
+            "condition": "null",
+            "type": "paragraph"
+          },
+          {"accordionId":4,
+            "accordionText":"Bankdaten 5",
+          "card":false,
+      "condition":"selected5Persons",
+      "visibilityDeleteIcon":"visible",
+      "items":[
+              {
+                "name": "bankBankdaten5",
+                "label": "Bank",
+                "type": "text",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  }
+              },
+              {
+                  "name": "kontoInhaberBankdaten5",
+                  "label": "KontoInhaber",
+                  "type": "text",
+                  "tarifType":"BANKVERBINDUNG",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "kontonummerBankdaten5",
+                  "label": "Kontonummer",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "ibanBankdaten5",
+                  "label": "IBAN",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "bicBankdaten5",
+                  "label": "BIC",
+                  "type": "text"
+                }]},
+                {
+                  "name": "selected6Persons",
+                  "condition": "null",
+                  "type": "paragraph"
+                }
+                ,
+          {"accordionId":5,
+            "accordionText":"Bankdaten 6",
+          "card":false,
+      "condition":"selected6Persons",
+      "visibilityDeleteIcon":"visible",
+      "items":[
+              {
+                "name": "bankBankdaten6",
+                "label": "Bank",
+                "type": "text",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  }
+              },
+              {
+                  "name": "kontoInhaberBankdaten6",
+                  "label": "KontoInhaber",
+                  "type": "text",
+                  "tarifType":"BANKVERBINDUNG",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "kontonummerBankdaten6",
+                  "label": "Kontonummer",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "ibanBankdaten6",
+                  "label": "IBAN",
+                  "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    }
+                },
+                {
+                  "name": "bicBankdaten6",
+                  "label": "BIC",
+                  "type": "text"
+                }]}
         ]
+        
 }

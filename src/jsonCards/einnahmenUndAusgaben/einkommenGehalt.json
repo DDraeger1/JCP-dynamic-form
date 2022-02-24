@@ -1157,7 +1157,7 @@
     },
     {
         "name": "anzahlGehaelterEinnahmen",
-        "label": "Anzahl Gehaelter",
+        "label": "Anzahl Gehälter",
         "type": "text",
         "suiteValue":"lohnAnzahlProJahr"
       },
@@ -1266,7 +1266,7 @@
             "xs":6 }
         },
         {
-          "name": "sonstigerAbzugNettobezugBetragMtlEinnahmen",
+          "name": "Weihnachtsgeld",
           "label": "",
           "condition":"sonstigerAbzug",
           "type": "number",
@@ -1383,10 +1383,10 @@
               "suiteValue":"bonuszahlung"
           },
           {
-            "name": "kp",
-            "label": "Entfernen",
-      "condition":"urlaubsgeld",
-      "type": "paragraph",
+            "name": "bankRemoveSonderzahlung",
+            "label": "Bonus",
+      "condition":"bonus",
+      "type": "costumFunction",
             "props": { "sm": 2 ,
               "xs":2}
           },
@@ -1448,10 +1448,17 @@
             "name": "urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmen",
             "label": "",
       "condition":"urlaubsgeld",
-      "type": "text",
+      "type": "number",
             "props": { "sm": 2,
               "xs":2 },
               "suiteValue":"urlaubsgeld"
+          },          {
+            "name": "bankRemoveSonderzahlung",
+            "label": "Urlaubsgeld",
+      "condition":"urlaubsgeld",
+      "type": "costumFunction",
+            "props": { "sm": 2 ,
+              "xs":2}
           },
           {
             "name": "weihnachtsgeldSonderzahlungenHinzufügenEinnahmen",
@@ -1508,13 +1515,20 @@
             "suiteValue":"weihnachtsgeldAuszahlungsmonat"
           },
           {
-            "name": "weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmenSelect",
+            "name": "weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmen",
             "label": "",
       "condition":"weihnachtsgeld",
-      "type": "text",
+      "type": "number",
             "props": { "sm": 2,
               "xs":2 },
               "suiteValue":"weihnachtsgeld"
+          },          {
+            "name": "bankRemoveSonderzahlung",
+            "label": "Weihnachtsgeld",
+      "condition":"weihnachtsgeld",
+      "type": "costumFunction",
+            "props": { "sm": 2 ,
+              "xs":2}
           },
           {
             "name": "gewinnbeteiligungSonderzahlungenHinzufügenEinnahmen",
@@ -1578,6 +1592,13 @@
             "props": { "sm": 2,
               "xs":2 },
               "suiteValue":"gewinnbeteiligung"
+          },          {
+            "name": "bankRemoveSonderzahlung",
+            "label": "Gewinnbeteiligung",
+      "condition":"gewinnbeteiligung",
+      "type": "costumFunction",
+            "props": { "sm": 2 ,
+              "xs":2}
           },
           {
             "name": "sonstigesSonderzahlungenHinzufügenEinnahmen",
@@ -1642,10 +1663,15 @@
               "xs":2 },
               "suiteValue":"sonstigerSachbezug"
           },
+          {"name":"summeSonderzahlung",
+          "type":"costumFunction"
+
+          },
+          {"name":"summeSonderzahlungNettoSchnitt",
+          "type":"costumFunction"},
           {
-            "name": "jahresbruttoEinnahmen",
-            "label": "Jahresbrutto",
-            "type": "text",
+            "name": "jahresBrutto",
+            "type": "numberJahresbrutto",
             "props": { "sm": 5,
               "xs":5 },
               "suiteValue":"lohnBruttoProJahr"

@@ -280,67 +280,68 @@
               ],
               "props": { "sm": 6, "xs": 6 },
               "suiteValue": "krankentagegeldtag"
-            }]}
+            },
+            {
+              "section": "UV-Rente",
+              "card": true,
+              "items": [
+            {
+              "name": "abFuenfzigUVRenteUnfall",
+              "label": "ab 50%",
+              "type": "checkbox",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "unfallrenteAb50Check"
+            },
+            {
+              "name": "abUVRenteUnfall",
+              "label": "ab",
+              "type": "checkbox",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "unfallrenteAbXCheck"
+            },
+            {
+              "name": "prozentAbUVRenteUnfall",
+              "label": "%",
+              "type": "text",
+              "condition": "abUVRenteUnfall",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "unfallrenteAbXProzent"
+            },
+            {
+              "name": "betragUVRenteUnfall",
+              "label": "Betrag (€)",
+              "type": "text",
+              "condition": "abUVRenteUnfall",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "unfallrenteAbXEuro"
+            }]},
+              {
+                "section": "Dynamik",
+                "card": true,
+                "items": [
+            {
+              "name": "dynamikUVRenteUnfall",
+              "label": "Dynamik",
+              "type": "select",
+              "options": [
+                { "value": false, "label": "Nein" },
+                { "value": true, "label": "Ja" }
+              ],
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "dynamik"
+            },
+            {
+              "name": "dynamikProzentUVRenteUnfall",
+              "label": "Prozent (%)",
+              "type": "text",
+              "props": { "sm": 6, "xs": 6 },
+              "suiteValue": "dynamikProzent"
+            }
+          ]
+        }]}
           ]
         },
-        {
-          "section": "UV-Rente",
-          "card": true,
-          "items": [
-        {
-          "name": "abFuenfzigUVRenteUnfall",
-          "label": "ab 50%",
-          "type": "checkbox",
-          "props": { "sm": 6, "xs": 6 },
-          "suiteValue": "unfallrenteAb50Check"
-        },
-        {
-          "name": "abUVRenteUnfall",
-          "label": "ab",
-          "type": "checkbox",
-          "props": { "sm": 6, "xs": 6 },
-          "suiteValue": "unfallrenteAbXCheck"
-        },
-        {
-          "name": "prozentAbUVRenteUnfall",
-          "label": "%",
-          "type": "text",
-          "condition": "abUVRenteUnfall",
-          "props": { "sm": 6, "xs": 6 },
-          "suiteValue": "unfallrenteAbXProzent"
-        },
-        {
-          "name": "betragUVRenteUnfall",
-          "label": "Betrag (€)",
-          "type": "text",
-          "condition": "abUVRenteUnfall",
-          "props": { "sm": 6, "xs": 6 },
-          "suiteValue": "unfallrenteAbXEuro"
-        }]},
-          {
-            "section": "Dynamik",
-            "card": true,
-            "items": [
-        {
-          "name": "dynamikUVRenteUnfall",
-          "label": "Dynamik",
-          "type": "select",
-          "options": [
-            { "value": false, "label": "Nein" },
-            { "value": true, "label": "Ja" }
-          ],
-          "props": { "sm": 6, "xs": 6 },
-          "suiteValue": "dynamik"
-        },
-        {
-          "name": "dynamikProzentUVRenteUnfall",
-          "label": "Prozent (%)",
-          "type": "text",
-          "props": { "sm": 6, "xs": 6 },
-          "suiteValue": "dynamikProzent"
-        }
-      ]
-    },
+        
     {
       "name": "selected2Persons",
       "condition": "null",

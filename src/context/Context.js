@@ -21,110 +21,10 @@ const [einkommenGehaltBezuege, setEinkommenGehaltBezuege] =useState({
 hinzufuegen:false,
 pressedValue:""
 })
-const [bruttoSum , setBruttoSum] = useState(
-  {
-    negativeBrutto:0,
-    bruttoBezug:{
-    grundgehalt:{
-      betrag:0,
-      ST:"",
-      SV:"",
-      GB:""
-    },
-    variablerBezug:{
-      betrag:0,
-     ST:"",
-   SV:"",
-     GB:"",
-    },
-    fahrtkosten:{
-      betrag:0,
-    ST:"",
-     SV:"",
-     GB:""
-    },
-    feiertagszuschlag:{
-      betrag:0,
-    ST:"",
-     SV:"",
-     GB:""
-    },
-    nachtzuschlag:{
-      betrag:0,
-      ST:"",
-      SV:"",
-      GB:""
-    },
-    dienstwagen:{
-      betrag:0,
-    ST:"",
-    SV:"",
-    GB:""
-    },
-    kitaGebuehren:{
-      betrag:0,
-   ST:"",
-    SV:"",
-    GB:""
-    }
-    ,
-    jobRad:{
-      betrag:0,
-      ST:"",
-      SV:"",
-    GB:""
-    }
-    ,
-    vwlAG:{
-      betrag:0,
-      ST:"",
-      SV:"",
-      GB:""
-    }
-    ,
-    sachbezug:{
-      betrag:0,
-      ST:"",
-      SV:"",
-      GB:""
-    }
-    ,
-    provision:{
-      betrag:0,
-     ST:"",
-     SV:"",
-      GB:""
-    }
-    ,
-    sonstiges:{
-      betrag:0,
-      ST:"",
-      SV:"",
-      GB:""
-    }
-    },
-    nettobezuege:{
-      netto:{
-        isAbzug:false,
-        betrag:0
-      },
-      sonstigerSachbezug:{
-        isAbzug:false,
-        betrag:0
-      },
-      abzuegeVwL:{
-        isAbzug:true,
-        betrag:0
-      },
-      sonstigerAbzug:{
-        isAbzug:true,
-        betrag:0
-      }
-    }
-  }
-)
+const [bruttoSum , setBruttoSum] = useState({scrollY:0})
 const [gehaltInit, setGehaltInit] = useState(false);
-
+const [bankverbindungen, setBankverbindungen] = useState()
+const [mandantGroup, setMandantGroup] = useState([]) 
 return (
     <Context.Provider
       value={{
@@ -139,7 +39,9 @@ return (
         mobileClassname, setMobileClassname,
         vertragId, setVertragId,
         bruttoSum , setBruttoSum,
-        gehaltInit, setGehaltInit
+        gehaltInit, setGehaltInit,
+        mandantGroup, setMandantGroup,
+        bankverbindungen, setBankverbindungen
       }}
     >
       {props.children}

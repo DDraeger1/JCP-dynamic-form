@@ -12,6 +12,7 @@
       "condition":"showExternalProductId",
       "props": { "required": true },
       "suiteValue":"externalProduktId"},
+      
     {
       "name": "versicherungsnehmerHausrat",
       "label": "Versicherungsnehmer",

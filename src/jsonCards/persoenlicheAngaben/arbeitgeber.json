@@ -1125,6 +1125,8 @@
                                                         "label": "Email des Ansprechspartners",
                                             "condition":"selected6Persons",
                                             "type": "text"
-                                                      }]}]}
+                                                      }]}]},
+                                                      {"name":"arbeitgeberHinzufuegen",
+    "type":"costumFunction"}
     ]
 }
