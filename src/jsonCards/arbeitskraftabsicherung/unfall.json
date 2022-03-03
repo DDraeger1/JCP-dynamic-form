@@ -24,6 +24,7 @@
         {
           "name": "versicherungsnummerGesellschaftUnfall",
           "type": "text",
+          "label": "Vertragsnummer",
           "props": { "required": true },
           "suiteValue": "versicherungsnummer"
         }

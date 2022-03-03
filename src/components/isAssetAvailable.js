@@ -292,7 +292,7 @@ console.log(vertragId)
       }
     }}}}}}
   }
-
+console.log(cardValues)
   setFormData({
     showExternalProductId:booleanFormater(showExternalProductId),
     ...cardValues,

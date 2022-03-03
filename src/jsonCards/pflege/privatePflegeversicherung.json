@@ -1,7 +1,6 @@
 {
     "section": "Private Pflegeversicherung",
     "card": true,
-    "props": { "sm": 6 },
   "mobileClassname":"PrivateKrankenPflegeversicherung",
   "items": [
     {"name":"showExternalProductId",

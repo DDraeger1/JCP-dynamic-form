@@ -1779,6 +1779,8 @@ function setAssetWithTariftype(
   setAnzahlVp,
   bankverbindungen, setBankverbindungen
 ) {
+let assetFound=false
+
   let kindArray;
   if (card === "KIND") {
     kindArray = mapKind(mandantGroup);
@@ -2012,7 +2014,6 @@ function setAssetWithTariftype(
           if (cardTemplateDataParam.sonstigesBrutto === undefined) {
           } else {
             if (cardTemplateDataParam.sonstigesBrutto > 0) {
-              console.log("drin");
               output = true;
             }
           }
@@ -2348,7 +2349,6 @@ alert("Es können nicht mehr als 6 Bankverbingungen angezeigt werden")
       }
       return(output)
   }
-
 if(typeof(bankverbindungen) === "undefined"){
   console.log(mandantGroup)
 
@@ -2736,24 +2736,31 @@ if(typeof(bankverbindungen) === "undefined"){
       asset.map((asset) => {
         if (asset.tarifTypeId.includes("DARLEHEN") && card === "DARLEHEN") {
           cardTemplateData = asset;
+          assetFound=true
+
         }
         if (asset.tarifTypeId.includes("RUERUP") && card === "RUERUP") {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("RIESTER") && card === "RIESTER") {
           cardTemplateData = asset;
-        }
+                  assetFound=true
+}
         if (asset.tarifTypeId.includes("SACHWERT") && card === "SACHWERT") {
           cardTemplateData = asset;
-        }
+                  assetFound=true
+}
         if (asset.tarifTypeId.includes("DIREKT_3") && card === "DIREKT_3") {
           cardTemplateData = asset;
-        }
+                  assetFound=true
+}
         if (
           asset.tarifTypeId.includes("GESETZLICHE_AV") &&
           card === "GESETZLICHE_AV"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("EINNAHMEN") && card === "EINNAHMEN") {
           cardTemplateData = asset;
@@ -2763,141 +2770,169 @@ if(typeof(bankverbindungen) === "undefined"){
           card === "EINKOMMEN_GEHALT"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("EINKOMMEN_MINIJOB") &&
           card === "EINKOMMEN_MINIJOB"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("EINKOMMEN_SELBSTAENDIGER") &&
           card === "EINKOMMEN_SELBSTAENDIGER"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("AUSGABEN") && card === "AUSGABEN") {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("AUTOMOBILCLUB") &&
           card === "AUTOMOBILCLUB"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("SONSTIGE_ZAHLUNG") &&
           card === "SONSTIGE_ZAHLUNG"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("KONSUMKREDIT") &&
           card === "KONSUMKREDIT"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("BANKPRODUKTE") &&
           card === "BANKPRODUKTE"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("VWL_BAUSPAREN") &&
           card === "VWL_BAUSPAREN"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("IMMOBILIENBESTAND") &&
           card === "IMMOBILIENBESTAND"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("BETEILIGUNGEN") &&
           card === "BETEILIGUNGEN"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("BU") && card === "BU") {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("UNFALL") && card === "UNFALL") {
+          console.log("drin")
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("RISIKO") && card === "RISIKO") {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("DREADDISEASE") &&
           card === "DREADDISEASE"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("PFLEGEKOSTEN") &&
           card === "PFLEGEKOSTEN"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("PFLEGERENTEN") &&
           card === "PFLEGERENTEN"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("PFLEGETAGEGELD") &&
           card === "PFLEGETAGEGELD"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("GESETZLICHE_KRANKEN") &&
           card === "GESETZLICHE_KRANKEN"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("KVV") && card === "KVV") {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("KVZ") && card === "KVZ") {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("PRIVATHAFTPFLICHT") &&
           card === "PRIVATHAFTPFLICHT"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("HUNDEHALTERHAFTPFLICHT") &&
           card === "HUNDEHALTERHAFTPFLICHT"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("PFERDEHALTERHAFTPFLICHT") &&
           card === "PFERDEHALTERHAFTPFLICHT"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("HAUSRAT") && card === "HAUSRAT") {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("RECHTSSCHUTZ") &&
           card === "RECHTSSCHUTZ"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (
           asset.tarifTypeId.includes("WOHNGEBAEUDE") &&
           card === "WOHNGEBAEUDE"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
         if (asset.tarifTypeId.includes("KFZ") && card === "KFZ") {
           cardTemplateData = asset;
@@ -2907,13 +2942,16 @@ if(typeof(bankverbindungen) === "undefined"){
           card === "WOHNSITUATION"
         ) {
           cardTemplateData = asset;
+          assetFound=true
         }
       });
     } else {
-      console.log("Drin")
       cardTemplateData = asset;
+      assetFound=true
     }
   }
+  console.log(assetFound)
+  if(assetFound){
   switch (card) {
     case "DARLEHEN":
       console.log(cardTemplateData)
@@ -5208,13 +5246,14 @@ output=einnahmeart.name
       break;
     default:
       break;
-  }
+  }}
   if (!checkIfPersonendaten(card)) {
     output = {
       ...output,
       externalProduktId: cardTemplateData.externalProduktId,
     };
   }
+  console.log(output)
   return output;
 }
 export default setAssetWithTariftype;

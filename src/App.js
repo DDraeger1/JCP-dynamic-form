@@ -2056,6 +2056,7 @@ if(checkIfPersonendaten(card)){
 
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
+      console.log("gerufen!")
       isAssetAvailable(
         rawData,
         setFormData,
@@ -2083,6 +2084,7 @@ if(checkIfPersonendaten(card)){
   }, [rawData]);
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
+      console.log("gerufen")
       isAssetAvailable(
         rawData,
         setFormData,

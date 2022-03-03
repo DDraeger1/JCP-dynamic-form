@@ -678,6 +678,7 @@ function DynamicForm(
                   );
                 case "date":
                   return (
+                    <>
                     <KeyboardDatePicker
                       disabled={itemDisabled}
                       autoFocus={focussed}
@@ -695,8 +696,11 @@ function DynamicForm(
                       minDateMessage={"Ungültiges Datum mindate"}
                       onChange={onChange}
                       {...props}
+
                       value={value}
                     />
+                    {console.log(value)}
+                    </>
                   );
                 case "paragraph":
                   return (
@@ -835,15 +839,19 @@ function DynamicForm(
       if (item.type !== "toggleButtonGroup") {
         if (item.type !== "selectMandant") {
           if (item.label !== "Zahlweise") {
-            if (item.type === "date") {
-              output = {
-                ...output,
-                [item.suiteValue]: dateFormaterSuite(value),
-              };
-            } else {
+            if (item.type !== "date") {
               output = { ...output, [item.suiteValue]: value };
-            }
+            
           }
+        }
+        if(item.type === "date"){
+          output = {
+            ...output,
+            [item.suiteValue]: dateFormaterSuite(value),
+          };
+          console.log(dateFormaterSuite(value))
+          console.log(value)
+        }
           if (item.label === "Zahlweise") {
             switch (value) {
               case "MONATLICH":
@@ -1051,12 +1059,16 @@ function DynamicForm(
   }
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
     console.log(valuesToSubmit);
+    let vertragIdSuite = vertragId
+    if(vertragId ==="newVertrag"){
+      vertragIdSuite = "0"
+    }
     let output = {
       action: "saveAsset",
       json: {
         ...valuesToSubmit,
         ...dirtyValues,
-        id: vertragId,
+        id: vertragIdSuite,
         angebotsType: "VERTRAG",
       },
       mobileClassname: formDefinition[0].mobileClassname,
@@ -1075,9 +1087,6 @@ function DynamicForm(
     }
     if (tarifTypeIdFromCardState === "HUNDEHALTERHAFTPFLICHT") {
       output = { ...output, json: { ...output.json, kategorie: "thvhund" } };
-    }
-    if (tarifTypeIdFromCardState === "PFLEGETAGEGELD") {
-      output = { ...output, json: { ...output.json, art: "1" } };
     }
     if (tarifTypeIdFromCardState === "EINNAHMEN") {
       console.log(output.json);
