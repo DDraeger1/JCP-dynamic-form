@@ -13,25 +13,11 @@ function isAssetAvailable(
   bankverbindungen, setBankverbindungen
   ) {
 
-  let cardValues 
+  let cardValues =setAssetWithTariftype( result.analyseAssets, card, false, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen)
   function booleanFormater(booleanString) {
     let output = false;
     if (booleanString === "true") {
       output = true;
-    }
-    return output;
-  }
-
-  function dateFormater(date) {
-    //from dd/mm/yyyy to mm/dd/yyyy
-    let output;
-    if (date !== null) {
-      if (date !== undefined) {
-        if (date.length === 10) {
-          output =
-            date.substring(3, 6) + date.substring(0, 3) + date.substring(6, 10);
-        }
-      }
     }
     return output;
   }
@@ -91,6 +77,7 @@ console.log(vertragId)
                 asset.tarifTypeId.includes("EINNAHMEN") &&
                 asset.id === vertragId
               ) {
+                console.log("wtf")
                 cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
                 vertragFound = true;
               }

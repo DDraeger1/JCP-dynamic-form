@@ -1,5 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
-import "../App.css"
+import "../App.css";
 import {
   Card,
   CardContent,
@@ -23,7 +23,7 @@ import {
   AccordionSummary,
   Button,
 } from "@material-ui/core";
-import "./css/dynamicForm.css"
+import "./css/dynamicForm.css";
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import React, {
   forwardRef,
@@ -32,14 +32,14 @@ import React, {
   useContext,
   useState,
   useRef,
-  useReducer
+  useReducer,
 } from "react";
-import { Edit, ExpandMore,DeleteForever } from "@material-ui/icons";
+import { Edit, ExpandMore, DeleteForever } from "@material-ui/icons";
 import BezugHinzufuegen from "./BezugHinzufuegen";
 import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
 import FunctionMapper from "./FunctionMapper";
-import { formatMandantName, checkForKind,mapIncomingData} from "./mapAssets";
+import { formatMandantName, checkForKind, mapIncomingData } from "./mapAssets";
 
 function DynamicForm(
   {
@@ -53,12 +53,12 @@ function DynamicForm(
     gesellschaft,
     tarifTypeIdFromCardState,
     productId,
-    assets
+    assets,
+    params,
   },
   ref
 ) {
-  console.log(values)
-  const [isInitialized, toggleInitialized] = useState(false)
+  const [isInitialized, toggleInitialized] = useState(false);
 
   let inputIndex = 0;
   const {
@@ -70,11 +70,13 @@ function DynamicForm(
     mobileClassname,
     bruttoSum,
     setBruttoSum,
-    gehaltInit, setGehaltInit, setDeletionIndex } = useContext(Context);
+    gehaltInit,
+    setGehaltInit,
+    setDeletionIndex,
+  } = useContext(Context);
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
-
   };
   // Definition rekursiv nach Werten absuchen (für 1-dimensionales defaultValues-Objekt)
   const reduceDefinitionValues = (acc = {}, { items, name }) => {
@@ -84,7 +86,7 @@ function DynamicForm(
   };
   const defaultValues = formDefinition.reduce(reduceDefinitionValues, {});
 
-  const { control, handleSubmit, watch, formState, reset,setValue } = useForm({
+  const { control, handleSubmit, watch, formState, reset, setValue } = useForm({
     defaultValues,
     mode: "onBlur",
   });
@@ -103,7 +105,7 @@ function DynamicForm(
   );
 
   const fieldsToWatch = formDefinition.reduce(reduceDefinitionWatchers, []);
-let renderIndex= 0
+  let renderIndex = 0;
   const createFormItemFromDefinitionItem = (item, index) => {
     const {
       section,
@@ -137,7 +139,6 @@ let renderIndex= 0
 
     if (!values) return null;
 
-
     if (condition) {
       // todo: mehr möglichkeiten mit den conditions (aktuell nur boolean)
       if (!fieldsToWatch[condition]) return null;
@@ -148,7 +149,11 @@ let renderIndex= 0
           {(section || description) && (
             <div className="cardHeader">
               {section && (
-                <Typography variant={"h6"} component={"h3"} className="headerTypography">
+                <Typography
+                  variant={"h6"}
+                  component={"h3"}
+                  className="headerTypography"
+                >
                   {section}
                 </Typography>
               )}
@@ -167,23 +172,20 @@ let renderIndex= 0
         <Grid item xs={12} {...props} key={"k-" + index}>
           {card ? (
             <Card className="defaultCard" variant={"outlined"}>
-              <CardContent  className="gridCard">{cardContent}</CardContent>
+              <CardContent className="gridCard">{cardContent}</CardContent>
             </Card>
           ) : (
             <Accordion
-            style={{justifyContent:"space-between"}} 
-            aria-controls={"panel" + accordionId + "-content"}
+              style={{ justifyContent: "space-between" }}
+              aria-controls={"panel" + accordionId + "-content"}
               id={"panel" + accordionId + "-header"}
             >
-              <AccordionSummary  expandIcon={<ExpandMore />}>
+              <AccordionSummary expandIcon={<ExpandMore />}>
                 <Typography variant={"h6"} component={"h3"}>
                   {accordionText}
                 </Typography>{" "}
               </AccordionSummary>
-              <AccordionDetails>
-              
-                {cardContent}
-                </AccordionDetails>
+              <AccordionDetails>{cardContent}</AccordionDetails>
             </Accordion>
           )}
         </Grid>
@@ -223,26 +225,36 @@ let renderIndex= 0
             function getItemInput() {
               switch (type) {
                 case "toggleButtonGroup":
-                  return <>
-                    <FormControl fullWidth size={"small"}>
-                    <Typography
-                      style={{
-                        color: itemDisabled ? "#bbb" : "#444",
-                        fontSize: "0.9rem",
-                      }}>
-                      {label}
-                    </Typography>
-                    <RadioGroup aria-label="Einnahme Art" value={value} onChange={onChange}>
-                      {menuOptions.map((option, index) => (
-    <FormControlLabel value={option.name} label={option.label} key={"radioGroup"+index} control={<Radio />}  />
-                      ))}
-                      </RadioGroup>
-                    {helperText && <Typography>
-                      {helperText}
-                    </Typography>}
-                    </FormControl>
-                  </>
-                                    /* <Switch
+                  return (
+                    <>
+                      <FormControl fullWidth size={"small"}>
+                        <Typography
+                          style={{
+                            color: itemDisabled ? "#bbb" : "#444",
+                            fontSize: "0.9rem",
+                          }}
+                        >
+                          {label}
+                        </Typography>
+                        <RadioGroup
+                          aria-label={label}
+                          value={value}
+                          onChange={onChange}
+                        >
+                          {menuOptions.map((option, index) => (
+                            <FormControlLabel
+                              value={option.name}
+                              label={option.label}
+                              key={"radioGroup" + index}
+                              control={<Radio />}
+                            />
+                          ))}
+                        </RadioGroup>
+                        {helperText && <Typography>{helperText}</Typography>}
+                      </FormControl>
+                    </>
+                  );
+                /* <Switch
                             color={"primary"}
                             checked={value}
                             name={name}
@@ -373,46 +385,47 @@ let renderIndex= 0
                       )}
                     </FormControl>
                   );
-                  case "selectToBeMapped":
-                    return (
-                      <FormControl fullWidth size={"small"}>
-                        <InputLabel>{label}</InputLabel>
-                        <Select
-                          autoFocus={focussed}
-                          inputRef={ref}
-                          value={value}
-                          onChange={(e) => {
-                            onChange(e.target.value);
-                          }}
-                          label={label}
-                          error={!!helperText}
-                          disabled={itemDisabled}
-                        >
-                          <MenuItem key="o" value={""}>
-                            {" "}
-                          </MenuItem>
-                          {mapIncomingData(name,assets).map((option, index) =>
-                            anzahlVp === "true" ? (
-                              <MenuItem
-                                onClick={() => setAnzahlVp(option.value)}
-                                key={"o-" + index}
-                                value={option.value}
-                              >
-                                {option.label}
-                              </MenuItem>
-                            ) : (
-                              <MenuItem key={"o-" + index} value={option.value}>
-                                {option.label}
-                              </MenuItem>
-                            )
-                          )}
-                        </Select>
-                        {helperText && (
-                          <Typography color={"error"} variant={"caption"}>
-                            {helperText}
-                          </Typography>
+                case "selectToBeMapped":
+                  return (
+                    <FormControl fullWidth size={"small"}>
+                      <InputLabel>{label}</InputLabel>
+                      <Select
+                        autoFocus={focussed}
+                        inputRef={ref}
+                        value={value}
+                        onChange={(e) => {
+                          onChange(e.target.value);
+                        }}
+                        label={label}
+                        error={!!helperText}
+                        disabled={itemDisabled}
+                      >
+                        <MenuItem key="o" value={""}>
+                          {" "}
+                        </MenuItem>
+                        {mapIncomingData(name, assets).map((option, index) =>
+                          anzahlVp === "true" ? (
+                            <MenuItem
+                              onClick={() => setAnzahlVp(option.value)}
+                              key={"o-" + index}
+                              value={option.value}
+                            >
+                              {option.label}
+                            </MenuItem>
+                          ) : (
+                            <MenuItem key={"o-" + index} value={option.value}>
+                              {option.label}
+                            </MenuItem>
+                          )
                         )}
-                      </FormControl>)
+                      </Select>
+                      {helperText && (
+                        <Typography color={"error"} variant={"caption"}>
+                          {helperText}
+                        </Typography>
+                      )}
+                    </FormControl>
+                  );
 
                 /*
                           { "value": , "label": "" },
@@ -791,43 +804,132 @@ let renderIndex= 0
       </Grid>
     );
   };
+
   function mapSuiteValues() {
     let output = {};
     let arrayItems = [];
     formDefinition.map((form) => {
       arrayItems = [...arrayItems, ...form.items];
     });
+    //suche für weitere item arrays in ArrayItems
+    arrayItems.map((item, index) => {
+      if (item.items) {
+        if (item.items.length !== 0) {
+          arrayItems = [...arrayItems, ...item.items];
+          arrayItems.splice(index, 1);
+        }
+      }
+    });
 
     arrayItems.forEach((item) => {
       Object.entries(values).forEach(([key, value]) => {
-        if (item.name === key) {
-          output = { ...output, [item.suiteValue]: value };
-          // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
-        }
+        output = { ...output, ...translateToSuiteData(item, key, value) };
       });
     });
+
     return output;
   }
-
+  function translateToSuiteData(item, key, value) {
+    let output;
+    if (item.name === key && typeof item.suiteValue !== "undefined") {
+      if (item.type !== "toggleButtonGroup") {
+        if (item.type !== "selectMandant") {
+          if (item.label !== "Zahlweise") {
+            if (item.type === "date") {
+              output = {
+                ...output,
+                [item.suiteValue]: dateFormaterSuite(value),
+              };
+            } else {
+              output = { ...output, [item.suiteValue]: value };
+            }
+          }
+          if (item.label === "Zahlweise") {
+            switch (value) {
+              case "MONATLICH":
+                output = { ...output, zahlweise: "112" };
+                break;
+              case "ZWEIMONATLICH":
+                output = { ...output, zahlweise: "16" };
+                break;
+              case "QUARTAL":
+                output = { ...output, zahlweise: "14" };
+                break;
+              case "HALBJAEHRLICH":
+                output = { ...output, zahlweise: "12" };
+                break;
+              case "JAEHRLICH":
+                output = { ...output, zahlweise: "11" };
+                break;
+              default:
+                break;
+            }
+          }
+        }
+        if (item.type === "selectMandant") {
+          switch (mandantGroup[value].art) {
+            case "MANDANT":
+              output = { ...output, mp: "m" };
+              break;
+            case "PARTNER":
+              output = { ...output, mp: "p" };
+              break;
+            case "KIND":
+              output = { ...output, mp: "k" };
+              break;
+            default:
+              break;
+          }
+          output = {
+            ...output,
+            versicherungsnehmerId: mandantGroup[value].mandantId,
+          };
+        }
+      }
+      if (item.type === "toggleButtonGroup") {
+        item.menuOptions.map((option) => {
+          if (option.name === value) {
+            output = { ...output, [option.suiteValue]: true };
+            if (tarifTypeIdFromCardState === "EINNAHMEN") {
+              output = { ...output, art: option.suiteValue };
+            }
+          } else {
+            output = { ...output, [option.suiteValue]: false };
+          }
+        });
+        console.log(output);
+      }
+      // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
+    }
+    return output;
+  }
   function addDirtyEntries(dirtyValues) {
     let output = {};
     let arrayItems = [];
-
     formDefinition.map((form) => {
       arrayItems = [...arrayItems, ...form.items];
     });
-
+    //suche für weitere item arrays in ArrayItems
+    arrayItems.map((item, index) => {
+      if (item.items) {
+        if (item.items.length !== 0) {
+          arrayItems = [...arrayItems, ...item.items];
+          arrayItems.splice(index, 1);
+        }
+      }
+    });
     arrayItems.forEach((item) => {
       Object.entries(dirtyValues).forEach(([key, value]) => {
-        if (item.name === key) {
-          output = { ...output, [item.suiteValue]: value };
-          // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
+        if (item.name === key && typeof item.suiteValue !== "undefined") {
+          output = { ...output, ...translateToSuiteData(item, key, value) };
         }
       });
     });
+    console.log(output);
+
     return output;
   }
-  function jahresBruttoSumme(){
+  function jahresBruttoSumme() {
     let summe = 0;
     function checkForUndefinedSonderzahlung(value) {
       let output = 0;
@@ -855,62 +957,74 @@ let renderIndex= 0
       return output;
     }
     summe =
-    (checkForUndefinedBrutto(
+      (checkForUndefinedBrutto(
         watch().betragMtlTextfieldEinnahmen,
         watch().gesamtBruttoSelectEinnahmen
       ) +
-      checkForUndefinedBrutto(
-        watch().variablerBezugBetragMtlTextfieldEinnahmen,
-        watch().variablerBezugGesamtBruttoSelectEinnahmen
+        checkForUndefinedBrutto(
+          watch().variablerBezugBetragMtlTextfieldEinnahmen,
+          watch().variablerBezugGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().fahrtkostenBetragMtlTextfieldEinnahmen,
+          watch().fahrtkostenGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().feiertagszuschlagBetragMtlTextfieldEinnahmen,
+          watch().feiertagszuschlagGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().nachtzuschlagBetragMtlTextfieldEinnahmen,
+          watch().nachtzuschlagGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().dienstwagenBetragMtlTextfieldEinnahmen,
+          watch().dienstwagenGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().kitaGebuehrenBetragMtlTextfieldEinnahmen,
+          watch().kitaGebuehrenGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().jobRadBetragMtlTextfieldEinnahmen,
+          watch().jobRadGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().vwlAGBetragMtlTextfieldEinnahmen,
+          watch().vwlAGGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().sachbezugBetragMtlTextfieldEinnahmen,
+          watch().sachbezugGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().provisionBetragMtlTextfieldEinnahmen,
+          watch().provisionGesamtBruttoSelectEinnahmen
+        ) +
+        checkForUndefinedBrutto(
+          watch().sonstigesBruttoBetragMtlTextfieldEinnahmen,
+          watch().sonstigesBruttoGesamtBruttoSelectEinnahmen
+        )) *
+        watch().anzahlGehaelterEinnahmen +
+      checkForUndefinedNettobezuege(
+        watch().nettobezugBetragMtlEinnahmen,
+        false
       ) +
-      checkForUndefinedBrutto(
-        watch().fahrtkostenBetragMtlTextfieldEinnahmen,
-        watch().fahrtkostenGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().feiertagszuschlagBetragMtlTextfieldEinnahmen,
-        watch().feiertagszuschlagGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().nachtzuschlagBetragMtlTextfieldEinnahmen,
-        watch().nachtzuschlagGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().dienstwagenBetragMtlTextfieldEinnahmen,
-        watch().dienstwagenGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().kitaGebuehrenBetragMtlTextfieldEinnahmen,
-        watch().kitaGebuehrenGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().jobRadBetragMtlTextfieldEinnahmen,
-        watch().jobRadGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().vwlAGBetragMtlTextfieldEinnahmen,
-        watch().vwlAGGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().sachbezugBetragMtlTextfieldEinnahmen,
-        watch().sachbezugGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().provisionBetragMtlTextfieldEinnahmen,
-        watch().provisionGesamtBruttoSelectEinnahmen
-      ) +
-      checkForUndefinedBrutto(
-        watch().sonstigesBruttoBetragMtlTextfieldEinnahmen,
-        watch().sonstigesBruttoGesamtBruttoSelectEinnahmen
-      ))*watch().anzahlGehaelterEinnahmen +
-      checkForUndefinedNettobezuege(watch().nettobezugBetragMtlEinnahmen, false) +
       checkForUndefinedNettobezuege(
         watch().sonstigerSachbezugNettobezugBetragMtlEinnahmen,
         false
       ) +
-      checkForUndefinedNettobezuege(watch().abzuegeVwlGesamtNettobezugEinnahmen, true) +
-      checkForUndefinedNettobezuege(watch().sonstigerAbzugNettobezugBetragMtlEinnahmen, true)+
-      checkForUndefinedSonderzahlung(watch().sonderzahlungenAuszahlungsmonatEinnahmen) +
+      checkForUndefinedNettobezuege(
+        watch().abzuegeVwlGesamtNettobezugEinnahmen,
+        true
+      ) +
+      checkForUndefinedNettobezuege(
+        watch().sonstigerAbzugNettobezugBetragMtlEinnahmen,
+        true
+      ) +
+      checkForUndefinedSonderzahlung(
+        watch().sonderzahlungenAuszahlungsmonatEinnahmen
+      ) +
       checkForUndefinedSonderzahlung(
         watch().urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmen
       ) +
@@ -920,7 +1034,7 @@ let renderIndex= 0
       checkForUndefinedSonderzahlung(
         watch().gewinnbeteiligungSonderzahlungenAuszahlungsmonatEinnahmen
       );
-      return(summe)
+    return summe;
   }
   function dateFormaterSuite(date) {
     //from dd/mm/yyyy to mm/dd/yyyy
@@ -939,10 +1053,15 @@ let renderIndex= 0
     console.log(valuesToSubmit);
     let output = {
       action: "saveAsset",
-      json: { ...valuesToSubmit, ...dirtyValues, id: vertragId },
+      json: {
+        ...valuesToSubmit,
+        ...dirtyValues,
+        id: vertragId,
+        angebotsType: "VERTRAG",
+      },
       mobileClassname: formDefinition[0].mobileClassname,
-      mandantId: mandantGroup[valuesToSubmit.versicherungsnehmerId].mandantId,
-      analyseId: "ae3f6be4-0522-11e9-95b0-27616e07d826",
+      mandantId: valuesToSubmit.versicherungsnehmerId,
+      analyseId: params.analyseId,
     };
     //versicherungsnehmer id wird nicht gebraucht
     delete output.json.versicherungsnehmerId;
@@ -961,7 +1080,7 @@ let renderIndex= 0
       output = { ...output, json: { ...output.json, art: "1" } };
     }
     if (tarifTypeIdFromCardState === "EINNAHMEN") {
-    console.log(output.json)
+      console.log(output.json);
     }
     /*
 if(tarifTypeIdFromCardState === "KVZ"){
@@ -984,7 +1103,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
     });
     return output;
   }
-  
+
   const submitDirtyFields = async (values) => {
     if (Object.keys(formState.dirtyFields).length === 0) return false;
 
@@ -1055,7 +1174,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
 
   return (
     <form onSubmit={handleSubmit(submitDirtyFields)} style={style}>
-      <Grid container spacing={compact ? 1 : 2} >
+      <Grid container spacing={compact ? 1 : 2}>
         {formDefinition.map(createFormItemFromDefinitionItem)}
       </Grid>
     </form>

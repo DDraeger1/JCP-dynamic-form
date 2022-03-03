@@ -1437,8 +1437,7 @@ function App(props) {
   const [formData, setFormData] = useState({ success: false });
   const [login, setLogin] = useState("")
   const {
-    jsonValues,
-    setJsonValues,
+
     einkommenGehaltContext,
     versicherungsnehmerValue,
     setVersicherungsnehmerValue,
@@ -1696,7 +1695,6 @@ jsonForm =[riesterrente]
     default:
       jsonForm = [];
   }
-console.log(rawData)
   var dummyData;
   const handleSave = async () => {
     if (!isBusy && ref?.current) {
@@ -1705,6 +1703,23 @@ console.log(rawData)
       try {
         await ref.current.submit();
         alert("Daten wurden gespeichert");
+        setLoaded(false)
+        setIsBusy(true)
+        if(checkIfPersonendaten(card)){
+          setInitialised(false);
+          getDataPersonendaten()
+          setIsBusy(false);
+          setTimeout(()=>{
+            setLoaded(true)
+          },100)
+      } else{
+          setInitialised(false);
+          getData();
+          setIsBusy(false);
+          setTimeout(()=>{
+          setLoaded(true)
+          },100)
+      }
       } catch (e) {
         console.warn(e);
         alert("Daten wurden NICHT gespeichert");
@@ -1936,52 +1951,22 @@ console.log(rawData)
     }
     return(output)
   }
-  useEffect(() => {
-    let mounted = true;
-    setIsBusy(true);
-    const getDataLiveSuite = () => {
-      axios(loginLiveSuite).then((login)=>{
-        getDataWithLogin(login.data.data)
-      }).catch((error) =>{
-        console.log("error")
-        console.log(error)})
-    
+  const getDataLiveSuite = () => {
+    axios(loginLiveSuite).then((login)=>{
+      getDataWithLogin(login.data.data)
+    }).catch((error) =>{
+      console.log("error")
+      console.log(error)})
+  
 
-      function getDataWithLogin(login){
-       Promise.all([
-        axios(requestOptionsMandantLiveSuite(login)),
-        axios(requestOptionsAnalyseAssetsLiveSuite(login)),
-        axios(requestOptionsMandantGroupLiveSuite(login)),
-        axios(requestOptionsGesellschaftIdLiveSuite(login)),
-        axios(getContextIdByIdLiveSuite(login)),
-        axios(getProductIdLiveSuite(login)),
-      ])
-        .then((result) => {
-          setRawData({
-            mandantData: result[0].data.data,
-            mandantGroup: result[2].data.data.mandantMandantGroups,
-            analyseAssets: result[1].data.data,
-            gesellschaft: result[3].data,
-            contextProductId: result[4].data.data,
-            productId: result[5].data.data,
-            success: true,
-          });
-      setMandantGroup(result[2].data.data.mandantMandantGroups)
-
-      })
-        .catch((error) =>{
-        console.log("error")
-        console.log(error)});
-    };
-  }
-  const getData = () => {
+    function getDataWithLogin(login){
      Promise.all([
-      axios(requestOptionsMandant),
-      axios(requestOptionsAnalyseAssets),
-      axios(requestOptionsMandantGroup),
-      axios(requestOptionsGesellschaftId),
-      axios(getContextIdById),
-      axios(getProductId),
+      axios(requestOptionsMandantLiveSuite(login)),
+      axios(requestOptionsAnalyseAssetsLiveSuite(login)),
+      axios(requestOptionsMandantGroupLiveSuite(login)),
+      axios(requestOptionsGesellschaftIdLiveSuite(login)),
+      axios(getContextIdByIdLiveSuite(login)),
+      axios(getProductIdLiveSuite(login)),
     ])
       .then((result) => {
         setRawData({
@@ -1999,30 +1984,59 @@ console.log(rawData)
       .catch((error) =>{
       console.log("error")
       console.log(error)});
+  };
 }
-    const getDataPersonendaten = () => {
-      Promise.all([
-        axios(requestOptionsMandant),
-        axios(requestOptionsAnalyseAssets),
-        axios(requestOptionsMandantGroup),
-        axios(getContextIdById)
-      ])
-        .then((result) => {
-          setRawData({
-            mandantData: result[0].data.data,
-            mandantGroup: result[2].data.data.mandantMandantGroups,
-            contextProductId: result[3].data.data,
-            analyseAssets: result[1].data.data,
-            success: true,
-          });
-      setMandantGroup(result[2].data.data.mandantMandantGroups)
-      setBankverbindungen(result[2].data.data.mandantMandantGroups.mandantData.bankverbindungs)
-        })
-        .catch((error) =>{
-        console.log("error")
-        console.log(error)});
-    }
-   
+const getData = () => {
+   Promise.all([
+    axios(requestOptionsMandant),
+    axios(requestOptionsAnalyseAssets),
+    axios(requestOptionsMandantGroup),
+    axios(requestOptionsGesellschaftId),
+    axios(getContextIdById),
+    axios(getProductId),
+  ])
+    .then((result) => {
+      setRawData({
+        mandantData: result[0].data.data,
+        mandantGroup: result[2].data.data.mandantMandantGroups,
+        analyseAssets: result[1].data.data,
+        gesellschaft: result[3].data,
+        contextProductId: result[4].data.data,
+        productId: result[5].data.data,
+        success: true,
+      });
+  setMandantGroup(result[2].data.data.mandantMandantGroups)
+
+  })
+    .catch((error) =>{
+    console.log("error")
+    console.log(error)});
+}
+  const getDataPersonendaten = () => {
+    Promise.all([
+      axios(requestOptionsMandant),
+      axios(requestOptionsAnalyseAssets),
+      axios(requestOptionsMandantGroup),
+      axios(getContextIdById)
+    ])
+      .then((result) => {
+        setRawData({
+          mandantData: result[0].data.data,
+          mandantGroup: result[2].data.data.mandantMandantGroups,
+          contextProductId: result[3].data.data,
+          analyseAssets: result[1].data.data,
+          success: true,
+        });
+    setMandantGroup(result[2].data.data.mandantMandantGroups)
+    setBankverbindungen(result[2].data.data.mandantMandantGroups.mandantData.bankverbindungs)
+      })
+      .catch((error) =>{
+      console.log("error")
+      console.log(error)});
+  }
+  useEffect(() => {
+    let mounted = true;
+    setIsBusy(true);
     if (mounted) {
 if(checkIfPersonendaten(card)){
       getDataPersonendaten()
@@ -2033,19 +2047,15 @@ if(checkIfPersonendaten(card)){
       getData();
       setIsBusy(false);
     }
-
-
     }
 
     return () => {
       mounted = false;
     };
-  }, [jsonValues]);
+  }, []);
 
-console.log(rawData)
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
-
       isAssetAvailable(
         rawData,
         setFormData,
@@ -2058,7 +2068,6 @@ console.log(rawData)
         setAnzahlVp,
         bankverbindungen, setBankverbindungen
       );
-  console.log(formData)
 
       setId(mapAssets(rawData.analyseAssets));
       setInitialised(true);
@@ -2555,6 +2564,7 @@ function showMock(){
                 onSubmit={handleSubmit}
                 tarifTypeIdFromCardState={card}
                 productId={rawData.productId}
+                params={params}
               />
               {ref.isDirty}
               
@@ -2562,11 +2572,7 @@ function showMock(){
           </MuiPickersUtilsProvider>
         </ThemeProvider>
       )}
-    </div>
-  );
-}
-/*
-<Button
+      <Button
                 variant={"outlined"}
                 color={"primary"}
                 endIcon={<Save />}
@@ -2575,5 +2581,10 @@ function showMock(){
               >
                 Angaben speichern
               </Button>
+    </div>
+  );
+}
+/*
+
 */
 export default App;

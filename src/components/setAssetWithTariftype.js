@@ -2910,6 +2910,7 @@ if(typeof(bankverbindungen) === "undefined"){
         }
       });
     } else {
+      console.log("Drin")
       cardTemplateData = asset;
     }
   }

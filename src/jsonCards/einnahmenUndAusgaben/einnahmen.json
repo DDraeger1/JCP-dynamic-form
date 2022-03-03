@@ -21,7 +21,7 @@
     {
       "name": "radiogroupEinnahmeart",
       "type": "toggleButtonGroup",
-
+      "label":"",
         "menuOptions":[
 {"name":"nichtselbststaendigeTaetigkeitEinnahmen","label":"Nichtselbstständige Tätigkeit", "suiteValue":"nichtselbststaendigeTaetigkeit"},
 {"name":"kapitalvermoegenEinnahmen","label":"Kapitalvermoegen","suiteValue":"kapitalvermogen"},
@@ -33,7 +33,8 @@
 {"name":"außerordentlicheEinkuenfteEinnahmen","label":"Außerordentliche Einkuenfte (§ 34 EStG/Fünftreglung)","suiteValue":"ausserordentlicheEinkuenfte"},
 {"name":"steuerfreieEinnahmenUnterProgessionsvorbehaltEinnahmen","label":"steuerfreie Einnahmen umter Progessionsvorbehalt (§ 32b EStG/z. B. Arbeitslosengeld I und ausländische Einkünfte)",  "suiteValue":"steuerfreieEinnahmenUnterProgressionsvorbehalt"}
 
-        ]
+        ],
+        "suiteValue":"radioGroup"
       },
     {
       "name": "filler",
