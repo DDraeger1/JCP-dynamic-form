@@ -1670,8 +1670,8 @@
           {"name":"summeSonderzahlungNettoSchnitt",
           "type":"costumFunction"},
           {
-            "name": "jahresBrutto",
-            "type": "numberJahresbrutto",
+            "name": "numberJahresbrutto",
+            "type": "costumFunction",
             "props": { "sm": 5,
               "xs":5 },
               "suiteValue":"lohnBruttoProJahr"

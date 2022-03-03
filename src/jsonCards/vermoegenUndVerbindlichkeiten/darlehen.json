@@ -13,27 +13,20 @@
         "props": { "required": true },
         "suiteValue":"externalProduktId"},
         {
-            "name":"produktIDDarlehen",
-            "label":"Produkt ID (suite mapping)",
-            "type":"select",
-            "options":[
-                { "value": 0, "label": "Produkt ID" }
-            ],
-            "props":{"required":true}
-        },
-        {
             "name":"tarifbezeichnungDarlehen",
             "label":"Tarifbezeichnung",
             "props": { "sm": 6 ,
                 "xs":6},
-            "type":"text"
+            "type":"text",
+            "suiteValue":"tarifBezeichnung"
         },
         {
             "name":"vertragsnummerDarlehen",
             "label":"Vertragsnummer",
             "type":"text",
             "props":{"required":true, "sm":6,
-                "xs":6}
+                "xs":6},
+                "suiteValue":"versicherungsnummer"
         },
         {
             "name":"darlehensnehmerDarlehenHeader",
@@ -42,12 +35,11 @@
         },
         {
             "name":"darlehensnehmerDarlehen",
-            "label":"Darlehensnehmer (suite mapping)",
-            "type":"select",
+            "label":"Darlehensnehmer",
+            "type":"selectMandant",
+            "tarifType":"DARLEHEN",
             "props":{"required":true},
-            "options":[
-                { "value": 0, "label": "Mandant" }
-            ]
+            "suiteValue":"versicherungsnehmerId"
         },
         {
             "name":"artDarlehenHeader",
@@ -62,7 +54,8 @@
                 { "value": 0, "label": "endfälliges Darlehen" },
                 { "value": 1, "label": "Annuitätendarlehen" },
                 { "value": 2, "label": "Bausparfinanziert" }
-            ]
+            ],
+            "suiteValue":"art"
         },
         {
             "name":"objektzuordnungDarlehenHeader",
@@ -72,56 +65,61 @@
         {
             "name":"zugeordneteImmobilieObjektzuordnungDarlehen",
             "label":"Zugeordnete Immobilie",
-            "type":"select",
-            "options":[
-                { "value": 0, "label": "Immobilie" }
-            ],
-            "props": { "sm": 6 ,
-                "xs":6}
+            "type":"selectToBeMapped"
+        },
+        {
+            "name":"zugeordneteImmobilieObjektzuordnungDarlehen",
+            "label":"",
+            "type":"textarea",
+            "rows":5,
+            "suiteValue":"objektnotizen"
         },
         {
             "name":"darlehenshoeheBeginnObjektzuordnungDarlehen",
             "label":"Darlehenshöhe Beginn (€)",
             "type":"text",
-            "props": { "sm": 6,
-                "xs":6 }
+            "suiteValue":"darlehenshohe"
         },
         {
-            "name":"restschuldBerechnenObjektzuordnungDarlehen",
+            "name":"restschuldBerechnen",
             "label":"Restschuld Berechnen (Button)",
-            "type":"paragraph"
+            "type":"costumFunction"
         },
         {
             "name":"restschuldObjektzuordnungDarlehen",
             "label":"Restschuld (€)",
             "type":"text",
             "props": { "sm": 6,
-                "xs":6 }
+                "xs":6 },
+                "suiteValue":"restschuld"
         },
         {
             "name":"standVomObjektzuordnungDarlehen",
             "label":"Stand Vom",
             "type":"date",
             "props": { "sm": 6,
-                "xs":6 }
+                "xs":6 },
+                "suiteValue":"standVom"
         },
         {
             "name":"rateObjektzuordnungDarlehen",
             "label":"Rate",
             "type":"text",
             "props": { "sm": 6,
-                "xs":6 }
+                "xs":6 },
+                "suiteValue":"rate"
         },
         {
             "name":"zahlweiseObjektzuordnungDarlehen",
             "label":"Zahlweise",
             "type":"select",
             "options": [
-                { "value": 0, "label": "Monatlich" },
-                { "value": 1, "label": "Quartal" },
-                { "value": 2, "label": "Halbjährlich" },
-                { "value": 3, "label": "Jährlich" }
+                { "value": "MONATLICH", "label": "Monatlich" },
+                { "value": "QUARTAL", "label": "Quartal" },
+                { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+                { "value": "JAEHRLICH", "label": "Jährlich" }
             ],
+            "suiteValue":"zahlweise",
             "props":{"required":true, "sm":6}
         },
         {
@@ -129,45 +127,47 @@
             "label":"Zinssatz %",
             "type":"text",
             "props": { "sm": 6,
-                "xs":6 }
+                "xs":6 },
+                "suiteValue":"zinssatz"
         },
         {
             "name":"zinsfestschreibungObjektzuordnungDarlehen",
             "label":"Zinsfestschreibung",
             "type":"date",
             "props": { "sm": 6 ,
-                "xs":6}
+                "xs":6},
+                "suiteValue":"zinsfestschreibung"
         },
         {
             "name":"tilgungProzentObjektzuordnungDarlehen",
             "label":"Tilgung in %",
             "type":"text",
-            "props": { "sm": 6,
-                "xs":6 }
+
+                "suiteValue":"tilgungProzent"
         },
         {
             "name":"tilgungEuroObjektzuordnungDarlehen",
             "label":"Tilgung in €",
-            "type":"text",
-            "props": { "sm": 6,
-                "xs":6 }
+            "type":"costumFunction",
+                "suiteValue":"tilgung"
         },
         {
             "name":"sondertilgungProzentObjektzuordnungDarlehen",
             "label":"Sondertilgung in %",
             "type":"text",
-            "props": { "sm": 6,
-                "xs":6 }
+            "suiteValue":"sondertilgungProzent"
         },
         {
             "name":"beginnObjektzuordnungDarlehen",
             "label":"Beginn",
-            "type":"date"
+            "type":"date",
+            "suiteValue":"versicherungsbeginn"
         },
         {
             "name":"voraussichtlichSchuldenfreiObjektzuordnungDarlehen",
             "label":"voraussichtlich schuldenfrei (suitemapping)",
-            "type":"date"
+            "type":"date",
+            "suiteValue":"voraussichtlichSchuldenfrei"
         }
         ]
     }

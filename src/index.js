@@ -8,7 +8,7 @@ import { CookiesProvider } from 'react-cookie'
 import { BrowserRouter,Route, Switch} from 'react-router-dom'
 
 ReactDOM.render(
-<CookiesProvider><ContextProvider><BrowserRouter><Switch><Route path="/card=:card/mandantId=:mandantId/analyseId=:analyseId/contextId=:contextId"><App /></Route></Switch></BrowserRouter></ContextProvider></CookiesProvider>,
+<CookiesProvider><ContextProvider><BrowserRouter><Switch><Route path="/card=:card/mandantId=:mandantId/analyseId=:analyseId/contextId=:contextId"><div style={{backgroundColor:"#eeeeee"}}><App /></div></Route></Switch></BrowserRouter></ContextProvider></CookiesProvider>,
  document.getElementById('root'));
 
  //mandantID=5bb62244-c69e-11e6-9d84-001c4254d875, analyseId=5bbbdc57-c69e-11e6-9d84-001c4254d875, 

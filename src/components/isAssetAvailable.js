@@ -12,7 +12,6 @@ function isAssetAvailable(
   setAnzahlVp,
   bankverbindungen, setBankverbindungen
   ) {
-    setBankverbindungen(result.mandantGroup[0].mandant.bankverbindungs)
 
   let cardValues = setAssetWithTariftype(
     result.analyseAssets,
@@ -22,7 +21,6 @@ function isAssetAvailable(
     setAnzahlVp,
     bankverbindungen, setBankverbindungen
   );
-
   function booleanFormater(booleanString) {
     let output = false;
     if (booleanString === "true") {
@@ -49,11 +47,25 @@ function isAssetAvailable(
   let vertragFound = false;
   //es wird geguckt ob mandantwerte gesucht werden. Wenn ja, braucht man kein asset suchen
   // || conditional funktioniert nicht
-
+console.log(vertragId)
         if (vertragId !== "none") {
           result.analyseAssets.map((asset) => {
-            
+
             if (asset.id === vertragId) {
+              if (
+                asset.tarifTypeId.includes("DARLEHEN") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("RUERUP") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
+                vertragFound = true;
+              }
               if (
                 asset.tarifTypeId.includes("SACHWERT") &&
                 asset.id === vertragId
@@ -277,6 +289,7 @@ function isAssetAvailable(
             }
             if (!vertragFound && vertragId === "newVertrag") {
               cardValues = emptyCardTemplate(card);
+
              }
           });
         } else {
@@ -300,6 +313,7 @@ function isAssetAvailable(
       }
     }}}}}}
   }
+
   setFormData({
     showExternalProductId:booleanFormater(showExternalProductId),
     ...cardValues,
@@ -435,45 +449,6 @@ function isAssetAvailable(
     einmalbeitragVWLKapitalversicherung: "",
     gesamtzahlbeitragVWLKapitalversicherung: "",
     beitragsanteilVWLKapitalversicherung: "",
-
-    produktIDRiesterrente: "Placeholder",
-    tarifbezeichnungRiesterrente: "tarifBezeichnung",
-    vertragsnummerRiesterrente: "versicherungsnummer",
-    versicherungsnehmerRiesterrente: "Placeholder",
-    versichertePersonRiesterrente: "Placeholder",
-    artVersichertePersonRiesterrente: "art",
-    vertragsbeginnVertragslaufzeitRiesterrente:
-      "dateFormater(versicherungsbeginn)",
-    vertragsendeVertragslaufzeitRiesterrente: "dateFormater(versicherungsende)",
-    leistungTodVertragslaufzeitRiesterrente: "leistungTod",
-    garantiertMonatlicheRentenleistungRiesterrente: "rentenleistungGarantiert",
-    prognostiziertMonatlicheRentenleistungRiesterrente:
-      "rentenleistungPrognostiziert",
-    beiProzentMonatlicheRentenleistungRiesterrente:
-      "rentenleistungPrognostiziertBeiProzent",
-    RGZMonatlicheRentenleistungRiesterrente: "rentenleistungRgzJahre",
-    dynamikRiesterrente: "dynamik",
-    prozentDynamikRiesterrente: "dynamikProzent",
-    integrierteBURiesterrente: "",
-    rentenleistungBURiesterrente: "",
-    dynamikBULeistungBURiesterrente: "",
-    beitragsbefreiungBURiesterrente: "",
-    beitragsendeBUZRiesterrente: "",
-    leistungsendeBUZRiesterrente: "",
-    beitragsanteilBUZRiesterrente: "",
-    aktuellerRückkaufswertBUZRiesterrente: "",
-    datumBUZRiesterrente: "",
-    beitragsendeFondsRiesterrente: "",
-    VWLRiesterrente: false,
-    arbeitgeberanteilVWLRiesterrente: "",
-    arbeitnehmeranteilVWLRiesterrente: "",
-    summeVWLRiesterrente: "",
-    zahlweiseVWLRiesterrente: "",
-    beitragVWLRiesterrente: "",
-    dauerzulagenantragVWLRiesterrente: "",
-    inHoeheVonZahlungLetzteZulageRiesterrenteHeader: "",
-    gebuchtAmLetzteZulageRiesterrenteHeader: "",
-    garantiezinsZahlungLetzteZulageRiesterrenteHeader: "",
 */
 
 export default isAssetAvailable;

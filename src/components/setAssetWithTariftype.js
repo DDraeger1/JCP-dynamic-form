@@ -1667,6 +1667,53 @@ let riester = {
   versicherungsnummer: "",
   zahlweise: "",
 };
+let darlehen ={
+  analyseId: "",
+angebot_berater: false,
+angebot_gutachten: false,
+angebot_sonstiges: false,
+angebotsType: "",
+annuitaetenDarlehen: false,
+bausparfinanziert: false,
+beitrag: 0,
+berechneteRestschuld: "",
+beschreibung: "",
+comment: "",
+createdOn: "",
+darlehenshohe: 0,
+eigenvertrag: true,
+ersparnis: false,
+externalProduktId: "",
+fremdvertrag: false,
+gekuendigtDurch: "",
+gesellschaft: "",
+id: "",
+jahresBeitrag: 0,
+lastModified: "",
+leistung: 0,
+monatsBeitrag: 0,
+name: "",
+notizen: "",
+objektnotizen: "",
+rate: 0,
+restschuld: 0,
+shortDescription: "",
+sondertilgungProzent:0 ,
+standVom: "",
+tarifBezeichnung: "",
+tarifTypeId: "DARLEHEN",
+tilgungProzent: 0,
+versicherungsbeginn: "",
+versicherungsnehmerBeide: false,
+versicherungsnehmerId: "",
+versicherungsnummer: "",
+versicherungssumme: 0,
+voraussichtlichSchuldenfrei: "",
+zahlweise: "",
+zinsfestschreibung: "",
+zinssatz: 0,
+zinssatzTyp: "",
+}
 function dateFormater(date) {
   //from dd/mm/yyyy to mm/dd/yyyy
   let output;
@@ -1723,16 +1770,6 @@ function mapKind(mandantGroup) {
     }
   });
   return output;
-}
-function test(cardtemplate) {
-  let key1;
-  let key2;
-  Object.entries(cardtemplate).forEach((assetkey, formkey) => {
-    console.log(cardtemplate[formkey]);
-    console.log(formkey);
-    console.log(cardtemplate[formkey]);
-    //  cardtemplate[assetkey] = eval(formkey);
-  });
 }
 function setAssetWithTariftype(
   asset,
@@ -2068,6 +2105,9 @@ function setAssetWithTariftype(
   }
 
   switch (card) {
+    case "DARLEHEN":
+    cardTemplateData = darlehen
+    break
     case "PFERDEHALTERPFLICHT":
       cardTemplateData = pferdehalterhaftpflicht;
       break;
@@ -2694,6 +2734,12 @@ if(typeof(bankverbindungen) === "undefined"){
   } else {
     if (!changedMandant) {
       asset.map((asset) => {
+        if (asset.tarifTypeId.includes("DARLEHEN") && card === "DARLEHEN") {
+          cardTemplateData = asset;
+        }
+        if (asset.tarifTypeId.includes("RUERUP") && card === "RUERUP") {
+          cardTemplateData = asset;
+        }
         if (asset.tarifTypeId.includes("RIESTER") && card === "RIESTER") {
           cardTemplateData = asset;
         }
@@ -2868,6 +2914,80 @@ if(typeof(bankverbindungen) === "undefined"){
     }
   }
   switch (card) {
+    case "DARLEHEN":
+      console.log(cardTemplateData)
+
+output={
+  initMandantValue: mandantMapper(
+    cardTemplateData.versicherungsnehmer.id
+  ),
+  externalProduktId: cardTemplateData.externalProduktId,
+  tarifbezeichnungDarlehen: cardTemplateData.tarifBezeichnung,
+  vertragsnummerDarlehen: cardTemplateData.versicherungsnummer,
+  darlehensnehmerDarlehen:cardTemplateData.gesellschaft,
+  artDarlehen: cardTemplateData.art,
+  zugeordneteImmobilieObjektzuordnungDarlehen: cardTemplateData.objektnotizen,
+  darlehenshoeheBeginnObjektzuordnungDarlehen: cardTemplateData.darlehenshohe,
+  restschuldBerechnenObjektzuordnungDarlehen: "",
+  restschuldObjektzuordnungDarlehen: cardTemplateData.restschuld,
+  standVomObjektzuordnungDarlehen: dateFormater(cardTemplateData.standVom),
+  rateObjektzuordnungDarlehen: cardTemplateData.rate,
+  zahlweiseObjektzuordnungDarlehen: cardTemplateData.zahlweise,
+  zinssatzObjektzuordnungDarlehen: cardTemplateData.zinssatz,
+  zinsfestschreibungObjektzuordnungDarlehen: dateFormater(cardTemplateData.zinsfestschreibung),
+  tilgungProzentObjektzuordnungDarlehen: cardTemplateData.tilgungProzent,
+  tilgungEuroObjektzuordnungDarlehen: 0,
+  sondertilgungProzentObjektzuordnungDarlehen: cardTemplateData.sondertilgungProzent,
+  beginnObjektzuordnungDarlehen:dateFormater(cardTemplateData.versicherungsbeginn),
+  voraussichtlichSchuldenfreiObjektzuordnungDarlehen: "",
+}
+    break
+    case "RUERUP":
+      console.log(cardTemplateData)
+output={
+  initMandantValue: mandantMapper(
+    cardTemplateData.versicherungsnehmer.id
+  ),
+  externalProduktId: cardTemplateData.externalProduktId,
+  gesellschaftRuerupRente: cardTemplateData.gesellschaft,
+  tarifbezeichnungRuerupRente: cardTemplateData.tarifBezeichnung,
+  vertragsnummerRuerupRente: cardTemplateData.versicherungsnummer,
+  versicherungsnehmerRuerupRente: mandantMapper(
+    cardTemplateData.versicherungsnehmer.id
+  ),
+  versichertePersonRuerupRente: 
+  typeof cardTemplateData.versichertePerson === "undefined"
+    ? isMandantDefined("undefined")
+    : isMandantDefined(cardTemplateData.versichertePerson.id),
+  artVersichertePersonRuerupRente: cardTemplateData.art,
+  fondsVersichertePersonRuerupRente: cardTemplateData.fonds,
+  vertragsbeginnVertragslaufzeitRuerupRente:  dateFormater(cardTemplateData.versicherungsbeginn),
+  vertragsendeVertragslaufzeitRuerupRente: dateFormater(cardTemplateData.versicherungsende),
+  garantiertMonatlicheRentenleistungRuerupRente: cardTemplateData.rentenleistungGarantiert,
+  prognostiziertMonatlicheRentenleistungRuerupRente: cardTemplateData.rentenleistungPrognostiziert,
+  beiMonatlicheRentenleistungRuerupRente: cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+  RGZMonatlicheRentenleistungRuerupRente: cardTemplateData.rentenleistungRgzJahre,
+  dynamikRuerupRente: cardTemplateData.dynamik,
+  prozentDynamikRuerupRente: cardTemplateData.dynamikProzent,
+  integrierteBURuerupRente: cardTemplateData.integrierteBU,
+  rentenleistungBURuerupRente: cardTemplateData.rentenleistungBU,
+  dynamikBULeistungBURuerupRente: cardTemplateData.dynamikBU,
+  beitragsbefreiungBURuerupRente: cardTemplateData.beitragsbefreiungBU,
+  beitragsendeBUZRuerupRente: dateFormater(cardTemplateData.beitragsendeBUZ),
+  leistungsendeBUZRuerupRente: dateFormater(cardTemplateData.leistungsendeBUZ),
+  beitragsanteilBUZRuerupRente: cardTemplateData.beitragsanteilBUZ,
+  deckungskapitalBUZRuerupRente: cardTemplateData.deckungskapital,
+  zusatzversicherungHinterbliebenenZusatzversicherungRuerupRente: cardTemplateData.hinterbliebenenZusatz,
+  prozentHinterbliebenenZusatzversicherungRuerupRente: cardTemplateData.hinterbliebenenProzent,
+  betragHinterbliebenenZusatzversicherungRuerupRente: cardTemplateData.hinterbliebenenBetrag,
+  aktuellerRueckkaufswertHinterbliebenenZusatzversicherungRuerupRente: cardTemplateData.rueckkaufswert,
+  zahlweiseHinterbliebenenZusatzversicherungRuerupRente: cardTemplateData.zahlweise,
+  einmalbeitragHinterbliebenenZusatzversicherungRuerupRente: cardTemplateData.einmalbeitrag,
+  beitragHinterbliebenenZusatzversicherungRuerupRente: cardTemplateData.beitrag,
+  beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente: cardTemplateData.beitragsanteilBU,
+}
+console.log(output)
+    break
     case "RIESTER":
       console.log(cardTemplateData);
       output = {
@@ -3426,7 +3546,6 @@ output=einnahmeart.name
           cardTemplateData.zinsfestschreibung
         ),
       };
-      test(output);
 
       break;
     case "PFERDEHALTERHAFTPFLICHT":

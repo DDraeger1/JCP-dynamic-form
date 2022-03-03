@@ -45,7 +45,6 @@ nonVersichertePersonIdIndex.forEach((index)=>{
 export function redefineCard(ids, mandantIndex, tarifTypeId, mandantGroup) {
   let entryFound = false;
   let vertragId = "none";
-  vertragId = "none";
 
   if (mandantIndex || mandantIndex === 0) {
     ids.forEach((mandantEntry, index) => {
@@ -121,4 +120,14 @@ export function formatMandantName(mandantGroup, kindAnzahl, setKindAnzahl) {
       mandantGroup.mandant.nachname;
   }
   return mandantName;
+}
+export function mapIncomingData(fieldName,assets){
+  let output =[]
+  if(fieldName === "zugeordneteImmobilieObjektzuordnungDarlehen"){
+    assets.map((asset)=>{
+if(asset.tarifTypeId === "IMMOBILIENBESTAND")
+output.push({value: asset.objektnotizen, label: asset.objektnotizen})
+})
+}
+  return output
 }

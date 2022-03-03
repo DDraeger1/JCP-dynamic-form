@@ -15,7 +15,9 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import deLocale from "date-fns/locale/de";
 import { Save } from "@material-ui/icons";
-import { Button } from "@material-ui/core";
+import { Button,Checkbox } from "@material-ui/core";
+
+import mock from "./mockUI/MockUI.png"
 
 import axios from "axios";
 import qs from "query-string";
@@ -124,7 +126,40 @@ const betrieblicheAltersversorgungValues = {
   tarifvertragBUZBetrieblicheAltersversorgung: "",
   fondsBUZBetrieblicheAltersversorgung: "",
 };
-
+const ruerupRenteValues ={
+  externalProduktId: "",
+  gesellschaftRuerupRente: "",
+  tarifbezeichnungRuerupRente: "",
+  vertragsnummerRuerupRente: "",
+  versicherungsnehmerRuerupRente: "",
+  versichertePersonRuerupRente: "",
+  artVersichertePersonRuerupRente: "",
+  fondsVersichertePersonRuerupRente: "",
+  vertragsbeginnVertragslaufzeitRuerupRente: "",
+  vertragsendeVertragslaufzeitRuerupRente: "",
+  garantiertMonatlicheRentenleistungRuerupRente: "",
+  prognostiziertMonatlicheRentenleistungRuerupRente: "",
+  beiMonatlicheRentenleistungRuerupRente: "",
+  RGZMonatlicheRentenleistungRuerupRente: "",
+  dynamikRuerupRente: "",
+  prozentDynamikRuerupRente: "",
+  integrierteBURuerupRente: "",
+  rentenleistungBURuerupRente: "",
+  dynamikBULeistungBURuerupRente: "",
+  beitragsbefreiungBURuerupRente: "",
+  beitragsendeBUZRuerupRente: "",
+  leistungsendeBUZRuerupRente: "",
+  beitragsanteilBUZRuerupRente: "",
+  deckungskapitalBUZRuerupRente: "",
+  zusatzversicherungHinterbliebenenZusatzversicherungRuerupRente: "",
+  prozentHinterbliebenenZusatzversicherungRuerupRente: "",
+  betragHinterbliebenenZusatzversicherungRuerupRente: "",
+  aktuellerRueckkaufswertHinterbliebenenZusatzversicherungRuerupRente: "",
+  zahlweiseHinterbliebenenZusatzversicherungRuerupRente: "",
+  einmalbeitragHinterbliebenenZusatzversicherungRuerupRente: "",
+  beitragHinterbliebenenZusatzversicherungRuerupRente: "",
+  beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente: "",
+}
 const riesterrenteValues = {
   produktIDRiesterrente: "",
   tarifbezeichnungRiesterrente: "",
@@ -1393,9 +1428,14 @@ function App(props) {
   const [loaded, setLoaded] = useState(false);
   const [initialised, setInitialised] = useState(false);
 
+  const [isMock, toggleMock] = useState({
+        active:false,
+    style:{padding:"20"},
+    showImage:"none"})
   const [isBusy, setIsBusy] = useState(false);
   const [rawData, setRawData] = useState({ success: false });
   const [formData, setFormData] = useState({ success: false });
+  const [login, setLogin] = useState("")
   const {
     jsonValues,
     setJsonValues,
@@ -1427,234 +1467,236 @@ Values not Mapped
   const params = useParams()
   const [card, setCard] = useState(params.card);
   const [id, setId] = useState();
-  let test = [];
+  let jsonForm = [];
   const ref = useRef();
 
   switch (card) {
+    case "DARLEHEN":
+      dummyData ={...darlehenValues}
+      jsonForm =[darlehen]
+      break
     case "RIESTER":
 dummyData ={ ...riesterrenteValues}
-test =[riesterrente]
+jsonForm =[riesterrente]
     break
     case "STEUERN":
       dummyData = { ...steuerValues };
-      test = [steuer];
-      //mandantchange gebraucht
+      jsonForm = [steuer];
       break;
     case "SACHWERT":
       dummyData = { ...sachwertValues };
-      test = [sachwert];
+      jsonForm = [sachwert];
       //find ich net
       break;
-    case "ruerupRente":
-      dummyData = { ...riesterrenteValues };
-      test = [ruerupRente];
-      //muss ich im live build bauen
+    case "RUERUP":
+      dummyData = { ...ruerupRenteValues };
+      jsonForm = [ruerupRente];
       break;
     case "wertpapiere":
       //Muss ich noch in suite finden
       dummyData = { ...wertpapiereValues };
-      test = [wertpapiere];
+      jsonForm = [wertpapiere];
       break;
     case "DIREKTZUSAGE":
       dummyData = { ...betrieblicheAltersversorgungValues };
-      test = [betrieblicheAltersversorgung];
+      jsonForm = [betrieblicheAltersversorgung];
       break;
     case "PENSIONSFONDS_3":
       dummyData = { ...betrieblicheAltersversorgungValues };
-      test = [betrieblicheAltersversorgung];
+      jsonForm = [betrieblicheAltersversorgung];
       break;
     case "DIREKT_40":
       dummyData = { ...betrieblicheAltersversorgungValues };
-      test = [betrieblicheAltersversorgung];
+      jsonForm = [betrieblicheAltersversorgung];
       break;
     case "PENSIONSKASSE_40":
       dummyData = { ...betrieblicheAltersversorgungValues };
-      test = [betrieblicheAltersversorgung];
+      jsonForm = [betrieblicheAltersversorgung];
       break;
     case "UNTERSTUETZUNGSKASSE":
       dummyData = { ...betrieblicheAltersversorgungValues };
-      test = [betrieblicheAltersversorgung];
+      jsonForm = [betrieblicheAltersversorgung];
       break;
       case "DIREKT_3":
       dummyData = { ...betrieblicheAltersversorgungValues };
-      test = [betrieblicheAltersversorgung];
+      jsonForm = [betrieblicheAltersversorgung];
       break;
     case "BANKVERBINDUNG":
       dummyData = {
         ...bankdatenValues,
       };
-      test = [bankdaten];
+      jsonForm = [bankdaten];
       break;
     case "KIND":
       dummyData = {
         ...kindValues,
       };
-      test = [kind];
+      jsonForm = [kind];
       break;
     case "GESUNDHEIT":
       dummyData = {
         ...gesundheitValues,
       };
-      test = [gesundheit];
+      jsonForm = [gesundheit];
       break;
     case "FUEHRERSCHEIN":
       dummyData = {
         ...fuehrerscheinValues,
       };
-      test = [fuehrerschein];
+      jsonForm = [fuehrerschein];
       break;
     case "AUSBILDUNGBERUF":
       dummyData = { ...ausbildungBerufValues };
-      test = [ausbildungBeruf];
+      jsonForm = [ausbildungBeruf];
       break;
     case "KOMMUNIKATION":
       dummyData = { ...kommunikationValues };
-      test = [kommunikation];
+      jsonForm = [kommunikation];
       break;
     case "ARBEITGEBER":
       dummyData = { ...arbeitgeberValues };
-      test = [arbeitgeber];
+      jsonForm = [arbeitgeber];
       break;
     case "AUSWEIS":
       dummyData = { ...ausweisdatenValues };
-      test = [ausweisdaten];
+      jsonForm = [ausweisdaten];
       break;
     case "PERSONALDATEN":
       dummyData = {
         ...personaldatenValues,
       };
-      test = [personaldaten];
+      jsonForm = [personaldaten];
       break;
     case "GESETZLICHE_AV":
       dummyData = { ...gesetzlicheAltersvorsorgeValues };
-      test = [gesetzlicheAltersvorsorge];
+      jsonForm = [gesetzlicheAltersvorsorge];
       break;
     case "EINNAHMEN":
       dummyData = { ...einnahmenValues };
-      test = [einnahmen];
+      jsonForm = [einnahmen];
       break;
     case "EINKOMMEN_GEHALT":
       dummyData = { ...einkommenGehaltValues };
-      test = [einkommenGehalt];
+      jsonForm = [einkommenGehalt];
       break;
     case "EINKOMMEN_MINIJOB":
       dummyData = { ...einkommenAusGeringfuegigerBeschaefitgungValues };
-      test = [einkommenAusGeringfuegigerBeschaefitgung];
+      jsonForm = [einkommenAusGeringfuegigerBeschaefitgung];
       break;
     case "EINKOMMEN_SELBSTAENDIGER":
       dummyData = {
         ...einkommenAusSelbststaendigerErwerbstaetigkeitValues,
       };
-      test = [einkommenAusSelbststaendigerErwerbstaetigkeit];
+      jsonForm = [einkommenAusSelbststaendigerErwerbstaetigkeit];
       break;
     case "AUSGABEN":
       dummyData = { ...ausgabenValues };
-      test = [ausgaben];
+      jsonForm = [ausgaben];
       break;
     case "AUTOMOBILCLUB":
       dummyData = { ...automobilclubValues };
-      test = [automobilclub];
+      jsonForm = [automobilclub];
       break;
     case "SONSTIGE_ZAHLUNG":
       dummyData = { ...sonstigeZahlungsverpflichtigungenValus };
-      test = [sonstigeZahlungsverpflichtungen];
+      jsonForm = [sonstigeZahlungsverpflichtungen];
       break;
     case "KONSUMKREDIT":
       dummyData = { ...kreditValues };
-      test = [kredit];
+      jsonForm = [kredit];
       break;
     case "BANKPRODUKTE":
       dummyData = { ...bankprodukteValues };
-      test = [bankprodukte];
+      jsonForm = [bankprodukte];
       break;
     case "VWL_BAUSPAREN":
       dummyData = { ...vwlUndBausparenValues };
-      test = [vwlUndBausparen];
+      jsonForm = [vwlUndBausparen];
       break;
     case "IMMOBILIENBESTAND":
       dummyData = { ...immobilienbestandValues };
-      test = [immobilienbestand];
+      jsonForm = [immobilienbestand];
       break;
     case "BETEILIGUNGEN":
       dummyData = { ...beteiligungenAiFValues };
-      test = [beteiligungenAiF];
+      jsonForm = [beteiligungenAiF];
       break;
     case "BU":
       dummyData = { ...buEuGfkValues };
-      test = [buEuGfk];
+      jsonForm = [buEuGfk];
       break;
     case "UNFALL":
       dummyData = { ...unfallValues };
-      test = [unfall];
+      jsonForm = [unfall];
       break;
     case "RISIKO":
       dummyData = { ...todesfallValues };
-      test = [todesfall];
+      jsonForm = [todesfall];
       break;
     case "DREADDISEASE":
       dummyData = { ...schwereKrankheitenValues };
-      test = [schwereKrankheiten];
+      jsonForm = [schwereKrankheiten];
       break;
     case "PFLEGEKOSTEN":
       dummyData = { ...privatePflegeversicherungValues };
-      test = [privatePflegeversicherung]; //alles gleich
+      jsonForm = [privatePflegeversicherung]; //alles gleich
       break;
     case "PFLEGERENTEN":
       dummyData = { ...gesetzlicheKrankenversicherungValue };
-      test = [privatePflegeversicherung]; //alles gleich
+      jsonForm = [privatePflegeversicherung]; //alles gleich
       break;
     case "PFLEGETAGEGELD":
       dummyData = { ...privateKrankenValues };
-      test = [privatePflegeversicherung]; //alles gleich
+      jsonForm = [privatePflegeversicherung]; //alles gleich
       break;
     case "GESETZLICHE_KRANKEN":
       dummyData = { ...gesetzlicheKrankenversicherungValue };
-      test = [gesetzlicheKrankenversicherung];
+      jsonForm = [gesetzlicheKrankenversicherung];
       break;
     case "KVV":
       dummyData = { ...privateKrankenValues };
-      test = [privateKranken];
+      jsonForm = [privateKranken];
       break;
     case "KVZ":
       dummyData = { ...kvZusatzValue };
-      test = [kvZusatz];
+      jsonForm = [kvZusatz];
       break;
     case "PRIVATHAFTPFLICHT":
       dummyData = { ...privathaftpflichtValue };
-      test = [privathaftpflicht];
+      jsonForm = [privathaftpflicht];
       break;
     case "HUNDEHALTERHAFTPFLICHT":
       dummyData = { ...hundehalterhaftpflichtValue };
-      test = [hundehalterpflicht];
+      jsonForm = [hundehalterpflicht];
       break;
     case "PFERDEHALTERHAFTPFLICHT":
       dummyData = { ...pferdehalterhaftpflichtValue };
-      test = [pferdehalterhaftpflicht];
+      jsonForm = [pferdehalterhaftpflicht];
       break;
     case "HAUSRAT":
       dummyData = { ...hausratValue };
-      test = [hausrat];
+      jsonForm = [hausrat];
       break;
     case "RECHTSSCHUTZ":
       dummyData = { ...rechtschutzValue };
-      test = [rechtschutz];
+      jsonForm = [rechtschutz];
       break;
     case "WOHNGEBAEUDE":
       dummyData = { ...wohngebaeudeValue };
-      test = [wohngebaeude];
+      jsonForm = [wohngebaeude];
       break;
     case "KFZ":
       dummyData = { ...KFZValue };
-      test = [KFZ];
+      jsonForm = [KFZ];
       break;
     case "WOHNSITUATION":
       dummyData = { ...wohnsituationValues };
-      test = [wohnsituation];
+      jsonForm = [wohnsituation];
       break;
     default:
-      test = [];
+      jsonForm = [];
   }
-
+console.log(rawData)
   var dummyData;
   const handleSave = async () => {
     if (!isBusy && ref?.current) {
@@ -1693,70 +1735,106 @@ test =[riesterrente]
   var myHeaders = new Headers();
   myHeaders.append("Access-Control-Allow-Origin", "*");
   document.cookie = "JSESSIONID=9A2CC3C93070309D888ACD30294946A6";
-  var requestOptionsMandantLiveSuite = {
+  var FormData = require('form-data');
+  var dataLogin = new FormData();
+  dataLogin.append('action', 'jwtlogin');
+ // dataLogin.append('templogin', 'rNrkrCQVMk265cH3zjCACVp4CFkNgSUB');
+  
+  var loginLiveSuite = {
+    method: 'post',
+    url: 'https://jcp-suite.de/suite/user.json',
+    data : dataLogin
+  };
+  
+    var requestOptionsMandantLiveSuite = (login)=>{
+      return (
+   {
     method: "get",
     url: "https://jcp-suite.de/suite/mandant.json?action=getMandantById&id="+params.mandantId,
     withCredentials: true,
-    headers: { Cookie: document.cookie },
+    headers: {Authorization: "Bearer "+login },
     redirect: "follow",
+  })
   };
-  var requestOptionsAnalyseAssetsLiveSuite = {
+  var requestOptionsAnalyseAssetsLiveSuite = (login)=>{
+    return (
+ {
     method: "get",
     url: "https://jcp-suite.de/suite/asset.json?action=getAllAnalyseAssets&mandantId=&analyseId="+params.analyseId,
     withCredentials: true,
-    headers: { Cookie: document.cookie },
-    redirect: "follow",
+    headers: { Authorization: "Bearer "+login },
+    redirect: "follow"})
   };
-  var requestOptionsMandantGroupLiveSuite = {
+  var requestOptionsMandantGroupLiveSuite = (login)=>{
+    return (
+ {
+    method: "get",
+    url: "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId="+params.mandantId,
+    withCredentials: true,
+    headers: { Authorization: "Bearer "+login },
+    redirect: "follow",
+  })};
+
+  var getLiveSuiteToken =(login)=>{
+    return (
+ {
     method: "get",
     url: "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId="+params.mandantId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
-  };
+  })}
 
-  var saveAssetLiveSuite = {
+  var saveAssetLiveSuite =(login)=>{
+    return (
+ {
     method: "post",
     url: "https://jcp-suite.de/suite/analyseApp",
     withCredentials: true,
     headers: {
-      Cookie: document.cookie,
-      "Content-Type": "application/x-www-form-urlencoded",
+
+      "Content-Type": "application/x-www-form-urlencoded",Authorization: "Bearer "+login
     },
     redirect: "follow",
-  };
-  var getContextIdByIdLiveSuite = {
+  })}
+  var getContextIdByIdLiveSuite = (login)=>{
+    return (
+ {
     method: "post",
     url: "https://jcp-suite.de/suite/context.json?action=getContextById&id="+params.contextId,
     withCredentials: true,
     headers: {
-      Cookie: document.cookie,
+      Authorization: "Bearer "+login,
       "Content-Type": "application/x-www-form-urlencoded",
     },
     redirect: "follow",
-  };
-  var getProductIdLiveSuite = {
+  })}
+  var getProductIdLiveSuite =(login)=>{
+    return (
+ {
     method: "post",
     url:
       "https://jcp-suite.de/suite/productId.json?action=getProductIds&tarifTypeId=" +
       card,
     withCredentials: true,
     headers: {
-      Cookie: document.cookie,
+      Authorization: "Bearer "+login,
       "Content-Type": "application/x-www-form-urlencoded",
     },
     redirect: "follow",
-  };
-  var requestOptionsGesellschaftIdLiveSuite = {
+  })}
+  var requestOptionsGesellschaftIdLiveSuite = (login)=>{
+    return (
+ {
     method: "get",
     url:
       "https://jcp-suite.de/suite/gesellschaft.json?action=getAllGesellschaftsByTarifTypeId&tarifTypeId=" +
       card +
       "&contextId="+params.contextId,
     withCredentials: true,
-    headers: { Cookie: document.cookie },
+    headers: { Authorization: "Bearer "+login },
     redirect: "follow",
-  };
+  })}
 //192.168.1.181 LÖSCHEN WENN FERTIG!!!
   var requestOptionsMandantGroup = {
     method: "get",
@@ -1767,7 +1845,7 @@ test =[riesterrente]
   };
   var requestOptionsMandant = {
     method: "get",
-    url: "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id=ae378e06-0522-11e9-95b0-27616e07d826",
+    url: "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id="+params.mandantId,
     withCredentials: true,
     headers: {
       Cookie: document.cookie,
@@ -1861,14 +1939,22 @@ test =[riesterrente]
   useEffect(() => {
     let mounted = true;
     setIsBusy(true);
-    const getData = () => {
-      Promise.all([
-        axios(requestOptionsMandant),
-        axios(requestOptionsAnalyseAssets),
-        axios(requestOptionsMandantGroup),
-        axios(requestOptionsGesellschaftId),
-        axios(getContextIdById),
-        axios(getProductId),
+    const getDataLiveSuite = () => {
+      axios(loginLiveSuite).then((login)=>{
+        getDataWithLogin(login.data.data)
+      }).catch((error) =>{
+        console.log("error")
+        console.log(error)})
+    
+
+      function getDataWithLogin(login){
+       Promise.all([
+        axios(requestOptionsMandantLiveSuite(login)),
+        axios(requestOptionsAnalyseAssetsLiveSuite(login)),
+        axios(requestOptionsMandantGroupLiveSuite(login)),
+        axios(requestOptionsGesellschaftIdLiveSuite(login)),
+        axios(getContextIdByIdLiveSuite(login)),
+        axios(getProductIdLiveSuite(login)),
       ])
         .then((result) => {
           setRawData({
@@ -1882,11 +1968,38 @@ test =[riesterrente]
           });
       setMandantGroup(result[2].data.data.mandantMandantGroups)
 
-        })
+      })
         .catch((error) =>{
         console.log("error")
         console.log(error)});
     };
+  }
+  const getData = () => {
+     Promise.all([
+      axios(requestOptionsMandant),
+      axios(requestOptionsAnalyseAssets),
+      axios(requestOptionsMandantGroup),
+      axios(requestOptionsGesellschaftId),
+      axios(getContextIdById),
+      axios(getProductId),
+    ])
+      .then((result) => {
+        setRawData({
+          mandantData: result[0].data.data,
+          mandantGroup: result[2].data.data.mandantMandantGroups,
+          analyseAssets: result[1].data.data,
+          gesellschaft: result[3].data,
+          contextProductId: result[4].data.data,
+          productId: result[5].data.data,
+          success: true,
+        });
+    setMandantGroup(result[2].data.data.mandantMandantGroups)
+
+    })
+      .catch((error) =>{
+      console.log("error")
+      console.log(error)});
+}
     const getDataPersonendaten = () => {
       Promise.all([
         axios(requestOptionsMandant),
@@ -1929,10 +2042,9 @@ if(checkIfPersonendaten(card)){
     };
   }, [jsonValues]);
 
-
+console.log(rawData)
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
-      console.log("drin")
 
       isAssetAvailable(
         rawData,
@@ -1946,6 +2058,8 @@ if(checkIfPersonendaten(card)){
         setAnzahlVp,
         bankverbindungen, setBankverbindungen
       );
+  console.log(formData)
+
       setId(mapAssets(rawData.analyseAssets));
       setInitialised(true);
 
@@ -2386,12 +2500,37 @@ if(checkIfPersonendaten(card)){
       }, 60);
     }
   }, [einkommenGehaltBezuege]);
+
+function showMock(){
+  if(!isMock.active){
+    toggleMock({
+      active:true,
+     style:{ position:"absolute", top:"9.8vh", width:"57vw",height:"89.7vh", left:"33vw", backgroundColor:"#eeeeee", overflow:"auto", overflowX:"hidden" },
+     showImage:"inline"})
+  }
+ else{
+  toggleMock({
+    active:false,
+   style:{padding:"20"},
+   showImage:"none"
+  })
+}
+
+}
   return (
-    <div>
+    <div tyle={{ backgroundColor:"#eeeeee"}}>
       {!loaded ? null : (
         <ThemeProvider theme={theme}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale}>
-            <div style={{ padding: 20 }}>
+
+          <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale} className="mock4">
+          <Checkbox 
+          value={isMock}
+          onChange={()=>{showMock()}}
+          style={{position:"absolute"}}
+          label="toggle Mock"
+          />
+            <img src={mock} style={{display:isMock.showImage}} className="mock" />
+            <div style={{...isMock.style}}>
               <DynamicForm
                 // Das gesamte Formular kann deaktiviert werden (read-only)
                 disabled={isBusy}
@@ -2407,9 +2546,10 @@ if(checkIfPersonendaten(card)){
                 // die eigentlichen Daten
                 values={formData}
                 // die Formular-Definition
-                formDefinition={test}
+                formDefinition={jsonForm}
                 mandantGroup={rawData.mandantGroup}
                 gesellschaft={rawData.gesellschaft}
+                assets ={rawData.analyseAssets}
                 // Was soll beim Absenden geschehen?
                 // erwartet wird ein Promise, der mit dem kompletten (evtl. modifizierten Datensatz) resolvet
                 onSubmit={handleSubmit}
@@ -2417,7 +2557,16 @@ if(checkIfPersonendaten(card)){
                 productId={rawData.productId}
               />
               {ref.isDirty}
-              <Button
+              
+            </div>
+          </MuiPickersUtilsProvider>
+        </ThemeProvider>
+      )}
+    </div>
+  );
+}
+/*
+<Button
                 variant={"outlined"}
                 color={"primary"}
                 endIcon={<Save />}
@@ -2426,11 +2575,5 @@ if(checkIfPersonendaten(card)){
               >
                 Angaben speichern
               </Button>
-            </div>
-          </MuiPickersUtilsProvider>
-        </ThemeProvider>
-      )}
-    </div>
-  );
-}
+               */
 export default App;

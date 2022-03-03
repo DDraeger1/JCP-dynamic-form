@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import { Context } from "../context/Context";
 import axios from "axios";
-import {DeleteForever } from "@material-ui/icons";
+import { DeleteForever } from "@material-ui/icons";
 function BruttoHinzufuegen({ watch }) {
   const { setEinkommenGehaltBezuege, bruttoSum, setBruttoSum } =
     useContext(Context);
@@ -650,8 +650,8 @@ function ArbeitgeberHinzufuegen({ watch }) {
     </Button>
   );
 }
-function RentenPrognose({ watch,setValue }) {
-  const {mandantGroup} =useContext(Context)
+function RentenPrognose({ watch, setValue }) {
+  const { mandantGroup } = useContext(Context);
   function dateFormaterSuite(date) {
     //from dd/mm/yyyy to mm/dd/yyyy
     let output;
@@ -665,100 +665,416 @@ function RentenPrognose({ watch,setValue }) {
     }
     return output;
   }
-  function prognostizierteRenteBerechnen() {
+  const {versicherungsnehmerValue} = useContext(Context)
+console.log(versicherungsnehmerValue)
+function prognostizierteRenteBerechnenRUERUP(){
+  //werte Ruerup klassisch: art, mitBU: integrierteBURuerupRente, koerperlichTaetig:mandant, buRente:rentenleistungBURuerupRente
+  // anteilBU: beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente, beitrag:beitragHinterbliebenenZusatzversicherungRuerupRente,
+  // rueckkaufswert: aktuellerRueckkaufswertHinterbliebenenZusatzversicherungRuerupRente, beitragVWL :für liveSuite
+  //vers. beginn:vertragsbeginnVertragslaufzeitRuerupRente, vers. ende:vertragsendeVertragslaufzeitRuerupRente, geburtstag:mandant
+let zahlweise = watch().zahlweiseHinterbliebenenZusatzversicherungRuerupRente
+let beitragForm = watch().beitragHinterbliebenenZusatzversicherungRuerupRente
+    let beitrag = 0;
+    switch (zahlweise) {
+  case "MONATLICH":
+    beitrag = beitragForm;
+    break;
+  case "QUARTAL":
+    beitrag = (beitragForm * 2) / 12;
+    break;
+  case "HALBJAEHRLICH":
+    beitrag = (beitragForm * 4) / 12;
+    break;
+  case "JAEHRLICH":
+    beitrag = beitragForm / 12;
+    break;
+  default:
+    break;
+}
+let beitragsanteilBU = 0;
+if (typeof watch().beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente !== "undefined") {
+  beitragsanteilBU = watch().beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente;
+}
+
+let buRente = 0;
+if (typeof watch().rentenleistungBURuerupRente !== "undefined") {
+  buRente = watch().rentenleistungBURuerupRente;
+} else if(typeof watch().beitragsanteilBUZRuerupRente !== "undefined"){
+buRente = watch().beitragsanteilBUZRuerupRente
+}
+let mitBU = false;
+if (typeof watch().integrierteBURuerupRente !== "undefined") {
+  mitBU = watch().integrierteBURuerupRente;
+} 
+let mandantVersichert;
+    mandantGroup.map((mandant) => {
+      if (mandant.mandantId === watch().versichertePersonRuerupRente) {
+        mandantVersichert = mandant;
+      }
+    });
+    console.log(mandantVersichert);
+    let params = {
+      klassisch:
+        watch().artVersichertePersonRuerupRente !== "undefined"
+          ? watch().artVersichertePersonRuerupRente === "klassisch"
+          : false,
+      mitBU: mitBU,
+      koerperlichTaetig:
+        mandantVersichert.mandant.eb_anteilKoerperlich > 0 ? true : false,
+      buRente: buRente,
+      anteilBU: beitragsanteilBU,
+      beitrag: beitrag,
+      rueckkaufswert:
+        typeof watch().aktuellerRueckkaufswertHinterbliebenenZusatzversicherungRuerupRente !== "undefined"
+          ? watch().aktuellerRueckkaufswertHinterbliebenenZusatzversicherungRuerupRente
+          : 0,
+      beitragVWL: 0,
+      versicherungsbeginn: dateFormaterSuite(
+        watch().vertragsbeginnVertragslaufzeitRuerupRente
+      ),
+      versicherungsende: dateFormaterSuite(
+        watch().vertragsendeVertragslaufzeitRuerupRente
+      ),
+      geburtsdatum: mandantVersichert.mandant.geburtsdatum,
+    };
+    let config = {
+      method: "post",
+      url:
+        "http://localhost:8080/build-suite/rechenmodul.json?action=berechnePrognostizierteRente&anteilBU=" +
+        params.anteilBU +
+        "&beitrag=" +
+        params.beitrag +
+        "&beitragVWL=" +
+        params.beitragVWL +
+        "&buRente=" +
+        params.buRente +
+        "&geburtsdatum=" +
+        params.geburtsdatum +
+        "&klassisch=+" +
+        params.klassisch +
+        "&koerperlichTaetig=" +
+        params.koerperlichTaetig +
+        "&mitBU=" +
+        params.mitBU +
+        "&rueckkaufswert=" +
+        params.rueckkaufswert +
+        "&versicherungsbeginn=" +
+        params.versicherungsbeginn +
+        "&versicherungsende=" +
+        params.versicherungsende,
+      headers: {
+        Cookie:
+          "59669720A20F69EA54F253BB1263D48B; JSESSIONID=43D4429B33E4468A1A69178B21BD2258",
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data);
+        setValue(
+          "prognostiziertMonatlicheRentenleistungRuerupRente",
+          response.data.result.prognostizierteRente.toFixed(2),
+          { shouldDirty: true }
+        );
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+}
+  function prognostizierteRenteBerechnenRIESTER() {
+
     let zahlweise = watch().zahlweiseVWLRiesterrente;
     let beitragForm = watch().beitragVWLRiesterrente;
-let beitrag = 0
+    let beitrag = 0;
     switch (zahlweise) {
       case "MONATLICH":
-        beitrag=beitragForm
+        beitrag = beitragForm;
         break;
       case "QUARTAL":
-        beitrag=beitragForm * 2 / 12
+        beitrag = (beitragForm * 2) / 12;
         break;
       case "HALBJAEHRLICH":
-        beitrag=beitragForm * 4 / 12
+        beitrag = (beitragForm * 4) / 12;
         break;
       case "JAEHRLICH":
-        beitrag=  beitragForm / 12
-      break;
-        default:
+        beitrag = beitragForm / 12;
+        break;
+      default:
         break;
     }
 
-    let beitragsanteilBU = 0
-if (typeof (watch().beitragsanteilBUZRiesterrente) !== "undefined") {
-  beitragsanteilBU =  watch().beitragsanteilBUZRiesterrente
-}
+    let beitragsanteilBU = 0;
+    if (typeof watch().beitragsanteilBUZRiesterrente !== "undefined") {
+      beitragsanteilBU = watch().beitragsanteilBUZRiesterrente;
+    }
 
-let buRente = 0
-if (typeof (watch().rentenleistungBURiesterrente) !== "undefined") {
-  buRente = watch().rentenleistungBURiesterrente;
-} 
-let mitBU = false
-if (typeof (watch().integrierteBURiesterrente) !== "undefined") {
-  mitBU = watch().integrierteBURiesterrente;
-} 
-
-let mandantVersichert
-mandantGroup.map((mandant)=>{
-  if(mandant.mandantId === watch().versichertePersonRiesterrente){
-    mandantVersichert = mandant
+    let buRente = 0;
+    if (typeof watch().rentenleistungBURiesterrente !== "undefined") {
+      buRente = watch().rentenleistungBURiesterrente;
+    } else if(typeof watch().beitragsanteilBUZRiesterrente !== "undefined"){
+    buRente = watch().beitragsanteilBUZRiesterrente
   }
-})
-console.log(mandantVersichert)
-let params={
-  klassisch: (watch().artVersichertePersonRiesterrente !== "undefined") ? watch().artVersichertePersonRiesterrente === "klassisch" : false,
-  mitBU: mitBU,
-  koerperlichTaetig:  mandantVersichert.mandant.eb_anteilKoerperlich > 0 ? true : false,
-  buRente: buRente,
-  anteilBU: beitragsanteilBU,
-  beitrag: beitrag,
-  rueckkaufswert: (typeof (watch().aktuellerRueckkaufswertBUZRiesterrente) !== "undefined") ? watch().aktuellerRueckkaufswertBUZRiesterrente : 0,
-  beitragVWL: 0,
-  versicherungsbeginn: dateFormaterSuite(watch().vertragsbeginnVertragslaufzeitRiesterrente),
-  versicherungsende: dateFormaterSuite(watch().vertragsendeVertragslaufzeitRiesterrente),
-  geburtsdatum: mandantVersichert.mandant.geburtsdatum,
-}
-let config = {
-  method: 'post',
-  url: "http://localhost:8080/build-suite/rechenmodul.json?action=berechnePrognostizierteRente&anteilBU="+params.anteilBU+"&beitrag="+params.beitrag+"&beitragVWL="+params.beitragVWL+"&buRente="+params.buRente+"&geburtsdatum="+params.geburtsdatum+"&klassisch=+"+params.klassisch+"&koerperlichTaetig="+params.koerperlichTaetig+"&mitBU="+params.mitBU+"&rueckkaufswert="+params.rueckkaufswert+"&versicherungsbeginn="+params.versicherungsbeginn+"&versicherungsende="+params.versicherungsende,
-  headers: { 
-    'Cookie': '59669720A20F69EA54F253BB1263D48B; JSESSIONID=43D4429B33E4468A1A69178B21BD2258'
+    let mitBU = false;
+    if (typeof watch().integrierteBURiesterrente !== "undefined") {
+      mitBU = watch().integrierteBURiesterrente;
+    } 
+
+    let mandantVersichert;
+    mandantGroup.map((mandant) => {
+      if (mandant.mandantId === watch().versichertePersonRiesterrente) {
+        mandantVersichert = mandant;
+      }
+    });
+    let params = {
+      klassisch:
+        watch().artVersichertePersonRiesterrente !== "undefined"
+          ? watch().artVersichertePersonRiesterrente === "klassisch"
+          : false,
+      mitBU: mitBU,
+      koerperlichTaetig:
+        mandantVersichert.mandant.eb_anteilKoerperlich > 0 ? true : false,
+      buRente: buRente,
+      anteilBU: beitragsanteilBU,
+      beitrag: beitrag,
+      rueckkaufswert:
+        typeof watch().aktuellerRueckkaufswertBUZRiesterrente !== "undefined"
+          ? watch().aktuellerRueckkaufswertBUZRiesterrente
+          : 0,
+      beitragVWL: 0,
+      versicherungsbeginn: dateFormaterSuite(
+        watch().vertragsbeginnVertragslaufzeitRiesterrente
+      ),
+      versicherungsende: dateFormaterSuite(
+        watch().vertragsendeVertragslaufzeitRiesterrente
+      ),
+      geburtsdatum: mandantVersichert.mandant.geburtsdatum,
+    };
+    let config = {
+      method: "post",
+      url:
+        "http://localhost:8080/build-suite/rechenmodul.json?action=berechnePrognostizierteRente&anteilBU=" +
+        params.anteilBU +
+        "&beitrag=" +
+        params.beitrag +
+        "&beitragVWL=" +
+        params.beitragVWL +
+        "&buRente=" +
+        params.buRente +
+        "&geburtsdatum=" +
+        params.geburtsdatum +
+        "&klassisch=+" +
+        params.klassisch +
+        "&koerperlichTaetig=" +
+        params.koerperlichTaetig +
+        "&mitBU=" +
+        params.mitBU +
+        "&rueckkaufswert=" +
+        params.rueckkaufswert +
+        "&versicherungsbeginn=" +
+        params.versicherungsbeginn +
+        "&versicherungsende=" +
+        params.versicherungsende,
+      headers: {
+        Cookie:
+          "59669720A20F69EA54F253BB1263D48B; JSESSIONID=43D4429B33E4468A1A69178B21BD2258",
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(response.data);
+        setValue(
+          "prognostiziertMonatlicheRentenleistungRiesterrente",
+          response.data.result.prognostizierteRente.toFixed(2),
+          { shouldDirty: true }
+        );
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+
   }
-};
-
-axios(config)
-.then(function (response) {
-  console.log(response.data);
-  setValue("prognostiziertMonatlicheRentenleistungRiesterrente",response.data.result.prognostizierteRente.toFixed(2),{ shouldDirty: true })
-})
-.catch(function (error) {
-  alert(error);
-});
-//
-console.log(params)
-
-}  
   return (
     <Button
       id="prognose-button"
       aria-controls="basic-menu"
       aria-haspopup="true"
-      onClick={()=>prognostizierteRenteBerechnen()}
+      onClick={() =>{ 
+        if(versicherungsnehmerValue.tarifTypeId === "RIESTER"){
+        prognostizierteRenteBerechnenRIESTER()
+      } if(versicherungsnehmerValue.tarifTypeId === "RUERUP")
+      prognostizierteRenteBerechnenRUERUP()
+      }}
     >
       Prognostizierte Rente berechnen
     </Button>
   );
 }
-function DeleteBankdaten({variableName}){
-  const {setDeletionIndex,mandantGroup,deletionIndex} =useContext(Context)
+function DeleteBankdaten({ variableName }) {
+  const { setDeletionIndex, mandantGroup, deletionIndex } = useContext(Context);
 
-
-  let index 
-return(<Button  onClick={()=>console.log(deletionIndex)}><DeleteForever/></Button>)
+  let index;
+  return (
+    <Button onClick={() => console.log(deletionIndex)}>
+      <DeleteForever />
+    </Button>
+  );
 }
-function FunctionMapper({ functionName, variableName, watch,setValue }) {
+
+function JahresBrutto({ watch }) {
+    let summe = 0;
+    function checkForUndefined(value, GB) {
+      let output = 0;
+      if (typeof value !== "undefined" && GB === "J") {
+        output = value;
+      }
+      return output;
+    }
+  function checkForUndefinedSonderzahlung(value) {
+    let output = 0;
+    if (typeof value !== "undefined") {
+      output = value;
+    }
+    return output;
+  }
+  summe =
+  (checkForUndefined(
+    watch().betragMtlTextfieldEinnahmen,
+    watch().gesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().variablerBezugBetragMtlTextfieldEinnahmen,
+    watch().variablerBezugGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().fahrtkostenBetragMtlTextfieldEinnahmen,
+    watch().fahrtkostenGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().feiertagszuschlagBetragMtlTextfieldEinnahmen,
+    watch().feiertagszuschlagGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().nachtzuschlagBetragMtlTextfieldEinnahmen,
+    watch().nachtzuschlagGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().dienstwagenBetragMtlTextfieldEinnahmen,
+    watch().dienstwagenGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().kitaGebuehrenBetragMtlTextfieldEinnahmen,
+    watch().kitaGebuehrenGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().jobRadBetragMtlTextfieldEinnahmen,
+    watch().jobRadGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().vwlAGBetragMtlTextfieldEinnahmen,
+    watch().vwlAGGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().sachbezugBetragMtlTextfieldEinnahmen,
+    watch().sachbezugGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().provisionBetragMtlTextfieldEinnahmen,
+    watch().provisionGesamtBruttoSelectEinnahmen
+  ) +
+  checkForUndefined(
+    watch().sonstigesBruttoBetragMtlTextfieldEinnahmen,
+    watch().sonstigesBruttoGesamtBruttoSelectEinnahmen
+  ))* watch().anzahlGehaelterEinnahmen +
+  checkForUndefinedSonderzahlung(watch().sonderzahlungenAuszahlungsmonatEinnahmen) +
+  checkForUndefinedSonderzahlung(
+    watch().urlaubsgeldSonderzahlungenAuszahlungsmonatEinnahmen
+  ) +
+  checkForUndefinedSonderzahlung(
+    watch().weihnachtsgeldSonderzahlungenAuszahlungsmonatEinnahmen
+  ) +
+  checkForUndefinedSonderzahlung(
+    watch().gewinnbeteiligungSonderzahlungenAuszahlungsmonatEinnahmen
+  );
+  return <p>{"Jahresbrutto (€): "+summe.toFixed(2)+" €"}</p>;
+}
+
+function Tilgung({watch}){
+let tilgung = 0
+  function calculateTilgungBetrag(){
+  let tilgungBetrag = 0
+
+    {
+      // darlehenshoge beginn x tilgun% / zahlweise
+      var restschuldfield =  watch().restschuldObjektzuordnungDarlehen;
+      var restschuld= watch().restschuldObjektzuordnungDarlehen;
+      var rate = watch().rateObjektzuordnungDarlehen;
+      var darlehenshohe = watch().darlehenshoeheBeginnObjektzuordnungDarlehen;
+      var tilgungProzent =  watch().tilgungProzentObjektzuordnungDarlehen;
+      var zinssatz = watch().zinssatzObjektzuordnungDarlehen;
+console.log(watch().zinssatzObjektzuordnungDarlehen)
+      // if there is a restschuld (most of the time), the calculation is different
+      if (watch().zahlweiseObjektzuordnungDarlehen) {
+          var zahlweiseFactor = 1;
+          if (watch().zahlweiseObjektzuordnungDarlehen === "MONATLICH" || watch().zahlweiseObjektzuordnungDarlehen === "112") {
+              zahlweiseFactor = 12;
+          } else if (watch().zahlweiseObjektzuordnungDarlehen === "HALBJAEHRLICH" || watch().zahlweiseObjektzuordnungDarlehen === "12") {
+              zahlweiseFactor = 2;
+          } else if (watch().zahlweiseObjektzuordnungDarlehen === "QUARTAL" || watch().zahlweiseObjektzuordnungDarlehen === "14") {
+              zahlweiseFactor = 4;
+          }
+          console.log(restschuld)
+          console.log(rate)
+          console.log(zinssatz)
+          
+          if (restschuld && rate && zinssatz)  {
+            console.log("drin?")
+              var rateyearly = rate * 12; //?
+              var tilgungBetragYearly = rateyearly - (restschuld * (zinssatz / 100));
+              tilgungBetrag=tilgungBetragYearly / 12
+          } else if (darlehenshohe && tilgungProzent) {
+            console.log("drin!")
+            tilgungBetrag= (darlehenshohe * (tilgungProzent / 100)) / zahlweiseFactor
+          }
+      }
+  }
+  return(tilgungBetrag)
+  }
+  tilgung = calculateTilgungBetrag()
+
+  return(<p style={{textAlign:"center"}}>{"Tilgung in (€): "+tilgung.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+" €"}</p>)
+}
+function RestschuldBerechnen({watch,setValue}){
+  function restschuldListener(){
+
+    var restschuld = watch().restschuldObjektzuordnungDarlehen || 0;
+    var tilgungBetrag = watch().tilgungEuroObjektzuordnungDarlehen;
+
+
+    if ((!watch().voraussichtlichSchuldenfreiObjektzuordnungDarlehen || watch().voraussichtlichSchuldenfreiObjektzuordnungDarlehen === '') && tilgungBetrag && restschuld && watch().zahlweiseObjektzuordnungDarlehen && watch().standVomObjektzuordnungDarlehen) {
+        var zahlweiseFactor = 1;
+        if (watch().zahlweiseObjektzuordnungDarlehen === "MONATLICH" || watch().zahlweiseObjektzuordnungDarlehen === "112") {
+            zahlweiseFactor = 12;
+        } else if (watch().zahlweiseObjektzuordnungDarlehen === "HALBJAEHRLICH" || watch().zahlweiseObjektzuordnungDarlehen === "12") {
+            zahlweiseFactor = 2;
+        } else if (watch().zahlweiseObjektzuordnungDarlehen === "QUARTAL" || watch().zahlweiseObjektzuordnungDarlehen === "14") {
+            zahlweiseFactor = 4;
+        }
+      }
+        var timestopay = restschuld / tilgungBetrag;
+        var yearstopay = timestopay / zahlweiseFactor;
+
+        // add yearstopay to standvom
+        console.log(watch().standVomObjektzuordnungDarlehen.replace(6,4)+yearstopay)
+        console.log(yearstopay)
+        setValue("voraussichtlichSchuldenfreiObjektzuordnungDarlehen",watch().standVomObjektzuordnungDarlehen.replace(6,4)+yearstopay)
+    }
+
+    return(<Button onClick={()=>{
+      restschuldListener()
+    }}>Restschuld berechnung</Button>)
+}
+function FunctionMapper({ functionName, variableName, watch, setValue }) {
   return (
     <div>
       {functionName === "bankAddBrutto" ? (
@@ -795,6 +1111,15 @@ function FunctionMapper({ functionName, variableName, watch,setValue }) {
       ) : null}
       {functionName === "deleteBankverbindung" ? (
         <DeleteBankdaten variableName={variableName} />
+      ) : null}
+      {functionName === "numberJahresbrutto" ? (
+        <JahresBrutto watch={watch} setValue={setValue}/>
+      ) : null}
+            {functionName === "restschuldBerechnen" ? (
+        <RestschuldBerechnen watch={watch} setValue={setValue}/>
+      ) : null}
+                  {functionName === "tilgungEuroObjektzuordnungDarlehen" ? (
+        <Tilgung watch={watch}/>
       ) : null}
     </div>
   );

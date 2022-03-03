@@ -38,7 +38,7 @@ import BezugHinzufuegen from "./BezugHinzufuegen";
 import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
 import FunctionMapper from "./FunctionMapper";
-import { formatMandantName, checkForKind} from "./mapAssets";
+import { formatMandantName, checkForKind,mapIncomingData} from "./mapAssets";
 
 function DynamicForm(
   {
@@ -52,13 +52,13 @@ function DynamicForm(
     gesellschaft,
     tarifTypeIdFromCardState,
     productId,
+    assets
   },
   ref
 ) {
+  console.log(values)
   const [isInitialized, toggleInitialized] = useState(false)
-  function radioGroup(){
-    
-  }
+
   let inputIndex = 0;
   const {
     versicherungsnehmerValue,
@@ -75,7 +75,6 @@ function DynamicForm(
     setExpanded(isExpanded ? panel : false);
 
   };
-let radioGroupArray =[{}]
   // Definition rekursiv nach Werten absuchen (für 1-dimensionales defaultValues-Objekt)
   const reduceDefinitionValues = (acc = {}, { items, name }) => {
     if (items) return { ...acc, ...items.reduce(reduceDefinitionValues, {}) };
@@ -88,15 +87,6 @@ let radioGroupArray =[{}]
     defaultValues,
     mode: "onBlur",
   });
-function selectedRadioButton(menuOptions, values){
-  let output=""
-  menuOptions.map((option)=>{
-    if(values[option.name]){
-      output=option.name
-    }
-  })
-  return(output)
-}
   // Definition rekursiv nach conditions absuchen und entsprechende Watchers einrichten
   const reduceDefinitionWatchers = useCallback(
     (acc = {}, { items, condition }) => {
@@ -382,14 +372,49 @@ function selectedRadioButton(menuOptions, values){
                       )}
                     </FormControl>
                   );
+                  case "selectToBeMapped":
+                    return (
+                      <FormControl fullWidth size={"small"}>
+                        <InputLabel>{label}</InputLabel>
+                        <Select
+                          autoFocus={focussed}
+                          inputRef={ref}
+                          value={value}
+                          onChange={(e) => {
+                            onChange(e.target.value);
+                          }}
+                          label={label}
+                          error={!!helperText}
+                          disabled={itemDisabled}
+                        >
+                          <MenuItem key="o" value={""}>
+                            {" "}
+                          </MenuItem>
+                          {mapIncomingData(name,assets).map((option, index) =>
+                            anzahlVp === "true" ? (
+                              <MenuItem
+                                onClick={() => setAnzahlVp(option.value)}
+                                key={"o-" + index}
+                                value={option.value}
+                              >
+                                {option.label}
+                              </MenuItem>
+                            ) : (
+                              <MenuItem key={"o-" + index} value={option.value}>
+                                {option.label}
+                              </MenuItem>
+                            )
+                          )}
+                        </Select>
+                        {helperText && (
+                          <Typography color={"error"} variant={"caption"}>
+                            {helperText}
+                          </Typography>
+                        )}
+                      </FormControl>)
+
                 /*
                           { "value": , "label": "" },
-        { "value": , "label": "" },
-        { "value": , "label": },
-        { "value":, "label": },
-        { "value": , "label":  },
-        { "value": "", "label": "" },
-        { "value": "", "label": "" }
                   */
                 case "bAVSelect":
                   return (
@@ -637,36 +662,6 @@ function selectedRadioButton(menuOptions, values){
                       {...props}
                     />
                   );
-                  case "numberJahresbrutto":
-                    return (
-                      <TextField
-                        autoFocus={focussed}
-                        inputRef={ref}
-                        label={label}
-                        name={name}
-                        value={value || ""}
-                        onChange={(e) => {
-                          // todo: react-number-format o.ä. einsetzen?
-                          let floatValue = parseFloat(e.target.value);
-                          if (isNaN(floatValue)) floatValue = 0;
-                          onChange(jahresBruttoSumme());
-                        }}
-                        disabled={itemDisabled}
-                        type={"number"}
-                        error={!!error}
-                        helperText={helperText}
-                        fullWidth
-                        size={"small"}
-                        InputProps={{
-                          endAdornment: unit && (
-                            <InputAdornment position={"end"}>
-                              {unit}
-                            </InputAdornment>
-                          ),
-                        }}
-                        {...props}
-                      />
-                    );
                 case "date":
                   return (
                     <KeyboardDatePicker
@@ -1059,7 +1054,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
 
   return (
     <form onSubmit={handleSubmit(submitDirtyFields)} style={style}>
-      <Grid container spacing={compact ? 1 : 2}>
+      <Grid container spacing={compact ? 1 : 2} >
         {formDefinition.map(createFormItemFromDefinitionItem)}
       </Grid>
     </form>

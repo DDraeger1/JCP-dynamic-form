@@ -21,13 +21,15 @@
       "name": "tarifbezeichnungRiesterrente",
       "label": "Tarifbezeichnung",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"tarifBezeichnung"
     },
     {
       "name": "vertragsnummerRiesterrente",
       "label": "Vertragsnummer",
       "type": "text",
-      "props": { "required": true, "sm": 6, "xs": 6 }
+      "props": { "required": true, "sm": 6, "xs": 6 },
+      "suiteValue":"versicherungsnummer"
     },
               {
       "section": "Versicherungsnehmer",
@@ -36,8 +38,10 @@
     {
       "name": "versicherungsnehmerRiesterrente",
       "label": "Versicherungsnehmer",
-      "type": "selectMandant",
-      "props": { "required": true }
+            "tarifType":"RIESTER",
+            "type": "selectMandant",
+      "props": { "required": true },
+      "suiteValue":"versicherungsnehmerId"
     }]},
     {
       "section": "Versicherte Person",
@@ -47,7 +51,8 @@
       "name": "versichertePersonRiesterrente",
       "label": "Versicherte Person",
       "type": "selectVersichert",
-      "props": { "required": true }
+      "props": { "required": true },
+      "suiteValue":"versichertePersonId"
     },
     {
       "name": "artVersichertePersonRiesterrente",
@@ -60,7 +65,8 @@
         { "value": "bank", "label": "Bank" },
         { "value": "fondssparplan", "label": "Fondssparplan" },
         { "value": "bausparen", "label": "Bausparen" }
-      ]
+      ],
+      "suiteValue":"art"
     }]},
     {
       "section": "Vertragslaufzeit",
@@ -70,13 +76,15 @@
       "name": "vertragsbeginnVertragslaufzeitRiesterrente",
       "label": "Vertragsbeginn",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"versicherungsbeginn"
     },
     {
       "name": "vertragsendeVertragslaufzeitRiesterrente",
       "label": "Vertragsende",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"versicherungsende"
     },
     {
       "name": "leistungTodVertragslaufzeitRiesterrente",
@@ -85,7 +93,8 @@
       "options": [
         { "value": "guthaben", "label": "Guthaben" },
         { "value": "gezahltebeitraege", "label": "gezahlter Beitrag" }
-      ]
+      ],
+      "suiteValue":"leistungTod"
     }]},
     {
       "section": "Monatliche Rentenleistung",
@@ -95,25 +104,29 @@
       "name": "garantiertMonatlicheRentenleistungRiesterrente",
       "label": "Monatliche Rentenleistung garantiert",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rentenleistungGarantiert"
     },
     {
       "name": "prognostiziertMonatlicheRentenleistungRiesterrente",
       "label": "Monatliche Rentenleistung prognostiziert",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rentenleistungPrognostiziert"
     },
     {
       "name": "beiProzentMonatlicheRentenleistungRiesterrente",
       "label": "bei (%)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rentenleistungPrognostiziertBeiProzent"
     },
     {
       "name": "RGZMonatlicheRentenleistungRiesterrente",
       "label": "RGZ (Jahre)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rentenleistungRgzJahre"
     },
     {"name":"rentenPrognose",
       "type":"costumFunction"
@@ -130,13 +143,15 @@
         { "value": false, "label": "Nein" },
         { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"dynamik"
     },
     {
       "name": "prozentDynamikRiesterrente",
       "label": "Prozent (%)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"dynamikProzent"
     }]},
     {
       "section": "BU",
@@ -144,19 +159,21 @@
       "items": [
     {
       "name": "integrierteBURiesterrente",
-      "label": "inetgrierte BU",
+      "label": "integrierte BU",
       "type": "select",
       "options": [
         { "value": false, "label": "Nein" },
         { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"integrierteBU"
     },
     {
       "name": "rentenleistungBURiesterrente",
       "label": "BU-Rentenleistung (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rentenleistungBU"
     },
     {
       "name": "dynamikBULeistungBURiesterrente",
@@ -166,7 +183,8 @@
         { "value": false, "label": "Nein" },
         { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"dynamikBU"
     },
     {
       "name": "beitragsbefreiungBURiesterrente",
@@ -176,7 +194,8 @@
         { "value": false, "label": "Nein" },
         { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"beitragsbefreiungBU"
     }]},
     {
       "section": "BUZ",
@@ -186,30 +205,35 @@
       "name": "beitragsendeBUZRiesterrente",
       "label": "Beitragsende",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"beitragsendeBUZ"
     },
     {
       "name": "leistungsendeBUZRiesterrente",
       "label": "Leistungsende",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"leistungsendeBUZ"
     },
     {
       "name": "beitragsanteilBUZRiesterrente",
       "label": "Beitragsanteil (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"beitragsanteilBUZ"
     },
     {
       "name": "aktuellerRueckkaufswertBUZRiesterrente",
       "label": "Aktueller Rückkaufswert (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rueckkaufswert"
     },
     {
       "name": "datumBUZRiesterrente",
       "label": "Datum",
-      "type": "date"
+      "type": "date",
+      "suiteValue":"rueckkaufswertDatum"
     }]},
     {
       "section": "Fonds",
@@ -219,13 +243,15 @@
       "name": "fondsRiesterrente",
       "label": "Fonds",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":""
     },
     {
       "name": "beitragsendeFondsRiesterrente",
       "label": "Beitragsende",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":""
     }]},
     {
       "section": "VWL",
@@ -234,25 +260,29 @@
     {
       "name": "VWLRiesterrente",
       "label": "VWL",
-      "type": "checkbox"
+      "type": "checkbox",
+      "suiteValue":""
     },
     {
       "name": "arbeitgeberanteilVWLRiesterrente",
       "label": "Arbeitgeberanteil (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":""
     },
     {
       "name": "arbeitnehmeranteilVWLRiesterrente",
       "label": "Arbeitnehmeranteil (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":""
     },
     {
       "name": "summeVWLRiesterrente",
       "label": "Summe (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":""
     },
     {
       "name": "zahlweiseVWLRiesterrente",
@@ -271,7 +301,8 @@
       "name": "beitragVWLRiesterrente",
       "label": "Beitrag (€)",
       "type": "text",
-      "props": { "required": true, "sm": 6, "xs": 6 }
+      "props": { "required": true, "sm": 6, "xs": 6 },
+      "suiteValue":"beitrag"
     },
     {
       "name": "dauerzulagenantragVWLRiesterrente",
@@ -281,7 +312,8 @@
         { "value": false, "label": "Nein" },
         { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"dauerzulagenantrag"
     }]},
     {
       "section": "Zahlung letzte Zulage",
@@ -291,18 +323,21 @@
       "name": "inHoeheVonZahlungLetzteZulageRiesterrenteHeader",
       "label": "in Höhe von (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"riesterzulageLetztmaligBetrag"
     },
     {
       "name": "gebuchtAmLetzteZulageRiesterrenteHeader",
       "label": "gebucht am",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"riesterzulageLetztmaligGebucht"
     },
     {
       "name": "garantiezinsZahlungLetzteZulageRiesterrenteHeader",
       "label": "Garantiezins (%)",
-      "type": "text"
+      "type": "text",
+      "suiteValue":"garantieZins"
     }]}
   ]
 }

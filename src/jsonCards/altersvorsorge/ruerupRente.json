@@ -12,13 +12,6 @@
       "suiteValue": "externalProduktId"
     },
     {
-      "name": "produktIDRuerupRente",
-      "label": "Produkt ID (Suite mapping)",
-      "type": "select",
-      "props": { "required": true },
-      "options": [{ "value": 0, "label": "Mandant" }]
-    },
-    {
       "name": "gesellschaftRuerupRente",
       "type": "gesellschaft",
       "props":{"required":true},
@@ -28,13 +21,15 @@
       "name": "tarifbezeichnungRuerupRente",
       "label": "Tarifbezeichnung",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"tarifBezeichnung"
     },
     {
       "name": "vertragsnummerRuerupRente",
       "label": "Vertragsnummer",
       "type": "text",
-      "props": { "required": true, "sm": 6, "xs": 6 }
+      "props": { "required": true, "sm": 6, "xs": 6 },
+      "suiteValue":"versicherungsnummer"
     },
     {
       "section": "Versicherungsnehmer",
@@ -42,10 +37,11 @@
       "items": [
     {
       "name": "versicherungsnehmerRuerupRente",
-      "label": "Versicherungsnehmer (suite mapping)",
+      "label": "Versicherungsnehmer",
       "type": "selectMandant",
       "props": { "required": true },
-      "options": [{ "value": 0, "label": "Mandant" }]
+      "tarifType":"RUERUP",
+      "suiteValue":"versicherungsnehmerId"
     }]},
     {
       "section": "Versicherte Person",
@@ -53,10 +49,10 @@
       "items": [
     {
       "name": "versichertePersonRuerupRente",
-      "label": "Versicherte Person (suite mapping)",
-      "type": "select",
+      "label": "Versicherte Person",
+      "type": "selectVersichert",
       "props": { "required": true },
-      "options": [{ "value": 0, "label": "Mandant" }]
+      "suiteValue":"versichertePersonId"
     },
     {
       "name": "artVersichertePersonRuerupRente",
@@ -64,16 +60,18 @@
       "type": "select",
       "props": { "required": true, "sm": 6, "xs": 6 },
       "options": [
-        { "value": 0, "label": "Klassisch" },
-        { "value": 1, "label": "FRV" },
-        { "value": 2, "label": "Investment" }
-      ]
+        { "value": "klassisch", "label": "Klassisch" },
+        { "value": "FRV", "label": "FRV" },
+        { "value": "investment", "label": "Investment" }
+      ],
+      "suiteValue":"art"
     },
     {
       "name": "fondsVersichertePersonRuerupRente",
       "label": "Fonds",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"fonds"
     }]},
     {
       "section": "Vertragslaufzeit",
@@ -83,13 +81,15 @@
       "name": "vertragsbeginnVertragslaufzeitRuerupRente",
       "label": "Vertragsbeginn",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"versicherungsbeginn"
     },
     {
       "name": "vertragsendeVertragslaufzeitRuerupRente",
       "label": "Vertragsende",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"versicherungsende"
     }]},
     {
       "section": "Monatliche Rentenleistung",
@@ -98,25 +98,31 @@
     {
       "name": "garantiertMonatlicheRentenleistungRuerupRente",
       "label": "Monatliche Rentenleistung garantiert (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue":"rentenleistungGarantiert"
     },
     {
       "name": "prognostiziertMonatlicheRentenleistungRuerupRente",
       "label": "Monatliche Rentenleistung prognostiziert (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue":"rentenleistungPrognostiziert"
     },
     {
       "name": "beiMonatlicheRentenleistungRuerupRente",
       "label": "bei (%)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rentenleistungPrognostiziertBeiProzent"
     },
     {
       "name": "RGZMonatlicheRentenleistungRuerupRente",
       "label": "RGZ (Jahre)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
-    }]},
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rentenleistungRgzJahre"
+    },
+    {"name":"rentenPrognose",
+      "type":"costumFunction"}]},
     {
       "section": "Dynamik",
       "card": true,
@@ -126,16 +132,18 @@
       "label": "Dynamik",
       "type": "select",
       "options": [
-        { "value": 0, "label": "Nein" },
-        { "value": 1, "label": "Ja" }
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"dynamik"
     },
     {
       "name": "prozentDynamikRuerupRente",
       "label": "Prozent (%)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"dynamikProzent"
     }]},
     {
       "section": "BU",
@@ -146,36 +154,40 @@
       "label": "integrierte BU",
       "type": "select",
       "options": [
-        { "value": 0, "label": "Nein" },
-        { "value": 1, "label": "Ja" }
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"integrierteBU"
     },
     {
       "name": "rentenleistungBURuerupRente",
       "label": "BU-Rentenleistung (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rentenleistungBU"
     },
     {
       "name": "dynamikBULeistungBURuerupRente",
       "label": "Dynamik BU Leistung BU",
       "type": "select",
       "options": [
-        { "value": 0, "label": "Nein" },
-        { "value": 1, "label": "Ja" }
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"dynamikBU"
     },
     {
       "name": "beitragsbefreiungBURuerupRente",
       "label": "Beitragsbefreiung BU",
       "type": "select",
       "options": [
-        { "value": 0, "label": "Nein" },
-        { "value": 1, "label": "Ja" }
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"beitragsbefreiungBU"
     }]},
     {
       "section": "BUZ",
@@ -185,25 +197,29 @@
       "name": "beitragsendeBUZRuerupRente",
       "label": "Beitragsende",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"beitragsendeBUZ"
     },
     {
       "name": "leistungsendeBUZRuerupRente",
       "label": "Leistungsende",
       "type": "date",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"leistungsendeBUZ"
     },
     {
       "name": "beitragsanteilBUZRuerupRente",
       "label": "Beitragsanteil (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"beitragsanteilBUZ"
     },
     {
       "name": "deckungskapitalBUZRuerupRente",
       "label": "Deckungskapital (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"deckungskapital"
     }]},
     {
       "section": "Hinterbliebenen-Zusatzversicherung (€)",
@@ -214,28 +230,32 @@
       "label": "Zusatzversicherung",
       "type": "select",
       "options": [
-        { "value": 0, "label": "Nein" },
-        { "value": 1, "label": "Ja" }
+        { "value": false, "label": "Nein" },
+        { "value": true, "label": "Ja" }
       ],
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"hinterbliebenenZusatz"
     },
     {
       "name": "prozentHinterbliebenenZusatzversicherungRuerupRente",
       "label": "Prozent (%)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"hinterbliebenenProzent"
     },
     {
       "name": "betragHinterbliebenenZusatzversicherungRuerupRente",
       "label": "Betrag",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"hinterbliebenenBetrag"
     },
     {
       "name": "aktuellerRueckkaufswertHinterbliebenenZusatzversicherungRuerupRente",
       "label": "Aktueller Rückkaufswert",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"rueckkaufswert"
     },
     {
       "name": "zahlweiseHinterbliebenenZusatzversicherungRuerupRente",
@@ -254,18 +274,21 @@
       "name": "einmalbeitragHinterbliebenenZusatzversicherungRuerupRente",
       "label": "Einmalbeitrag (€)",
       "type": "text",
-      "props": { "sm": 6, "xs": 6 }
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue":"einmalbeitrag"
     },
     {
       "name": "beitragHinterbliebenenZusatzversicherungRuerupRente",
       "label": "Beitrag (Gesamtzahlbeitrag inkl. BU)",
       "props": { "required": true },
-      "type": "text"
+      "type": "text",
+      "suiteValue":"beitrag"
     },
     {
       "name": "beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente",
       "label": "Beitragsanteil für BU",
-      "type": "text"
+      "type": "text",
+      "suiteValue":"beitragsanteilBU"
     }]}
   ]
 }

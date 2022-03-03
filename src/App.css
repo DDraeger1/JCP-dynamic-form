@@ -1,3 +1,9 @@
-.accordionSpaceBetween{
-    justify-content: space-between !important;
-}
+  .mock {
+      width:100vw;
+     height:99.6vh;
+     overflow-y: hidden;
+     }
+     .mock::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+        background: transparent;
+    }
