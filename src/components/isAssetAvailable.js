@@ -13,14 +13,7 @@ function isAssetAvailable(
   bankverbindungen, setBankverbindungen
   ) {
 
-  let cardValues = setAssetWithTariftype(
-    result.analyseAssets,
-    card,
-    false,
-    result.mandantGroup,
-    setAnzahlVp,
-    bankverbindungen, setBankverbindungen
-  );
+  let cardValues 
   function booleanFormater(booleanString) {
     let output = false;
     if (booleanString === "true") {
@@ -289,7 +282,6 @@ console.log(vertragId)
             }
             if (!vertragFound && vertragId === "newVertrag") {
               cardValues = emptyCardTemplate(card);
-
              }
           });
         } else {
@@ -306,7 +298,7 @@ console.log(vertragId)
                   console.log("Drinserssdsdsds")
                   console.log(card)
           setVersicherungsnehmerValue({
-            index: cardValues.initMandantValue,
+            index: 0,
             tarifTypeId: card,
           });
         }

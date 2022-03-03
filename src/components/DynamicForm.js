@@ -23,6 +23,7 @@ import {
   AccordionSummary,
   Button,
 } from "@material-ui/core";
+import "./css/dynamicForm.css"
 import { KeyboardDatePicker } from "@material-ui/pickers";
 import React, {
   forwardRef,
@@ -102,7 +103,7 @@ function DynamicForm(
   );
 
   const fieldsToWatch = formDefinition.reduce(reduceDefinitionWatchers, []);
-
+let renderIndex= 0
   const createFormItemFromDefinitionItem = (item, index) => {
     const {
       section,
@@ -145,9 +146,9 @@ function DynamicForm(
       const cardContent = (
         <>
           {(section || description) && (
-            <div style={{ marginBottom: "15px" }}>
+            <div className="cardHeader">
               {section && (
-                <Typography variant={"h6"} component={"h3"}>
+                <Typography variant={"h6"} component={"h3"} className="headerTypography">
                   {section}
                 </Typography>
               )}
@@ -165,8 +166,8 @@ function DynamicForm(
       return (
         <Grid item xs={12} {...props} key={"k-" + index}>
           {card ? (
-            <Card style={{ height: "100%" }} variant={"outlined"}>
-              <CardContent>{cardContent}</CardContent>
+            <Card className="defaultCard" variant={"outlined"}>
+              <CardContent  className="gridCard">{cardContent}</CardContent>
             </Card>
           ) : (
             <Accordion

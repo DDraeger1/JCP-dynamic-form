@@ -1721,7 +1721,7 @@ console.log(rawData)
     // simuliere einen etwas länger dauernden speichervorgang
     console.log(dataPaket);
     axios
-      .post(saveAssetLiveSuite.url, dataPaket, saveAssetLiveSuite)
+      .post(saveAsset.url, dataPaket, saveAsset)
       .then((response) => {
         console.log(response);
       })
@@ -2517,7 +2517,7 @@ function showMock(){
 }
 
 }
-  return (
+  return ( 
     <div tyle={{ backgroundColor:"#eeeeee"}}>
       {!loaded ? null : (
         <ThemeProvider theme={theme}>
@@ -2575,5 +2575,5 @@ function showMock(){
               >
                 Angaben speichern
               </Button>
-               */
+*/
 export default App;
