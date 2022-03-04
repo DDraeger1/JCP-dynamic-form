@@ -27,6 +27,7 @@ function isAssetAvailable(
   //es wird geguckt ob mandantwerte gesucht werden. Wenn ja, braucht man kein asset suchen
   // || conditional funktioniert nicht
 console.log(vertragId)
+console.log(cardValues)
         if (vertragId !== "none") {
           result.analyseAssets.map((asset) => {
 
@@ -146,6 +147,7 @@ console.log(vertragId)
                 asset.id === vertragId
               ) {
                 cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
+                vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("IMMOBILIENBESTAND") &&
@@ -180,6 +182,7 @@ console.log(vertragId)
               ) {
                 cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
                 vertragFound = true;
+                console.log("drin")
               }
               if (
                 asset.tarifTypeId.includes("DREADDISEASE") &&

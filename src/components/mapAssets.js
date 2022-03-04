@@ -45,7 +45,6 @@ nonVersichertePersonIdIndex.forEach((index)=>{
 export function redefineCard(ids, mandantIndex, tarifTypeId, mandantGroup) {
   let entryFound = false;
   let vertragId = "none";
-
   if (mandantIndex || mandantIndex === 0) {
     ids.forEach((mandantEntry, index) => {
       if (

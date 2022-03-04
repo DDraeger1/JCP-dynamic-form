@@ -2053,10 +2053,10 @@ if(checkIfPersonendaten(card)){
       mounted = false;
     };
   }, []);
+  console.log(mandantGroup)
 
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
-      console.log("gerufen!")
       isAssetAvailable(
         rawData,
         setFormData,
@@ -2416,7 +2416,6 @@ if(checkIfPersonendaten(card)){
             });
           }
           break;
-
         case "SonstigerAbzugNetto":
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
@@ -2526,7 +2525,6 @@ function showMock(){
    showImage:"none"
   })
 }
-
 }
   return ( 
     <div tyle={{ backgroundColor:"#eeeeee"}}>
@@ -2586,7 +2584,4 @@ function showMock(){
     </div>
   );
 }
-/*
-
-*/
 export default App;

@@ -59,7 +59,7 @@ function DynamicForm(
   ref
 ) {
   const [isInitialized, toggleInitialized] = useState(false);
-
+console.log(values)
   let inputIndex = 0;
   const {
     versicherungsnehmerValue,
@@ -678,7 +678,6 @@ function DynamicForm(
                   );
                 case "date":
                   return (
-                    <>
                     <KeyboardDatePicker
                       disabled={itemDisabled}
                       autoFocus={focussed}
@@ -696,11 +695,9 @@ function DynamicForm(
                       minDateMessage={"Ungültiges Datum mindate"}
                       onChange={onChange}
                       {...props}
-
+                      InputLabelProps={{ shrink: value?true:false }} 
                       value={value}
                     />
-                    {console.log(value)}
-                    </>
                   );
                 case "paragraph":
                   return (
@@ -808,10 +805,12 @@ function DynamicForm(
       </Grid>
     );
   };
-
+console.log(watch())
   function mapSuiteValues() {
     let output = {};
     let arrayItems = [];
+    let thirdArray =[]
+
     formDefinition.map((form) => {
       arrayItems = [...arrayItems, ...form.items];
     });
@@ -821,12 +820,24 @@ function DynamicForm(
         if (item.items.length !== 0) {
           arrayItems = [...arrayItems, ...item.items];
           arrayItems.splice(index, 1);
+thirdArray = item.items
         }
       }
     });
+if(thirdArray.length !== 0){
+thirdArray.map((item, index)=>{
+  if (item.items) {
+    if (item.items.length !== 0) {
+      arrayItems = [...arrayItems, ...item.items];
+      arrayItems.splice(index, 1);
+      console.log(item.items)
+    }}
+})
+}
 
     arrayItems.forEach((item) => {
       Object.entries(values).forEach(([key, value]) => {
+        console.log(key)
         output = { ...output, ...translateToSuiteData(item, key, value) };
       });
     });
@@ -845,12 +856,13 @@ function DynamicForm(
           }
         }
         if(item.type === "date"){
+          console.log(value.toDateString())
+          console.log(dateFormaterSuite(value.toDateString()))
+
           output = {
             ...output,
-            [item.suiteValue]: dateFormaterSuite(value),
+            [item.suiteValue]: dateFormaterSuite(value.toDateString()),
           };
-          console.log(dateFormaterSuite(value))
-          console.log(value)
         }
           if (item.label === "Zahlweise") {
             switch (value) {
@@ -875,7 +887,26 @@ function DynamicForm(
           }
         }
         if (item.type === "selectMandant") {
-          switch (mandantGroup[value].art) {
+          if(value !== "Placeholder"){
+            switch (mandantGroup[value].art) {
+              case "MANDANT":
+                output = { ...output, mp: "m" };
+                break;
+              case "PARTNER":
+                output = { ...output, mp: "p" };
+                break;
+              case "KIND":
+                output = { ...output, mp: "k" };
+                break;
+              default:
+                break;
+            }
+            output = {
+              ...output,
+              versicherungsnehmerId: mandantGroup[value].mandantId,
+            };
+          } else{
+          switch (mandantGroup[values.initMandantValue].art) {
             case "MANDANT":
               output = { ...output, mp: "m" };
               break;
@@ -890,9 +921,9 @@ function DynamicForm(
           }
           output = {
             ...output,
-            versicherungsnehmerId: mandantGroup[value].mandantId,
+            versicherungsnehmerId: mandantGroup[values.initMandantValue].mandantId,
           };
-        }
+        }}
       }
       if (item.type === "toggleButtonGroup") {
         item.menuOptions.map((option) => {
@@ -914,6 +945,7 @@ function DynamicForm(
   function addDirtyEntries(dirtyValues) {
     let output = {};
     let arrayItems = [];
+    let thirdArray = []
     formDefinition.map((form) => {
       arrayItems = [...arrayItems, ...form.items];
     });
@@ -923,9 +955,21 @@ function DynamicForm(
         if (item.items.length !== 0) {
           arrayItems = [...arrayItems, ...item.items];
           arrayItems.splice(index, 1);
+          thirdArray = item.items
         }
       }
     });
+if(thirdArray.length !== 0){
+thirdArray.map((item, index)=>{
+  if (item.items) {
+    if (item.items.length !== 0) {
+      console.log(item)
+      arrayItems = [...arrayItems, ...item.items];
+      arrayItems.splice(index, 1);
+      console.log(arrayItems)
+    }}
+})
+}
     arrayItems.forEach((item) => {
       Object.entries(dirtyValues).forEach(([key, value]) => {
         if (item.name === key && typeof item.suiteValue !== "undefined") {
@@ -1047,14 +1091,56 @@ function DynamicForm(
   function dateFormaterSuite(date) {
     //from dd/mm/yyyy to mm/dd/yyyy
     let output;
+    console.log(output)
+    let month = date.substring(4, 7)
+    switch (month){
+case"Jan":
+month="01"
+break;
+case"Feb":
+month="02"
+break;
+case"Mar":
+month="03"
+break;
+case"Apr":
+month="04"
+break;
+case"Mai":
+month="05"
+break;
+case"Jun":
+month="06"
+break;
+case"Jul":
+month="07"
+break;
+case"Aug":
+month="08"
+break;
+case"Sep":
+month="09"
+break;
+case"Okt":
+month="10"
+break;
+case"Nov":
+month="11"
+break;
+case"Dez":
+month="12"
+break;
+default:
+  console.log("ups")
+  break;
+    }
     if (date !== null) {
       if (date !== undefined) {
-        if (date.length === 10) {
           output =
-            date.substring(3, 6) + date.substring(0, 3) + date.substring(6, 10);
-        }
+            month + date.substring(8, 10) + date.substring(11, 16);
       }
     }
+    console.log(output)
     return output;
   }
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
