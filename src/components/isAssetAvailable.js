@@ -68,6 +68,34 @@ console.log(cardValues)
                 vertragFound = true;
               }
               if (
+                asset.tarifTypeId.includes("DIREKTZUSAGE") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("PENSIONSFONDS_3") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("DIREKT_40") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("UNTERSTUETZUNGSKASSE") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
+                vertragFound = true;
+              }
+              if (
                 asset.tarifTypeId.includes("GESETZLICHE_AV") &&
                 asset.id === vertragId
               ) {
@@ -288,7 +316,7 @@ console.log(cardValues)
                   console.log("Drinserssdsdsds")
                   console.log(card)
           setVersicherungsnehmerValue({
-            index: 0,
+            index: 1,
             tarifTypeId: card,
           });
         }

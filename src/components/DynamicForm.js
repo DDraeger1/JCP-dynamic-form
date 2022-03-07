@@ -59,7 +59,8 @@ function DynamicForm(
   ref
 ) {
   const [isInitialized, toggleInitialized] = useState(false);
-console.log(values)
+let testArray = []
+
   let inputIndex = 0;
   const {
     versicherungsnehmerValue,
@@ -130,6 +131,7 @@ console.log(values)
       showKind,
       showSonstige,
       menuOptions,
+      suiteValue,
       rules: { required = false, pattern = "" } = {},
     } = item;
     const itemDisabled = disabled || item.disabled || !!editWarning;
@@ -143,6 +145,9 @@ console.log(values)
       // todo: mehr möglichkeiten mit den conditions (aktuell nur boolean)
       if (!fieldsToWatch[condition]) return null;
     }
+  if(suiteValue){
+testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
+  }
     if (!name) {
       const cardContent = (
         <>
@@ -805,42 +810,15 @@ console.log(values)
       </Grid>
     );
   };
-console.log(watch())
   function mapSuiteValues() {
-    let output = {};
-    let arrayItems = [];
-    let thirdArray =[]
+    let output = {}
+    testArray.forEach((item) => {
+      console.log(item);
+      console.log( values[item.name]);
+        output = { ...output, ...translateToSuiteData(item, item.name, values[item.name]) }
 
-    formDefinition.map((form) => {
-      arrayItems = [...arrayItems, ...form.items];
-    });
-    //suche für weitere item arrays in ArrayItems
-    arrayItems.map((item, index) => {
-      if (item.items) {
-        if (item.items.length !== 0) {
-          arrayItems = [...arrayItems, ...item.items];
-          arrayItems.splice(index, 1);
-thirdArray = item.items
-        }
-      }
-    });
-if(thirdArray.length !== 0){
-thirdArray.map((item, index)=>{
-  if (item.items) {
-    if (item.items.length !== 0) {
-      arrayItems = [...arrayItems, ...item.items];
-      arrayItems.splice(index, 1);
-      console.log(item.items)
-    }}
-})
-}
-
-    arrayItems.forEach((item) => {
-      Object.entries(values).forEach(([key, value]) => {
-        console.log(key)
-        output = { ...output, ...translateToSuiteData(item, key, value) };
-      });
-    });
+    })
+    console.log(output)
 
     return output;
   }
@@ -856,13 +834,20 @@ thirdArray.map((item, index)=>{
           }
         }
         if(item.type === "date"){
-          console.log(value.toDateString())
-          console.log(dateFormaterSuite(value.toDateString()))
-
+          if(value.length === 10){
           output = {
             ...output,
-            [item.suiteValue]: dateFormaterSuite(value.toDateString()),
+            [item.suiteValue]: value
+              ,
           };
+        }else{
+          output = {
+            ...output,
+            [item.suiteValue]: dateFormaterSuite(value.toDateString()
+              ),
+          };
+        }
+          console.log(value.length)
         }
           if (item.label === "Zahlweise") {
             switch (value) {
@@ -944,40 +929,15 @@ thirdArray.map((item, index)=>{
   }
   function addDirtyEntries(dirtyValues) {
     let output = {};
-    let arrayItems = [];
-    let thirdArray = []
-    formDefinition.map((form) => {
-      arrayItems = [...arrayItems, ...form.items];
-    });
-    //suche für weitere item arrays in ArrayItems
-    arrayItems.map((item, index) => {
-      if (item.items) {
-        if (item.items.length !== 0) {
-          arrayItems = [...arrayItems, ...item.items];
-          arrayItems.splice(index, 1);
-          thirdArray = item.items
-        }
-      }
-    });
-if(thirdArray.length !== 0){
-thirdArray.map((item, index)=>{
-  if (item.items) {
-    if (item.items.length !== 0) {
-      console.log(item)
-      arrayItems = [...arrayItems, ...item.items];
-      arrayItems.splice(index, 1);
-      console.log(arrayItems)
-    }}
-})
+
+
+    testArray.forEach((item) => {
+    console.log(item);
+    console.log( dirtyValues[item.name]);
+if(typeof(dirtyValues[item.name]) !== "undefined"){
+      output = { ...output, ...translateToSuiteData(item, item.name, dirtyValues[item.name]) }
 }
-    arrayItems.forEach((item) => {
-      Object.entries(dirtyValues).forEach(([key, value]) => {
-        if (item.name === key && typeof item.suiteValue !== "undefined") {
-          output = { ...output, ...translateToSuiteData(item, key, value) };
-        }
-      });
-    });
-    console.log(output);
+  })
 
     return output;
   }
@@ -1224,7 +1184,6 @@ if(tarifTypeIdFromCardState === "KVZ"){
       return false;
     }
   };
-
   useImperativeHandle(
     ref,
     () => {

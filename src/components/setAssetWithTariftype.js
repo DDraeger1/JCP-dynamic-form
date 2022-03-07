@@ -2751,6 +2751,22 @@ if(typeof(bankverbindungen) === "undefined"){
           cardTemplateData = asset;
                   assetFound=true
 }
+if (asset.tarifTypeId.includes("DIREKTZUSAGE") && card === "DIREKTZUSAGE") {
+  cardTemplateData = asset;
+          assetFound=true
+}
+if (asset.tarifTypeId.includes("PENSIONSFONDS_3") && card === "PENSIONSFONDS_3") {
+  cardTemplateData = asset;
+          assetFound=true
+}
+if (asset.tarifTypeId.includes("DIREKT_40") && card === "DIREKT_40") {
+  cardTemplateData = asset;
+          assetFound=true
+}
+if (asset.tarifTypeId.includes("UNTERSTUETZUNGSKASSE") && card === "UNTERSTUETZUNGSKASSE") {
+  cardTemplateData = asset;
+          assetFound=true
+}
         if (asset.tarifTypeId.includes("DIREKT_3") && card === "DIREKT_3") {
           cardTemplateData = asset;
                   assetFound=true
@@ -3120,7 +3136,7 @@ console.log(output)
         ...cardTemplateData,
       };
       break;
-    case "DIREKT_3":
+    case "DIREKTZUSAGE":
       output = {
         externalProduktId: cardTemplateData.externalProduktId,
         initMandantValue: mandantMapper(
@@ -3210,6 +3226,366 @@ console.log(output)
       };
 
       break;
+      case "PENSIONSFONDS_3":
+        output = {
+          externalProduktId: cardTemplateData.externalProduktId,
+          initMandantValue: mandantMapper(
+            cardTemplateData.versicherungsnehmer.id
+          ),
+          gesellschaftBetrieblicheAltersversorgung: cardTemplateData.gesellschaft,
+          tarifbezeichnungBetrieblicheAltersversorgung:
+            cardTemplateData.tarifBezeichnung,
+          vertragsnummerBetrieblicheAltersversorgung:
+            cardTemplateData.versicherungsnummer,
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
+            cardTemplateData.versicherungsnehmer.id
+          ),
+          versichertePersonBetrieblicheAltersversorgung:
+            typeof cardTemplateData.versichertePerson === "undefined"
+              ? isMandantDefined("undefined")
+              : isMandantDefined(cardTemplateData.versichertePerson.id),
+          artVersichertePersonBetrieblicheAltersversorgung: cardTemplateData.art,
+          durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung:
+            cardTemplateData.tarifTypeId,
+          beitragANAnteilBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitnehmeranteil,
+          beitragAGAnteilBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitgeberanteil,
+          VWLArbeitgeberbeitragBetrieblicheAltersversorgung:
+            cardTemplateData.vwlArbeitnehmer,
+          VWLArbeitnehmerbeitragBetrieblicheAltersversorgung:
+            cardTemplateData.vwlArbeitgeber,
+          beitragGesamtBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitnehmeranteil +
+            cardTemplateData.arbeitgeberanteil +
+            cardTemplateData.vwlArbeitnehmer +
+            cardTemplateData.vwlArbeitgeber,
+          nettobelastungBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.nettobeitragMtl,
+          zahlweiseBetrieblicheAltersversorgung: cardTemplateData.zahlweise,
+          dynamikBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.dynamikProzent,
+          vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung:
+            dateFormater(cardTemplateData.versicherungsbeginn),
+          vertragsendeVertragslaufzeitBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.versicherungsende
+          ),
+          garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungGarantiert,
+          prognostiziertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungPrognostiziert,
+          beiMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+          RGZMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungRgzJahre,
+          ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungGarantiert,
+          ablaufsleistungPrognostiziertAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungPrognostiziert,
+          beiAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungPrognostiziertBeiProzent,
+          integrierteBUBetrieblicheAltersversorgung:
+            cardTemplateData.integrierteBU,
+          renteBUBetrieblicheAltersversorgung: cardTemplateData.rentenleistungBU,
+          dynamikBULeistungBUBetrieblicheAltersversorgung:
+            cardTemplateData.dynamikBU,
+          beitragsbefreiungBUBetrieblicheAltersversorgung:
+            cardTemplateData.beitragsbefreiungBU,
+          beitragsendeBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.beitragsendeBUZ
+          ),
+          leistungsendeBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.leistungsendeBUZ
+          ),
+          beitragsanteilBUZBetrieblicheAltersversorgung:
+            cardTemplateData.beitragsanteilBU,
+          leistungBeiTodBUZBetrieblicheAltersversorgung:
+            cardTemplateData.leistungTod,
+          aktuellerRKWBUZBetrieblicheAltersversorgung:
+            cardTemplateData.rueckkaufswert,
+          standBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.rueckkaufswertDatum
+          ),
+          ansprechpartnerBetriebBUZBetrieblicheAltersversorgung:
+            cardTemplateData.ansprechpartnerBetrieb,
+          rahmenvertragBUZBetrieblicheAltersversorgung:
+            cardTemplateData.rahmenvertrag,
+          tarifvertragBUZBetrieblicheAltersversorgung:
+            cardTemplateData.tarifvertrag,
+          fondsBUZBetrieblicheAltersversorgung: cardTemplateData.fonds,
+        };
+  
+        break;
+        case "DIREKT_40":
+          output = {
+            externalProduktId: cardTemplateData.externalProduktId,
+            initMandantValue: mandantMapper(
+              cardTemplateData.versicherungsnehmer.id
+            ),
+            gesellschaftBetrieblicheAltersversorgung: cardTemplateData.gesellschaft,
+            tarifbezeichnungBetrieblicheAltersversorgung:
+              cardTemplateData.tarifBezeichnung,
+            vertragsnummerBetrieblicheAltersversorgung:
+              cardTemplateData.versicherungsnummer,
+            versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
+              cardTemplateData.versicherungsnehmer.id
+            ),
+            versichertePersonBetrieblicheAltersversorgung:
+              typeof cardTemplateData.versichertePerson === "undefined"
+                ? isMandantDefined("undefined")
+                : isMandantDefined(cardTemplateData.versichertePerson.id),
+            artVersichertePersonBetrieblicheAltersversorgung: cardTemplateData.art,
+            durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung:
+              cardTemplateData.tarifTypeId,
+            beitragANAnteilBeitragBetrieblicheAltersversorgung:
+              cardTemplateData.arbeitnehmeranteil,
+            beitragAGAnteilBeitragBetrieblicheAltersversorgung:
+              cardTemplateData.arbeitgeberanteil,
+            VWLArbeitgeberbeitragBetrieblicheAltersversorgung:
+              cardTemplateData.vwlArbeitnehmer,
+            VWLArbeitnehmerbeitragBetrieblicheAltersversorgung:
+              cardTemplateData.vwlArbeitgeber,
+            beitragGesamtBeitragBetrieblicheAltersversorgung:
+              cardTemplateData.arbeitnehmeranteil +
+              cardTemplateData.arbeitgeberanteil +
+              cardTemplateData.vwlArbeitnehmer +
+              cardTemplateData.vwlArbeitgeber,
+            nettobelastungBeitragBetrieblicheAltersversorgung:
+              cardTemplateData.nettobeitragMtl,
+            zahlweiseBetrieblicheAltersversorgung: cardTemplateData.zahlweise,
+            dynamikBeitragBetrieblicheAltersversorgung:
+              cardTemplateData.dynamikProzent,
+            vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung:
+              dateFormater(cardTemplateData.versicherungsbeginn),
+            vertragsendeVertragslaufzeitBetrieblicheAltersversorgung: dateFormater(
+              cardTemplateData.versicherungsende
+            ),
+            garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+              cardTemplateData.rentenleistungGarantiert,
+            prognostiziertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+              cardTemplateData.rentenleistungPrognostiziert,
+            beiMonatlicheRentenleistungBetrieblicheAltersversorgung:
+              cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+            RGZMonatlicheRentenleistungBetrieblicheAltersversorgung:
+              cardTemplateData.rentenleistungRgzJahre,
+            ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung:
+              cardTemplateData.ablaufleistungGarantiert,
+            ablaufsleistungPrognostiziertAblaufleistungBetrieblicheAltersversorgung:
+              cardTemplateData.ablaufleistungPrognostiziert,
+            beiAblaufleistungBetrieblicheAltersversorgung:
+              cardTemplateData.ablaufleistungPrognostiziertBeiProzent,
+            integrierteBUBetrieblicheAltersversorgung:
+              cardTemplateData.integrierteBU,
+            renteBUBetrieblicheAltersversorgung: cardTemplateData.rentenleistungBU,
+            dynamikBULeistungBUBetrieblicheAltersversorgung:
+              cardTemplateData.dynamikBU,
+            beitragsbefreiungBUBetrieblicheAltersversorgung:
+              cardTemplateData.beitragsbefreiungBU,
+            beitragsendeBUZBetrieblicheAltersversorgung: dateFormater(
+              cardTemplateData.beitragsendeBUZ
+            ),
+            leistungsendeBUZBetrieblicheAltersversorgung: dateFormater(
+              cardTemplateData.leistungsendeBUZ
+            ),
+            beitragsanteilBUZBetrieblicheAltersversorgung:
+              cardTemplateData.beitragsanteilBU,
+            leistungBeiTodBUZBetrieblicheAltersversorgung:
+              cardTemplateData.leistungTod,
+            aktuellerRKWBUZBetrieblicheAltersversorgung:
+              cardTemplateData.rueckkaufswert,
+            standBUZBetrieblicheAltersversorgung: dateFormater(
+              cardTemplateData.rueckkaufswertDatum
+            ),
+            ansprechpartnerBetriebBUZBetrieblicheAltersversorgung:
+              cardTemplateData.ansprechpartnerBetrieb,
+            rahmenvertragBUZBetrieblicheAltersversorgung:
+              cardTemplateData.rahmenvertrag,
+            tarifvertragBUZBetrieblicheAltersversorgung:
+              cardTemplateData.tarifvertrag,
+            fondsBUZBetrieblicheAltersversorgung: cardTemplateData.fonds,
+          };
+    
+          break;
+          case "UNTERSTUETZUNGSKASSE":
+            output = {
+              externalProduktId: cardTemplateData.externalProduktId,
+              initMandantValue: mandantMapper(
+                cardTemplateData.versicherungsnehmer.id
+              ),
+              gesellschaftBetrieblicheAltersversorgung: cardTemplateData.gesellschaft,
+              tarifbezeichnungBetrieblicheAltersversorgung:
+                cardTemplateData.tarifBezeichnung,
+              vertragsnummerBetrieblicheAltersversorgung:
+                cardTemplateData.versicherungsnummer,
+              versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
+                cardTemplateData.versicherungsnehmer.id
+              ),
+              versichertePersonBetrieblicheAltersversorgung:
+                typeof cardTemplateData.versichertePerson === "undefined"
+                  ? isMandantDefined("undefined")
+                  : isMandantDefined(cardTemplateData.versichertePerson.id),
+              artVersichertePersonBetrieblicheAltersversorgung: cardTemplateData.art,
+              durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung:
+                cardTemplateData.tarifTypeId,
+              beitragANAnteilBeitragBetrieblicheAltersversorgung:
+                cardTemplateData.arbeitnehmeranteil,
+              beitragAGAnteilBeitragBetrieblicheAltersversorgung:
+                cardTemplateData.arbeitgeberanteil,
+              VWLArbeitgeberbeitragBetrieblicheAltersversorgung:
+                cardTemplateData.vwlArbeitnehmer,
+              VWLArbeitnehmerbeitragBetrieblicheAltersversorgung:
+                cardTemplateData.vwlArbeitgeber,
+              beitragGesamtBeitragBetrieblicheAltersversorgung:
+                cardTemplateData.arbeitnehmeranteil +
+                cardTemplateData.arbeitgeberanteil +
+                cardTemplateData.vwlArbeitnehmer +
+                cardTemplateData.vwlArbeitgeber,
+              nettobelastungBeitragBetrieblicheAltersversorgung:
+                cardTemplateData.nettobeitragMtl,
+              zahlweiseBetrieblicheAltersversorgung: cardTemplateData.zahlweise,
+              dynamikBeitragBetrieblicheAltersversorgung:
+                cardTemplateData.dynamikProzent,
+              vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung:
+                dateFormater(cardTemplateData.versicherungsbeginn),
+              vertragsendeVertragslaufzeitBetrieblicheAltersversorgung: dateFormater(
+                cardTemplateData.versicherungsende
+              ),
+              garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+                cardTemplateData.rentenleistungGarantiert,
+              prognostiziertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+                cardTemplateData.rentenleistungPrognostiziert,
+              beiMonatlicheRentenleistungBetrieblicheAltersversorgung:
+                cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+              RGZMonatlicheRentenleistungBetrieblicheAltersversorgung:
+                cardTemplateData.rentenleistungRgzJahre,
+              ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung:
+                cardTemplateData.ablaufleistungGarantiert,
+              ablaufsleistungPrognostiziertAblaufleistungBetrieblicheAltersversorgung:
+                cardTemplateData.ablaufleistungPrognostiziert,
+              beiAblaufleistungBetrieblicheAltersversorgung:
+                cardTemplateData.ablaufleistungPrognostiziertBeiProzent,
+              integrierteBUBetrieblicheAltersversorgung:
+                cardTemplateData.integrierteBU,
+              renteBUBetrieblicheAltersversorgung: cardTemplateData.rentenleistungBU,
+              dynamikBULeistungBUBetrieblicheAltersversorgung:
+                cardTemplateData.dynamikBU,
+              beitragsbefreiungBUBetrieblicheAltersversorgung:
+                cardTemplateData.beitragsbefreiungBU,
+              beitragsendeBUZBetrieblicheAltersversorgung: dateFormater(
+                cardTemplateData.beitragsendeBUZ
+              ),
+              leistungsendeBUZBetrieblicheAltersversorgung: dateFormater(
+                cardTemplateData.leistungsendeBUZ
+              ),
+              beitragsanteilBUZBetrieblicheAltersversorgung:
+                cardTemplateData.beitragsanteilBU,
+              leistungBeiTodBUZBetrieblicheAltersversorgung:
+                cardTemplateData.leistungTod,
+              aktuellerRKWBUZBetrieblicheAltersversorgung:
+                cardTemplateData.rueckkaufswert,
+              standBUZBetrieblicheAltersversorgung: dateFormater(
+                cardTemplateData.rueckkaufswertDatum
+              ),
+              ansprechpartnerBetriebBUZBetrieblicheAltersversorgung:
+                cardTemplateData.ansprechpartnerBetrieb,
+              rahmenvertragBUZBetrieblicheAltersversorgung:
+                cardTemplateData.rahmenvertrag,
+              tarifvertragBUZBetrieblicheAltersversorgung:
+                cardTemplateData.tarifvertrag,
+              fondsBUZBetrieblicheAltersversorgung: cardTemplateData.fonds,
+            };
+      
+            break;
+            case "DIREKT_3":
+              output = {
+                externalProduktId: cardTemplateData.externalProduktId,
+                initMandantValue: mandantMapper(
+                  cardTemplateData.versicherungsnehmer.id
+                ),
+                gesellschaftBetrieblicheAltersversorgung: cardTemplateData.gesellschaft,
+                tarifbezeichnungBetrieblicheAltersversorgung:
+                  cardTemplateData.tarifBezeichnung,
+                vertragsnummerBetrieblicheAltersversorgung:
+                  cardTemplateData.versicherungsnummer,
+                versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
+                  cardTemplateData.versicherungsnehmer.id
+                ),
+                versichertePersonBetrieblicheAltersversorgung:
+                  typeof cardTemplateData.versichertePerson === "undefined"
+                    ? isMandantDefined("undefined")
+                    : isMandantDefined(cardTemplateData.versichertePerson.id),
+                artVersichertePersonBetrieblicheAltersversorgung: cardTemplateData.art,
+                durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung:
+                  cardTemplateData.tarifTypeId,
+                beitragANAnteilBeitragBetrieblicheAltersversorgung:
+                  cardTemplateData.arbeitnehmeranteil,
+                beitragAGAnteilBeitragBetrieblicheAltersversorgung:
+                  cardTemplateData.arbeitgeberanteil,
+                VWLArbeitgeberbeitragBetrieblicheAltersversorgung:
+                  cardTemplateData.vwlArbeitnehmer,
+                VWLArbeitnehmerbeitragBetrieblicheAltersversorgung:
+                  cardTemplateData.vwlArbeitgeber,
+                beitragGesamtBeitragBetrieblicheAltersversorgung:
+                  cardTemplateData.arbeitnehmeranteil +
+                  cardTemplateData.arbeitgeberanteil +
+                  cardTemplateData.vwlArbeitnehmer +
+                  cardTemplateData.vwlArbeitgeber,
+                nettobelastungBeitragBetrieblicheAltersversorgung:
+                  cardTemplateData.nettobeitragMtl,
+                zahlweiseBetrieblicheAltersversorgung: cardTemplateData.zahlweise,
+                dynamikBeitragBetrieblicheAltersversorgung:
+                  cardTemplateData.dynamikProzent,
+                vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung:
+                  dateFormater(cardTemplateData.versicherungsbeginn),
+                vertragsendeVertragslaufzeitBetrieblicheAltersversorgung: dateFormater(
+                  cardTemplateData.versicherungsende
+                ),
+                garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+                  cardTemplateData.rentenleistungGarantiert,
+                prognostiziertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+                  cardTemplateData.rentenleistungPrognostiziert,
+                beiMonatlicheRentenleistungBetrieblicheAltersversorgung:
+                  cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+                RGZMonatlicheRentenleistungBetrieblicheAltersversorgung:
+                  cardTemplateData.rentenleistungRgzJahre,
+                ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung:
+                  cardTemplateData.ablaufleistungGarantiert,
+                ablaufsleistungPrognostiziertAblaufleistungBetrieblicheAltersversorgung:
+                  cardTemplateData.ablaufleistungPrognostiziert,
+                beiAblaufleistungBetrieblicheAltersversorgung:
+                  cardTemplateData.ablaufleistungPrognostiziertBeiProzent,
+                integrierteBUBetrieblicheAltersversorgung:
+                  cardTemplateData.integrierteBU,
+                renteBUBetrieblicheAltersversorgung: cardTemplateData.rentenleistungBU,
+                dynamikBULeistungBUBetrieblicheAltersversorgung:
+                  cardTemplateData.dynamikBU,
+                beitragsbefreiungBUBetrieblicheAltersversorgung:
+                  cardTemplateData.beitragsbefreiungBU,
+                beitragsendeBUZBetrieblicheAltersversorgung: dateFormater(
+                  cardTemplateData.beitragsendeBUZ
+                ),
+                leistungsendeBUZBetrieblicheAltersversorgung: dateFormater(
+                  cardTemplateData.leistungsendeBUZ
+                ),
+                beitragsanteilBUZBetrieblicheAltersversorgung:
+                  cardTemplateData.beitragsanteilBU,
+                leistungBeiTodBUZBetrieblicheAltersversorgung:
+                  cardTemplateData.leistungTod,
+                aktuellerRKWBUZBetrieblicheAltersversorgung:
+                  cardTemplateData.rueckkaufswert,
+                standBUZBetrieblicheAltersversorgung: dateFormater(
+                  cardTemplateData.rueckkaufswertDatum
+                ),
+                ansprechpartnerBetriebBUZBetrieblicheAltersversorgung:
+                  cardTemplateData.ansprechpartnerBetrieb,
+                rahmenvertragBUZBetrieblicheAltersversorgung:
+                  cardTemplateData.rahmenvertrag,
+                tarifvertragBUZBetrieblicheAltersversorgung:
+                  cardTemplateData.tarifvertrag,
+                fondsBUZBetrieblicheAltersversorgung: cardTemplateData.fonds,
+              };
+        
+              break;
     case "GESETZLICHE_AV":
       console.log(cardTemplateData);
       output = {
@@ -5247,13 +5623,15 @@ output=einnahmeart.name
     default:
       break;
   }}
-  if (!checkIfPersonendaten(card)) {
+  console.log(cardTemplateData)
+  console.log(asset)
+
+  if (!checkIfPersonendaten(card) ) {
     output = {
       ...output,
       externalProduktId: cardTemplateData.externalProduktId,
     };
   }
-  console.log(output)
   return output;
 }
 export default setAssetWithTariftype;
