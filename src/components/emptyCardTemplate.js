@@ -1451,7 +1451,8 @@ let sonstigeEinnahmen = {
     wohnungZurMiete: false,
   };
 function emptyCardTemplate(card){
-    let output
+    let output = {}
+    console.log("drinenenen")
     switch (card) {
         case "EINNAHMEN":
           output = sonstigeEinnahmen;

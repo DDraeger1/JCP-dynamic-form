@@ -1,0 +1,13 @@
+{
+    "section": "Verträge",
+    "card": true,
+    "items": [
+        {
+            "name":"debugMenutItems",
+            "type":"debugMenue"
+        },
+        {"name":"clearVertrag",
+            
+            "type":"clearVertrag"}
+    ]
+}

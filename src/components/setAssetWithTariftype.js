@@ -1839,7 +1839,7 @@ let assetFound=false
     if (anzahlVp && KHT) {
       output = true;
     }
-    console.log(output);
+
     return output;
   }
   function checkForSonstige(asset) {
@@ -1853,7 +1853,6 @@ let assetFound=false
   }
   function checkForBeide(asset) {
     let output = "";
-    console.log(asset.versicherungsnehmerBeide);
     if (asset.versicherungsnehmerBeide) {
       output = false;
     } else {
@@ -5623,8 +5622,7 @@ output=einnahmeart.name
     default:
       break;
   }}
-  console.log(cardTemplateData)
-  console.log(asset)
+
 
   if (!checkIfPersonendaten(card) ) {
     output = {

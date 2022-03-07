@@ -15,15 +15,17 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import deLocale from "date-fns/locale/de";
 import { Save } from "@material-ui/icons";
-import { Button,Checkbox } from "@material-ui/core";
-
-import mock from "./mockUI/MockUI.png"
+import { Button, Checkbox, FormControlLabel } from "@material-ui/core";
+import mock from "./mockUI/MockUI.png";
+import loadingGIF from "./mockUI/loading.gif"
 
 import axios from "axios";
 import qs from "query-string";
 
 import personaldaten from "./jsonCards/persoenlicheAngaben/personaldaten.json";
 import chooseCard from "./jsonCards/ui/chooseCard.json";
+
+import debugMenue from "./jsonCards/debug/debugMenue.json";
 
 import kindVorhanden from "./jsonCards/persoenlicheAngaben/kinderVorhanden.json";
 import kind from "./jsonCards/persoenlicheAngaben/kind.json";
@@ -80,7 +82,7 @@ import betrieblicheAltersversorgung from "./jsonCards/altersvorsorge/betrieblich
 import ruerupRente from "./jsonCards/altersvorsorge/ruerupRente.json";
 import { gridColumnsTotalWidthSelector } from "@material-ui/x-grid";
 
-import { useParams} from 'react-router-dom'
+import { useParams } from "react-router-dom";
 
 import isAssetAvailable from "./components/isAssetAvailable";
 //TODO: Arbeite xs und md ein für kleinere bildschirme!!
@@ -126,7 +128,7 @@ const betrieblicheAltersversorgungValues = {
   tarifvertragBUZBetrieblicheAltersversorgung: "",
   fondsBUZBetrieblicheAltersversorgung: "",
 };
-const ruerupRenteValues ={
+const ruerupRenteValues = {
   externalProduktId: "",
   gesellschaftRuerupRente: "",
   tarifbezeichnungRuerupRente: "",
@@ -159,7 +161,7 @@ const ruerupRenteValues ={
   einmalbeitragHinterbliebenenZusatzversicherungRuerupRente: "",
   beitragHinterbliebenenZusatzversicherungRuerupRente: "",
   beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente: "",
-}
+};
 const riesterrenteValues = {
   produktIDRiesterrente: "",
   tarifbezeichnungRiesterrente: "",
@@ -1429,28 +1431,32 @@ function App(props) {
   const [initialised, setInitialised] = useState(false);
 
   const [isMock, toggleMock] = useState({
-        active:false,
-    style:{padding:"20"},
-    showImage:"none"})
+    active: false,
+    style: { padding: "20" },
+    showImage: "none",
+  });
+  const [debug, toggleDebug] = useState(false);
   const [isBusy, setIsBusy] = useState(false);
   const [rawData, setRawData] = useState({ success: false });
   const [formData, setFormData] = useState({ success: false });
-  const [login, setLogin] = useState("")
+  const [login, setLogin] = useState("");
   const {
-
     einkommenGehaltContext,
     versicherungsnehmerValue,
     setVersicherungsnehmerValue,
     anzahlVp,
     einkommenGehaltBezuege,
     setEinkommenGehaltBezuege,
+    vertragId,
     setVertragId,
     bruttoSum,
     setAnzahlVp,
-    setBruttoSum ,
+    setBruttoSum,
     mandantGroup,
-    setMandantGroup,  bankverbindungen, setBankverbindungen
-} = useContext(Context);
+    setMandantGroup,
+    bankverbindungen,
+    setBankverbindungen,
+  } = useContext(Context);
   /*
   suite mapped:
 chooseCard
@@ -1463,7 +1469,7 @@ Values not Mapped
   };C:\Users\draeg\Documents\newSuite\JCPIS_ANALYSE\src\main\java\de\jcpis\analyse\presentation\GesellschaftController.java
 */
   //note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
-  const params = useParams()
+  const params = useParams();
   const [card, setCard] = useState(params.card);
   const [id, setId] = useState();
   let jsonForm = [];
@@ -1471,13 +1477,13 @@ Values not Mapped
 
   switch (card) {
     case "DARLEHEN":
-      dummyData ={...darlehenValues}
-      jsonForm =[darlehen]
-      break
+      dummyData = { ...darlehenValues };
+      jsonForm = [darlehen];
+      break;
     case "RIESTER":
-dummyData ={ ...riesterrenteValues}
-jsonForm =[riesterrente]
-    break
+      dummyData = { ...riesterrenteValues };
+      jsonForm = [riesterrente];
+      break;
     case "STEUERN":
       dummyData = { ...steuerValues };
       jsonForm = [steuer];
@@ -1516,7 +1522,7 @@ jsonForm =[riesterrente]
       dummyData = { ...betrieblicheAltersversorgungValues };
       jsonForm = [betrieblicheAltersversorgung];
       break;
-      case "DIREKT_3":
+    case "DIREKT_3":
       dummyData = { ...betrieblicheAltersversorgungValues };
       jsonForm = [betrieblicheAltersversorgung];
       break;
@@ -1703,23 +1709,25 @@ jsonForm =[riesterrente]
       try {
         await ref.current.submit();
         alert("Daten wurden gespeichert");
-        setLoaded(false)
-        setIsBusy(true)
-        if(checkIfPersonendaten(card)){
+        setLoaded(false);
+        setIsBusy(true);
+        if (checkIfPersonendaten(card)) {
           setInitialised(false);
-          getDataPersonendaten()
+          getDataPersonendaten();
           setIsBusy(false);
-          setTimeout(()=>{
-            setLoaded(true)
-          },100)
-      } else{
+          setTimeout(() => {
+            setLoaded(true);
+          setInitialised(true);
+        }, 100);
+        } else {
           setInitialised(false);
           getData();
           setIsBusy(false);
-          setTimeout(()=>{
-          setLoaded(true)
-          },100)
-      }
+          setTimeout(() => {
+            setLoaded(true);
+          setInitialised(true);
+        }, 100);
+        }
       } catch (e) {
         console.warn(e);
         alert("Daten wurden NICHT gespeichert");
@@ -1750,117 +1758,132 @@ jsonForm =[riesterrente]
   var myHeaders = new Headers();
   myHeaders.append("Access-Control-Allow-Origin", "*");
   document.cookie = "JSESSIONID=9A2CC3C93070309D888ACD30294946A6";
-  var FormData = require('form-data');
+  var FormData = require("form-data");
   var dataLogin = new FormData();
-  dataLogin.append('action', 'jwtlogin');
- // dataLogin.append('templogin', 'rNrkrCQVMk265cH3zjCACVp4CFkNgSUB');
-  
+  dataLogin.append("action", "jwtlogin");
+  dataLogin.append("rNrkrCQVMk265cH3zjCACVp4CFkNgSUB", "jcpadmin");
+  // dataLogin.append('templogin', 'rNrkrCQVMk265cH3zjCACVp4CFkNgSUB');
+
   var loginLiveSuite = {
-    method: 'post',
-    url: 'https://jcp-suite.de/suite/user.json',
-    data : dataLogin
-  };
-  
-    var requestOptionsMandantLiveSuite = (login)=>{
-      return (
-   {
-    method: "get",
-    url: "https://jcp-suite.de/suite/mandant.json?action=getMandantById&id="+params.mandantId,
-    withCredentials: true,
-    headers: {Authorization: "Bearer "+login },
-    redirect: "follow",
-  })
-  };
-  var requestOptionsAnalyseAssetsLiveSuite = (login)=>{
-    return (
- {
-    method: "get",
-    url: "https://jcp-suite.de/suite/asset.json?action=getAllAnalyseAssets&mandantId=&analyseId="+params.analyseId,
-    withCredentials: true,
-    headers: { Authorization: "Bearer "+login },
-    redirect: "follow"})
-  };
-  var requestOptionsMandantGroupLiveSuite = (login)=>{
-    return (
- {
-    method: "get",
-    url: "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId="+params.mandantId,
-    withCredentials: true,
-    headers: { Authorization: "Bearer "+login },
-    redirect: "follow",
-  })};
-
-  var getLiveSuiteToken =(login)=>{
-    return (
- {
-    method: "get",
-    url: "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId="+params.mandantId,
-    withCredentials: true,
-    headers: { Cookie: document.cookie },
-    redirect: "follow",
-  })}
-
-  var saveAssetLiveSuite =(login)=>{
-    return (
- {
     method: "post",
-    url: "https://jcp-suite.de/suite/analyseApp",
-    withCredentials: true,
-    headers: {
+    url: "https://jcp-suite.de/suite/user.json",
+    data: dataLogin,
+  };
 
-      "Content-Type": "application/x-www-form-urlencoded",Authorization: "Bearer "+login
-    },
-    redirect: "follow",
-  })}
-  var getContextIdByIdLiveSuite = (login)=>{
-    return (
- {
-    method: "post",
-    url: "https://jcp-suite.de/suite/context.json?action=getContextById&id="+params.contextId,
-    withCredentials: true,
-    headers: {
-      Authorization: "Bearer "+login,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    redirect: "follow",
-  })}
-  var getProductIdLiveSuite =(login)=>{
-    return (
- {
-    method: "post",
-    url:
-      "https://jcp-suite.de/suite/productId.json?action=getProductIds&tarifTypeId=" +
-      card,
-    withCredentials: true,
-    headers: {
-      Authorization: "Bearer "+login,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    redirect: "follow",
-  })}
-  var requestOptionsGesellschaftIdLiveSuite = (login)=>{
-    return (
- {
-    method: "get",
-    url:
-      "https://jcp-suite.de/suite/gesellschaft.json?action=getAllGesellschaftsByTarifTypeId&tarifTypeId=" +
-      card +
-      "&contextId="+params.contextId,
-    withCredentials: true,
-    headers: { Authorization: "Bearer "+login },
-    redirect: "follow",
-  })}
-//192.168.1.181 LÖSCHEN WENN FERTIG!!!
+  var requestOptionsMandantLiveSuite = (login) => {
+    return {
+      method: "get",
+      url:
+        "https://jcp-suite.de/suite/mandant.json?action=getMandantById&id=" +
+        params.mandantId,
+      withCredentials: true,
+      headers: { Authorization: "Bearer " + login },
+      redirect: "follow",
+    };
+  };
+  var requestOptionsAnalyseAssetsLiveSuite = (login) => {
+    return {
+      method: "get",
+      url:
+        "https://jcp-suite.de/suite/asset.json?action=getAllAnalyseAssets&mandantId=&analyseId=" +
+        params.analyseId,
+      withCredentials: true,
+      headers: { Authorization: "Bearer " + login },
+      redirect: "follow",
+    };
+  };
+  var requestOptionsMandantGroupLiveSuite = (login) => {
+    return {
+      method: "get",
+      url:
+        "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId=" +
+        params.mandantId,
+      withCredentials: true,
+      headers: { Authorization: "Bearer " + login },
+      redirect: "follow",
+    };
+  };
+
+  var getLiveSuiteToken = (login) => {
+    return {
+      method: "get",
+      url:
+        "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId=" +
+        params.mandantId,
+      withCredentials: true,
+      headers: { Cookie: document.cookie },
+      redirect: "follow",
+    };
+  };
+
+  var saveAssetLiveSuite = (login) => {
+    return {
+      method: "post",
+      url: "https://jcp-suite.de/suite/analyseApp",
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: "Bearer " + login,
+      },
+      redirect: "follow",
+    };
+  };
+  var getContextIdByIdLiveSuite = (login) => {
+    return {
+      method: "post",
+      url:
+        "https://jcp-suite.de/suite/context.json?action=getContextById&id=" +
+        params.contextId,
+      withCredentials: true,
+      headers: {
+        Authorization: "Bearer " + login,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow",
+    };
+  };
+  var getProductIdLiveSuite = (login) => {
+    return {
+      method: "post",
+      url:
+        "https://jcp-suite.de/suite/productId.json?action=getProductIds&tarifTypeId=" +
+        card,
+      withCredentials: true,
+      headers: {
+        Authorization: "Bearer " + login,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow",
+    };
+  };
+  var requestOptionsGesellschaftIdLiveSuite = (login) => {
+    return {
+      method: "get",
+      url:
+        "https://jcp-suite.de/suite/gesellschaft.json?action=getAllGesellschaftsByTarifTypeId&tarifTypeId=" +
+        card +
+        "&contextId=" +
+        params.contextId,
+      withCredentials: true,
+      headers: { Authorization: "Bearer " + login },
+      redirect: "follow",
+    };
+  };
+  //192.168.1.181 LÖSCHEN WENN FERTIG!!!
   var requestOptionsMandantGroup = {
     method: "get",
-    url: "http://localhost:8080/build-suite/mandant.json?action=getMandantGroup&mandantId="+params.mandantId,
+    url:
+      "http://localhost:8080/build-suite/mandant.json?action=getMandantGroup&mandantId=" +
+      params.mandantId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
   };
   var requestOptionsMandant = {
     method: "get",
-    url: "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id="+params.mandantId,
+    url:
+      "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id=" +
+      params.mandantId,
     withCredentials: true,
     headers: {
       Cookie: document.cookie,
@@ -1880,7 +1903,9 @@ jsonForm =[riesterrente]
   };
   var getContextIdById = {
     method: "post",
-    url: "http://localhost:8080/build-suite/context.json?action=getContextById&id="+params.contextId,
+    url:
+      "http://localhost:8080/build-suite/context.json?action=getContextById&id=" +
+      params.contextId,
     withCredentials: true,
     headers: {
       Cookie: document.cookie,
@@ -1902,7 +1927,11 @@ jsonForm =[riesterrente]
   };
   var requestOptionsAnalyseAssets = {
     method: "get",
-    url: "http://localhost:8080/build-suite/asset.json?_dc=1636967969021&action=getAllAnalyseAssets&mandantId="+params.mandantId+"&analyseId="+params.analyseId,
+    url:
+      "http://localhost:8080/build-suite/asset.json?_dc=1636967969021&action=getAllAnalyseAssets&mandantId=" +
+      params.mandantId +
+      "&analyseId=" +
+      params.analyseId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
@@ -1912,14 +1941,17 @@ jsonForm =[riesterrente]
     url:
       "http://localhost:8080/build-suite/gesellschaft.json?action=getAllGesellschaftsByTarifTypeId&tarifTypeId=" +
       card +
-      "&contextId="+params.contextId,
+      "&contextId=" +
+      params.contextId,
     withCredentials: true,
     headers: { Cookie: document.cookie },
     redirect: "follow",
   };
   var requestOptionsMandant = {
     method: "get",
-    url: "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id="+params.mandantId,
+    url:
+      "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id=" +
+      params.mandantId,
     withCredentials: true,
     headers: {
       Cookie: document.cookie,
@@ -1927,46 +1959,83 @@ jsonForm =[riesterrente]
     redirect: "follow",
   };
 
-  function checkIfPersonendaten(card){
-    let output = false
-    if(card==="GEHALT_EINKOMMEN"){
-      output = true
+  function checkIfPersonendaten(card) {
+    let output = false;
+    if (card === "GEHALT_EINKOMMEN") {
+      output = true;
     }
-    if(card==="BANKVERBINDUNG"){
-      output = true
-    }if(card==="KIND"){
-      output = true
-    }if(card==="PERSONALDATEN"){
-      output = true
-    }if(card==="AUSWEIS"){
-      output = true
-    }if(card==="KOMMUNIKATION"){
-      output = true
-    }if(card==="ARBEITGEBER"){
-      output = true
-    }if(card==="KIND"){
-      output = true
-    }if(card==="KIND"){
-      output = true
+    if (card === "BANKVERBINDUNG") {
+      output = true;
     }
-    return(output)
+    if (card === "KIND") {
+      output = true;
+    }
+    if (card === "PERSONALDATEN") {
+      output = true;
+    }
+    if (card === "AUSWEIS") {
+      output = true;
+    }
+    if (card === "KOMMUNIKATION") {
+      output = true;
+    }
+    if (card === "ARBEITGEBER") {
+      output = true;
+    }
+    if (card === "KIND") {
+      output = true;
+    }
+    if (card === "KIND") {
+      output = true;
+    }
+    return output;
   }
   const getDataLiveSuite = () => {
-    axios(loginLiveSuite).then((login)=>{
-      getDataWithLogin(login.data.data)
-    }).catch((error) =>{
-      console.log("error")
-      console.log(error)})
-  
+    axios(loginLiveSuite)
+      .then((login) => {
+        getDataWithLogin(login.data.data);
+      })
+      .catch((error) => {
+        console.log("error");
+        console.log(error);
+      });
 
-    function getDataWithLogin(login){
-     Promise.all([
-      axios(requestOptionsMandantLiveSuite(login)),
-      axios(requestOptionsAnalyseAssetsLiveSuite(login)),
-      axios(requestOptionsMandantGroupLiveSuite(login)),
-      axios(requestOptionsGesellschaftIdLiveSuite(login)),
-      axios(getContextIdByIdLiveSuite(login)),
-      axios(getProductIdLiveSuite(login)),
+    function getDataWithLogin(login) {
+      setLogin(login)
+      Promise.all([
+        axios(requestOptionsMandantLiveSuite(login)),
+        axios(requestOptionsAnalyseAssetsLiveSuite(login)),
+        axios(requestOptionsMandantGroupLiveSuite(login)),
+        axios(requestOptionsGesellschaftIdLiveSuite(login)),
+        axios(getContextIdByIdLiveSuite(login)),
+        axios(getProductIdLiveSuite(login)),
+      ])
+        .then((result) => {
+          setRawData({
+            mandantData: result[0].data.data,
+            mandantGroup: result[2].data.data.mandantMandantGroups,
+            analyseAssets: result[1].data.data,
+            gesellschaft: result[3].data,
+            contextProductId: result[4].data.data,
+            productId: result[5].data.data,
+            success: true,
+          });
+          setMandantGroup(result[2].data.data.mandantMandantGroups);
+        })
+        .catch((error) => {
+          console.log("error");
+          console.log(error);
+        });
+    }
+  };
+  const getData = () => {
+    Promise.all([
+      axios(requestOptionsMandant),
+      axios(requestOptionsAnalyseAssets),
+      axios(requestOptionsMandantGroup),
+      axios(requestOptionsGesellschaftId),
+      axios(getContextIdById),
+      axios(getProductId),
     ])
       .then((result) => {
         setRawData({
@@ -1978,46 +2047,19 @@ jsonForm =[riesterrente]
           productId: result[5].data.data,
           success: true,
         });
-    setMandantGroup(result[2].data.data.mandantMandantGroups)
-
-    })
-      .catch((error) =>{
-      console.log("error")
-      console.log(error)});
-  };
-}
-const getData = () => {
-   Promise.all([
-    axios(requestOptionsMandant),
-    axios(requestOptionsAnalyseAssets),
-    axios(requestOptionsMandantGroup),
-    axios(requestOptionsGesellschaftId),
-    axios(getContextIdById),
-    axios(getProductId),
-  ])
-    .then((result) => {
-      setRawData({
-        mandantData: result[0].data.data,
-        mandantGroup: result[2].data.data.mandantMandantGroups,
-        analyseAssets: result[1].data.data,
-        gesellschaft: result[3].data,
-        contextProductId: result[4].data.data,
-        productId: result[5].data.data,
-        success: true,
+        setMandantGroup(result[2].data.data.mandantMandantGroups);
+      })
+      .catch((error) => {
+        console.log("error");
+        console.log(error);
       });
-  setMandantGroup(result[2].data.data.mandantMandantGroups)
-
-  })
-    .catch((error) =>{
-    console.log("error")
-    console.log(error)});
-}
+  };
   const getDataPersonendaten = () => {
     Promise.all([
       axios(requestOptionsMandant),
       axios(requestOptionsAnalyseAssets),
       axios(requestOptionsMandantGroup),
-      axios(getContextIdById)
+      axios(getContextIdById),
     ])
       .then((result) => {
         setRawData({
@@ -2027,36 +2069,37 @@ const getData = () => {
           analyseAssets: result[1].data.data,
           success: true,
         });
-    setMandantGroup(result[2].data.data.mandantMandantGroups)
-    setBankverbindungen(result[2].data.data.mandantMandantGroups.mandantData.bankverbindungs)
+        setMandantGroup(result[2].data.data.mandantMandantGroups);
+        setBankverbindungen(
+          result[2].data.data.mandantMandantGroups.mandantData.bankverbindungs
+        );
       })
-      .catch((error) =>{
-      console.log("error")
-      console.log(error)});
-  }
+      .catch((error) => {
+        console.log("error");
+        console.log(error);
+      });
+  };
   useEffect(() => {
     let mounted = true;
     setIsBusy(true);
     if (mounted) {
-if(checkIfPersonendaten(card)){
-      getDataPersonendaten()
-      setIsBusy(false);
-
-
-    } else{
-      getData();
-      setIsBusy(false);
-    }
+      if (checkIfPersonendaten(card)) {
+        getDataPersonendaten();
+        setIsBusy(false);
+      } else {
+        getDataLiveSuite();
+        setIsBusy(false);
+      }
     }
 
     return () => {
       mounted = false;
     };
   }, []);
-  console.log(mandantGroup)
 
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
+      console.log("drin")
       isAssetAvailable(
         rawData,
         setFormData,
@@ -2067,7 +2110,8 @@ if(checkIfPersonendaten(card)){
         setVersicherungsnehmerValue,
         rawData.contextProductId.contextConfig.desktop.showExternalProductId,
         setAnzahlVp,
-        bankverbindungen, setBankverbindungen
+        bankverbindungen,
+        setBankverbindungen
       );
 
       setId(mapAssets(rawData.analyseAssets));
@@ -2075,16 +2119,16 @@ if(checkIfPersonendaten(card)){
 
       setTimeout(() => {
         setLoaded(false);
-        
       }, 300);
       setTimeout(() => {
         setLoaded(true);
       }, 500);
     }
-  }, [rawData]);
+  }, [rawData.success]);
+  console.log(initialised) 
+  /*
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
-      console.log("gerufen")
       isAssetAvailable(
         rawData,
         setFormData,
@@ -2100,7 +2144,8 @@ if(checkIfPersonendaten(card)){
         setVersicherungsnehmerValue,
         rawData.contextProductId.contextConfig.desktop.showExternalProductId,
         setAnzahlVp,
-        bankverbindungen, setBankverbindungen
+        bankverbindungen,
+        setBankverbindungen
       );
       setVertragId(
         redefineCard(
@@ -2118,7 +2163,42 @@ if(checkIfPersonendaten(card)){
       }, 500);
     }
   }, [versicherungsnehmerValue]);
-
+*/
+  useEffect(() => {
+    if (rawData.success === true && initialised === true) {
+      if(vertragId.length >1){
+        Promise.all([
+          axios(requestOptionsGesellschaftIdLiveSuite(login)),
+          axios(getProductIdLiveSuite(login))
+        ]).then((result) => {
+          setRawData({
+            ...rawData,
+            gesellschaft: result[0].data,
+            productId: result[1].data.data,
+          });
+        })
+      isAssetAvailable(
+        rawData,
+        setFormData,
+        dummyData,
+        setLoaded,
+        vertragId,
+        card,
+        setVersicherungsnehmerValue,
+        rawData.contextProductId.contextConfig.desktop.showExternalProductId,
+        setAnzahlVp,
+        bankverbindungen,
+        setBankverbindungen
+      );
+      setTimeout(() => {
+        setLoaded(false);
+      }, 100);
+      setTimeout(() => {
+        setLoaded(true);
+      }, 500);
+    }
+  }
+  }, [vertragId]);
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
       //TODO: KVZ und KVV werte auf false setzen!
@@ -2215,7 +2295,6 @@ if(checkIfPersonendaten(card)){
         setLoaded(true);
       }, 500);
     }
-
   }, [anzahlVp]);
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
@@ -2225,7 +2304,6 @@ if(checkIfPersonendaten(card)){
             setFormData({
               ...bruttoSum,
               variablerBezug: true,
-              
             });
           } else {
             setFormData({
@@ -2239,7 +2317,7 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              fahrtkosten: true, 
+              fahrtkosten: true,
             });
           } else {
             setFormData({
@@ -2253,10 +2331,9 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              provision: true, 
+              provision: true,
             });
           } else {
-           
             setFormData({
               ...bruttoSum,
               provisionBetragMtlTextfieldEinnahmen: 0,
@@ -2272,7 +2349,6 @@ if(checkIfPersonendaten(card)){
               feiertagszuschlag: true,
             });
           } else {
-           
             setFormData({
               ...bruttoSum,
               feiertagszuschlagBetragMtlTextfieldEinnahmen: 0,
@@ -2302,7 +2378,6 @@ if(checkIfPersonendaten(card)){
               dienstwagen: true,
             });
           } else {
-
             setFormData({
               ...bruttoSum,
               dienstwagen: false,
@@ -2314,7 +2389,7 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              kitaGebuehren: true
+              kitaGebuehren: true,
             });
           } else {
             setFormData({
@@ -2329,8 +2404,8 @@ if(checkIfPersonendaten(card)){
             setFormData({
               ...bruttoSum,
               jobRad: true,
-          })} else {
-
+            });
+          } else {
             setFormData({
               ...bruttoSum,
               jobRad: false,
@@ -2342,10 +2417,9 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              vwlAG: true, 
+              vwlAG: true,
             });
           } else {
-
             setFormData({
               ...bruttoSum,
               vwlAG: false,
@@ -2357,10 +2431,9 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              sachbezug: true, 
+              sachbezug: true,
             });
           } else {
-
             setFormData({
               ...bruttoSum,
               sachbezug: false,
@@ -2375,7 +2448,6 @@ if(checkIfPersonendaten(card)){
               sonstigesBrutto: true,
             });
           } else {
-
             setFormData({
               ...bruttoSum,
               sonstigesBrutto: false,
@@ -2389,10 +2461,8 @@ if(checkIfPersonendaten(card)){
             setFormData({
               ...bruttoSum,
               sonstigerSachbezug: true,
-
             });
           } else {
-
             setFormData({
               ...bruttoSum,
               sonstigerSachbezug: false,
@@ -2408,7 +2478,6 @@ if(checkIfPersonendaten(card)){
               abzuegeVwlGesamt: true,
             });
           } else {
-
             setFormData({
               ...bruttoSum,
               abzuegeVwlGesamt: false,
@@ -2420,8 +2489,7 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              sonstigerAbzug: true, 
-
+              sonstigerAbzug: true,
             });
           } else {
             setFormData({
@@ -2435,8 +2503,7 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              bonus: true, 
-
+              bonus: true,
             });
           } else {
             setFormData({
@@ -2451,8 +2518,7 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              urlaubsgeld: true, 
-
+              urlaubsgeld: true,
             });
           } else {
             setFormData({
@@ -2467,8 +2533,7 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              weihnachtsgeld: true, 
-
+              weihnachtsgeld: true,
             });
           } else {
             setFormData({
@@ -2483,8 +2548,7 @@ if(checkIfPersonendaten(card)){
           if (einkommenGehaltBezuege.hinzufuegen) {
             setFormData({
               ...bruttoSum,
-              gewinnbeteiligung: true, 
-
+              gewinnbeteiligung: true,
             });
           } else {
             setFormData({
@@ -2502,44 +2566,92 @@ if(checkIfPersonendaten(card)){
 
       setTimeout(() => {
         setLoaded(false);
-
       }, 50);
       setTimeout(() => {
         setLoaded(true);
-        window.scrollTo(0,bruttoSum.scrollY)
+        window.scrollTo(0, bruttoSum.scrollY);
       }, 60);
     }
   }, [einkommenGehaltBezuege]);
 
-function showMock(){
-  if(!isMock.active){
-    toggleMock({
-      active:true,
-     style:{ position:"absolute", top:"9.8vh", width:"57vw",height:"89.7vh", left:"33vw", backgroundColor:"#eeeeee", overflow:"auto", overflowX:"hidden" },
-     showImage:"inline"})
+  function showMock() {
+    if (!isMock.active) {
+      toggleMock({
+        active: true,
+        style: {
+          position: "absolute",
+          top: "9.8vh",
+          width: "57vw",
+          height: "89.7vh",
+          left: "33vw",
+          backgroundColor: "#eeeeee",
+          overflow: "auto",
+          overflowX: "hidden",
+        },
+        showImage: "inline",
+      });
+    } else {
+      toggleMock({
+        active: false,
+        style: { padding: "20" },
+        showImage: "none",
+      });
+    }
   }
- else{
-  toggleMock({
-    active:false,
-   style:{padding:"20"},
-   showImage:"none"
-  })
-}
-}
-  return ( 
-    <div tyle={{ backgroundColor:"#eeeeee"}}>
-      {!loaded ? null : (
+  function showDebug() {
+    if (debug) {
+      toggleDebug(false);
+      jsonForm.splice(1, 1);
+      setLoaded(false);
+      setTimeout(() => {
+        setLoaded(true);
+      }, 100);
+      console.log(debug)
+    } else {
+      toggleDebug(true);
+      jsonForm.push(debugMenue);
+      setLoaded(false);
+      setTimeout(() => {
+        setLoaded(true);
+      }, 100);
+      console.log(jsonForm)
+    }
+  }
+  console.log(loaded)
+  return (
+    <div style={{ backgroundColor: "#eeeeee" }}>
+      {!loaded ? <div style={{height:"95vh", width:"100vw",backgroundColor: "#f1f2f3"}}><img className="loadingGIF" src={loadingGIF} /></div> : (
         <ThemeProvider theme={theme}>
-
-          <MuiPickersUtilsProvider utils={DateFnsUtils} locale={deLocale} className="mock4">
-          <Checkbox 
-          value={isMock}
-          onChange={()=>{showMock()}}
-          style={{position:"absolute"}}
-          label="toggle Mock"
-          />
-            <img src={mock} style={{display:isMock.showImage}} className="mock" />
-            <div style={{...isMock.style}}>
+          <MuiPickersUtilsProvider
+            utils={DateFnsUtils}
+            locale={deLocale}
+            className="mock4"
+          >
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value={isMock}
+                  onChange={() => {
+                    showMock();
+                  }}
+                  style={{ position: "relative" }}
+                ></Checkbox>
+              }
+              label="toggle Mock"
+            />
+                <Button
+                  onChange={() => {
+                    showDebug();
+                  }}
+                  style={{ position: "relative" }}
+                >toggle Debug
+                </Button>
+            <img
+              src={mock}
+              style={{ display: isMock.showImage }}
+              className="mock"
+            />
+            <div style={{ ...isMock.style }}>
               <DynamicForm
                 // Das gesamte Formular kann deaktiviert werden (read-only)
                 disabled={isBusy}
@@ -2555,32 +2667,35 @@ function showMock(){
                 // die eigentlichen Daten
                 values={formData}
                 // die Formular-Definition
-                formDefinition={jsonForm}
+                formDefinition={[debugMenue,jsonForm[0]]}
                 mandantGroup={rawData.mandantGroup}
                 gesellschaft={rawData.gesellschaft}
-                assets ={rawData.analyseAssets}
+                assets={rawData.analyseAssets}
                 // Was soll beim Absenden geschehen?
                 // erwartet wird ein Promise, der mit dem kompletten (evtl. modifizierten Datensatz) resolvet
                 onSubmit={handleSubmit}
                 tarifTypeIdFromCardState={card}
                 productId={rawData.productId}
                 params={params}
+                id={id}
+                setCard={setCard}
               />
               {ref.isDirty}
-              
             </div>
           </MuiPickersUtilsProvider>
-        </ThemeProvider>
-      )}
+        
+      
       <Button
-                variant={"outlined"}
-                color={"primary"}
-                endIcon={<Save />}
-                disabled={isBusy}
-                onClick={handleSave}
-              >
-                Angaben speichern
-              </Button>
+        variant={"outlined"}
+        color={"primary"}
+        endIcon={<Save />}
+        disabled={isBusy}
+        onClick={handleSave}
+      >
+        Angaben speichern
+      </Button>
+      </ThemeProvider>
+      )}
     </div>
   );
 }

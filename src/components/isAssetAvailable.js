@@ -26,8 +26,6 @@ function isAssetAvailable(
   let vertragFound = false;
   //es wird geguckt ob mandantwerte gesucht werden. Wenn ja, braucht man kein asset suchen
   // || conditional funktioniert nicht
-console.log(vertragId)
-console.log(cardValues)
         if (vertragId !== "none") {
           result.analyseAssets.map((asset) => {
 
@@ -106,7 +104,6 @@ console.log(cardValues)
                 asset.tarifTypeId.includes("EINNAHMEN") &&
                 asset.id === vertragId
               ) {
-                console.log("wtf")
                 cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
                 vertragFound = true;
               }
@@ -210,7 +207,6 @@ console.log(cardValues)
               ) {
                 cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup, setAnzahlVp, bankverbindungen, setBankverbindungen);
                 vertragFound = true;
-                console.log("drin")
               }
               if (
                 asset.tarifTypeId.includes("DREADDISEASE") &&
@@ -299,7 +295,7 @@ console.log(cardValues)
               }
             }
             if (!vertragFound && vertragId === "newVertrag") {
-              cardValues = emptyCardTemplate(card);
+              cardValues = {}
              }
           });
         } else {
@@ -313,17 +309,14 @@ console.log(cardValues)
 
               if (card !== "KIND") {
                 if (card !== "BANKVERBINDUNG") {
-                  console.log("Drinserssdsdsds")
-                  console.log(card)
           setVersicherungsnehmerValue({
-            index: 1,
+            index: 0,
             tarifTypeId: card,
           });
         }
       }
     }}}}}}
   }
-console.log(cardValues)
   setFormData({
     showExternalProductId:booleanFormater(showExternalProductId),
     ...cardValues,

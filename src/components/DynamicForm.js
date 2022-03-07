@@ -55,12 +55,27 @@ function DynamicForm(
     productId,
     assets,
     params,
+    id,
+    setCard
   },
   ref
 ) {
+  console.log(gesellschaft);
   const [isInitialized, toggleInitialized] = useState(false);
 let testArray = []
-
+function formatSelectIds(){
+  let output =[]
+  let name = ""
+id.map((id, index)=>{
+  mandantGroup.map((mandantGroup)=>{
+name =  mandantGroup.mandant.vorname +
+" " +
+mandantGroup.mandant.nachname
+  })
+  output.push({index:index,name:name+": "+ id.tarifTypeId, data:{id:id.vertragId, tarifTypeId: id.tarifTypeId}})
+})
+  return output
+}
   let inputIndex = 0;
   const {
     versicherungsnehmerValue,
@@ -74,6 +89,7 @@ let testArray = []
     gehaltInit,
     setGehaltInit,
     setDeletionIndex,
+    setVertragId
   } = useContext(Context);
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
@@ -229,6 +245,37 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
 
             function getItemInput() {
               switch (type) {
+                case "clearVertrag":
+                  return(
+                    <Button onClick={()=>{setVertragId("newVertrag")}}>
+                      Clear Data
+                    </Button>
+                  )
+                case "debugMenue":
+                  return(
+                    <FormControl fullWidth size={"small"}>
+                      <Select
+                        autoFocus={focussed}
+                        inputRef={ref}
+                        value={value}
+                        onChange={(e)=>{
+                          setVertragId(e.target.value.id)
+                           setCard(e.target.value.tarifTypeId)}}
+                        disabled={itemDisabled}
+                        error={!!helperText}
+                      >
+                        <MenuItem key="o" value={""}></MenuItem>
+                        {formatSelectIds().map((id, index) => (
+                          <MenuItem
+                            key={"o-" + index}
+                            value={id.data}
+                          >
+                            {id.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  )
                 case "toggleButtonGroup":
                   return (
                     <>
@@ -365,7 +412,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                         disabled={itemDisabled}
                       >
                         <MenuItem key="o" value={""}>
-                          {" "}
+                        <input type="text" >{" "}</input>
                         </MenuItem>
                         {options.map((option, index) =>
                           anzahlVp === "true" ? (
@@ -374,7 +421,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                               key={"o-" + index}
                               value={option.value}
                             >
-                              {option.label}
+                              <input type="text" >  {option.label}</input>
                             </MenuItem>
                           ) : (
                             <MenuItem key={"o-" + index} value={option.value}>
@@ -813,13 +860,8 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
   function mapSuiteValues() {
     let output = {}
     testArray.forEach((item) => {
-      console.log(item);
-      console.log( values[item.name]);
         output = { ...output, ...translateToSuiteData(item, item.name, values[item.name]) }
-
     })
-    console.log(output)
-
     return output;
   }
   function translateToSuiteData(item, key, value) {
@@ -834,20 +876,10 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
           }
         }
         if(item.type === "date"){
-          if(value.length === 10){
           output = {
             ...output,
-            [item.suiteValue]: value
-              ,
+            [item.suiteValue]: dateFormaterSuite(value),
           };
-        }else{
-          output = {
-            ...output,
-            [item.suiteValue]: dateFormaterSuite(value.toDateString()
-              ),
-          };
-        }
-          console.log(value.length)
         }
           if (item.label === "Zahlweise") {
             switch (value) {
@@ -872,7 +904,9 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
           }
         }
         if (item.type === "selectMandant") {
-          if(value !== "Placeholder"){
+          if(value !== "Placeholder" && value.length >1){
+            if(typeof(value) !== "undefined"){
+//TODO: Wenn assetId´s hinzugefügt werden, diese methode löschen!
             switch (mandantGroup[value].art) {
               case "MANDANT":
                 output = { ...output, mp: "m" };
@@ -890,7 +924,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
               ...output,
               versicherungsnehmerId: mandantGroup[value].mandantId,
             };
-          } else{
+          }} else{
           switch (mandantGroup[values.initMandantValue].art) {
             case "MANDANT":
               output = { ...output, mp: "m" };
@@ -921,7 +955,6 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
             output = { ...output, [option.suiteValue]: false };
           }
         });
-        console.log(output);
       }
       // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
     }
@@ -932,8 +965,6 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
 
 
     testArray.forEach((item) => {
-    console.log(item);
-    console.log( dirtyValues[item.name]);
 if(typeof(dirtyValues[item.name]) !== "undefined"){
       output = { ...output, ...translateToSuiteData(item, item.name, dirtyValues[item.name]) }
 }
@@ -1049,62 +1080,23 @@ if(typeof(dirtyValues[item.name]) !== "undefined"){
     return summe;
   }
   function dateFormaterSuite(date) {
-    //from dd/mm/yyyy to mm/dd/yyyy
-    let output;
-    console.log(output)
-    let month = date.substring(4, 7)
-    switch (month){
-case"Jan":
-month="01"
-break;
-case"Feb":
-month="02"
-break;
-case"Mar":
-month="03"
-break;
-case"Apr":
-month="04"
-break;
-case"Mai":
-month="05"
-break;
-case"Jun":
-month="06"
-break;
-case"Jul":
-month="07"
-break;
-case"Aug":
-month="08"
-break;
-case"Sep":
-month="09"
-break;
-case"Okt":
-month="10"
-break;
-case"Nov":
-month="11"
-break;
-case"Dez":
-month="12"
-break;
-default:
-  console.log("ups")
-  break;
-    }
-    if (date !== null) {
-      if (date !== undefined) {
-          output =
-            month + date.substring(8, 10) + date.substring(11, 16);
-      }
-    }
-    console.log(output)
+    let output = "";
+    console.log(typeof(date))
+    console.log(date)
+
+    if(typeof(date) !== "undefined"){
+    if(typeof(date) === "object"){
+      output =date.toLocaleDateString("de-EU")
+      console.log(output)
+
+  } else {
+    output = date
+  }}
+  console.log(output)
+
     return output;
   }
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
-    console.log(valuesToSubmit);
     let vertragIdSuite = vertragId
     if(vertragId ==="newVertrag"){
       vertragIdSuite = "0"
@@ -1133,9 +1125,6 @@ default:
     }
     if (tarifTypeIdFromCardState === "HUNDEHALTERHAFTPFLICHT") {
       output = { ...output, json: { ...output.json, kategorie: "thvhund" } };
-    }
-    if (tarifTypeIdFromCardState === "EINNAHMEN") {
-      console.log(output.json);
     }
     /*
 if(tarifTypeIdFromCardState === "KVZ"){
