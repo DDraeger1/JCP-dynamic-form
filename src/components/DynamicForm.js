@@ -905,6 +905,7 @@ if(props.required){
     if (item.name === key && typeof item.suiteValue !== "undefined") {
       if (item.type !== "toggleButtonGroup") {
         if (item.type !== "selectMandant") {
+          if (item.type !== "selectVersichert") {
           if (item.label !== "Zahlweise") {
             if (item.type !== "date") {
               output = { ...output, [item.suiteValue]: value };
@@ -938,7 +939,7 @@ if(props.required){
                 break;
             }
           }
-        }
+        }}
         if (item.type === "selectMandant") {
           if(typeof(value) !== "undefined"){
             if(value !== "Placeholder" && value.length >1){
@@ -980,6 +981,26 @@ if(props.required){
             versicherungsnehmerId: mandantGroup[(typeof(value) === "undefined" ? 0:value)].mandantId,
           };
         }}
+      }
+      if(item.type === "versichertePerson"){
+        mandantGroup.map((mandant)=>{
+          if(value === mandant.mandantId){
+            console.log("drinen")
+            switch (mandantGroup[0].art) {
+              case "MANDANT":
+                output = { ...output, [item.suiteValue]: "m" };
+                break;
+              case "PARTNER":
+                output = { ...output, [item.suiteValue]: "p" };
+                break;
+              case "KIND":
+                output = { ...output, [item.suiteValue]: "k" };
+                break;
+              default:
+                break;
+            }
+          }
+        })
       }
       if (item.type === "toggleButtonGroup") {
         item.menuOptions.map((option) => {
@@ -1250,7 +1271,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
   );
 useEffect(()=>{
 setRequiredFilled(checkRequiredFields(watch(requiredFields)))
-
+console.log(formState.dirtyFields)
 },[formState.dirtyFields])
 function checkRequiredFields(fields){
   let array = []
