@@ -40,6 +40,7 @@ import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
 import FunctionMapper from "./FunctionMapper";
 import { formatMandantName, checkForKind, mapIncomingData } from "./mapAssets";
+import { useEffect } from "react";
 
 function DynamicForm(
   {
@@ -111,7 +112,8 @@ mandantGroup.mandant.nachname
     gehaltInit,
     setGehaltInit,
     setDeletionIndex,
-    setVertragId
+    setVertragId,
+    setRequiredFilled
   } = useContext(Context);
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
@@ -142,7 +144,8 @@ mandantGroup.mandant.nachname
     },
     [watch]
   );
-
+let requiredFields =[]
+let requiredLabels =[]
   const fieldsToWatch = formDefinition.reduce(reduceDefinitionWatchers, []);
   let renderIndex = 0;
   const createFormItemFromDefinitionItem = (item, index) => {
@@ -174,8 +177,8 @@ mandantGroup.mandant.nachname
     } = item;
     const itemDisabled = disabled || item.disabled || !!editWarning;
     const props = compact
-      ? { ...item.props, xs: 12, sm: 12, md: 12, xl: 12 }
-      : item.props;
+      ? {required:false, ...item.props, xs: 12, sm: 12, md: 12, xl: 12 }
+      : {required:false, ...item.props};
 
     if (!values) return null;
 
@@ -184,8 +187,12 @@ mandantGroup.mandant.nachname
       if (!fieldsToWatch[condition]) return null;
     }
   if(suiteValue){
-testArray.push({name:name, type:type, label:label, suiteValue:suiteValue, props:props})
+testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
+if(props.required){
+  requiredFields.push(name)
+  requiredLabels.push(label)
 
+}
   }
     if (!name) {
       const cardContent = (
@@ -411,6 +418,8 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue, props:
                             {gesellschaft.name}
                           </MenuItem>
                         ))}
+                        <MenuItem key="o-sonstiges" value={"sonstiges"}>{"sonstiges"}</MenuItem>
+
                       </Select>
                       {helperText && (
                         <Typography color={"error"} variant={"caption"}>
@@ -585,7 +594,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue, props:
                         <Select
                           autoFocus={focussed}
                           inputRef={ref}
-                          value={versicherungsnehmerValue.index}
+                          value={value}
                           onChange={onChange}
                           label={label}
                           error={!!helperText}
@@ -966,7 +975,6 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue, props:
             default:
               break;
           }
-console.log((typeof(value) === "undefined" ? 0:value))          
           output = {
             ...output,
             versicherungsnehmerId: mandantGroup[(typeof(value) === "undefined" ? 0:value)].mandantId,
@@ -1125,7 +1133,6 @@ if(typeof(dirtyValues[item.name]) !== "undefined"){
   }
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
     let vertragIdSuite = vertragId
-    console.log(vertragId)
     if(vertragId ==="newVertrag"){
       vertragIdSuite = "0"
     }
@@ -1241,7 +1248,30 @@ if(tarifTypeIdFromCardState === "KVZ"){
     },
     [formState.isDirty]
   );
+useEffect(()=>{
+setRequiredFilled(checkRequiredFields(watch(requiredFields)))
 
+},[formState.dirtyFields])
+function checkRequiredFields(fields){
+  let array = []
+  let isUndefined =false
+
+  fields.map((field,index)=>{
+if(typeof field ==="undefined" || field === ""){
+  if(typeof requiredLabels[index] !== "undefined"){
+  array.push(requiredLabels[index])
+  isUndefined =true
+}else if(requiredFields[index].includes("gesellschaft")){
+  array.push("Gesellschaft")
+  isUndefined =true
+} else if(requiredFields[index].includes("showExternalProductId")){
+  array.push("Product ID")
+  isUndefined =true
+} 
+}
+  })
+return({disabled:isUndefined, labelsToBeFilled:array})
+}
   return (
     <form onSubmit={handleSubmit(submitDirtyFields)} style={style}>
       <Grid container spacing={compact ? 1 : 2}>

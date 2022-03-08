@@ -19,3 +19,43 @@
 10. Rentenschätzung - GRV
 
 
+meier sepp (kein Partner, keine Verträge)
+npx browserslist@latest --update-db
+
+mandantId: 14fa034e-1333-11e9-8680-954ab2a00c5a
+analyseId: 15076304-1333-11e9-8680-954ab2a00c5a
+contextId: 23eb4a44-9c81-11e8-a65f-a5ebaa94e5be
+15076304-1333-11e9-8680-954ab2a00c5a
+14fa034e-1333-11e9-8680-954ab2a00c5a
+
+live suite
+mandantId: 5bb62244-c69e-11e6-9d84-001c4254d875
+analyseId: 5bbbdc57-c69e-11e6-9d84-001c4254d875
+contextId: 6de75340-1d4b-11e4-b0c8-df3877acf7d4
+{"angebot_gutachten":false,"angebot_berater":false,"angebot_sonstiges":false,"ersparnis":false,"parentAssetId":"","fremdvertrag":false,"name":"","beschreibung":"","externalProduktId":"P11110000003732","tarifBezeichnung":"","gekuendigtDurch":"","id":"0","mp":"m","gesellschaft":"Barmenia Lebensversicherung","gesellschaftId":"ab0a086a-1334-11e9-8680-954ab2a00c5a","logoname":"","versicherungsnummer":"654","art":"rlv","versicherungssumme":"","versicherungssummeLineare":true,"versicherungsbeginn":"02.03.2022","versicherungsende":"27.03.2022","versichertePerson":"m","versichertePersonSonstige":"","vertragAbgetreten":false,"integrierteBuRenten":"","integrierteBuRentenBetrag":"","beitragsbefreiungBU":false,"motorradfahrer":false,"raucher":false,"zahlweise":"112","beitrag":"9879","bruttobeitrag":"","beitragsanteilBU":"","notizen":""}
+{
+   "angebotsType":"VERTRAG",
+   "parentAssetId":"",
+   "externalProduktId":"",
+   "id":"73c5a015-d2af-4faf-b601-68c73dea89a8",
+   "mp":"m",
+   "art":"nichtselbststaendigeTaetigkeit",
+   "nichtselbststaendigeTaetigkeit":true,
+   "kapitalvermogen":false,
+   "vermietungUndVerpachtung":false,
+   "selbststaendigeTaetigkeit":false,
+   "landUndForstwirtschaft":false,
+   "gewerbebetrieb":false,
+   "sonstigeEinkuenfte22Renten":false,
+   "ausserordentlicheEinkuenfte":false,
+   "steuerfreieEinnahmenUnterProgressionsvorbehalt":false,
+   "steuerfreieEinnahmen":false,
+   "versicherungsbeginn":"04.03.2022",
+   "versicherungsende":"26.03.2022",
+   "sonstigeEinkuenfte":"",
+   "zahlweise":"112",
+   "betrag":"6876",
+   "unterhalt":"",
+   "anzahlProJahr":"",
+   "notizen":""
+}

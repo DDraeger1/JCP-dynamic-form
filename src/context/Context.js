@@ -17,6 +17,7 @@ const [mobileClassname, setMobileClassname] =useState("")
   });
   const [anzahlVp, setAnzahlVp] =useState(1)
 const [vertragId, setVertragId] =useState("newVertrag")
+const [isRequiredFilled, setRequiredFilled] =useState({disabled:false, labelsToBeFilled:[]})
 const [einkommenGehaltBezuege, setEinkommenGehaltBezuege] =useState({
 hinzufuegen:false,
 pressedValue:""
@@ -41,7 +42,8 @@ return (
         bruttoSum , setBruttoSum,
         gehaltInit, setGehaltInit,
         mandantGroup, setMandantGroup,
-        bankverbindungen, setBankverbindungen
+        bankverbindungen, setBankverbindungen,
+        isRequiredFilled, setRequiredFilled
       }}
     >
       {props.children}

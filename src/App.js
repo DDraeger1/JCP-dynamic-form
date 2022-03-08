@@ -14,15 +14,15 @@ import theme from "./theme";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import deLocale from "date-fns/locale/de";
-import { Save,DeleteOutline } from "@material-ui/icons"; // ,RestartAlt
-import { Button, Checkbox, FormControlLabel } from "@material-ui/core";
+import { Save, DeleteOutline } from "@material-ui/icons"; // ,RestartAlt
+
 import mock from "./mockUI/MockUI.png";
-import loadingGIF from "./mockUI/loading.gif"
+import loadingGIF from "./mockUI/loading.gif";
 import axios from "axios";
 import qs from "query-string";
 import personaldaten from "./jsonCards/persoenlicheAngaben/personaldaten.json";
 import chooseCard from "./jsonCards/ui/chooseCard.json";
-
+import { Tooltip, Button } from "@mui/material";
 import debugMenue from "./jsonCards/debug/debugMenue.json";
 
 import kindVorhanden from "./jsonCards/persoenlicheAngaben/kinderVorhanden.json";
@@ -1454,18 +1454,10 @@ function App(props) {
     setMandantGroup,
     bankverbindungen,
     setBankverbindungen,
+    isRequiredFilled,
   } = useContext(Context);
-  /*
-  suite mapped:
-chooseCard
+  console.log(isRequiredFilled);
 
-
-Values not Mapped 
-
- = {
-    ...kapitalversicherungValues,
-  };C:\Users\draeg\Documents\newSuite\JCPIS_ANALYSE\src\main\java\de\jcpis\analyse\presentation\GesellschaftController.java
-*/
   //note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
   const params = useParams();
   const [card, setCard] = useState(params.card);
@@ -1715,16 +1707,16 @@ Values not Mapped
           setIsBusy(false);
           setTimeout(() => {
             setLoaded(true);
-          setInitialised(true);
-        }, 100);
+            setInitialised(true);
+          }, 100);
         } else {
           setInitialised(false);
           getDataLiveSuite();
           setIsBusy(false);
           setTimeout(() => {
             setLoaded(true);
-          setInitialised(true);
-        }, 100);
+            setInitialised(true);
+          }, 100);
         }
       } catch (e) {
         console.warn(e);
@@ -1999,7 +1991,7 @@ Values not Mapped
       });
 
     function getDataWithLogin(login) {
-      setLogin(login)
+      setLogin(login);
       Promise.all([
         axios(requestOptionsMandantLiveSuite(login)),
         axios(requestOptionsAnalyseAssetsLiveSuite(login)),
@@ -2097,7 +2089,6 @@ Values not Mapped
 
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
-
       isAssetAvailable(
         rawData,
         setFormData,
@@ -2164,38 +2155,38 @@ Values not Mapped
 */
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
-      if(vertragId.length >1){
+      if (vertragId.length > 1) {
         Promise.all([
           axios(requestOptionsGesellschaftIdLiveSuite(login)),
-          axios(getProductIdLiveSuite(login))
+          axios(getProductIdLiveSuite(login)),
         ]).then((result) => {
           setRawData({
             ...rawData,
             gesellschaft: result[0].data,
             productId: result[1].data.data,
           });
-        })
-      isAssetAvailable(
-        rawData,
-        setFormData,
-        dummyData,
-        setLoaded,
-        vertragId,
-        card,
-        setVersicherungsnehmerValue,
-        rawData.contextProductId.contextConfig.desktop.showExternalProductId,
-        setAnzahlVp,
-        bankverbindungen,
-        setBankverbindungen
-      );
-      setTimeout(() => {
-        setLoaded(false);
-      }, 100);
-      setTimeout(() => {
-        setLoaded(true);
-      }, 500);
+        });
+        isAssetAvailable(
+          rawData,
+          setFormData,
+          dummyData,
+          setLoaded,
+          vertragId,
+          card,
+          setVersicherungsnehmerValue,
+          rawData.contextProductId.contextConfig.desktop.showExternalProductId,
+          setAnzahlVp,
+          bankverbindungen,
+          setBankverbindungen
+        );
+        setTimeout(() => {
+          setLoaded(false);
+        }, 100);
+        setTimeout(() => {
+          setLoaded(true);
+        }, 500);
+      }
     }
-  }
   }, [vertragId]);
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
@@ -2604,7 +2595,6 @@ Values not Mapped
       setTimeout(() => {
         setLoaded(true);
       }, 100);
-
     } else {
       toggleDebug(true);
       jsonForm.push(debugMenue);
@@ -2614,10 +2604,27 @@ Values not Mapped
       }, 100);
     }
   }
-
+  function mapRequiredFields() {
+    let output = "Diese Felder müssen noch gefüllt werden: ";
+    isRequiredFilled.labelsToBeFilled.map((label, index) => {
+      if (index < isRequiredFilled.labelsToBeFilled.length - 1) {
+        output = output + label + ", ";
+      } else {
+        output = output + label;
+      }
+    });
+    return output;
+  }
+  console.log(isRequiredFilled)
   return (
     <div style={{ backgroundColor: "#eeeeee" }}>
-      {!loaded ? <div style={{height:"95vh", width:"100vw",backgroundColor: "#f1f2f3"}}><img className="loadingGIF" src={loadingGIF} /></div> : (
+      {!loaded ? (
+        <div
+          style={{ height: "95vh", width: "100vw", backgroundColor: "#f1f2f3" }}
+        >
+          <img className="loadingGIF" src={loadingGIF} />
+        </div>
+      ) : (
         <ThemeProvider theme={theme}>
           <MuiPickersUtilsProvider
             utils={DateFnsUtils}
@@ -2640,7 +2647,7 @@ Values not Mapped
                 // die eigentlichen Daten
                 values={formData}
                 // die Formular-Definition
-                formDefinition={[debugMenue,jsonForm[0]]}
+                formDefinition={[debugMenue, jsonForm[0]]}
                 mandantGroup={rawData.mandantGroup}
                 gesellschaft={rawData.gesellschaft}
                 assets={rawData.analyseAssets}
@@ -2656,39 +2663,41 @@ Values not Mapped
               {ref.isDirty}
             </div>
             <Button
-        variant={"outlined"}
-        color={"primary"}
-      
-        disabled={isBusy}
-        onClick={handleSave}
-        className="delete"
-      >z
-      </Button>
-      <Button
-        variant={"outlined"}
-        color={"primary"}
-        disabled={isBusy}
-        onClick={handleSave}
-        className="reset"
-      >
-        <DeleteOutline style={{color:"white"}} />
-      </Button>
-      <Button
-        variant={"outlined"}
-        color={"primary"}
-  
-        disabled={isBusy}
-        onClick={handleSave}
-        className="save"
-      >
-        <Save style={{color:"white"}}/>
-      </Button>
+              variant={"outlined"}
+              color={"primary"}
+              disabled={isBusy}
+              onClick={handleSave}
+              className="delete"
+            >
+              z
+            </Button>
+            <Button
+              variant={"outlined"}
+              color={"primary"}
+              disabled={isBusy}
+              onClick={handleSave}
+              className="reset"
+            >
+              <DeleteOutline style={{ color: "white" }} />
+            </Button>
+            <Button
+              variant={"outlined"}
+              color={"primary"}
+              disabled={isRequiredFilled.disabled}
+              onClick={handleSave}
+              className="save"
+              style={isRequiredFilled.disabled ? { pointerEvents: "none" } : {}}
+            >
+              <Save style={{ color: "white" }} />
+            </Button>
           </MuiPickersUtilsProvider>
-        
-          
-
-      </ThemeProvider>
+        </ThemeProvider>
       )}
+      <Tooltip
+        title={isRequiredFilled.disabled ? mapRequiredFields() : "Speichern"}
+      >
+        <div className="save" />
+      </Tooltip>
     </div>
   );
 }

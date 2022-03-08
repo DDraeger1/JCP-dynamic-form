@@ -1725,7 +1725,9 @@ function dateFormater(date) {
       }
     }
   }
-  return output;
+
+
+  return new Date(output);
 }
 function checkIfPersonendaten(card) {
   let output = false;
@@ -3598,7 +3600,7 @@ console.log(output)
         fallsSonstigeGesetzlicheAltersvorsorge:
           cardTemplateData.gesellschaftSonstige,
         datumRentenbeginnGesetzlicheAltersvorsorge: dateFormater(
-          cardTemplateData.rentenbeginn
+          cardTemplateData.versicherungsbeginn
         ),
         volleErwerbsminderungsrenteGesetzlicheAltersvorsorge:
           cardTemplateData.volleErwerbsminderungsrente,
@@ -4013,7 +4015,9 @@ output=einnahmeart.name
         gesellschaftBankprodukte: cardTemplateData.gesellschaft,
         tarifbezeichnungBankprodukte: cardTemplateData.tarifBezeichnung,
         vertragsnummerBankprodukte: cardTemplateData.versicherungsnummer,
-        vertragsinhaberBankprodukte: "Placeholder",
+        vertragsinhaberBankprodukte: mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
         artVertragsinhaberBankprodukte: cardTemplateData.anlageart,
         aktuellerWertVertragsinhaberBankprodukte: cardTemplateData.wert,
         einmalbetraegeVertragsinhaberBankprodukte:
@@ -4042,7 +4046,9 @@ output=einnahmeart.name
         gesellschaftVwlUndBausparen: cardTemplateData.gesellschaft,
         tarifbezeichnungVwlUndBausparen: cardTemplateData.tarifBezeichnung,
         vertragsnummerVwlUndBausparen: cardTemplateData.versicherungsnummer,
-        vertragsinhaberVwlUndBausparen: "Placeholder",
+        vertragsinhaberVwlUndBausparen: mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
         artVertragsinhaberVwlUndBausparen: cardTemplateData.art,
         besparungDurchVertragsinhaberVwlUndBausparen:
           cardTemplateData.besparungDurch,
@@ -4088,7 +4094,7 @@ output=einnahmeart.name
       console.log(cardTemplateData);
       output = {
         initMandantValue: checkForBeide(cardTemplateData),
-        eigentuemerImmobilienbestand: "Placeholder",
+        eigentuemerImmobilienbestand: checkForBeide(cardTemplateData),
         objektzuordnungEigentuemerImmobilienbestand:
           cardTemplateData.objektnotizen,
         immobilienartEigentuemerImmobilienbestand:
@@ -4147,7 +4153,9 @@ output=einnahmeart.name
         tarifbezeichnungBeteiligungenAiF: cardTemplateData.tarifBezeichnung,
         vertragsnummerBeteiligungenAiF: cardTemplateData.versicherungsnummer,
         verwendungszweckBeteiligungenAiF: cardTemplateData.verwendungszweck,
-        vertragsinhabergesellschaftBeteiligungenAiF: "Placeholder",
+        vertragsinhabergesellschaftBeteiligungenAiF: mandantMapper(
+          cardTemplateData.versicherungsnehmerId
+        ),
         investitionsthemaVertragsinhabergesellschaftBeteiligungenAiF: "",
         zeichnungssummeVertragsinhabergesellschaftBeteiligungenAiF: "",
         beginnVertragsinhabergesellschaftBeteiligungenAiF: "",
@@ -4434,7 +4442,9 @@ output=einnahmeart.name
           cardTemplateData.tarifBezeichnung,
         vertragsnummerGesellschaftTodesfall:
           cardTemplateData.versicherungsnummer,
-        versicherungsnehmerTodesfall: "Placeholder",
+        versicherungsnehmerTodesfall: mandantMapper(
+          cardTemplateData.versicherungsnehmerId
+        ),
         versichertePersonTodesfall:
           checkForBeideVersichertePersonGroup(cardTemplateData),
         vertragsbeginnVertragslaufzeitTodesfall: dateFormater(
@@ -4469,7 +4479,9 @@ output=einnahmeart.name
         gesellschaftSchwereKrankheiten: cardTemplateData.gesellschaft,
         TarifbezeichnungGesellschaftSchwereKrankheiten:
           cardTemplateData.tarifBezeichnung,
-        versicherungsnehmerSchwereKrankheiten: "Placeholder",
+        versicherungsnehmerSchwereKrankheiten: mandantMapper(
+          cardTemplateData.versicherungsnehmerId
+        ),
         versichertePersonSchwereKrankheiten:
           cardTemplateData.versichertePersonId,
         vertragsbeginnVertragslaufzeitSchwereKrankheiten: dateFormater(
@@ -4508,7 +4520,9 @@ output=einnahmeart.name
         vertragsnummerPrivatePflegeversicherung:
           cardTemplateData.versicherungsnummer,
         artPrivatePflegeversicherung: cardTemplateData.art,
-        versicherungsnehmerPrivatePflegeversicherung: "Placeholder",
+        versicherungsnehmerPrivatePflegeversicherung: mandantMapper(
+          cardTemplateData.versicherungsnehmerId
+        ),
         versichertePersonPrivatePflegeversicherung:
           cardTemplateData.versichertePersonId,
         vertragsbeginnVertragslaufzeitPrivatePflegeversicherung: dateFormater(
@@ -4567,7 +4581,9 @@ output=einnahmeart.name
           cardTemplateData.tarifBezeichnung,
         vertragsnummerGesetzlicheKrankenversicherung:
           cardTemplateData.versicherungsnummer,
-        vertragsnehmerGesetzlicheKrankenversicherung: "Placeholder",
+        vertragsnehmerGesetzlicheKrankenversicherung: mandantMapper(
+          cardTemplateData.versicherungsnehmerId
+        ),
         statusGesetzlicheKrankenversicherung: cardTemplateData.status,
         mitKTGGesetzlicheKrankenversicherung: cardTemplateData.mitKT,
         aufKTHoeheVonGesetzlicheKrankenversicherung: cardTemplateData.kTHoehe,
