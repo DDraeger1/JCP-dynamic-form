@@ -295,7 +295,7 @@ function isAssetAvailable(
               }
             }
             if (!vertragFound && vertragId === "newVertrag") {
-              cardValues = {}
+              cardValues = {initMandantValue:0}
              }
           });
         } else {

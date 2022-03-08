@@ -14,14 +14,12 @@ import theme from "./theme";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import deLocale from "date-fns/locale/de";
-import { Save } from "@material-ui/icons";
+import { Save,DeleteOutline } from "@material-ui/icons"; // ,RestartAlt
 import { Button, Checkbox, FormControlLabel } from "@material-ui/core";
 import mock from "./mockUI/MockUI.png";
 import loadingGIF from "./mockUI/loading.gif"
-
 import axios from "axios";
 import qs from "query-string";
-
 import personaldaten from "./jsonCards/persoenlicheAngaben/personaldaten.json";
 import chooseCard from "./jsonCards/ui/chooseCard.json";
 
@@ -1721,7 +1719,7 @@ Values not Mapped
         }, 100);
         } else {
           setInitialised(false);
-          getData();
+          getDataLiveSuite();
           setIsBusy(false);
           setTimeout(() => {
             setLoaded(true);
@@ -1744,7 +1742,7 @@ Values not Mapped
     // simuliere einen etwas länger dauernden speichervorgang
     console.log(dataPaket);
     axios
-      .post(saveAsset.url, dataPaket, saveAsset)
+      .post(saveAssetLiveSuite(login).url, dataPaket, saveAssetLiveSuite(login))
       .then((response) => {
         console.log(response);
       })
@@ -2099,7 +2097,7 @@ Values not Mapped
 
   useEffect(() => {
     if (rawData.success === true && initialised === false) {
-      console.log("drin")
+
       isAssetAvailable(
         rawData,
         setFormData,
@@ -2125,7 +2123,7 @@ Values not Mapped
       }, 500);
     }
   }, [rawData.success]);
-  console.log(initialised) 
+
   /*
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
@@ -2601,12 +2599,12 @@ Values not Mapped
   function showDebug() {
     if (debug) {
       toggleDebug(false);
-      jsonForm.splice(1, 1);
+      jsonForm.splice(0, 1);
       setLoaded(false);
       setTimeout(() => {
         setLoaded(true);
       }, 100);
-      console.log(debug)
+
     } else {
       toggleDebug(true);
       jsonForm.push(debugMenue);
@@ -2614,10 +2612,9 @@ Values not Mapped
       setTimeout(() => {
         setLoaded(true);
       }, 100);
-      console.log(jsonForm)
     }
   }
-  console.log(loaded)
+
   return (
     <div style={{ backgroundColor: "#eeeeee" }}>
       {!loaded ? <div style={{height:"95vh", width:"100vw",backgroundColor: "#f1f2f3"}}><img className="loadingGIF" src={loadingGIF} /></div> : (
@@ -2627,31 +2624,7 @@ Values not Mapped
             locale={deLocale}
             className="mock4"
           >
-            <FormControlLabel
-              control={
-                <Checkbox
-                  value={isMock}
-                  onChange={() => {
-                    showMock();
-                  }}
-                  style={{ position: "relative" }}
-                ></Checkbox>
-              }
-              label="toggle Mock"
-            />
-                <Button
-                  onChange={() => {
-                    showDebug();
-                  }}
-                  style={{ position: "relative" }}
-                >toggle Debug
-                </Button>
-            <img
-              src={mock}
-              style={{ display: isMock.showImage }}
-              className="mock"
-            />
-            <div style={{ ...isMock.style }}>
+            <div className="card">
               <DynamicForm
                 // Das gesamte Formular kann deaktiviert werden (read-only)
                 disabled={isBusy}
@@ -2682,18 +2655,38 @@ Values not Mapped
               />
               {ref.isDirty}
             </div>
-          </MuiPickersUtilsProvider>
-        
+            <Button
+        variant={"outlined"}
+        color={"primary"}
       
+        disabled={isBusy}
+        onClick={handleSave}
+        className="delete"
+      >z
+      </Button>
       <Button
         variant={"outlined"}
         color={"primary"}
-        endIcon={<Save />}
         disabled={isBusy}
         onClick={handleSave}
+        className="reset"
       >
-        Angaben speichern
+        <DeleteOutline style={{color:"white"}} />
       </Button>
+      <Button
+        variant={"outlined"}
+        color={"primary"}
+  
+        disabled={isBusy}
+        onClick={handleSave}
+        className="save"
+      >
+        <Save style={{color:"white"}}/>
+      </Button>
+          </MuiPickersUtilsProvider>
+        
+          
+
       </ThemeProvider>
       )}
     </div>

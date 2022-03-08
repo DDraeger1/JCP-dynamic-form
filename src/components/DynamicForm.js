@@ -60,9 +60,31 @@ function DynamicForm(
   },
   ref
 ) {
-  console.log(gesellschaft);
+
   const [isInitialized, toggleInitialized] = useState(false);
 let testArray = []
+function checkForCustomInput(options,value,type){
+  let output= ""
+  let foundMatch = false
+  options.map((option)=>{
+    if(type==="select" || "selectToBeMapped"){
+if(option.label === value || option.value === value){
+  foundMatch = true
+}}
+if(type ==="produktid"){
+if(option.name === value || option.productId === value){
+  foundMatch = true
+}}
+if(type ==="gesellschaft"){
+if(option.name === value){
+  foundMatch = true
+}}
+})
+if(!foundMatch){
+  output = value}
+
+  return(output)
+}
 function formatSelectIds(){
   let output =[]
   let name = ""
@@ -162,7 +184,8 @@ mandantGroup.mandant.nachname
       if (!fieldsToWatch[condition]) return null;
     }
   if(suiteValue){
-testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
+testArray.push({name:name, type:type, label:label, suiteValue:suiteValue, props:props})
+
   }
     if (!name) {
       const cardContent = (
@@ -350,7 +373,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                         onChange={onChange}
                         error={!!helperText}
                       >
-                        <MenuItem key="o" value={""}></MenuItem>
+                        <MenuItem key="o" value={checkForCustomInput(options,value,type)}>{checkForCustomInput(options,value,type)}</MenuItem>
                         {productId.map((productId, index) => (
                           <MenuItem
                             key={"o-" + index}
@@ -379,7 +402,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                         disabled={itemDisabled}
                         error={!!helperText}
                       >
-                        <MenuItem key="o" value={""}></MenuItem>
+                        <MenuItem key="o" value={checkForCustomInput(options,value,type)}>{checkForCustomInput(options,value,type)}</MenuItem>
                         {gesellschaft.data.map((gesellschaft, index) => (
                           <MenuItem
                             key={"o-" + index}
@@ -398,7 +421,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                   );
                 case "select":
                   return (
-                    <FormControl fullWidth size={"small"}>
+                    <FormControl fullWidth size={"small"}{...props}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -409,10 +432,11 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                         }}
                         label={label}
                         error={!!helperText}
+                        {...props}
                         disabled={itemDisabled}
                       >
-                        <MenuItem key="o" value={""}>
-                        <input type="text" >{" "}</input>
+                        <MenuItem key="o" value={checkForCustomInput(options,value,type)}>
+                          {checkForCustomInput(options,value,type)}
                         </MenuItem>
                         {options.map((option, index) =>
                           anzahlVp === "true" ? (
@@ -421,7 +445,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                               key={"o-" + index}
                               value={option.value}
                             >
-                              <input type="text" >  {option.label}</input>
+                              {option.label}
                             </MenuItem>
                           ) : (
                             <MenuItem key={"o-" + index} value={option.value}>
@@ -439,7 +463,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                   );
                 case "selectToBeMapped":
                   return (
-                    <FormControl fullWidth size={"small"}>
+                    <FormControl fullWidth size={"small"}{...props}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -450,10 +474,11 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                         }}
                         label={label}
                         error={!!helperText}
+                        {...props}
                         disabled={itemDisabled}
                       >
-                        <MenuItem key="o" value={""}>
-                          {" "}
+                        <MenuItem key="o" value={checkForCustomInput(options,value,type)}>
+                        {checkForCustomInput(options,value,type)}
                         </MenuItem>
                         {mapIncomingData(name, assets).map((option, index) =>
                           anzahlVp === "true" ? (
@@ -484,7 +509,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                   */
                 case "bAVSelect":
                   return (
-                    <FormControl fullWidth size={"small"}>
+                    <FormControl fullWidth size={"small"}{...props}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -492,6 +517,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                         value={value}
                         onChange={onChange}
                         label={label}
+                        {...props}
                         error={!!helperText}
                         disabled={vertragId === "newVertrag" ? false : true}
                       >
@@ -524,7 +550,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                   );
                 case "personArray":
                   return (
-                    <FormControl fullWidth size={"small"}>
+                    <FormControl fullWidth size={"small"}{...props}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -554,7 +580,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                 case "selectMandant":
                   return (
                     <div>
-                      <FormControl fullWidth size={"small"}>
+                      <FormControl fullWidth size={"small"}{...props}>
                         <InputLabel>{label}</InputLabel>
                         <Select
                           autoFocus={focussed}
@@ -607,7 +633,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                 case "selectVersichert":
                   return (
                     <div>
-                      <FormControl fullWidth size={"small"}>
+                      <FormControl fullWidth size={"small"}{...props}>
                         <InputLabel>{label}</InputLabel>
                         <Select
                           autoFocus={focussed}
@@ -655,7 +681,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                   );
                 case "radioGroup":
                   return (
-                    <FormControl fullWidth size={"small"}>
+                    <FormControl fullWidth size={"small"}{...props}>
                       <RadioGroup name="radio-buttons-group">
                         {options.map((option, index) => {
                           <FormControlLabel
@@ -717,7 +743,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                       error={!!error}
                       helperText={helperText}
                       fullWidth
-                      size={"small"}
+                      size={"small"}{...props}
                       InputProps={{
                         endAdornment: unit && (
                           <InputAdornment position={"end"}>
@@ -737,7 +763,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                       disableToolbar
                       format="dd.MM.yyyy"
                       fullWidth
-                      size={"small"}
+                      size={"small"}{...props}
                       label={label}
                       KeyboardButtonProps={{
                         "aria-label": "Datum wählen",
@@ -787,7 +813,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                       error={!!error}
                       helperText={helperText}
                       fullWidth
-                      size={"small"}
+                      size={"small"}{...props}
                       InputProps={{
                         endAdornment: unit && (
                           <InputAdornment position={"end"}>
@@ -837,7 +863,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
                   <Grid item xs={1} style={{ padding: 4 }}>
                     <IconButton
                       color={"primary"}
-                      size={"small"}
+                      size={"small"}{...props}
                       onClick={() => {
                         const result = window.prompt(
                           editWarning + "\n\nGeben Sie einen neuen Wert an:",
@@ -861,6 +887,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
     let output = {}
     testArray.forEach((item) => {
         output = { ...output, ...translateToSuiteData(item, item.name, values[item.name]) }
+
     })
     return output;
   }
@@ -904,8 +931,9 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
           }
         }
         if (item.type === "selectMandant") {
-          if(value !== "Placeholder" && value.length >1){
-            if(typeof(value) !== "undefined"){
+          if(typeof(value) !== "undefined"){
+            if(value !== "Placeholder" && value.length >1){
+            
 //TODO: Wenn assetId´s hinzugefügt werden, diese methode löschen!
             switch (mandantGroup[value].art) {
               case "MANDANT":
@@ -925,7 +953,7 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
               versicherungsnehmerId: mandantGroup[value].mandantId,
             };
           }} else{
-          switch (mandantGroup[values.initMandantValue].art) {
+          switch (mandantGroup[0].art) {
             case "MANDANT":
               output = { ...output, mp: "m" };
               break;
@@ -938,9 +966,10 @@ testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
             default:
               break;
           }
+console.log((typeof(value) === "undefined" ? 0:value))          
           output = {
             ...output,
-            versicherungsnehmerId: mandantGroup[values.initMandantValue].mandantId,
+            versicherungsnehmerId: mandantGroup[(typeof(value) === "undefined" ? 0:value)].mandantId,
           };
         }}
       }
@@ -1081,23 +1110,22 @@ if(typeof(dirtyValues[item.name]) !== "undefined"){
   }
   function dateFormaterSuite(date) {
     let output = "";
-    console.log(typeof(date))
-    console.log(date)
 
     if(typeof(date) !== "undefined"){
     if(typeof(date) === "object"){
       output =date.toLocaleDateString("de-EU")
-      console.log(output)
+
 
   } else {
     output = date
   }}
-  console.log(output)
+
 
     return output;
   }
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
     let vertragIdSuite = vertragId
+    console.log(vertragId)
     if(vertragId ==="newVertrag"){
       vertragIdSuite = "0"
     }
@@ -1147,7 +1175,6 @@ if(tarifTypeIdFromCardState === "KVZ"){
     });
     return output;
   }
-
   const submitDirtyFields = async (values) => {
     if (Object.keys(formState.dirtyFields).length === 0) return false;
 

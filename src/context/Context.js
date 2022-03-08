@@ -16,7 +16,7 @@ const [mobileClassname, setMobileClassname] =useState("")
     tarifTypeId: "none",
   });
   const [anzahlVp, setAnzahlVp] =useState(1)
-const [vertragId, setVertragId] =useState("")
+const [vertragId, setVertragId] =useState("newVertrag")
 const [einkommenGehaltBezuege, setEinkommenGehaltBezuege] =useState({
 hinzufuegen:false,
 pressedValue:""

@@ -12,3 +12,35 @@
 top:40vh;
 left:44vw;
     }
+    .card{
+      background-color: #eeeeee;
+      width: 85vw;
+margin-left: 7vw;
+    }    
+    .save{
+      position:fixed !important;
+      left:93.8vw;
+      height: 60px;
+      width: 60px;
+      color: #65cdef;
+      bottom:50px;
+      border-radius: 50px !important;
+    }
+    .delete{
+      position:fixed !important;
+      left:93.8vw;
+      height: 60px;
+      width: 60px;
+      bottom:190px;
+      background-color: #65cdef;
+      border-radius: 50px !important;
+    }
+    .reset{
+      position:fixed !important;
+      background-color: #65cdef;
+      left:93.8vw;
+      height: 60px;
+      width: 60px;
+      bottom:120px;
+      border-radius: 50px !important;
+    }
