@@ -56,15 +56,16 @@
       "props": { "required": true, "sm":6 ,
         "xs":6},
       "options": [
-        { "value": 0, "label": "Immobilienfonds" },
-        { "value": 1, "label": "Infrastruktur" },
-        { "value": 2, "label": "Private Equity" },
-        { "value": 3, "label": "Containerfonds" },
-        { "value": 4, "label": "Umweltfonds" },
-        { "value": 5, "label": "erneuerbare Energien" },
-        { "value": 6, "label": "Medienfonds" },
-        { "value": 7, "label": "Lebensversicherungs Fonds" },
-        { "value": 8, "label": "Sonstiges" }
+        { "value": "Schiffsbeteiligung", "label": "Schiffsbeteiligung" },
+        { "value": "Medienfonds", "label": "Medienfonds" },
+        { "value": "geschlossene Immobilienfonds", "label": "geschlossene Immobilienfonds" },
+        { "value": "Windfonds", "label": "Windfonds" },
+        { "value": "Umweltfonds", "label": "Umweltfonds" },
+        { "value": "LebensversicherungsFonds", "label": "Lebensversicherungsfonds" },
+        { "value": "Containerfonds", "label": "Containerfonds" },
+        { "value": "Infrastruktur", "label": "Infrastruktur" },
+        { "value": "Private Equity", "label": "Private Equity" },
+        { "value": "Sonstige", "label": "Sonstige" }
       ]
     },
     {
