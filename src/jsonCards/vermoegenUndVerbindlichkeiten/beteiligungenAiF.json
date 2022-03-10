@@ -42,7 +42,7 @@
       "type": "header"
     },
     {
-      "name": "vertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "vertragsinhaberBeteiligungenAiF",
       "label": "Vertragsinhaber",
       "type": "selectMandant",
       "versicherungsnehmerBeide":"true",
@@ -50,7 +50,7 @@
       "props": { "required": true }
     },
     {
-      "name": "investitionsthemaVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "investitionsthemaVertragsinhaberBeteiligungenAiF",
       "label": "Investitionsthema",
       "type": "select",
       "props": { "required": true, "sm":6 ,
@@ -68,54 +68,54 @@
       ]
     },
     {
-      "name": "zeichnungssummeVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "zeichnungssummeVertragsinhaberBeteiligungenAiF",
       "label": "Zeichnungssumme (€)",
       "type": "text"
     },
     {
-      "name": "beginnVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "beginnVertragsinhaberBeteiligungenAiF",
       "label": "Beginn",
       "type": "date",
       "props": { "sm": 6 ,
         "xs":6}
     },
     {
-      "name": "endeVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "endeVertragsinhaberBeteiligungenAiF",
       "label": "Ende",
       "type": "date",
       "props": { "sm": 6,
         "xs":6}
     },
     {
-      "name": "einmalbeitragVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "einmalbeitragVertragsinhaberBeteiligungenAiF",
       "label": "Einmalbeitrag (€)",
       "type": "text",
       "props": { "sm": 6 ,
         "xs":6}
     },
     {
-      "name": "beitragVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "beitragVertragsinhaberBeteiligungenAiF",
       "label": "Beitrag (€)",
       "type": "text",
       "props": { "sm": 6 ,
         "xs":6}
     },
     {
-      "name": "jaehrlAusschuettungVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "jaehrlAusschuettungVertragsinhaberBeteiligungenAiF",
       "label": "jährl. Ausschüttung ca. (€)",
       "type": "text",
       "props": { "sm": 6,
         "xs":6 }
     },
     {
-      "name": "aktuellerWertVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "aktuellerWertVertragsinhaberBeteiligungenAiF",
       "label": "Aktueller Wert (€)",
       "type": "text",
       "props": { "sm": 6,
         "xs":6 }
     },
     {
-      "name": "zumVertragsinhaberProduktIDBeteiligungenAiF",
+      "name": "zumVertragsinhaberBeteiligungenAiF",
       "label": "... zum",
       "type": "date"
     }

@@ -4157,25 +4157,26 @@ output=einnahmeart.name
         tarifbezeichnungBeteiligungenAiF: cardTemplateData.tarifBezeichnung,
         vertragsnummerBeteiligungenAiF: cardTemplateData.versicherungsnummer,
         verwendungszweckBeteiligungenAiF: cardTemplateData.verwendungszweck,
-        vertragsinhabergesellschaftBeteiligungenAiF: mandantMapper(
+        vertragsinhaberBeteiligungenAiF: mandantMapper(
           cardTemplateData.versicherungsnehmerId
         ),
-        investitionsthemaVertragsinhabergesellschaftBeteiligungenAiF: "",
-        zeichnungssummeVertragsinhabergesellschaftBeteiligungenAiF: "",
-        beginnVertragsinhabergesellschaftBeteiligungenAiF: "",
-        endeVertragsinhabergesellschaftBeteiligungenAiF: "",
-        einmalbeitragVertragsinhabergesellschaftBeteiligungenAiF:
+        investitionsthemaVertragsinhaberBeteiligungenAiF: cardTemplateData.anlageform,
+        zeichnungssummeVertragsinhaberBeteiligungenAiF: cardTemplateData.beteiligungssumme,
+        beginnVertragsinhaberBeteiligungenAiF: dateFormater(cardTemplateData.versicherungsbeginn),
+        endeVertragsinhaberBeteiligungenAiF: dateFormater(cardTemplateData.versicherungsende),
+        einmalbeitragVertragsinhaberBeteiligungenAiF:
           cardTemplateData.einmalbeitrag,
-        beitragVertragsinhabergesellschaftBeteiligungenAiF:
+        beitragVertragsinhaberBeteiligungenAiF:
           cardTemplateData.beitrag,
-        jaehrlAusschuettungVertragsinhabergesellschaftBeteiligungenAiF:
+        jaehrlAusschuettungVertragsinhaberBeteiligungenAiF:
           cardTemplateData.prognose,
-        aktuellerWertVertragsinhabergesellschaftBeteiligungenAiF:
+        aktuellerWertVertragsinhaberBeteiligungenAiF:
           cardTemplateData.wert,
-        zumVertragsinhabergesellschaftBeteiligungenAiF: dateFormater(
+        zumVertragsinhaberBeteiligungenAiF: dateFormater(
           cardTemplateData.wertZum
         ),
       };
+
       break;
     case "BU":
       console.log(cardTemplateData);
@@ -5677,15 +5678,14 @@ output=einnahmeart.name
       break;
     default:
       break;
-  }}
-
+  }
 
   if (!checkIfPersonendaten(card) ) {
     output = {
       ...output,
       externalProduktId: cardTemplateData.externalProduktId,
     };
-  }
+  }}
   return output;
 }
 export default setAssetWithTariftype;

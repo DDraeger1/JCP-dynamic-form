@@ -113,7 +113,8 @@
             "label": "Vertragsbeginn",
             "type": "date",
             "props": { "sm": 6,
-              "xs":6 },
+              "xs":6,
+              "required":true },
               "suiteValue":"versicherungsbeginn"
           },
           {

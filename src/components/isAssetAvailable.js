@@ -317,6 +317,7 @@ function isAssetAvailable(
       }
     }}}}}}
   }
+  console.log(cardValues)
   setFormData({
     showExternalProductId:booleanFormater(showExternalProductId),
     ...cardValues,

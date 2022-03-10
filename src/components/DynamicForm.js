@@ -1265,6 +1265,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
     });
     return output;
   }
+  console.log(watch())
   const submitDirtyFields = async (values) => {
     if (Object.keys(formState.dirtyFields).length === 0) return false;
 
