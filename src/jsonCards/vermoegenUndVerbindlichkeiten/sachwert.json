@@ -33,7 +33,6 @@
         {
           "name": "vertragsnummerVertragspartnerSachwert",
           "label": "Vertragsnummer",
-          "props": { "required": true },
           "type": "text"
         }]},
         {

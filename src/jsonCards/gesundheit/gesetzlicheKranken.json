@@ -29,7 +29,7 @@
             "name": "vertragsnummerGesetzlicheKrankenversicherung",
             "label": "Vertragsnummer",
             "type": "text",
-            "props":{"required":true, "sm":6,
+            "props":{ "sm":6,
               "xs":6},
               "suiteValue":"versicherungsnummer"
           },
@@ -94,6 +94,10 @@
               "xs":6},
               "suiteValue":"versicherungsbeginn"
           },
+          {"name": "beitragGesetzlicheKrankenversicherung",
+          "label":"beitrag (inkl. Arbeitgeberanteil)",
+        "type":"text",
+      "suiteValue":"beitrag"},
           {
             "name": "GKVZusatzbeitragGesetzlicheKrankenversicherung",
             "label": "GKV-Zusatzbeitrag",

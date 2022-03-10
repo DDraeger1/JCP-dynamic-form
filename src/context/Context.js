@@ -26,6 +26,7 @@ const [bruttoSum , setBruttoSum] = useState({scrollY:0})
 const [gehaltInit, setGehaltInit] = useState(false);
 const [bankverbindungen, setBankverbindungen] = useState()
 const [mandantGroup, setMandantGroup] = useState([]) 
+const [forceUseEffect, setForceUseEffect] = useState(0)
 return (
     <Context.Provider
       value={{
@@ -43,7 +44,8 @@ return (
         gehaltInit, setGehaltInit,
         mandantGroup, setMandantGroup,
         bankverbindungen, setBankverbindungen,
-        isRequiredFilled, setRequiredFilled
+        isRequiredFilled, setRequiredFilled,
+        forceUseEffect, setForceUseEffect
       }}
     >
       {props.children}

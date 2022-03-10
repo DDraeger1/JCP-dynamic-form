@@ -22,7 +22,7 @@
     {
       "name": "vertragsnummerWertpapiere",
       "label": "Vertragsnummer",
-      "props": { "required": true, "sm":6,
+      "props": {  "sm":6,
         "xs":6 },
       "type": "text"
     },

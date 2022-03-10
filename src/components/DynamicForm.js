@@ -57,48 +57,54 @@ function DynamicForm(
     assets,
     params,
     id,
-    setCard
+    setCard,
   },
   ref
 ) {
-
   const [isInitialized, toggleInitialized] = useState(false);
-let testArray = []
-function checkForCustomInput(options,value,type){
-  let output= ""
-  let foundMatch = false
-  options.map((option)=>{
-    if(type==="select" || "selectToBeMapped"){
-if(option.label === value || option.value === value){
-  foundMatch = true
-}}
-if(type ==="produktid"){
-if(option.name === value || option.productId === value){
-  foundMatch = true
-}}
-if(type ==="gesellschaft"){
-if(option.name === value){
-  foundMatch = true
-}}
-})
-if(!foundMatch){
-  output = value}
+  let testArray = [];
+  function checkForCustomInput(options, value, type) {
+    let output = "";
+    let foundMatch = false;
+    options.map((option) => {
+      if (type === "select" || "selectToBeMapped") {
+        if (option.label === value || option.value === value) {
+          foundMatch = true;
+        }
+      }
+      if (type === "produktid") {
+        if (option.name === value || option.productId === value) {
+          foundMatch = true;
+        }
+      }
+      if (type === "gesellschaft") {
+        if (option.name === value) {
+          foundMatch = true;
+        }
+      }
+    });
+    if (!foundMatch) {
+      output = value;
+    }
 
-  return(output)
-}
-function formatSelectIds(){
-  let output =[]
-  let name = ""
-id.map((id, index)=>{
-  mandantGroup.map((mandantGroup)=>{
-name =  mandantGroup.mandant.vorname +
-" " +
-mandantGroup.mandant.nachname
-  })
-  output.push({index:index,name:name+": "+ id.tarifTypeId, data:{id:id.vertragId, tarifTypeId: id.tarifTypeId}})
-})
-  return output
-}
+    return output;
+  }
+  function formatSelectIds() {
+    let output = [];
+    let name = "";
+    id.map((id, index) => {
+      mandantGroup.map((mandantGroup) => {
+        name =
+          mandantGroup.mandant.vorname + " " + mandantGroup.mandant.nachname;
+      });
+      output.push({
+        index: index,
+        name: name + ": " + id.tarifTypeId,
+        data: { id: id.vertragId, tarifTypeId: id.tarifTypeId },
+      });
+    });
+    return output;
+  }
   let inputIndex = 0;
   const {
     versicherungsnehmerValue,
@@ -113,7 +119,10 @@ mandantGroup.mandant.nachname
     setGehaltInit,
     setDeletionIndex,
     setVertragId,
-    setRequiredFilled
+    setRequiredFilled,
+    forceUpdate,
+    ignored,
+    forceUseEffect,
   } = useContext(Context);
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
@@ -144,8 +153,8 @@ mandantGroup.mandant.nachname
     },
     [watch]
   );
-let requiredFields =[]
-let requiredLabels =[]
+  let requiredFields = [];
+  let requiredLabels = [];
   const fieldsToWatch = formDefinition.reduce(reduceDefinitionWatchers, []);
   let renderIndex = 0;
   const createFormItemFromDefinitionItem = (item, index) => {
@@ -177,8 +186,8 @@ let requiredLabels =[]
     } = item;
     const itemDisabled = disabled || item.disabled || !!editWarning;
     const props = compact
-      ? {required:false, ...item.props, xs: 12, sm: 12, md: 12, xl: 12 }
-      : {required:false, ...item.props};
+      ? { required: false, ...item.props, xs: 12, sm: 12, md: 12, xl: 12 }
+      : { required: false, ...item.props };
 
     if (!values) return null;
 
@@ -186,14 +195,18 @@ let requiredLabels =[]
       // todo: mehr möglichkeiten mit den conditions (aktuell nur boolean)
       if (!fieldsToWatch[condition]) return null;
     }
-  if(suiteValue){
-testArray.push({name:name, type:type, label:label, suiteValue:suiteValue})
-if(props.required){
-  requiredFields.push(name)
-  requiredLabels.push(label)
-
-}
-  }
+    if (suiteValue) {
+      testArray.push({
+        name: name,
+        type: type,
+        label: label,
+        suiteValue: suiteValue,
+      });
+      if (props.required) {
+        requiredFields.push(name);
+        requiredLabels.push(label);
+      }
+    }
     if (!name) {
       const cardContent = (
         <>
@@ -276,36 +289,38 @@ if(props.required){
             function getItemInput() {
               switch (type) {
                 case "clearVertrag":
-                  return(
-                    <Button onClick={()=>{setVertragId("newVertrag")}}>
+                  return (
+                    <Button
+                      onClick={() => {
+                        setVertragId("newVertrag");
+                      }}
+                    >
                       Clear Data
                     </Button>
-                  )
+                  );
                 case "debugMenue":
-                  return(
+                  return (
                     <FormControl fullWidth size={"small"}>
                       <Select
                         autoFocus={focussed}
                         inputRef={ref}
                         value={value}
-                        onChange={(e)=>{
-                          setVertragId(e.target.value.id)
-                           setCard(e.target.value.tarifTypeId)}}
+                        onChange={(e) => {
+                          setVertragId(e.target.value.id);
+                          setCard(e.target.value.tarifTypeId);
+                        }}
                         disabled={itemDisabled}
                         error={!!helperText}
                       >
                         <MenuItem key="o" value={""}></MenuItem>
                         {formatSelectIds().map((id, index) => (
-                          <MenuItem
-                            key={"o-" + index}
-                            value={id.data}
-                          >
+                          <MenuItem key={"o-" + index} value={id.data}>
                             {id.name}
                           </MenuItem>
                         ))}
                       </Select>
                     </FormControl>
-                  )
+                  );
                 case "toggleButtonGroup":
                   return (
                     <>
@@ -380,7 +395,12 @@ if(props.required){
                         onChange={onChange}
                         error={!!helperText}
                       >
-                        <MenuItem key="o" value={checkForCustomInput(options,value,type)}>{checkForCustomInput(options,value,type)}</MenuItem>
+                        <MenuItem
+                          key="o"
+                          value={checkForCustomInput(options, value, type)}
+                        >
+                          {checkForCustomInput(options, value, type)}
+                        </MenuItem>
                         {productId.map((productId, index) => (
                           <MenuItem
                             key={"o-" + index}
@@ -409,7 +429,12 @@ if(props.required){
                         disabled={itemDisabled}
                         error={!!helperText}
                       >
-                        <MenuItem key="o" value={checkForCustomInput(options,value,type)}>{checkForCustomInput(options,value,type)}</MenuItem>
+                        <MenuItem
+                          key="o"
+                          value={checkForCustomInput(options, value, type)}
+                        >
+                          {checkForCustomInput(options, value, type)}
+                        </MenuItem>
                         {gesellschaft.data.map((gesellschaft, index) => (
                           <MenuItem
                             key={"o-" + index}
@@ -418,8 +443,9 @@ if(props.required){
                             {gesellschaft.name}
                           </MenuItem>
                         ))}
-                        <MenuItem key="o-sonstiges" value={"sonstiges"}>{"sonstiges"}</MenuItem>
-
+                        <MenuItem key="o-sonstiges" value={"sonstiges"}>
+                          {"sonstiges"}
+                        </MenuItem>
                       </Select>
                       {helperText && (
                         <Typography color={"error"} variant={"caption"}>
@@ -430,7 +456,7 @@ if(props.required){
                   );
                 case "select":
                   return (
-                    <FormControl fullWidth size={"small"}{...props}>
+                    <FormControl fullWidth size={"small"} {...props}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -444,8 +470,11 @@ if(props.required){
                         {...props}
                         disabled={itemDisabled}
                       >
-                        <MenuItem key="o" value={checkForCustomInput(options,value,type)}>
-                          {checkForCustomInput(options,value,type)}
+                        <MenuItem
+                          key="o"
+                          value={checkForCustomInput(options, value, type)}
+                        >
+                          {checkForCustomInput(options, value, type)}
                         </MenuItem>
                         {options.map((option, index) =>
                           anzahlVp === "true" ? (
@@ -472,7 +501,7 @@ if(props.required){
                   );
                 case "selectToBeMapped":
                   return (
-                    <FormControl fullWidth size={"small"}{...props}>
+                    <FormControl fullWidth size={"small"} {...props}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -486,8 +515,11 @@ if(props.required){
                         {...props}
                         disabled={itemDisabled}
                       >
-                        <MenuItem key="o" value={checkForCustomInput(options,value,type)}>
-                        {checkForCustomInput(options,value,type)}
+                        <MenuItem
+                          key="o"
+                          value={checkForCustomInput(options, value, type)}
+                        >
+                          {checkForCustomInput(options, value, type)}
                         </MenuItem>
                         {mapIncomingData(name, assets).map((option, index) =>
                           anzahlVp === "true" ? (
@@ -518,7 +550,7 @@ if(props.required){
                   */
                 case "bAVSelect":
                   return (
-                    <FormControl fullWidth size={"small"}{...props}>
+                    <FormControl fullWidth size={"small"} {...props}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -559,7 +591,7 @@ if(props.required){
                   );
                 case "personArray":
                   return (
-                    <FormControl fullWidth size={"small"}{...props}>
+                    <FormControl fullWidth size={"small"} {...props}>
                       <InputLabel>{label}</InputLabel>
                       <Select
                         autoFocus={focussed}
@@ -589,7 +621,7 @@ if(props.required){
                 case "selectMandant":
                   return (
                     <div>
-                      <FormControl fullWidth size={"small"}{...props}>
+                      <FormControl fullWidth size={"small"} {...props}>
                         <InputLabel>{label}</InputLabel>
                         <Select
                           autoFocus={focussed}
@@ -642,7 +674,7 @@ if(props.required){
                 case "selectVersichert":
                   return (
                     <div>
-                      <FormControl fullWidth size={"small"}{...props}>
+                      <FormControl fullWidth size={"small"} {...props}>
                         <InputLabel>{label}</InputLabel>
                         <Select
                           autoFocus={focussed}
@@ -690,7 +722,7 @@ if(props.required){
                   );
                 case "radioGroup":
                   return (
-                    <FormControl fullWidth size={"small"}{...props}>
+                    <FormControl fullWidth size={"small"} {...props}>
                       <RadioGroup name="radio-buttons-group">
                         {options.map((option, index) => {
                           <FormControlLabel
@@ -752,7 +784,8 @@ if(props.required){
                       error={!!error}
                       helperText={helperText}
                       fullWidth
-                      size={"small"}{...props}
+                      size={"small"}
+                      {...props}
                       InputProps={{
                         endAdornment: unit && (
                           <InputAdornment position={"end"}>
@@ -772,7 +805,8 @@ if(props.required){
                       disableToolbar
                       format="dd.MM.yyyy"
                       fullWidth
-                      size={"small"}{...props}
+                      size={"small"}
+                      {...props}
                       label={label}
                       KeyboardButtonProps={{
                         "aria-label": "Datum wählen",
@@ -782,7 +816,7 @@ if(props.required){
                       minDateMessage={"Ungültiges Datum mindate"}
                       onChange={onChange}
                       {...props}
-                      InputLabelProps={{ shrink: value?true:false }} 
+                      InputLabelProps={{ shrink: value ? true : false }}
                       value={value}
                     />
                   );
@@ -822,7 +856,8 @@ if(props.required){
                       error={!!error}
                       helperText={helperText}
                       fullWidth
-                      size={"small"}{...props}
+                      size={"small"}
+                      {...props}
                       InputProps={{
                         endAdornment: unit && (
                           <InputAdornment position={"end"}>
@@ -872,7 +907,8 @@ if(props.required){
                   <Grid item xs={1} style={{ padding: 4 }}>
                     <IconButton
                       color={"primary"}
-                      size={"small"}{...props}
+                      size={"small"}
+                      {...props}
                       onClick={() => {
                         const result = window.prompt(
                           editWarning + "\n\nGeben Sie einen neuen Wert an:",
@@ -893,11 +929,13 @@ if(props.required){
     );
   };
   function mapSuiteValues() {
-    let output = {}
+    let output = {};
     testArray.forEach((item) => {
-        output = { ...output, ...translateToSuiteData(item, item.name, values[item.name]) }
-
-    })
+      output = {
+        ...output,
+        ...translateToSuiteData(item, item.name, values[item.name]),
+      };
+    });
     return output;
   }
   function translateToSuiteData(item, key, value) {
@@ -906,46 +944,69 @@ if(props.required){
       if (item.type !== "toggleButtonGroup") {
         if (item.type !== "selectMandant") {
           if (item.type !== "selectVersichert") {
-          if (item.label !== "Zahlweise") {
-            if (item.type !== "date") {
-              output = { ...output, [item.suiteValue]: value };
-            
-          }
-        }
-        if(item.type === "date"){
-          output = {
-            ...output,
-            [item.suiteValue]: dateFormaterSuite(value),
-          };
-        }
-          if (item.label === "Zahlweise") {
-            switch (value) {
-              case "MONATLICH":
-                output = { ...output, zahlweise: "112" };
-                break;
-              case "ZWEIMONATLICH":
-                output = { ...output, zahlweise: "16" };
-                break;
-              case "QUARTAL":
-                output = { ...output, zahlweise: "14" };
-                break;
-              case "HALBJAEHRLICH":
-                output = { ...output, zahlweise: "12" };
-                break;
-              case "JAEHRLICH":
-                output = { ...output, zahlweise: "11" };
-                break;
-              default:
-                break;
+            if (item.label !== "Zahlweise") {
+              if (item.type !== "date") {
+                if(typeof value !== "undefined"){
+                output = { ...output, [item.suiteValue]: value };
+              }else{
+                output = { ...output, [item.suiteValue]: "" };
+              }
+              }
+            }
+            if (item.type === "date") {
+              output = {
+                ...output,
+                [item.suiteValue]: dateFormaterSuite(value),
+              };
+            }
+            if (item.label === "Zahlweise") {
+              switch (value) {
+                case "MONATLICH":
+                  output = { ...output, zahlweise: "112" };
+                  break;
+                case "ZWEIMONATLICH":
+                  output = { ...output, zahlweise: "16" };
+                  break;
+                case "QUARTAL":
+                  output = { ...output, zahlweise: "14" };
+                  break;
+                case "HALBJAEHRLICH":
+                  output = { ...output, zahlweise: "12" };
+                  break;
+                case "JAEHRLICH":
+                  output = { ...output, zahlweise: "11" };
+                  break;
+                default:
+                  break;
+              }
             }
           }
-        }}
+        }
         if (item.type === "selectMandant") {
-          if(typeof(value) !== "undefined"){
-            if(value !== "Placeholder" && value.length >1){
-            
-//TODO: Wenn assetId´s hinzugefügt werden, diese methode löschen!
-            switch (mandantGroup[value].art) {
+          if (typeof value !== "undefined") {
+            if (value !== "Placeholder") {
+              //TODO: Wenn assetId´s hinzugefügt werden, diese methode löschen!
+              switch (mandantGroup[value].art) {
+                case "MANDANT":
+                  output = { ...output, mp: "m" };
+                  break;
+                case "PARTNER":
+                  output = { ...output, mp: "p" };
+                  break;
+                case "KIND":
+                  output = { ...output, mp: "k" };
+                  break;
+                default:
+                  break;
+              }
+              console.log(value)
+              output = {
+                ...output,
+                versicherungsnehmerId: mandantGroup[value].mandantId,
+              };
+            }
+          } else {
+            switch (mandantGroup[0].art) {
               case "MANDANT":
                 output = { ...output, mp: "m" };
                 break;
@@ -958,34 +1019,19 @@ if(props.required){
               default:
                 break;
             }
+            console.log("else")
             output = {
               ...output,
-              versicherungsnehmerId: mandantGroup[value].mandantId,
+              versicherungsnehmerId:
+                mandantGroup[0]
+                  .mandantId,
             };
-          }} else{
-          switch (mandantGroup[0].art) {
-            case "MANDANT":
-              output = { ...output, mp: "m" };
-              break;
-            case "PARTNER":
-              output = { ...output, mp: "p" };
-              break;
-            case "KIND":
-              output = { ...output, mp: "k" };
-              break;
-            default:
-              break;
           }
-          output = {
-            ...output,
-            versicherungsnehmerId: mandantGroup[(typeof(value) === "undefined" ? 0:value)].mandantId,
-          };
-        }}
+        }
       }
-      if(item.type === "versichertePerson"){
-        mandantGroup.map((mandant)=>{
-          if(value === mandant.mandantId){
-            console.log("drinen")
+      if (item.type === "selectVersichert") {
+        mandantGroup.map((mandant) => {
+          if (value === mandant.mandantId) {
             switch (mandantGroup[0].art) {
               case "MANDANT":
                 output = { ...output, [item.suiteValue]: "m" };
@@ -1000,7 +1046,7 @@ if(props.required){
                 break;
             }
           }
-        })
+        });
       }
       if (item.type === "toggleButtonGroup") {
         item.menuOptions.map((option) => {
@@ -1021,12 +1067,14 @@ if(props.required){
   function addDirtyEntries(dirtyValues) {
     let output = {};
 
-
     testArray.forEach((item) => {
-if(typeof(dirtyValues[item.name]) !== "undefined"){
-      output = { ...output, ...translateToSuiteData(item, item.name, dirtyValues[item.name]) }
-}
-  })
+      if (typeof dirtyValues[item.name] !== "undefined") {
+        output = {
+          ...output,
+          ...translateToSuiteData(item, item.name, dirtyValues[item.name]),
+        };
+      }
+    });
 
     return output;
   }
@@ -1139,33 +1187,47 @@ if(typeof(dirtyValues[item.name]) !== "undefined"){
   }
   function dateFormaterSuite(date) {
     let output = "";
+    console.log(Object.prototype.toString.call(date));
+    console.log(typeof date);
 
-    if(typeof(date) !== "undefined"){
-    if(typeof(date) === "object"){
-      output =date.toLocaleDateString("de-EU")
-
-
-  } else {
-    output = date
-  }}
-
+    if (typeof date !== "undefined") {
+      if (Object.prototype.toString.call(date) === "[object Date]") {
+        output = date.toLocaleDateString("de-EU");
+        // it is a date
+        if (isNaN(date)) {
+          // d.getTime() or d.valueOf() will also work
+          // date object is not valid
+          output = "";
+        }
+      } else {
+        console.log("also called");
+        output = date;
+      }
+    }
 
     return output;
   }
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
-    let vertragIdSuite = vertragId
-    if(vertragId ==="newVertrag"){
-      vertragIdSuite = "0"
+    let vertragIdSuite = vertragId;
+    if (vertragId === "newVertrag") {
+      vertragIdSuite = "0";
+    }
+    console.log(valuesToSubmit)
+    console.log(formDefinition)
+    let mobileClassname = ""
+    if(formDefinition[0].section === "Verträge"){
+      mobileClassname = formDefinition[1].mobileClassname
+    }else{
+      mobileClassname = formDefinition[0].mobileClassname
     }
     let output = {
       action: "saveAsset",
       json: {
         ...valuesToSubmit,
         ...dirtyValues,
-        id: vertragIdSuite,
-        angebotsType: "VERTRAG",
+        id: vertragIdSuite
       },
-      mobileClassname: formDefinition[0].mobileClassname,
+      mobileClassname: mobileClassname,
       mandantId: valuesToSubmit.versicherungsnehmerId,
       analyseId: params.analyseId,
     };
@@ -1220,7 +1282,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
     try {
       if (valuesToSubmit && Object.keys(valuesToSubmit).length > 0) {
         let vals = await onSubmit(valuesToSubmit);
-        reset(vals, { keepDirty: false });
+        //reset(vals, { keepDirty: false });
       }
       return true;
     } catch (e) {
@@ -1269,32 +1331,43 @@ if(tarifTypeIdFromCardState === "KVZ"){
     },
     [formState.isDirty]
   );
-useEffect(()=>{
-setRequiredFilled(checkRequiredFields(watch(requiredFields)))
-console.log(formState.dirtyFields)
-},[formState.dirtyFields])
-function checkRequiredFields(fields){
-  let array = []
-  let isUndefined =false
-
-  fields.map((field,index)=>{
-if(typeof field ==="undefined" || field === ""){
-  if(typeof requiredLabels[index] !== "undefined"){
-  array.push(requiredLabels[index])
-  isUndefined =true
-}else if(requiredFields[index].includes("gesellschaft")){
-  array.push("Gesellschaft")
-  isUndefined =true
-} else if(requiredFields[index].includes("showExternalProductId")){
-  array.push("Product ID")
-  isUndefined =true
-} 
-}
-  })
-return({disabled:isUndefined, labelsToBeFilled:array})
-}
+  useEffect(() => {
+    setRequiredFilled(checkRequiredFields(watch(requiredFields)));
+  }, [forceUseEffect]);
+  function checkRequiredFields(fields) {
+    let array = [];
+    let isUndefined = false;
+    console.log(fields);
+    console.log(requiredFields);
+    fields.map((field, index) => {
+      if (typeof field === "undefined" || field === "") {
+        if (typeof requiredLabels[index] !== "undefined") {
+          if (requiredFields[index].includes("versicherungsnehmer") || requiredFields[index].includes("vertragsnehmer")) {
+            if (typeof values.initMandantValue !== "undefined") {
+              setValue(requiredFields[index], values.initMandantValue)
+              console.log(watch(requiredFields[index]))
+              console.log("calls")
+          } else{
+              array.push(requiredLabels[index]);
+              isUndefined = true;
+          }
+          } else {
+            array.push(requiredLabels[index]);
+            isUndefined = true;
+          }
+        } else if (requiredFields[index].includes("gesellschaft")) {
+          array.push("Gesellschaft");
+          isUndefined = true;
+        } else if (requiredFields[index].includes("showExternalProductId")) {
+          array.push("Product ID");
+          isUndefined = true;
+        }
+      }
+    });
+    return { disabled: isUndefined, labelsToBeFilled: array };
+  }
   return (
-    <form onSubmit={handleSubmit(submitDirtyFields)} style={style}>
+    <form  style={style}>
       <Grid container spacing={compact ? 1 : 2}>
         {formDefinition.map(createFormItemFromDefinitionItem)}
       </Grid>

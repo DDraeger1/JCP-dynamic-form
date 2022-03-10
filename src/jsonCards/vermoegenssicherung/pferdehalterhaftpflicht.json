@@ -48,7 +48,7 @@
             "name": "vertragsnummerGesellschaftPferdehalterpflicht",
             "label": "Vertragsnummer",
             "type": "text",
-            "props":{"required":true, "sm":6,
+            "props":{ "sm":6,
               "xs":6},
               "suiteValue":"versicherungsnummer"
           },

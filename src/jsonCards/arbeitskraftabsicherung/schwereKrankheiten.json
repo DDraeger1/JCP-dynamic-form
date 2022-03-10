@@ -5,7 +5,8 @@
     "items": [
       {"name":"showExternalProductId",
         "type": "paragraph",
-      "label":""},
+        "condition":"showExternalProductId",
+        "label":""},
       {
         "name": "externalProduktId",
         "type": "produktid",
@@ -45,7 +46,7 @@
             "name": "versichertePersonSchwereKrankheiten",
             "label": "Versicherte Person",
             "type": "selectVersichert",
-            "suiteValue":"versichertePersonId"
+            "suiteValue":"versichertePerson"
           }]},
           {
             "section": "Vertragslaufzeit",

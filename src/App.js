@@ -1455,8 +1455,9 @@ function App(props) {
     bankverbindungen,
     setBankverbindungen,
     isRequiredFilled,
+    forceUseEffect, setForceUseEffect,
+    forceUpdate
   } = useContext(Context);
-  console.log(isRequiredFilled);
 
   //note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
   const params = useParams();
@@ -1699,8 +1700,10 @@ function App(props) {
       try {
         await ref.current.submit();
         alert("Daten wurden gespeichert");
+        /*
         setLoaded(false);
         setIsBusy(true);
+        
         if (checkIfPersonendaten(card)) {
           setInitialised(false);
           getDataPersonendaten();
@@ -1717,7 +1720,7 @@ function App(props) {
             setLoaded(true);
             setInitialised(true);
           }, 100);
-        }
+        }*/
       } catch (e) {
         console.warn(e);
         alert("Daten wurden NICHT gespeichert");
@@ -2615,7 +2618,10 @@ function App(props) {
     });
     return output;
   }
-  console.log(isRequiredFilled)
+  function tooltipOnHover(){
+    setForceUseEffect(forceUseEffect+1)
+    console.log(forceUseEffect)
+  }
   return (
     <div style={{ backgroundColor: "#eeeeee" }}>
       {!loaded ? (
@@ -2686,7 +2692,6 @@ function App(props) {
               disabled={isRequiredFilled.disabled}
               onClick={handleSave}
               className="save"
-              style={isRequiredFilled.disabled ? { pointerEvents: "none" } : {}}
             >
               <Save style={{ color: "white" }} />
             </Button>
@@ -2694,9 +2699,11 @@ function App(props) {
         </ThemeProvider>
       )}
       <Tooltip
+        onMouseOver={()=>tooltipOnHover()}
         title={isRequiredFilled.disabled ? mapRequiredFields() : "Speichern"}
       >
-        <div className="save" />
+        {isRequiredFilled.disabled ? <div className="save"   />
+        : <div className="save" style={{visibility:"hidden"}}  />}
       </Tooltip>
     </div>
   );

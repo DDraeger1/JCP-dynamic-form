@@ -58,7 +58,7 @@
       "name": "vertragsnummerKVZusatz",
       "label": "Vertragsnummer",
       "type": "text",
-      "props": { "required": true, "sm": 6, "xs": 6 },
+      "props": {  "sm": 6, "xs": 6 },
       "suiteValue": "versicherungsnummer"
     },
     {
@@ -140,7 +140,7 @@
           "props": { "required": true },
           "tarifType": "KVZ",
           "showKind": "true",
-          "suiteValue": "versichertePerson.id"
+          "suiteValue": "versichertePerson"
         },
         {
           "name": "ambulantVersichertePersonKVZusatz",

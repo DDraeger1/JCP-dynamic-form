@@ -63,7 +63,7 @@
       "name": "vertragsnummerPrivateKrankenversicherung",
       "label": "Vertragsnummer",
       "type": "text",
-      "props": { "required": true, "sm": 6, "xs": 6 },
+      "props": { "sm": 6, "xs": 6 },
       "suiteValue": "versicherungsnummer"
     },
     {
@@ -144,7 +144,7 @@
           "name": "versichertePersonPrivatePflegeversicherung",
           "label": "Versicherte Person",
           "type": "selectVersichert",
-          "suiteValue": "versichertePersonId"
+          "suiteValue": "versichertePerson"
         },
         {
           "name": "sonstigeVersichertePersonPrivatePflegeversicherung",
@@ -279,7 +279,7 @@
           "name": "versichertePersonPrivatePflegeversicherung2",
           "label": "Versicherte Person",
           "type": "selectVersichert",
-          "suiteValue": "versichertePersonId2",
+          "suiteValue": "versichertePerson",
           "condition": "selected2Persons"
         },
         {

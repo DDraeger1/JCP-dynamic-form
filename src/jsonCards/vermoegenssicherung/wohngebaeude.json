@@ -50,7 +50,6 @@
             "name": "vertragsnummerGesellschaftWohngebaeude",
             "label": "Vertragsnummer",
             "type": "text",
-            "props": { "required": true },
             "suiteValue":"versicherungsnummer"
           },
     {

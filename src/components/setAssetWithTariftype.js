@@ -3052,7 +3052,9 @@ console.log(output)
         initMandantValue: mandantMapper(
           cardTemplateData.versicherungsnehmer.id
         ),
-        versicherungsnehmerRiesterrente: "",
+        versicherungsnehmerRiesterrente: mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
         versichertePersonRiesterrente:
           typeof cardTemplateData.versichertePerson === "undefined"
             ? isMandantDefined("undefined")
@@ -3112,7 +3114,9 @@ console.log(output)
 
       output = {
         initMandantValue: checkForBeide(cardTemplateData),
-        vertragsinhaberSachwert: "",
+        vertragsinhaberSachwert: mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
         gesellschaftSachwert: cardTemplateData.gesellschaft,
         tarifbezeichnungVertragspartnerSachwert:
           cardTemplateData.tarifBezeichnung,
@@ -4182,7 +4186,9 @@ output=einnahmeart.name
         gesellschaftBuEuGjk: cardTemplateData.gesellschaft,
         tarifbezeichnungBuEuGjk: cardTemplateData.tarifBezeichnung,
         vertragsnummerBuEuGjk: cardTemplateData.versicherungsnummer,
-        versicherungsnehmerBuEuGjk: cardTemplateData.versicherungsnehmer.id,
+        versicherungsnehmerBuEuGjk:mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
         versichertePersonBuEuGjk: checkForSonstige(cardTemplateData),
         artVersichertePersonBuEuGjk: cardTemplateData.art,
         vertragsbeginnVertragslaufzeitBuEuGjk: dateFormater(
@@ -4605,10 +4611,6 @@ output=einnahmeart.name
       };
       break;
     case "PFLEGETAGEGELD":
-      cardTemplateData = privatePflegeversicherung;
-
-      break;
-    case "GESETZLICHE_KRANKEN":
       output = {
         initMandantValue: mandantMapper(
           cardTemplateData.versicherungsnehmer.id
@@ -4641,6 +4643,44 @@ output=einnahmeart.name
         zusatzleistungGesetzlicheKrankenversicherung:
           cardTemplateData.zusatzleistungen,
       };
+      break;
+    case "GESETZLICHE_KRANKEN":
+      console.log(cardTemplateData)
+      output = {
+        initMandantValue: mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
+        gesellschaftGesetzlicheKrankenversicherung:
+          cardTemplateData.gesellschaft,
+        tarifbezeichnungGesetzlicheKrankenversicherung:
+          cardTemplateData.tarifBezeichnung,
+        vertragsnummerGesetzlicheKrankenversicherung:
+          cardTemplateData.versicherungsnummer,
+        vertragsnehmerGesetzlicheKrankenversicherung: mandantMapper(
+          cardTemplateData.versicherungsnehmer.id
+        ),
+        statusGesetzlicheKrankenversicherung: cardTemplateData.status,
+        mitKTGGesetzlicheKrankenversicherung: cardTemplateData.mitKT,
+        aufKTHoeheVonGesetzlicheKrankenversicherung: cardTemplateData.kTHoehe,
+        abDemGesetzlicheKrankenversicherung: cardTemplateData.kTTag,
+        GKVLeistungsbonusGesetzlicheKrankenversicherung:
+          cardTemplateData.gkvLeistungsbonus,
+        vertragsbeginnGesetzlicheKrankenversicherung: dateFormater(
+          cardTemplateData.versicherungsbeginn
+        ),
+        beitragGesetzlicheKrankenversicherung:cardTemplateData.beitrag,
+        GKVZusatzbeitragGesetzlicheKrankenversicherung:
+          cardTemplateData.gkvZusatz,
+        mtlGesetzlicheKrankenversicherung: cardTemplateData.gkvZusatzBeitrag,
+        zusatzbeitragInProzentGesetzlicheKrankenversicherung:
+          cardTemplateData.gkvZusatzsatz,
+        vonBusprogrammGesetzlicheKrankenversicherung:
+          cardTemplateData.bonusprogramm,
+        zusatzleistungGesetzlicheKrankenversicherung:
+          cardTemplateData.zusatzleistungen,
+      };
+      console.log(output.vertragsnehmerGesetzlicheKrankenversicherung)
+
       break;
     case "KVV":
       console.log(cardTemplateData);

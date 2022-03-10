@@ -25,7 +25,6 @@
           "name": "versicherungsnummerGesellschaftUnfall",
           "type": "text",
           "label": "Vertragsnummer",
-          "props": { "required": true },
           "suiteValue": "versicherungsnummer"
         }
       ]
@@ -155,7 +154,7 @@
           "showKind": "true",
           "showSonstige": "true",
           "props": { "required": true },
-          "suiteValue": "versichertePersonId"
+          "suiteValue": "versichertePerson"
         },
         {
           "name": "tarifgruppeVersichertePersonUnfall",
@@ -364,7 +363,7 @@
           "showKind": "true",
           "showSonstige": "true",
           "props": { "required": true },
-          "suiteValue": "versichertePerson2.id"
+          "suiteValue": "versichertePerson2"
         },
         {
           "name": "tarifgruppeVersichertePersonUnfall2",
@@ -592,7 +591,7 @@
           "showKind": "true",
           "showSonstige": "true",
           "props": { "required": true },
-          "suiteValue": "versichertePerson3.id"
+          "suiteValue": "versichertePerson3"
         },
         {
           "name": "tarifgruppeVersichertePersonUnfall3",
@@ -820,7 +819,7 @@
           "showKind": "true",
           "showSonstige": "true",
           "props": { "required": true },
-          "suiteValue": "versichertePerson4.id"
+          "suiteValue": "versichertePerson4"
         },
         {
           "name": "tarifgruppeVersichertePersonUnfall4",
@@ -1048,7 +1047,7 @@
           "showKind": "true",
           "showSonstige": "true",
           "props": { "required": true },
-          "suiteValue": "versichertePerson5.id"
+          "suiteValue": "versichertePerson5"
         },
         {
           "name": "tarifgruppeVersichertePersonUnfall5",
@@ -1275,7 +1274,7 @@
           "showKind": "true",
           "showSonstige": "true",
           "props": { "required": true },
-          "suiteValue": "versichertePerson6.id"
+          "suiteValue": "versichertePerson6"
         },
         {
           "name": "tarifgruppeVersichertePersonUnfall6",

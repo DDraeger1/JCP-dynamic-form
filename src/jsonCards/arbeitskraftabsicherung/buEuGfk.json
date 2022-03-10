@@ -7,7 +7,8 @@
         "type": "paragraph",
       "label":""},
       {"description":"externe Produkt ID",
-      "card":true,
+        "condition":"showExternalProductId",
+        "card":true,
     "items":[
       {
         
@@ -61,7 +62,7 @@
         "showSonstige":"true",
         "type": "selectVersichert",
         "props": { "required": true },
-        "suiteValue":"versichertePersonId"
+        "suiteValue":"versichertePerson"
       },
       {
         "name": "artVersichertePersonBuEuGjk",
@@ -94,7 +95,7 @@
       {
         "name": "bruttobeitragVertragslaufzeitBuEuGjk",
         "label": "Bruttobeitrag (€)",
-        "props": { "required": true, "sm":6,
+        "props": {  "sm":6,
           "xs":6 },
         "type": "text",
         "suiteValue":"bruttobeitrag"
