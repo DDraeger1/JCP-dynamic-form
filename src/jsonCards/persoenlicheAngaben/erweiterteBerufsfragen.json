@@ -1,0 +1,25 @@
+{
+  "section": "Erweiterte Berufsfragen",
+  "card": true,
+  "items": [
+    
+    {
+      "name": "abgeschlosseneAusbildungErwBerufsfragen",
+      "label": "abgeschlosseneAusbildung",
+      "type": "text",
+      "props": {
+        "sm": 6,
+        "xs": 6
+      }
+    },
+    {
+      "name": "ErwBerufsfragen",
+      "label": "Bank",
+      "type": "select",
+      "props": {
+        "sm": 6,
+        "xs": 6
+      }
+    }
+  ]
+}

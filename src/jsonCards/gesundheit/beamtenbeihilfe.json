@@ -1,0 +1,92 @@
+{
+    "section": "Beamtenbeihilfe",
+    "card": true,
+    "mobileClassname":"Beamtenbeihilfe",
+    "items": [
+        {
+            "name": "versicherungsnehmerBeamtenbeihilfe",
+            "label": "Vertragsinhaber",
+            "type": "selectMandant",
+            "versicherungsnehmerBeide":"true",
+            "tarifType":"BEAMTENBEIHILFE",
+            "props": { "required": true },
+            "suiteValue":"versicherungsnehmerId"
+          },
+          {
+            "name":"artBeihilfeBeamtenbeihilfe",
+            "label":"Art der Beihilfe",
+            "type":"select",
+            "options": [
+              { "value": "Bundesbeihilfe", "label": "Bundesbeihilfe" },
+              { "value": "Landesbeihilfe", "label": "Landesbeihilfe" }        ],
+            "props":{"required":true, "sm":6,
+              "xs":6},
+              "suiteValue":""
+        },
+        {
+            "section": "Höhe der Beihilfe",
+            "card": true,
+            "items": [
+                {
+                    "name":"ambulantHoeheBeamtenbeihilfe",
+                    "label":"ambulant (%)",
+                    "type":"text",
+              "suiteValue":""
+
+                },
+                {
+                    "name":"stationaerHoeheBeamtenbeihilfe",
+                    "label":"stationär (%)",
+                    "type":"text",
+              "suiteValue":""
+
+                }
+            ]
+        },
+        {
+            "section": "",
+            "card": true,
+            "items": [
+                {
+                    "name":"anspruchBeamtenbeihilfe",
+                    "label":"Haben Sie Anspruch auf freie Heilfürsorge?",
+                    "type":"select",
+                    "options": [
+                      { "value": true, "label": "Ja" },
+                      { "value": false, "label": "Nein" }
+                    ],
+                    "props":{"required":true, "sm":6,
+                      "xs":6},
+                      "suiteValue":""
+                },
+                {"name":"anwartschaftversicherungBeamtenbeihilfe",
+                "label":"Besteht eine Anwartschaftversicherung",
+                "type":"select",
+                "options": [
+                  { "value": true, "label": "Ja" },
+                  { "value": false, "label": "Nein" }
+                ],
+            "suiteValue":""},
+            {"name":"bundeslandBeamtenbeihilfe",
+                "label":"In welchem Bundesland behilfeberechtigt?",
+                "type":"select",
+                "options": [
+                  { "value": true, "label": "Baden-Württemberg" },
+                  { "value": false, "label": "Bayern" },
+                  { "value": false, "label": "Brandenburg" },
+                  { "value": false, "label": "Bremen" },
+                  { "value": false, "label": "Hamburg" },
+                  { "value": false, "label": "Hessen" },
+                  { "value": false, "label": "Mecklenburg-Vorpommern" },
+                  { "value": false, "label": "Niedersachsen" },
+                  { "value": false, "label": "Nordrhein-Westfalen" },
+                  { "value": false, "label": "Saarland" },
+                  { "value": false, "label": "Sachsen" },
+                  { "value": false, "label": "Sachsend-Anhalt" },
+                  { "value": false, "label": "Schleswig-Holstein" },
+                  { "value": false, "label": "Thüringen" }
+                ],
+            "suiteValue":""}
+            ]}
+    ]
+}

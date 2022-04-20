@@ -1,7 +1,6 @@
 {
     "section": "Bankdaten",
     "card": true,
-
     "items": [
       {"accordionId":0,
       "accordionText":"Bankdaten 1",
@@ -10,7 +9,8 @@
       "items":[
         {"name":"deleteBankverbindung",
         "type":"costumFunction",
-      "label":0},
+      "label":0
+    },
         {
           "name": "bankBankdaten",
           "label": "Bank",
@@ -18,7 +18,8 @@
           "props": {
               "sm": 6,
               "xs":6
-            }
+            },
+            "suiteValue":"bank0"
         },
         {
             "name": "kontoInhaberBankdaten",
@@ -28,7 +29,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"kontoinhaber0"
           },
           {
             "name": "kontonummerBankdaten",
@@ -37,7 +39,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"kontonr0"
           },
           {
             "name": "ibanBankdaten",
@@ -46,12 +49,14 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"iban0"
           },
           {
             "name": "bicBankdaten",
             "label": "BIC",
-            "type": "text"
+            "type": "text",
+            "suiteValue":"bic0"
           }]},
           {
             "name": "selected2Persons",
@@ -64,6 +69,10 @@
       "condition":"selected2Persons",
       "visibilityDeleteIcon":"visible",
         "items":[
+          {"name":"deleteBankverbindung",
+            "type":"costumFunction",
+          "label":1
+        },
               {
                 "name": "bankBankdaten2",
                 "label": "Bank",
@@ -71,7 +80,8 @@
                 "props": {
                     "sm": 6,
                     "xs":6
-                  }
+                  },
+                  "suiteValue":"bank1"
               },
               {
                   "name": "kontoInhaberBankdaten2",
@@ -81,7 +91,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontoinhaber1"
                 },
                 {
                   "name": "kontonummerBankdaten2",
@@ -90,7 +101,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontonr1"
                 },
                 {
                   "name": "ibanBankdaten2",
@@ -99,12 +111,14 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"iban1"
                 },
                 {
                   "name": "bicBankdaten2",
                   "label": "BIC",
-                  "type": "text"
+                  "type": "text",
+                  "suiteValue":"bic1"
                 }]},
           {
             "name": "selected3Persons",
@@ -117,6 +131,10 @@
       "condition":"selected3Persons",
       "visibilityDeleteIcon":"visible",
       "items":[
+        {"name":"deleteBankverbindung",
+          "type":"costumFunction",
+        "label":2
+      },
               {
                 "name": "bankBankdaten3",
                 "label": "Bank",
@@ -124,7 +142,8 @@
                 "props": {
                     "sm": 6,
                     "xs":6
-                  }
+                  },
+                  "suiteValue":"bank2"
               },
               {
                   "name": "kontoInhaberBankdaten3",
@@ -134,7 +153,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontoinhaber2"
                 },
                 {
                   "name": "kontonummerBankdaten3",
@@ -143,7 +163,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontonr2"
                 },
                 {
                   "name": "ibanBankdaten3",
@@ -152,12 +173,14 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"iban2"
                 },
                 {
                   "name": "bicBankdaten3",
                   "label": "BIC",
-                  "type": "text"
+                  "type": "text",
+                  "suiteValue":"bic2"
                 }]},
           {
             "name": "selected4Persons",
@@ -170,6 +193,10 @@
       "condition":"selected4Persons",
       "visibilityDeleteIcon":"visible",
       "items":[
+        {"name":"deleteBankverbindung",
+          "type":"costumFunction",
+        "label":3
+      },
               {
                 "name": "bankBankdaten4",
                 "label": "Bank",
@@ -177,7 +204,8 @@
                 "props": {
                     "sm": 6,
                     "xs":6
-                  }
+                  },
+                  "suiteValue":"bank3"
               },
               {
                   "name": "kontoInhaberBankdaten4",
@@ -187,7 +215,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontoinhaber3"
                 },
                 {
                   "name": "kontonummerBankdaten4",
@@ -196,7 +225,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontonr3"
                 },
                 {
                   "name": "ibanBankdaten4",
@@ -205,12 +235,14 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"iban3"
                 },
                 {
                   "name": "bicBankdaten4",
                   "label": "BIC",
-                  "type": "text"
+                  "type": "text",
+                  "suiteValue":"bic3"
                 }]},
           {
             "name": "selected5Persons",
@@ -223,6 +255,10 @@
       "condition":"selected5Persons",
       "visibilityDeleteIcon":"visible",
       "items":[
+        {"name":"deleteBankverbindung",
+          "type":"costumFunction",
+        "label":4
+      },
               {
                 "name": "bankBankdaten5",
                 "label": "Bank",
@@ -230,7 +266,8 @@
                 "props": {
                     "sm": 6,
                     "xs":6
-                  }
+                  },
+                  "suiteValue":"bank4"
               },
               {
                   "name": "kontoInhaberBankdaten5",
@@ -240,7 +277,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontoinhaber4"
                 },
                 {
                   "name": "kontonummerBankdaten5",
@@ -249,7 +287,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontonr4"
                 },
                 {
                   "name": "ibanBankdaten5",
@@ -258,12 +297,14 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"iban4"
                 },
                 {
                   "name": "bicBankdaten5",
                   "label": "BIC",
-                  "type": "text"
+                  "type": "text",
+                  "suiteValue":"bic4"
                 }]},
                 {
                   "name": "selected6Persons",
@@ -277,6 +318,10 @@
       "condition":"selected6Persons",
       "visibilityDeleteIcon":"visible",
       "items":[
+        {"name":"deleteBankverbindung",
+          "type":"costumFunction",
+        "label":5
+      },
               {
                 "name": "bankBankdaten6",
                 "label": "Bank",
@@ -284,7 +329,8 @@
                 "props": {
                     "sm": 6,
                     "xs":6
-                  }
+                  },
+                  "suiteValue":"bank5"
               },
               {
                   "name": "kontoInhaberBankdaten6",
@@ -294,7 +340,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontoinhaber5"
                 },
                 {
                   "name": "kontonummerBankdaten6",
@@ -303,7 +350,8 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"kontonr5"
                 },
                 {
                   "name": "ibanBankdaten6",
@@ -312,12 +360,14 @@
                   "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"iban5"
                 },
                 {
                   "name": "bicBankdaten6",
                   "label": "BIC",
-                  "type": "text"
+                  "type": "text",
+                  "suiteValue":"bic5"
                 }]}
         ]
         

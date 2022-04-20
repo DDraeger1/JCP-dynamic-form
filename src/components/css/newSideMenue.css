@@ -1,0 +1,309 @@
+.hinzufuegeButton{
+    position: fixed;
+    bottom:43px;
+    left: 85% !important;
+    height: 36px;
+}
+.closeContainer{
+    height: 140px !important;
+    width: 18px !important;
+background-color: green;
+}
+.closeIconContainer{
+    bottom: 39px !important;
+    height: 15px !important;
+    width: 15px !important;
+    border-radius: 5px !important;
+    border: 1px solid #404041 !important;
+    display: flex !important;
+    bottom: 90% !important;
+    position: sticky !important;
+    left: 95% !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    pointer-events: fill !important;
+}
+.iconCloseButton :hover{
+    bottom: 39px !important;
+    height: 15px !important;
+    width: 15px !important;
+    display: flex !important;
+    bottom: 75% !important;
+    position: sticky !important;
+    left: 95% !important;
+    color: red !important;
+    pointer-events: fill !important;
+}
+.vertragTab{
+    z-index: 50 !important;
+    top:5px !important;
+    height: calc(100% - 50px) !important;
+    width: 140px !important;
+    background-color: #f5f5f5 !important;
+    margin-left: 5px !important;
+    flex-direction: row !important;
+    vertical-align: top !important;
+    align-items: baseline !important;
+
+}
+.subTab{
+height:39px !important;
+}
+.toolBar{
+    height: calc(100vh -
+    97px) !important;
+    top:97px !important;
+    width:10vw;
+border-radius: 0px 20px 20px 0px !important;
+z-index: 100 !important;
+overflow: hidden;
+border-right: 0 !important;
+
+}
+.toolBarExit{
+    top:0vh !important;
+    width:10vw;
+background-color: #eeeeee !important;
+border-radius: 0px 20px 20px 0px !important;
+z-index: 51 !important;
+overflow: hidden;
+border-right: 0 !important;
+    -webkit-animation: toolBarExit 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: toolBarExit 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes toolBarExit {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(-20vw);
+              transform: translateX(-20vw);
+    }
+  }
+  @keyframes toolBarExit {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(-20vw);
+              transform: translateX(-20vw);
+              visibility: hidden;
+              width: 0;
+              height: 0;
+    }
+  }
+.tab{
+    place-self: center;
+}
+.MuiTab-iconWrapper{
+    pointer-events: none !important;
+}
+.balken{
+    width: 100%;
+    height: 55px;
+}
+.headingVertragHinzufuegen{
+    padding:15px 1px 1px 15px;
+    bottom:0;
+}
+.newMandantList.MuiList-root.Menu-list{
+    width:"208px"
+}
+
+.selectNewVertrag{ 
+float:left !important;
+    margin: 10px 0px 10px 10px !important;
+    width:208px;
+    height:64px;
+    color:black !important;
+    text-align: left !important;
+    justify-content: flex-start !important;
+    border: lightgray solid 1px !important;
+}
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected{
+    top:5px !important;
+    height: calc(100% - 50px) !important;
+    color:white !important;
+    background-color: #404041 !important;
+}
+.MuiTab-root.vertragTab.Mui-selected{
+    top:5px !important;
+    height: calc(100% - 50px) !important;
+    color:white !important;
+    background-color: #404041 !important;
+}
+.openDrawer{    
+    z-index: 51;
+    top:0;
+    margin-right: 15px !important;
+    float: right !important;
+}
+.iconStyleDrawerButton{
+height: 25px;
+    z-index: 51;
+    width: 25px;
+}
+.buttonGrid{
+    display: grid;
+    grid-auto-rows: 30px !important;
+    height: calc(100vh -
+    97px) ;
+border-radius: 0px 20px 20px 0px;
+width: 100%;
+}
+
+.buttonDescription{
+    float: left;
+    margin-top: 3vh !important;
+    font-size: 76% !important;
+    width: 60%;
+    font-weight: 200;
+    color:white;
+    margin-left: 1vw !important;
+    word-break: break-all;
+    white-space: nowrap;
+}
+
+.buttonContainer{
+    height: 41px;
+    cursor: pointer;
+}
+.iconButtonToolbar{
+border-radius: 50%;
+    height: 41px;
+display: flex;
+flex-direction: column;
+float: right;
+    margin-right: 5px !important;
+    flex-wrap: wrap;
+}
+.iconStyle{
+   height: 25px;
+    width: 25px;
+
+}
+
+.buttonDescriptionOnExit{
+    float: left;
+    margin-top: 1vh !important;
+    font-size: 1.1vw !important;
+    margin-left: 1vw !important;
+    -webkit-animation: buttonDescriptionOnExit 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: buttonDescriptionOnExit 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@-webkit-keyframes buttonDescriptionOnExit {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(-20vw);
+              transform: translateX(-20vw);
+    }
+  }
+  @keyframes buttonDescriptionOnExit {
+    0% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    100% {
+      -webkit-transform: translateX(-20vw);
+              transform: translateX(-20vw);
+              visibility: hidden;
+              width: 0;
+              height: 0;
+    }
+  }
+  .emptyWindow{
+      position: fixed;
+    background-color: #eeeeee;
+    width: 100%;
+    height:100vh;
+z-index: 10;
+  }
+  .emptyWindowOpen{
+    position: fixed;
+    background-color: #eeeeee;
+    width: 100%;
+    height:100vh;
+    margin-left: 175px;
+z-index: 10;
+  }
+  .rahmen{
+      border: 1px solid rgb(115,111,249);
+      height: 79vh;
+      width: 75vw;
+      margin-top:136px !important;
+margin-left: 12vw;
+background-color: white;
+border-radius: 20px;
+  }
+.drawerHeader{
+    background-color: #eeeeee;
+    width: 100%;
+    height:10vh;
+}
+.overlappingToolBar{
+    position: relative;
+    top:0vh;
+    height: 90vh;
+    width:5vw;
+    left:90%;
+background: #eeeeee;
+border-radius: 30px;
+z-index: 100;
+}
+.horizontalLine{
+    position: fixed;
+    background: rgb(100,226,239,1);
+    left:5vw;
+    width:95vw;
+    height: 1px;
+
+}
+.menuBarTop{
+    position: fixed;
+    background-color: #eeeeee;
+    width: 100vw;
+    height: 49px;
+    z-index:50;
+    top:0;
+}
+.menuBarBottom{
+    position: fixed;
+    background-color: #eeeeee;
+    width: 100vw;
+    height: 48px;
+    z-index:50;
+    top:49px;
+}
+.gruppierungVertragsAuswahl{
+    position: fixed !important;
+    top:17vh;
+    width: 15.5vw;
+}
+.itemButton{
+    width: 15.5vw;
+}
+.gruppierungenText{
+    font-size: 0.8vw !important;
+
+}
+.listItemText{
+    font-size: small !important;
+
+}
+.lightDarkMode{
+    z-index: 100 !important;
+
+}
+.lightModeIcon{
+    position: fixed;
+    top:70px;
+    height: 50px;
+    width: 50px;
+    z-index: 100 !important;
+}

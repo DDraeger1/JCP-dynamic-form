@@ -30,7 +30,7 @@
         "sm": 6,
         "xs":6
       },
-      "suiteValue":""
+      "suiteValue":"vorname"
     },
     {
       "name": "nameKind",
@@ -43,7 +43,7 @@
       "rules": {
         "required": true
       },
-      "suiteValue":""
+      "suiteValue":"nachname"
     },
     {
       "name": "geburtsdatumKind",
@@ -53,7 +53,7 @@
         "sm": 6,
         "xs":6
       },
-      "suiteValue":""
+      "suiteValue":"geburtsdatum"
     },
     {
       "name": "geburtsortKind",
@@ -63,7 +63,7 @@
         "sm": 6,
         "xs":6
       },
-      "suiteValue":""
+      "suiteValue":"geburtsort"
     },
     {
       "name": "gemeinsamesKind",
@@ -71,15 +71,14 @@
       "type": "checkbox",
       "props": { "sm": 4,
         "xs":4 },
-        "suiteValue":""
+        "suiteValue":"gemeinsamesKind"
     },
     {
       "name": "filler",
       "label": " ",
       "type": "paragraph",
       "props": { "sm": 1,
-        "xs":1 },
-        "suiteValue":""
+        "xs":1 }
     },
     {
       "name": "versichertBeiKind",
@@ -99,7 +98,7 @@
     "value":"s","label":"Sonstige"
 }
   ],
-  "suiteValue":""
+  "suiteValue":"krankenversichertBei"
   },
     {
       "name": "steuerIDKind",
@@ -109,7 +108,7 @@
         "sm": 6,
         "xs":6
       },
-      "suiteValue":""
+      "suiteValue":"steuerId"
     },
     {
       "name": "ausbildungsstandKind",
@@ -126,7 +125,7 @@
         { "value": "Student", "label": "Student" },
         { "value": "Ausbildung/Studium", "label": "Ausbildung/Student" }
       ],
-      "suiteValue":""
+      "suiteValue":"ausbildungsstand"
     },
     {
       "name": "bisKind",
@@ -136,7 +135,7 @@
         "sm": 6,
         "xs":6
       },
-      "suiteValue":""
+      "suiteValue":"ausbildungBis"
     },
     {
       "name": "fachrichtungKind",
@@ -146,13 +145,13 @@
         "sm": 6,
         "xs":6
       },
-      "suiteValue":""
+      "suiteValue":"ausbildungFachrichtung"
     },
     {
       "name": "berufKind",
       "label": "berufstätig, Beruf",
       "type": "text",
-      "suiteValue":""
+      "suiteValue":"ausbildungBeruf"
     },
     {
       "name": "kindergeldHeader",
@@ -167,7 +166,7 @@
         "sm": 6,
         "xs":6
       },
-      "suiteValue":""
+      "suiteValue":"kindergeldBis"
     },
     {
       "name": "bezugsberechtigtePersonKindergeldKind",
@@ -178,10 +177,10 @@
         "xs":6
       },
       "options": [
-        { "value": "m", "label": "Mandant" },
+        { "value": "m", "label": "Mandant/in" },
         { "value": "p", "label": "Partner/in" }
       ],
-      "suiteValue":""
+      "suiteValue":"bezugsberechtigePersonKinderfreibetrag"
     },
     {
       "name": "kinderfreibetragHeader",
@@ -196,7 +195,7 @@
         "sm": 6,
         "xs":6
       },
-      "suiteValue":""
+      "suiteValue":"kinderfreibetragBis"
     },
     {
       "name": "kinderfreibetragKind",
@@ -211,7 +210,7 @@
         { "value": "HALBER", "label": "Halber" },
         { "value": "KEIN", "label": "Kein" }
       ],
-      "suiteValue":""
+      "suiteValue":"kinderfreibetrag"
     },
     {
       "name": "bezugsberechtigtePersonKindFreibetragKind",
@@ -222,12 +221,12 @@
         "xs":6
       },
       "options": [
-        { "value": "m", "label": "Mandant" },
+        { "value": "m", "label": "Mandant/in" },
         { "value": "p", "label": "Partner/in" },
         { "value": "b", "label": "Beide" },
         { "value": "s", "label": "Sonstige" }
       ],
-      "suiteValue":""
+      "suiteValue":"bezugsberechtigePersonKindergeld"
     },
     {
       "name": "kinderzulageRiesterKind",
@@ -238,11 +237,11 @@
         "xs":6
       },
       "options": [
-        { "value": "m", "label": "Mandant" },
+        { "value": "m", "label": "Mandant/in" },
         { "value": "p", "label": "Partner/in" },
         { "value": "s", "label": "Sonstige" }
       ],
-      "suiteValue":""
+      "suiteValue":"kinderzulageRiester"
     }
   ]
 }

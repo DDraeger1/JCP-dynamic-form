@@ -4,8 +4,10 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import { Context } from "../context/Context";
+import { Tooltip } from "@mui/material";
+
 import axios from "axios";
-import { DeleteForever } from "@material-ui/icons";
+import {  DeleteForever,Close, Info } from "@material-ui/icons";
 function BruttoHinzufuegen({ watch }) {
   const { setEinkommenGehaltBezuege, bruttoSum, setBruttoSum } =
     useContext(Context);
@@ -31,7 +33,7 @@ function BruttoHinzufuegen({ watch }) {
         setEinkommenGehaltBezuege({
           hinzufuegen: true,
           pressedValue: "Fahrtkosten",
-        });
+        })
         break;
       case "Provision":
         setEinkommenGehaltBezuege({
@@ -617,7 +619,6 @@ function SonderzahlungSummeNettoSchnitt({ watch }) {
 
 function ArbeitgeberHinzufuegen({ watch }) {
   const { anzahlVp, setAnzahlVp } = useContext(Context);
-  console.log(watch());
   function checkForUndefined(value) {
     let output = false;
     if (typeof value === "undefined") {
@@ -650,11 +651,12 @@ function ArbeitgeberHinzufuegen({ watch }) {
     </Button>
   );
 }
-function RentenPrognose({ watch, setValue }) {
+function RentenPrognose({ watch, setValue,tarifTypeIdFromCardState }) {
   const { mandantGroup } = useContext(Context);
   function dateFormaterSuite(date) {
     //from dd/mm/yyyy to mm/dd/yyyy
     let output;
+    if(typeof date === "string"){
     if (date !== null) {
       if (date !== undefined) {
         if (date.length === 10) {
@@ -663,10 +665,12 @@ function RentenPrognose({ watch, setValue }) {
         }
       }
     }
+  } else{
+    output = date.toLocaleDateString("de-EU",{day:"2-digit", month:"2-digit",year:"numeric"});
+  }
     return output;
   }
-  const {versicherungsnehmerValue} = useContext(Context)
-console.log(versicherungsnehmerValue)
+  const {login} = useContext(Context)
 function prognostizierteRenteBerechnenRUERUP(){
   //werte Ruerup klassisch: art, mitBU: integrierteBURuerupRente, koerperlichTaetig:mandant, buRente:rentenleistungBURuerupRente
   // anteilBU: beitragsanteilBUHinterbliebenenZusatzversicherungRuerupRente, beitrag:beitragHinterbliebenenZusatzversicherungRuerupRente,
@@ -712,7 +716,7 @@ let mandantVersichert;
         mandantVersichert = mandant;
       }
     });
-    console.log(mandantVersichert);
+    console.log(watch().vertragsendeVertragslaufzeitRuerupRente);
     let params = {
       klassisch:
         watch().artVersichertePersonRuerupRente !== "undefined"
@@ -740,7 +744,7 @@ let mandantVersichert;
     let config = {
       method: "post",
       url:
-        "http://localhost:8080/build-suite/rechenmodul.json?action=berechnePrognostizierteRente&anteilBU=" +
+        "https://jcp-suite.de/suite/rechenmodul.json?action=berechnePrognostizierteRente&anteilBU=" +
         params.anteilBU +
         "&beitrag=" +
         params.beitrag +
@@ -763,19 +767,22 @@ let mandantVersichert;
         "&versicherungsende=" +
         params.versicherungsende,
       headers: {
-        Cookie:
-          "59669720A20F69EA54F253BB1263D48B; JSESSIONID=43D4429B33E4468A1A69178B21BD2258",
+        Authorization:"Bearer "+login
       },
     };
 
     axios(config)
       .then(function (response) {
-        console.log(response.data);
+
+        if(response.data.result.success){
         setValue(
           "prognostiziertMonatlicheRentenleistungRuerupRente",
           response.data.result.prognostizierteRente.toFixed(2),
           { shouldDirty: true }
         );
+      } else{
+alert(response.data.result.message)
+      }
       })
       .catch(function (error) {
         alert(error);
@@ -852,7 +859,7 @@ let mandantVersichert;
     let config = {
       method: "post",
       url:
-        "http://localhost:8080/build-suite/rechenmodul.json?action=berechnePrognostizierteRente&anteilBU=" +
+        "https://jcp-suite.de/suite/rechenmodul.json?action=berechnePrognostizierteRente&anteilBU=" +
         params.anteilBU +
         "&beitrag=" +
         params.beitrag +
@@ -875,8 +882,7 @@ let mandantVersichert;
         "&versicherungsende=" +
         params.versicherungsende,
       headers: {
-        Cookie:
-          "59669720A20F69EA54F253BB1263D48B; JSESSIONID=43D4429B33E4468A1A69178B21BD2258",
+        Authorization:"Bearer "+login
       },
     };
 
@@ -894,15 +900,16 @@ let mandantVersichert;
       });
 
   }
+
   return (
     <Button
       id="prognose-button"
       aria-controls="basic-menu"
       aria-haspopup="true"
       onClick={() =>{ 
-        if(versicherungsnehmerValue.tarifTypeId === "RIESTER"){
+        if(tarifTypeIdFromCardState === "RIESTER"){
         prognostizierteRenteBerechnenRIESTER()
-      } if(versicherungsnehmerValue.tarifTypeId === "RUERUP")
+      } if(tarifTypeIdFromCardState === "RUERUP")
       prognostizierteRenteBerechnenRUERUP()
       }}
     >
@@ -910,12 +917,24 @@ let mandantVersichert;
     </Button>
   );
 }
-function DeleteBankdaten({ variableName }) {
-  const { setDeletionIndex, mandantGroup, deletionIndex } = useContext(Context);
+function DeleteBankdaten({ deletionIndex,renderAnzahlVp }) {
+  const {  setBankverbindungen,bankverbindungen,setAnzahlVp } = useContext(Context);
+  function deleteBankdatenListener(){
+    let output=bankverbindungen
+    output.splice(deletionIndex,1)
+    if(output.length === 1){
+      setBankverbindungen([])
+    console.log("Triggered")
+    renderAnzahlVp(output.length)
+    } else{
+    renderAnzahlVp(output.length)
+  }
+  setAnzahlVp(output.length)
+  console.log(output.length)
 
-  let index;
+  }
   return (
-    <Button onClick={() => console.log(deletionIndex)}>
+    <Button onClick={() => deleteBankdatenListener()}>
       <DeleteForever />
     </Button>
   );
@@ -1044,6 +1063,10 @@ console.log(watch().zinssatzObjektzuordnungDarlehen)
 
   return(<p style={{textAlign:"center"}}>{"Tilgung in (€): "+tilgung.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')+" €"}</p>)
 }
+function DeleteArbeitgeber(index){
+
+  return(<IconButton ><Close/></IconButton>)
+}
 function RestschuldBerechnen({watch,setValue}){
   function restschuldListener(){
 
@@ -1062,9 +1085,12 @@ function RestschuldBerechnen({watch,setValue}){
         }
       }
         var timestopay = restschuld / tilgungBetrag;
+        console.log(timestopay)
+        console.log(zahlweiseFactor)
         var yearstopay = timestopay / zahlweiseFactor;
 
         // add yearstopay to standvom
+        console.log(watch().standVomObjektzuordnungDarlehen)
         console.log(watch().standVomObjektzuordnungDarlehen.replace(6,4)+yearstopay)
         console.log(yearstopay)
         setValue("voraussichtlichSchuldenfreiObjektzuordnungDarlehen",watch().standVomObjektzuordnungDarlehen.replace(6,4)+yearstopay)
@@ -1074,9 +1100,38 @@ function RestschuldBerechnen({watch,setValue}){
       restschuldListener()
     }}>Restschuld berechnung</Button>)
 }
-function FunctionMapper({ functionName, variableName, watch, setValue }) {
+function AddBankVerbindung({renderAnzahlVp}){
+const { anzahlVp, setAnzahlVp } = useContext(Context);
+function addBank(){
+  setAnzahlVp(anzahlVp+1)
+  renderAnzahlVp(anzahlVp)
+}
+return(<Button laben="Neue Bankdaten" onClick={()=>addBank()} startIcon={<i class="fa fa-user-plus fa-lg" />}></Button>)
+}
+function SumbAV({watch}){
+  let sum =parseInt(watch().beitragANAnteilBeitragBetrieblicheAltersversorgung)  +parseInt(watch().beitragAGAnteilBeitragBetrieblicheAltersversorgung) +parseInt(watch().VWLArbeitgeberbeitragBetrieblicheAltersversorgung)  +
+  parseInt(watch().VWLArbeitnehmerbeitragBetrieblicheAltersversorgung) 
+  return(<div style={{height:"45px"}}>
+    <p style={{color:"#3f51b5",top:"0", left:"0", fontSize:"1rem", fontFamily:"Roboto, Helvetica, Arial, sans-serif", marginTop:"0px"}}>Beitrag Gesamt (inkl. BU)</p>
+    <p>{sum}</p>
+    </div>)
+}
+// top: 0; left: 0; position: absolute; font-size: 1rem;
+//font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+//font-weight: 400; line-height: 1; letter-spacing: 0.00938em;
+
+
+
+    
+function FunctionMapper({ functionName, variableName, watch, setValue,renderAnzahlVp,tarifTypeIdFromCardState }) {
   return (
     <div>
+      {functionName==="deleteArbeitgeber" ?(
+<DeleteArbeitgeber index={variableName}/>
+      ):null}
+        {functionName === "addBank" ? (
+<AddBankVerbindung renderAnzahlVp={renderAnzahlVp}/>
+        ):null}
       {functionName === "bankAddBrutto" ? (
         <BruttoHinzufuegen watch={watch} />
       ) : null}
@@ -1107,10 +1162,10 @@ function FunctionMapper({ functionName, variableName, watch, setValue }) {
         <ArbeitgeberHinzufuegen watch={watch} />
       ) : null}
       {functionName === "rentenPrognose" ? (
-        <RentenPrognose watch={watch} setValue={setValue} />
+        <RentenPrognose watch={watch} setValue={setValue} tarifTypeIdFromCardState={tarifTypeIdFromCardState} />
       ) : null}
       {functionName === "deleteBankverbindung" ? (
-        <DeleteBankdaten variableName={variableName} />
+        <DeleteBankdaten variableName={variableName} renderAnzahlVp={renderAnzahlVp}/>
       ) : null}
       {functionName === "numberJahresbrutto" ? (
         <JahresBrutto watch={watch} setValue={setValue}/>
@@ -1120,6 +1175,9 @@ function FunctionMapper({ functionName, variableName, watch, setValue }) {
       ) : null}
                   {functionName === "tilgungEuroObjektzuordnungDarlehen" ? (
         <Tilgung watch={watch}/>
+      ) : null}
+                        {functionName === "beitragGesamtBeitragBetrieblicheAltersversorgung" ? (
+        <SumbAV watch={watch}/>
       ) : null}
     </div>
   );

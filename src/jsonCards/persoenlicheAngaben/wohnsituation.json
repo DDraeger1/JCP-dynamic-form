@@ -15,7 +15,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":""
     },
       {
         "name": "mieteEigentumWohnsituation",
@@ -28,7 +29,8 @@
   "options": [
     { "value": true, "label": "Miete" },
     { "value": false, "label": "Eigentum" }
-  ]
+  ],
+  "suiteValue":""
 },
 {
     "name": "personenzuordnung",
@@ -43,7 +45,8 @@
     "tarifType":"WOHNSITUATION",
     "props": {
       "required": true
-    }
+    },
+    "suiteValue":""
 },
 {
     "name": "mieteProMonatWohnsituation",
@@ -53,22 +56,26 @@
   {
     "name": "warmmieteMieteProMonatWohnsituation",
     "label": "Warmmiete (€)",
-    "type": "text"
+    "type": "text",
+    "suiteValue":""
   },
   {
     "name": "kaltmieteMieteProMonatWohnsituation",
     "label": "Kaltmiete (€)",
-    "type": "text"
+    "type": "text",
+    "suiteValue":""
   },
   {
     "name": "nebenkostenMieteProMonatWohnsituation",
     "label": "Nebenkosten (€)",
-    "type": "text"
+    "type": "text",
+    "suiteValue":""
   },
   {
     "name": "wohngeldMieteProMonatWohnsituation",
     "label": "Wohngeld (€)",
-    "type": "text"
+    "type": "text",
+    "suiteValue":""
   }
     ]
 }

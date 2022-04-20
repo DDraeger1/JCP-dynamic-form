@@ -93,7 +93,7 @@ export function checkForKind(mandantGroup, isKindNeeded) {
 
   return addMenuItem;
 }
-export function formatMandantName(mandantGroup, kindAnzahl, setKindAnzahl) {
+export function formatMandantName(mandantGroup) {
   let mandantName;
 
   if (mandantGroup.art === "MANDANT") {
@@ -129,4 +129,153 @@ output.push({value: asset.objektnotizen, label: asset.objektnotizen})
 })
 }
   return output
+}
+
+export function setName(name, tarifType) {
+  function tarifTypeCheck(tarifType) {
+    let output = "";
+    switch (tarifType) {
+      case "UNFALL":
+        output = "Unfallversicherung";
+        break;
+      case "BU":
+        output = "BU / EU / GF";
+        break;
+      case "DREADDISEASE":
+        output = "DD / Schwere Krankheit";
+        break;
+      case "RISIKO":
+        output = "Todesfall";
+        break;
+      case "RUERUP":
+        output = "Basisrente/Ruerup";
+        break;
+      case "RIESTER":
+        output = "Förderrente/Riester";
+        break;
+      case "DIREKTZUSAGE":
+        output = "bAV - Direktzusage";
+        break;
+      case "PENSIONSFONDS_3":
+        output = "bAV - Pensionfonds (§ 3 Nr. 63 EStG)";
+        break;
+        case "bAVNEW":
+          output = "bAV";
+          break;
+      case "DIREKT_40":
+        output = "bAV - Direktversicherung (§ 40 Nr. 63 EStG)";
+        break;
+      case "PENSIONSKASSE_40":
+        output = "bAV - Pensionfonds (§ 40b Nr. 63 EStG)";
+        break;
+      case "UNTERSTUETZUNGSKASSE":
+        output = "bAV - Unterstützungskasse";
+        break;
+      case "DIREKT_3":
+        output = "bAV - Direktversicherung (§ 3 Nr. 63 EStG)";
+        break;
+      case "GESETZLICHE_AV":
+        output = "Todesfall";
+        break;
+      case "GESETZLICHE_KRANKEN":
+        output = "Gesetzliche Kranken-/Pflegeversicherung";
+        break;
+      case "PRIVATHAFTPFLICHT":
+        output = "Privathaftpflicht";
+        break;
+      case "HUNDEHALTERHAFTPFLICHT":
+        output = "Hundehalterhaftpflicht";
+        break;
+      case "PFERDEHALTERHAFTPFLICHT":
+        output = "Pferdehalterpflicht";
+        break;
+      case "HAUSRAT":
+        output = "Hausrat";
+        break;
+      case "RECHTSSCHUTZ":
+        output = "Rechtsschutz";
+        break;
+      case "WOHNGEBAEUDE":
+        output = "Wohngebäude";
+        break;
+      case "KFZ":
+        output = "KFZ";
+        break;
+      case "EINNAHMEN":
+        output = "Einnahmen";
+        break;
+      case "EINKOMMEN_GEHALT":
+        output = "Einkommen Gehalt";
+        break;
+      case "EINKOMMEN_MINIJOB":
+        output = "Einkommen aus geringfügiger Beschäftigung (Minijob)";
+        break;
+      case "EINKOMMEN_SELBSTAENDIGER":
+        output = "Einkommen aus selbstständiger Erwerbstätigkeit";
+        break;
+      case "AUSGABEN":
+        output = "Ausgaben";
+        break;
+      case "AUTOMOBILCLUB":
+        output = "Automobilclub";
+        break;
+      case "SONSTIGE_ZAHLUNG":
+        output = "Sonstige Zahlung";
+        break;
+      case "KONSUMKREDIT":
+        output = "Konsumkredit";
+        break;
+      case "DARLEHEN":
+        output = "Darlehen";
+        break;
+      case "BANKPRODUKTE":
+        output = "Bankprodukte";
+        break;
+      case "VWL_BAUSPAREN":
+        output = "VWL und Bausparen";
+        break;
+      case "IMMOBILIENBESTAND":
+        output = "Immobilienbestand";
+        break;
+      case "SACHWERT":
+        output = "Sachwert";
+        break;
+      case "BETEILIGUNGEN":
+        output = "Beteiligung";
+        break;
+      case "PFLEGEKOSTEN":
+        output = "Private Pflegeversicherung";
+        break;
+      case "PFLEGERENTEN":
+        output = "Private Pflegeversicherung";
+        break;
+      case "PFLEGETAGEGELD":
+        output = "Private Pflegeversicherung";
+        break;
+      case "KVV":
+        output = "Private Pflegeversicherung";
+        break;
+      case "KVZ":
+        output = "KV Zusatz";
+        break;
+      default:
+        output = tarifType;
+        break;
+    }
+    return output;
+  }
+  let output = "";
+  if (typeof name !== "undefined") {
+    if (name.length === 0) {
+      //"RISIKO", "BU", "DREADDISEASE","UNFALL"
+      output = tarifTypeCheck(tarifType);
+    } else {
+      output = name;
+    }
+  }
+  if (typeof name === "undefined") {
+    //"RISIKO", "BU", "DREADDISEASE","UNFALL"
+    output = tarifTypeCheck(tarifType);
+  }
+  return output;
 }

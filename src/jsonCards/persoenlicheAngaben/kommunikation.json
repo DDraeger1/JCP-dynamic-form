@@ -14,7 +14,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"contactVersicherungen"
           },
           {
             "name": "bankgeschaefteKommunikation",
@@ -23,7 +24,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"contactBank"
           },
           {
             "name": "steuernKommunikation",
@@ -32,7 +34,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"contactSteuern"
           },
           {
             "name": "rechtlichesKommunikation",
@@ -41,7 +44,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"contactRecht"
           }]},
           {
             "section": "Telefon/Festnetz",
@@ -54,7 +58,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"telefon"
           },
           {
             "name": "geschaeftlichTelefonFestnetzKommunikation",
@@ -63,7 +68,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"telefonGeschaeftlich"
           }]},
           {
             "section": "Mobiltelefon",
@@ -76,7 +82,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"telefonMobil"
           },
           {
             "name": "geschaeftlichMobiltelefonKommunikation",
@@ -85,17 +92,13 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"telefonMobilGeschaeftlich"
           }]},
           {
             "section": "Fax",
             "card": true,
             "items": [
-          {
-            "name": "faxKommunikation",
-            "label": "Fax",
-            "type": "text"
-          },
           {
             "name": "privatFaxKommunikation",
             "label": "privat",
@@ -103,7 +106,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"telefax"
           },
           {
             "name": "geschaeftlichFaxKommunikation",
@@ -112,7 +116,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"telefaxGeschaeftlich"
           },
           {
             "name": "socialMediaKommunikationHeader",
@@ -126,7 +131,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"facebook"
           },
           {
             "name": "xingKommunikation",
@@ -135,7 +141,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"xing"
           }]}
     ]
 }

@@ -39,3 +39,68 @@ contextId: 6de75340-1d4b-11e4-b0c8-df3877acf7d4
 
  e5943e40-9eb4-11ec-a423-001c4270ffe9
  e5949ed0-9eb4-11ec-a423-001c4270ffe9
+
+ Person
+Kind
+Ausweisdaten
+Führerschein
+Ausbildung / Beruf
+Arbeitgeber
+Kommunikation
+Legitimation
+Bank
+Gesundheit
+
+      width: 0px;
+      height: 0px;
+      border-right: 60px solid transparent;
+      border-top: 60px solid red;
+      border-left: 60px solid red;
+      border-bottom: 60px solid red;
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+      border-bottom-left-radius: 60px;
+      border-bottom-right-radius: 60px;
+
+
+        "RUERUP",<i class="fa-solid fa-person-cane fa-2x"></i>
+    "RIESTER",<i class="fa-solid fa-person-cane fa-2x"></i>
+    "DIREKTZUSAGE",<i class="fa-solid fa-industry-windows"></i>
+    "PENSIONSFONDS_3",<i class="fa-solid fa-industry-windows"></i>
+    "DIREKT_40",<i class="fa-solid fa-industry-windows"></i>
+    "PENSIONSKASSE_40",<i class="fa-solid fa-industry-windows"></i>
+    "UNTERSTUETZUNGSKASSE",<i class="fa-solid fa-industry-windows"></i>
+    "DIREKT_3",<i class="fa-solid fa-industry-windows"></i>
+    
+    "GESETZLICHE_AV",<i class="fa-solid fa-section"></i>
+    "GESETZLICHE_KRANKEN",<i class="fa-solid fa-truck-medical"></i>
+        "PRIVATHAFTPFLICHT",<i class="fa-solid fa-user-police"></i>
+    "HUNDEHALTERHAFTPFLICHT",<i class="fa-solid fa-dog-leashed"></i>
+    "PFERDEHALTERHAFTPFLICHT",<i class="fa-solid fa-horse-saddle"></i>
+    "HAUSRAT",<i class="fa-solid fa-person-biking"></i>
+"RECHTSSCHUTZ",<i class="fa-solid fa-gavel"></i>
+"WOHNGEBAEUDE",<i class="fa-solid fa-cloud-bolt"></i>
+"KFZ",<i class="fa-solid fa-car"></i>
+    "EINNAHMEN",<i class="fa-solid fa-money-bill"></i>
+    "EINKOMMEN_GEHALT",<i class="fa-solid fa-wallet"></i>
+    "EINKOMMEN_MINIJOB",<i class="fa-solid fa-briefcase-blank"></i>
+    "EINKOMMEN_SELBSTAENDIGER",<i class="fa-solid fa-person-digging"></i>
+    "AUSGABEN",<i class="fa-solid fa-cart-shopping"></i>
+    "AUTOMOBILCLUB",<i class="fa-solid fa-car"></i>
+    "SONSTIGE_ZAHLUNG"<i class="fa-solid fa-money-bills"></i>
+        "KONSUMKREDIT",<i class="fa-solid fa-credit-card"></i>
+    "DARLEHEN",<i class="fa-solid fa-money-check-dollar-pen"></i>
+    "BANKPRODUKTE",<i class="fa-solid fa-building-columns"></i>
+    "VWL_BAUSPAREN",<i class="fa-solid fa-house-chimney"></i>
+    "IMMOBILIENBESTAND",<i class="fa-solid fa-city"></i>
+    "SACHWERT",<i class="fa-solid fa-building-columns"></i>
+    "BETEILIGUNGEN"<i class="fa-solid fa-chart-pie-simple"></i>
+        "PFLEGEKOSTEN",<i class="fa-solid fa-user-doctor"></i>
+        "PFLEGERENTEN",<i class="fa-solid fa-user-doctor"></i>
+        "PFLEGETAGEGELD",<i class="fa-solid fa-user-doctor"></i>
+    "KVV",<i class="fa-solid fa-bandage"></i>
+    "KVZ"<i class="fa-solid fa-bandage"></i>
+
+
+{"id":"e5943e40-9eb4-11ec-a423-001c4270ffe9","beraterId":"2c060138-1d4b-11e4-b0c8-df3877acf7d4","nebenberaterId":"2231b6ef-159f-11e5-aae6-001c4254d875","anrede":"Mann","titel":"Doktor","vorname":"JcpReactFormulare","nachname":"Tester20220308","geburtsname":"","geburtsdatum":"01.01.1980","geburtsort":"","staatsangehoerigkeit":"","rechtsform":"","firmaChef":"","firmaTaetigkeit":"","firmaUmsatz":"","firmaLohn":"","firmawebsite":"","firmaVollzeit":"","firmaTeilzeit":"","firmaMinijob":"","firmaAzubi":"","strasse":"dsfas","hausnummer":"425","postleitzahl":"6478","ort":"DortSeinMussjz","wohnhaftSeit":"21.04.2022","familienstand":"FAMILIENSTAND_GESCHIEDEN","familienstandSeit":"14.04.2022","fallschirmspringen":true,"motorradfahrer":true,"karate":false,"surfen":false,"jagd":true,"segeln":true,"motorboot":false,"tauchen":false,"klettern":false,"bergsteigen":false,"sonstiges":false,"hobbys":"","notizen":""}
+json: {"mandantId":"e5943e40-9eb4-11ec-a423-001c4270ffe9","beraterId":"2c060138-1d4b-11e4-b0c8-df3877acf7d4","nebenberaterId":"","anrede":"Frau","titel":"","vorname":"Bettiner","nachname":"Tester20220308","geburtsname":"","geburtsdatum":"06.04.2022","geburtsort":"","staatsangehoerigkeit":"","rechtsform":"","firmaChef":"","firmaTaetigkeit":"","firmaUmsatz":"","firmaLohn":"","firmawebsite":"","firmaVollzeit":"","firmaTeilzeit":"","firmaMinijob":"","firmaAzubi":"","strasse":"dsfas","hausnummer":"425","postleitzahl":"6478","ort":"DortSeinMussjz","wohnhaftSeit":"","familienstand":"FAMILIENSTAND_LEDIG","familienstandSeit":"","fallschirmspringen":false,"motorradfahrer":false,"karate":false,"surfen":false,"jagd":false,"segeln":false,"motorboot":false,"tauchen":false,"klettern":false,"bergsteigen":false,"sonstiges":false,"hobbys":"","notizen":""}

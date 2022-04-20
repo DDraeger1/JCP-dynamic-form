@@ -1,0 +1,96 @@
+{
+    "section": "Wassersporthaftpflicht",
+    "card": true,
+    "mobileClassname": "Wassersporthaftpflicht",
+    "items": [
+      { "name": "showExternalProductId", "type": "paragraph", "label": "" },
+      {
+        "name": "versicherungsnehmerWassersporthaftpflicht",
+        "label": "Versicherungsnehmer",
+        "type": "selectMandant",
+        "tarifType": "WASSERSPORTHAFTPFLICHT",
+        "props": { "required": true },
+        "suiteValue": "versicherungsnehmerId"
+      },
+      {
+        "section": "",
+        "card": true,
+        "items": [
+          {
+            "name": "gesellschaftWassersporthaftpflicht",
+            "type": "gesellschaft",
+            "props": { "required": true }
+          },
+          {
+            "name": "vertragsnummerWassersporthaftpflicht",
+            "type": "text",
+            "label": "Vertragsnummer"
+          }
+        ]
+      },
+      {
+        "section": "",
+        "card": true,
+        "items": [
+            {
+                "name": "versicherungssummeWassersporthaftpflicht",
+                "type": "text",
+                "label": "Versicherungssumme (€)"
+              },
+              {
+                "name": "selbstbeteiligungWassersporthaftpflicht",
+                "type": "text",
+                "label": "Selbstbeteiligung (€)"
+              }
+        ]
+    },      
+    {
+        "section": "",
+        "card": true,
+        "items": [
+            {
+                "name": "motorbootWassersporthaftpflicht",
+                "type": "text",
+                "label": "KW Motorboot (€)"
+              },
+              {
+                "name": "segelflaecheWassersporthaftpflicht",
+                "type": "text",
+                "label": "Segelfläche (in qm)"
+              }
+        ]},
+        {
+            "section": "Vertragslaufzeit",
+            "card": true,
+            "items": [
+              {"name":"vertragsbeginnWassersporthaftpflicht",
+                "label":"Vertragsbeginn",
+            "type":"date",
+          "props":{
+            "required":true
+          }},
+          {"name":"vertragsendeWassersporthaftpflicht",
+            "label":"Vertragsende",
+        "type":"date"
+          }
+            ]},
+            {
+                "section": "Vorschäden",
+                "card": true,
+                "items": [
+                    {"name":"anzahlVorschaedenFuenfJahreWassersporthaftpflicht",
+                        "label":"Anzahl Vorschäden letzten 5 Jahren",
+                    "type":"text"
+                  },
+                      {"name":"anzahlVorschaedenWassersporthaftpflicht",
+                        "label":"Höhe der Vorschäden",
+                    "type":"text"
+                  },
+                  {"name":"vorschadensummeWassersporthaftpflicht",
+                    "label":"Vorschadensumme/-art/-höhe",
+                "type":"text"
+              }
+                ]
+            }
+    ]
+}

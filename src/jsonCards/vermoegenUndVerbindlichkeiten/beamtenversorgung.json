@@ -1,0 +1,137 @@
+{
+    "section": "Beamtenversorgung",
+    "card": true,
+    "mobileClassname": "Beamtenversorgung",
+    "items": [
+        {
+            "name": "berufsstandischeVersorgung",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType": "BEAMTENVERSORGUNG",
+            "props": { "required": true },
+            "suiteValue": "versicherungsnehmerId"
+          },
+        {
+            "name": "bundBeamtenversorgung",
+            "type": "checkbox",
+            "label": "Bund"
+          },
+          {
+            "name": "bundeslandBeamtenversorgung",
+            "type": "text",
+            "label": "Bundesland"
+          },
+          {
+            "section": "Besoldungsgruppe/Stufe",
+            "card": true,
+            "items": [
+                {"name":"besoldungsgruppeBeamtenversorgung",
+                "type":"text",
+            "label":"Besoldungsgruppe (R10)"},
+            {"name":"stufeBeamtenversorgung",
+                "type":"text",
+            "label":"Stufe (01)"}
+                ]},
+                {"name":"dienstjahreBeamtenversorgung",
+                    "type":"text",
+                "label":"Ruhegehaltsfähige Dienstjahre"},
+                {"name":"zulagenBeamtenversorgung",
+                    "type":"text",
+                "label":"Ruhegehaltsfähige Zulagen (€)"},
+                {
+                    "section": "",
+                    "card": true,
+                    "items": [
+                        {"name":"beamtenstatusBeamtenversorgung",
+                            "type":"select",
+                        "label":"Beamtenstatus",
+                    "options":[
+                        { "value": "1", "label": "Beamter auf Widerruf" },
+                        { "value": "2", "label": "Beamter auf Probe" },
+                        { "value": "3", "label": "Beamter auf Zeit" },
+                        { "value": "4", "label": "Beamter auf Lebenszeit" }
+                    ]}
+                    ]},
+                    {"name":"wartezeitBeamtenversorgung",
+                        "type":"select",
+                    "label":"Wartezeit erfüllt",
+                    "options":[
+                        { "value": false, "label": "Nein" },
+                        { "value": true, "label": "Ja" }]
+                    },
+                    {
+                        "section": "Arbeitszeit",
+                        "card": true,
+                        "items": [
+                            {
+                                "name": "vollzeitBeamtenversorgung",
+                                "type": "checkbox",
+                                "label": "Vollzeit"
+                              },
+                              {
+                                  "name":"teilzeitBeamtenversorgung",
+                                  "type":"text",
+                                  "condition":"vollzeitBeamtenversorgung",
+                                  "label":"Teilzeit: Stunden von Stunden"
+                              }
+                        ]
+                    },
+                    {
+                        "section": "Wehr- oder Zividienstzeiten",
+                        "card": true,
+                        "items": [
+                            {
+                                "name": "vonZividienstzeitenBeamtenversorgung",
+                                "type": "date",
+                                "label": "von"
+                              },
+                              {
+                                  "name":"bisZividienstzeitenBeamtenversorgung",
+                                  "type":"date",
+                                  "label":"bis"
+                              }
+                        ]
+                    },
+                    {
+                        "section": "Fach- und Hochschulzeiten",
+                        "card": true,
+                        "items": [
+                            {
+                                "name": "vonHochschulzeitenBeamtenversorgung",
+                                "type": "date",
+                                "label": "von"
+                              },
+                              {
+                                  "name":"bisHochschulzeitenBeamtenversorgung",
+                                  "type":"date",
+                                  "label":"bis"
+                              }
+                        ]},
+                        {
+                            "section": "Renten-/Pensionsansprüche",
+                            "card": true,
+                            "items": [
+                                {
+                                    "name": "rentenbeginnBeamtenversorgung",
+                                    "type": "date",
+                                    "label": "Rentenbeginn"
+                                  },
+                                  {
+                                    "name": "pensionsanspruchBeamtenversorgung",
+                                    "type": "text",
+                                    "label": "Pensionsanspruch (€)"
+                                  },
+                                  {
+                                    "name": "dienstunfähigkeitsrenteBeamtenversorgung",
+                                    "type": "text",
+                                    "label": "Dienstunfähigkeitsrente"
+                                  },
+                                  {
+                                    "name": "witwerrenteBeamtenversorgung",
+                                    "type": "text",
+                                    "label": "Witwen-/Witwerrente (€)"
+                                  }
+                                ]
+                                }
+    ]
+}

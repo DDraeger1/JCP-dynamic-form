@@ -10,10 +10,16 @@ margin-bottom: 15px;
 width:120%;
 margin-left:-28px;
 background-color:#65cdef;
-border-radius:25px;
 bottom:0px;
 }
 .headerTypography{
     color:white;
     margin-left:28px !important;
+}
+.MuiAccordionSummary-content{
+    justify-content: space-between;
+    margin: 6px 0px;
+}
+.arbeitgeberText{
+    margin-top: 8px !important;
 }

@@ -10,11 +10,20 @@ import { Context } from "./context/Context";
 import DynamicForm from "./components/DynamicForm";
 import { mapAssets, redefineCard } from "./components/mapAssets";
 import { ThemeProvider } from "@material-ui/core/styles";
-import theme from "./theme";
+import setTheme from "./theme";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import deLocale from "date-fns/locale/de";
-import { Save, DeleteOutline } from "@material-ui/icons"; // ,RestartAlt
+import { Save, DeleteOutline, UnfoldLess, UnfoldMore, Close } from "@material-ui/icons"; // ,RestartAlt
+
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import IconButton from '@mui/material/IconButton';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Paper from '@mui/material/Paper';
+import Draggable from 'react-draggable';
 
 import mock from "./mockUI/MockUI.png";
 import loadingGIF from "./mockUI/loading.gif";
@@ -24,8 +33,11 @@ import personaldaten from "./jsonCards/persoenlicheAngaben/personaldaten.json";
 import chooseCard from "./jsonCards/ui/chooseCard.json";
 import { Tooltip, Button } from "@mui/material";
 import debugMenue from "./jsonCards/debug/debugMenue.json";
+import SideMenue from "./components/SideMenue";
+import { setName } from "./components/mapAssets";
 
-import kindVorhanden from "./jsonCards/persoenlicheAngaben/kinderVorhanden.json";
+import newMandant from "./jsonCards/persoenlicheAngaben/newMandant.json";
+import erweiterteBerufsfragen from "./jsonCards/persoenlicheAngaben/erweiterteBerufsfragen.json";
 import kind from "./jsonCards/persoenlicheAngaben/kind.json";
 import ausweisdaten from "./jsonCards/persoenlicheAngaben/ausweisdaten.json";
 import fuehrerschein from "./jsonCards/persoenlicheAngaben/fuehrerschein.json";
@@ -80,9 +92,18 @@ import betrieblicheAltersversorgung from "./jsonCards/altersvorsorge/betrieblich
 import ruerupRente from "./jsonCards/altersvorsorge/ruerupRente.json";
 import { gridColumnsTotalWidthSelector } from "@material-ui/x-grid";
 
+import beamtenbeihilfe from "./jsonCards/gesundheit/beamtenbeihilfe.json";
+import berufsstaendischeVorsorge from "./jsonCards/vermoegenUndVerbindlichkeiten/berufsstandischeVersorgung.json";
+import beamtenversorgung from "./jsonCards/vermoegenUndVerbindlichkeiten/beamtenversorgung.json";
+import bauherrenhaftpflicht from "./jsonCards/vermoegenUndVerbindlichkeiten/bauherrenhaftpflicht.json";
+import wassersporthaftpflicht from "./jsonCards/vermoegenUndVerbindlichkeiten/wassersporthaftpflicht.json";
+import gewaesserschadenhaftpflicht from "./jsonCards/vermoegenUndVerbindlichkeiten/gewaesserschadenhaftpflicht.json";
+import rente from "./jsonCards/vermoegenUndVerbindlichkeiten/rente.json";
+
 import { useParams } from "react-router-dom";
 
 import isAssetAvailable from "./components/isAssetAvailable";
+import { Icon, Typography } from "@material-ui/core";
 //TODO: Arbeite xs und md ein für kleinere bildschirme!!
 
 const betrieblicheAltersversorgungValues = {
@@ -1372,6 +1393,8 @@ const kindValues = {
 };
 
 const personaldatenValues = {
+  beraterPersonendaten: "",
+  nebenberaterPersonendaten: "",
   anredePersonendaten: "",
   titelPersonendaten: "",
   vornamePersonendaten: "",
@@ -1422,12 +1445,127 @@ const privateKrankenValues = {
   betragZweiPrivatePflegeversicherung: "",
   kurtagegeldZweiPrivatePflegeversicherung: "",
 };
-// die dem Formular zugrunde liegenden Daten...
 
-function App(props) {
+// die dem Formular zugrunde liegenden Daten...
+ //new form imports:  
+  //D   
+
+  const beamtenbeihilfeValues ={
+    versicherungsnehmerBeamtenbeihilfe:"",
+    artBeihilfeBeamtenbeihilfe:"",
+    ambulantHoeheBeamtenbeihilfe:"",
+    stationaerHoeheBeamtenbeihilfe:"",
+    anspruchBeamtenbeihilfe:"",
+    anwartschaftversicherungBeamtenbeihilfe:"",
+    bundeslandBeamtenbeihilfe:"",
+  }
+  const berufsstaendischeVorsorgeValues ={
+    versicherungsnehmerBerufsstandischeVersorgung:"",
+    gesellschaftBerufsstandischeVersorgung:"",
+    renteneintrittBerufsstandischeVersorgung:"",
+    renteBUEMBerufsstandischeVersorgung:"",
+    kapitalleistungBerufsstandischeVersorgung:"",
+    rentenanwartschaftBerufsstandischeVersorgung:"",
+    monatlicheAltersrenteBerufsstandischeVersorgung:"",
+    witwenrenteBerufsstandischeVersorgung:"",
+    waisenrenteBerufsstandischeVersorgung:"",
+    zahlweiseBerufsstandischeVersorgung:"",
+    beitragBerufsstandischeVersorgung:"",
+  }
+  const beamtenversorgungValues ={
+    berufsstandischeVersorgung:"",
+    bundBeamtenversorgung:"",
+    bundeslandBeamtenversorgung:"",
+    besoldungsgruppeBeamtenversorgung:"",
+    stufeBeamtenversorgung:"",
+    dienstjahreBeamtenversorgung:"",
+    zulagenBeamtenversorgung:"",
+    beamtenstatusBeamtenversorgung:"",
+    wartezeitBeamtenversorgung:"",
+    vollzeitBeamtenversorgung:"",
+    teilzeitBeamtenversorgung:"",
+    vonZividienstzeitenBeamtenversorgung:"",
+    bisZividienstzeitenBeamtenversorgung:"",
+    vonHochschulzeitenBeamtenversorgung:"",
+    bisHochschulzeitenBeamtenversorgung:"",
+    rentenbeginnBeamtenversorgung:"",
+    pensionsanspruchBeamtenversorgung:"",
+    dienstunfähigkeitsrenteBeamtenversorgung:"",
+    witwerrenteBeamtenversorgung:"",
+  }
+  const bauherrenhaftpflichtValues={
+    versicherungsnehmerBauherrenhaftpflicht:"",
+    gesellschaftBauherrenhaftpflicht:"",
+    vertragsnummerBauherrenhaftpflicht:"",
+    bausummeBauherrenhaftpflicht:"",
+    wohnflaecheBauherrenhaftpflicht:"",
+    hoeheEigenleistungenBauherrenhaftpflicht:"",
+    selbstbeteiligungBauherrenhaftpflicht:"",
+    fertighausBauherrenhaftpflicht:"",
+    vertragsbeginnBauherrenhaftpflicht:"",
+    vertragsendeBauherrenhaftpflicht:"",
+    anzahlVorschaedenFuenfJahreBauherrenhaftpflicht:"",
+    anzahlVorschaedenBauherrenhaftpflicht:"",
+    vorschadensummeBauherrenhaftpflicht:"",
+  }
+  const wassersporthaftpflichtValues ={
+    versicherungsnehmerWassersporthaftpflicht:"",
+    gesellschaftWassersporthaftpflicht:"",
+    vertragsnummerWassersporthaftpflicht:"",
+    versicherungssummeWassersporthaftpflicht:"",
+    selbstbeteiligungWassersporthaftpflicht:"",
+    motorbootWassersporthaftpflicht:"",
+    segelflaecheWassersporthaftpflicht:"",
+    vertragsbeginnWassersporthaftpflicht:"",
+    vertragsendeWassersporthaftpflicht:"",
+    anzahlVorschaedenFuenfJahreWassersporthaftpflicht:"",
+    anzahlVorschaedenWassersporthaftpflicht:"",
+    vorschadensummeWassersporthaftpflicht:"",
+  }
+  const gewaesserschadenhaftpflichtValues ={
+    versicherungsnehmerWassersporthaftpflicht:"",
+    gesellschaftGewaesserschadenhaftpflicht:"",
+    tarifgruppeGewaesserschadenhaftpflicht:"",
+    tankortGewaesserschadenhaftpflicht:"",
+    selbstbeteiligungGewaesserschadenhaftpflicht:"",
+    tarifgruppeGewaesserschadenhaftpflicht:"",
+    fassungsvermoegenGewaesserschadenhaftpflicht:"",
+    versicherungssummeGewaesserschadenhaftpflicht:"",
+    vertragsbeginnGewaesserschadenhaftpflicht:"",
+    vertragsendeGewaesserschadenhaftpflicht:"",
+    zahlweiseGewaesserschadenhaftpflicht:"",
+    Gewaesserschadenhaftpflicht:"",
+    beitragGewaesserschadenhaftpflicht:"",
+    anzahlVorschaedenFuenfJahreGewaesserschadenhaftpflicht:"",
+    anzahlVorschaedenGewaesserschadenhaftpflicht:"",
+    vorschadensummeGewaesserschadenhaftpflicht:"",
+  }
+  const renteValues ={
+    versicherungsnehmerRente:"",
+    gesellschaftRente:"",
+    nettoRente:"",
+    bruttoRente:"",
+    artRente:"",
+    vertragsbeginnRente:"",
+    vertragsendeRente:"",
+    zahlungVonRente:"",
+    zahlungBisRente:"",
+    zahlweiseRente:"",
+  }
+  function PaperComponent(props) {
+    return (
+      <Draggable
+        handle="#draggable-dialog-title"
+        cancel={'[class*="MuiDialogContent-root"]'}
+      >
+        <Paper {...props} />
+      </Draggable>
+    );
+  }function App(props) {
   const [loaded, setLoaded] = useState(false);
   const [initialised, setInitialised] = useState(false);
-
+  const [tabIndex, setTabIndex] = useState(0);
+  const [subTabIndex, setSubTabIndex] = useState(1000);
   const [isMock, toggleMock] = useState({
     active: false,
     style: { padding: "20" },
@@ -1437,7 +1575,6 @@ function App(props) {
   const [isBusy, setIsBusy] = useState(false);
   const [rawData, setRawData] = useState({ success: false });
   const [formData, setFormData] = useState({ success: false });
-  const [login, setLogin] = useState("");
   const {
     einkommenGehaltContext,
     versicherungsnehmerValue,
@@ -1452,21 +1589,79 @@ function App(props) {
     setBruttoSum,
     mandantGroup,
     setMandantGroup,
+    isRequiredFilled,
+    forceUseEffect,
+    setForceUseEffect,
+    forceUpdate,
+    cardClassName,
+    mandantTabIndex,
     bankverbindungen,
     setBankverbindungen,
-    isRequiredFilled,
-    forceUseEffect, setForceUseEffect,
-    forceUpdate
+    setArbeitgeberData,
+    arbeitgeberData,
+    setMandantTabIndex,
+    toggleProductGesellschaftIdLoaded,
+    login, setLogin,
+    openDialog, toggleOpenDialog,
+    fullscreenDialog, toggleFullscreenDialog
   } = useContext(Context);
 
   //note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
   const params = useParams();
-  const [card, setCard] = useState(params.card);
+  const [card, setCard] = useState("PERSONALDATEN");
   const [id, setId] = useState();
+  const [isDrawerInDOM, toggleDrawerInDOM] = useState(false);
+  const [selectedVertraege, setSelectedVertraege] = useState([]);
+  const [uebersichtVisibility, setUebersichtVisibility] = useState("visible");
+
   let jsonForm = [];
   const ref = useRef();
-
+ 
   switch (card) {
+    case "PRIVATRENTE":
+      jsonForm =[kapitalversicherung]
+      dummyData={...kapitalversicherungValues}
+      break
+    case "BEAMTENBEIHILFE":
+      jsonForm = [beamtenbeihilfe];
+      dummyData = { ...beamtenbeihilfeValues };
+      break;
+    case "BERUFSSTAENDISCHE_VORSORGE":
+      jsonForm = [berufsstaendischeVorsorge];
+      dummyData = { ...berufsstaendischeVorsorgeValues };
+      break;
+    case "BEAMTENVERSORGUNG":
+      jsonForm = [beamtenversorgung];
+      dummyData = { ...beamtenversorgungValues };
+      break;
+    case "BAUHERRENHAFTPFLICHT":
+      jsonForm = [bauherrenhaftpflicht];
+      dummyData = { ...bauherrenhaftpflichtValues };
+      break;
+    case "WASSERSPORTHAFTPFLICHT":
+      jsonForm = [wassersporthaftpflicht];
+      dummyData = { ...wassersporthaftpflichtValues };
+      break;
+    case "GEWAESSERSCHADENHAFTPFLICHT":
+      jsonForm = [gewaesserschadenhaftpflicht];
+      dummyData = {...gewaesserschadenhaftpflichtValues  };
+      break;
+    case "RENTE":
+      jsonForm = [rente];
+      dummyData = {  renteValues};
+      break;
+    case "ERWEITERTEBERUFSFRAGEN":
+      jsonForm = [erweiterteBerufsfragen];
+      dummyData = {  };
+      break;
+    case "newMandant":
+      dummyData = { ...personaldatenValues };
+      jsonForm = [personaldaten];
+      break;
+    case "newKind":
+      dummyData = { ...kindValues };
+      jsonForm = [kind];
+      break;
     case "DARLEHEN":
       dummyData = { ...darlehenValues };
       jsonForm = [darlehen];
@@ -1510,6 +1705,10 @@ function App(props) {
       jsonForm = [betrieblicheAltersversorgung];
       break;
     case "UNTERSTUETZUNGSKASSE":
+      dummyData = { ...betrieblicheAltersversorgungValues };
+      jsonForm = [betrieblicheAltersversorgung];
+      break;
+    case "bAVNEW":
       dummyData = { ...betrieblicheAltersversorgungValues };
       jsonForm = [betrieblicheAltersversorgung];
       break;
@@ -1721,6 +1920,47 @@ function App(props) {
             setInitialised(true);
           }, 100);
         }*/
+        if (card === "newMandant") {
+          setTimeout(() => {
+            getDataPersonendatenLiveSuite(login, false);
+            setLoaded(false);
+            setTimeout(() => {
+              setLoaded(true);
+              setCard("PERSONALDATEN");
+            }, 200);
+          }, 100);
+        } else if (card === "newKind") {
+          setTimeout(() => {
+            getDataPersonendatenLiveSuite(login, false);
+            setLoaded(false);
+            setTimeout(() => {
+              setLoaded(true);
+              setCard("KIND");
+            }, 200);
+          }, 100);
+        } else if (!checkIfPersonendaten(card)) {
+          setTimeout(() => {
+            getDataWithLogin(login);
+            setLoaded(false);
+            setTimeout(() => {
+              if (vertragId === "newVertrag") {
+                setSelectedVertraege([
+                  ...selectedVertraege.splice(selectedVertraege.length - 1, 1),
+                  {
+                    id: rawData.analyseAssets[rawData.analyseAssets.length - 1]
+                      .id,
+                    name: setName("", card),
+                    tarifType: card,
+                  },
+                ]);
+                setVertragId(
+                  rawData.analyseAssets[rawData.analyseAssets.length - 1].id
+                );
+              }
+              setLoaded(true);
+            }, 200);
+          }, 100);
+        }
       } catch (e) {
         console.warn(e);
         alert("Daten wurden NICHT gespeichert");
@@ -1750,7 +1990,7 @@ function App(props) {
 
   var myHeaders = new Headers();
   myHeaders.append("Access-Control-Allow-Origin", "*");
-  document.cookie = "JSESSIONID=9A2CC3C93070309D888ACD30294946A6";
+
   var FormData = require("form-data");
   var dataLogin = new FormData();
   dataLogin.append("action", "jwtlogin");
@@ -1761,6 +2001,16 @@ function App(props) {
     method: "post",
     url: "https://jcp-suite.de/suite/user.json",
     data: dataLogin,
+  };
+
+  var getBeraterLiveSuite = (login) => {
+    return {
+      method: "get",
+      url: "https://jcp-suite.de/suite/berater.json?start=0&action=getAllBeratersByVorgesetzter",
+      withCredentials: true,
+      headers: { Authorization: "Bearer " + login },
+      redirect: "follow",
+    };
   };
 
   var requestOptionsMandantLiveSuite = (login) => {
@@ -1804,7 +2054,6 @@ function App(props) {
         "https://jcp-suite.de/suite/mandant.json?action=getMandantGroup&mandantId=" +
         params.mandantId,
       withCredentials: true,
-      headers: { Cookie: document.cookie },
       redirect: "follow",
     };
   };
@@ -1821,6 +2070,7 @@ function App(props) {
       redirect: "follow",
     };
   };
+
   var getContextIdByIdLiveSuite = (login) => {
     return {
       method: "post",
@@ -1862,95 +2112,6 @@ function App(props) {
       redirect: "follow",
     };
   };
-  //192.168.1.181 LÖSCHEN WENN FERTIG!!!
-  var requestOptionsMandantGroup = {
-    method: "get",
-    url:
-      "http://localhost:8080/build-suite/mandant.json?action=getMandantGroup&mandantId=" +
-      params.mandantId,
-    withCredentials: true,
-    headers: { Cookie: document.cookie },
-    redirect: "follow",
-  };
-  var requestOptionsMandant = {
-    method: "get",
-    url:
-      "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id=" +
-      params.mandantId,
-    withCredentials: true,
-    headers: {
-      Cookie: document.cookie,
-    },
-    redirect: "follow",
-  };
-
-  var saveAsset = {
-    method: "post",
-    url: "http://localhost:8080/build-suite/analyseApp",
-    withCredentials: true,
-    headers: {
-      Cookie: document.cookie,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    redirect: "follow",
-  };
-  var getContextIdById = {
-    method: "post",
-    url:
-      "http://localhost:8080/build-suite/context.json?action=getContextById&id=" +
-      params.contextId,
-    withCredentials: true,
-    headers: {
-      Cookie: document.cookie,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    redirect: "follow",
-  };
-  var getProductId = {
-    method: "post",
-    url:
-      "http://localhost:8080/build-suite/productId.json?action=getProductIds&tarifTypeId=" +
-      card,
-    withCredentials: true,
-    headers: {
-      Cookie: document.cookie,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    redirect: "follow",
-  };
-  var requestOptionsAnalyseAssets = {
-    method: "get",
-    url:
-      "http://localhost:8080/build-suite/asset.json?_dc=1636967969021&action=getAllAnalyseAssets&mandantId=" +
-      params.mandantId +
-      "&analyseId=" +
-      params.analyseId,
-    withCredentials: true,
-    headers: { Cookie: document.cookie },
-    redirect: "follow",
-  };
-  var requestOptionsGesellschaftId = {
-    method: "get",
-    url:
-      "http://localhost:8080/build-suite/gesellschaft.json?action=getAllGesellschaftsByTarifTypeId&tarifTypeId=" +
-      card +
-      "&contextId=" +
-      params.contextId,
-    withCredentials: true,
-    headers: { Cookie: document.cookie },
-    redirect: "follow",
-  };
-  var requestOptionsMandant = {
-    method: "get",
-    url:
-      "http://localhost:8080/build-suite/mandant.json?action=getMandantById&id=" +
-      params.mandantId,
-    withCredentials: true,
-    headers: {
-      Cookie: document.cookie,
-    },
-    redirect: "follow",
-  };
 
   function checkIfPersonendaten(card) {
     let output = false;
@@ -1975,60 +2136,46 @@ function App(props) {
     if (card === "ARBEITGEBER") {
       output = true;
     }
-    if (card === "KIND") {
+    if (card === "ERWEITERTEBERUFSFRAGEN") {
       output = true;
     }
-    if (card === "KIND") {
+    if (card === "GESUNDHEIT") {
+      output = true;
+    }
+    if (card === "AUSBILDUNGBERUF") {
+      output = true;
+    }
+    if (card === "newMandant") {
+      output = true;
+    }
+    if (card === "newKind") {
       output = true;
     }
     return output;
   }
-  const getDataLiveSuite = () => {
+
+  const getDataLiveSuite = (param) => {
     axios(loginLiveSuite)
       .then((login) => {
-        getDataWithLogin(login.data.data);
+        param === "vertrag"
+          ? getDataWithLogin(login.data.data)
+          : getDataPersonendatenLiveSuite(login.data.data, false);
       })
       .catch((error) => {
         console.log("error");
         console.log(error);
       });
-
-    function getDataWithLogin(login) {
-      setLogin(login);
-      Promise.all([
-        axios(requestOptionsMandantLiveSuite(login)),
-        axios(requestOptionsAnalyseAssetsLiveSuite(login)),
-        axios(requestOptionsMandantGroupLiveSuite(login)),
-        axios(requestOptionsGesellschaftIdLiveSuite(login)),
-        axios(getContextIdByIdLiveSuite(login)),
-        axios(getProductIdLiveSuite(login)),
-      ])
-        .then((result) => {
-          setRawData({
-            mandantData: result[0].data.data,
-            mandantGroup: result[2].data.data.mandantMandantGroups,
-            analyseAssets: result[1].data.data,
-            gesellschaft: result[3].data,
-            contextProductId: result[4].data.data,
-            productId: result[5].data.data,
-            success: true,
-          });
-          setMandantGroup(result[2].data.data.mandantMandantGroups);
-        })
-        .catch((error) => {
-          console.log("error");
-          console.log(error);
-        });
-    }
   };
-  const getData = () => {
+  function getDataWithLogin(login) {
+    setLogin(login);
     Promise.all([
-      axios(requestOptionsMandant),
-      axios(requestOptionsAnalyseAssets),
-      axios(requestOptionsMandantGroup),
-      axios(requestOptionsGesellschaftId),
-      axios(getContextIdById),
-      axios(getProductId),
+      axios(requestOptionsMandantLiveSuite(login)),
+      axios(requestOptionsAnalyseAssetsLiveSuite(login)),
+      axios(requestOptionsMandantGroupLiveSuite(login)),
+      axios(requestOptionsGesellschaftIdLiveSuite(login)),
+      axios(getContextIdByIdLiveSuite(login)),
+      axios(getProductIdLiveSuite(login)),
+      axios(getBeraterLiveSuite(login)),
     ])
       .then((result) => {
         setRawData({
@@ -2038,49 +2185,70 @@ function App(props) {
           gesellschaft: result[3].data,
           contextProductId: result[4].data.data,
           productId: result[5].data.data,
-          success: true,
-        });
-        setMandantGroup(result[2].data.data.mandantMandantGroups);
-      })
-      .catch((error) => {
-        console.log("error");
-        console.log(error);
-      });
-  };
-  const getDataPersonendaten = () => {
-    Promise.all([
-      axios(requestOptionsMandant),
-      axios(requestOptionsAnalyseAssets),
-      axios(requestOptionsMandantGroup),
-      axios(getContextIdById),
-    ])
-      .then((result) => {
-        setRawData({
-          mandantData: result[0].data.data,
-          mandantGroup: result[2].data.data.mandantMandantGroups,
-          contextProductId: result[3].data.data,
-          analyseAssets: result[1].data.data,
+          berater: result[6].data.data,
           success: true,
         });
         setMandantGroup(result[2].data.data.mandantMandantGroups);
         setBankverbindungen(
-          result[2].data.data.mandantMandantGroups.mandantData.bankverbindungs
+          result[2].data.data.mandantMandantGroups[mandantTabIndex].mandant
+            .bankverbindungs
+        );
+        setArbeitgeberData(
+          result[2].data.data.mandantMandantGroups[mandantTabIndex].mandant
+            .arbeitgebers
         );
       })
       .catch((error) => {
         console.log("error");
         console.log(error);
       });
+  }
+  const getDataPersonendatenLiveSuite = (login, isMandantDeleted) => {
+    setLogin(login);
+    Promise.all([
+      axios(requestOptionsMandantLiveSuite(login)),
+      axios(requestOptionsAnalyseAssetsLiveSuite(login)),
+      axios(requestOptionsMandantGroupLiveSuite(login)),
+      axios(getContextIdByIdLiveSuite(login)),
+      axios(getBeraterLiveSuite(login)),
+    ])
+      .then((result) => {
+        if (!isMandantDeleted) {
+          console.log(isMandantDeleted);
+          setArbeitgeberData(
+            result[2].data.data.mandantMandantGroups[mandantTabIndex].mandant
+              .arbeitgebers
+          );
+          setBankverbindungen(
+            result[2].data.data.mandantMandantGroups[mandantTabIndex].mandant
+              .bankverbindungs
+          );
+        }
+        setRawData({
+          mandantData: result[0].data.data,
+          mandantGroup: result[2].data.data.mandantMandantGroups,
+          contextProductId: result[3].data.data,
+          analyseAssets: result[1].data.data,
+          berater: result[4].data.data,
+          success: true,
+        });
+        setMandantGroup(result[2].data.data.mandantMandantGroups);
+      })
+      .catch((error) => {
+        console.log("error");
+        console.log(error);
+      });
   };
+
   useEffect(() => {
     let mounted = true;
     setIsBusy(true);
     if (mounted) {
       if (checkIfPersonendaten(card)) {
-        getDataPersonendaten();
+        getDataLiveSuite("mandant");
         setIsBusy(false);
       } else {
-        getDataLiveSuite();
+        getDataLiveSuite("vertrag");
         setIsBusy(false);
       }
     }
@@ -2101,9 +2269,10 @@ function App(props) {
         card,
         setVersicherungsnehmerValue,
         rawData.contextProductId.contextConfig.desktop.showExternalProductId,
-        setAnzahlVp,
+
+        mandantTabIndex,
         bankverbindungen,
-        setBankverbindungen
+        arbeitgeberData
       );
 
       setId(mapAssets(rawData.analyseAssets));
@@ -2118,7 +2287,6 @@ function App(props) {
     }
   }, [rawData.success]);
 
-  /*
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
       isAssetAvailable(
@@ -2126,166 +2294,256 @@ function App(props) {
         setFormData,
         dummyData,
         setLoaded,
-        redefineCard(
-          id,
-          versicherungsnehmerValue.index,
-          versicherungsnehmerValue.tarifTypeId,
-          rawData.mandantGroup
-        ),
+        "Personbezogene Daten",
         card,
         setVersicherungsnehmerValue,
         rawData.contextProductId.contextConfig.desktop.showExternalProductId,
-        setAnzahlVp,
+
+        mandantTabIndex,
         bankverbindungen,
-        setBankverbindungen
-      );
-      setVertragId(
-        redefineCard(
-          id,
-          versicherungsnehmerValue.index,
-          versicherungsnehmerValue.tarifTypeId,
-          rawData.mandantGroup
-        )
+        arbeitgeberData
       );
       setTimeout(() => {
         setLoaded(false);
       }, 100);
       setTimeout(() => {
         setLoaded(true);
+        setBankverbindungen(
+          mandantGroup[mandantTabIndex].mandant.bankverbindungs
+        );
+        setArbeitgeberData(mandantGroup[mandantTabIndex].mandant.arbeitgebers);
       }, 500);
     }
-  }, [versicherungsnehmerValue]);
-*/
+  }, [mandantTabIndex]);
+
   useEffect(() => {
+    console.log("triggered");
+    console.log(initialised);
+    console.log(rawData.success);
+
     if (rawData.success === true && initialised === true) {
-      if (vertragId.length > 1) {
-        Promise.all([
-          axios(requestOptionsGesellschaftIdLiveSuite(login)),
-          axios(getProductIdLiveSuite(login)),
-        ]).then((result) => {
-          setRawData({
-            ...rawData,
-            gesellschaft: result[0].data,
-            productId: result[1].data.data,
-          });
-        });
-        isAssetAvailable(
-          rawData,
-          setFormData,
-          dummyData,
-          setLoaded,
-          vertragId,
-          card,
-          setVersicherungsnehmerValue,
-          rawData.contextProductId.contextConfig.desktop.showExternalProductId,
-          setAnzahlVp,
-          bankverbindungen,
-          setBankverbindungen
-        );
-        setTimeout(() => {
-          setLoaded(false);
-        }, 100);
-        setTimeout(() => {
-          setLoaded(true);
-        }, 500);
+      if (!checkIfPersonendaten(card)) {
+        if (vertragId.length > 1) {
+          Promise.all([
+            axios(requestOptionsGesellschaftIdLiveSuite(login)),
+            axios(getProductIdLiveSuite(login)),
+          ])
+            .then((result) => {
+              setLoaded(false);
+              toggleProductGesellschaftIdLoaded(false);
+              setRawData({
+                ...rawData,
+                gesellschaft: result[0].data,
+                productId: result[1].data.data,
+              });
+            })
+            .then(() => {
+              isAssetAvailable(
+                rawData,
+                setFormData,
+                dummyData,
+                setLoaded,
+                vertragId,
+                card,
+                setVersicherungsnehmerValue,
+                rawData.contextProductId.contextConfig.desktop
+                  .showExternalProductId,
+
+                mandantTabIndex,
+                bankverbindungen,
+                arbeitgeberData
+              );
+              setTimeout(() => {
+                setLoaded(true);
+                toggleProductGesellschaftIdLoaded(true);
+              }, 500);
+            })
+            .catch((error) => {
+              console.log("error");
+              console.log(error);
+            });
+        }
       }
     }
   }, [vertragId]);
+
+  function renderAnzahlVp(anzahlVp) {
+    //TODO: KVZ und KVV werte auf false setzen!
+    console.log("hier: " + anzahlVp);
+    switch (anzahlVp) {
+      case 1:
+        setFormData({
+          ...formData,
+          anzahlVersichertePersonen: 1,
+          selected2Persons: false,
+          selected3Persons: false,
+          selected4Persons: false,
+          selected5Persons: false,
+          selected6Persons: false,
+        });
+        break;
+      case 2:
+        console.log("hier: " + anzahlVp);
+
+        setFormData({
+          ...formData,
+          anzahlVersichertePersonen: 2,
+          selected2Persons: true,
+          selected3Persons: false,
+          selected4Persons: false,
+          selected5Persons: false,
+          selected6Persons: false,
+        });
+        break;
+      case 3:
+        setFormData({
+          ...formData,
+          anzahlVersichertePersonen: 3,
+          selected2Persons: true,
+          selected3Persons: true,
+          selected4Persons: false,
+          selected5Persons: false,
+          selected6Persons: false,
+        });
+        break;
+      case 4:
+        setFormData({
+          ...formData,
+          anzahlVersichertePersonen: 4,
+          selected2Persons: true,
+          selected3Persons: true,
+          selected4Persons: true,
+          selected5Persons: false,
+          selected6Persons: false,
+        });
+        break;
+      case 5:
+        setFormData({
+          ...formData,
+          anzahlVersichertePersonen: 5,
+          selected2Persons: true,
+          selected3Persons: true,
+          selected4Persons: true,
+          selected5Persons: true,
+          selected6Persons: false,
+        });
+        break;
+      case 6:
+        setFormData({
+          ...formData,
+          anzahlVersichertePersonen: 6,
+          selected2Persons: true,
+          selected3Persons: true,
+          selected4Persons: true,
+          selected5Persons: true,
+          selected6Persons: true,
+        });
+        break;
+      default:
+        break;
+    }
+
+    setTimeout(() => {
+      setLoaded(false);
+    }, 100);
+    setTimeout(() => {
+      setLoaded(true);
+    }, 500);
+  }
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
-      //TODO: KVZ und KVV werte auf false setzen!
-      switch (anzahlVp) {
-        case 1:
-          setFormData({
-            ...formData,
-            anzahlVersichertePersonen: 1,
-            selected2Persons: false,
-            selected3Persons: false,
-            selected4Persons: false,
-            selected5Persons: false,
-            selected6Persons: false,
-          });
+      switch (card) {
+        case "ARBEITGEBER":
+          setAnzahlVp(
+            mandantGroup[mandantTabIndex].mandant.arbeitgebers.length
+          );
+          isAssetAvailable(
+            rawData,
+            setFormData,
+            dummyData,
+            setLoaded,
+            "none",
+            card,
+            setVersicherungsnehmerValue,
+            rawData.contextProductId.contextConfig.desktop
+              .showExternalProductId,
+            mandantTabIndex,
+            bankverbindungen,
+            arbeitgeberData
+          );
+          setTimeout(() => {
+            setLoaded(false);
+          }, 50);
+          setTimeout(() => {
+            setLoaded(true);
+          }, 100);
           break;
-        case 2:
-          setFormData({
-            ...formData,
-            anzahlVersichertePersonen: 2,
-            selected2Persons: true,
-            selected3Persons: false,
-            selected4Persons: false,
-            selected5Persons: false,
-            selected6Persons: false,
-          });
-          break;
-        case 3:
-          setFormData({
-            ...formData,
-            anzahlVersichertePersonen: 3,
-            selected2Persons: true,
-            selected3Persons: true,
-            selected4Persons: false,
-            selected5Persons: false,
-            selected6Persons: false,
-          });
-          break;
-        case 4:
-          setFormData({
-            ...formData,
-            anzahlVersichertePersonen: 4,
-            selected2Persons: true,
-            selected3Persons: true,
-            selected4Persons: true,
-            selected5Persons: false,
-            selected6Persons: false,
-          });
-          break;
-        case 5:
-          setFormData({
-            ...formData,
-            anzahlVersichertePersonen: 5,
-            selected2Persons: true,
-            selected3Persons: true,
-            selected4Persons: true,
-            selected5Persons: true,
-            selected6Persons: false,
-          });
-          break;
-        case 6:
-          setFormData({
-            ...formData,
-            anzahlVersichertePersonen: 6,
-            selected2Persons: true,
-            selected3Persons: true,
-            selected4Persons: true,
-            selected5Persons: true,
-            selected6Persons: true,
-          });
+        case "BANKVERBINDUNG":
+          setAnzahlVp(
+            mandantGroup[mandantTabIndex].mandant.bankverbindungs.length
+          );
+          console.log(bankverbindungen);
+          isAssetAvailable(
+            rawData,
+            setFormData,
+            dummyData,
+            setLoaded,
+            "none",
+            card,
+            setVersicherungsnehmerValue,
+            rawData.contextProductId.contextConfig.desktop
+              .showExternalProductId,
+            mandantTabIndex,
+            bankverbindungen,
+            arbeitgeberData
+          );
           break;
         default:
+          if (checkIfPersonendaten(card)) {
+            isAssetAvailable(
+              rawData,
+              setFormData,
+              dummyData,
+              setLoaded,
+              "none",
+              card,
+              setVersicherungsnehmerValue,
+              rawData.contextProductId.contextConfig.desktop
+                .showExternalProductId,
+              mandantTabIndex,
+              bankverbindungen,
+              arbeitgeberData
+            );
+            setTimeout(() => {
+              setLoaded(false);
+            }, 50);
+            setTimeout(() => {
+              setLoaded(true);
+            }, 150);
+          }
           break;
       }
+    }
+  }, [card]);
+  useEffect(() => {
+    if (rawData.success === true && initialised === true) {
+      renderAnzahlVp(anzahlVp);
       /*
-      if(card === "BANKVERBINDUNG"){
-        isAssetAvailable(
-          rawData,
-          setFormData,
-          dummyData,
-          setLoaded,
-          "none",
-          card,
-          setVersicherungsnehmerValue,
-          rawData.contextProductId.contextConfig.desktop.showExternalProductId,
-          setAnzahlVp,
-          deletionIndex
-        );
-
-      }*/
-      setTimeout(() => {
-        setLoaded(false);
-      }, 100);
-      setTimeout(() => {
-        setLoaded(true);
-      }, 500);
+  if(card === "ARBEITGEBER" || "BANKVERBINDUNG"){
+    isAssetAvailable(
+      rawData,
+      setFormData,
+      dummyData,
+      setLoaded,
+      "none",
+      card,
+      setVersicherungsnehmerValue,
+      rawData.contextProductId.contextConfig.desktop.showExternalProductId,
+     
+      mandantTabIndex,
+      bankverbindungen
+    );
+  }*/
     }
   }, [anzahlVp]);
   useEffect(() => {
@@ -2618,26 +2876,134 @@ function App(props) {
     });
     return output;
   }
-  function tooltipOnHover(){
-    setForceUseEffect(forceUseEffect+1)
-    console.log(forceUseEffect)
+  function tooltipOnHover() {
+    setForceUseEffect(forceUseEffect + 1);
   }
+  function waitForDrawerRender(drawer) {
+    let output = 0;
+    if (typeof drawer === "object") {
+      output = document.getElementById("drawer").offsetWidth;
+    }
+    return output;
+  }
+  const handleClickOpen = () => {
+    toggleOpenDialog(true);
+  };
+
+  const handleClose = () => {
+    toggleOpenDialog(false);
+  };
+  //  theme={setTheme((loaded ? rawData.contextProductId.colorProperties : false))}
+  // 65-240 = 175
+  function revertChanges() {
+    setLoaded(false);
+    if (card === "BANKVERBINDUNG") {
+      setBankverbindungen(
+        mandantGroup[mandantTabIndex].mandant.bankverbindungs
+      );
+    }
+    setTimeout(() => {
+      setLoaded(true);
+    }, 150);
+  }
+
+  function deleteVertrag() {
+    let deleteParams = {};
+    if (card === "KIND" || card === "PERSONALDATEN") {
+      setMandantTabIndex(0);
+      deleteParams = {
+        id: mandantGroup[mandantTabIndex].mandantId,
+        mandantId: mandantGroup[0].mandantId,
+        action: "deletePerson",
+      };
+      let dataPaket = qs.stringify(deleteParams);
+      axios
+        .post(
+          saveAssetLiveSuite(login).url,
+          dataPaket,
+          saveAssetLiveSuite(login)
+        )
+        .then((response) => {
+          setTimeout(() => {
+            getDataPersonendatenLiveSuite(login, true);
+            setLoaded(false);
+            if (card === "KIND") {
+              setCard("PERSONALDATEN");
+            }
+            setTimeout(() => {
+              setLoaded(true);
+            }, 300);
+          }, 100);
+        })
+        .catch((err) => alert(err));
+    }
+  }
+  console.log(fullscreenDialog)
   return (
-    <div style={{ backgroundColor: "#eeeeee" }}>
-      {!loaded ? (
-        <div
-          style={{ height: "95vh", width: "100vw", backgroundColor: "#f1f2f3" }}
+    <div style={{ backgroundColor: "#eeeeee", overflowX: "hidden" }}>
+      <ThemeProvider>
+        <MuiPickersUtilsProvider
+          utils={DateFnsUtils}
+          locale={deLocale}
+          className="mock4"
         >
-          <img className="loadingGIF" src={loadingGIF} />
-        </div>
-      ) : (
-        <ThemeProvider theme={theme}>
-          <MuiPickersUtilsProvider
-            utils={DateFnsUtils}
-            locale={deLocale}
-            className="mock4"
+          <div className="fillWhiteSpace" />
+          {!loaded ? null : (
+            <SideMenue
+              assets={rawData.analyseAssets}
+              setCard={setCard}
+              colorProperties={
+                loaded ? rawData.contextProductId.colorProperties : {}
+              }
+              loaded={loaded}
+              card={card}
+              selectedVertraege={selectedVertraege}
+              setSelectedVertraege={setSelectedVertraege}
+              tabIndex={tabIndex}
+              setTabIndex={setTabIndex}
+              subTabIndex={subTabIndex}
+              setSubTabIndex={setSubTabIndex}
+              uebersichtVisibility={uebersichtVisibility}
+              setUebersichtVisibility={setUebersichtVisibility}
+            />
+          )}
+          {!loaded ? (
+            <div
+              style={{
+                height: "95vh",
+                width: "100vw",
+                backgroundColor: "#f1f2f3",
+              }}
+            >
+              <img className="loadingGIF" src={loadingGIF} />
+            </div>
+          ) : (
+            <div className={cardClassName}>
+                          <Dialog
+            open={openDialog}
+            onClose={ (_, reason) => {
+              if(tabIndex === 0){
+              if (reason !== "backdropClick") {
+                handleClose();
+              }} if(tabIndex === 1){
+                handleClose()
+              }
+            }}
+            PaperComponent={tabIndex === 1 ? PaperComponent : null}
+            aria-labelledby="draggable-dialog-title"
+            maxWidth={"lg"}
+            sx={{marginTop:"96px", marginLeft:"100px", zIndex:(tabIndex === 1 ?"3000 !important":"51 !important")}}
+            hideBackdrop={tabIndex === 1 ? false : true} 
+            fullScreen={fullscreenDialog}
           >
-            <div className="card">
+            <DialogTitle sx={{display:"flex", cursor: (tabIndex === 1 ?"move":'default'), backgroundColor:(!loaded ? "" :rawData.contextProductId.colorProperties.COLOR1),color:"white", height:"44px"  }} id="draggable-dialog-title">
+              <Typography variant="h5" sx={{width:"100% !important"}}>{jsonForm[0].section}</Typography>
+              <div style={{width:"90%"}}/>
+              <IconButton onClick={()=>toggleFullscreenDialog(!fullscreenDialog)} sx={{transform:"rotate(45deg) !important",zIndex:"51 !important" ,color: (!loaded ? "" :rawData.contextProductId.colorProperties.COLOR1),cursor:"pointer !important", backgroundColor:"white !important",float:"right", height:"16px", width:"16px",padding:"0px",top:"5px", zIndex:"200 !important"}}>{fullscreenDialog ?<UnfoldLess/>:<UnfoldMore/>}</IconButton>
+              {tabIndex === 0 ? null:<IconButton onClick={()=>handleClose()} sx={{color: (!loaded ? "" :rawData.contextProductId.colorProperties.COLOR1), backgroundColor:"white !important",float:"right", height:"16px", width:"16px",left:"10px",top:"5px"}}> <Close/></IconButton>}
+            </DialogTitle>
+            
+            <DialogContent>
               <DynamicForm
                 // Das gesamte Formular kann deaktiviert werden (read-only)
                 disabled={isBusy}
@@ -2653,10 +3019,11 @@ function App(props) {
                 // die eigentlichen Daten
                 values={formData}
                 // die Formular-Definition
-                formDefinition={[debugMenue, jsonForm[0]]}
+                formDefinition={jsonForm}
                 mandantGroup={rawData.mandantGroup}
                 gesellschaft={rawData.gesellschaft}
                 assets={rawData.analyseAssets}
+                berater={rawData.berater}
                 // Was soll beim Absenden geschehen?
                 // erwartet wird ein Promise, der mit dem kompletten (evtl. modifizierten Datensatz) resolvet
                 onSubmit={handleSubmit}
@@ -2665,45 +3032,54 @@ function App(props) {
                 params={params}
                 id={id}
                 setCard={setCard}
+                colorProperties={rawData.contextProductId.colorProperties}
+                renderAnzahlVp={renderAnzahlVp}
+                checkIfPersonendaten={checkIfPersonendaten}
               />
+              </DialogContent>
+              </Dialog>
               {ref.isDirty}
             </div>
-            <Button
-              variant={"outlined"}
-              color={"primary"}
-              disabled={isBusy}
-              onClick={handleSave}
-              className="delete"
-            >
-              z
-            </Button>
-            <Button
-              variant={"outlined"}
-              color={"primary"}
-              disabled={isBusy}
-              onClick={handleSave}
-              className="reset"
-            >
-              <DeleteOutline style={{ color: "white" }} />
-            </Button>
-            <Button
-              variant={"outlined"}
-              color={"primary"}
-              disabled={isRequiredFilled.disabled}
-              onClick={handleSave}
-              className="save"
-            >
-              <Save style={{ color: "white" }} />
-            </Button>
-          </MuiPickersUtilsProvider>
-        </ThemeProvider>
-      )}
+          )}
+          <Button
+            variant={"outlined"}
+            color={"primary"}
+            disabled={isBusy}
+            onClick={revertChanges}
+            className="delete"
+          >
+            z
+          </Button>
+          <Button
+            variant={"outlined"}
+            color={"primary"}
+            disabled={isBusy}
+            onClick={deleteVertrag}
+            className="reset"
+          >
+            <DeleteOutline style={{ color: "white" }} />
+          </Button>
+          <Button
+            variant={"outlined"}
+            color={"primary"}
+            disabled={isRequiredFilled.disabled}
+            onClick={handleSave}
+            className="save"
+          >
+            <Save style={{ color: "white" }} />
+          </Button>
+        </MuiPickersUtilsProvider>
+      </ThemeProvider>
+
       <Tooltip
-        onMouseOver={()=>tooltipOnHover()}
-        title={isRequiredFilled.disabled ? mapRequiredFields() : "Speichern"}
+        onMouseOver={() => tooltipOnHover()}
+        title={isRequiredFilled.disabled ? mapRequiredFields() : null}
       >
-        {isRequiredFilled.disabled ? <div className="save"   />
-        : <div className="save" style={{visibility:"hidden"}}  />}
+        {isRequiredFilled.disabled ? (
+          <div className="save" />
+        ) : (
+          <div className="save" style={{ visibility: "hidden" }} />
+        )}
       </Tooltip>
     </div>
   );

@@ -15,8 +15,9 @@ const [mobileClassname, setMobileClassname] =useState("")
     index: 0,
     tarifTypeId: "none",
   });
+  const [arbeitgeberData, setArbeitgeberData] =useState([])
   const [anzahlVp, setAnzahlVp] =useState(1)
-const [vertragId, setVertragId] =useState("newVertrag")
+const [vertragId, setVertragId] =useState("")
 const [isRequiredFilled, setRequiredFilled] =useState({disabled:false, labelsToBeFilled:[]})
 const [einkommenGehaltBezuege, setEinkommenGehaltBezuege] =useState({
 hinzufuegen:false,
@@ -24,9 +25,16 @@ pressedValue:""
 })
 const [bruttoSum , setBruttoSum] = useState({scrollY:0})
 const [gehaltInit, setGehaltInit] = useState(false);
-const [bankverbindungen, setBankverbindungen] = useState()
+const [bankverbindungen, setBankverbindungen] = useState([])
 const [mandantGroup, setMandantGroup] = useState([]) 
 const [forceUseEffect, setForceUseEffect] = useState(0)
+const [cardClassName, setCardClassName] =useState("card")
+const [mandantTabIndex, setMandantTabIndex] = useState(0)
+const [productGesellschaftIdLoaded, toggleProductGesellschaftIdLoaded] = useState(false)
+const [login, setLogin] = useState("");
+const [openDialog, toggleOpenDialog] =useState(true)
+const [fullscreenDialog, toggleFullscreenDialog] = useState(false)
+
 return (
     <Context.Provider
       value={{
@@ -45,7 +53,14 @@ return (
         mandantGroup, setMandantGroup,
         bankverbindungen, setBankverbindungen,
         isRequiredFilled, setRequiredFilled,
-        forceUseEffect, setForceUseEffect
+        forceUseEffect, setForceUseEffect,
+        cardClassName, setCardClassName,
+        mandantTabIndex, setMandantTabIndex,
+        arbeitgeberData, setArbeitgeberData,
+        productGesellschaftIdLoaded, toggleProductGesellschaftIdLoaded,
+        login, setLogin,
+        openDialog, toggleOpenDialog,
+        fullscreenDialog, toggleFullscreenDialog
       }}
     >
       {props.children}

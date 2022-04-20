@@ -29,7 +29,8 @@
         { "value": "11", "label": "Student/in" },
         { "value": "12", "label": "in Elternzeit" },
         { "value": "13", "label": "falls sonstiges" }
-      ]
+      ],
+      "suiteValue":"beschaeftigungsverhaeltnis"
     },
     {
       "name": "filler",
@@ -43,7 +44,8 @@
       "label": "im ö. D.",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":4 }
+        "xs":4 },
+        "suiteValue":"beschaeftigungOED"
     },
     {
       "section": "Art der Schulausbildung",
@@ -71,7 +73,8 @@
         { "value": "staatsexam", "label": "Staatsexam" },
         { "value": "studium", "label": "Studium" },
         { "value": "sonstiges", "label": "Sonstiges" }
-      ]
+      ],
+      "suiteValue":"ausbildungFachrichtung"
     }]},
     {
       "section": "Beruf",
@@ -84,7 +87,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"erlernterBeruf"
     },
     {
       "name": "berufsbrancheAusbildungBeruf",
@@ -93,12 +97,14 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"berufsbranche"
     },
     {
       "name": "ausgeuebterBerufAusbildungBeruf",
       "label": "Derz. ausgeübter Beruf (exakte Bezeichnung)",
-      "type": "text"
+      "type": "text",
+      "suiteValue":"berufsbezeichnung"
     }]},
     {
       "section": "Nebentätigkeiten",
@@ -107,7 +113,8 @@
     {
       "name": "nebentaetigkeitenAusbildungBeruf",
       "label": "Notieren Sie hier weitere Informationen",
-      "type": "text"
+      "type": "text",
+      "suiteValue":"berufNotizen"
     }]},
     {
       "section": "Art der Tätigkeit",
@@ -124,7 +131,8 @@
       "options": [
         { "value": "0", "label": "verwaltend/nicht körperlich ca." },
         { "value": "1", "label": "körperlich/handwerklich ca." }
-      ]
+      ],
+      "suiteValue":"taetigkeit"
     },
     {
       "name": "prozentsatzAusbildungBeruf",
@@ -133,7 +141,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"taetigkeitAnteil"
     }]},
     {
       "section": "Leitungsfunktion",
@@ -150,7 +159,8 @@
       "options": [
         { "value": false, "label": "Nein" },
         { "value": true, "label": "Ja, mit Personalverantwortung für" }
-      ]
+      ],
+      "suiteValue":"leitendTaetig"
     },
     {
       "name": "anzahlMitarbeiterAusbildungBeruf",
@@ -160,7 +170,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"leitendTaetigMA"
     }]},
     {
       "section": "Reisetaetigkeit",
@@ -171,10 +182,11 @@
       "label": "Reisetaetigkeit",
       "type": "select",
       "options": [
-        { "value": "0", "label": "bis 20%" },
-        { "value": "1", "label": "bis 50%" },
-        { "value": "2", "label": "über 50%" }
-      ]
+        { "value": "bis20", "label": "bis 20%" },
+        { "value": "bis50", "label": "bis 50%" },
+        { "value": "uber50", "label": "über 50%" }
+      ],
+      "suiteValue":"reisetaetigkeit"
     }]}
   ]
 }

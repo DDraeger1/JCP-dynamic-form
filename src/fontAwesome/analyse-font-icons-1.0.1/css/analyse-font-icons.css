@@ -1,0 +1,226 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "analyse";
+  src:url("../fonts/analyse.eot");
+  src:url("../fonts/analyse.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/analyse.woff") format("woff"),
+    url("../fonts/analyse.ttf") format("truetype"),
+    url("../fonts/analyse.svg#analyse") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "analyse" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "analyse" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fa-font-ambulance:before {
+  content: "a";
+}
+.icon-fa-font-apartment:before {
+  content: "b";
+}
+.icon-fa-font-bank:before {
+  content: "c";
+}
+.icon-fa-font-bed:before {
+  content: "d";
+}
+.icon-fa-font-bike:before {
+  content: "e";
+}
+.icon-fa-font-book:before {
+  content: "f";
+}
+.icon-fa-font-briefcase:before {
+  content: "g";
+}
+.icon-fa-font-bug:before {
+  content: "h";
+}
+.icon-fa-font-building:before {
+  content: "i";
+}
+.icon-fa-font-car:before {
+  content: "j";
+}
+.icon-fa-font-card:before {
+  content: "k";
+}
+.icon-fa-font-case:before {
+  content: "l";
+}
+.icon-fa-font-cash:before {
+  content: "m";
+}
+.icon-fa-font-child:before {
+  content: "n";
+}
+.icon-fa-font-cop:before {
+  content: "o";
+}
+.icon-fa-font-doctor:before {
+  content: "p";
+}
+.icon-fa-font-dog:before {
+  content: "q";
+}
+.icon-fa-font-exclamation:before {
+  content: "r";
+}
+.icon-fa-font-factory:before {
+  content: "s";
+}
+.icon-fa-font-file:before {
+  content: "t";
+}
+.icon-fa-font-files:before {
+  content: "u";
+}
+.icon-fa-font-group:before {
+  content: "v";
+}
+.icon-fa-font-group-background:before {
+  content: "w";
+}
+.icon-fa-font-group-forground:before {
+  content: "x";
+}
+.icon-fa-font-heart:before {
+  content: "y";
+}
+.icon-fa-font-home:before {
+  content: "z";
+}
+.icon-fa-font-horse:before {
+  content: "A";
+}
+.icon-fa-font-id:before {
+  content: "B";
+}
+.icon-fa-font-job:before {
+  content: "C";
+}
+.icon-fa-font-legal:before {
+  content: "D";
+}
+.icon-fa-font-magic:before {
+  content: "E";
+}
+.icon-fa-font-paragraph:before {
+  content: "F";
+}
+.icon-fa-font-partner:before {
+  content: "G";
+}
+.icon-fa-font-phone:before {
+  content: "H";
+}
+.icon-fa-font-pie:before {
+  content: "I";
+}
+.icon-fa-font-plaster:before {
+  content: "J";
+}
+.icon-fa-font-question:before {
+  content: "K";
+}
+.icon-fa-font-safe:before {
+  content: "L";
+}
+.icon-fa-font-shop:before {
+  content: "M";
+}
+.icon-fa-font-thunder:before {
+  content: "N";
+}
+.icon-fa-font-tie:before {
+  content: "O";
+}
+.icon-fa-font-trophy:before {
+  content: "P";
+}
+.icon-fa-font-user:before {
+  content: "Q";
+}
+.icon-fa-font-user-add:before {
+  content: "R";
+}
+.icon-fa-font-user-add-plus:before {
+  content: "S";
+}
+.icon-fa-font-user-add-user:before {
+  content: "T";
+}
+.icon-fa-font-wallet:before {
+  content: "U";
+}
+.icon-fa-font-wheelchair:before {
+  content: "V";
+}
+.icon-fa-font-window:before {
+  content: "W";
+}
+.icon-fa-font-work:before {
+  content: "X";
+}
+.icon-fa-font-accident:before {
+  content: "Y";
+}
+.icon-fa-font-old:before {
+  content: "Z";
+}
+.icon-fa-font-oldri:before {
+  content: "0";
+}
+.icon-fa-font-oldru:before {
+  content: "1";
+}
+.icon-fa-font-motor:before {
+  content: "2";
+}
+.icon-fa-font-electric:before {
+  content: "3";
+}
+.icon-fa-font-chart:before {
+  content: "4";
+}
+.icon-fa-font-link:before {
+  content: "5";
+}
+.icon-fa-font-graduation:before {
+  content: "6";
+}
+.icon-fa-font-gas:before {
+  content: "7";
+}
+.icon-fa-font-plug:before {
+  content: "8";
+}
+.icon-fa-font-steering:before {
+  content: "9";
+}

@@ -7,16 +7,77 @@
         display: none;  /* Safari and Chrome */
         background: transparent;
     }
+    .fillWhiteSpace{
+      background-color: #eeeeee;
+      width: 100vw;
+      height: 100vh;
+      z-index: -10;
+      position: fixed;
+    }
     .loadingGIF{
       position: absolute;
 top:40vh;
 left:44vw;
     }
+    .dialogPersonenDaten{
+      top:10vh;
+    }
+    .MuiDialogTitle-root{
+      padding: 10px 26px 0px 26px !important;
+    }
     .card{
       background-color: #eeeeee;
-      width: 85vw;
-margin-left: 7vw;
+      width: 75%;
+      margin-top:130px !important;
+      display: flex;
+margin-left: 15vw;
+z-index: 51;
     }    
+
+    .cardDrawerOpen{
+      background-color: #eeeeee;
+      width: calc(75% - 175px);
+      margin-top:130px;
+      display: flex;
+      margin-left:calc(15vw + 175px);
+z-index: 51;
+animation: cardDrawerOnOpen 3s cubic-bezier(0.4, 0, 0.6, 1) 0ms;
+    }    
+
+    @-webkit-keyframes cardDrawerOnOpen {
+      0% {
+        -webkit-transform: translateX(0);
+                transform: translateX(0);
+      }
+      100% {
+        -webkit-transform: translateX(175px);
+                transform: translateX(175px);
+      }
+    }
+    @keyframes cardDrawerOnOpen {
+      0% {
+
+        transform: scaleX(calc(75%));
+                transform: translateX(0px);
+                transform-origin: 0% 0%;
+    }
+    25%{
+      transform: calc(75% - 43.75px);
+    }
+    50%{
+      transform: calc(75% - 87.5px);
+    }
+    75%{
+      transform: calc(75% - 131.25px);
+    }
+      100% {
+
+        transform: calc(75% - 175px);
+                transform: translateX(0px);
+                transform-origin: 0% 0%;
+
+      }
+    }
     .save{
       position:fixed !important;
       left:93.8vw;

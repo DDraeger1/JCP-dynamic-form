@@ -1,0 +1,79 @@
+{
+  "section": "Berufsständische Versorgung (nur für Freiberufler)",
+  "card": true,
+  "mobileClassname": "BerufsstandischeVersorgung",
+  "items": [
+    { "name": "showExternalProductId", "type": "paragraph", "label": "" },
+    {
+      "name": "versicherungsnehmerBerufsstandischeVersorgung",
+      "label": "Versicherungsnehmer",
+      "type": "selectMandant",
+      "tarifType": "BERUFSSTAENDISCHE_VORSORGE",
+      "props": { "required": true },
+      "suiteValue": "versicherungsnehmerId"
+    },
+    {
+      "name": "gesellschaftBerufsstandischeVersorgung",
+      "type": "text",
+      "label": "Gesellschaft/Träger"
+    },
+    {
+      "name": "renteneintrittBerufsstandischeVersorgung",
+      "type": "date",
+      "label": "Datum des Renteneintritts"
+    },
+    {
+      "name": "renteBUEMBerufsstandischeVersorgung",
+      "label": "BU/EM-Rente (€)",
+      "type": "text"
+    },
+    {
+      "name": "kapitalleistungBerufsstandischeVersorgung",
+      "label": "Voraussichtliche Kapitalleistung (€)",
+      "type": "text"
+    },
+    {
+      "name": "rentenanwartschaftBerufsstandischeVersorgung",
+      "label": "Monatliche Rentenanwartschaft (€)",
+      "type": "text"
+    },
+    {
+      "name": "monatlicheAltersrenteBerufsstandischeVersorgung",
+      "label": "Voraussichtliche monatliche Altersrente (€)",
+      "type": "text"
+    },
+    {
+      "name": "witwenrenteBerufsstandischeVersorgung",
+      "label": "Witwenrente (€)",
+      "type": "text"
+    },
+    {
+      "name": "waisenrenteBerufsstandischeVersorgung",
+      "label": "Waisenrente (€)",
+      "type": "text"
+    },
+    {
+        "section": "",
+        "card": true,
+        "items": [
+    {
+        "name": "zahlweiseBerufsstandischeVersorgung",
+        "label": "Zahlweise",
+        "type": "select",
+        "props": { "required": true },
+        "options": [
+          { "value": "MONATLICH", "label": "Monatlich" },
+            { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+            { "value": "QUARTAL", "label": "Quartal" },
+            { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+            { "value": "JAEHRLICH", "label": "Jährlich" }
+        ]
+      },
+      {
+        "name": "beitragBerufsstandischeVersorgung",
+        "label": "Beitrag (€)",
+        "type": "text"
+      }
+        ]}
+  ]
+}

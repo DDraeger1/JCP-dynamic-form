@@ -1,0 +1,130 @@
+{
+    "section": "Gewaesserschadenhaftpflicht",
+    "card": true,
+    "mobileClassname": "Gewaesserschadenhaftpflicht",
+    "items": [
+      { "name": "showExternalProductId", "type": "paragraph", "label": "" },
+      {
+        "name": "versicherungsnehmerWassersporthaftpflicht",
+        "label": "Versicherungsnehmer",
+        "type": "selectMandant",
+        "tarifType": "GEWAESSERSCHADENHAFTPFLICHT",
+        "props": { "required": true },
+        "suiteValue": "versicherungsnehmerId"
+      },
+      {
+        "section": "",
+        "card": true,
+        "items": [
+          {
+            "name": "gesellschaftGewaesserschadenhaftpflicht",
+            "type": "gesellschaft",
+            "props": { "required": true }
+          },
+          {
+            "name": "vertragsnummerGewaesserschadenhaftpflicht",
+            "type": "text",
+            "label": "Vertragsnummer"
+          }
+        ]
+      },
+      {"name":"tarifgruppeGewaesserschadenhaftpflicht",
+        "label":"Tarifgruppe",
+        "type":"select",
+        "options":[
+            { "value": "", "label": "normal" },
+            { "value": "", "label": "öffentlicher dienst" }
+        ]
+      },
+      {
+        "section": "Versicherungssumme",
+        "card": true,
+        "items": [
+            {"name":"versicherungssummeGewaesserschadenhaftpflicht",
+                "label":"Versicherungssumme (€)",
+                "type":"text",
+                "props":{
+                    "required":true
+                }
+              },
+              {"name":"selbstbeteiligungGewaesserschadenhaftpflicht",
+                "label":"Selbstbeteiligung (€)",
+                "type":"text"
+              },
+              {"name":"immobilienartGewaesserschadenhaftpflicht",
+                "label":"Immobilienart",
+                "type":"select",
+                "options":[
+                    { "value": "", "label": "Einfamilienhaus" },
+                    { "value": "", "label": "Zweifamilienhaus" },
+                    { "value": "", "label": "Mehrfamilienhaus" }
+                ]
+            },
+            {"name":"fassungsvermoegenGewaesserschadenhaftpflicht",
+              "label":"Fassungsvermögen (in Liter)",
+              "type":"text"
+            },
+            {"name":"tankortGewaesserschadenhaftpflicht",
+              "label":"Tankort",
+              "type":"text"
+            }
+        ]
+    },
+    {
+        "section": "Vertragslaufzeit",
+        "card": true,
+        "items": [
+          {"name":"vertragsbeginnGewaesserschadenhaftpflicht",
+            "label":"Vertragsbeginn",
+        "type":"date",
+      "props":{
+        "required":true
+      }},
+      {"name":"vertragsendeGewaesserschadenhaftpflicht",
+        "label":"Vertragsende",
+    "type":"date"
+      }
+        ]},
+        {
+            "section": "",
+            "card": true,
+            "items": [
+                {
+                    "name": "zahlweiseGewaesserschadenhaftpflicht",
+                    "label": "Zahlweise",
+                    "type": "select",
+                    "props": { "required": true },
+                    "options": [
+                      { "value": "MONATLICH", "label": "Monatlich" },
+                        { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+                        { "value": "QUARTAL", "label": "Quartal" },
+                        { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+                        { "value": "JAEHRLICH", "label": "Jährlich" }
+                    ]
+                  },
+                  {"name":"beitragGewaesserschadenhaftpflicht",
+                    "label":"Beitrag (€)",
+                "type":"text",
+                "props": { "required": true }
+                  }
+            ]},
+            {
+                "section": "Vorschäden",
+                "card": true,
+                "items": [
+                    {"name":"anzahlVorschaedenFuenfJahreGewaesserschadenhaftpflicht",
+                        "label":"Anzahl Vorschäden letzten 5 Jahren",
+                    "type":"text"
+                  },
+                      {"name":"anzahlVorschaedenGewaesserschadenhaftpflicht",
+                        "label":"Höhe der Vorschäden",
+                    "type":"text"
+                  },
+                  {"name":"vorschadensummeGewaesserschadenhaftpflicht",
+                    "label":"Vorschadensumme/-art/-höhe",
+                "type":"text"
+              }
+                ]
+            }
+    ]
+}

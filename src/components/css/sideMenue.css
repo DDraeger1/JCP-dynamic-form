@@ -1,0 +1,100 @@
+.boxSize{
+    width: 465px;
+    height:200px;
+    z-index: 1 !important;
+  background-color: #eeeeee;
+}
+.drawer{
+  z-index: 1 !important;
+  
+}
+.verticalDividerLine{
+  width: 1px;
+  margin-left: 50px;
+  height: 75px;
+  float: left;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.mandantSelectBox{
+  background-color: #62aac2;
+  width: 465px;
+top:80px;
+height:75px;
+border-radius: 10px;
+}
+.mandantSelectPersonendaten{
+  width: 300px;
+  background-color: white;
+margin-top:20px;
+margin-left:62.5px;
+float: left;
+}
+.closePersonendaten{
+  float: left; 
+  top: 12.5px;
+  transform: rotate(90deg)}
+.buttonStyling{
+  position: absolute;
+  float: left;
+    width: 25%;
+    margin-right: 5%;
+    margin-top: 4%;
+    margin-left: 2%;
+    font-weight: 500;
+    line-height: 1.75;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+  z-index: 2 !important;
+  font-size: 0.875rem;
+    color: #006c52;
+  padding: 6px 8px;
+}
+.trapezoid {
+    width: 50px;
+    text-align: center;
+    left:50%;
+    float: left;
+    border-right: 50px solid transparent;
+    border-top: 20px solid #62aac2;
+    border-left: 50px solid transparent;
+    box-sizing: content-box;
+  z-index: 2 !important;
+  transform: rotate(270deg);
+  }
+  .trapezoid span { 
+    position: relative;
+    top: -30px;
+    left: 40vw;
+    color: rgba(255, 255, 255, 0.753);
+  }
+  .klammer{
+    transform: rotate(270deg);
+    left:40vw;
+    bottom:-15px;
+  }
+  .closeDrawerButton{
+    float: right;
+    margin-top:10px !important;
+    transform: rotate(270deg);
+  }
+  .backgroundCloseDrawerButton{
+height:100px;
+    float: right;
+    width: 50px;
+    background-color: #62aac2;
+  }
+.buttonGrid{
+  position: absolute;
+  z-index: 2 !important;
+}
+.personendatenItem{
+  height:60px
+}
+.caption{
+  margin-left: 20px !important;
+}
+.iconStyle{
+  height: 26px;
+  width: 26px;
+}

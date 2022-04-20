@@ -3,6 +3,29 @@
   "card": true,
 
   "items": [
+      {
+          "section": "Berater",
+          "card": true,
+        
+          "items": [
+              {
+                  "name": "beraterPersonendaten",
+                  "label": "Berater",
+                  "type": "selectBerater",
+                  "suiteValue":"beraterId"
+              },
+              {
+                  "name": "nebenberaterPersonendaten",
+                  "label": "Nebenberater",
+                  "type": "selectBerater",
+                  "suiteValue":"nebenberaterId"
+              }
+          ]},
+      {
+          "section": "Name",
+          "card": true,
+        
+          "items": [
     {
       "name": "anredePersonendaten",
       "label": "Anrede",
@@ -13,10 +36,6 @@
       },
       "options": [
         {
-          "value": "",
-          "label": "keine Angabe"
-        },
-        {
           "value": "Mann",
           "label": "Herr"
         },
@@ -25,51 +44,54 @@
           "label": "Frau"
         },
         {
-          "value": 3,
-          "label": "divers"
+          "value": "Firma",
+          "label": "Firma"
         }
-      ]
+      ],
+      "suiteValue":"anrede"
     },
     {
       "name": "titelPersonendaten",
       "label": "Titel",
-      "type": "select",
+      "type": "text",
       "props": {
         "sm": 6,
         "xs":6
       },
-      "options": [
-        {
-          "value": "-",
-          "label": "-"
-        },
-        {
-          "value": "Dr.",
-          "label": "Dr."
-        },
-        {
-          "value": "Prof.",
-          "label": "Prof."
-        }
-      ]
+      "suiteValue":"titel"
     },
     {
       "name": "vornamePersonendaten",
       "label": "Vorname",
-      "type": "text"
+      "type": "text",
+      "props": {
+        "required": true
+      },
+      "suiteValue":"vorname"
     },
     {
       "name": "namePersonendaten",
       "label": "Name",
       "type": "text",
-      "rules": {
+      "props": {
         "required": true
-      }
-    },
+      },
+      "suiteValue":"nachname"
+    }
+  ]},
+  {
+      "section": "Geburtstag",
+      "card": true,
+    
+      "items": [
     {
       "name": "geburtsdatumPersonendaten",
       "label": "Geburtsdatum",
-      "type": "date"
+      "type": "date",
+      "suiteValue":"geburtsdatum",
+      "props":{
+        "required":true
+      }
     },
     {
       "name": "familienstandPersonendaten",
@@ -96,27 +118,34 @@
           "value": "FAMILIENSTAND_VERWITWET",
           "label": "verwitwet"
         }
-      ]
+      ],
+      "suiteValue":"familienstand"
     },
     {
       "name": "seitWannPersonendaten",
       "label": "Seit wann?",
       "type": "date",
       "props": { "sm": 4,
-        "xs":4 }
-    },
+        "xs":4 },
+        "suiteValue":"familienstandSeit"
+    }]},
     {
       "section": "Adresse",
       "card": true,
       "items": [
-    { "name": "streetAdressePersonendaten", "label": "Straße", "type": "text", "props": { "sm": 8 }  },
-    { "name": "hausnummerAdressePersonendaten", "label": "Hausnr", "type": "text", "props": { "sm": 4 }  },
-    { "name": "PLZAdressePersonendaten", "label": "PLZ", "type": "text", "props": { "sm": 3 } },
-    { "name": "cityAdressePersonendaten", "label": "Ort", "type": "text", "props": { "sm": 9 } },
+    { "name": "streetAdressePersonendaten", "label": "Straße", "type": "text", "props": { "sm": 8 },
+    "suiteValue":"strasse"  },
+    { "name": "hausnummerAdressePersonendaten", "label": "Hausnr", "type": "text", "props": { "sm": 4 },
+    "suiteValue":"hausnummer"  },
+    { "name": "PLZAdressePersonendaten", "label": "PLZ", "type": "text", "props": { "sm": 3 },
+    "suiteValue":"postleitzahl" },
+    { "name": "cityAdressePersonendaten", "label": "Ort", "type": "text", "props": { "sm": 9 },
+    "suiteValue":"ort" },
     {
       "name": "seitWannAdressePersonendaten",
       "label": "Seit wann?",
-      "type": "date"
+      "type": "date",
+      "suiteValue":"wohnhaftSeit"
     }]},
     {
       "name": "hobbiesHeader",
@@ -128,77 +157,88 @@
       "label": "Fallschirmspringen",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"fallschirmspringen"
     },
     {
       "name": "motorradHobbysPersonendaten",
       "label": "Motorrad",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"motorradfahrer"
     },
     {
       "name": "karateHobbysPersonendaten",
       "label": "Karate",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"karate"
     },
     {
       "name": "surfenHobbysPersonendaten",
       "label": "Surfen",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"surfen"
     },
     {
       "name": "jagdHobbysPersonendaten",
       "label": "Jagd",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"jagd"
     },
     {
       "name": "segelnHobbysPersonendaten",
       "label": "Segeln",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"segeln"
     },
     {
       "name": "hobbysMotorbootPersonendaten",
       "label": "Motorboot",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"motorboot"
     },
     {
       "name": "hobbysTauchenPersonendaten",
       "label": "Tauchen",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"tauchen"
     },
     {
       "name": "hobbysKletternPersonendaten",
       "label": "Klettern",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"klettern"
     },
     {
       "name": "hobbysBergsteigenPersonendaten",
       "label": "Bergsteigen",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"bergsteigen"
     },
     {
       "name": "hobbysSonstigesPersonendaten",
       "label": "Sonstiges",
       "type": "checkbox",
       "props": { "sm": 4,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"sonstiges"
     }
   ]
 }

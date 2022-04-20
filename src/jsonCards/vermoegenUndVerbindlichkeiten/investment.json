@@ -1,0 +1,15 @@
+{
+    "section": "Investment",
+    "card": true,
+    "mobileClassname": "Rente",
+    "items": [
+        {
+            "name": "versicherungsnehmerRente",
+            "label": "Versicherungsnehmer",
+            "type": "selectMandant",
+            "tarifType": "RENTE",
+            "props": { "required": true },
+            "suiteValue": "versicherungsnehmerId"
+          }
+    ]
+}

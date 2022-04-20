@@ -23,8 +23,15 @@
             "name": "TarifbezeichnungGesellschaftSchwereKrankheiten",
             "label": "Tarifbezeichnung",
             "type": "text",
-            "props":{"required":true},
+            "props": { "sm": 6 },
             "suiteValue":"tarifBezeichnung"
+          },
+          {
+            "name": "vertragsnummerSchwereKrankheiten",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "props": { "sm": 6 },
+            "suiteValue":"versicherungsnummer"
           },
           {
             "section": "Versicherungsnehmer",

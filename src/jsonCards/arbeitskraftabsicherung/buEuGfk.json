@@ -46,7 +46,6 @@
         "name": "versicherungsnehmerBuEuGjk",
         "label": "Versicherungsnehmer",
         "type": "selectMandant",
-        "versicherungsnehmerBeide":"true",
         "tarifType":"BU",
         "props": { "required": true },
         "suiteValue":"versicherungsnehmerId"
@@ -135,7 +134,17 @@
         "name": "dynamikVertragslaufzeitBuEuGjk",
         "label": "Dynamik",
         "type": "checkbox",
+        "props": { "sm": 6 ,
+          "xs":6},
         "suiteValue":"dynamik"
+      },
+      {
+        "name": "fallsDynamikVertragslaufzeitBuEuGjk",
+        "label": "..., falls Dynamik (%)",
+        "type": "text",
+        "props": { "sm": 6 ,
+          "xs":6},
+        "suiteValue":"dynamikProzent"
       },
       {
         "name": "garantierteRentensteigerungVertragslaufzeitBuEuGjk",

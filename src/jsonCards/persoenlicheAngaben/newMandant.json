@@ -1,0 +1,217 @@
+{
+    "section": "Personendaten",
+    "card": true,
+  
+    "items": [
+        {
+            "section": "Berater",
+            "card": true,
+          
+            "items": [
+                {
+                    "name": "beraterPersonendaten",
+                    "label": "Berater",
+                    "type": "selectBerater"
+                },
+                {
+                    "name": "nebenberaterPersonendaten",
+                    "label": "Nebenberater",
+                    "type": "selectBerater"
+                }
+            ]},
+        {
+            "section": "Name",
+            "card": true,
+          
+            "items": [
+      {
+        "name": "anredePersonendaten",
+        "label": "Anrede",
+        "type": "select",
+        "props": {
+          "sm": 6,
+          "xs":6
+        },
+        "options": [
+          {
+            "value": "Mann",
+            "label": "Herr"
+          },
+          {
+            "value": "Frau",
+            "label": "Frau"
+          },
+          {
+            "value": "Firma",
+            "label": "Firma"
+          }
+        ]
+      },
+      {
+        "name": "titelPersonendaten",
+        "label": "Titel",
+        "type": "text",
+        "props": {
+          "sm": 6,
+          "xs":6
+        }
+      },
+      {
+        "name": "vornamePersonendaten",
+        "label": "Vorname",
+        "type": "text",
+        "props": {
+          "required": true
+        }
+      },
+      {
+        "name": "namePersonendaten",
+        "label": "Name",
+        "type": "text",
+        "props": {
+          "required": true
+        }
+      }
+    ]},
+    {
+        "section": "Geburtstag",
+        "card": true,
+      
+        "items": [
+      {
+        "name": "geburtsdatumPersonendaten",
+        "label": "Geburtsdatum",
+        "type": "date"
+      },
+      {
+        "name": "familienstandPersonendaten",
+        "label": "Familienstand",
+        "type": "select",
+        "props": {
+          "sm": 8,
+          "xs":8
+        },
+        "options": [
+          {
+            "value": "FAMILIENSTAND_VERHEIRATET",
+            "label": "Verheiratet"
+          },
+          {
+            "value": "FAMILIENSTAND_LEDIG",
+            "label": "Ledig"
+          },
+          {
+            "value": "FAMILIENSTAND_GESCHIEDEN",
+            "label": "geschieden"
+          },
+          {
+            "value": "FAMILIENSTAND_VERWITWET",
+            "label": "verwitwet"
+          }
+        ]
+      },
+      {
+        "name": "seitWannPersonendaten",
+        "label": "Seit wann?",
+        "type": "date",
+        "props": { "sm": 4,
+          "xs":4 }
+      }]},
+      {
+        "section": "Adresse",
+        "card": true,
+        "items": [
+      { "name": "streetAdressePersonendaten", "label": "Straße", "type": "text", "props": { "sm": 8 }  },
+      { "name": "hausnummerAdressePersonendaten", "label": "Hausnr", "type": "text", "props": { "sm": 4 }  },
+      { "name": "PLZAdressePersonendaten", "label": "PLZ", "type": "text", "props": { "sm": 3 } },
+      { "name": "cityAdressePersonendaten", "label": "Ort", "type": "text", "props": { "sm": 9 } },
+      {
+        "name": "seitWannAdressePersonendaten",
+        "label": "Seit wann?",
+        "type": "date"
+      }]},
+      {
+        "name": "hobbiesHeader",
+        "label": "Hobbies",
+        "type": "header"
+      },
+      {
+        "name": "fallschirmspringenHobbysPersonendaten",
+        "label": "Fallschirmspringen",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "motorradHobbysPersonendaten",
+        "label": "Motorrad",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "karateHobbysPersonendaten",
+        "label": "Karate",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "surfenHobbysPersonendaten",
+        "label": "Surfen",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "jagdHobbysPersonendaten",
+        "label": "Jagd",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "segelnHobbysPersonendaten",
+        "label": "Segeln",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "hobbysMotorbootPersonendaten",
+        "label": "Motorboot",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "hobbysTauchenPersonendaten",
+        "label": "Tauchen",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "hobbysKletternPersonendaten",
+        "label": "Klettern",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "hobbysBergsteigenPersonendaten",
+        "label": "Bergsteigen",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      },
+      {
+        "name": "hobbysSonstigesPersonendaten",
+        "label": "Sonstiges",
+        "type": "checkbox",
+        "props": { "sm": 4,
+          "xs":6 }
+      }
+    ]
+  }
+  

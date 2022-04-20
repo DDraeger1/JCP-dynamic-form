@@ -9,7 +9,8 @@
             "type": "text",
             "props": {
               "sm": 6
-            }
+            },
+            "suiteValue":""
           },
           {
             "name": "ausstellungsDatumFuehrerscheinFuehrerschein",
@@ -17,7 +18,8 @@
             "type": "date",
             "props": {
               "sm": 6
-            }
+            },
+            "suiteValue":""
           },
           {
             "name": "fuehrerscheinLandFuehrerschein",
@@ -25,7 +27,8 @@
             "type": "text",
             "props": {
               "sm": 6
-            }
+            },
+            "suiteValue":""
           },
           {
             "name": "fuehrerscheinKlasseFuehrerscheinHeader",
@@ -37,56 +40,64 @@
             "label": "B",
             "type": "checkbox",
             "props": { "sm": 4,
-              "xs":4 }
+              "xs":4 },
+              "suiteValue":""
           },
           {
             "name": "klasseBEFuehrerschein",
             "label": "BE",
             "type": "checkbox",
             "props": { "sm": 4,
-              "xs":4 }
+              "xs":4 },
+              "suiteValue":""
           },
           {
             "name": "klasseAFuehrerschein",
             "label": "A",
             "type": "checkbox",
             "props": { "sm": 4,
-              "xs":4 }
+              "xs":4 },
+              "suiteValue":""
           },
           {
             "name": "klasseAEinsFuehrerschein",
             "label": "A1",
             "type": "checkbox",
             "props": { "sm": 4,
-              "xs":4 }
+              "xs":4 },
+              "suiteValue":""
           },
           {
             "name": "klasseAZweiFuehrerschein",
             "label": "A2",
             "type": "checkbox",
             "props": { "sm": 4,
-              "xs":4 }
+              "xs":4 },
+              "suiteValue":""
           },
           {
             "name": "klasseCFuehrerschein",
             "label": "C",
             "type": "checkbox",
             "props": { "sm": 4,
-              "xs":4 }
+              "xs":4 },
+              "suiteValue":""
           },
           {
             "name": "klasseCEinsFuehrerschein",
             "label": "C1",
             "type": "checkbox",
             "props": { "sm": 4,
-              "xs":4 }
+              "xs":4 },
+              "suiteValue":""
           },
           {
             "name": "klasseCFuehrerschein",
             "label": "CE",
             "type": "checkbox",
             "props": { "sm": 4,
-              "xs":4 }
+              "xs":4 },
+              "suiteValue":""
           }
     ]
 }

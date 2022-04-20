@@ -20,6 +20,7 @@
     {
       "accordionText": "Arbeitgeber",
       "card": false,
+      "accordionId":0,
       "items": [
         {
         "name": "firmennameArbeitgeber",
@@ -28,7 +29,8 @@
         "props": {
           "sm": 6,
           "xs":6
-        }
+        },
+        "suiteValue":"firmenname0"
       },
       {
         "name": "rechtsformArbeitgeber",
@@ -37,7 +39,8 @@
         "props": {
           "sm": 6,
           "xs":6
-        }
+        },
+        "suiteValue":"rechtsform0"
     },
     {
       "name": "straßeArbeitgeber",
@@ -46,7 +49,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"strasse0"
     },
     {
       "name": "nummerArbeitgeber",
@@ -55,7 +59,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"hausnummer0"
     },
     {
       "name": "postleitzahlArbeitgeber",
@@ -64,7 +69,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"postleitzahl0"
     },
     {
       "name": "wohnortArbeitgeber",
@@ -73,7 +79,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"ort0"
     },
     {
       "name": "telefonnummerArbeitgeber",
@@ -82,7 +89,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"tel0"
     },
     {
       "name": "seitWannbeschaeftigtArbeitgeber",
@@ -91,7 +99,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"beschaeftigt0"
     },
     {
       "section": "Betriebliche Altersvorsorge",
@@ -108,7 +117,8 @@
       "options": [
         { "value": true, "label": "Ja" },
         { "value": false, "label": "Nein" }
-    ]
+    ],
+    "suiteValue":"mitgliedGewerkschaft0"
     },
     {
       "name": "inWelcheGewerkschaftBAVArbeitgeber",
@@ -117,7 +127,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"nameGewerkschaft0"
     },
     {
       "name": "tarifgebundenBAVArbeitgeber",
@@ -130,7 +141,8 @@
       "options": [
         { "value": true, "label": "Ja" },
         { "value": false, "label": "Nein" }
-    ]
+    ],
+    "suiteValue":"tarifgebunden0"
     },
     {
       "name": "tarifvertragBestehenBAVArbeitgeber",
@@ -143,16 +155,18 @@
       "options": [
         { "value": true, "label": "Ja" },
         { "value": false, "label": "Nein" }
-    ]
+    ],
+    "suiteValue":"verbindlicherVertrag0"
     },
     {
-        "name": "inWelcheGewerkschaftBAVArbeitgeber",
-        "label": "min. 1x 'ja', welcher Tarifvertrag gilt?",
+        "name": "welcherTarifvertragBAVArbeitgeber",
+        "label": "Welcher Tarifvertrag gilt?",
         "type": "text",
         "props": {
           "sm": 6,
           "xs":6
-        }
+        },
+        "suiteValue":"verbindlicherVertrag0"
       },
       {
           "name": "unternehmensgrößeBAVArbeitgeber",
@@ -161,7 +175,8 @@
           "props": {
             "sm": 6,
             "xs":6
-          }
+          },
+          "suiteValue":"unternehmensgroesse0"
         },
         {
             "name": "ansprechspartnerArbeitgeber",
@@ -170,7 +185,8 @@
             "props": {
               "sm": 6,
               "xs":6
-            }
+            },
+            "suiteValue":"avAnsprechpartnerName0"
           },
           {
               "name": "telNrAnsprechspartnerArbeitgeber",
@@ -179,17 +195,20 @@
               "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"avAnsprechpartnerTelefon0"
             },
             {
                 "name": "emailAnsprechspartnerArbeitgeber",
                 "label": "Email des Ansprechspartners",
-                "type": "text"
+                "type": "text",
+                "suiteValue":"avAnsprechpartnerEmail0"
               }]}]},
               {
                 "accordionText": "Arbeitgeber 2",
             "condition":"selected2Persons",
             "card": false,
+            "accordionId":1,
                 "items": [
               {
                 "name": "firmennameArbeitgeber2",
@@ -199,7 +218,8 @@
             "props": {
                   "sm": 6,
                   "xs":6
-                }
+                },
+                "suiteValue":"firmenname1"
               },
               {
                 "name": "rechtsformArbeitgeber2",
@@ -209,7 +229,8 @@
             "props": {
                   "sm": 6,
                   "xs":6
-                }
+                },
+                "suiteValue":"rechtsform1"
             },
             {
               "name": "straßeArbeitgeber2",
@@ -219,7 +240,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"strasse1"
             },
             {
               "name": "nummerArbeitgeber2",
@@ -229,7 +251,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"hausnummer1"
             },
             {
               "name": "postleitzahlArbeitgeber2",
@@ -239,7 +262,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"postleitzahl1"
             },
             {
               "name": "wohnortArbeitgeber2",
@@ -249,7 +273,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"ort1"
             },
             {
               "name": "telefonnummerArbeitgeber2",
@@ -259,7 +284,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"tel1"
             },
             {
               "name": "seitWannbeschaeftigtArbeitgeber2",
@@ -269,7 +295,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"beschaeftigt1"
             },
             {
               "section": "Betriebliche Altersvorsorge",
@@ -288,7 +315,8 @@
               "options": [
                 { "value": true, "label": "Ja" },
                 { "value": false, "label": "Nein" }
-            ]
+            ],
+            "suiteValue":"mitgliedGewerkschaft1"
             },
             {
               "name": "inWelcheGewerkschaftBAVArbeitgeber2",
@@ -298,7 +326,8 @@
             "props": {
                 "sm": 6,
                 "xs":6
-              }
+              },
+              "suiteValue":"nameGewerkschaft1"
             },
             {
               "name": "tarifgebundenBAVArbeitgeber2",
@@ -312,7 +341,8 @@
               "options": [
                 { "value": true, "label": "Ja" },
                 { "value": false, "label": "Nein" }
-            ]
+            ],
+            "suiteValue":"tarifgebunden1"
             },
             {
               "name": "tarifvertragBestehenBAVArbeitgeber2",
@@ -326,17 +356,19 @@
               "options": [
                 { "value": true, "label": "Ja" },
                 { "value": false, "label": "Nein" }
-            ]
+            ],
+            "suiteValue":"verbindlicherVertrag1"
             },
             {
-                "name": "inWelcheGewerkschaftBAVArbeitgeber2",
-                "label": "min. 1x 'ja', welcher Tarifvertrag gilt?",
+                "name": "welcherTarifvertragBAVArbeitgeber2",
+                "label": "Welcher Tarifvertrag gilt?",
                 "type": "text",
             "condition":"selected2Persons",
             "props": {
                   "sm": 6,
                   "xs":6
-                }
+                },
+                "suiteValue":"verbindlicherVertrag1"
               },
               {
                   "name": "unternehmensgrößeBAVArbeitgeber2",
@@ -346,7 +378,8 @@
             "props": {
                     "sm": 6,
                     "xs":6
-                  }
+                  },
+                  "suiteValue":"unternehmensgroesse1"
                 },
                 {
                     "name": "ansprechspartnerArbeitgeber2",
@@ -356,7 +389,8 @@
             "props": {
                       "sm": 6,
                       "xs":6
-                    }
+                    },
+                    "suiteValue":"avAnsprechpartnerName1"
                   },
                   {
                       "name": "telNrAnsprechspartnerArbeitgeber2",
@@ -366,18 +400,21 @@
             "props": {
                         "sm": 6,
                         "xs":6
-                      }
+                      },
+                      "suiteValue":"avAnsprechpartnerTelefon1"
                     },
                     {
                         "name": "emailAnsprechspartnerArbeitgeber2",
                         "label": "Email des Ansprechspartners",
             "condition":"selected2Persons",
-            "type": "text"
+            "type": "text",
+            "suiteValue":"avAnsprechpartnerEmail1"
                       }]}]},
                       {
                         "accordionText": "Arbeitgeber 3",
                     "condition":"selected3Persons",
                     "card": false,
+                    "accordionId":2,
                         "items": [
                       {
                         "name": "firmennameArbeitgeber3",
@@ -387,7 +424,8 @@
                     "props": {
                           "sm": 6,
                           "xs":6
-                        }
+                        },
+                        "suiteValue":"firmenname2"
                       },
                       {
                         "name": "rechtsformArbeitgeber3",
@@ -397,7 +435,8 @@
                     "props": {
                           "sm": 6,
                           "xs":6
-                        }
+                        },
+                        "suiteValue":"rechtsform2"
                     },
                     {
                       "name": "straßeArbeitgeber3",
@@ -407,7 +446,8 @@
                     "props": {
                         "sm": 6,
                         "xs":6
-                      }
+                      },
+                      "suiteValue":"strasse2"
                     },
                     {
                       "name": "nummerArbeitgeber3",
@@ -417,7 +457,8 @@
                     "props": {
                         "sm": 6,
                         "xs":6
-                      }
+                      },
+                      "suiteValue":"hausnummer2"
                     },
                     {
                       "name": "postleitzahlArbeitgeber3",
@@ -427,7 +468,8 @@
                     "props": {
                         "sm": 6,
                         "xs":6
-                      }
+                      },
+                      "suiteValue":"postleitzahl2"
                     },
                     {
                       "name": "wohnortArbeitgeber3",
@@ -437,7 +479,8 @@
                     "props": {
                         "sm": 6,
                         "xs":6
-                      }
+                      },
+                      "suiteValue":"ort2"
                     },
                     {
                       "name": "telefonnummerArbeitgeber3",
@@ -447,7 +490,8 @@
                     "props": {
                         "sm": 6,
                         "xs":6
-                      }
+                      },
+                      "suiteValue":"tel2"
                     },
                     {
                       "name": "seitWannbeschaeftigtArbeitgeber3",
@@ -457,7 +501,8 @@
                     "props": {
                         "sm": 6,
                         "xs":6
-                      }
+                      },
+                      "suiteValue":"beschaeftigt2"
                     },
                     {
                       "section": "Betriebliche Altersvorsorge",
@@ -476,7 +521,8 @@
                       "options": [
                         { "value": true, "label": "Ja" },
                         { "value": false, "label": "Nein" }
-                    ]
+                    ],
+                    "suiteValue":"mitgliedGewerkschaft2"
                     },
                     {
                       "name": "inWelcheGewerkschaftBAVArbeitgeber3",
@@ -486,7 +532,8 @@
                     "props": {
                         "sm": 6,
                         "xs":6
-                      }
+                      },
+                      "suiteValue":"nameGewerkschaft2"
                     },
                     {
                       "name": "tarifgebundenBAVArbeitgeber3",
@@ -500,7 +547,8 @@
                       "options": [
                         { "value": true, "label": "Ja" },
                         { "value": false, "label": "Nein" }
-                    ]
+                    ],
+                    "suiteValue":"tarifgebunden2"
                     },
                     {
                       "name": "tarifvertragBestehenBAVArbeitgeber3",
@@ -514,17 +562,19 @@
                       "options": [
                         { "value": true, "label": "Ja" },
                         { "value": false, "label": "Nein" }
-                    ]
+                    ],
+                    "suiteValue":"verbindlicherVertrag2"
                     },
                     {
-                        "name": "inWelcheGewerkschaftBAVArbeitgeber3",
-                        "label": "min. 1x 'ja', welcher Tarifvertrag gilt?",
+                        "name": "welcherTarifvertragBAVArbeitgeber3",
+                        "label": "Welcher Tarifvertrag gilt?",
                         "type": "text",
                     "condition":"selected3Persons",
                     "props": {
                           "sm": 6,
                           "xs":6
-                        }
+                        },
+                        "suiteValue":"verbindlicherVertrag2"
                       },
                       {
                           "name": "unternehmensgrößeBAVArbeitgeber3",
@@ -534,7 +584,8 @@
                     "props": {
                             "sm": 6,
                             "xs":6
-                          }
+                          },
+                          "suiteValue":"unternehmensgroesse2"
                         },
                         {
                             "name": "ansprechspartnerArbeitgeber3",
@@ -544,7 +595,8 @@
                     "props": {
                               "sm": 6,
                               "xs":6
-                            }
+                            },
+                            "suiteValue":"avAnsprechpartnerName2"
                           },
                           {
                               "name": "telNrAnsprechspartnerArbeitgeber3",
@@ -554,17 +606,20 @@
                     "props": {
                                 "sm": 6,
                                 "xs":6
-                              }
+                              },
+                              "suiteValue":"avAnsprechpartnerTelefon2"
                             },
                             {
                                 "name": "emailAnsprechspartnerArbeitgeber3",
                                 "label": "Email des Ansprechspartners",
                     "condition":"selected3Persons",
-                    "type": "text"
+                    "type": "text",
+                    "suiteValue":"avAnsprechpartnerEmail2"
                               }]}]},
                               {
                                 "accordionText": "Arbeitgeber 4",
                             "condition":"selected4Persons",
+                            "accordionId":3,
                             "card": false,
                                 "items": [
                               {
@@ -575,7 +630,8 @@
                             "props": {
                                   "sm": 6,
                                   "xs":6
-                                }
+                                },
+                                "suiteValue":"firmenname3"
                               },
                               {
                                 "name": "rechtsformArbeitgeber4",
@@ -585,7 +641,8 @@
                             "props": {
                                   "sm": 6,
                                   "xs":6
-                                }
+                                },
+                                "suiteValue":"rechtsform3"
                             },
                             {
                               "name": "straßeArbeitgeber4",
@@ -595,7 +652,8 @@
                             "props": {
                                 "sm": 6,
                                 "xs":6
-                              }
+                              },
+                              "suiteValue":"strasse3"
                             },
                             {
                               "name": "nummerArbeitgeber4",
@@ -605,7 +663,8 @@
                             "props": {
                                 "sm": 6,
                                 "xs":6
-                              }
+                              },
+                              "suiteValue":"hausnummer3"
                             },
                             {
                               "name": "postleitzahlArbeitgeber4",
@@ -615,7 +674,8 @@
                             "props": {
                                 "sm": 6,
                                 "xs":6
-                              }
+                              },
+                              "suiteValue":"postleitzahl3"
                             },
                             {
                               "name": "wohnortArbeitgeber4",
@@ -625,7 +685,8 @@
                             "props": {
                                 "sm": 6,
                                 "xs":6
-                              }
+                              },
+                              "suiteValue":"ort3"
                             },
                             {
                               "name": "telefonnummerArbeitgeber4",
@@ -635,7 +696,8 @@
                             "props": {
                                 "sm": 6,
                                 "xs":6
-                              }
+                              },
+                              "suiteValue":"tel3"
                             },
                             {
                               "name": "seitWannbeschaeftigtArbeitgeber4",
@@ -645,7 +707,8 @@
                             "props": {
                                 "sm": 6,
                                 "xs":6
-                              }
+                              },
+                              "suiteValue":"beschaeftigt3"
                             },
                             {
                               "section": "Betriebliche Altersvorsorge",
@@ -664,7 +727,8 @@
                               "options": [
                                 { "value": true, "label": "Ja" },
                                 { "value": false, "label": "Nein" }
-                            ]
+                            ],
+                            "suiteValue":"mitgliedGewerkschaft3"
                             },
                             {
                               "name": "inWelcheGewerkschaftBAVArbeitgeber4",
@@ -674,7 +738,8 @@
                             "props": {
                                 "sm": 6,
                                 "xs":6
-                              }
+                              },
+                              "suiteValue":"nameGewerkschaft4"
                             },
                             {
                               "name": "tarifgebundenBAVArbeitgeber4",
@@ -688,7 +753,8 @@
                               "options": [
                                 { "value": true, "label": "Ja" },
                                 { "value": false, "label": "Nein" }
-                            ]
+                            ],
+                            "suiteValue":"tarifgebunden3"
                             },
                             {
                               "name": "tarifvertragBestehenBAVArbeitgeber4",
@@ -702,17 +768,19 @@
                               "options": [
                                 { "value": true, "label": "Ja" },
                                 { "value": false, "label": "Nein" }
-                            ]
+                            ],
+                            "suiteValue":"verbindlicherVertrag3"
                             },
                             {
-                                "name": "inWelcheGewerkschaftBAVArbeitgeber4",
-                                "label": "min. 1x 'ja', welcher Tarifvertrag gilt?",
+                                "name": "welcherTarifvertragBAVArbeitgeber4",
+                                "label": "Welcher Tarifvertrag gilt?",
                                 "type": "text",
                             "condition":"selected4Persons",
                             "props": {
                                   "sm": 6,
                                   "xs":6
-                                }
+                                },
+                                "suiteValue":"verbindlicherVertrag3"
                               },
                               {
                                   "name": "unternehmensgrößeBAVArbeitgeber4",
@@ -722,7 +790,8 @@
                             "props": {
                                     "sm": 6,
                                     "xs":6
-                                  }
+                                  },
+                                  "suiteValue":"unternehmensgroesse3"
                                 },
                                 {
                                     "name": "ansprechspartnerArbeitgeber4",
@@ -732,7 +801,8 @@
                             "props": {
                                       "sm": 6,
                                       "xs":6
-                                    }
+                                    },
+                                    "suiteValue":"avAnsprechpartnerName3"
                                   },
                                   {
                                       "name": "telNrAnsprechspartnerArbeitgeber4",
@@ -742,17 +812,20 @@
                             "props": {
                                         "sm": 6,
                                         "xs":6
-                                      }
+                                      },
+                                      "suiteValue":"avAnsprechpartnerTelefon3"
                                     },
                                     {
                                         "name": "emailAnsprechspartnerArbeitgeber4",
                                         "label": "Email des Ansprechspartners",
                             "condition":"selected4Persons",
-                            "type": "text"
+                            "type": "text",
+                            "suiteValue":"avAnsprechpartnerEmail3"
                                       }]}]},
                                       {
                                         "accordionText": "Arbeitgeber 5",
                                     "condition":"selected5Persons",
+                                    "accordionId":4,
                                     "card": false,
                                         "items": [
                                       {
@@ -763,7 +836,8 @@
                                     "props": {
                                           "sm": 6,
                                           "xs":6
-                                        }
+                                        },
+                                        "suiteValue":"firmenname4"
                                       },
                                       {
                                         "name": "rechtsformArbeitgeber5",
@@ -773,7 +847,8 @@
                                     "props": {
                                           "sm": 6,
                                           "xs":6
-                                        }
+                                        },
+                                        "suiteValue":"rechtsform4"
                                     },
                                     {
                                       "name": "straßeArbeitgeber5",
@@ -783,7 +858,8 @@
                                     "props": {
                                         "sm": 6,
                                         "xs":6
-                                      }
+                                      },
+                                      "suiteValue":"strasse4"
                                     },
                                     {
                                       "name": "nummerArbeitgeber5",
@@ -793,7 +869,8 @@
                                     "props": {
                                         "sm": 6,
                                         "xs":6
-                                      }
+                                      },
+                                      "suiteValue":"hausnummer4"
                                     },
                                     {
                                       "name": "postleitzahlArbeitgeber5",
@@ -803,7 +880,8 @@
                                     "props": {
                                         "sm": 6,
                                         "xs":6
-                                      }
+                                      },
+                                      "suiteValue":"postleitzahl4"
                                     },
                                     {
                                       "name": "wohnortArbeitgeber5",
@@ -813,7 +891,8 @@
                                     "props": {
                                         "sm": 6,
                                         "xs":6
-                                      }
+                                      },
+                                      "suiteValue":"ort4"
                                     },
                                     {
                                       "name": "telefonnummerArbeitgeber5",
@@ -823,7 +902,8 @@
                                     "props": {
                                         "sm": 6,
                                         "xs":6
-                                      }
+                                      },
+                                      "suiteValue":"tel4"
                                     },
                                     {
                                       "name": "seitWannbeschaeftigtArbeitgeber5",
@@ -833,7 +913,8 @@
                                     "props": {
                                         "sm": 6,
                                         "xs":6
-                                      }
+                                      },
+                                      "suiteValue":"beschaeftigt4"
                                     },
                                     {
                                       "section": "Betriebliche Altersvorsorge",
@@ -852,7 +933,8 @@
                                       "options": [
                                         { "value": true, "label": "Ja" },
                                         { "value": false, "label": "Nein" }
-                                    ]
+                                    ],
+                                    "suiteValue":"mitgliedGewerkschaft4"
                                     },
                                     {
                                       "name": "inWelcheGewerkschaftBAVArbeitgeber5",
@@ -862,7 +944,8 @@
                                     "props": {
                                         "sm": 6,
                                         "xs":6
-                                      }
+                                      },
+                                      "suiteValue":"nameGewerkschaft4"
                                     },
                                     {
                                       "name": "tarifgebundenBAVArbeitgeber5",
@@ -876,7 +959,8 @@
                                       "options": [
                                         { "value": true, "label": "Ja" },
                                         { "value": false, "label": "Nein" }
-                                    ]
+                                    ],
+                                    "suiteValue":"tarifgebunden4"
                                     },
                                     {
                                       "name": "tarifvertragBestehenBAVArbeitgeber5",
@@ -890,17 +974,19 @@
                                       "options": [
                                         { "value": true, "label": "Ja" },
                                         { "value": false, "label": "Nein" }
-                                    ]
+                                    ],
+                                    "suiteValue":"verbindlicherVertrag4"
                                     },
                                     {
-                                        "name": "inWelcheGewerkschaftBAVArbeitgeber5",
-                                        "label": "min. 1x 'ja', welcher Tarifvertrag gilt?",
+                                        "name": "welcherTarifvertragBAVArbeitgeber5",
+                                        "label": "Welcher Tarifvertrag gilt?",
                                         "type": "text",
                                     "condition":"selected5Persons",
                                     "props": {
                                           "sm": 6,
                                           "xs":6
-                                        }
+                                        },
+                                        "suiteValue":"verbindlicherVertrag4"
                                       },
                                       {
                                           "name": "unternehmensgrößeBAVArbeitgeber5",
@@ -910,7 +996,8 @@
                                     "props": {
                                             "sm": 6,
                                             "xs":6
-                                          }
+                                          },
+                                          "suiteValue":"unternehmensgroesse4"
                                         },
                                         {
                                             "name": "ansprechspartnerArbeitgeber5",
@@ -920,7 +1007,8 @@
                                     "props": {
                                               "sm": 6,
                                               "xs":6
-                                            }
+                                            },
+                                            "suiteValue":"avAnsprechpartnerName4"
                                           },
                                           {
                                               "name": "telNrAnsprechspartnerArbeitgeber5",
@@ -930,17 +1018,20 @@
                                     "props": {
                                                 "sm": 6,
                                                 "xs":6
-                                              }
+                                              },
+                                              "suiteValue":"avAnsprechpartnerTelefon4"
                                             },
                                             {
                                                 "name": "emailAnsprechspartnerArbeitgeber5",
                                                 "label": "Email des Ansprechspartners",
                                     "condition":"selected5Persons",
-                                    "type": "text"
+                                    "type": "text",
+                                    "suiteValue":"avAnsprechpartnerEmail4"
                                               }]}]},
                                               {
                                                 "accordionText": "Arbeitgeber 6",
                                             "condition":"selected6Persons",
+                                            "accordionId":5,
                                             "card": false,
                                                 "items": [
                                               {
@@ -951,7 +1042,8 @@
                                             "props": {
                                                   "sm": 6,
                                                   "xs":6
-                                                }
+                                                },
+                                                "suiteValue":"firmenname5"
                                               },
                                               {
                                                 "name": "rechtsformArbeitgeber6",
@@ -961,7 +1053,8 @@
                                             "props": {
                                                   "sm": 6,
                                                   "xs":6
-                                                }
+                                                },
+                                                "suiteValue":"rechtsform5"
                                             },
                                             {
                                               "name": "straßeArbeitgeber6",
@@ -971,7 +1064,8 @@
                                             "props": {
                                                 "sm": 6,
                                                 "xs":6
-                                              }
+                                              },
+                                              "suiteValue":"strasse5"
                                             },
                                             {
                                               "name": "nummerArbeitgeber6",
@@ -981,7 +1075,8 @@
                                             "props": {
                                                 "sm": 6,
                                                 "xs":6
-                                              }
+                                              },
+                                              "suiteValue":"hausnummer5"
                                             },
                                             {
                                               "name": "postleitzahlArbeitgeber6",
@@ -991,7 +1086,8 @@
                                             "props": {
                                                 "sm": 6,
                                                 "xs":6
-                                              }
+                                              },
+                                              "suiteValue":"postleitzahl5"
                                             },
                                             {
                                               "name": "wohnortArbeitgeber6",
@@ -1001,7 +1097,8 @@
                                             "props": {
                                                 "sm": 6,
                                                 "xs":6
-                                              }
+                                              },
+                                              "suiteValue":"ort5"
                                             },
                                             {
                                               "name": "telefonnummerArbeitgeber6",
@@ -1011,7 +1108,8 @@
                                             "props": {
                                                 "sm": 6,
                                                 "xs":6
-                                              }
+                                              },
+                                              "suiteValue":"tel5"
                                             },
                                             {
                                               "name": "seitWannbeschaeftigtArbeitgeber6",
@@ -1021,7 +1119,8 @@
                                             "props": {
                                                 "sm": 6,
                                                 "xs":6
-                                              }
+                                              },
+                                              "suiteValue":"beschaeftigt5"
                                             },
                                             {
                                               "section": "Betriebliche Altersvorsorge",
@@ -1040,7 +1139,8 @@
                                               "options": [
                                                 { "value": true, "label": "Ja" },
                                                 { "value": false, "label": "Nein" }
-                                            ]
+                                            ],
+                                            "suiteValue":"mitgliedGewerkschaft5"
                                             },
                                             {
                                               "name": "inWelcheGewerkschaftBAVArbeitgeber6",
@@ -1050,7 +1150,8 @@
                                             "props": {
                                                 "sm": 6,
                                                 "xs":6
-                                              }
+                                              },
+                                              "suiteValue":"nameGewerkschaft5"
                                             },
                                             {
                                               "name": "tarifgebundenBAVArbeitgeber6",
@@ -1064,7 +1165,8 @@
                                               "options": [
                                                 { "value": true, "label": "Ja" },
                                                 { "value": false, "label": "Nein" }
-                                            ]
+                                            ],
+                                            "suiteValue":"tarifgebunden5"
                                             },
                                             {
                                               "name": "tarifvertragBestehenBAVArbeitgeber6",
@@ -1078,17 +1180,19 @@
                                               "options": [
                                                 { "value": true, "label": "Ja" },
                                                 { "value": false, "label": "Nein" }
-                                            ]
+                                            ],
+                                            "suiteValue":"verbindlicherVertrag5"
                                             },
                                             {
-                                                "name": "inWelcheGewerkschaftBAVArbeitgeber6",
-                                                "label": "min. 1x 'ja', welcher Tarifvertrag gilt?",
+                                                "name": "welcherTarifvertragBAVArbeitgeber6",
+                                                "label": "Welcher Tarifvertrag gilt?",
                                                 "type": "text",
                                             "condition":"selected6Persons",
                                             "props": {
                                                   "sm": 6,
                                                   "xs":6
-                                                }
+                                                },
+                                                "suiteValue":"verbindlicherVertrag5"
                                               },
                                               {
                                                   "name": "unternehmensgrößeBAVArbeitgeber6",
@@ -1098,7 +1202,8 @@
                                             "props": {
                                                     "sm": 6,
                                                     "xs":6
-                                                  }
+                                                  },
+                                                  "suiteValue":"unternehmensgroesse5"
                                                 },
                                                 {
                                                     "name": "ansprechspartnerArbeitgeber6",
@@ -1108,7 +1213,8 @@
                                             "props": {
                                                       "sm": 6,
                                                       "xs":6
-                                                    }
+                                                    },
+                                                    "suiteValue":"avAnsprechpartnerName5"
                                                   },
                                                   {
                                                       "name": "telNrAnsprechspartnerArbeitgeber6",
@@ -1118,15 +1224,18 @@
                                             "props": {
                                                         "sm": 6,
                                                         "xs":6
-                                                      }
+                                                      },
+                                                      "suiteValue":"avAnsprechpartnerTelefon6"
                                                     },
                                                     {
                                                         "name": "emailAnsprechspartnerArbeitgeber6",
                                                         "label": "Email des Ansprechspartners",
                                             "condition":"selected6Persons",
-                                            "type": "text"
+                                            "type": "text",
+                                            "suiteValue":"avAnsprechpartnerEmail5"
                                                       }]}]},
                                                       {"name":"arbeitgeberHinzufuegen",
-    "type":"costumFunction"}
+    "type":"costumFunction",
+    "suiteValue":""}
     ]
 }

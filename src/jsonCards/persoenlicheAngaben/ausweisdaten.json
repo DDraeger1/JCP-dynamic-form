@@ -10,7 +10,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"personalausweis"
     },
     {
       "name": "ausstellungsdatumAusweisdaten",
@@ -19,7 +20,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"personalausweisAusstellungsdatum"
     },
     {
       "name": "gueltigBisAusweisdaten",
@@ -28,7 +30,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"personalausweisGueltigBis"
     },
     {
       "name": "ausstellungsstelleVerwaltungAusweisdaten",
@@ -37,12 +40,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
-    },
-    {
-      "name": "ortBehoerdeAusweisdaten",
-      "label": "Ort der ausstellenden Behörde (nicht vorhanden)",
-      "type": "text"
+      },
+      "suiteValue":"personalausweisVerwaltung"
     },
     {
       "section": "Reisepass",
@@ -55,7 +54,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"reisepass"
     },
     {
       "name": "ausstellungsdatumReisepassAusweisdaten",
@@ -64,16 +64,18 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"reisepassAusstellungsdatum"
     },
     {
       "name": "gueltigBisReisepassReisepassAusweisdaten",
       "label": "Gültig bis",
-      "type": "text",
+      "type": "date",
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"reisepassGueltigBis"
     },
     {
       "name": "ausstellungsstelleVerwaltungReisepassAusweisdaten",
@@ -82,13 +84,109 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
-    },
-    {
-      "name": "ortBehoerdeReisepassAusweisdaten",
-      "label": "Ort der ausstellenden Behoerde (nicht vorhanden)",
-      "type": "text"
+      },
+      "suiteValue":"reisepassVerwaltung"
     }]},
+    {
+      "section": "Fuehrerschein",
+      "card": true,
+  
+      "items": [
+          {
+              "name": "fuehrerscheinFuehrerschein",
+              "label": "Fuehrerschein",
+              "type": "text",
+              "props": {
+                "sm": 6
+              },
+              "suiteValue":"fuehrerscheinNummer"
+            },
+            {
+              "name": "ausstellungsDatumFuehrerscheinFuehrerschein",
+              "label": "Fuehrerschein",
+              "type": "date",
+              "props": {
+                "sm": 6
+              },
+              "suiteValue":"fuehrerscheinAusstellungsDatum"
+            },
+            {
+              "name": "fuehrerscheinLandFuehrerschein",
+              "label": "Land",
+              "type": "text",
+              "suiteValue":"fuehrerscheinLand"
+            },
+            {
+              "name": "fuehrerscheinKlasseFuehrerscheinHeader",
+              "label": "Fuehrerschein-Klasse",
+              "type": "header"
+            },
+            {
+              "name": "klasseBFuehrerschein",
+              "label": "B",
+              "type": "checkbox",
+              "props": { "sm": 4,
+                "xs":4 },
+                "suiteValue":"fuehrerscheinB"
+            },
+            {
+              "name": "klasseBEFuehrerschein",
+              "label": "BE",
+              "type": "checkbox",
+              "props": { "sm": 4,
+                "xs":4 },
+                "suiteValue":"fuehrerscheinBE"
+            },
+            {
+              "name": "klasseAFuehrerschein",
+              "label": "A",
+              "type": "checkbox",
+              "props": { "sm": 4,
+                "xs":4 },
+                "suiteValue":"fuehrerscheinA"
+            },
+            {
+              "name": "klasseAEinsFuehrerschein",
+              "label": "A1",
+              "type": "checkbox",
+              "props": { "sm": 4,
+                "xs":4 },
+                "suiteValue":"fuehrerscheinA1"
+            },
+            {
+              "name": "klasseAZweiFuehrerschein",
+              "label": "A2",
+              "type": "checkbox",
+              "props": { "sm": 4,
+                "xs":4 },
+                "suiteValue":"fuehrerscheinA2"
+            },
+            {
+              "name": "klasseCFuehrerschein",
+              "label": "C",
+              "type": "checkbox",
+              "props": { "sm": 4,
+                "xs":4 },
+                "suiteValue":"fuehrerscheinC"
+            },
+            {
+              "name": "klasseCEinsFuehrerschein",
+              "label": "C1",
+              "type": "checkbox",
+              "props": { "sm": 4,
+                "xs":4 },
+                "suiteValue":"fuehrerscheinC1"
+            },
+            {
+              "name": "klasseCFuehrerschein",
+              "label": "CE",
+              "type": "checkbox",
+              "props": { "sm": 4,
+                "xs":4 },
+                "suiteValue":"fuehrerscheinCE"
+            }
+      ]
+  },
     {
       "section": "Aufenthaltstitel",
       "card": true,
@@ -100,7 +198,8 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"aufenthaltstitelNummer"
     },
     {
       "name": "ausstellungsdatumAufenthaltstitelAusweisdaten",
@@ -109,34 +208,37 @@
       "props": {
         "sm": 6,
         "xs":6
-      }
+      },
+      "suiteValue":"aufenthaltstitelAusstellungsdatum"
     },
     {
       "name": "gueltigAbAufenthaltstitelAusweisdaten",
       "label": "Gültig ab",
       "type": "date",
-      "props": {
-        "sm": 6,
-        "xs":6
-      }
-    },
-    {
-      "name": "gueltigBisAufenthaltstitelAusweisdaten",
-      "label": "Gültig bis",
-      "type": "date",
-      "props": {
-        "sm": 6,
-        "xs":6
-      }
+      "suiteValue":"aufenthaltstitelGueltigAb"
     },
     {
       "name": "ortBehoerdeAufenthaltstitelAusweisdaten",
-      "label": "Ort der ausstellenden Behörde (nicht vorhanden)",
-      "type": "date",
-      "props": {
-        "sm": 6,
-        "xs":6
-      }
-    }]}
+      "label": "Ausstellungsstelle/Verwaltung",
+      "type": "text",
+      "suiteValue":"aufenthaltstitelVerwaltung"
+    }]},
+    {      "section": "Geburtsurkunde",
+      "card": true,
+      "items": [
+        {
+          "name": "ausstellungsdatumGeburtsurkundeAusweisdaten",
+          "label": "Ausstellungsdatum",
+          "type": "date",
+          "suiteValue":"geburtsdatum"
+        },
+        {
+          "name": "ausstellungsstelleGeburtsurkundeAusweisdaten",
+          "label": "Ausstellungsstelle/Verwaltung",
+          "type": "text",
+          "suiteValue":"geburtsurkundeVerwaltung"
+        }
+      ]
+    }
   ]
 }
