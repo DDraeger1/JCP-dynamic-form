@@ -161,6 +161,13 @@
         "props": { "sm": 6 ,
           "xs":6},
           "suiteValue":"rueckkaufswert"
+      },
+      {
+        "name": "notizen",
+        "type": "textarea",
+        "rows":5,
+        "label": "Notizen",
+        "suiteValue":"notizen"
       }
     ]
       }

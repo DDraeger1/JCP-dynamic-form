@@ -1722,7 +1722,7 @@ function dateFormater(date) {
       if (date.length === 10) {
         output =
           date.substring(3, 6) + date.substring(0, 3) + date.substring(6, 10);
-      }
+        }
     }
   }
 
@@ -1760,6 +1760,9 @@ function checkIfPersonendaten(card) {
   if (card === "newKind") {
     output = true;
   }
+  if (card === "ERWEITERTEBERUFSFRAGEN") {
+    output = true;
+  }
   return output;
 }
 function booleanFormater(booleanString) {
@@ -1785,7 +1788,8 @@ function setAssetWithTariftype(
   mandantGroup,
   mandantTabIndex,
   bankverbindungenParam,
-  arbeitgeber
+  arbeitgeber,
+  setVertragName
 ) {
   let assetFound = false;
 
@@ -1842,6 +1846,18 @@ function setAssetWithTariftype(
     }
     return output;
   }
+  function artDarlehen(annuitaetenDarlehen,bausparfinanziert){
+    let output=""
+    if(annuitaetenDarlehen){
+      output="annuitaetenDarlehen"
+    } else if(bausparfinanziert){
+      output="bausparfinanziert"
+    }else{
+      output="endfaelligesDarlehen"
+    }
+
+    return(output)
+  }
   function doesItMatchWithVersichertePerson(anzahlVp, KHT) {
     let output = false;
     if (anzahlVp && KHT) {
@@ -1884,6 +1900,7 @@ function setAssetWithTariftype(
   }
   function mandantMapper(versichertePersonId) {
     let output = 0;
+    
     if (versichertePersonId !== undefined) {
       mandantGroup.forEach((mandant, index) => {
         if (versichertePersonId === mandant.mandant.id) {
@@ -1891,6 +1908,19 @@ function setAssetWithTariftype(
         }
       });
     } else output = cardTemplateData.versicherungsnehmerBeide;
+
+    return output;
+  }
+  function mandantMapperbAV(cardTemplateData) {
+    let output = 0;
+
+    if (typeof cardTemplateData.versicherungsnehmerId !== "undefined") {
+      mandantGroup.forEach((mandant, index) => {
+        if (cardTemplateData.versicherungsnehmerId === mandant.mandant.id) {
+          output = index;
+        }
+      });
+    } else output = "ARBEITGEBER";
 
     return output;
   }
@@ -2028,9 +2058,9 @@ function setAssetWithTariftype(
         break;
       case "abzuegeVwlGesamt":
         {
-          if (cardTemplateDataParam.dienstwagen === undefined) {
+          if (cardTemplateDataParam.abzuegeVwl === undefined) {
           } else {
-            if (cardTemplateDataParam.dienstwagen > 0) {
+            if (cardTemplateDataParam.abzuegeVwl > 0) {
               output = true;
             }
           }
@@ -2038,9 +2068,9 @@ function setAssetWithTariftype(
         break;
       case "sonstigerAbzug":
         {
-          if (cardTemplateDataParam.dienstwagen === undefined) {
+          if (cardTemplateDataParam.sonstigerAbzug === undefined) {
           } else {
-            if (cardTemplateDataParam.dienstwagen > 0) {
+            if (cardTemplateDataParam.sonstigerAbzug > 0) {
               output = true;
             }
           }
@@ -2048,9 +2078,9 @@ function setAssetWithTariftype(
         break;
       case "bonus":
         {
-          if (cardTemplateDataParam.dienstwagen === undefined) {
+          if (cardTemplateDataParam.bonuszahlung === undefined) {
           } else {
-            if (cardTemplateDataParam.dienstwagen > 0) {
+            if (cardTemplateDataParam.bonuszahlung > 0) {
               output = true;
             }
           }
@@ -2058,9 +2088,9 @@ function setAssetWithTariftype(
         break;
       case "urlaubsgeld":
         {
-          if (cardTemplateDataParam.dienstwagen === undefined) {
+          if (cardTemplateDataParam.urlaubsgeld === undefined) {
           } else {
-            if (cardTemplateDataParam.dienstwagen > 0) {
+            if (cardTemplateDataParam.urlaubsgeld > 0) {
               output = true;
             }
           }
@@ -2068,9 +2098,9 @@ function setAssetWithTariftype(
         break;
       case "weihnachtsgeld":
         {
-          if (cardTemplateDataParam.dienstwagen === undefined) {
+          if (cardTemplateDataParam.weihnachtsgeld === undefined) {
           } else {
-            if (cardTemplateDataParam.dienstwagen > 0) {
+            if (cardTemplateDataParam.weihnachtsgeld > 0) {
               output = true;
             }
           }
@@ -2078,9 +2108,9 @@ function setAssetWithTariftype(
         break;
       case "gewinnbeteiligung":
         {
-          if (cardTemplateDataParam.dienstwagen === undefined) {
+          if (cardTemplateDataParam.gewinnbeteiligung === undefined) {
           } else {
-            if (cardTemplateDataParam.dienstwagen > 0) {
+            if (cardTemplateDataParam.gewinnbeteiligung > 0) {
               output = true;
             }
           }
@@ -2098,9 +2128,9 @@ function setAssetWithTariftype(
         break;
       case "sonstigesSonder":
         {
-          if (cardTemplateDataParam.dienstwagen === undefined) {
+          if (cardTemplateDataParam.sonstigerSachbezug === undefined) {
           } else {
-            if (cardTemplateDataParam.dienstwagen > 0) {
+            if (cardTemplateDataParam.sonstigerSachbezug > 0) {
               output = true;
             }
           }
@@ -2186,6 +2216,7 @@ function setAssetWithTariftype(
     case "UNFALL":
       cardTemplateData = unfall;
 
+
       break;
     case "RISIKO":
       cardTemplateData = todesfall;
@@ -2256,9 +2287,8 @@ function setAssetWithTariftype(
     default:
       break;
   }
-
   if (checkIfPersonendaten(card)) {
-    if (card === "PERSONALDATEN") {
+if (card === "PERSONALDATEN") {
       output = {
         beraterPersonendaten: mandantGroup[mandantTabIndex].mandant.beraterId,
         nebenberaterPersonendaten:
@@ -2304,6 +2334,26 @@ function setAssetWithTariftype(
         hobbysSonstigesPersonendaten:
           mandantGroup[mandantTabIndex].mandant.sonstiges,
       };
+    }
+        if (card === "ERWEITERTEBERUFSFRAGEN") {
+output = {
+        abgeschlosseneAusbildungErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_abgeschlosseneAusbildung,
+        personalverantwortungErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_personalverantwortung,
+        umfangTaetigkeitErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_umfangDerTaetigkeit,
+        anteilkoerperlichErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_anteilKoerperlich,
+        anteilBuerotaetigkeitErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_anteilBuero,
+        anteilKaufmannErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_anteilKaufmaennisch,
+        berufsstandErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_berufsstand,
+        dauerSelbststaendigkeitErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_dauerSelbststaendigkeit,
+        jaehrlichesEinkommenErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_jaehrlichesEinkommen,
+        dienstunfaehigkeitErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_dienstunfaehigkeit,
+        aufsichtfuehrendErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_aufsichtsfuehrend,
+        dauerLeitendenTaetigkeitErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_dauerLeitend,
+        anteilAufsichtfuehrungErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_anteilAufsichtsfuehrend,
+        reisetaetigkeitErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_reisetaetigkeit,
+        besonderheitenErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_besonderheiten,
+        hobbyErwBerufsfragen:mandantGroup[mandantTabIndex].mandant.eb_hobby,
+      }
     }
     //e5943e40-9eb4-11ec-a423-001c4270ffe9
     //"14e0b2f8-b72a-11ec-a423-001c4270ffe9"
@@ -2879,6 +2929,36 @@ function setAssetWithTariftype(
         cardTemplateData = asset;
         assetFound = true;
       }
+      if (asset.tarifTypeId.includes("PRIVATRENTE") && card === "PRIVATRENTE") {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
+      if (asset.tarifTypeId.includes("FONDSLEBEN") && card === "FONDSLEBEN") {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
+      if (asset.tarifTypeId.includes("KAPITALLEBEN") && card === "KAPITALLEBEN") {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
+      if (asset.tarifTypeId.includes("FONDSRENTEN") && card === "FONDSRENTEN") {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
+      if (
+        asset.tarifTypeId.includes("GAS") &&
+        card === "GAS"
+      ) {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
+      if (
+        asset.tarifTypeId.includes("STROM") &&
+        card === "STROM"
+      ) {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
       if (
         asset.tarifTypeId.includes("BERUFSSTAENDISCHE_VORSORGE") &&
         card === "BERUFSSTAENDISCHE_VORSORGE"
@@ -2918,6 +2998,10 @@ function setAssetWithTariftype(
         cardTemplateData = asset;
         assetFound = true;
       }
+      if (asset.tarifTypeId.includes("JAGDHAFTPFLICHT") && card === "JAGDHAFTPFLICHT") {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
       if (asset.tarifTypeId.includes("RENTE") && card === "RENTE") {
         cardTemplateData = asset;
         assetFound = true;
@@ -2948,6 +3032,28 @@ function setAssetWithTariftype(
       if (
         asset.tarifTypeId.includes("PENSIONSFONDS_3") &&
         card === "PENSIONSFONDS_3"
+      ) {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
+      if (
+        asset.tarifTypeId.includes("PENSIONSKASSE_3") &&
+        card === "PENSIONSKASSE_3"
+      ) {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
+      if (
+        asset.tarifTypeId.includes("PENSIONSKASSE_40") &&
+        card === "PENSIONSKASSE_40"
+      ) {
+        cardTemplateData = asset;
+        assetFound = true;
+      }
+      
+      if (
+        asset.tarifTypeId.includes("ZUSATZVERSORGUNGSKASSE") &&
+        card === "ZUSATZVERSORGUNGSKASSE"
       ) {
         cardTemplateData = asset;
         assetFound = true;
@@ -3160,9 +3266,46 @@ function setAssetWithTariftype(
     cardTemplateData = asset;
     assetFound = true;
   }
-
   if (assetFound) {
     switch (card) {
+      case "GAS":
+        console.log(cardTemplateData)
+        output={
+          initMandantValue:mandantMapper(
+            cardTemplateData.versicherungsnehmer.id
+          ),
+          tarifbezeichnungGas:cardTemplateData.tarifbezeichnung,
+          personenzuordnungGas:mandantMapper(
+            cardTemplateData.versicherungsnehmer.id
+          ),
+          anbieterGas:cardTemplateData.gesellschaft,
+          versicherungsnummerGas:cardTemplateData.versicherungsnummer,
+          jaehrlicherVerbrauchGas:cardTemplateData.jaehrlicherVerbrauch,
+          vertragslaufzeitGas:dateFormater(cardTemplateData.versicherungsbeginn),
+          vertragslaufzeitGas:dateFormater(cardTemplateData.versicherungsende),
+          zahlweiseGas:cardTemplateData.zahlweise,
+          beitragGas:cardTemplateData.beitrag
+        }
+        break
+      case "STROM":
+        console.log(cardTemplateData)
+        output={
+          initMandantValue:mandantMapper(
+            cardTemplateData.versicherungsnehmer.id
+          ),
+          tarifbezeichnungStrom:cardTemplateData.tarifbezeichnung,
+          personenzuordnungStrom:mandantMapper(
+            cardTemplateData.versicherungsnehmer.id
+          ),
+          anbieterStrom:cardTemplateData.gesellschaft,
+          versicherungsnummerStrom:cardTemplateData.versicherungsnummer,
+          jaehrlicherVerbrauchStrom:cardTemplateData.jaehrlicherVerbrauch,
+          vertragslaufzeitStrom:dateFormater(cardTemplateData.versicherungsbeginn),
+          vertragslaufzeitStrom:dateFormater(cardTemplateData.versicherungsende),
+          zahlweiseStrom:cardTemplateData.zahlweise,
+          beitragStrom:cardTemplateData.beitrag
+        }
+        break
       case "BEAMTENBEIHILFE":
         output={
           versicherungsnehmerBeamtenbeihilfe:mandantMapper(
@@ -3256,6 +3399,7 @@ function setAssetWithTariftype(
         }
         break;
       case "GEWAESSERSCHADENHAFTPFLICHT":
+        console.log(cardTemplateData)
         output={
           versicherungsnehmerWassersporthaftpflicht:mandantMapper(
             cardTemplateData.versicherungsnehmer.id
@@ -3265,10 +3409,9 @@ function setAssetWithTariftype(
           versicherungssummeGewaesserschadenhaftpflicht:cardTemplateData.versicherungssumme,
           vertragsnummerGewaesserschadenhaftpflicht:cardTemplateData.versicherungsnummer,
           selbstbeteiligungGewaesserschadenhaftpflicht:cardTemplateData.sb,
-          tarifgruppeGewaesserschadenhaftpflicht:cardTemplateData.tarifgruppe,
           fassungsvermoegenGewaesserschadenhaftpflicht:cardTemplateData.fassung,
           tankortGewaesserschadenhaftpflicht:cardTemplateData.tankort,
-
+          immobilienartGewaesserschadenhaftpflicht:cardTemplateData.immobilienart,
           vertragsbeginnGewaesserschadenhaftpflicht:dateFormater(cardTemplateData.versicherungsbeginn),
           vertragsendeGewaesserschadenhaftpflicht:dateFormater(cardTemplateData.versicherungsende),
           zahlweiseGewaesserschadenhaftpflicht:cardTemplateData.zahlweise,
@@ -3278,7 +3421,28 @@ function setAssetWithTariftype(
           vorschadensummeGewaesserschadenhaftpflicht:cardTemplateData.versicherungssumme,
         }
         break;
+        case "JAGDHAFTPFLICHT":
+          console.log(cardTemplateData)
+output={
+  tarifbezeichnungJagdhaftpflicht:cardTemplateData.tarifBezeichnung,
+  versicherungsnehmerJagdhaftpflicht:mandantMapper(
+    cardTemplateData.versicherungsnehmer.id
+  ),
+  gesellschaftJagdhaftpflicht:cardTemplateData.gesellschaft,
+  versicherungsnummerJagdhaftpflicht:cardTemplateData.versicherungsnummer,
+  versicherungssummeJagdhaftpflicht:cardTemplateData.versicherungssumme,
+  selbstbeteiligungJagdhaftpflicht:cardTemplateData.sb,
+  vertragsbeginnJagdhaftpflicht:dateFormater(cardTemplateData.versicherungsbeginn),
+  vertragsendeJagdhaftpflicht:dateFormater(cardTemplateData.versicherungsende),
+  zahlweiseJagdhaftpflicht:cardTemplateData.zahlweise,
+  beitragJagdhaftpflicht:cardTemplateData.beitrag,
+  anzahlVorschaedenFuenfJahreJagdhaftpflicht:cardTemplateData.vorschaedenAnzahl,
+  anzahlVorschaedenJagdhaftpflicht:cardTemplateData.vorschaedenHoehe,
+  vorschadensummeJagdhaftpflicht:cardTemplateData.vorschaedenNotiz,
+}
+        break
         case "RENTE":
+          console.log(cardTemplateData)
           output={
             versicherungsnehmerRente:mandantMapper(
               cardTemplateData.versicherungsnehmer.id
@@ -3287,28 +3451,29 @@ function setAssetWithTariftype(
             nettoRente:cardTemplateData.renteNetto,
             bruttoRente:cardTemplateData.renteBrutto,
             artRente:cardTemplateData.rentenArt,
-            vertragsbeginnRente:cardTemplateData.versicherungsbeginn,
-            vertragsendeRente:cardTemplateData.versicherungsende,
-            zahlungVonRente:cardTemplateData.zahlungVon,
-            zahlungBisRente:cardTemplateData.zahlungBis,
+            vertragsbeginnRente:dateFormater(cardTemplateData.versicherungsbeginn) ,
+            vertragsendeRente:dateFormater(cardTemplateData.versicherungsende),
+            zahlungVonRente:dateFormater(cardTemplateData.zahlungVon),
+            zahlungBisRente:dateFormater(cardTemplateData.zahlungBis),
             zahlweiseRente:cardTemplateData.zahlweise,
           }
           break;
       case "DARLEHEN":
+        console.log(cardTemplateData)
         output = {
-          initMandantValue: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          initMandantValue: checkForBeide(
+            cardTemplateData
           ),
           externalProduktId: cardTemplateData.externalProduktId,
+          restschuldBerechnen:cardTemplateData.berechneteRestschuld,
           tarifbezeichnungDarlehen: cardTemplateData.tarifBezeichnung,
           vertragsnummerDarlehen: cardTemplateData.versicherungsnummer,
-          darlehensnehmerDarlehen: cardTemplateData.gesellschaft,
-          artDarlehen: cardTemplateData.art,
+          darlehensnehmerDarlehen: checkForBeide(cardTemplateData),
+          artDarlehen:artDarlehen(cardTemplateData.annuitaetenDarlehen,cardTemplateData.bausparfinanziert),
           zugeordneteImmobilieObjektzuordnungDarlehen:
-            cardTemplateData.objektnotizen,
+            cardTemplateData.objektnotizen, 
           darlehenshoeheBeginnObjektzuordnungDarlehen:
             cardTemplateData.darlehenshohe,
-          restschuldBerechnenObjektzuordnungDarlehen: "",
           restschuldObjektzuordnungDarlehen: cardTemplateData.restschuld,
           standVomObjektzuordnungDarlehen: dateFormater(
             cardTemplateData.standVom
@@ -3327,7 +3492,7 @@ function setAssetWithTariftype(
           beginnObjektzuordnungDarlehen: dateFormater(
             cardTemplateData.versicherungsbeginn
           ),
-          voraussichtlichSchuldenfreiObjektzuordnungDarlehen: "",
+          voraussichtlichSchuldenfreiObjektzuordnungDarlehen: "Placeholder",
         };
         break;
       case "RUERUP":
@@ -3445,11 +3610,11 @@ function setAssetWithTariftype(
           datumBUZRiesterrente: dateFormater(
             cardTemplateData.rueckkaufswertDatum
           ),
-          beitragsendeFondsRiesterrente: "",
+          beitragsendeFondsRiesterrente: "Placeholder",
           VWLRiesterrente: false,
-          arbeitgeberanteilVWLRiesterrente: "",
-          arbeitnehmeranteilVWLRiesterrente: "",
-          summeVWLRiesterrente: "",
+          arbeitgeberanteilVWLRiesterrente: "Placeholder",
+          arbeitnehmeranteilVWLRiesterrente: "Placeholder",
+          summeVWLRiesterrente: "Placeholder",
           zahlweiseVWLRiesterrente: cardTemplateData.zahlweise,
           beitragVWLRiesterrente: cardTemplateData.beitrag,
           dauerzulagenantragVWLRiesterrente:
@@ -3475,9 +3640,9 @@ function setAssetWithTariftype(
           tarifbezeichnungVertragspartnerSachwert:
             cardTemplateData.tarifBezeichnung,
           vertragsnummerVertragspartnerSachwert:
-            "cardTemplateData.tarifBezeichnung",
+            cardTemplateData.versicherungsnummer,
           artVertragspartnerSachwert: cardTemplateData.art,
-          fallsSonstigesVertragspartnerSachwert: cardTemplateData,
+          fallsSonstigesVertragspartnerSachwert:"Placeholder",
           gewichtVertragspartnerSachwert: cardTemplateData.gewicht,
           lagerungVertragspartnerSachwert: cardTemplateData.lagerung,
           anschaffungsjahrVertragspartnerSachwert:
@@ -3498,8 +3663,8 @@ function setAssetWithTariftype(
       case "DIREKTZUSAGE":
         output = {
           externalProduktId: cardTemplateData.externalProduktId,
-          initMandantValue: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          initMandantValue: mandantMapperbAV(
+            cardTemplateData
           ),
           gesellschaftBetrieblicheAltersversorgung:
             cardTemplateData.gesellschaft,
@@ -3507,8 +3672,8 @@ function setAssetWithTariftype(
             cardTemplateData.tarifBezeichnung,
           vertragsnummerBetrieblicheAltersversorgung:
             cardTemplateData.versicherungsnummer,
-          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapperbAV(
+            cardTemplateData
           ),
           versichertePersonBetrieblicheAltersversorgung:
             typeof cardTemplateData.versichertePerson === "undefined"
@@ -3590,8 +3755,8 @@ function setAssetWithTariftype(
       case "PENSIONSFONDS_3":
         output = {
           externalProduktId: cardTemplateData.externalProduktId,
-          initMandantValue: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          initMandantValue: mandantMapperbAV(
+            cardTemplateData
           ),
           gesellschaftBetrieblicheAltersversorgung:
             cardTemplateData.gesellschaft,
@@ -3599,8 +3764,8 @@ function setAssetWithTariftype(
             cardTemplateData.tarifBezeichnung,
           vertragsnummerBetrieblicheAltersversorgung:
             cardTemplateData.versicherungsnummer,
-          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapperbAV(
+            cardTemplateData
           ),
           versichertePersonBetrieblicheAltersversorgung:
             typeof cardTemplateData.versichertePerson === "undefined"
@@ -3682,8 +3847,8 @@ function setAssetWithTariftype(
       case "DIREKT_40":
         output = {
           externalProduktId: cardTemplateData.externalProduktId,
-          initMandantValue: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          initMandantValue: mandantMapperbAV(
+            cardTemplateData
           ),
           gesellschaftBetrieblicheAltersversorgung:
             cardTemplateData.gesellschaft,
@@ -3691,8 +3856,8 @@ function setAssetWithTariftype(
             cardTemplateData.tarifBezeichnung,
           vertragsnummerBetrieblicheAltersversorgung:
             cardTemplateData.versicherungsnummer,
-          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapperbAV(
+            cardTemplateData
           ),
           versichertePersonBetrieblicheAltersversorgung:
             typeof cardTemplateData.versichertePerson === "undefined"
@@ -3774,8 +3939,8 @@ function setAssetWithTariftype(
       case "UNTERSTUETZUNGSKASSE":
         output = {
           externalProduktId: cardTemplateData.externalProduktId,
-          initMandantValue: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          initMandantValue: mandantMapperbAV(
+            cardTemplateData
           ),
           gesellschaftBetrieblicheAltersversorgung:
             cardTemplateData.gesellschaft,
@@ -3783,8 +3948,283 @@ function setAssetWithTariftype(
             cardTemplateData.tarifBezeichnung,
           vertragsnummerBetrieblicheAltersversorgung:
             cardTemplateData.versicherungsnummer,
-          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapperbAV(
+            cardTemplateData
+          ),
+          versichertePersonBetrieblicheAltersversorgung:
+            typeof cardTemplateData.versichertePerson === "undefined"
+              ? isMandantDefined("undefined")
+              : isMandantDefined(cardTemplateData.versichertePerson.id),
+          artVersichertePersonBetrieblicheAltersversorgung:
+            cardTemplateData.art,
+          durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung:
+            cardTemplateData.tarifTypeId,
+          beitragANAnteilBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitnehmeranteil,
+          beitragAGAnteilBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitgeberanteil,
+          VWLArbeitgeberbeitragBetrieblicheAltersversorgung:
+            cardTemplateData.vwlArbeitnehmer,
+          VWLArbeitnehmerbeitragBetrieblicheAltersversorgung:
+            cardTemplateData.vwlArbeitgeber,
+          beitragGesamtBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitnehmeranteil +
+            cardTemplateData.arbeitgeberanteil +
+            cardTemplateData.vwlArbeitnehmer +
+            cardTemplateData.vwlArbeitgeber,
+          nettobelastungBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.nettobeitragMtl,
+          zahlweiseBetrieblicheAltersversorgung: cardTemplateData.zahlweise,
+          dynamikBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.dynamikProzent,
+          vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung:
+            dateFormater(cardTemplateData.versicherungsbeginn),
+          vertragsendeVertragslaufzeitBetrieblicheAltersversorgung:
+            dateFormater(cardTemplateData.versicherungsende),
+          garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungGarantiert,
+          prognostiziertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungPrognostiziert,
+          beiMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+          RGZMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungRgzJahre,
+          ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungGarantiert,
+          ablaufsleistungPrognostiziertAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungPrognostiziert,
+          beiAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungPrognostiziertBeiProzent,
+          integrierteBUBetrieblicheAltersversorgung:
+            cardTemplateData.integrierteBU,
+          renteBUBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungBU,
+          dynamikBULeistungBUBetrieblicheAltersversorgung:
+            cardTemplateData.dynamikBU,
+          beitragsbefreiungBUBetrieblicheAltersversorgung:
+            cardTemplateData.beitragsbefreiungBU,
+          beitragsendeBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.beitragsendeBUZ
+          ),
+          leistungsendeBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.leistungsendeBUZ
+          ),
+          beitragsanteilBUZBetrieblicheAltersversorgung:
+            cardTemplateData.beitragsanteilBU,
+          leistungBeiTodBUZBetrieblicheAltersversorgung:
+            cardTemplateData.leistungTod,
+          aktuellerRKWBUZBetrieblicheAltersversorgung:
+            cardTemplateData.rueckkaufswert,
+          standBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.rueckkaufswertDatum
+          ),
+          ansprechpartnerBetriebBUZBetrieblicheAltersversorgung:
+            cardTemplateData.ansprechpartnerBetrieb,
+          rahmenvertragBUZBetrieblicheAltersversorgung:
+            cardTemplateData.rahmenvertrag,
+          tarifvertragBUZBetrieblicheAltersversorgung:
+            cardTemplateData.tarifvertrag,
+          fondsBUZBetrieblicheAltersversorgung: cardTemplateData.fonds,
+        };
+
+        break;
+        case "PENSIONSKASSE_3":
+        output = {
+          externalProduktId: cardTemplateData.externalProduktId,
+          initMandantValue: mandantMapperbAV(
+            cardTemplateData
+          ),
+          gesellschaftBetrieblicheAltersversorgung:
+            cardTemplateData.gesellschaft,
+          tarifbezeichnungBetrieblicheAltersversorgung:
+            cardTemplateData.tarifBezeichnung,
+          vertragsnummerBetrieblicheAltersversorgung:
+            cardTemplateData.versicherungsnummer,
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapperbAV(
+            cardTemplateData
+          ),
+          versichertePersonBetrieblicheAltersversorgung:
+            typeof cardTemplateData.versichertePerson === "undefined"
+              ? isMandantDefined("undefined")
+              : isMandantDefined(cardTemplateData.versichertePerson.id),
+          artVersichertePersonBetrieblicheAltersversorgung:
+            cardTemplateData.art,
+          durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung:
+            cardTemplateData.tarifTypeId,
+          beitragANAnteilBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitnehmeranteil,
+          beitragAGAnteilBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitgeberanteil,
+          VWLArbeitgeberbeitragBetrieblicheAltersversorgung:
+            cardTemplateData.vwlArbeitnehmer,
+          VWLArbeitnehmerbeitragBetrieblicheAltersversorgung:
+            cardTemplateData.vwlArbeitgeber,
+          beitragGesamtBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitnehmeranteil +
+            cardTemplateData.arbeitgeberanteil +
+            cardTemplateData.vwlArbeitnehmer +
+            cardTemplateData.vwlArbeitgeber,
+          nettobelastungBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.nettobeitragMtl,
+          zahlweiseBetrieblicheAltersversorgung: cardTemplateData.zahlweise,
+          dynamikBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.dynamikProzent,
+          vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung:
+            dateFormater(cardTemplateData.versicherungsbeginn),
+          vertragsendeVertragslaufzeitBetrieblicheAltersversorgung:
+            dateFormater(cardTemplateData.versicherungsende),
+          garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungGarantiert,
+          prognostiziertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungPrognostiziert,
+          beiMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+          RGZMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungRgzJahre,
+          ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungGarantiert,
+          ablaufsleistungPrognostiziertAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungPrognostiziert,
+          beiAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungPrognostiziertBeiProzent,
+          integrierteBUBetrieblicheAltersversorgung:
+            cardTemplateData.integrierteBU,
+          renteBUBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungBU,
+          dynamikBULeistungBUBetrieblicheAltersversorgung:
+            cardTemplateData.dynamikBU,
+          beitragsbefreiungBUBetrieblicheAltersversorgung:
+            cardTemplateData.beitragsbefreiungBU,
+          beitragsendeBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.beitragsendeBUZ
+          ),
+          leistungsendeBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.leistungsendeBUZ
+          ),
+          beitragsanteilBUZBetrieblicheAltersversorgung:
+            cardTemplateData.beitragsanteilBU,
+          leistungBeiTodBUZBetrieblicheAltersversorgung:
+            cardTemplateData.leistungTod,
+          aktuellerRKWBUZBetrieblicheAltersversorgung:
+            cardTemplateData.rueckkaufswert,
+          standBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.rueckkaufswertDatum
+          ),
+          ansprechpartnerBetriebBUZBetrieblicheAltersversorgung:
+            cardTemplateData.ansprechpartnerBetrieb,
+          rahmenvertragBUZBetrieblicheAltersversorgung:
+            cardTemplateData.rahmenvertrag,
+          tarifvertragBUZBetrieblicheAltersversorgung:
+            cardTemplateData.tarifvertrag,
+          fondsBUZBetrieblicheAltersversorgung: cardTemplateData.fonds,
+        };
+        break;
+        case "ZUSATZVERSORGUNGSKASSE":
+          console.log(cardTemplateData)
+        output = {
+          externalProduktId: cardTemplateData.externalProduktId,
+          initMandantValue: mandantMapperbAV(
+            cardTemplateData
+          ),
+          gesellschaftBetrieblicheAltersversorgung:
+            cardTemplateData.gesellschaft,
+          tarifbezeichnungBetrieblicheAltersversorgung:
+            cardTemplateData.tarifBezeichnung,
+          vertragsnummerBetrieblicheAltersversorgung:
+            cardTemplateData.versicherungsnummer,
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapperbAV(
+            cardTemplateData
+          ),
+          versichertePersonBetrieblicheAltersversorgung:
+            typeof cardTemplateData.versichertePerson === "undefined"
+              ? isMandantDefined("undefined")
+              : isMandantDefined(cardTemplateData.versichertePerson.id),
+          artVersichertePersonBetrieblicheAltersversorgung:
+            cardTemplateData.art,
+          durchfuehrungswegVersichertePersonBetrieblicheAltersversorgung:
+            cardTemplateData.tarifTypeId,
+          beitragANAnteilBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitnehmeranteil,
+          beitragAGAnteilBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitgeberanteil,
+          VWLArbeitgeberbeitragBetrieblicheAltersversorgung:
+            cardTemplateData.vwlArbeitnehmer,
+          VWLArbeitnehmerbeitragBetrieblicheAltersversorgung:
+            cardTemplateData.vwlArbeitgeber,
+          beitragGesamtBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.arbeitnehmeranteil +
+            cardTemplateData.arbeitgeberanteil +
+            cardTemplateData.vwlArbeitnehmer +
+            cardTemplateData.vwlArbeitgeber,
+          nettobelastungBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.nettobeitragMtl,
+          zahlweiseBetrieblicheAltersversorgung: cardTemplateData.zahlweise,
+          dynamikBeitragBetrieblicheAltersversorgung:
+            cardTemplateData.dynamikProzent,
+          vertragsbeginnVertragslaufzeitBetrieblicheAltersversorgung:
+            dateFormater(cardTemplateData.versicherungsbeginn),
+          vertragsendeVertragslaufzeitBetrieblicheAltersversorgung:
+            dateFormater(cardTemplateData.versicherungsende),
+          garantiertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungGarantiert,
+          prognostiziertMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungPrognostiziert,
+          beiMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungPrognostiziertBeiProzent,
+          RGZMonatlicheRentenleistungBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungRgzJahre,
+          ablaufsleistungGarantiertAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungGarantiert,
+          ablaufsleistungPrognostiziertAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungPrognostiziert,
+          beiAblaufleistungBetrieblicheAltersversorgung:
+            cardTemplateData.ablaufleistungPrognostiziertBeiProzent,
+          integrierteBUBetrieblicheAltersversorgung:
+            cardTemplateData.integrierteBU,
+          renteBUBetrieblicheAltersversorgung:
+            cardTemplateData.rentenleistungBU,
+          dynamikBULeistungBUBetrieblicheAltersversorgung:
+            cardTemplateData.dynamikBU,
+          beitragsbefreiungBUBetrieblicheAltersversorgung:
+            cardTemplateData.beitragsbefreiungBU,
+          beitragsendeBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.beitragsendeBUZ
+          ),
+          leistungsendeBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.leistungsendeBUZ
+          ),
+          beitragsanteilBUZBetrieblicheAltersversorgung:
+            cardTemplateData.beitragsanteilBU,
+          leistungBeiTodBUZBetrieblicheAltersversorgung:
+            cardTemplateData.leistungTod,
+          aktuellerRKWBUZBetrieblicheAltersversorgung:
+            cardTemplateData.rueckkaufswert,
+          standBUZBetrieblicheAltersversorgung: dateFormater(
+            cardTemplateData.rueckkaufswertDatum
+          ),
+          ansprechpartnerBetriebBUZBetrieblicheAltersversorgung:
+            cardTemplateData.ansprechpartnerBetrieb,
+          rahmenvertragBUZBetrieblicheAltersversorgung:
+            cardTemplateData.rahmenvertrag,
+          tarifvertragBUZBetrieblicheAltersversorgung:
+            cardTemplateData.tarifvertrag,
+          fondsBUZBetrieblicheAltersversorgung: cardTemplateData.fonds,
+        };
+        break;
+        case "PENSIONSKASSE_40":
+        output = {
+          externalProduktId: cardTemplateData.externalProduktId,
+          initMandantValue: mandantMapperbAV(
+            cardTemplateData
+          ),
+          gesellschaftBetrieblicheAltersversorgung:
+            cardTemplateData.gesellschaft,
+          tarifbezeichnungBetrieblicheAltersversorgung:
+            cardTemplateData.tarifBezeichnung,
+          vertragsnummerBetrieblicheAltersversorgung:
+            cardTemplateData.versicherungsnummer,
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapperbAV(
+            cardTemplateData
           ),
           versichertePersonBetrieblicheAltersversorgung:
             typeof cardTemplateData.versichertePerson === "undefined"
@@ -3866,8 +4306,8 @@ function setAssetWithTariftype(
       case "DIREKT_3":
         output = {
           externalProduktId: cardTemplateData.externalProduktId,
-          initMandantValue: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          initMandantValue: mandantMapperbAV(
+            cardTemplateData
           ),
           gesellschaftBetrieblicheAltersversorgung:
             cardTemplateData.gesellschaft,
@@ -3875,8 +4315,8 @@ function setAssetWithTariftype(
             cardTemplateData.tarifBezeichnung,
           vertragsnummerBetrieblicheAltersversorgung:
             cardTemplateData.versicherungsnummer,
-          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapper(
-            cardTemplateData.versicherungsnehmer.id
+          versicherungsnehmerBetrieblicheAltersversorgung: mandantMapperbAV(
+            cardTemplateData
           ),
           versichertePersonBetrieblicheAltersversorgung:
             typeof cardTemplateData.versichertePerson === "undefined"
@@ -4070,6 +4510,9 @@ function setAssetWithTariftype(
 
         break;
         case "PRIVATRENTE":
+          case "FONDSLEBEN":
+          case "KAPITALLEBEN":
+            case "FONDSRENTEN":
           console.log(cardTemplateData);
           output={
             initMandantValue: mandantMapper(
@@ -4089,7 +4532,7 @@ artKapitalversicherung: cardTemplateData.art,
   dynamikKapitalversicherung: cardTemplateData.dynamik,
   prozentDynamikKapitalversicherung: cardTemplateData.dynamikProzent,
   fondsDynamikKapitalversicherung: cardTemplateData.fonds,
-  beitragszahlerDynamikKapitalversicherung: "Placeholder",
+  beitragszahlerDynamikKapitalversicherung: cardTemplateData.beitragszahler,
   bezugsrechtTodesfallDynamikKapitalversicherung: cardTemplateData.bezugsrechtTod,
   leistungTodDynamikKapitalversicherung: cardTemplateData.leistungTod,
   garantiertMonatlicheRentenleistungKapitalversicherung: cardTemplateData.rentenleistungGarantiert,
@@ -4108,12 +4551,12 @@ artKapitalversicherung: cardTemplateData.art,
   vertagAbgetretenBUZKapitalversicherung: cardTemplateData.vertragAbgetreten,
   aktuellerRueckkaufswertBUZKapitalversicherung: cardTemplateData.rueckkaufswert,
   datumBUZKapitalversicherung: dateFormater(cardTemplateData.rueckkaufswertDatum),
-  garantiezinsBUZKapitalversicherung: "Placeholer",
+  garantiezinsBUZKapitalversicherung: "Placeholder",
   veitragsendeBUZKapitalversicherung: dateFormater(cardTemplateData.beitragsende),
-  VWLKapitalversicherung: "Placeholer",
-  arbeitgeberanteilVWLKapitalversicherung: "Placeholer",
-  arbeitnehmeranteilVWLKapitalversicherung:"Placeholer",
-  summeVWLKapitalversicherung: "Placeholer",
+  VWLKapitalversicherung: "Placeholder",
+  arbeitgeberanteilVWLKapitalversicherung: cardTemplateData.rentenleistungGarantiert,
+  arbeitnehmeranteilVWLKapitalversicherung:cardTemplateData.rentenleistungPrognostiziert,
+  summeVWLKapitalversicherung: "Placeholder",
   zahlweiseVWLKapitalversicherung: cardTemplateData.zahlweise,
   einmalbeitragVWLKapitalversicherung: cardTemplateData.einmalbeitrag,
   gesamtzahlbeitragVWLKapitalversicherung: cardTemplateData.beitrag,
@@ -4518,7 +4961,6 @@ artKapitalversicherung: cardTemplateData.art,
           WOPVertragsinhaberVwlUndBausparen: cardTemplateData.wop,
           ANSparzulageVertragsinhaberVwlUndBausparen:
             cardTemplateData.sparzulageAN,
-          aktuellerWertVertragsinhaberVwlUndBausparen: cardTemplateData.beitrag,
           zahlweiseVertragsinhaberVwlUndBausparen: cardTemplateData.zahlweise,
           eigenanteilBeitragszahlerVwlUndBausparen:
             cardTemplateData.eigenanteil,
@@ -4540,12 +4982,13 @@ artKapitalversicherung: cardTemplateData.art,
           besparungInProzentZahlungLetzteZulageVwlUndBausparen:
             cardTemplateData.besparungPercentage,
           voraussichtlicheZuteilungZahlungLetzteZulageVwlUndBausparen:
-            "Placeholder",
+            cardTemplateData.zuteilung,
           VwlVwlVwlUndBausparen: cardTemplateData.vwlJaNein,
           arbeitgeberanteilVwlVwlUndBausparen: cardTemplateData.aganteil,
           arbeitnehmeranteilVwlVwlUndBausparen: cardTemplateData.ananteil,
           summeVwlVwlUndBausparen:
             cardTemplateData.ananteil + cardTemplateData.aganteil,
+            guthabenVwlUndBausparen:cardTemplateData.guthaben
         };
 
         break;
@@ -4639,7 +5082,7 @@ artKapitalversicherung: cardTemplateData.art,
 
         break;
       case "BU":
-        console.log(cardTemplateData);
+        console.log(cardTemplateData)
         output = {
           initMandantValue: mandantMapper(
             cardTemplateData.versicherungsnehmer.id
@@ -4792,7 +5235,7 @@ artKapitalversicherung: cardTemplateData.art,
           genesungsgeldLeistungenUnfall3: cardTemplateData.genesungsgeld3,
           unfallKrankentagegeldLeistungenUnfall:
             cardTemplateData.krankentagegeld3,
-          wieVielterTagLeistungenUnfall: cardTemplateData.krankentagegeldtag3,
+          wieVielterTagLeistungenUnfall3: cardTemplateData.krankentagegeldtag3,
           abFuenfzigUVRenteUnfall3: cardTemplateData.unfallrenteAb50Check3,
           abUVRenteUnfall3: cardTemplateData.unfallrenteAbXCheck3,
           prozentAbUVRenteUnfall3: cardTemplateData.unfallrenteAbXProzent3,
@@ -4826,7 +5269,7 @@ artKapitalversicherung: cardTemplateData.art,
           genesungsgeldLeistungenUnfall4: cardTemplateData.genesungsgeld4,
           unfallKrankentagegeldLeistungenUnfall:
             cardTemplateData.krankentagegeld4,
-          wieVielterTagLeistungenUnfall: cardTemplateData.krankentagegeldtag4,
+          wieVielterTagLeistungenUnfall4: cardTemplateData.krankentagegeldtag4,
           abFuenfzigUVRenteUnfall4: cardTemplateData.unfallrenteAb50Check4,
           abUVRenteUnfall4: cardTemplateData.unfallrenteAb50Check4,
           prozentAbUVRenteUnfall4: cardTemplateData.unfallrenteAbXProzent4,
@@ -4860,7 +5303,7 @@ artKapitalversicherung: cardTemplateData.art,
           genesungsgeldLeistungenUnfall5: cardTemplateData.genesungsgeld5,
           unfallKrankentagegeldLeistungenUnfall:
             cardTemplateData.krankentagegeld5,
-          wieVielterTagLeistungenUnfall: cardTemplateData.krankentagegeldtag5,
+          wieVielterTagLeistungenUnfall5: cardTemplateData.krankentagegeldtag5,
           abFuenfzigUVRenteUnfall5: cardTemplateData.unfallrenteAb50Check5,
           abUVRenteUnfall5: cardTemplateData.unfallrenteAb50Check5,
           prozentAbUVRenteUnfall5: cardTemplateData.unfallrenteAbXProzent5,
@@ -4894,7 +5337,7 @@ artKapitalversicherung: cardTemplateData.art,
           genesungsgeldLeistungenUnfall6: cardTemplateData.genesungsgeld6,
           unfallKrankentagegeldLeistungenUnfall:
             cardTemplateData.krankentagegeld,
-          wieVielterTagLeistungenUnfall: cardTemplateData.krankentagegeldtag6,
+          wieVielterTagLeistungenUnfall6: cardTemplateData.krankentagegeldtag6,
           abFuenfzigUVRenteUnfall6: cardTemplateData.unfallrenteAb50Check6,
           abUVRenteUnfall6: cardTemplateData.unfallrenteAb50Check6,
           prozentAbUVRenteUnfall6: cardTemplateData.unfallrenteAbXProzent6,
@@ -4904,7 +5347,7 @@ artKapitalversicherung: cardTemplateData.art,
         };
         break;
       case "RISIKO":
-        console.log(cardTemplateData);
+      console.log(cardTemplateData);
         output = {
           initMandantValue: mandantMapper(
             cardTemplateData.versicherungsnehmer.id
@@ -4919,6 +5362,7 @@ artKapitalversicherung: cardTemplateData.art,
           ),
           versichertePersonTodesfall:
             checkForBeideVersichertePersonGroup(cardTemplateData),
+            sonstigePersonTodesfall:cardTemplateData.versichertePersonSonstige,
           vertragsbeginnVertragslaufzeitTodesfall: dateFormater(
             cardTemplateData.versicherungsbeginn
           ),
@@ -4935,7 +5379,9 @@ artKapitalversicherung: cardTemplateData.art,
             cardTemplateData.versicherungssummeLineare,
           vertragAbgetretenVersicherungssummeTodesfall:
             cardTemplateData.vertragAbgetreten,
-          MtlBULeistungVersicherungssummeTodesfall:
+            integrierteBURentenleistunggVersicherungssummeTodesfall:cardTemplateData.integrierteBuRenten,
+            gesamtzahlbeitragTodesfall:cardTemplateData.beitrag,
+            MtlBULeistungVersicherungssummeTodesfall:
             cardTemplateData.integrierteBuRentenBetrag,
           beitragsbefreiungBUVersicherungssummeTodesfall:
             cardTemplateData.beitragsbefreiungBU,
@@ -5892,7 +6338,6 @@ artKapitalversicherung: cardTemplateData.art,
           krankenhaustagegeldSonstigeLeistungenKVZusatz6:
             cardTemplateData.krankenhaustagegeld6,
         };
-
         break;
       case "HUNDEHALTERHAFTPFLICHT":
         output = {
@@ -5979,6 +6424,10 @@ artKapitalversicherung: cardTemplateData.art,
           tarifgruppeVersicherungssummeHausrat: cardTemplateData.tarifgruppe,
           tarifOeffentlicherDienstVersicherungssummeHausrat:
             cardTemplateData.oeffentlicherDienst,
+            vertragsbeginnVertragslaufzeitHausrat:dateFormater(cardTemplateData.versicherungsbeginn),
+            vertragsendeVertragslaufzeitHausrat:dateFormater(cardTemplateData.versicherungsende),
+            zahlweiseHausrat:cardTemplateData.zahlweise,
+            beitragHausrat:cardTemplateData.beitrag,
           anzahlVorschaedenHausrat: cardTemplateData.vorschaedenAnzahl,
           hoeheVorschaedenHausrat: cardTemplateData.vorschaedenHoehe,
           listeVorschaedenHausrat: cardTemplateData.vorschaedenNotiz,
@@ -6195,9 +6644,14 @@ artKapitalversicherung: cardTemplateData.art,
       output = {
         ...output,
         externalProduktId: cardTemplateData.externalProduktId,
+        notizen:cardTemplateData.notizen
       };
     }
+    if(typeof(cardTemplateData.name) !== "undefined"){
+      setVertragName(cardTemplateData.name)
+    }
   }
+
   return output;
 }
 export default setAssetWithTariftype;

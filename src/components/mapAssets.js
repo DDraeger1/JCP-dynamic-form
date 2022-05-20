@@ -120,15 +120,15 @@ export function formatMandantName(mandantGroup) {
   }
   return mandantName;
 }
-export function mapIncomingData(fieldName,assets){
-  let output =[]
-  if(fieldName === "zugeordneteImmobilieObjektzuordnungDarlehen"){
-    assets.map((asset)=>{
-if(asset.tarifTypeId === "IMMOBILIENBESTAND")
-output.push({value: asset.objektnotizen, label: asset.objektnotizen})
-})
-}
-  return output
+export function mapIncomingData(fieldName, assets) {
+  let output = [];
+  if (fieldName === "zugeordneteImmobilieObjektzuordnungDarlehen") {
+    assets.map((asset) => {
+      if (asset.tarifTypeId === "IMMOBILIENBESTAND")
+        output.push({ value: asset.objektnotizen, label: asset.objektnotizen });
+    });
+  }
+  return output;
 }
 
 export function setName(name, tarifType) {
@@ -159,14 +159,20 @@ export function setName(name, tarifType) {
       case "PENSIONSFONDS_3":
         output = "bAV - Pensionfonds (§ 3 Nr. 63 EStG)";
         break;
-        case "bAVNEW":
-          output = "bAV";
-          break;
+      case "bAVNEW":
+        output = "bAV";
+        break;
       case "DIREKT_40":
         output = "bAV - Direktversicherung (§ 40 Nr. 63 EStG)";
         break;
+      case "PENSIONSKASSE_3":
+        output = "bAV - PK (§ 3,63 EStG)";
+        break;
       case "PENSIONSKASSE_40":
-        output = "bAV - Pensionfonds (§ 40b Nr. 63 EStG)";
+        output = "bAV - PK (§ 40b Nr. 63 EStG)";
+        break;
+      case "ZUSATZVERSORGUNGSKASSE":
+        output = "bAV - Zusatzversorgungskasse";
         break;
       case "UNTERSTUETZUNGSKASSE":
         output = "bAV - Unterstützungskasse";
@@ -175,7 +181,7 @@ export function setName(name, tarifType) {
         output = "bAV - Direktversicherung (§ 3 Nr. 63 EStG)";
         break;
       case "GESETZLICHE_AV":
-        output = "Todesfall";
+        output = "GRV";
         break;
       case "GESETZLICHE_KRANKEN":
         output = "Gesetzliche Kranken-/Pflegeversicherung";
@@ -257,6 +263,53 @@ export function setName(name, tarifType) {
         break;
       case "KVZ":
         output = "KV Zusatz";
+        break;
+      case "KAPITALLEBEN":
+        output = "Kapitalleben";
+        break;
+      case "BEAMTENBEIHILFE":
+        output = "Beamtenbeihilfe";
+        break;
+        break;
+      case "BERUFSSTAENDISCHE_VORSORGE":
+        output = "Berufsständische Vorsore";
+        break;
+        break;
+      case "BEAMTENVERSORGUNG":
+        output = "Beamtenversorgung";
+        break;
+        break;
+      case "BAUHERRENHAFTPFLICHT":
+        output = "Bauherrenhaftpflicht";
+        break;
+        break;
+      case "WASSERSPORTHAFTPFLICHT":
+        output = "Wassersporthaftpflicht";
+        break;
+        break;
+      case "GEWAESSERSCHADENHAFTPFLICHT":
+        output = "Gewässerschadenhaftpflicht";
+        break;
+      case "JAGDHAFTPFLICHT":
+        output = "Jagdhaftpflicht";
+        break;
+      case "PRIVATRENTE":
+        output = "Privatrente PRV";
+        break;
+      case "FONDSLEBEN":
+        output = "Privatrente FLV";
+        break;
+      case "FONDSRENTEN":
+        output = "Privatrente FRV";
+        break;
+      case "RENTE":
+        output = "Rente";
+        break;
+      case "STROM":
+        output = "Strom";
+        break;
+      case "GAS":
+        output = "Gas";
         break;
       default:
         output = tarifType;

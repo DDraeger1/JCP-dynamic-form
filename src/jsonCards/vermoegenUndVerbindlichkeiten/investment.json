@@ -1,15 +1,43 @@
 {
     "section": "Investment",
     "card": true,
-    "mobileClassname": "Rente",
+    "mobileClassname": "Investment",
     "items": [
         {
-            "name": "versicherungsnehmerRente",
+            "name": "versicherungsnehmerInvestment",
             "label": "Versicherungsnehmer",
             "type": "selectMandant",
-            "tarifType": "RENTE",
+            "tarifType": "INVESTMENT",
             "props": { "required": true },
             "suiteValue": "versicherungsnehmerId"
+          },
+          {
+            "section": "Investment",
+            "card": true,
+            "items": [
+          {
+            "name": "versicherungsnehmerInvestment",
+            "label": "Versicherungsnehmer",
+            "type": "gesellschaft",
+            "tarifType": "INVESTMENT",
+            "props": { "required": true },
+            "suiteValue": "versicherungsnehmerId"
+          },
+          {
+            "name": "versicherungsnehmerInvestment",
+            "label": "Vertragsnummer",
+            "type": "text",
+            "tarifType": "INVESTMENT",
+            "props": { "required": true },
+            "suiteValue": "versicherungsnehmerId"
+          }
+        ]},
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
           }
     ]
 }

@@ -15,26 +15,30 @@
     {
       "name": "gesellschaftBeteiligungenAiF",
       "type": "gesellschaft",
-      "props": { "required": true }
+      "props": { "required": true },
+      "suiteValue":"gesellschaft"
     },
     {
       "name": "tarifbezeichnungBeteiligungenAiF",
       "label": "Tarifbezeichnung",
       "type": "text",
       "props": { "sm": 6,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"tarifBezeichnung"
     },
     {
       "name": "vertragsnummerBeteiligungenAiF",
       "label": "Vertragsnummer",
       "type": "text",
       "props": { "sm": 6 ,
-        "xs":6}
+        "xs":6},
+        "suiteValue":"versicherungsnummer"
     },
     {
       "name": "verwendungszweckBeteiligungenAiF",
       "label": "Verwendungszweck",
-      "type": "text"
+      "type": "text",
+      "suiteValue":"verwendungszweck"
     },
     {
       "name": "vertragsinhaberBeteiligungenAiFHeader",
@@ -47,7 +51,8 @@
       "type": "selectMandant",
       "versicherungsnehmerBeide":"true",
       "tarifType":"BETEILIGUNGEN",
-      "props": { "required": true }
+      "props": { "required": true },
+      "suiteValue":"versicherungsnehmerId"
     },
     {
       "name": "investitionsthemaVertragsinhaberBeteiligungenAiF",
@@ -66,59 +71,75 @@
         { "value": "Infrastruktur", "label": "Infrastruktur" },
         { "value": "Private Equity", "label": "Private Equity" },
         { "value": "Sonstige", "label": "Sonstige" }
-      ]
+      ],
+      "suiteValue":"anlageform"
     },
     {
       "name": "zeichnungssummeVertragsinhaberBeteiligungenAiF",
       "label": "Zeichnungssumme (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue":"beteiligungssumme"
     },
     {
       "name": "beginnVertragsinhaberBeteiligungenAiF",
       "label": "Beginn",
       "type": "date",
       "props": { "sm": 6 ,
-        "xs":6}
+        "xs":6},
+        "suiteValue":"versicherungsbeginn"
     },
     {
       "name": "endeVertragsinhaberBeteiligungenAiF",
       "label": "Ende",
       "type": "date",
       "props": { "sm": 6,
-        "xs":6}
+        "xs":6},
+        "suiteValue":"versicherungsende"
     },
     {
       "name": "einmalbeitragVertragsinhaberBeteiligungenAiF",
       "label": "Einmalbeitrag (€)",
       "type": "text",
       "props": { "sm": 6 ,
-        "xs":6}
+        "xs":6},
+        "suiteValue":"einmalbeitrag"
     },
     {
       "name": "beitragVertragsinhaberBeteiligungenAiF",
       "label": "Beitrag (€)",
       "type": "text",
       "props": { "sm": 6 ,
-        "xs":6}
+        "xs":6},
+        "suiteValue":"beitrag"
     },
     {
       "name": "jaehrlAusschuettungVertragsinhaberBeteiligungenAiF",
       "label": "jährl. Ausschüttung ca. (€)",
       "type": "text",
       "props": { "sm": 6,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"prognose"
     },
     {
       "name": "aktuellerWertVertragsinhaberBeteiligungenAiF",
       "label": "Aktueller Wert (€)",
       "type": "text",
       "props": { "sm": 6,
-        "xs":6 }
+        "xs":6 },
+        "suiteValue":"wert"
     },
     {
       "name": "zumVertragsinhaberBeteiligungenAiF",
       "label": "... zum",
-      "type": "date"
+      "type": "date",
+      "suiteValue":"wertZum"
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }

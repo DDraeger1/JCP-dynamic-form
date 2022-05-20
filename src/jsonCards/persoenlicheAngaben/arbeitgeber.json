@@ -1235,7 +1235,7 @@
                                             "suiteValue":"avAnsprechpartnerEmail5"
                                                       }]}]},
                                                       {"name":"arbeitgeberHinzufuegen",
-    "type":"costumFunction",
+    "type":"customFunction",
     "suiteValue":""}
     ]
 }

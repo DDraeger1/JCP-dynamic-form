@@ -135,6 +135,13 @@
                 "props": {"xs":6 },
                 "suiteValue":"steuerberatungDurch"
             
+            },
+            {
+              "name": "notizen",
+              "type": "textarea",
+              "rows":5,
+              "label": "Notizen",
+              "suiteValue":"notizen"
             }
     ]
 }

@@ -199,7 +199,7 @@
         {
           "name": "vollinvaliditaetVersichertePersonUnfall",
           "label": "Vollinvalidität (€)",
-          "type": "text",
+          "type": "customFunction",
           "props": { "sm": 6, "xs": 6 },
           "suiteValue": "invaliditaetssumme"
         },
@@ -413,7 +413,7 @@
           "name": "vollinvaliditaetVersichertePersonUnfall2",
           "label": "Vollinvalidität (€)",
           "condition": "selected2Persons",
-          "type": "text",
+          "type": "customFunction",
           "props": { "sm": 6, "xs": 6 },
           "suiteValue": "invaliditaetssumme2"
         },
@@ -641,7 +641,7 @@
           "name": "vollinvaliditaetVersichertePersonUnfall3",
           "label": "Vollinvalidität (€)",
           "condition": "selected3Persons",
-          "type": "text",
+          "type": "customFunction",
           "props": { "sm": 6, "xs": 6 },
           "suiteValue": "invaliditaetssumme3"
         },
@@ -869,7 +869,7 @@
           "name": "vollinvaliditaetVersichertePersonUnfall4",
           "label": "Vollinvalidität (€)",
           "condition": "selected4Persons",
-          "type": "text",
+          "type": "customFunction",
           "props": { "sm": 6, "xs": 6 },
           "suiteValue": "invaliditaetssumme4"
         },
@@ -1097,7 +1097,7 @@
           "name": "vollinvaliditaetVersichertePersonUnfall5",
           "label": "Vollinvalidität (€)",
           "condition": "selected5Persons",
-          "type": "text",
+          "type": "customFunction",
           "props": { "sm": 6, "xs": 6 },
           "suiteValue": "invaliditaetssumme5"
         },
@@ -1324,7 +1324,7 @@
           "name": "vollinvaliditaetVersichertePersonUnfall6",
           "label": "Vollinvalidität (€)",
           "condition": "selected6Persons",
-          "type": "text",
+          "type": "customFunction",
           "props": { "sm": 6, "xs": 6 },
           "suiteValue": "invaliditaetssumme6"
         },
@@ -1481,6 +1481,13 @@
           "suiteValue": "dynamikProzent6"
         }]}
       ]
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }

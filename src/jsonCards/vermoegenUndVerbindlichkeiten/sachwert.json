@@ -19,7 +19,8 @@
       "versicherungsnehmerBeide":"true",
             "props": { "required": true },
             "tarifType":"SACHWERT",
-            "showKind":"true "
+            "showKind":"true ",
+            "suiteValue":"versicherungsnehmerId"
     },
     {
       "section": "Vertragspartner",
@@ -28,12 +29,14 @@
         {
           "name": "tarifbezeichnungVertragspartnerSachwert",
           "label": "Tarifbezeichnung",
-          "type": "text"
+          "type": "text",
+          "suiteValue":"tarifBezeichnung"
         },
         {
           "name": "vertragsnummerVertragspartnerSachwert",
           "label": "Vertragsnummer",
-          "type": "text"
+          "type": "text",
+          "suiteValue":"versicherungsnummer"
         }]},
         {
           "name": "artVertragspartnerSachwert",
@@ -42,37 +45,44 @@
           "options": [
             { "value": "Edelmetalle", "label": "Edelmetalle" },
             { "value": "Sonstiges", "label": "Sonstiges" }
-          ]
+          ],
+          "suiteValue":"art"
         },
         {
           "name": "fallsSonstigesVertragspartnerSachwert",
           "label": "...falls sonstiges",
-          "type": "text"
+          "type": "text",
+          "suiteValue":""
         },
         {
           "name": "gewichtVertragspartnerSachwert",
           "label": "Gewicht",
-          "type": "text"
+          "type": "text",
+          "suiteValue":"gewicht"
         },
         {
           "name": "lagerungVertragspartnerSachwert",
           "label": "Lagerung",
-          "type": "text"
+          "type": "text",
+          "suiteValue":"lagerung"
         },
         {
           "name": "anschaffungsjahrVertragspartnerSachwert",
           "label": "Anschaffungsjahr",
-          "type": "text"
+          "type": "text",
+          "suiteValue":"anschaffungsjahr"
         },
         {
           "name": "aktuellerWertVertragspartnerSachwert",
           "label": "Aktueller Wert",
-          "type": "text"
+          "type": "text",
+          "suiteValue":"aktuellerWert"
         },
         {
           "name": "vertragssummeVertragspartnerSachwert",
           "label": "Vertragssumme",
-          "type": "text"
+          "type": "text",
+          "suiteValue":"versicherungssumme"
         },
         {
           "name": "zahlweiseVertragspartnerSachwert",
@@ -85,13 +95,22 @@
               { "value": "QUARTAL", "label": "Quartal" },
               { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
               { "value": "JAEHRLICH", "label": "Jährlich" }
-          ]
+          ],
+          "suiteValue":"zahlweise"
         },
         {
           "name": "beitragVertragspartnerSachwert",
           "label": "Beitrag",
           "props": { "required": true },
-          "type": "text"
+          "type": "text",
+          "suiteValue":"beitrag"
+        },
+        {
+          "name": "notizen",
+          "type": "textarea",
+          "rows":5,
+          "label": "Notizen",
+          "suiteValue":"notizen"
         }
   ]
 }

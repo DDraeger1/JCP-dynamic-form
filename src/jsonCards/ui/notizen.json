@@ -1,0 +1,8 @@
+{
+    "name": "notizen",
+    "type": "textarea",
+    "props": { "sm": 0, "xs": 0 },
+    "rows":5,
+    "label": "Notizen",
+    "suiteValue":"notizen"
+  }

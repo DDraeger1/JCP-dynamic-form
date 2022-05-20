@@ -58,6 +58,13 @@
         "label": "Järhlich zu versteuerndes Einkommen",
         "type": "text",
         "suiteValue":"jaehrlichVersteuerndesEinkommen"
+      },
+      {
+        "name": "notizen",
+        "type": "textarea",
+        "rows":5,
+        "label": "Notizen",
+        "suiteValue":"notizen"
       }
     ]
   }

@@ -15,42 +15,50 @@
     {
       "name": "gesellschaftBerufsstandischeVersorgung",
       "type": "text",
-      "label": "Gesellschaft/Träger"
+      "label": "Gesellschaft/Träger",
+      "suiteValue": "gesellschaft"
     },
     {
       "name": "renteneintrittBerufsstandischeVersorgung",
       "type": "date",
-      "label": "Datum des Renteneintritts"
+      "label": "Datum des Renteneintritts",
+      "suiteValue": "renteneintritts"
     },
     {
       "name": "renteBUEMBerufsstandischeVersorgung",
       "label": "BU/EM-Rente (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue": "buRente"
     },
     {
       "name": "kapitalleistungBerufsstandischeVersorgung",
       "label": "Voraussichtliche Kapitalleistung (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue": "kapitalleistung"
     },
     {
       "name": "rentenanwartschaftBerufsstandischeVersorgung",
       "label": "Monatliche Rentenanwartschaft (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue": "monatRentenanwartschaft"
     },
     {
       "name": "monatlicheAltersrenteBerufsstandischeVersorgung",
       "label": "Voraussichtliche monatliche Altersrente (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue": "monatAltersrente"
     },
     {
       "name": "witwenrenteBerufsstandischeVersorgung",
       "label": "Witwenrente (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue": "witwenrente"
     },
     {
       "name": "waisenrenteBerufsstandischeVersorgung",
       "label": "Waisenrente (€)",
-      "type": "text"
+      "type": "text",
+      "suiteValue": "waisenrente"
     },
     {
         "section": "",
@@ -67,13 +75,22 @@
             { "value": "QUARTAL", "label": "Quartal" },
             { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
             { "value": "JAEHRLICH", "label": "Jährlich" }
-        ]
+        ],
+        "suiteValue": "zahlweise"
       },
       {
         "name": "beitragBerufsstandischeVersorgung",
         "label": "Beitrag (€)",
-        "type": "text"
+        "type": "text",
+        "suiteValue": "beitrag"
       }
-        ]}
+        ]},
+        {
+          "name": "notizen",
+          "type": "textarea",
+          "rows":5,
+          "label": "Notizen",
+          "suiteValue":"notizen"
+        }
   ]
 }

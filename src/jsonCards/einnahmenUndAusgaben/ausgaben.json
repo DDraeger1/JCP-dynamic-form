@@ -185,5 +185,12 @@
             "name": "summeDerAusgabenAusgabenParagraph",
             "label": "Summe der Ausgabe",
             "type": "paragraph"
+          },
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
           }
     ]}

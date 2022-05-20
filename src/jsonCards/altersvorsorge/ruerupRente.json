@@ -123,7 +123,7 @@
       "suiteValue":"rentenleistungRgzJahre"
     },
     {"name":"rentenPrognose",
-      "type":"costumFunction"}]},
+      "type":"customFunction"}]},
     {
       "section": "Dynamik",
       "card": true,
@@ -290,6 +290,13 @@
       "label": "Beitragsanteil für BU",
       "type": "text",
       "suiteValue":"beitragsanteilBU"
-    }]}
+    }]},
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
+    }
   ]
 }

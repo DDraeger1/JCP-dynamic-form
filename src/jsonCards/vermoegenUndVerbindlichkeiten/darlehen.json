@@ -29,39 +29,37 @@
                 "suiteValue":"versicherungsnummer"
         },
         {
-            "name":"darlehensnehmerDarlehenHeader",
-            "label":"Darlehensnehmer",
-            "type":"header"
-        },
+            "section": "Darlehensnehmer",
+            "card": true,
+          "items": [
         {
             "name":"darlehensnehmerDarlehen",
             "label":"Darlehensnehmer",
             "type":"selectMandant",
             "tarifType":"DARLEHEN",
+            "versicherungsnehmerBeide":"true",
             "props":{"required":true},
             "suiteValue":"versicherungsnehmerId"
-        },
+        }]},
         {
-            "name":"artDarlehenHeader",
-            "label":"Art",
-            "type":"header"
-        },
+            "section": "Art",
+            "card": true,
+          "items": [
         {
             "name":"artDarlehen",
             "label":"Art",
             "type":"select",
             "options":[
-                { "value": 0, "label": "endfälliges Darlehen" },
-                { "value": 1, "label": "Annuitätendarlehen" },
-                { "value": 2, "label": "Bausparfinanziert" }
+                { "value": "endfaelligesDarlehen", "label": "endfälliges Darlehen" },
+                { "value": "annuitaetenDarlehen", "label": "Annuitätendarlehen" },
+                { "value": "bausparfinanziert", "label": "Bausparfinanziert" }
             ],
             "suiteValue":"art"
-        },
+        }]},
         {
-            "name":"objektzuordnungDarlehenHeader",
-            "label":"Objektzuordnung (Anschrift, etc.)",
-            "type":"header"
-        },
+            "section": "Objektzuordnung (Anschrift, etc.)",
+            "card": true,
+          "items": [
         {
             "name":"zugeordneteImmobilieObjektzuordnungDarlehen",
             "label":"Zugeordnete Immobilie",
@@ -82,8 +80,8 @@
         },
         {
             "name":"restschuldBerechnen",
-            "label":"Restschuld Berechnen (Button)",
-            "type":"costumFunction"
+            "label":"Restschuld Berechnen",
+            "type":"customFunction"
         },
         {
             "name":"restschuldObjektzuordnungDarlehen",
@@ -108,7 +106,7 @@
             "props": { "sm": 6,
                 "xs":6 },
                 "suiteValue":"rate"
-        },
+        }]},
         {
             "name":"zahlweiseObjektzuordnungDarlehen",
             "label":"Zahlweise",
@@ -148,7 +146,7 @@
         {
             "name":"tilgungEuroObjektzuordnungDarlehen",
             "label":"Tilgung in €",
-            "type":"costumFunction",
+            "type":"customFunction",
                 "suiteValue":"tilgung"
         },
         {
@@ -168,6 +166,13 @@
             "label":"voraussichtlich schuldenfrei (suitemapping)",
             "type":"date",
             "suiteValue":"voraussichtlichSchuldenfrei"
+        },
+        {
+          "name": "notizen",
+          "type": "textarea",
+          "rows":5,
+          "label": "Notizen",
+          "suiteValue":"notizen"
         }
         ]
     }

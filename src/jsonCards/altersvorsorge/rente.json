@@ -1,0 +1,104 @@
+{
+  "section": "Rente",
+  "card": true,
+  "mobileClassname": "Rente",
+  "items": [
+    { "name": "showExternalProductId", "type": "paragraph", "label": "" },
+    {
+      "name": "externalProduktId",
+      "type": "produktid",
+      "condition": "showExternalProductId",
+      "props": { "required": true },
+      "suiteValue": "externalProduktId"
+    },
+    {
+      "name": "versicherungsnehmerRente",
+      "label": "Versicherungsnehmer",
+      "tarifType": "RENTE",
+      "type": "selectMandant",
+      "props": { "required": true },
+      "suiteValue": "versicherungsnehmerId"
+    },
+    {
+      "name": "bruttoRente",
+      "label": "Rente Brutto",
+      "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "renteBrutto"
+    },
+    {
+      "name": "nettoRente",
+      "label": "Rente Netto",
+      "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "renteNetto"
+    },
+    {
+      "name": "artRente",
+      "label": "Rente Netto",
+      "type": "select",
+      "suiteValue": "art",
+      "options": [
+        {"label":"Erwerbsunfähigkeitrente","value":"ERWERBSUNFAEHIGKEITRENTE"},
+        {"label":"Altersrente","value":"ALTERSRENTE"},
+        {"label":"Unfallrente (gesetzl.)","value":"UNFALLRENTE"},
+        {"label":"Unfallrente (privat)","value":"UNFALLRENTE_PRIVAT"}
+      ]
+    },
+    {
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
+        {
+          "name": "vertragsbeginnRente",
+          "label": "Vertragsbeginn",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6, "required": true },
+          "suiteValue": "versicherungsbeginn"
+        },
+        {
+          "name": "vertragsendeRente",
+          "label": "Vertragsende",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versicherungsende"
+        }
+      ]
+    },
+    {
+        "name": "zahlungVonRente",
+        "label": "Zahlung von",
+        "type": "date",
+        "props": { "sm": 6, "xs": 6},
+        "suiteValue": "zahlungVon"
+    },
+    {
+        "name": "zahlungBisRente",
+        "label": "Zahlung bis",
+        "type": "date",
+        "props": { "sm": 6, "xs": 6},
+        "suiteValue": "zahlungBis"
+    },
+    {
+        "name": "zahlweiseRente",
+        "label": "Zahlweise",
+        "type": "select",
+        "props": { "required": true},
+        "options": [
+          { "value": "MONATLICH", "label": "Monatlich" },
+          { "value": "QUARTAL", "label": "Quartal" },
+          { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+          { "value": "JAEHRLICH", "label": "Jährlich" }
+        ],
+        "suiteValue": "zahlweise"
+      },
+      
+      {
+        "name": "notizen",
+        "type": "textarea",
+        "rows":5,
+        "label": "Notizen",
+        "suiteValue":"notizen"
+      }
+  ]
+}

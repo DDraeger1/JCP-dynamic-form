@@ -66,7 +66,6 @@ function DynamicForm(
   },
   ref
 ) {
-  const [isInitialized, toggleInitialized] = useState(false);
   let testArray = [];
   function checkForCustomInput(options, value, type) {
     let output = "";
@@ -129,8 +128,11 @@ function DynamicForm(
     ignored,
     forceUseEffect,
     mandantTabIndex,
-    productGesellschaftIdLoaded
+    productGesellschaftIdLoaded,
+    vertragName,
+    setVertragName,
   } = useContext(Context);
+
   const [expanded, setExpanded] = useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -145,7 +147,7 @@ function DynamicForm(
 
   const { control, handleSubmit, watch, formState, reset, setValue } = useForm({
     defaultValues,
-    mode: "onBlur"
+    mode: "onBlur",
   });
   function selectedForm(tariftype) {
     let output = "";
@@ -229,17 +231,23 @@ function DynamicForm(
         <>
           {(section || description) && (
             <div
-              className={formDefinition[0].section === section ?  "":"cardHeader"}
-              style={{ backgroundColor: formDefinition[0].section === section ?   null:colorProperties.MAINCOLOR }}
+              className={
+                formDefinition[0].section === section ? "" : "cardHeader"
+              }
+              style={{
+                backgroundColor:
+                  formDefinition[0].section === section
+                    ? null
+                    : colorProperties.MAINCOLOR,
+              }}
             >
-              
               {section && (
                 <Typography
                   variant={"h6"}
                   component={"h3"}
                   className="headerTypography"
                 >
-                  {formDefinition[0].section === section ?  "":section}
+                  {formDefinition[0].section === section ? "" : section}
                 </Typography>
               )}
               {description && (
@@ -256,7 +264,14 @@ function DynamicForm(
       return (
         <Grid item xs={12} {...props} key={"k-" + index}>
           {card ? (
-            <Card className={cardContent.section === formDefinition[0].section ? "defaultCard" : ""} variant={"outlined"}>
+            <Card
+              className={
+                cardContent.section === formDefinition[0].section
+                  ? "defaultCard"
+                  : ""
+              }
+              variant={"outlined"}
+            >
               <CardContent className="gridCard">{cardContent}</CardContent>
             </Card>
           ) : (
@@ -265,17 +280,30 @@ function DynamicForm(
               aria-controls={"panel" + accordionId + "-content"}
               id={"panel" + accordionId + "-header"}
             >
-              <AccordionSummary sx={{justifyContent:"space-inbetween !important"}}  expandIcon={<ExpandMore />}>
-                <Typography className={tarifTypeIdFromCardState === "ARBEITGEBER" ?"arbeitgeberText":""} variant={"h6"} component={"h3"}>
+              <AccordionSummary
+                sx={{ justifyContent: "space-inbetween !important" }}
+                expandIcon={<ExpandMore />}
+              >
+                <Typography
+                  className={
+                    tarifTypeIdFromCardState === "ARBEITGEBER"
+                      ? "arbeitgeberText"
+                      : ""
+                  }
+                  variant={"h6"}
+                  component={"h3"}
+                >
                   {accordionText}
                 </Typography>{" "}
-                {tarifTypeIdFromCardState === "ARBEITGEBER" ? <FunctionMapper
-                        functionName={"deleteArbeitgeber"}
-                        variableName={accordionId}
-                        watch={watch}
-                        setValue={setValue}
-                        renderAnzahlVp={renderAnzahlVp}
-                      />:null}
+                {tarifTypeIdFromCardState === "ARBEITGEBER" ? (
+                  <FunctionMapper
+                    functionName={"deleteArbeitgeber"}
+                    variableName={accordionId}
+                    watch={watch}
+                    setValue={setValue}
+                    renderAnzahlVp={renderAnzahlVp}
+                  />
+                ) : null}
               </AccordionSummary>
               <AccordionDetails>{cardContent}</AccordionDetails>
             </Accordion>
@@ -328,7 +356,7 @@ function DynamicForm(
                         disabled={itemDisabled}
                         error={!!helperText}
                       >
-                        <MenuItem key="nothing-Selected" value=""/>
+                        <MenuItem key="nothing-Selected" value="" />
 
                         {berater.map((berater, index) => (
                           <MenuItem key={"o-" + index} value={berater.id}>
@@ -437,7 +465,7 @@ function DynamicForm(
                           {option.label}
                         </Button>
                           /> */
-                case "costumFunction":
+                case "customFunction":
                   return (
                     <FormControl fullWidth size={"small"}>
                       <FunctionMapper
@@ -447,6 +475,7 @@ function DynamicForm(
                         setValue={setValue}
                         renderAnzahlVp={renderAnzahlVp}
                         tarifTypeIdFromCardState={tarifTypeIdFromCardState}
+                        value={value}
                       />
                     </FormControl>
                   );
@@ -455,31 +484,33 @@ function DynamicForm(
                   return (
                     <FormControl fullWidth size={"small"}>
                       <InputLabel>Produkt ID</InputLabel>
-                      {productGesellschaftIdLoaded ? 
-                      <Select
-                        autoFocus={focussed}
-                        inputRef={ref}
-                        disabled={itemDisabled}
-                        value={value}
-                        onChange={onChange}
-                        error={!!helperText}
-                      >
-                        <MenuItem
-                          key="o"
-                          value={checkForCustomInput(options, value, type)}
+                      {productGesellschaftIdLoaded ? (
+                        <Select
+                          autoFocus={focussed}
+                          inputRef={ref}
+                          disabled={itemDisabled}
+                          value={value}
+                          onChange={onChange}
+                          error={!!helperText}
                         >
-                          {checkForCustomInput(options, value, type)}
-                        </MenuItem>
-                        {productId.map((productId, index) => (
                           <MenuItem
-                            key={"o-" + index}
-                            value={productId.productId}
+                            key="o"
+                            value={checkForCustomInput(options, value, type)}
                           >
-                            {productId.name}
+                            {checkForCustomInput(options, value, type)}
                           </MenuItem>
-                        ))}
-                      </Select>
-              : <p>loading...</p>}
+                          {productId.map((productId, index) => (
+                            <MenuItem
+                              key={"o-" + index}
+                              value={productId.productId}
+                            >
+                              {productId.name}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      ) : (
+                        <p>loading...</p>
+                      )}
                       {helperText && (
                         <Typography color={"error"} variant={"caption"}>
                           {helperText}
@@ -491,42 +522,41 @@ function DynamicForm(
                   return (
                     <FormControl fullWidth size={"small"}>
                       <InputLabel>Gesellschaft</InputLabel>
-                      {productGesellschaftIdLoaded ?
-                      <Select
-                        autoFocus={focussed}
-                        inputRef={ref}
-                        value={value}
-                        onChange={onChange}
-                        disabled={itemDisabled}
-                        error={!!helperText}
-                      >
-                        <MenuItem
-                          key="o"
-                          value={checkForCustomInput(options, value, type)}
+                      {productGesellschaftIdLoaded ? (
+                        <Select
+                          autoFocus={focussed}
+                          inputRef={ref}
+                          value={value}
+                          onChange={onChange}
+                          disabled={itemDisabled}
+                          error={!!helperText}
                         >
-                          {checkForCustomInput(options, value, type)}
-                        </MenuItem>
-                        {gesellschaft.data.map((gesellschaft, index) => (
                           <MenuItem
-                            key={"o-" + index}
-                            value={gesellschaft.name}
+                            key="o"
+                            value={checkForCustomInput(options, value, type)}
                           >
-                            {gesellschaft.name}
+                            {checkForCustomInput(options, value, type)}
                           </MenuItem>
-                        ))}
-                        <MenuItem key="o-sonstiges" value={"sonstiges"}>
-                          {"sonstiges"}
-                        </MenuItem>
-                      </Select>
-                      :
-                      <p>loading...</p>
-                      }
+                          {gesellschaft.data.map((gesellschaft, index) => (
+                            <MenuItem
+                              key={"o-" + index}
+                              value={gesellschaft.name}
+                            >
+                              {gesellschaft.name}
+                            </MenuItem>
+                          ))}
+                          <MenuItem key="o-sonstiges" value={"sonstiges"}>
+                            {"sonstiges"}
+                          </MenuItem>
+                        </Select>
+                      ) : (
+                        <p>loading...</p>
+                      )}
                       {helperText && (
                         <Typography color={"error"} variant={"caption"}>
                           {helperText}
                         </Typography>
                       )}
-                      
                     </FormControl>
                   );
                 case "select":
@@ -650,11 +680,17 @@ function DynamicForm(
                         <MenuItem key="o" value={"PENSIONSFONDS_3"}>
                           Pensionsfond (§ 3 Nr. 63 EStG)
                         </MenuItem>
+                        <MenuItem key="o" value={"PENSIONSKASSE_3"}>
+                          Pensionskasse (§ 40b EStG)
+                        </MenuItem>
                         <MenuItem key="o" value={"PENSIONSKASSE_40"}>
                           Pensionskasse (§ 40b EStG)
                         </MenuItem>
                         <MenuItem key="o" value={"UNTERSTUETZUNGSKASSE"}>
                           Unterstützungskasse
+                        </MenuItem>
+                        <MenuItem key="o" value={"ZUSATZVERSORGUNGSKASSE"}>
+                          Zusatzversorgungskasse
                         </MenuItem>
                       </Select>
                       {helperText && (
@@ -692,6 +728,57 @@ function DynamicForm(
                         </Typography>
                       )}
                     </FormControl>
+                  );
+                case "selectMandantbAV":
+                  return (
+                    <div>
+                      <FormControl fullWidth size={"small"} {...props}>
+                        <InputLabel>{label}</InputLabel>
+                        <Select
+                          autoFocus={focussed}
+                          inputRef={ref}
+                          value={value}
+                          onChange={onChange}
+                          label={label}
+                          error={!!helperText}
+                          disabled={itemDisabled}
+                        >
+                          {mandantGroup.map((mandantGroup, index) =>
+                            checkForKind(mandantGroup, showKind) ? (
+                              <MenuItem
+                                onClick={() => {
+                                  setVersicherungsnehmerValue({
+                                    index: index,
+                                    tarifTypeId: tarifType,
+                                  });
+                                }}
+                                key={"o-" + index}
+                                value={index}
+                              >
+                                {formatMandantName(mandantGroup)}
+                              </MenuItem>
+                            ) : null
+                          )}
+                          <MenuItem
+                            onClick={() => {
+                              setVersicherungsnehmerValue({
+                                index: false,
+                                tarifTypeId: tarifType,
+                              });
+                            }}
+                            key={"o-arbeitgeber"}
+                            value={"ARBEITGEBER"}
+                          >
+                            Arbeitgeber
+                          </MenuItem>
+                        </Select>
+                        {helperText && (
+                          <Typography color={"error"} variant={"caption"}>
+                            {helperText}
+                          </Typography>
+                        )}
+                      </FormControl>
+                    </div>
                   );
                 case "selectMandant":
                   return (
@@ -893,7 +980,6 @@ function DynamicForm(
                       InputLabelProps={{ shrink: value ? true : false }}
                       value={formatDate(value)}
                     />
-                    
                   );
                 case "paragraph":
                   return (
@@ -1057,31 +1143,34 @@ function DynamicForm(
             }
           }
         }
-        if (item.type === "selectMandant") {
+        if (item.type === "selectMandant" || item.type === "selectMandantbAV") {
           if (typeof value !== "undefined") {
             if (value !== "Placeholder") {
               //TODO: Wenn assetId´s hinzugefügt werden, diese methode löschen!
-              console.log(value)
-              if(!value){
-              switch (mandantGroup[value].art) {
-                case "MANDANT":
-                  output = { ...output, mp: "m" };
-                  break;
-                case "PARTNER":
-                  output = { ...output, mp: "p" };
-                  break;
-                case "KIND":
-                  output = { ...output, mp: "k" };
-                  break;
-                default:
-                  break;
+              if (value === "ARBEITGEBER") {
+                output = { ...output, mp: "sonstige" };
+              } else {
+                if (value) {
+                  switch (mandantGroup[value].art) {
+                    case "MANDANT":
+                      output = { ...output, mp: "m" };
+                      break;
+                    case "PARTNER":
+                      output = { ...output, mp: "p" };
+                      break;
+                    case "KIND":
+                      output = { ...output, mp: "k" };
+                      break;
+                    default:
+                      break;
+                  }
+                }
+
+                output = {
+                  ...output,
+                  versicherungsnehmerId: mandantGroup[value].mandantId,
+                };
               }
-           
-              output = {
-                ...output,
-                versicherungsnehmerId: mandantGroup[value].mandantId,
-              };
-            }
             }
           } else {
             switch (mandantGroup[0].art) {
@@ -1105,13 +1194,12 @@ function DynamicForm(
         }
       }
       if (item.type === "selectVersichert") {
-        mandantGroup.map((mandant) => {
-          if(value === "sonstiges"){
-          output={ ...output, [item.suiteValue]: value}
+        mandantGroup.map((mandant, index) => {
+          if (value === "sonstiges") {
+            output = { ...output, [item.suiteValue]: value };
           }
           if (value === mandant.mandantId) {
-            
-            switch (mandantGroup[0].art) {
+            switch (mandantGroup[index].art) {
               case "MANDANT":
                 output = { ...output, [item.suiteValue]: "m" };
                 break;
@@ -1127,6 +1215,10 @@ function DynamicForm(
           }
         });
       }
+      if (item.type === "vertragsname") {
+        output = { ...output, [item.suiteValue]: value };
+        console.log(value);
+      }
       if (item.type === "toggleButtonGroup") {
         item.menuOptions.map((option) => {
           if (option.name === value) {
@@ -1141,6 +1233,7 @@ function DynamicForm(
       }
       // setSubmissionObject({...submissionObject, [item.suiteValue]:it})
     }
+
     return output;
   }
   function addDirtyEntries(dirtyValues) {
@@ -1269,7 +1362,11 @@ function DynamicForm(
 
     if (typeof date !== "undefined") {
       if (Object.prototype.toString.call(date) === "[object Date]") {
-        output = date.toLocaleDateString("de-EU",{day:"2-digit", month:"2-digit",year:"numeric"});
+        output = date.toLocaleDateString("de-EU", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
         // it is a date
         if (isNaN(date)) {
           // d.getTime() or d.valueOf() will also work
@@ -1283,18 +1380,22 @@ function DynamicForm(
 
     return output;
   }
-  function formatDate(value){
-    let output = value
-    if(typeof value === "String"){
-output= new Date(value)
+  function formatDate(value) {
+    let output = value;
+    if (typeof value === "String") {
+      output = new Date(value);
     }
-    return output
+    return output;
   }
+
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
     let vertragIdSuite = vertragId;
+    console.log(valuesToSubmit);
+    console.log(dirtyValues);
     if (vertragId === "newVertrag") {
       vertragIdSuite = "0";
     }
+
     let mobileClassname = "";
     if (formDefinition[0].section === "Verträge") {
       mobileClassname = formDefinition[1].mobileClassname;
@@ -1319,7 +1420,7 @@ output= new Date(value)
     }
     //"kategorie":"thvpferd"
     if (checkIfPersonendaten(tarifTypeIdFromCardState)) {
-      if(tarifTypeIdFromCardState === "newMandant" ){
+      if (tarifTypeIdFromCardState === "newMandant") {
         output = {
           action: "savePerson",
           mandantId: mandantGroup[0].mandantId,
@@ -1329,31 +1430,29 @@ output= new Date(value)
             mandantId: mandantGroup[0].mandantId,
           },
         };
-    } else if(tarifTypeIdFromCardState === "newKind"){
-      output = {
-        action: "savePerson",
-        mandantId: mandantGroup[0].mandantId,
-        json: {
-          ...valuesToSubmit,
-          ...dirtyValues,
+      } else if (tarifTypeIdFromCardState === "newKind") {
+        output = {
+          action: "savePerson",
           mandantId: mandantGroup[0].mandantId,
-          mandantType:"kind"
-        },
-      };
+          json: {
+            ...valuesToSubmit,
+            ...dirtyValues,
+            mandantId: mandantGroup[0].mandantId,
+            mandantType: "kind",
+          },
+        };
+      } else {
+        output = {
+          action: "savePerson",
+          mandantId: mandantGroup[mandantTabIndex].mandantId,
+          json: {
+            ...valuesToSubmit,
+            ...dirtyValues,
+            id: mandantGroup[mandantTabIndex].mandantId,
+          },
+        };
+      }
     }
-     else{
-      output = {
-        action: "savePerson",
-        mandantId: mandantGroup[mandantTabIndex].mandantId,
-        json: {
-          ...valuesToSubmit,
-          ...dirtyValues,
-          id: mandantGroup[mandantTabIndex].mandantId,
-        },
-      };
-    }
-    }
-    //e5943e40-9eb4-11ec-a423-001c4270ffe9
     if (tarifTypeIdFromCardState === "PFERDEHALTERHAFTPFLICHT") {
       output = { ...output, json: { ...output.json, kategorie: "thvpferd" } };
     }
@@ -1362,6 +1461,10 @@ output= new Date(value)
     }
     if (tarifTypeIdFromCardState === "HUNDEHALTERHAFTPFLICHT") {
       output = { ...output, json: { ...output.json, kategorie: "thvhund" } };
+    }
+    if (vertragName.length !== 0) {
+      debugger;
+      output = { ...output, json: { ...output.json, name: vertragName } };
     }
     /*
 if(tarifTypeIdFromCardState === "KVZ"){
@@ -1376,41 +1479,67 @@ if(tarifTypeIdFromCardState === "KVZ"){
 if(tarifTypeIdFromCardState === "KVZ"){
   output={...output, json:{...output.json,kategorie:"thvpferd" }}
 }*/
-if (!checkIfPersonendaten(tarifTypeIdFromCardState)) {
-    gesellschaft.data.map((gesellschaft) => {
-      if (gesellschaft.name === output.gesellschaft) {
-        output = { ...output, gesellschaft: gesellschaft.id };
+    if (!checkIfPersonendaten(tarifTypeIdFromCardState)) {
+      if (!checkIfEinkommenUndEinahmen(tarifTypeIdFromCardState)) {
+        gesellschaft.data.map((gesellschaft) => {
+          if (gesellschaft.name === output.gesellschaft) {
+            output = { ...output, gesellschaft: gesellschaft.id };
+          }
+        });
       }
-    
-    });
-}
+    }
     return output;
   }
-  const submitDirtyFields = async (values) => {
-    if (Object.keys(formState.dirtyFields).length === 0) return false;
+  function checkIfEinkommenUndEinahmen(tariftype) {
+    let output = false;
 
-    let valuesToSubmit = mapSuiteValues();
+    if (tariftype === "EINNAHMEN") {
+      output = true;
+    }
+    if (tariftype === "EINKOMMEN_GEHALT") {
+      output = true;
+    }
+    if (tariftype === "EINKOMMEN_MINIJOB") {
+      output = true;
+    }
+    if (tariftype === "EINKOMMEN_SELBSTAENDIGER") {
+      output = true;
+    }
+    if (tariftype === "AUSGABEN") {
+      output = true;
+    }
+    return output;
+  }
+  console.log(formState)
 
+  const submitDirtyFields = useCallback(async (values) => {
+    let valuesToSubmitUnformated = mapSuiteValues();
     let dirtyValues = {
       ...addDirtyEntries(
         Object.entries(formState.dirtyFields).reduce((acc, [key, isDirty]) => {
-          if (isDirty) return { ...acc, [key]: values[key] };
+          if (isDirty) return { ...acc, [key]: values[key] }
           return acc;
         }, {})
       ),
     };
-    valuesToSubmit = formatDataForSubmission(valuesToSubmit, dirtyValues);
+    console.log(dirtyValues)
+    debugger
+    let valuesToSubmit = formatDataForSubmission(
+      valuesToSubmitUnformated,
+      dirtyValues
+    );
     try {
       if (valuesToSubmit && Object.keys(valuesToSubmit).length > 0) {
         let vals = await onSubmit(valuesToSubmit);
-        //reset(vals, { keepDirty: false });
+        reset(vals, { keepDirty: false });
       }
       return true;
     } catch (e) {
       console.warn(e);
       return false;
     }
-  };
+  }, [formState.isDirty, vertragName]);
+
   useImperativeHandle(
     ref,
     () => {
@@ -1450,7 +1579,7 @@ if (!checkIfPersonendaten(tarifTypeIdFromCardState)) {
         isDirty: formState.isDirty,
       };
     },
-    [formState.isDirty]
+    [formState.isDirty, vertragName]
   );
   useEffect(() => {
     setRequiredFilled(checkRequiredFields(watch(requiredFields)));

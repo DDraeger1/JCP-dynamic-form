@@ -12,12 +12,10 @@
       "condition":"showExternalProductId",
       "props": { "required": true },
       "suiteValue":"externalProduktId"},
-      
-    {
-      "name": "versicherungsnehmerHausrat",
-      "label": "Versicherungsnehmer",
-      "type": "header"
-    },
+      {
+        "section": "Versicherungsnehmer",
+        "card": true,
+        "items": [
     {
       "name": "versicherungsnehmerHausrat",
       "label": "Versicherungsnehmer",
@@ -25,18 +23,17 @@
       "tarifType":"HAUSRAT",
       "props": { "required": true },
       "suiteValue":"versicherungsnehmerId"
-    },
+    }]},
     {
-      "name": "gesellschaftHausratHeader",
-      "label": "Gesellschaft",
-      "type": "header"
-    },
+      "section": "Gesellschaft",
+      "card": true,
+      "items": [
     {
       "name": "gesellschaftHausrat",
       "type": "gesellschaft",
       "props": { "required": true },
       "suiteValue":"gesellschaft"
-    },
+    }]},
     {
       "name": "tarifbezeichnungGesellschaftHausrat",
       "label": "Tarifbezeichnung",
@@ -64,10 +61,9 @@
       "suiteValue":"staendigBewohnt"
     },
     {
-      "name": "einschluesseHausratHeader",
-      "label": "Einschlüsse",
-      "type": "header"
-    },
+      "section": "Einschlüsse",
+      "card": true,
+      "items": [
     {
       "name": "erhoehungWertsachenEinschluesseHausrat",
       "label": "Erhöhung Wertsachen",
@@ -90,13 +86,12 @@
       "type": "checkbox",
       "props": { "sm": 4,
         "xs":4 },
-        "suiteValue":""
-    },
+        "suiteValue":"elementar"
+    }]},
     {
-      "name": "versicherungssummeHausratHeader",
-      "label": "Versicherungssumme",
-      "type": "header"
-    },
+      "section": "Versicherungssumme",
+      "card": true,
+      "items": [
     {
       "name": "versicherungssummeHausrat",
       "label": "Versicherungssumme (€)",
@@ -112,7 +107,7 @@
       "props": { "sm": 6,
         "xs":6 },
         "suiteValue":"sb"
-    },
+    }]},
     {
       "name": "postleitzahlVersicherungssummeHausrat",
       "label": "PLZ",
@@ -271,10 +266,55 @@
       "suiteValue":"oeffentlicherDienst" 
     },
     {
-      "name": "VorschaedenHausratHeader",
-      "label": "Vorschäden",
-      "type": "header"
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
+        {
+          "name": "vertragsbeginnVertragslaufzeitHausrat",
+          "label": "Vertragsbeginn",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6,
+            "required":true },
+          "suiteValue":"versicherungsbeginn"
+        },
+        {
+          "name": "vertragsendeVertragslaufzeitHausrat",
+          "label": "Vertragsende",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue":"versicherungsende"
+        }
+      ]
     },
+    {
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
+        {
+          "name": "zahlweiseHausrat",
+          "label": "Zahlweise",
+          "type": "select",
+          "props": { "required": true, "sm": 6, "xs": 6 },
+          "options": [
+            { "value": "MONATLICH", "label": "Monatlich" },
+            { "value": "QUARTAL", "label": "Quartal" },
+            { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+            { "value": "JAEHRLICH", "label": "Jährlich" }
+          ],
+          "suiteValue": "zahlweise"
+        },
+        {
+          "name": "beitragHausrat",
+          "label": "Beitrag (€)",
+          "type": "text",
+          "props": { "required": true, "sm": 6, "xs": 6 },
+          "suiteValue":"beitrag"
+        }
+      ]},
+      {
+        "section": "Vorschäden",
+        "card": true,
+        "items": [
     {
       "name": "anzahlVorschaedenHausrat",
       "label": "Anzahl Vorschäden letzten 5 Jahre",
@@ -292,6 +332,13 @@
       "label": "Liste der Vorschäden (Datum/Art/Höhe)",
       "type": "text",
       "suiteValue":"vorschaedenNotiz" 
+    }]},
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }

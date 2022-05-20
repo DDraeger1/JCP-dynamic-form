@@ -173,6 +173,13 @@
       "label": "Beitrag",
       "props":{"required":true},
       "type": "text"
-    }]}
+    }]},
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
+    }
   ]
 }

@@ -1114,7 +1114,9 @@
               "type": "text",
               "condition": "KTVersichertePersonKVZusatz2",
               "suiteValue": "beitragKT2"
-            },
+            }
+          ]
+        },
             {
               "accordionText": "Sonstige Leistungen",
               "card": false,
@@ -1161,7 +1163,8 @@
               ]
             }
           ]
-        },
+
+    },
         {
           "accordionText": "Versicherte Person 3",
           "card": false,
@@ -1216,9 +1219,7 @@
               "props": { "sm": 2, "xs": 2 },
               "suiteValue": "inklKHT3",
               "condition": "selected3Persons"
-            }
-          ]
-        },
+            },
         {
           "accordionText": "Leistungen Ambulant",
           "card": false,
@@ -1685,8 +1686,10 @@
             }
           ]
         }
-      ]
-    },
+      
+    
+  ]
+},
     {
       "accordionText": "Versicherte Person 4",
       "card": false,
@@ -3255,6 +3258,13 @@
           ]
         }
       ]
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }

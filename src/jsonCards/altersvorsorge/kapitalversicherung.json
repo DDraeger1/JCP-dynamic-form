@@ -404,6 +404,13 @@
             "label": "Beitragsanteil für BU (€)",
             "type": "text",
             "suiteValue":"beitragsanteilFuerBU"
-          }]}
+          }]},
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
+          }
         ]
 }

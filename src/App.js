@@ -6,6 +6,7 @@ import React, {
   useContext,
   useReducer,
 } from "react";
+import DateiFotoUI from "./components/DateiFotosUI";
 import { Context } from "./context/Context";
 import DynamicForm from "./components/DynamicForm";
 import { mapAssets, redefineCard } from "./components/mapAssets";
@@ -14,27 +15,28 @@ import setTheme from "./theme";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import deLocale from "date-fns/locale/de";
-import { Save, DeleteOutline, UnfoldLess, UnfoldMore, Close } from "@material-ui/icons"; // ,RestartAlt
+import {
+  UnfoldLess,
+  UnfoldMore,
+  Close,
+  Edit,
+} from "@material-ui/icons"; // ,RestartAlt
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import IconButton from '@mui/material/IconButton';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Paper from '@mui/material/Paper';
-import Draggable from 'react-draggable';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import IconButton from "@mui/material/IconButton";
+import DialogTitle from "@mui/material/DialogTitle";
+import Paper from "@mui/material/Paper";
+import Draggable from "react-draggable";
 
-import mock from "./mockUI/MockUI.png";
 import loadingGIF from "./mockUI/loading.gif";
 import axios from "axios";
 import qs from "query-string";
 import personaldaten from "./jsonCards/persoenlicheAngaben/personaldaten.json";
-import chooseCard from "./jsonCards/ui/chooseCard.json";
-import { Tooltip, Button } from "@mui/material";
+import { Tooltip, Button, TextField } from "@mui/material";
 import debugMenue from "./jsonCards/debug/debugMenue.json";
 import SideMenue from "./components/SideMenue";
-import { setName } from "./components/mapAssets";
 
 import newMandant from "./jsonCards/persoenlicheAngaben/newMandant.json";
 import erweiterteBerufsfragen from "./jsonCards/persoenlicheAngaben/erweiterteBerufsfragen.json";
@@ -56,6 +58,8 @@ import steuer from "./jsonCards/einnahmenUndAusgaben/steuer.json";
 import ausgaben from "./jsonCards/einnahmenUndAusgaben/ausgaben.json";
 import automobilclub from "./jsonCards/einnahmenUndAusgaben/automobilclub.json";
 import sonstigeZahlungsverpflichtungen from "./jsonCards/einnahmenUndAusgaben/sonstigeZahlungsverpflichtigungen.json";
+import strom from "./jsonCards/einnahmenUndAusgaben/strom.json";
+import gas from "./jsonCards/einnahmenUndAusgaben/gas.json";
 
 import kredit from "./jsonCards/vermoegenUndVerbindlichkeiten/kredit.json";
 import darlehen from "./jsonCards/vermoegenUndVerbindlichkeiten/darlehen.json";
@@ -90,20 +94,20 @@ import kapitalversicherung from "./jsonCards/altersvorsorge/kapitalversicherung.
 import riesterrente from "./jsonCards/altersvorsorge/riesterrente.json";
 import betrieblicheAltersversorgung from "./jsonCards/altersvorsorge/betrieblicheAltersversorgung.json";
 import ruerupRente from "./jsonCards/altersvorsorge/ruerupRente.json";
-import { gridColumnsTotalWidthSelector } from "@material-ui/x-grid";
+import rente from "./jsonCards/altersvorsorge/rente.json";
 
-import beamtenbeihilfe from "./jsonCards/gesundheit/beamtenbeihilfe.json";
+import beamtenbeihilfe from "./jsonCards/vermoegenUndVerbindlichkeiten/beamtenbeihilfe.json";
 import berufsstaendischeVorsorge from "./jsonCards/vermoegenUndVerbindlichkeiten/berufsstandischeVersorgung.json";
 import beamtenversorgung from "./jsonCards/vermoegenUndVerbindlichkeiten/beamtenversorgung.json";
 import bauherrenhaftpflicht from "./jsonCards/vermoegenUndVerbindlichkeiten/bauherrenhaftpflicht.json";
 import wassersporthaftpflicht from "./jsonCards/vermoegenUndVerbindlichkeiten/wassersporthaftpflicht.json";
 import gewaesserschadenhaftpflicht from "./jsonCards/vermoegenUndVerbindlichkeiten/gewaesserschadenhaftpflicht.json";
-import rente from "./jsonCards/vermoegenUndVerbindlichkeiten/rente.json";
+import jagdhaftpflicht from "./jsonCards/vermoegenUndVerbindlichkeiten/jagdhaftpflicht.json";
 
 import { useParams } from "react-router-dom";
 
 import isAssetAvailable from "./components/isAssetAvailable";
-import { Icon, Typography } from "@material-ui/core";
+import {Typography } from "@material-ui/core";
 //TODO: Arbeite xs und md ein für kleinere bildschirme!!
 
 const betrieblicheAltersversorgungValues = {
@@ -164,6 +168,7 @@ const ruerupRenteValues = {
   RGZMonatlicheRentenleistungRuerupRente: "",
   dynamikRuerupRente: "",
   prozentDynamikRuerupRente: "",
+
   integrierteBURuerupRente: "",
   rentenleistungBURuerupRente: "",
   dynamikBULeistungBURuerupRente: "",
@@ -1447,122 +1452,183 @@ const privateKrankenValues = {
 };
 
 // die dem Formular zugrunde liegenden Daten...
- //new form imports:  
-  //D   
+//new form imports:
+//D
 
-  const beamtenbeihilfeValues ={
-    versicherungsnehmerBeamtenbeihilfe:"",
-    artBeihilfeBeamtenbeihilfe:"",
-    ambulantHoeheBeamtenbeihilfe:"",
-    stationaerHoeheBeamtenbeihilfe:"",
-    anspruchBeamtenbeihilfe:"",
-    anwartschaftversicherungBeamtenbeihilfe:"",
-    bundeslandBeamtenbeihilfe:"",
-  }
-  const berufsstaendischeVorsorgeValues ={
-    versicherungsnehmerBerufsstandischeVersorgung:"",
-    gesellschaftBerufsstandischeVersorgung:"",
-    renteneintrittBerufsstandischeVersorgung:"",
-    renteBUEMBerufsstandischeVersorgung:"",
-    kapitalleistungBerufsstandischeVersorgung:"",
-    rentenanwartschaftBerufsstandischeVersorgung:"",
-    monatlicheAltersrenteBerufsstandischeVersorgung:"",
-    witwenrenteBerufsstandischeVersorgung:"",
-    waisenrenteBerufsstandischeVersorgung:"",
-    zahlweiseBerufsstandischeVersorgung:"",
-    beitragBerufsstandischeVersorgung:"",
-  }
-  const beamtenversorgungValues ={
-    berufsstandischeVersorgung:"",
-    bundBeamtenversorgung:"",
-    bundeslandBeamtenversorgung:"",
-    besoldungsgruppeBeamtenversorgung:"",
-    stufeBeamtenversorgung:"",
-    dienstjahreBeamtenversorgung:"",
-    zulagenBeamtenversorgung:"",
-    beamtenstatusBeamtenversorgung:"",
-    wartezeitBeamtenversorgung:"",
-    vollzeitBeamtenversorgung:"",
-    teilzeitBeamtenversorgung:"",
-    vonZividienstzeitenBeamtenversorgung:"",
-    bisZividienstzeitenBeamtenversorgung:"",
-    vonHochschulzeitenBeamtenversorgung:"",
-    bisHochschulzeitenBeamtenversorgung:"",
-    rentenbeginnBeamtenversorgung:"",
-    pensionsanspruchBeamtenversorgung:"",
-    dienstunfähigkeitsrenteBeamtenversorgung:"",
-    witwerrenteBeamtenversorgung:"",
-  }
-  const bauherrenhaftpflichtValues={
-    versicherungsnehmerBauherrenhaftpflicht:"",
-    gesellschaftBauherrenhaftpflicht:"",
-    vertragsnummerBauherrenhaftpflicht:"",
-    bausummeBauherrenhaftpflicht:"",
-    wohnflaecheBauherrenhaftpflicht:"",
-    hoeheEigenleistungenBauherrenhaftpflicht:"",
-    selbstbeteiligungBauherrenhaftpflicht:"",
-    fertighausBauherrenhaftpflicht:"",
-    vertragsbeginnBauherrenhaftpflicht:"",
-    vertragsendeBauherrenhaftpflicht:"",
-    anzahlVorschaedenFuenfJahreBauherrenhaftpflicht:"",
-    anzahlVorschaedenBauherrenhaftpflicht:"",
-    vorschadensummeBauherrenhaftpflicht:"",
-  }
-  const wassersporthaftpflichtValues ={
-    versicherungsnehmerWassersporthaftpflicht:"",
-    gesellschaftWassersporthaftpflicht:"",
-    vertragsnummerWassersporthaftpflicht:"",
-    versicherungssummeWassersporthaftpflicht:"",
-    selbstbeteiligungWassersporthaftpflicht:"",
-    motorbootWassersporthaftpflicht:"",
-    segelflaecheWassersporthaftpflicht:"",
-    vertragsbeginnWassersporthaftpflicht:"",
-    vertragsendeWassersporthaftpflicht:"",
-    anzahlVorschaedenFuenfJahreWassersporthaftpflicht:"",
-    anzahlVorschaedenWassersporthaftpflicht:"",
-    vorschadensummeWassersporthaftpflicht:"",
-  }
-  const gewaesserschadenhaftpflichtValues ={
-    versicherungsnehmerWassersporthaftpflicht:"",
-    gesellschaftGewaesserschadenhaftpflicht:"",
-    tarifgruppeGewaesserschadenhaftpflicht:"",
-    tankortGewaesserschadenhaftpflicht:"",
-    selbstbeteiligungGewaesserschadenhaftpflicht:"",
-    tarifgruppeGewaesserschadenhaftpflicht:"",
-    fassungsvermoegenGewaesserschadenhaftpflicht:"",
-    versicherungssummeGewaesserschadenhaftpflicht:"",
-    vertragsbeginnGewaesserschadenhaftpflicht:"",
-    vertragsendeGewaesserschadenhaftpflicht:"",
-    zahlweiseGewaesserschadenhaftpflicht:"",
-    Gewaesserschadenhaftpflicht:"",
-    beitragGewaesserschadenhaftpflicht:"",
-    anzahlVorschaedenFuenfJahreGewaesserschadenhaftpflicht:"",
-    anzahlVorschaedenGewaesserschadenhaftpflicht:"",
-    vorschadensummeGewaesserschadenhaftpflicht:"",
-  }
-  const renteValues ={
-    versicherungsnehmerRente:"",
-    gesellschaftRente:"",
-    nettoRente:"",
-    bruttoRente:"",
-    artRente:"",
-    vertragsbeginnRente:"",
-    vertragsendeRente:"",
-    zahlungVonRente:"",
-    zahlungBisRente:"",
-    zahlweiseRente:"",
-  }
-  function PaperComponent(props) {
-    return (
-      <Draggable
-        handle="#draggable-dialog-title"
-        cancel={'[class*="MuiDialogContent-root"]'}
-      >
-        <Paper {...props} />
-      </Draggable>
-    );
-  }function App(props) {
+const beamtenbeihilfeValues = {
+  versicherungsnehmerBeamtenbeihilfe: "",
+  artBeihilfeBeamtenbeihilfe: "",
+  ambulantHoeheBeamtenbeihilfe: "",
+  stationaerHoeheBeamtenbeihilfe: "",
+  anspruchBeamtenbeihilfe: "",
+  anwartschaftversicherungBeamtenbeihilfe: "",
+  bundeslandBeamtenbeihilfe: "",
+};
+const berufsstaendischeVorsorgeValues = {
+  versicherungsnehmerBerufsstandischeVersorgung: "",
+  gesellschaftBerufsstandischeVersorgung: "",
+  renteneintrittBerufsstandischeVersorgung: "",
+  renteBUEMBerufsstandischeVersorgung: "",
+  kapitalleistungBerufsstandischeVersorgung: "",
+  rentenanwartschaftBerufsstandischeVersorgung: "",
+  monatlicheAltersrenteBerufsstandischeVersorgung: "",
+  witwenrenteBerufsstandischeVersorgung: "",
+  waisenrenteBerufsstandischeVersorgung: "",
+  zahlweiseBerufsstandischeVersorgung: "",
+  beitragBerufsstandischeVersorgung: "",
+};
+const beamtenversorgungValues = {
+  berufsstandischeVersorgung: "",
+  bundBeamtenversorgung: "",
+  bundeslandBeamtenversorgung: "",
+  besoldungsgruppeBeamtenversorgung: "",
+  stufeBeamtenversorgung: "",
+  dienstjahreBeamtenversorgung: "",
+  zulagenBeamtenversorgung: "",
+  beamtenstatusBeamtenversorgung: "",
+  wartezeitBeamtenversorgung: "",
+  vollzeitBeamtenversorgung: "",
+  teilzeitBeamtenversorgung: "",
+  vonZividienstzeitenBeamtenversorgung: "",
+  bisZividienstzeitenBeamtenversorgung: "",
+  vonHochschulzeitenBeamtenversorgung: "",
+  bisHochschulzeitenBeamtenversorgung: "",
+  rentenbeginnBeamtenversorgung: "",
+  pensionsanspruchBeamtenversorgung: "",
+  dienstunfähigkeitsrenteBeamtenversorgung: "",
+  witwerrenteBeamtenversorgung: "",
+};
+const bauherrenhaftpflichtValues = {
+  versicherungsnehmerBauherrenhaftpflicht: "",
+  gesellschaftBauherrenhaftpflicht: "",
+  vertragsnummerBauherrenhaftpflicht: "",
+  bausummeBauherrenhaftpflicht: "",
+  wohnflaecheBauherrenhaftpflicht: "",
+  hoeheEigenleistungenBauherrenhaftpflicht: "",
+  selbstbeteiligungBauherrenhaftpflicht: "",
+  fertighausBauherrenhaftpflicht: "",
+  vertragsbeginnBauherrenhaftpflicht: "",
+  vertragsendeBauherrenhaftpflicht: "",
+  anzahlVorschaedenFuenfJahreBauherrenhaftpflicht: "",
+  anzahlVorschaedenBauherrenhaftpflicht: "",
+  vorschadensummeBauherrenhaftpflicht: "",
+};
+const wassersporthaftpflichtValues = {
+  versicherungsnehmerWassersporthaftpflicht: "",
+  gesellschaftWassersporthaftpflicht: "",
+  vertragsnummerWassersporthaftpflicht: "",
+  versicherungssummeWassersporthaftpflicht: "",
+  selbstbeteiligungWassersporthaftpflicht: "",
+  motorbootWassersporthaftpflicht: "",
+  segelflaecheWassersporthaftpflicht: "",
+  vertragsbeginnWassersporthaftpflicht: "",
+  vertragsendeWassersporthaftpflicht: "",
+  anzahlVorschaedenFuenfJahreWassersporthaftpflicht: "",
+  anzahlVorschaedenWassersporthaftpflicht: "",
+  vorschadensummeWassersporthaftpflicht: "",
+};
+const gewaesserschadenhaftpflichtValues = {
+  versicherungsnehmerWassersporthaftpflicht: "",
+  gesellschaftGewaesserschadenhaftpflicht: "",
+  tarifgruppeGewaesserschadenhaftpflicht: "",
+  tankortGewaesserschadenhaftpflicht: "",
+  selbstbeteiligungGewaesserschadenhaftpflicht: "",
+  tarifgruppeGewaesserschadenhaftpflicht: "",
+  fassungsvermoegenGewaesserschadenhaftpflicht: "",
+  versicherungssummeGewaesserschadenhaftpflicht: "",
+  vertragsbeginnGewaesserschadenhaftpflicht: "",
+  vertragsendeGewaesserschadenhaftpflicht: "",
+  zahlweiseGewaesserschadenhaftpflicht: "",
+  Gewaesserschadenhaftpflicht: "",
+  beitragGewaesserschadenhaftpflicht: "",
+  anzahlVorschaedenFuenfJahreGewaesserschadenhaftpflicht: "",
+  anzahlVorschaedenGewaesserschadenhaftpflicht: "",
+  vorschadensummeGewaesserschadenhaftpflicht: "",
+};
+const stromValues = {
+  tarifbezeichnungStrom: "",
+  vertragspartnerStrom: "",
+  anbieterStrom: "",
+  versicherungsnummerStrom: "",
+  versicherungsnummerStrom: "",
+  jaehrlicherVerbrauchStrom: "",
+  vertragslaufzeitStrom: "",
+  vertragslaufzeitStrom: "",
+  zahlweiseStrom: "",
+  beitragStrom: "",
+};
+const gasValues = {
+  tarifbezeichnungGas: "",
+  vertragspartnerGas: "",
+  anbieterGas: "",
+  versicherungsnummerGas: "",
+  versicherungsnummerGas: "",
+  jaehrlicherVerbrauchGas: "",
+  vertragslaufzeitGas: "",
+  vertragslaufzeitGas: "",
+  zahlweiseGas: "",
+  beitragGas: "",
+};
+const renteValues = {
+  versicherungsnehmerRente: "",
+  gesellschaftRente: "",
+  nettoRente: "",
+  bruttoRente: "",
+  artRente: "",
+  vertragsbeginnRente: "",
+  vertragsendeRente: "",
+  zahlungVonRente: "",
+  zahlungBisRente: "",
+  zahlweiseRente: "",
+};
+const erweiterteBerufsfragenValues = {
+  abgeschlosseneAusbildungErwBerufsfragen: "",
+  personalverantwortungErwBerufsfragen: "",
+  umfangTaetigkeitErwBerufsfragen: "",
+  anteilkoerperlichErwBerufsfragen: "",
+  anteilBuerotaetigkeitErwBerufsfragen: "",
+  anteilKaufmannErwBerufsfragen: "",
+  berufsstandErwBerufsfragen: "",
+  dauerSelbststaendigkeitErwBerufsfragen: "",
+  jaehrlichesEinkommenErwBerufsfragen: "",
+  dienstunfaehigkeitErwBerufsfragen: "",
+  aufsichtfuehrendErwBerufsfragen: "",
+  dauerLeitendenTaetigkeitErwBerufsfragen: "",
+  anteilAufsichtfuehrungErwBerufsfragen: "",
+  reisetaetigkeitErwBerufsfragen: "",
+  besonderheitenErwBerufsfragen: "",
+  hobbyErwBerufsfragen: "",
+};
+const jagdhaftpflichtValues = {
+  tarifbezeichnungJagdhaftpflicht: "",
+  versicherungsnehmerJagdhaftpflicht: "",
+  gesellschaftJagdhaftpflicht: "",
+  versicherungsnummerJagdhaftpflicht: "",
+  versicherungssummeJagdhaftpflicht: "",
+  selbstbeteiligungJagdhaftpflicht: "",
+  vertragsbeginnJagdhaftpflicht: "",
+  vertragsendeJagdhaftpflicht: "",
+  anzahlVorschaedenFuenfJahreJagdhaftpflicht: "",
+  anzahlVorschaedenJagdhaftpflicht: "",
+  vorschadensummeJagdhaftpflicht: "",
+  zahlweiseJagdhaftpflicht: "",
+  beitragJagdhaftpflicht: "",
+  notizen: "",
+};
+function PaperComponent(props) {
+  return (
+    <Draggable
+      handle="#draggable-dialog-title"
+      cancel={'[class*="MuiDialogContent-root"]'}
+    >
+      <Paper {...props} />
+    </Draggable>
+  );
+}
+function App(props) {
   const [loaded, setLoaded] = useState(false);
+  const [formWidth, setFormWidth] = useState("100%");
+  const [editNameTextField, toggleEditNameTextField] = useState(false);
   const [initialised, setInitialised] = useState(false);
   const [tabIndex, setTabIndex] = useState(0);
   const [subTabIndex, setSubTabIndex] = useState(1000);
@@ -1601,9 +1667,16 @@ const privateKrankenValues = {
     arbeitgeberData,
     setMandantTabIndex,
     toggleProductGesellschaftIdLoaded,
-    login, setLogin,
-    openDialog, toggleOpenDialog,
-    fullscreenDialog, toggleFullscreenDialog
+    login,
+    setLogin,
+    openDialog,
+    toggleOpenDialog,
+    fullscreenDialog,
+    toggleFullscreenDialog,
+    colorProperties,
+    setColorProperties,
+    vertragName,
+    setVertragName,
   } = useContext(Context);
 
   //note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
@@ -1613,15 +1686,28 @@ const privateKrankenValues = {
   const [isDrawerInDOM, toggleDrawerInDOM] = useState(false);
   const [selectedVertraege, setSelectedVertraege] = useState([]);
   const [uebersichtVisibility, setUebersichtVisibility] = useState("visible");
-
   let jsonForm = [];
   const ref = useRef();
- 
   switch (card) {
-    case "PRIVATRENTE":
-      jsonForm =[kapitalversicherung]
-      dummyData={...kapitalversicherungValues}
-      break
+    case "JAGDHAFTPFLICHT":
+      jsonForm = [jagdhaftpflicht];
+      dummyData = { ...jagdhaftpflichtValues };
+      break;
+    case "GAS":
+      jsonForm = [gas];
+      dummyData = { ...gasValues };
+      break;
+    case "STROM":
+      jsonForm = [strom];
+      dummyData = { ...stromValues };
+      break;
+      case "PRIVATRENTE":
+        case "FONDSLEBEN":
+        case "KAPITALLEBEN":
+          case "FONDSRENTEN":
+      jsonForm = [kapitalversicherung];
+      dummyData = { ...kapitalversicherungValues };
+      break;
     case "BEAMTENBEIHILFE":
       jsonForm = [beamtenbeihilfe];
       dummyData = { ...beamtenbeihilfeValues };
@@ -1644,15 +1730,15 @@ const privateKrankenValues = {
       break;
     case "GEWAESSERSCHADENHAFTPFLICHT":
       jsonForm = [gewaesserschadenhaftpflicht];
-      dummyData = {...gewaesserschadenhaftpflichtValues  };
+      dummyData = { ...gewaesserschadenhaftpflichtValues };
       break;
     case "RENTE":
       jsonForm = [rente];
-      dummyData = {  renteValues};
+      dummyData = { ...renteValues };
       break;
     case "ERWEITERTEBERUFSFRAGEN":
       jsonForm = [erweiterteBerufsfragen];
-      dummyData = {  };
+      dummyData = { ...erweiterteBerufsfragenValues };
       break;
     case "newMandant":
       dummyData = { ...personaldatenValues };
@@ -1700,7 +1786,15 @@ const privateKrankenValues = {
       dummyData = { ...betrieblicheAltersversorgungValues };
       jsonForm = [betrieblicheAltersversorgung];
       break;
+    case "PENSIONSKASSE_3":
+      dummyData = { ...betrieblicheAltersversorgungValues };
+      jsonForm = [betrieblicheAltersversorgung];
+      break;
     case "PENSIONSKASSE_40":
+      dummyData = { ...betrieblicheAltersversorgungValues };
+      jsonForm = [betrieblicheAltersversorgung];
+      break;
+    case "ZUSATZVERSORGUNGSKASSE":
       dummyData = { ...betrieblicheAltersversorgungValues };
       jsonForm = [betrieblicheAltersversorgung];
       break;
@@ -1763,6 +1857,7 @@ const privateKrankenValues = {
       jsonForm = [personaldaten];
       break;
     case "GESETZLICHE_AV":
+      console.log("test")
       dummyData = { ...gesetzlicheAltersvorsorgeValues };
       jsonForm = [gesetzlicheAltersvorsorge];
       break;
@@ -1892,6 +1987,13 @@ const privateKrankenValues = {
       jsonForm = [];
   }
   var dummyData;
+  function handleSaveOnKeyDown(event) {
+    event.preventDefault();
+    let charCode = String.fromCharCode(event.which).toLowerCase();
+    if ((event.ctrlKey || event.metaKey) && charCode === "s") {
+      handleSave();
+    }
+  }
   const handleSave = async () => {
     if (!isBusy && ref?.current) {
       setIsBusy(true);
@@ -1899,34 +2001,23 @@ const privateKrankenValues = {
       try {
         await ref.current.submit();
         alert("Daten wurden gespeichert");
-        /*
-        setLoaded(false);
-        setIsBusy(true);
-        
+        if (!checkIfPersonendaten(card)) {
+          handleClose();
+        }
         if (checkIfPersonendaten(card)) {
           setInitialised(false);
-          getDataPersonendaten();
-          setIsBusy(false);
+          getDataPersonendatenLiveSuite(login, false);
           setTimeout(() => {
             setLoaded(true);
-            setInitialised(true);
           }, 100);
-        } else {
-          setInitialised(false);
-          getDataLiveSuite();
-          setIsBusy(false);
-          setTimeout(() => {
-            setLoaded(true);
-            setInitialised(true);
-          }, 100);
-        }*/
+        }
         if (card === "newMandant") {
           setTimeout(() => {
+            setInitialised(false);
             getDataPersonendatenLiveSuite(login, false);
             setLoaded(false);
             setTimeout(() => {
               setLoaded(true);
-              setCard("PERSONALDATEN");
             }, 200);
           }, 100);
         } else if (card === "newKind") {
@@ -1939,27 +2030,8 @@ const privateKrankenValues = {
             }, 200);
           }, 100);
         } else if (!checkIfPersonendaten(card)) {
-          setTimeout(() => {
-            getDataWithLogin(login);
-            setLoaded(false);
-            setTimeout(() => {
-              if (vertragId === "newVertrag") {
-                setSelectedVertraege([
-                  ...selectedVertraege.splice(selectedVertraege.length - 1, 1),
-                  {
-                    id: rawData.analyseAssets[rawData.analyseAssets.length - 1]
-                      .id,
-                    name: setName("", card),
-                    tarifType: card,
-                  },
-                ]);
-                setVertragId(
-                  rawData.analyseAssets[rawData.analyseAssets.length - 1].id
-                );
-              }
-              setLoaded(true);
-            }, 200);
-          }, 100);
+          setInitialised(false);
+          getDataWithLogin(login);
         }
       } catch (e) {
         console.warn(e);
@@ -1980,6 +2052,7 @@ const privateKrankenValues = {
       .post(saveAssetLiveSuite(login).url, dataPaket, saveAssetLiveSuite(login))
       .then((response) => {
         console.log(response);
+        getDataWithLogin(login);
       })
       .catch((err) => alert(err));
 
@@ -2002,7 +2075,9 @@ const privateKrankenValues = {
     url: "https://jcp-suite.de/suite/user.json",
     data: dataLogin,
   };
-
+/*
+https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a-d5b0-11ec-bdc8-001c4270ffe9
+*/
   var getBeraterLiveSuite = (login) => {
     return {
       method: "get",
@@ -2188,6 +2263,7 @@ const privateKrankenValues = {
           berater: result[6].data.data,
           success: true,
         });
+        setColorProperties(result[4].data.data.colorProperties);
         setMandantGroup(result[2].data.data.mandantMandantGroups);
         setBankverbindungen(
           result[2].data.data.mandantMandantGroups[mandantTabIndex].mandant
@@ -2263,16 +2339,15 @@ const privateKrankenValues = {
       isAssetAvailable(
         rawData,
         setFormData,
-        dummyData,
         setLoaded,
         "none",
         card,
         setVersicherungsnehmerValue,
         rawData.contextProductId.contextConfig.desktop.showExternalProductId,
-
         mandantTabIndex,
         bankverbindungen,
-        arbeitgeberData
+        arbeitgeberData,
+        setVertragName
       );
 
       setId(mapAssets(rawData.analyseAssets));
@@ -2285,23 +2360,22 @@ const privateKrankenValues = {
         setLoaded(true);
       }, 500);
     }
-  }, [rawData.success]);
+  }, [rawData]);
 
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
       isAssetAvailable(
         rawData,
         setFormData,
-        dummyData,
         setLoaded,
         "Personbezogene Daten",
         card,
         setVersicherungsnehmerValue,
         rawData.contextProductId.contextConfig.desktop.showExternalProductId,
-
         mandantTabIndex,
         bankverbindungen,
-        arbeitgeberData
+        arbeitgeberData,
+        setVertragName
       );
       setTimeout(() => {
         setLoaded(false);
@@ -2317,10 +2391,6 @@ const privateKrankenValues = {
   }, [mandantTabIndex]);
 
   useEffect(() => {
-    console.log("triggered");
-    console.log(initialised);
-    console.log(rawData.success);
-
     if (rawData.success === true && initialised === true) {
       if (!checkIfPersonendaten(card)) {
         if (vertragId.length > 1) {
@@ -2341,17 +2411,16 @@ const privateKrankenValues = {
               isAssetAvailable(
                 rawData,
                 setFormData,
-                dummyData,
                 setLoaded,
                 vertragId,
                 card,
                 setVersicherungsnehmerValue,
                 rawData.contextProductId.contextConfig.desktop
                   .showExternalProductId,
-
                 mandantTabIndex,
                 bankverbindungen,
-                arbeitgeberData
+                arbeitgeberData,
+                setVertragName
               );
               setTimeout(() => {
                 setLoaded(true);
@@ -2460,7 +2529,6 @@ const privateKrankenValues = {
           isAssetAvailable(
             rawData,
             setFormData,
-            dummyData,
             setLoaded,
             "none",
             card,
@@ -2469,7 +2537,8 @@ const privateKrankenValues = {
               .showExternalProductId,
             mandantTabIndex,
             bankverbindungen,
-            arbeitgeberData
+            arbeitgeberData,
+            setVertragName
           );
           setTimeout(() => {
             setLoaded(false);
@@ -2482,11 +2551,9 @@ const privateKrankenValues = {
           setAnzahlVp(
             mandantGroup[mandantTabIndex].mandant.bankverbindungs.length
           );
-          console.log(bankverbindungen);
           isAssetAvailable(
             rawData,
             setFormData,
-            dummyData,
             setLoaded,
             "none",
             card,
@@ -2495,7 +2562,8 @@ const privateKrankenValues = {
               .showExternalProductId,
             mandantTabIndex,
             bankverbindungen,
-            arbeitgeberData
+            arbeitgeberData,
+            setVertragName
           );
           break;
         default:
@@ -2503,7 +2571,6 @@ const privateKrankenValues = {
             isAssetAvailable(
               rawData,
               setFormData,
-              dummyData,
               setLoaded,
               "none",
               card,
@@ -2512,7 +2579,8 @@ const privateKrankenValues = {
                 .showExternalProductId,
               mandantTabIndex,
               bankverbindungen,
-              arbeitgeberData
+              arbeitgeberData,
+              setVertragName
             );
             setTimeout(() => {
               setLoaded(false);
@@ -2528,22 +2596,6 @@ const privateKrankenValues = {
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
       renderAnzahlVp(anzahlVp);
-      /*
-  if(card === "ARBEITGEBER" || "BANKVERBINDUNG"){
-    isAssetAvailable(
-      rawData,
-      setFormData,
-      dummyData,
-      setLoaded,
-      "none",
-      card,
-      setVersicherungsnehmerValue,
-      rawData.contextProductId.contextConfig.desktop.showExternalProductId,
-     
-      mandantTabIndex,
-      bankverbindungen
-    );
-  }*/
     }
   }, [anzahlVp]);
   useEffect(() => {
@@ -2891,6 +2943,7 @@ const privateKrankenValues = {
   };
 
   const handleClose = () => {
+    toggleEditNameTextField(false);
     toggleOpenDialog(false);
   };
   //  theme={setTheme((loaded ? rawData.contextProductId.colorProperties : false))}
@@ -2906,39 +2959,28 @@ const privateKrankenValues = {
       setLoaded(true);
     }, 150);
   }
-
-  function deleteVertrag() {
-    let deleteParams = {};
-    if (card === "KIND" || card === "PERSONALDATEN") {
-      setMandantTabIndex(0);
-      deleteParams = {
-        id: mandantGroup[mandantTabIndex].mandantId,
-        mandantId: mandantGroup[0].mandantId,
-        action: "deletePerson",
-      };
-      let dataPaket = qs.stringify(deleteParams);
-      axios
-        .post(
-          saveAssetLiveSuite(login).url,
-          dataPaket,
-          saveAssetLiveSuite(login)
-        )
-        .then((response) => {
-          setTimeout(() => {
-            getDataPersonendatenLiveSuite(login, true);
-            setLoaded(false);
-            if (card === "KIND") {
-              setCard("PERSONALDATEN");
-            }
-            setTimeout(() => {
-              setLoaded(true);
-            }, 300);
-          }, 100);
-        })
-        .catch((err) => alert(err));
+  // onKeyDown={handleSaveOnKeyDown}
+  function toggleTextField() {
+    toggleEditNameTextField(true);
+  }
+  function onChangeNameTextfield(event) {
+    setVertragName(event.target.value);
+    console.log(vertragName);
+  }
+  function saveVertragNameChanges(event) {
+    if (event.key === "Enter") {
+      toggleEditNameTextField(false);
     }
   }
-  console.log(fullscreenDialog)
+  function isNameAvailable() {
+    let output = "";
+    if (vertragName.length > 0) {
+      output = vertragName;
+    } else {
+      output = jsonForm[0].section;
+    }
+    return output;
+  }
   return (
     <div style={{ backgroundColor: "#eeeeee", overflowX: "hidden" }}>
       <ThemeProvider>
@@ -2953,7 +2995,21 @@ const privateKrankenValues = {
               assets={rawData.analyseAssets}
               setCard={setCard}
               colorProperties={
-                loaded ? rawData.contextProductId.colorProperties : {}
+                loaded
+                  ? rawData.contextProductId.colorProperties
+                  : {
+                      BUTTONCOLOR: "#C91413",
+                      COLOR1: "#404041",
+                      COLOR2: "#D5D5D5",
+                      MAINCOLOR: "#565656",
+                      METANAV: "#000000",
+                      METANAVBTN: "#000000",
+                      REQUIREDCOLOR: "#F2EB1B",
+                      RESULTSPANELFAVORIT: "#FFFFFF",
+                      RESULTSPANELSONSTIGE: "#FFFFFF",
+                      RESULTSPANELSTRATEGISCHE: "#FFFFFF",
+                      VIEWPORTCOLOR: "#565656",
+                    }
               }
               loaded={loaded}
               card={card}
@@ -2965,6 +3021,8 @@ const privateKrankenValues = {
               setSubTabIndex={setSubTabIndex}
               uebersichtVisibility={uebersichtVisibility}
               setUebersichtVisibility={setUebersichtVisibility}
+              mandantTabIndex={mandantTabIndex}
+              vertragId={vertragId}
             />
           )}
           {!loaded ? (
@@ -2979,95 +3037,242 @@ const privateKrankenValues = {
             </div>
           ) : (
             <div className={cardClassName}>
-                          <Dialog
-            open={openDialog}
-            onClose={ (_, reason) => {
-              if(tabIndex === 0){
-              if (reason !== "backdropClick") {
-                handleClose();
-              }} if(tabIndex === 1){
-                handleClose()
-              }
-            }}
-            PaperComponent={tabIndex === 1 ? PaperComponent : null}
-            aria-labelledby="draggable-dialog-title"
-            maxWidth={"lg"}
-            sx={{marginTop:"96px", marginLeft:"100px", zIndex:(tabIndex === 1 ?"3000 !important":"51 !important")}}
-            hideBackdrop={tabIndex === 1 ? false : true} 
-            fullScreen={fullscreenDialog}
-          >
-            <DialogTitle sx={{display:"flex", cursor: (tabIndex === 1 ?"move":'default'), backgroundColor:(!loaded ? "" :rawData.contextProductId.colorProperties.COLOR1),color:"white", height:"44px"  }} id="draggable-dialog-title">
-              <Typography variant="h5" sx={{width:"100% !important"}}>{jsonForm[0].section}</Typography>
-              <div style={{width:"90%"}}/>
-              <IconButton onClick={()=>toggleFullscreenDialog(!fullscreenDialog)} sx={{transform:"rotate(45deg) !important",zIndex:"51 !important" ,color: (!loaded ? "" :rawData.contextProductId.colorProperties.COLOR1),cursor:"pointer !important", backgroundColor:"white !important",float:"right", height:"16px", width:"16px",padding:"0px",top:"5px", zIndex:"200 !important"}}>{fullscreenDialog ?<UnfoldLess/>:<UnfoldMore/>}</IconButton>
-              {tabIndex === 0 ? null:<IconButton onClick={()=>handleClose()} sx={{color: (!loaded ? "" :rawData.contextProductId.colorProperties.COLOR1), backgroundColor:"white !important",float:"right", height:"16px", width:"16px",left:"10px",top:"5px"}}> <Close/></IconButton>}
-            </DialogTitle>
-            
-            <DialogContent>
-              <DynamicForm
-                // Das gesamte Formular kann deaktiviert werden (read-only)
-                disabled={isBusy}
-                // falls eine kompakte Ansicht gewünscht wird, werden alle Elemente auf voller Breite
-                // angezeigt (grid-props werden ignoriert) und einige Abstände werden verkleinert
-                // ... z.B. für Formular in Drawern, mobile Ansicht etc.
-                compact={false}
-                // an das Formular können weitere Styles übergeben werden
-                style={{ margin: "0 0 20px" }}
-                // benötigt für den submit-button, der sich außerhalb der Komponente befindet
-                // siehe useImperativeHandle in DynamicForm.js
-                ref={ref}
-                // die eigentlichen Daten
-                values={formData}
-                // die Formular-Definition
-                formDefinition={jsonForm}
-                mandantGroup={rawData.mandantGroup}
-                gesellschaft={rawData.gesellschaft}
-                assets={rawData.analyseAssets}
-                berater={rawData.berater}
-                // Was soll beim Absenden geschehen?
-                // erwartet wird ein Promise, der mit dem kompletten (evtl. modifizierten Datensatz) resolvet
-                onSubmit={handleSubmit}
-                tarifTypeIdFromCardState={card}
-                productId={rawData.productId}
-                params={params}
-                id={id}
-                setCard={setCard}
-                colorProperties={rawData.contextProductId.colorProperties}
-                renderAnzahlVp={renderAnzahlVp}
-                checkIfPersonendaten={checkIfPersonendaten}
-              />
-              </DialogContent>
+              <Dialog
+                open={openDialog}
+                onClose={(_, reason) => {
+                  if (tabIndex === 0) {
+                    if (reason !== "backdropClick") {
+                      handleClose();
+                    }
+                  }
+                  if (tabIndex === 1) {
+                    handleClose();
+                  }
+                }}
+                PaperComponent={tabIndex === 1 ? PaperComponent : null}
+                aria-labelledby="draggable-dialog-title"
+                maxWidth={"lg"}
+                minWidth={"lg"}
+                sx={{
+                  marginTop: "96px",
+                  marginLeft: "100px",
+                  zIndex: tabIndex === 1 ? "51 !important" : "51 !important",
+                }}
+                hideBackdrop
+                fullScreen={fullscreenDialog}
+              >
+                <DialogTitle
+                  sx={{
+                    display: "flex",
+                    cursor: tabIndex === 1 ? "move" : "default",
+                    backgroundColor: !loaded
+                      ? ""
+                      : rawData.contextProductId.colorProperties.COLOR1,
+                    color: "white",
+                    height: "44px",
+                  }}
+                  id="draggable-dialog-title"
+                  scroll="paper"
+                >
+                  <div style={{ width: "65%" }}>
+                    {!editNameTextField ? (
+                      <Typography variant="h5">
+                        {isNameAvailable()}{" "}
+                        {checkIfPersonendaten(card) ? null : (
+                          <IconButton
+                            onClick={() => {
+                              toggleTextField();
+                            }}
+                            style={{ marginBottom: "10px" }}
+                          >
+                            <Edit style={{ color: "white" }} />
+                          </IconButton>
+                        )}
+                      </Typography>
+                    ) : (
+                      <TextField
+                        sx={{
+                          display: "flex",
+                          color: "white !important",
+
+                          height: "44px",
+                        }}
+                        InputProps={{
+                          sx: {
+                            display: "flex",
+                            color: "white !important",
+                            height: "44px",
+                          },
+                        }}
+                        onKeyDown={(e) => saveVertragNameChanges(e)}
+                        value={vertragName}
+                        onChange={(e) => onChangeNameTextfield(e)}
+                      ></TextField>
+                    )}
+                  </div>
+                  <div style={{ width: "30%" }} />
+                  <IconButton
+                    onClick={() => toggleFullscreenDialog(!fullscreenDialog)}
+                    sx={{
+                      transform: "rotate(45deg) !important",
+                      zIndex: "51 !important",
+                      color: !loaded
+                        ? "green"
+                        : rawData.contextProductId.colorProperties.COLOR1,
+                      cursor: "pointer !important",
+                      backgroundColor: "white !important",
+                      float: "right",
+                      height: "24px",
+                      width: "24px",
+                      padding: "0px",
+                      top: "5px",
+                      zIndex: "200 !important",
+                      marginLeft: "auto",
+                      borderRadius: "12px !important",
+                    }}
+                  >
+                    {fullscreenDialog ? (
+                      <UnfoldLess
+                        style={{
+                          color: !loaded
+                            ? ""
+                            : rawData.contextProductId.colorProperties.COLOR1,
+                        }}
+                      />
+                    ) : (
+                      <UnfoldMore
+                        style={{
+                          color: !loaded
+                            ? ""
+                            : rawData.contextProductId.colorProperties.COLOR1,
+                        }}
+                      />
+                    )}
+                  </IconButton>
+                  {tabIndex === 0 ? null : (
+                    <IconButton
+                      onClick={() => handleClose()}
+                      sx={{
+                        color: !loaded
+                          ? ""
+                          : rawData.contextProductId.colorProperties.COLOR1,
+                        backgroundColor: "white !important",
+                        float: "right",
+                        height: "24px",
+                        width: "24px",
+                        left: "10px",
+                        top: "5px",
+                        borderRadius: "12px !important",
+                      }}
+                    >
+                      <Close
+                        style={{
+                          color: !loaded
+                            ? ""
+                            : rawData.contextProductId.colorProperties.COLOR1,
+                        }}
+                      />
+                    </IconButton>
+                  )}
+                </DialogTitle>
+
+                <DialogContent dividers={"paper"}>
+                  {formWidth === "50%" ? 
+                <DateiFotoUI/> : null}
+                  <DynamicForm
+                    // Das gesamte Formular kann deaktiviert werden (read-only)
+                    disabled={isBusy}
+                    // falls eine kompakte Ansicht gewünscht wird, werden alle Elemente auf voller Breite
+                    // angezeigt (grid-props werden ignoriert) und einige Abstände werden verkleinert
+                    // ... z.B. für Formular in Drawern, mobile Ansicht etc.
+                    compact={false}
+                    // an das Formular können weitere Styles übergeben werden
+                    style={{ margin: "0 0 20px", width:formWidth,float:"right" }}
+                    // benötigt für den submit-button, der sich außerhalb der Komponente befindet
+                    // siehe useImperativeHandle in DynamicForm.js
+                    ref={ref}
+                    // die eigentlichen Daten
+                    values={formData}
+                    // die Formular-Definition
+                    formDefinition={jsonForm}
+                    mandantGroup={rawData.mandantGroup}
+                    gesellschaft={rawData.gesellschaft}
+                    assets={rawData.analyseAssets}
+                    berater={rawData.berater}
+                    // Was soll beim Absenden geschehen?
+                    // erwartet wird ein Promise, der mit dem kompletten (evtl. modifizierten Datensatz) resolvet
+                    onSubmit={handleSubmit}
+                    tarifTypeIdFromCardState={card}
+                    productId={rawData.productId}
+                    params={params}
+                    id={id}
+                    setCard={setCard}
+                    colorProperties={rawData.contextProductId.colorProperties}
+                    renderAnzahlVp={renderAnzahlVp}
+                    checkIfPersonendaten={checkIfPersonendaten}
+                  />
+                </DialogContent>
+                <DialogActions
+                  className="cardFooter"
+                  sx={{ backgroundColor: "#E6E7E8" }}
+                >
+                  <Button
+                    startIcon={<i class="fa fa-picture-o" />}
+                    sx={{
+                      marginRight: "auto !important",
+                      marginLeft: "8px !important",
+                      width: "200px",
+                      height: "30px",
+                      backgroundColor: "#F5F5F5 !important",
+                      color:!loaded
+                      ? ""
+                      :rawData.contextProductId.colorProperties.COLOR1 + " !important"
+                    }}
+                    variant="contained"
+                  >
+                    Dateien / Fotos
+                  </Button>
+                  <Button
+                    startIcon={<Close />}
+                    sx={{
+                      height: "30px",
+                      backgroundColor: "#F5F5F5 !important",
+                      width: "100px",
+                      color:!loaded
+                      ? ""
+                      :rawData.contextProductId.colorProperties.COLOR1+ " !important"
+                    }}
+                    variant="contained"
+                    disabled={tabIndex === 0 ? true : false}
+                    onClick={() => handleClose()}
+                  >
+                    Abbruch
+                  </Button>
+                  <Button
+                    onClick={handleSave}
+                    startIcon={
+                      <i
+                        class="fa fa-check-circle"
+                        style={{ color: "white" }}
+                      ></i>
+                    }
+                    sx={{
+                      backgroundColor:
+                        rawData.contextProductId.colorProperties.BUTTONCOLOR +
+                        " !important",
+                      width: "190px",
+                      height: "30px",
+                      marginRight: "8px !important",
+                      color: "white !important",
+                    }}
+                  >
+                    Angaben Speichern
+                  </Button>
+                </DialogActions>
               </Dialog>
               {ref.isDirty}
             </div>
           )}
-          <Button
-            variant={"outlined"}
-            color={"primary"}
-            disabled={isBusy}
-            onClick={revertChanges}
-            className="delete"
-          >
-            z
-          </Button>
-          <Button
-            variant={"outlined"}
-            color={"primary"}
-            disabled={isBusy}
-            onClick={deleteVertrag}
-            className="reset"
-          >
-            <DeleteOutline style={{ color: "white" }} />
-          </Button>
-          <Button
-            variant={"outlined"}
-            color={"primary"}
-            disabled={isRequiredFilled.disabled}
-            onClick={handleSave}
-            className="save"
-          >
-            <Save style={{ color: "white" }} />
-          </Button>
         </MuiPickersUtilsProvider>
       </ThemeProvider>
 

@@ -21,7 +21,7 @@
               { "value": "Landesbeihilfe", "label": "Landesbeihilfe" }        ],
             "props":{"required":true, "sm":6,
               "xs":6},
-              "suiteValue":""
+              "suiteValue":"art"
         },
         {
             "section": "Höhe der Beihilfe",
@@ -31,14 +31,14 @@
                     "name":"ambulantHoeheBeamtenbeihilfe",
                     "label":"ambulant (%)",
                     "type":"text",
-              "suiteValue":""
+              "suiteValue":"ambulant"
 
                 },
                 {
                     "name":"stationaerHoeheBeamtenbeihilfe",
                     "label":"stationär (%)",
                     "type":"text",
-              "suiteValue":""
+              "suiteValue":"stationaer"
 
                 }
             ]
@@ -57,36 +57,45 @@
                     ],
                     "props":{"required":true, "sm":6,
                       "xs":6},
-                      "suiteValue":""
+                      "suiteValue":"anspruchFreieHeilfuersorge"
                 },
                 {"name":"anwartschaftversicherungBeamtenbeihilfe",
                 "label":"Besteht eine Anwartschaftversicherung",
                 "type":"select",
+                "props":{ "sm":6,
+                  "xs":6},
                 "options": [
                   { "value": true, "label": "Ja" },
                   { "value": false, "label": "Nein" }
                 ],
-            "suiteValue":""},
+            "suiteValue":"anwartschaftsversicherung"},
             {"name":"bundeslandBeamtenbeihilfe",
                 "label":"In welchem Bundesland behilfeberechtigt?",
                 "type":"select",
                 "options": [
-                  { "value": true, "label": "Baden-Württemberg" },
-                  { "value": false, "label": "Bayern" },
-                  { "value": false, "label": "Brandenburg" },
-                  { "value": false, "label": "Bremen" },
-                  { "value": false, "label": "Hamburg" },
-                  { "value": false, "label": "Hessen" },
-                  { "value": false, "label": "Mecklenburg-Vorpommern" },
-                  { "value": false, "label": "Niedersachsen" },
-                  { "value": false, "label": "Nordrhein-Westfalen" },
-                  { "value": false, "label": "Saarland" },
-                  { "value": false, "label": "Sachsen" },
-                  { "value": false, "label": "Sachsend-Anhalt" },
-                  { "value": false, "label": "Schleswig-Holstein" },
-                  { "value": false, "label": "Thüringen" }
+                  { "value": "Baden-Württemberg", "label": "Baden-Württemberg" },
+                  { "value": "Bayern", "label": "Bayern" },
+                  { "value": "Bremen", "label": "Bremen" },
+                  { "value": "Bremen", "label": "Bremen" },
+                  { "value": "Hamburg", "label": "Hamburg" },
+                  { "value": "Hessen", "label": "Hessen" },
+                  { "value": "Mecklenburg-Vorpommern", "label": "Mecklenburg-Vorpommern" },
+                  { "value": "Niedersachsen", "label": "Niedersachsen" },
+                  { "value": "Nordrhein-Westfalen", "label": "Nordrhein-Westfalen" },
+                  { "value": "Saarland", "label": "Saarland" },
+                  { "value": "Sachsen", "label": "Sachsen" },
+                  { "value": "Sachsend-Anhalt", "label": "Sachsend-Anhalt" },
+                  { "value": "Schleswig-Holstein", "label": "Schleswig-Holstein" },
+                  { "value": "Thüringen", "label": "Thüringen" }
                 ],
-            "suiteValue":""}
-            ]}
+            "suiteValue":"bundesland"}
+            ]},
+            {
+              "name": "notizen",
+              "type": "textarea",
+              "rows":5,
+              "label": "Notizen",
+              "suiteValue":"notizen"
+            }
     ]
 }

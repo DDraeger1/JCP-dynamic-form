@@ -19,12 +19,14 @@
           {
             "name": "gesellschaftGewaesserschadenhaftpflicht",
             "type": "gesellschaft",
-            "props": { "required": true }
+            "props": { "required": true },
+            "suiteValue": "gesellschaft"
           },
           {
             "name": "vertragsnummerGewaesserschadenhaftpflicht",
             "type": "text",
-            "label": "Vertragsnummer"
+            "label": "Vertragsnummer",
+            "suiteValue": "versicherungsnummer"
           }
         ]
       },
@@ -32,9 +34,10 @@
         "label":"Tarifgruppe",
         "type":"select",
         "options":[
-            { "value": "", "label": "normal" },
-            { "value": "", "label": "öffentlicher dienst" }
-        ]
+            { "value": "0", "label": "normal" },
+            { "value": "1", "label": "öffentlicher dienst" }
+        ],
+        "suiteValue": "tarifgruppe"
       },
       {
         "section": "Versicherungssumme",
@@ -45,28 +48,38 @@
                 "type":"text",
                 "props":{
                     "required":true
-                }
+                },
+                "suiteValue": "versicherungssumme"
               },
               {"name":"selbstbeteiligungGewaesserschadenhaftpflicht",
                 "label":"Selbstbeteiligung (€)",
-                "type":"text"
+                "type":"text",
+                "suiteValue": "sb"
               },
               {"name":"immobilienartGewaesserschadenhaftpflicht",
                 "label":"Immobilienart",
                 "type":"select",
                 "options":[
-                    { "value": "", "label": "Einfamilienhaus" },
-                    { "value": "", "label": "Zweifamilienhaus" },
-                    { "value": "", "label": "Mehrfamilienhaus" }
-                ]
+                    { "value": "1", "label": "Einfamilienhaus" },
+                    { "value": "2", "label": "Zweifamilienhaus" },
+                    { "value": "3", "label": "Mehrfamilienhaus" }
+                ],
+                "suiteValue": "immobilienart"
             },
             {"name":"fassungsvermoegenGewaesserschadenhaftpflicht",
               "label":"Fassungsvermögen (in Liter)",
-              "type":"text"
+              "type":"text",
+              "suiteValue": "fassung"
             },
             {"name":"tankortGewaesserschadenhaftpflicht",
               "label":"Tankort",
-              "type":"text"
+              "type":"select",
+              "options":[
+                {"value":"0","label":"oberirdisch"},
+                {"value":"1","label":"unterirdisch"},
+                {"value":"2","label":"Kellertank"}
+              ],
+              "suiteValue": "tankort"
             }
         ]
     },
@@ -79,10 +92,12 @@
         "type":"date",
       "props":{
         "required":true
-      }},
+      },
+      "suiteValue": "versicherungsbeginn"},
       {"name":"vertragsendeGewaesserschadenhaftpflicht",
         "label":"Vertragsende",
-    "type":"date"
+    "type":"date",
+    "suiteValue": "versicherungsende"
       }
         ]},
         {
@@ -100,12 +115,14 @@
                         { "value": "QUARTAL", "label": "Quartal" },
                         { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
                         { "value": "JAEHRLICH", "label": "Jährlich" }
-                    ]
+                    ],
+                    "suiteValue": "zahlweise"
                   },
                   {"name":"beitragGewaesserschadenhaftpflicht",
                     "label":"Beitrag (€)",
                 "type":"text",
-                "props": { "required": true }
+                "props": { "required": true },
+                "suiteValue": "beitrag"
                   }
             ]},
             {
@@ -114,17 +131,27 @@
                 "items": [
                     {"name":"anzahlVorschaedenFuenfJahreGewaesserschadenhaftpflicht",
                         "label":"Anzahl Vorschäden letzten 5 Jahren",
-                    "type":"text"
+                    "type":"text",
+                    "suiteValue": "vorschaedenAnzahl"
                   },
                       {"name":"anzahlVorschaedenGewaesserschadenhaftpflicht",
                         "label":"Höhe der Vorschäden",
-                    "type":"text"
+                    "type":"text",
+                    "suiteValue": "vorschaedenHoehe"
                   },
                   {"name":"vorschadensummeGewaesserschadenhaftpflicht",
                     "label":"Vorschadensumme/-art/-höhe",
-                "type":"text"
+                "type":"text",
+                "suiteValue": "versicherungssumme"
               }
                 ]
+            },
+            {
+              "name": "notizen",
+              "type": "textarea",
+              "rows":5,
+              "label": "Notizen",
+              "suiteValue":"notizen"
             }
     ]
 }

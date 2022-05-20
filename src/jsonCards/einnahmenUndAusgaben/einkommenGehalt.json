@@ -183,7 +183,7 @@
     {
       "name": "bankAddBrutto",
       "label": "Bruttobezug Hinzufügen",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -257,7 +257,7 @@
     {
       "name": "bankRemoveBrutto",
       "label": "Gehalt",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -337,7 +337,7 @@
       "name": "bankRemoveBrutto",
       "label": "VariablerBezug",
       "condition":"variablerBezug",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -416,7 +416,7 @@
     {
       "name": "bankRemoveBrutto",
       "label": "Fahrtkosten",
-      "type": "costumFunction",
+      "type": "customFunction",
       "condition":"fahrtkosten",
       "props": { "sm": 2,
         "xs":2 }
@@ -497,7 +497,7 @@
       "name": "bankRemoveBrutto",
       "label": "Feiertagszuschlag",
       "condition":"feiertagszuschlag",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -577,7 +577,7 @@
       "name": "bankRemoveBrutto",
       "label": "Nachtzuschlag",
       "condition":"nachtzuschlag",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -657,7 +657,7 @@
       "name": "bankRemoveBrutto",
       "label": "Dienstwagen",
       "condition":"dienstwagen",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -737,7 +737,7 @@
       "name": "bankRemoveBrutto",
       "label": "Gebuehren",
       "condition":"kitaGebuehren",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -816,7 +816,7 @@
       "name": "bankRemoveBrutto",
       "label": "JobRad",
     "condition":"jobRad",
-    "type": "costumFunction",
+    "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -895,7 +895,7 @@
     {
       "name": "bankRemoveBrutto",
       "label": "VwLAG",
-      "type": "costumFunction",
+      "type": "customFunction",
       "condition":"vwlAG",
       "props": { "sm": 2,
         "xs":2 }
@@ -976,7 +976,7 @@
       "name": "bankRemoveBrutto",
       "label": "Sachbezug",
       "condition":"sachbezug",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     },
@@ -1055,7 +1055,7 @@
     {
       "name": "bankRemoveBrutto",
       "label": "Provision",
-      "type": "costumFunction",
+      "type": "customFunction",
       "condition":"provision",
       "props": { "sm": 2,
         "xs":2 }
@@ -1136,14 +1136,14 @@
       "name": "bankRemoveBrutto",
       "label": "Sonstiges",
       "condition":"sonstigesBrutto",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 2,
         "xs":2 }
     }]},
     {
       "name": "bruttoSumme",
       "label": "Summe Bruttobezuege: (mtl.)",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "sm": 3,
         "xs":3 }
     },
@@ -1181,7 +1181,7 @@
         },
         {
           "name": "bankAddNetto",
-          "type": "costumFunction",
+          "type": "customFunction",
           "props": { "sm": 2,
             "xs":2 }
         },
@@ -1203,7 +1203,7 @@
         {
           "name": "bankRemoveNetto",
           "label": "Netto",
-          "type": "costumFunction",
+          "type": "customFunction",
           "props": { "sm": 2,
             "xs":2 }
         },
@@ -1228,7 +1228,7 @@
           "name": "bankRemoveNetto",
           "label":"SonstigerSachbezug",
           "condition":"sonstigerSachbezug",
-          "type": "costumFunction",
+          "type": "customFunction",
           "props": { "sm": 2,
             "xs":2 }
         },
@@ -1253,7 +1253,7 @@
           "name": "bankRemoveNetto",
           "label": "AbzuegeVwlGesamt",
           "condition":"abzuegeVwlGesamt",
-          "type": "costumFunction",
+          "type": "customFunction",
           "props": { "sm": 2,
             "xs":2 }
         },
@@ -1266,7 +1266,7 @@
             "xs":6 }
         },
         {
-          "name": "Weihnachtsgeld",
+          "name": "sonstigerAbzugNettobezugBetragMtlEinnahmen",
           "label": "",
           "condition":"sonstigerAbzug",
           "type": "number",
@@ -1278,14 +1278,14 @@
           "name": "bankRemoveNetto",
           "label": "SonstigerAbzugNetto",
           "condition":"sonstigerAbzug",
-          "type": "costumFunction",
+          "type": "customFunction",
           "props": { "sm": 2,
             "xs":2 }
         },
         {
           "name": "nettoSumme",
           "label": "",
-          "type": "costumFunction"
+          "type": "customFunction"
         }]},
         {
           "section": "Sonderzahlungen",
@@ -1315,7 +1315,7 @@
           {
             "name": "bankAddSonderzahlung",
             "label": "",
-            "type": "costumFunction",
+            "type": "customFunction",
             "props": { "sm": 2 ,
               "xs":2}
           },
@@ -1379,14 +1379,15 @@
       "label": "",
             "type": "number",
             "props": { "sm": 2,
-              "xs":2 },
+              "xs":2,
+              "className":"sonderzahlungenNumberField" },
               "suiteValue":"bonuszahlung"
           },
           {
             "name": "bankRemoveSonderzahlung",
             "label": "Bonus",
       "condition":"bonus",
-      "type": "costumFunction",
+      "type": "customFunction",
             "props": { "sm": 2 ,
               "xs":2}
           },
@@ -1450,13 +1451,16 @@
       "condition":"urlaubsgeld",
       "type": "number",
             "props": { "sm": 2,
-              "xs":2 },
+              "xs":2,
+              "className":"sonderzahlungenNumberField"
+        
+        },
               "suiteValue":"urlaubsgeld"
           },          {
             "name": "bankRemoveSonderzahlung",
             "label": "Urlaubsgeld",
       "condition":"urlaubsgeld",
-      "type": "costumFunction",
+      "type": "customFunction",
             "props": { "sm": 2 ,
               "xs":2}
           },
@@ -1520,13 +1524,14 @@
       "condition":"weihnachtsgeld",
       "type": "number",
             "props": { "sm": 2,
-              "xs":2 },
+              "xs":2,
+              "className":"sonderzahlungenNumberField" },
               "suiteValue":"weihnachtsgeld"
           },          {
             "name": "bankRemoveSonderzahlung",
             "label": "Weihnachtsgeld",
       "condition":"weihnachtsgeld",
-      "type": "costumFunction",
+      "type": "customFunction",
             "props": { "sm": 2 ,
               "xs":2}
           },
@@ -1590,13 +1595,14 @@
       "condition":"gewinnbeteiligung",
       "type": "number",
             "props": { "sm": 2,
-              "xs":2 },
+              "xs":2,
+              "className":"sonderzahlungenNumberField" },
               "suiteValue":"gewinnbeteiligung"
           },          {
             "name": "bankRemoveSonderzahlung",
             "label": "Gewinnbeteiligung",
       "condition":"gewinnbeteiligung",
-      "type": "costumFunction",
+      "type": "customFunction",
             "props": { "sm": 2 ,
               "xs":2}
           },
@@ -1660,18 +1666,19 @@
       "label": "",
             "type": "number",
             "props": { "sm": 2,
-              "xs":2 },
+              "xs":2,
+              "className":"sonderzahlungenNumberField" },
               "suiteValue":"sonstigerSachbezug"
           },
           {"name":"summeSonderzahlung",
-          "type":"costumFunction"
+          "type":"customFunction"
 
           },
           {"name":"summeSonderzahlungNettoSchnitt",
-          "type":"costumFunction"},
+          "type":"customFunction"},
           {
             "name": "numberJahresbrutto",
-            "type": "costumFunction",
+            "type": "customFunction",
             "props": { "sm": 5,
               "xs":5 },
               "suiteValue":"lohnBruttoProJahr"
@@ -1690,6 +1697,13 @@
             "props": { "sm": 5 ,
               "xs":5},
               "suiteValue":"lohnBruttoProJahrVorjahr"
-          }]}
+          }]},
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
+          }
   ]
 }

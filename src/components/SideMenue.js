@@ -3,43 +3,48 @@ import "../fontAwesome/analyse-font-icons-1.0.2/css/analyse-font-icons.css";
 import "../fontAwesome/font-awesome-4.4.0/css/font-awesome.css";
 import "../fontAwesome/font-awesome-4.7.0/css/font-awesome.css";
 
-
+import axios from "axios";
 import MuiDrawer from "@mui/material/Drawer";
 import AppBar from "@mui/material/AppBar";
+import qs from "query-string";
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Draggable from "react-draggable";
 import Button from "@mui/material/Button";
-import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import Toolbar from "@mui/material/Toolbar";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemButton from "@mui/material/ListItemButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import { DataGrid } from "@mui/x-data-grid";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
+import { useParams } from "react-router-dom";
 import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { useContext, forwardRef } from "react";
 import { Context } from "../context/Context";
-import { Close,KeyboardArrowDown } from "@material-ui/icons";
+
+
+import {
+  Close,
+  KeyboardArrowDown,
+  Search
+} from "@material-ui/icons";
 import { styled, useTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
 import Slide from "@mui/material/Slide";
 import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import Popover from "@mui/material/Popover";
 
-import {setName} from "./mapAssets"
+import VertragComponents from "./VertragComponents";
+import { setName } from "./mapAssets";
 
 import "./css/sideMenue.css";
 import "./css/newSideMenue.css";
 import { useState } from "react";
+import { TextField } from "@mui/material";
 const drawerWidth = 240;
 
 const Transition = forwardRef(function Transition(props, ref) {
@@ -83,8 +88,22 @@ const Drawer = styled(MuiDrawer, {
     "& .MuiDrawer-paper": closedMixin(theme),
   }),
 }));
-function SideMenue({ assets, colorProperties, setCard, loaded,card,selectedVertraege, setSelectedVertraege,
-  subTabIndex, setSubTabIndex,tabIndex, setTabIndex,uebersichtVisibility,setUebersichtVisibility }) {
+function SideMenue({
+  assets,
+  colorProperties,
+  setCard,
+  loaded,
+  card,
+  selectedVertraege,
+  setSelectedVertraege,
+  subTabIndex,
+  setSubTabIndex,
+  tabIndex,
+  setTabIndex,
+  uebersichtVisibility,
+  setUebersichtVisibility,
+}) {
+  const params = useParams();
   const theme = useTheme();
   const {
     setCardClassName,
@@ -92,16 +111,34 @@ function SideMenue({ assets, colorProperties, setCard, loaded,card,selectedVertr
     mandantTabIndex,
     setMandantTabIndex,
     setVertragId,
-    openDialog, toggleOpenDialog
+    vertragId,
+    openDialog,
+    toggleOpenDialog,
+    login,
+    searchString,
+    setSearchString,
   } = useContext(Context);
-  const [anchorElMandantHinzufuegen, setAnchorElMandantHinzufuegen] = useState(null);
-const openMandantHinzufuegen = Boolean(anchorElMandantHinzufuegen);
+  const [anchorElMandantHinzufuegen, setAnchorElMandantHinzufuegen] =
+    useState(null);
+  const [anchorElAktionen, setAnchorElAktionen] = useState(null);
+  const openMandantHinzufuegen = Boolean(anchorElMandantHinzufuegen);
+  const openAktionen = Boolean(anchorElAktionen);
   const handleClickMandantHinzufuegen = (event) => {
     setAnchorElMandantHinzufuegen(event.currentTarget);
   };
   const handleCloseMandantHinzufuegen = () => {
     setAnchorElMandantHinzufuegen(null);
   };
+  const handleClickAktionen = (event, assetId) => {
+    event.stopPropagation();
+    setAnchorElAktionen(event.currentTarget);
+    setAssetId(assetId);
+  };
+  const handleCloseAktionen = () => {
+    setAnchorElAktionen(null);
+  };
+
+
   function mapZahlweise(zahlweise) {
     let output = "";
     switch (zahlweise) {
@@ -123,64 +160,84 @@ const openMandantHinzufuegen = Boolean(anchorElMandantHinzufuegen);
     }
     return output;
   }
-  const buttonColor = { color: colorProperties.BUTTONCOLOR };
- function pushData(asset){
-   let output= {}
-
-   output = {
-    icon: asset.tarifTypeId,
-    id: asset.id,
-    sparte: setName(asset.name, asset.tarifTypeId),
-    beginnEnde:
-      asset.versicherungsbeginn +
-      " - " +
-      (typeof asset.versicherungsende === "undefined"
-        ? ""
-        : asset.versicherungsende),
-    vertragsnr: asset.versicherungsnummer,
-    beitrag:
-      (typeof asset.zahlweise === "undefined"
-        ? ""
-        : mapZahlweise(asset.zahlweise)) +
-      asset.beitrag.toFixed(2) +
-      " €",
-    VNVP:
-      (typeof asset.versichertePerson === "undefined"
-        ? ""
-        : asset.versichertePerson.vorname +
-          " " +
-          asset.versichertePerson.nachname) +
-      (typeof asset.versicherungsnehmer === "undefined"
-        ? ""
-        : " / " +
-          asset.versicherungsnehmer.vorname +
-          " " +
-          asset.versicherungsnehmer.nachname),
+  function PaperComponent(props) {
+    return (
+      <Draggable
+        handle="#draggable-dialog-title"
+        cancel={'[class*="MuiDialogContent-root"]'}
+      >
+        <Paper {...props} />
+      </Draggable>
+    );
   }
+  const buttonColor = { color: colorProperties.BUTTONCOLOR };
+  function pushData(asset, index) {
+    let output = {};
 
-   return output
- }
+    output = {
+      icon: asset.tarifTypeId,
+      id: asset.id,
+      sparte: setName(asset.name, asset.tarifTypeId),
+      gesellschaft: asset.gesellschaft,
+      beginnEnde:
+        asset.versicherungsbeginn +
+        " - " +
+        (typeof asset.versicherungsende === "undefined"
+          ? ""
+          : asset.versicherungsende),
+      vertragsnr: asset.versicherungsnummer,
+      beitrag:
+        (typeof asset.zahlweise === "undefined"
+          ? ""
+          : mapZahlweise(asset.zahlweise)) +
+        asset.beitrag.toFixed(2) +
+        " €",
+      VNVP:
+        (typeof asset.versichertePerson === "undefined"
+          ? ""
+          : asset.versichertePerson.vorname +
+            " " +
+            asset.versichertePerson.nachname) +
+        (typeof asset.versicherungsnehmer === "undefined"
+          ? ""
+          : " / " +
+            asset.versicherungsnehmer.vorname +
+            " " +
+            asset.versicherungsnehmer.nachname),
+      AktionButton: asset.id,
+    };
+
+    return output;
+  }
   function setRows(assets, tarifTypes) {
     let output = [];
     //
-    if(tarifTypes[0] !== "SHOWALL"){
-    assets.map((asset) => {
-      tarifTypes.map((tarifType) => {
-        if (tarifType === asset.tarifTypeId) {
-output.push(pushData(asset))
-        }
+    let indexOrderedTariftypes = 0;
+    if (tarifTypes[0] !== "SHOWALL") {
+      assets.map((asset) => {
+        tarifTypes.map((tarifType) => {
+          if (tarifType === asset.tarifTypeId) {
+            output.push(pushData(asset, indexOrderedTariftypes));
+            indexOrderedTariftypes = indexOrderedTariftypes + 1;
+          }
+        });
       });
-    });
-  } else if(tarifTypes[0] === "SHOWALL"){
-    assets.map((asset) => {
-output.push(pushData(asset))
-    });
-  }
+    } else if (tarifTypes[0] === "SHOWALL") {
+      assets.map((asset, index) => {
+        output.push(pushData(asset, index));
+      });
+    }
     return output;
   }
   function setIcon(tarifType) {
     let output;
     switch (tarifType) {
+      case "STROM":
+        output = <i class="icon icon-fa-font-plug fa-2x"></i>;
+        break;
+      case "GAS":
+        output = <i class="fa fa-fire fa-2x"></i>;
+        break;
       case "UNFALL":
         output = <i class="icon icon-fa-font-accident fa-2x"></i>;
         break;
@@ -193,6 +250,14 @@ output.push(pushData(asset))
       case "RISIKO":
         output = <i class="fa fa-bed fa-2x"></i>;
         break;
+        case "FONDSLEBEN":
+          case "PRIVATRENTE":
+      case "KAPITALLEBEN":
+        output = <i class="icon icon-fa-font-old fa-2x"></i>;
+        break;
+        case "FONDSRENTEN":
+          output = <i class="icon icon-fa-font-cash fa-2x"></i>;
+          break;
       case "RUERUP":
         output = <i class="icon icon-fa-font-oldru fa-2x"></i>;
         break;
@@ -209,6 +274,14 @@ output.push(pushData(asset))
         output = <i class="icon icon-fa-font-factory fa-2x"></i>;
         break;
       case "PENSIONSKASSE_40":
+        output = <i class="icon icon-fa-font-factory fa-2x"></i>;
+        break;
+        break;
+      case "ZUSATZVERSORGUNGSKASSE":
+        output = <i class="icon icon-fa-font-factory fa-2x"></i>;
+        break;
+        break;
+      case "PENSIONSKASSE_3":
         output = <i class="icon icon-fa-font-factory fa-2x"></i>;
         break;
       case "UNTERSTUETZUNGSKASSE":
@@ -257,7 +330,7 @@ output.push(pushData(asset))
         output = <i class="icon icon-fa-font-work fa-2x"></i>;
         break;
       case "AUSGABEN":
-        output = <i class="icon icon-fa-font-cash fa-2x"></i>;
+        output = <i class="fa fa-shopping-cart fa-2x"></i>;
         break;
       case "AUTOMOBILCLUB":
         output = <i class="fa fa-car fa-2x"></i>;
@@ -273,6 +346,9 @@ output.push(pushData(asset))
         break;
       case "BANKPRODUKTE":
         output = <i class="icon icon-fa-font-bank fa-2x"></i>;
+        break;
+      case "WOHNSITUATION":
+        output = <i class="icon icon-fa-font-apartment fa-2x"></i>;
         break;
       case "VWL_BAUSPAREN":
         output = <i class="icon icon-fa-font-home fa-2x"></i>;
@@ -301,27 +377,30 @@ output.push(pushData(asset))
       case "KVZ":
         output = <i class="icon icon-fa-font-plaster fa-2x"></i>;
         break;
-        case "BEAMTENBEIHILFE":
-output=<i class="icon icon-fa-font-case fa-2x"></i>
-        break
-        case "BERUFSSTAENDISCHE_VORSORGE":
-output=<i class="fa fa-briefcase fa-2x"></i>
-        break
-        case "BEAMTENVERSORGUNG":
-output=<i class="icon icon-fa-font-tie fa-2x"></i>
-        break
-        case "BAUHERRENHAFTPFLICHT":
-output=<i class="icon icon-fa-font-work fa-2x"></i>
-        break
-        case "WASSERSPORTHAFTPFLICHT":
-output=<i class="icon icon-fa-font-boat fa-2x"></i>
-        break
-        case "GEWAESSERSCHADENHAFTPFLICHT":
-output=<i class="icon icon-fa-font-oil fa-2x"></i>
-        break
-        case "RENTE":
-output=<i class="icon icon-fa-font-electric fa-2x"></i>
-        break
+      case "BEAMTENBEIHILFE":
+        output = <i class="icon icon-fa-font-case fa-2x"></i>;
+        break;
+      case "BERUFSSTAENDISCHE_VORSORGE":
+        output = <i class="fa fa-briefcase fa-2x"></i>;
+        break;
+      case "BEAMTENVERSORGUNG":
+        output = <i class="icon icon-fa-font-tie fa-2x"></i>;
+        break;
+      case "BAUHERRENHAFTPFLICHT":
+        output = <i class="icon icon-fa-font-work fa-2x"></i>;
+        break;
+      case "WASSERSPORTHAFTPFLICHT":
+        output = <i class="icon icon-fa-font-boat fa-2x"></i>;
+        break;
+      case "GEWAESSERSCHADENHAFTPFLICHT":
+        output = <i class="icon icon-fa-font-oil fa-2x"></i>;
+        break;
+      case "RENTE":
+        output = <i class="icon icon-fa-font-electric fa-2x"></i>;
+        break;
+      case "JAGDHAFTPFLICHT":
+        output = <i class="icon icon-fa-font-hunter fa-2x"></i>;
+        break;
       default:
         output = <i class="fa fa-question-circle fa-2x"></i>;
         break;
@@ -338,21 +417,33 @@ output=<i class="icon icon-fa-font-electric fa-2x"></i>
   const vermoegenAltersvorsorgeTarifType = [
     "RUERUP",
     "RIESTER",
+    "RENTE",
     "DIREKTZUSAGE",
     "PENSIONSFONDS_3",
+    "ZUSATZVERSORGUNGSKASSE",
+    "PENSIONSKASSE_3",
+    "KAPITALVERSICHERUNG",
     "DIREKT_40",
     "PENSIONSKASSE_40",
     "UNTERSTUETZUNGSKASSE",
     "DIREKT_3",
-    "RENTE",
     "GESETZLICHE_AV",
     "BERUFSSTAENDISCHE_VORSORGE",
     "BEAMTENVERSORGUNG",
-  ]; //kapitalversicherung, investmentfonds muss weitermachen aber styling zählt mehr
+    "FONDSLEBEN",
+    "PRIVATRENTE",
+    "KAPITALLEBEN",
+    "FONDSRENTEN"
+  ]; //kapitalversicherung, investmentfonds muss weitermachen aber styling zählt mehr        case "":
+
   const vermoegenssicherungTarifType = [
     "PRIVATHAFTPFLICHT",
     "HUNDEHALTERHAFTPFLICHT",
     "PFERDEHALTERHAFTPFLICHT",
+    "JAGDHAFTPFLICHT",
+    "BAUHERRENHAFTPFLICHT",
+    "WASSERSPORTHAFTPFLICHT",
+    "GEWAESSERSCHADENHAFTPFLICHT",
     "HAUSRAT",
     "RECHTSSCHUTZ",
     "WOHNGEBAEUDE",
@@ -366,6 +457,8 @@ output=<i class="icon icon-fa-font-electric fa-2x"></i>
     "AUSGABEN",
     "AUTOMOBILCLUB",
     "SONSTIGE_ZAHLUNG",
+    "STROM",
+    "GAS"
   ]; // Steuer fehlt gehört aber zu personaldaten...
   const vermoegenUndVerbindlichkeitenTarifType = [
     "KONSUMKREDIT",
@@ -379,12 +472,14 @@ output=<i class="icon icon-fa-font-electric fa-2x"></i>
     "WASSERSPORTHAFTPFLICHT",
     "GEWAESSERSCHADENHAFTPFLICHT",
   ]; //INVESTMENT FEHLT
-  const einkommenAusgaben =["EINNAHMEN","EINKOMMEN_GEHALT","EINKOMMEN_MINIJOB","EINKOMMEN_SELBSTAENDIGER","AUSGABEN"]
   const pflegeTariftype = ["PFLEGEKOSTEN", "PFLEGERENTEN", "PFLEGETAGEGELD"];
-  const gesundheitTarifType = ["GESETZLICHE_KRANKEN", "KVV", "KVZ","BEAMTENBEIHILFE"];
-  const allVertraege = [
-"SHOWALL"
+  const gesundheitTarifType = [
+    "GESETZLICHE_KRANKEN",
+    "KVV",
+    "KVZ",
+    "BEAMTENBEIHILFE",
   ];
+  const allVertraege = ["SHOWALL"];
   const columns = [
     {
       field: "icon",
@@ -395,6 +490,16 @@ output=<i class="icon icon-fa-font-electric fa-2x"></i>
     {
       field: "sparte",
       headerName: "Sparte",
+      width: 200,
+      renderCell: (params) => (
+        <Typography sx={{ width: "200px" }} variant="subtitle2">
+          {params.value}
+        </Typography>
+      ),
+    },
+    {
+      field: "gesellschaft",
+      headerName: "Gesellschaft",
       width: 200,
       renderCell: (params) => (
         <Typography sx={{ width: "200px" }} variant="subtitle2">
@@ -449,21 +554,55 @@ output=<i class="icon icon-fa-font-electric fa-2x"></i>
         </Typography>
       ),
     },
+    {
+      field: "AktionButton",
+      headerName: "",
+      width: 180,
+      renderCell: (params) => {
+        return (
+          <Button
+            endIcon={<KeyboardArrowDown />}
+            onClick={(e) => handleClickAktionen(e, params.value)}
+            id={"new-aktions-menu-" + params.value}
+            aria-labelledby={"new-aktions-button-" + params.value}
+            style={{
+              backgroundColor: buttonColor.color,
+              color: "whitesmoke",
+              width: "180px",
+            }}
+          >
+            Aktionen
+          </Button>
+        );
+      },
+    },
   ];
-  //
-
 
   const [open, setOpen] = useState(false);
+  const [openFileWarning, toggleOpenFileWarning] = useState(false);
+  const [assetId, setAssetId] = useState("");
   const [openVertragHinzufuegen, toggleOpenVertragHinzufuegen] =
     useState(false);
   const [tariftypeArray, setTariftypeArray] = useState(allVertraege);
   const [vertragUebersichtHeader, setVertragUebersichtHeader] =
     useState("Alle Verträge");
   const [emptyWindowStyle, setEmptyWindowStyle] = useState("emptyWindow");
+  const [localSearchString,setLocalSearchString ] = useState("");
   const [descriptionStyle, setDescriptionStyle] = useState(
     "buttonDescriptionOnExit"
   );
+  const [openNextQuestion, toggleOpenNextQuestion] = useState(false);
 
+  const handleFileWarningOpen = () => {
+    toggleOpenFileWarning(true);
+  };
+  const handleFileWarningClose = () => {
+    toggleOpenFileWarning(false);
+    toggleOpenNextQuestion(false);
+  };
+  const transitionNextQuestion = () => {
+    toggleOpenNextQuestion(true);
+  };
   const handleVertragHinzufuegenOpen = () => {
     toggleOpenVertragHinzufuegen(true);
   };
@@ -486,22 +625,22 @@ output=<i class="icon icon-fa-font-electric fa-2x"></i>
 
   const handleChange = (event, newValue) => {
     setTabIndex(newValue);
-    if(newValue === 0){
-      setCard("PERSONALDATEN")
-      toggleOpenDialog(true)
-    } if(newValue === 1){
-      toggleOpenDialog(false)
-
-  }
-
+    if (newValue === 0) {
+      setCard("PERSONALDATEN");
+      toggleOpenDialog(true);
+    }
+    if (newValue === 1) {
+      toggleOpenDialog(false);
+    }
   };
-var rememberedSubTabValue = 0
+  var rememberedSubTabValue = 0;
   const handleChangeSubTab = (event, newValue) => {
     setSubTabIndex(newValue);
-    rememberedSubTabValue = newValue
+    rememberedSubTabValue = newValue;
+    console.log("drin");
+
     if (newValue !== 1000) {
       if (selectedVertraege.length > newValue) {
-
         setVertragId(selectedVertraege[newValue].id);
         setCard(selectedVertraege[newValue].tarifType);
         setUebersichtVisibility("hidden");
@@ -518,14 +657,125 @@ var rememberedSubTabValue = 0
   };
   const handleChangeSubTabMandant = (event, newValue) => {
     setMandantTabIndex(newValue);
-    if(mandantGroup[newValue].art === "KIND"){
-      setCard("KIND")
+    if (mandantGroup[newValue].art === "KIND") {
+      setCard("KIND");
     } else {
-      setCard("PERSONALDATEN")
+      setCard("PERSONALDATEN");
     }
-    
   };
-
+  var addKuendigung = (login) => {
+    return {
+      method: "post",
+      url: "https://jcp-suite.de/suite/insuranceDocument",
+      withCredentials: true,
+      headers: {
+        Authorization: "Bearer " + login,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow",
+    };
+  };
+  var submitCopyVertrag = (login) => {
+    return {
+      method: "post",
+      url: "https://jcp-suite.de/suite/analyseApp",
+      withCredentials: true,
+      headers: {
+        Authorization: "Bearer " + login,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow",
+    };
+  };
+  var submitDeleteVertrag = (login) => {
+    return {
+      method: "post",
+      url: "https://jcp-suite.de/suite/analyseApp",
+      withCredentials: true,
+      headers: {
+        Authorization: "Bearer " + login,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      redirect: "follow",
+    };
+  };
+  function deleteAsset(keepFiles) {
+    const dataPaket = qs.stringify({
+      action: "deleteAsset",
+      assetId: assetId,
+      deleteAttachedFiles: keepFiles,
+    });
+    axios
+      .post(
+        submitDeleteVertrag(login).url,
+        dataPaket,
+        submitDeleteVertrag(login)
+      )
+      .then((response) => {
+        alert("deleted");
+      })
+      .catch((err) => alert(err));
+  }
+  function deletePerson() {
+    let deleteParams = {};
+    if (card === "KIND" || card === "PERSONALDATEN") {
+      setMandantTabIndex(0);
+      deleteParams = {
+        id: mandantGroup[mandantTabIndex].mandantId,
+        mandantId: mandantGroup[0].mandantId,
+        action: "deletePerson",
+      };
+      let dataPaket = qs.stringify(deleteParams);
+      axios
+        .post(
+          submitDeleteVertrag(login).url,
+          dataPaket,
+          submitDeleteVertrag(login)
+        )
+        .then((response) => {
+          setTimeout(() => {
+            //getDataPersonendatenLiveSuite(login, true);
+            //setLoaded(false);
+            if (card === "KIND") {
+              setCard("PERSONALDATEN");
+            }
+            setTimeout(() => {
+              //setLoaded(true);
+            }, 300);
+          }, 100);
+        })
+        .catch((err) => alert(err));
+    }
+  }
+  function copyVertrag(event) {
+    const dataPaket = qs.stringify({
+      action: "copyAsset",
+      assetId: assetId,
+    });
+    axios
+      .post(submitCopyVertrag(login).url, dataPaket, submitCopyVertrag(login))
+      .then((response) => {
+        setVertragId(response.copyId);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  function submitKuendigung() {
+    const dataPaket = qs.stringify({
+      action: "addKuendigung",
+      mandantId: params.mandantId,
+      assetId: assetId,
+    });
+    axios
+      .post(addKuendigung(login).url, dataPaket, addKuendigung(login))
+      .then((response) => {
+        alert("Kündigung wurde erfolgreich erstellt");
+      })
+      .catch((error) => {
+        alert("Kündigung wurde nicht erfolgreich erstellt");
+      });
+  }
   const personenbezogeneDaten = (
     <div
       className="buttonGrid"
@@ -549,69 +799,138 @@ var rememberedSubTabValue = 0
           </IconButton>
         )}
         <div style={{ height: "41px" }} />
-        <div className="buttonContainer" onClick={()=>setCard("PERSONALDATEN")}>
+        <div
+          className="buttonContainer"
+          onClick={() => setCard("PERSONALDATEN")}
+        >
           <Typography className={descriptionStyle}>Person</Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("PERSONALDATEN")} disableTouchRipple disableRipple disableFocusRipple>
-       <i class="fa fa-user fa-2x"  style={{ ...buttonColor }} />
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("PERSONALDATEN")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
+            <i class="fa fa-user fa-2x" style={{ ...buttonColor }} />
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={()=>setCard("AUSWEIS")}>
+        <div className="buttonContainer" onClick={() => setCard("AUSWEIS")}>
           <Typography className={descriptionStyle}>Legitimation</Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("AUSWEIS")} disableTouchRipple disableRipple disableFocusRipple>
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("AUSWEIS")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
             <i class="fa fa-id-card fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={()=>setCard("AUSBILDUNGBERUF")}>
+        <div
+          className="buttonContainer"
+          onClick={() => setCard("AUSBILDUNGBERUF")}
+        >
           <Typography className={descriptionStyle}>
             Ausbildung / Beruf
           </Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("AUSBILDUNGBERUF")} disableTouchRipple disableRipple disableFocusRipple>
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("AUSBILDUNGBERUF")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
             <i class="fa fa-graduation-cap fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={()=>setCard("ERWEITERTEBERUFSFRAGEN")}>
+        <div
+          className="buttonContainer"
+          onClick={() => setCard("ERWEITERTEBERUFSFRAGEN")}
+        >
           <Typography className={descriptionStyle}>
             Erweiterte Berufsfragen
           </Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("ERWEITERTEBERUFSFRAGEN")} disableTouchRipple disableRipple disableFocusRipple>
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("ERWEITERTEBERUFSFRAGEN")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
             <i class="fa fa-certificate fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={()=>setCard("ARBEITGEBER")}>
+        <div className="buttonContainer" onClick={() => setCard("ARBEITGEBER")}>
           <Typography className={descriptionStyle}>Arbeitgeber</Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("ARBEITGEBER")} disableTouchRipple disableRipple disableFocusRipple>
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("ARBEITGEBER")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
             <i class="fa fa-briefcase fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={()=>setCard("KOMMUNIKATION")}>
+        <div
+          className="buttonContainer"
+          onClick={() => setCard("KOMMUNIKATION")}
+        >
           <Typography className={descriptionStyle}>Kommunikation</Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("KOMMUNIKATION")} disableTouchRipple disableRipple disableFocusRipple>
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("KOMMUNIKATION")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
             <i class="fa fa-phone fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={()=>setCard("AUSWEIS")}>
+        <div className="buttonContainer" onClick={() => setCard("AUSWEIS")}>
           <Typography className={descriptionStyle}>Legitimation</Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("AUSWEIS")} disableTouchRipple disableRipple disableFocusRipple>
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("AUSWEIS")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
             <i class="fa fa-book fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={()=>setCard("BANKVERBINDUNG")}>
+        <div
+          className="buttonContainer"
+          onClick={() => setCard("BANKVERBINDUNG")}
+        >
           <Typography className={descriptionStyle}>Bank</Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("BANKVERBINDUNG")} disableTouchRipple disableRipple disableFocusRipple>
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("BANKVERBINDUNG")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
             <i class="fa fa-bank fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={()=>setCard("GESUNDHEIT")}>
+        <div className="buttonContainer" onClick={() => setCard("GESUNDHEIT")}>
           <Typography className={descriptionStyle}>Gesundheit</Typography>
-          <Button className="iconButtonToolbar" onClick={()=>setCard("GESUNDHEIT")} disableTouchRipple disableRipple disableFocusRipple>
+          <Button
+            className="iconButtonToolbar"
+            onClick={() => setCard("GESUNDHEIT")}
+            disableTouchRipple
+            disableRipple
+            disableFocusRipple
+          >
             <i class="fa fa-heartbeat fa-2x" style={buttonColor}></i>
           </Button>
         </div>
@@ -756,52 +1075,57 @@ var rememberedSubTabValue = 0
     </div>
   );
   //(tabIndex === 0 ? :"toolBarExit")
-function isPartnerVorhanden(){
-  let output = false
-  mandantGroup.map((mandant)=>{
-    if(mandant.art === "PARTNER"){
-      output = true
+  function isPartnerVorhanden() {
+    let output = false;
+    mandantGroup.map((mandant) => {
+      if (mandant.art === "PARTNER") {
+        output = true;
+      }
+    });
+    return output;
+  }
+  function shouldDrawerRender() {
+    let output = true;
+    if (mandantGroup[mandantTabIndex].art === "KIND") {
+      output = false;
     }
-  })
-return output
-}
-function shouldDrawerRender(){
-  let output = true
-  if(mandantGroup[mandantTabIndex].art === "KIND"){
-    output=false
+    if (card === "newKind" || card === "newMandant") {
+      output = false;
+    }
+    if (tabIndex === 1) {
+      output = true;
+    }
+    return output;
   }
-  if(card === "newKind" || card === "newMandant"){
-output = false
-  }
-  return output
-}
   function addVertag(event) {
-    if (selectedVertraege.length <= 7) {
-      setSelectedVertraege([
-        ...selectedVertraege,
-        { id: event.id, name: event.row.sparte, tarifType: event.row.icon },
-      ]);
-      setCard(event.row.icon)
-      setVertragId(event.id)
-      toggleOpenDialog(true)
-    } else {
-      alert("Es können nicht mehr als 8 Verträge geöffnet werden");
-    }
+      setCard(event.row.icon);
+      setVertragId(event.id);
+      toggleOpenDialog(true);
+
   }
-  function initForm(tarifType){
-      setCard(tarifType)
-    toggleOpenVertragHinzufuegen(false);
+  function onChangeSearch(event){
+    setLocalSearchString(event.target.value)
   }
- 
   //sx={{backgroundColor:colorProperties.BUTTONCOLOR, color:colorProperties.BUTTONCOLOR+" !important"}}
-  function addNewMandant(mandantType){
-    if(mandantType === "P"){
-       setCard("newMandant")
-    setAnchorElMandantHinzufuegen(null);
-    } if(mandantType === "K"){
-      setCard("newKind")
-    setAnchorElMandantHinzufuegen(null);
+  function addNewMandant(mandantType) {
+    if (mandantType === "P") {
+      setCard("newMandant");
+      setAnchorElMandantHinzufuegen(null);
     }
+    if (mandantType === "K") {
+      setCard("newKind");
+      setAnchorElMandantHinzufuegen(null);
+    }
+  }
+  function isKidOrPerson(art) {
+    let output;
+    if (art === "MANDANT" || art === "PARTNER") {
+      output = "fa fa-user fa-lg";
+    }
+    if (art === "KIND") {
+      output = "fa fa-child fa-lg";
+    }
+    return output;
   }
   return (
     <div>
@@ -815,8 +1139,8 @@ output = false
         <Tabs
           value={tabIndex}
           onChange={handleChange}
-          className="subTab"
-          centered
+
+          centeredonKeyDownSearch
         >
           <Tab label="Personendaten" className="subTab" />
           <Tab label="Verträge" />
@@ -845,50 +1169,72 @@ output = false
                         margin: "10px 0px 0px 0px",
                       }}
                     >
-                      {mandant.mandant.vorname + " " + mandant.mandant.nachname}
+                      <i class={isKidOrPerson(mandant.art)}></i>{" "}
+                      {" " +
+                        mandant.mandant.vorname +
+                        " " +
+                        mandant.mandant.nachname}
                     </p>
                   }
                 ></Tab>
               );
             })}
           </Tabs>
-        ) : (null)}
+        ) : null}
         {tabIndex === 0 ? (
           <>
-          <Button
-            className="hinzufuegeButton"
-            variant="contained"
-            style={{ backgroundColor: buttonColor.color }}
-            endIcon={<KeyboardArrowDown style={{marginRight:"10px"}}/>}
-            id="new-mandant-button"
-            aria-controls={openMandantHinzufuegen ? 'new-mandant-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={openMandantHinzufuegen ? 'true' : undefined}
-            onClick={handleClickMandantHinzufuegen}
-          >
-            <i style={{ marginRight: "10px", marginLeft:"5px" }} class="fa fa-user-plus fa-lg" />{" "}
-            Neuer Mandant
-          </Button>
-          <Menu       anchorEl={anchorElMandantHinzufuegen}
-        open={openMandantHinzufuegen}
-        onClose={handleCloseMandantHinzufuegen}
-        id="new-mandant-menu"
-        aria-labelledby="new-mandant-button"
-        sx={{width:"208px"}}
-      >
-       {!isPartnerVorhanden() ? <MenuItem  
-sx={{width:"208px", justifyContent:"left !important"}}
-className="newMandantList"
-onClick={()=>addNewMandant("P")}
-><i class="fa fa-user fa-lg" style={{marginLeft:"5px", marginRight:"10px"}} />Partner Hinzufügen</MenuItem>
-:null}
-        <MenuItem
-
-className="newMandantList"
-sx={{width:"208px", justifyContent:"left !important"}}
-onClick={()=>addNewMandant("K")}
-><i class="fa fa-child fa-lg" style={{marginLeft:"5px", marginRight:"10px"}} /> Kind Hinzufügen</MenuItem>
-          </Menu>
+            <Button
+              className="hinzufuegeButtonMandant"
+              variant="contained"
+              style={{ backgroundColor: buttonColor.color }}
+              endIcon={<KeyboardArrowDown style={{ marginRight: "10px" }} />}
+              id="new-mandant-button"
+              aria-controls={
+                openMandantHinzufuegen ? "new-mandant-menu" : undefined
+              }
+              aria-haspopup="true"
+              aria-expanded={openMandantHinzufuegen ? "true" : undefined}
+              onClick={handleClickMandantHinzufuegen}
+            >
+              <i
+                style={{ marginRight: "10px", marginLeft: "5px" }}
+                class="fa fa-user-plus fa-lg"
+              />{" "}
+              Neuer Mandant
+            </Button>
+            <Menu
+              anchorEl={anchorElMandantHinzufuegen}
+              open={openMandantHinzufuegen}
+              onClose={handleCloseMandantHinzufuegen}
+              id="new-mandant-menu"
+              aria-labelledby="new-mandant-button"
+              sx={{ width: "208px" }}
+            >
+              {!isPartnerVorhanden() ? (
+                <MenuItem
+                  sx={{ width: "208px", justifyContent: "left !important" }}
+                  className="newMandantList"
+                  onClick={() => addNewMandant("P")}
+                >
+                  <i
+                    class="fa fa-user fa-lg"
+                    style={{ marginLeft: "5px", marginRight: "10px" }}
+                  />
+                  Partner Hinzufügen
+                </MenuItem>
+              ) : null}
+              <MenuItem
+                className="newMandantList"
+                sx={{ width: "208px", justifyContent: "left !important" }}
+                onClick={() => addNewMandant("K")}
+              >
+                <i
+                  class="fa fa-child fa-lg"
+                  style={{ marginLeft: "5px", marginRight: "10px" }}
+                />{" "}
+                Kind Hinzufügen
+              </MenuItem>
+            </Menu>
           </>
         ) : (
           <Button
@@ -927,1189 +1273,50 @@ onClick={()=>addNewMandant("K")}
             >
               Vertrag Hinzufügen
             </Typography>
+            <Search/>
+            <TextField
+            value={localSearchString}
+            onChange={(e)=>onChangeSearch(e)}
+            sx={{
+              backgroundColor:"whitesmoke",
+              marginRight:"50px",
+              borderRadius:"10px",
+              height:"45px"
+            }}
+            InputLabelProps={{
+              height:"45px"
+            }}
+            inputProps={{
+              style: {
+                height:"12px"
+            }}
+            }
+            >
+              
+
+            </TextField>
           </Toolbar>
         </AppBar>
-        <div
-          className="balken"
-          style={{ backgroundColor: colorProperties.COLOR2 }}
-        >
-          <Typography
-            variant="h6"
-            style={{ color: colorProperties.COLOR1 }}
-            className="headingVertragHinzufuegen"
-          >
-            Arbeitskraftabsicherung
-          </Typography>
-        </div>
-        <div>
-        <Button
-        onClick={()=>initForm("RISIKO")}
-          startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-                }}
-                class="fa fa-bed fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-          Todesfall
-        </Button>
-        <Button
-        onClick={()=>initForm("BU")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-                }}
-                class="fa fa-wheelchair fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-          BU / EU / GF
-        </Button>
-        <Button
-        onClick={()=>initForm("DREADDISEASE")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-                }}
-                class="fa fa-bug fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-          DD / Schwere Krankheiten
-        </Button>
-        <Button
-        onClick={()=>initForm("UNFALL")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-                }}
-                class="icon icon-fa-font-accident fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-          sx={{width:"230px"}}
-        >
-         Unfallversicherung
-        </Button>
-        </div>
-        <div
-          className="balken"
-          style={{ backgroundColor: colorProperties.COLOR2 }}
-        >
-          <Typography
-            variant="h6"
-            style={{ color: colorProperties.COLOR1 }}
-            className="headingVertragHinzufuegen"
-          >
-            {"Altersvorsorge"}
-          </Typography>
-        </div>
-        <div>
-        <Button
-        onClick={()=>initForm("RUERUP")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                marginLeft:"2px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-oldru fa-lg"
-              ></i>
-            </div>
-          }
-          style={{width:"218px"}}
-          className="selectNewVertrag"
-        >
-         Basisrente/Ruerup
-        </Button>
-        <Button
-        onClick={()=>initForm("RIESTER")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                marginLeft:"2px",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-oldri fa-lg"
-              ></i>
-            </div>
-          }
-          style={{width:"225px"}}
-          className="selectNewVertrag"
-        >
-         Förderrente/Rieser
-        </Button>
-        <Button
-        onClick={()=>initForm("bAVNEW")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                marginLeft:"2px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-factory fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         bAV
-        </Button>
-        <Button
-        onClick={()=>initForm("GESETZLICHE_AV")} //Richig? TODO
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                marginLeft:"2px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
- 
-              <i
-                style={{
-                  color: "white",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-old fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Private Altersvorsorge
-        </Button>
-        <Button
-        onClick={()=>initForm("PRIVATRENTE")} 
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                marginLeft:"2px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-paragraph fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         GRV
-        </Button>
-   
-        <Button
-        onClick={()=>initForm("")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                marginLeft:"2px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-old fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Rente (To Be Added)
-        </Button>
-        </div>
-        <div
-          className="balken"
-          style={{ backgroundColor: colorProperties.COLOR2 }}
-        >
-          <Typography
-            variant="h6"
-            style={{ color: colorProperties.COLOR1 }}
-            className="headingVertragHinzufuegen"
-          >
-            Einnahmen und Ausgaben
-          </Typography>
-        </div>
-        <div>
-        <Button
-        onClick={()=>initForm("EINKOMMEN_GEHALT")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Einkommen / Gehalt
-        </Button>
-        <Button
-        onClick={()=>initForm("EINNAHMEN")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        Einnahmen
-        </Button>
-        <Button
-        onClick={()=>initForm("EINKOMMEN_MINIJOB")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        Einkommen aus geringfügiger Beschäftigung
-        </Button>
-        <Button
-        onClick={()=>initForm("EINKOMMEN_SELBSTAENDIGER")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        Einkommen aus selbstständiger Beschäftigung
-        </Button>
-        <Button
-        onClick={()=>initForm("AUSGABEN")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        Lebensunterhaltskosten
-        </Button>
-        <Button
-        onClick={()=>initForm("WOHNSITUATION")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        Wohnsituation
-        </Button>
-        <Button
-        onClick={()=>initForm("WOHNSITUATION")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        Gas
-        </Button>
-        <Button
-        onClick={()=>initForm("WOHNSITUATION")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        Strom
-        </Button>
-        <Button
-        onClick={()=>initForm("SONSTIGE_ZAHLUNG")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        Sonstige Zahlungsverpflichtigungen
-        </Button>
-        </div>
-        
-        <div
-          className="balken"
-          style={{ backgroundColor: colorProperties.COLOR2 }}
-        >
-          <Typography
-            variant="h6"
-            style={{ color: colorProperties.COLOR1 }}
-            className="headingVertragHinzufuegen"
-          >
-            Pflege
-          </Typography>
-        </div>
-        <div>
-        <Button
-        onClick={()=>initForm("PFLEGEKOSTEN")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-doctor fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Pflege
-        </Button>
-        </div>
-        <div
-          className="balken"
-          style={{ backgroundColor: colorProperties.COLOR2 }}
-        >
-          <Typography
-            variant="h6"
-            style={{ color: colorProperties.COLOR1 }}
-            className="headingVertragHinzufuegen"
-          >
-            Vermögen und Verbindlichkeiten
-          </Typography>
-        </div>
-        <div>
-        <Button
-        onClick={()=>initForm("KONSUMKREDIT")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="fa fa-credit-card fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Kredit
-        </Button>
-        <Button
-        onClick={()=>initForm("DARLEHEN")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-safe fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Darlehen
-        </Button>
-        <Button
-        onClick={()=>initForm("BANKPRODUKTE")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-bank fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Bankprodukte
-        </Button>
-        <Button
-        onClick={()=>initForm("VWL_BAUSPAREN")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-home fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Vwl und Bausparen
-        </Button>
-        <Button
-        onClick={()=>initForm("IMMOBILIENBESTAND")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-building fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Immobilienbestand
-        </Button>
-        <Button
-        onClick={()=>initForm("SACHWERT")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-building fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Sachwert
-        </Button>
-        <Button
-        onClick={()=>initForm("BETEILIGUNGEN")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-pie fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Beteiligungen / AiF
-        </Button>
-        <Button
-        onClick={()=>initForm("INVESTMENT")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-file fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Investment
-        </Button>
-        </div>
-        <div
-          className="balken"
-          style={{ backgroundColor: colorProperties.COLOR2 }}
-        >
-          <Typography
-            variant="h6"
-            style={{ color: colorProperties.COLOR1 }}
-            className="headingVertragHinzufuegen"
-          >
-            Gesundheit
-          </Typography>
-        </div>
-        <div>
-        <Button
-        onClick={()=>initForm("KVV")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         PKV
-        </Button>
-        <Button
-        onClick={()=>initForm("KVZ")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-plaster fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         KV Zusatz
-        </Button>
-        <Button
-        onClick={()=>initForm("GESETZLICHE_KRANKEN")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-ambulance fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         GKV
-        </Button>
-        </div>
-        <div
-          className="balken"
-          style={{ backgroundColor: colorProperties.COLOR2 }}
-        >
-          <Typography
-            variant="h6"
-            style={{ color: colorProperties.COLOR1 }}
-            className="headingVertragHinzufuegen"
-          >
-            Vermögenssicherung
-          </Typography>
-        </div>
-        <div>
-
-          
-        <Button
-        onClick={()=>initForm("PRIVATHAFTPFLICHT")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-cop fa-lg"
-              ></i>
-            </div>
-          }
-          style={{width:"222px"}}
-          className="selectNewVertrag"
-        >
-         Privathaftpflicht
-        </Button>
-        <Button
-        onClick={()=>initForm("HAUSRAT")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-bike fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Hausrat
-        </Button>
-        <Button
-        onClick={()=>initForm("WOHNGEBAEUDE")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-thunder fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Wohngebäude
-        </Button>
-        <Button
-        onClick={()=>initForm("RECHTSSCHUTZ")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "-65%",
-                }}
-                class="icon icon-fa-font-legal fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Rechtschutz
-        </Button>
-        <Button
-        onClick={()=>initForm("")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-                }}
-                class="fa fa-car fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-        KFZ-Versicherung
-        </Button>
-        <Button
-        onClick={()=>initForm("AUTOMOBILCLUB")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-                }}
-                class="fa fa-car fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-         Automobilclub
-        </Button>
-
-        <Button
-        onClick={()=>initForm("HUNDEHALTERHAFTPFLICHT")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-                marginLeft:"10px"
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-
-                }}
-                class="icon icon-fa-font-dog fa-lg"
-              ></i>
-            </div>
-          }
-          style={{width:"278px"}}
-          className="selectNewVertrag"
-        >
-         Hundehalterhaftpflicht
-        </Button>
-
-        <Button
-        onClick={()=>initForm("PFERDEHALTERHAFTPFLICHT")}
-        startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-                }}
-                class="icon icon-fa-font-horse fa-lg"
-              ></i>
-            </div>
-          }
-          style={{width:"238px"}}
-          className="selectNewVertrag"
-        >
-        Pferdehalterpflicht
-        </Button>
-        
-
-        </div>
+        <VertragComponents
+        setCard={setCard}
+              toggleOpenVertragHinzufuegen={toggleOpenVertragHinzufuegen}      
+              localSearchString={localSearchString}
+        />
       </Dialog>
-      {shouldDrawerRender() ?
-      <Drawer
-        id="drawer"
-        variant="permanent"
-        open={open}
-        PaperProps={{ className: "toolBar" }}
-        sx={{
-          backgroundColor: colorProperties.COLOR1,
-          visibility: loaded ? "visible" : "hidden",
-        }}
-      >
-        {tabIndex === 0 ? personenbezogeneDaten : vertragGruppen}
-      </Drawer>:null}
+      {shouldDrawerRender() ? (
+        <Drawer
+          id="drawer"
+          variant="permanent"
+          open={open}
+          PaperProps={{ className: "toolBar" }}
+          sx={{
+            backgroundColor: colorProperties.COLOR1,
+            visibility: loaded ? "visible" : "hidden",
+          }}
+        >
+          {tabIndex === 0 ? personenbezogeneDaten : vertragGruppen}
+        </Drawer>
+      ) : null}
       {tabIndex === 1 ? (
         <div
           className={emptyWindowStyle}
@@ -2142,10 +1349,154 @@ onClick={()=>addNewMandant("K")}
           </Box>
         </div>
       ) : null}
+      <Dialog
+        open={openFileWarning}
+        onClose={handleFileWarningClose}
+        className="dialogWarning"
+        PaperComponent={PaperComponent}
+        maxWidth={"lg"}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle id="draggable-dialog-title" cursor="move">
+          Warnung
+        </DialogTitle>
+        <DialogContent>
+          {openNextQuestion ? (
+            <div className="gridWarningText">
+              <i
+                style={{ marginTop: "15px" }}
+                class="fa fa-info-circle fa-3x"
+              ></i>
+              <p>
+                Sollen die dem Vertrag zugeordneten Dateien oder Fotos auch
+                gelöscht werden?
+              </p>
+            </div>
+          ) : (
+            <div className="gridWarningText">
+              <i
+                style={{ marginTop: "15px" }}
+                class="fa fa-question-circle fa-3x"
+              ></i>
+              <p>Wollen Sie diesen Baustein wirklich löschen?</p>
+            </div>
+          )}
+          {openNextQuestion ? (
+            <div>
+              <Button className="jaWarning" onClick={() => deleteAsset(true)}>
+                Ja
+              </Button>
+              <Button
+                className="neinWarning"
+                onClick={() => deleteAsset(false)}
+              >
+                Nein
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Button
+                className="jaWarning"
+                onClick={() => transitionNextQuestion()}
+              >
+                Ja
+              </Button>
+              <Button
+                className="neinWarning"
+                onClick={() => handleFileWarningClose()}
+              >
+                Nein
+              </Button>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+      <Popover
+        open={openAktionen}
+        onClose={handleCloseAktionen}
+        anchorEl={anchorElAktionen}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+      >
+        <div style={{ display: "flex", flexFlow: "column wrap" }}>
+          <Button
+            startIcon={<i class="fa fa-square"></i>}
+            sx={{
+              color: "black",
+              justifyContent: "flex-start",
+            }}
+            onClick={() => submitKuendigung()}
+          >
+            Kündigung erstellen
+          </Button>
+          <Button
+            sx={{
+              color: "black",
+              justifyContent: "flex-start",
+            }}
+            startIcon={<i class="fa fa-check"></i>}
+          >
+            Übertragen
+          </Button>
+          <Button
+            startIcon={<i class="fa fa-square"></i>}
+            sx={{
+              color: "black",
+              justifyContent: "flex-start",
+            }}
+            disabled
+          >
+            Kündigen
+          </Button>
+          <Divider></Divider>
+          <Button
+            startIcon={<i class="fa fa-pencil"></i>}
+            sx={{
+              color: "black",
+              justifyContent: "flex-start",
+            }}
+            onClick={(event) => addVertag(event)}
+          >
+            Baustein editieren
+          </Button>
+          <Button
+            startIcon={<i class="fa fa-gear"></i>}
+            sx={{
+              color: "black",
+              justifyContent: "flex-start",
+            }}
+          >
+            Typenänderung
+          </Button>
+          <Button
+            sx={{
+              color: "black",
+              justifyContent: "flex-start",
+            }}
+            startIcon={<i class="icon icon-fa-font-files"></i>}
+            onClick={(event) => copyVertrag(event)}
+          >
+            Baustein kopieren
+          </Button>
+          <Button 
+            startIcon={<i class="fa fa-trash"></i>}
+            sx={{
+              color: "black",
+              justifyContent: "flex-start",
+            }}
+            onClick={() => handleFileWarningOpen()}
+          >
+            Baustein löschen
+          </Button>
+        </div>
+      </Popover>
     </div>
   );
 }
 export default SideMenue;
+
 /*
      <Button
           startIcon={

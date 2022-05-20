@@ -243,6 +243,13 @@
             "label": "Baujahr",
             "type": "text",
             "suiteValue":"baujahr"
+        },
+        {
+          "name": "notizen",
+          "type": "textarea",
+          "rows":5,
+          "label": "Notizen",
+          "suiteValue":"notizen"
         }
     ]
 }

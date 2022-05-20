@@ -37,7 +37,7 @@
     {
       "name": "versicherungsnehmerBetrieblicheAltersversorgung",
       "label": "Versicherungsnehmer",
-      "type": "selectMandant",
+      "type": "selectMandantbAV",
       "tarifType":"DIREKT_3",
       "props": { "required": true },
       "suiteValue":"versicherungsnehmerId"
@@ -71,6 +71,7 @@
         "xs":6 },
       "suiteValue":"tarifTypeId"
     }]},
+
     {
       "section": "Beitrag",
       "card": true,
@@ -108,20 +109,11 @@
         "suiteValue":"vwlArbeitnehmer"
     },
     {
-      "name": "beitragIintegrierteVWLBeitragBetrieblicheAltersversorgung",
-      "label": "Beitrag integrierte VWL",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":""
-    },
-    {
       "name": "beitragGesamtBeitragBetrieblicheAltersversorgung",
       "label": "Beitrag Gesamt (inkl. BU)",
-      "type": "costumFunction",
+      "type": "customFunction",
       "props": { "required": true,"sm":6,
-        "xs":6 },
-        "suiteValue":""
+        "xs":6 }
     },
     {
       "name": "nettobelastungBeitragBetrieblicheAltersversorgung",
@@ -135,8 +127,7 @@
       "name": "zahlweiseBetrieblicheAltersversorgung",
       "label": "Zahlweise",
       "type": "select",
-      "props": { "required": true, "sm":6,
-        "xs":6 },
+      "props": { "required": true },
       "options": [
         { "value": "MONATLICH", "label": "Monatlich" },
         { "value": "QUARTAL", "label": "Quartal" },
@@ -211,7 +202,12 @@
       "props": { "sm": 6,
         "xs":6 },
         "suiteValue":"rentenleistungRgzJahre"
-    }]},
+    },
+    {
+      "name":"rentenPrognose",
+      "type":"customFunction"
+    }
+    ]},
     {
       "section": "Ablaufleistung",
       "card": true,
@@ -369,6 +365,13 @@
       "props": { "sm": 6,
         "xs":6 },
         "suiteValue":"fonds"
-    }]}
+    }]},
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
+    }
   ]
 }

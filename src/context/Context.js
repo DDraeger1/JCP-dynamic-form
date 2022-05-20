@@ -34,7 +34,33 @@ const [productGesellschaftIdLoaded, toggleProductGesellschaftIdLoaded] = useStat
 const [login, setLogin] = useState("");
 const [openDialog, toggleOpenDialog] =useState(true)
 const [fullscreenDialog, toggleFullscreenDialog] = useState(false)
-
+const [berechneteRestschuld, setBerechneteRestschuld] = useState(0)
+const [beitragGesamtbAV,setBeitragGesamtbAV] = useState(0)
+const [searchString,setSearchString] =useState("")
+const [vertragName, setVertragName] = useState("")
+const [colorProperties,setColorProperties] =useState({
+  BUTTONCOLOR: "#C91413",
+  COLOR1: "#404041",
+  COLOR2: "#D5D5D5",
+  MAINCOLOR: "#565656",
+  METANAV: "#000000",
+  METANAVBTN: "#000000",
+  REQUIREDCOLOR: "#F2EB1B",
+  RESULTSPANELFAVORIT: "#FFFFFF",
+  RESULTSPANELSONSTIGE: "#FFFFFF",
+  RESULTSPANELSTRATEGISCHE: "#FFFFFF",
+  VIEWPORTCOLOR: "#565656"
+})
+const [filterContent, setFilterContent] = useState({
+  arbeitskraftabsicherung: false,
+  altersvorsorge: false,
+  einnahmenUndAusgaben: false,
+  pflege: false,
+  vermoegenUndVerbindlichkeiten: false,
+  gesundheit: false,
+  vermoegenssicherung: false,
+  enterPressed:false
+});
 return (
     <Context.Provider
       value={{
@@ -60,7 +86,13 @@ return (
         productGesellschaftIdLoaded, toggleProductGesellschaftIdLoaded,
         login, setLogin,
         openDialog, toggleOpenDialog,
-        fullscreenDialog, toggleFullscreenDialog
+        fullscreenDialog, toggleFullscreenDialog,
+        berechneteRestschuld, setBerechneteRestschuld,
+        beitragGesamtbAV,setBeitragGesamtbAV,
+        searchString,setSearchString,
+        filterContent, setFilterContent,
+        colorProperties,setColorProperties,
+        vertragName, setVertragName,
       }}
     >
       {props.children}

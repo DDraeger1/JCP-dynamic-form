@@ -285,6 +285,13 @@
             "props": { "sm": 6,
               "xs":6 },
               "suiteValue":"pflegestufe3"
+          },
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
           }
         ]
     }

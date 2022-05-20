@@ -64,6 +64,12 @@
         "suiteValue":"versichertePerson"
       },
       {
+        "name": "sonstigePersonTodesfall",
+        "label": "Sonstige",
+        "type": "text",
+        "suiteValue":"versichertePersonSonstige"
+      },
+      {
         "section": "Vertragslaufzeit",
         "card": true,
         "items": [
@@ -85,44 +91,12 @@
           "suiteValue":"versicherungsende"
       }]},
       {
-        "name": "bruttobeitragVertragslaufzeitTodesfall",
-        "label": "Bruttobeitrag",
-        "type": "text",
-        "props": { "sm": 6,
-          "xs":6},
-          "suiteValue":"bruttobeitrag"
-      },
-      {
-        "name": "nettobeitragVertragslaufzeitTodesfall",
-        "label": "Nettobeitrag",
-        "type": "text",
-        "props": { "sm": 6 ,
-          "xs":6},
-          "suiteValue":"monatsBeitrag"
-      },
-      {
-        "name": "zahlweiseVertragslaufzeitTodesfall",
-        "label": "Zahlweise",
-        "type": "select",
-        "props": { "required": true, "sm":6,
-          "xs":6 },
-        "options": [
-          { "value": "MONATLICH", "label": "Monatlich" },
-          { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
-          { "value": "QUARTAL", "label": "Quartal" },
-          { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
-          { "value": "JAEHRLICH", "label": "Jährlich" }],
-          "suiteValue":"zahlweise"
-      },
-      {
         "name": "artVertragslaufzeitTodesfall",
         "label": "Art",
         "type": "select",
         "options": [
           { "value": "rlv", "label": "RLV" },
           { "value": "sterbegeld", "label": "Sterbegeld" }],
-          "props": { "sm": 6,
-            "xs":6 },
             "suiteValue":"art"
       }]},
       {
@@ -131,7 +105,7 @@
         "items": [
       {
         "name": "versicherungssummeTodesfall",
-        "label": "Versicherungssumme",
+        "label": "Versicherungssumme (Todesfallsumme) (€)",
         "type": "text",
         "props": { "sm": 6,
           "xs":6 },
@@ -156,11 +130,26 @@
         "suiteValue":"vertragAbgetreten"
       }]},
       {
+        "section": "Integrierte BU/Rentenleistung",
+        "card": true,
+        "items":[
+      {
+        "name": "integrierteBURentenleistunggVersicherungssummeTodesfall",
+        "label": "Integrierte BU/Rentenleistung",
+        "type": "select",
+        "suiteValue":"integrierteBuRenten",
+        "options":[
+          { "value": true, "label": "Ja" },
+          { "value": false, "label": "Nein" }]
+      },
+      {
         "name": "MtlBULeistungVersicherungssummeTodesfall",
-        "label": "Mtl. BU-Leistung",
+        "label": "Beitrag (€)",
         "type": "text",
         "suiteValue":"integrierteBuRentenBetrag"
-      },
+      }
+    ]
+    },
       {
         "name": "beitragsbefreiungBUVersicherungssummeTodesfall",
         "label": "Beitragsbefreiung BU",
@@ -182,6 +171,54 @@
         "label": "Raucher",
         "type": "checkbox",
         "suiteValue":"raucher"
+      },
+      {
+        "name": "zahlweiseVertragslaufzeitTodesfall",
+        "label": "Zahlweise",
+        "type": "select",
+        "props": { "required": true },
+        "options": [
+          { "value": "MONATLICH", "label": "Monatlich" },
+          { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+          { "value": "QUARTAL", "label": "Quartal" },
+          { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+          { "value": "JAEHRLICH", "label": "Jährlich" }],
+          "suiteValue":"zahlweise"
+      },
+      {
+        "section": "Beitrag",
+        "card": true,
+        "items":[
+          {
+            "name": "gesamtzahlbeitragTodesfall",
+            "label": "Gesamtzahlbeitrag (inkl. BU) (€)",
+            "type": "text",
+            "suiteValue":"beitrag",
+            "props": { "required": true }
+          },
+          {
+            "name": "bruttobeitragVertragslaufzeitTodesfall",
+            "label": "Bruttobeitrag",
+            "type": "text",
+            "props": { "sm": 6,
+              "xs":6},
+              "suiteValue":"bruttobeitrag"
+          },
+          {
+            "name": "nettobeitragVertragslaufzeitTodesfall",
+            "label": "Nettobeitrag",
+            "type": "text",
+            "props": { "sm": 6 ,
+              "xs":6},
+              "suiteValue":"monatsBeitrag"
+          }
+        ]},
+      {
+        "name": "notizen",
+        "type": "textarea",
+        "rows":5,
+        "label": "Notizen",
+        "suiteValue":"notizen"
       }
     ]
     }

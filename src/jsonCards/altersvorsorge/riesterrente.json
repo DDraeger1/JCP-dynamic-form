@@ -130,7 +130,7 @@
       "suiteValue":"rentenleistungRgzJahre"
     },
     {"name":"rentenPrognose",
-      "type":"costumFunction"
+      "type":"customFunction"
       }]},
     {
       "section": "Dynamik",
@@ -339,6 +339,13 @@
       "label": "Garantiezins (%)",
       "type": "text",
       "suiteValue":"garantieZins"
-    }]}
+    }]},
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
+    }
   ]
 }

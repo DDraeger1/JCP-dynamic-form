@@ -122,7 +122,7 @@
         {
           "name": "anzahlVersichertePersonenPrivatePflegeversicherung",
           "label": "Anzahl versicherte Personen",
-          "type": "personArray",
+          "type": "select",
           "options": [
             { "value": 1, "label": "1" },
             { "value": 2, "label": "2" },
@@ -131,8 +131,9 @@
             { "value": 5, "label": "5" },
             { "value": 6, "label": "6" }
           ],
-          "suiteValue": "anzahlVP"
-        }
+          "suiteValue": "anzahlVP",
+      "anzahlVp": "true"
+    }
       ]
     },
     {
@@ -1023,6 +1024,13 @@
           ]
         }
       ]
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }

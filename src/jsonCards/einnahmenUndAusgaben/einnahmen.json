@@ -70,6 +70,13 @@
                     "suiteValue":"zahlweise"
     },
     { "name": "betragEinnahmen", "label": "Betrag", "type": "text",
-      "suiteValue":"betrag" }]}
+      "suiteValue":"betrag" }]},
+      {
+        "name": "notizen",
+        "type": "textarea",
+        "rows":5,
+        "label": "Notizen",
+        "suiteValue":"notizen"
+      }
   ]
 }

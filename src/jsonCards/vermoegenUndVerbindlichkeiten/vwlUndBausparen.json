@@ -1,265 +1,283 @@
 {
   "section": "Vwl und Bausparen",
   "card": true,
-  "mobileClassname":"VermogenswirksameLeistungenUndBausparen",
+  "mobileClassname": "VermogenswirksameLeistungenUndBausparen",
   "items": [
-    {"name":"showExternalProductId",
-      "type": "paragraph",
-    "label":""},
-    {
-      "name": "externalProduktId",
-      "type": "produktid",
-      "condition":"showExternalProductId",
-      "props": { "required": true },
-      "suiteValue":"externalProduktId"},
-    {
-      "name": "gesellschaftVwlUndBausparen",
-      "type": "gesellschaft",
-      "props": { "required": true },
-      "suiteValue":"gesellschaft"
-    },
+    { "name": "showExternalProductId", "type": "paragraph", "label": "" },
     {
       "name": "tarifbezeichnungVwlUndBausparen",
       "label": "Tarifbezeichnung",
       "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":"tarifBezeichnung"
-    },
-    {
-      "name": "vertragsnummerVwlUndBausparen",
-      "label": "Vertragsnummer",
-      "type": "text",
-      "props": { "sm":6,
-        "xs":6 },
-        "suiteValue":"versicherungsnummer"
-    },
-    {
-      "name": "vertragsinhaberHeaderVwlUndBausparen",
-      "label": "Besparung durch",
-      "type": "header"
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue": "tarifBezeichnung"
     },
     {
       "name": "vertragsinhaberVwlUndBausparen",
       "label": "Vertragsinhaber",
       "type": "selectMandant",
-      "versicherungsnehmerBeide":"true",
-      "tarifType":"VWL_BAUSPAREN",
+      "versicherungsnehmerBeide": "true",
+      "tarifType": "VWL_BAUSPAREN",
       "props": { "required": true },
-      "suiteValue":"versicherungsnehmerId"
+      "suiteValue": "versicherungsnehmerId"
+    },
+
+    {
+      "name": "externalProduktId",
+      "type": "produktid",
+      "condition": "showExternalProductId",
+      "props": { "required": true },
+      "suiteValue": "externalProduktId"
+    },
+    {
+      "section": "Gesellschaft",
+      "card": true,
+      "items": [
+        {
+          "name": "gesellschaftVwlUndBausparen",
+          "type": "gesellschaft",
+          "props": { "required": true },
+          "suiteValue": "gesellschaft"
+        },
+        {
+          "name": "vertragsnummerVwlUndBausparen",
+          "label": "Vertragsnummer",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versicherungsnummer"
+        }
+      ]
     },
     {
       "name": "artVertragsinhaberVwlUndBausparen",
       "label": "art",
       "type": "select",
-      "props": { "required": true, "sm":6 ,
-        "xs":6},
+      "props": { "required": true, "sm": 6, "xs": 6 },
       "options": [
         { "value": "bankprodukte", "label": "Bankprodukte" },
         { "value": "bausparen", "label": "Bausparen" },
         { "value": "wohnRiester", "label": "Wohn-Riester" },
         { "value": "fonds", "label": "Fonds" },
-        { "value": "klv" , "label": "KLV" },
+        { "value": "klv", "label": "KLV" },
         { "value": "prv", "label": "PRV" },
         { "value": "flv", "label": "FLV" },
         { "value": "frv", "label": "FRV" }
       ],
-      "suiteValue":"art"
+      "suiteValue": "art"
     },
     {
       "name": "besparungDurchVertragsinhaberVwlUndBausparen",
       "label": "Besparung durch",
       "type": "select",
-      "props": { "sm": 6,
-        "xs":6 },
+      "props": { "sm": 6, "xs": 6 },
       "options": [
-        { "value": 0, "label": "VWL" },
-        { "value": 1, "label": "eigen" },
-        { "value": 2, "label": "beides" }
+        { "value": "VWL", "label": "VWL" },
+        { "value": "eigen", "label": "eigen" },
+        { "value": "beides", "label": "beides" }
       ],
-      "suiteValue":""
+      "suiteValue": "besparungDurch"
     },
-    {"name": "bausparsummeVertragsinhaberVwlUndBausparen",
-        "label":"Bausparsumme (€)",
-    "type":"text",
-    "props": { "sm": 6,
-      "xs":6 },
-      "suiteValue":""
+    {
+      "section": "",
+      "card": true,
+     "items": [
+        {
+          "name": "bausparsummeVertragsinhaberVwlUndBausparen",
+          "label": "Versicherungssumme/Bausparsumme (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "bausparsumme"
+        },
+        {
+          "name": "guthabenVwlUndBausparen",
+          "label": "Aktueller Rückkaufswert/Guthaben (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "guthaben"
+        }
+      ]
     },
-    {"name": "vertragsnummerVertragsinhaberVwlUndBausparen",
-        "label":"Beitrag (€)",
-    "type":"text",
-    "props": { "required": true, "sm":6 ,
-      "xs":6},
-      "suiteValue":""
-    },
-    {"name": "dauerzulagenantragVertragsinhaberVwlUndBausparen",
-        "label":"Dauerzulagenantrag",
-    "type":"select",
-    "options": [
+
+    {
+      "name": "dauerzulagenantragVertragsinhaberVwlUndBausparen",
+      "label": "Dauerzulagenantrag",
+      "type": "select",
+      "options": [
         { "value": false, "label": "Nein" },
-        { "value": true, "label": "Ja" }],
-        "props": { "sm": 6 ,
-          "xs":6},
-          "suiteValue":""
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue": "dauerzulagenantrag"
     },
-    {"name": "WOPVertragsinhaberVwlUndBausparen",
-        "label":"WOP",
-    "type":"select",
-    "options": [
+    {
+      "name": "WOPVertragsinhaberVwlUndBausparen",
+      "label": "WOP",
+      "type": "select",
+      "options": [
         { "value": false, "label": "Nein" },
-        { "value": true, "label": "Ja" }],
-        "props": { "sm": 6 ,
-          "xs":6},
-          "suiteValue":""
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue": "wop"
     },
-    {"name": "ANSparzulageVertragsinhaberVwlUndBausparen",
-        "label":"AN-Sparzulage",
-    "type":"select",
-    "options": [
+    {
+      "name": "ANSparzulageVertragsinhaberVwlUndBausparen",
+      "label": "AN-Sparzulage",
+      "type": "select",
+      "options": [
         { "value": false, "label": "Nein" },
-        { "value": true, "label": "Ja" }],
-        "props": { "sm": 6,
-          "xs":6 },
-          "suiteValue":""
-    },
-    {"name": "aktuellerWertVertragsinhaberVwlUndBausparen",
-        "label":"Aktueller Wert (€)",
-    "type":"text",
-    "props": { "sm": 6,
-      "xs":6 },
-      "suiteValue":""
+        { "value": true, "label": "Ja" }
+      ],
+      "props": { "sm": 6, "xs": 6 },
+      "suiteValue": "sparzulageAN"
     },
     {
-        "name":"zahlweiseVertragsinhaberVwlUndBausparen",
-        "label":"Zahlweise",
-        "type":"select",
-        "options": [
-          { "value": "MONATLICH", "label": "Monatlich" },
-          { "value": "QUARTAL", "label": "Quartal" },
-          { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
-          { "value": "JAEHRLICH", "label": "Jährlich" }
-        ],
-        "props":{"required":true},
-        "suiteValue":""
+      "section": "",
+      "card": true,
+     "items": [
+    {
+      "name": "zahlweiseVertragsinhaberVwlUndBausparen",
+      "label": "Zahlweise",
+      "type": "select",
+      "options": [
+        { "value": "MONATLICH", "label": "Monatlich" },
+        { "value": "QUARTAL", "label": "Quartal" },
+        { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+        { "value": "JAEHRLICH", "label": "Jährlich" }
+      ],
+      "props": { "required": true },
+      "suiteValue": "zahlweise"
     },
     {
-      "name": "beitragszahlerVwlUndBausparenHeader",
-      "label": "Beitragszahler",
-      "type": "header"
-    },
-    {
-      "name": "eigenanteilBeitragszahlerVwlUndBausparen",
-      "label": "Eigenanteil (€)",
+      "name": "vertragsnummerVertragsinhaberVwlUndBausparen",
+      "label": "Beitrag (€)",
       "type": "text",
-      "suiteValue":""
+      "props": { "required": true, "sm": 6, "xs": 6 },
+      "suiteValue": "beitrag"
+    }]},
+    {
+      "section": "Beitragszahler",
+      "card": true,
+      "items": [
+        {
+          "name": "eigenanteilBeitragszahlerVwlUndBausparen",
+          "label": "Eigenanteil (€)",
+          "type": "text",
+          "suiteValue": "eigenanteil"
+        }
+      ]
     },
     {
-      "name": "vertragslaufzeitVwlUndBausparenHeader",
-      "label": "Vertragslaufzeit",
-      "type": "header"
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
+        {
+          "name": "vertragsbeginnVertragslaufzeitVwlUndBausparen",
+          "label": "Vertragsbeginn",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versicherungsbeginn"
+        },
+        {
+          "name": "vertragsendeVertragslaufzeitVwlUndBausparen",
+          "label": "Vertragsende",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "versicherungsende"
+        }
+      ]
     },
     {
-      "name": "vertragsbeginnVertragslaufzeitVwlUndBausparen",
-      "label": "Vertragsbeginn",
-      "type": "date",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":""
+      "section": "Zahlung letzte Zulage",
+      "card": true,
+      "items": [
+        {
+          "name": "zahlungLetzteZulageVwlUndBausparen",
+          "label": "in Höhe von (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "riesterzulageLetztmaligBetrag"
+        },
+        {
+          "name": "gebuchtAmZahlungLetzteZulageVwlUndBausparen",
+          "label": "gebucht am",
+          "type": "date",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "riesterzulage"
+        }
+      ]
     },
     {
-      "name": "vertragsendeVertragslaufzeitVwlUndBausparen",
-      "label": "Vertragsende",
-      "type": "date",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":""
+      "section": "",
+      "card": true,
+      "items": [
+        {
+          "name": "guthabenszinsZahlungLetzteZulageVwlUndBausparen",
+          "label": "Guthabenszins",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "guthabenzins"
+        },
+        {
+          "name": "darlehenszinsZahlungLetzteZulageVwlUndBausparen",
+          "label": "Darlehenszins",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "darlehenszins"
+        },
+        {
+          "name": "besparungInProzentZahlungLetzteZulageVwlUndBausparen",
+          "label": "Besparung in %",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "besparungPercentage"
+        },
+        {
+          "name": "voraussichtlicheZuteilungZahlungLetzteZulageVwlUndBausparen",
+          "label": "Voraussichtliche Zuteilung (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "zuteilung"
+        }
+      ]
     },
     {
-      "name": "zahlungLetzteZulageVwlUndBausparenHeader",
-      "label": "Zahlung letzte Zulage",
-      "type": "header"
+      "section": "VWL",
+      "card": true,
+      "items": [
+        {
+          "name": "VwlVwlVwlUndBausparen",
+          "label": "Vwl",
+          "type": "checkbox",
+          "suiteValue": "vwlJaNein"
+        },
+        {
+          "name": "arbeitgeberanteilVwlVwlUndBausparen",
+          "label": "Arbeitgeberanteil (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "aganteil"
+        },
+        {
+          "name": "arbeitnehmeranteilVwlVwlUndBausparen",
+          "label": "Arbeitnehmeranteil (€)",
+          "type": "text",
+          "props": { "sm": 6, "xs": 6 },
+          "suiteValue": "ananteil"
+        },
+        {
+          "name": "summeVwlVwlUndBausparen",
+          "label": "Summe (berechnet)",
+          "type": "text",
+          "suiteValue": ""
+        }
+      ]
     },
     {
-      "name": "zahlungLetzteZulageVwlUndBausparen",
-      "label": "in Höhe von (€)",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":""
-    },
-    {
-      "name": "gebuchtAmZahlungLetzteZulageVwlUndBausparen",
-      "label": "gebucht am",
-      "type": "date",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":""
-    },
-    {
-      "name": "guthabenszinsZahlungLetzteZulageVwlUndBausparen",
-      "label": "Guthabenszins",
-      "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":""
-    },
-    {
-      "name": "darlehenszinsZahlungLetzteZulageVwlUndBausparen",
-      "label": "Darlehenszins",
-      "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":""
-    },
-    {
-      "name": "besparungInProzentZahlungLetzteZulageVwlUndBausparen",
-      "label": "Besparung in %",
-      "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":""
-    },
-    {
-      "name": "voraussichtlicheZuteilungZahlungLetzteZulageVwlUndBausparen",
-      "label": "Voraussichtliche Zuteilung (€)",
-      "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":""
-    },
-    {
-      "name": "VwlVwlUndBausparenHeader",
-      "label": "Voraussichtliche Zuteilung",
-      "type": "header"
-    },
-    {
-      "name": "VwlVwlVwlUndBausparen",
-      "label": "Vwl",
-      "type": "checkbox",
-      "suiteValue":""
-    },
-    {
-      "name": "arbeitgeberanteilVwlVwlUndBausparen",
-      "label": "Arbeitgeberanteil (€)",
-      "type": "text",
-      "props": { "sm": 6 ,
-        "xs":6},
-        "suiteValue":""
-    },
-    {
-      "name": "arbeitnehmeranteilVwlVwlUndBausparen",
-      "label": "Arbeitnehmeranteil (€)",
-      "type": "text",
-      "props": { "sm": 6,
-        "xs":6 },
-        "suiteValue":""
-    },
-    {
-      "name": "summeVwlVwlUndBausparen",
-      "label": "Summe (berechnet)",
-      "type": "text",
-      "suiteValue":""
+      "name": "notizen",
+      "type": "textarea",
+      "rows": 5,
+      "label": "Notizen",
+      "suiteValue": "notizen"
     }
   ]
 }

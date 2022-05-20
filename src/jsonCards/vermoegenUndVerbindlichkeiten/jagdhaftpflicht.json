@@ -3,6 +3,133 @@
     "card": true,
     "mobileClassname": "Jagdhaftpflicht",
     "items": [
-        
+      {"name":"showExternalProductId",
+        "type": "paragraph",
+      "label":""},
+      {
+        "name": "externalProduktId",
+        "type": "produktid",
+        "condition":"showExternalProductId",
+        "props": { "required": true },
+        "suiteValue":"externalProduktId"},
+        {
+          "name": "tarifbezeichnungJagdhaftpflicht",
+          "type": "text",
+          "label":"Tarifbezeichnung",
+          "suiteValue":"tarifbezeichnung"
+        },
+        {
+        "name": "versicherungsnehmerJagdhaftpflicht",
+        "label": "Versicherungsnehmer",
+        "type": "selectMandant",
+              "props": { "required": true },
+              "tarifType":"JAGDHAFTPFLICHT"
+      },
+      {
+        "section": "",
+        "card": true,
+        "items": [
+          {
+            "name": "gesellschaftJagdhaftpflicht",
+            "type": "gesellschaft",
+            "label": "Gesellschaft",
+            "suiteValue":"gesellschaft",
+            "props": { "required": true }
+          },
+          {
+            "name": "versicherungsnummerJagdhaftpflicht",
+            "type": "text",
+            "label": "Vertragsnummer",
+            "suiteValue":"versicherungsnummer"
+          }
+        ]
+      },
+      {
+        "section": "",
+        "card": true,
+        "items": [
+      {
+        "name": "versicherungssummeJagdhaftpflicht",
+        "type": "text",
+            "props": { "sm": 6, "xs": 6},
+            "label": "Versicherungssumme (€)",
+        "suiteValue":"versicherungssumme"
+      },
+      {
+        "name": "selbstbeteiligungJagdhaftpflicht",
+        "type": "text",
+            "props": { "sm": 6, "xs": 6},
+            "label": "Selbstbeteiligung (€)",
+        "suiteValue":"selbstbeteiligung"
+      }]},
+      {
+        "section": "Vertragslaufzeit",
+        "card": true,
+        "items": [
+          {
+            "name": "vertragsbeginnJagdhaftpflicht",
+            "label": "Vertragsbeginn",
+            "type": "date",
+            "props": { "sm": 6, "xs": 6, "required": true },
+            "suiteValue": "versicherungsbeginn"
+          },
+          {
+            "name": "vertragsendeJagdhaftpflicht",
+            "label": "Vertragsende",
+            "type": "date",
+            "props": { "sm": 6, "xs": 6 },
+            "suiteValue": "versicherungsende"
+          }
+        ]
+      },
+      {
+        "section": "Vorschäden",
+        "card": true,
+        "items": [
+            {"name":"anzahlVorschaedenFuenfJahreJagdhaftpflicht",
+                "label":"Anzahl Vorschäden letzten 5 Jahren",
+            "type":"text"
+          },
+              {"name":"anzahlVorschaedenJagdhaftpflicht",
+                "label":"Höhe der Vorschäden",
+            "type":"text"
+          },
+          {"name":"vorschadensummeJagdhaftpflicht",
+            "label":"Vorschadensumme/-art/-höhe",
+        "type":"text"
+      }
+        ]},
+        {
+          "section": "",
+          "card": true,
+          "items": [
+        {
+          "name": "zahlweiseJagdhaftpflicht",
+          "label": "Zahlweise",
+          "type": "select",
+          "props": { "required": true,"sm": 6, "xs": 6},
+          "options": [
+            { "value": "MONATLICH", "label": "Monatlich" },
+            { "value": "QUARTAL", "label": "Quartal" },
+            { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+            { "value": "JAEHRLICH", "label": "Jährlich" }
+          ],
+          "suiteValue": "zahlweise"
+        },
+        {
+          "name": "beitragJagdhaftpflicht",
+          "label": "Beitrag",
+          "props": { "required": true,"sm": 6, "xs": 6},
+          "type": "text",
+          "suiteValue": "beitrag"
+        }
+          ]},
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
+          }
     ]
 }

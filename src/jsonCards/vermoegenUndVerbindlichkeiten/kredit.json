@@ -152,6 +152,13 @@
             "label":"Zinsfestschreibung",
             "type":"date",
             "suiteValue":"zinsfestschreibung"
+        },
+        {
+          "name": "notizen",
+          "type": "textarea",
+          "rows":5,
+          "label": "Notizen",
+          "suiteValue":"notizen"
         }
     ]
 }

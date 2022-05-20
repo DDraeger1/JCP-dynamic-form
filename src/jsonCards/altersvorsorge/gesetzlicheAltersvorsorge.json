@@ -81,7 +81,7 @@
             "props": { "sm": 6,
               "xs":6 },
               "suiteValue":"wartezeitMonate"
-          },
+          }]},
           {
             "name": "heutigerAnspruchWartezeitGesetzlicheAltersvorsorge",
             "label": "Heutiger Anspruch (Renteninformation) (€)",
@@ -97,7 +97,7 @@
             "props": { "sm": 6,
               "xs":6 },
               "suiteValue":"weiterenEinzahlungen"
-          }]},
+          },
           {
             "section": "Rentenschätzung",
             "card": true,
@@ -138,13 +138,123 @@
         "name": "rentenschaetzungDurchfuehrenRentenschaetzungGesetzlicheAltersvorsorge",
         "label": "Rentenschätzung Durchführen (Button)",
         "type": "paragraph"
+     }]},
+     {
+      "section": "Rentencheck",
+      "card": true,
+      "items": [
+        {
+          "name": "Rentensteigerung",
+          "label": "Rentensteigerung",
+          "type": "paragraph",
+          "props": { "sm": 4,
+            "xs":4 }
+       },
+       {
+        "name": "Rentenhöhe",
+        "label": "Rentenhöhe",
+        "type": "paragraph",
+        "props": { "sm": 4,
+          "xs":4 }
      },
+     {
+      "name": "Rentencheck",
+      "label": "Für Rentencheck verwenden",
+      "type": "paragraph",
+      "props": { "sm": 4,
+        "xs":4 }
+   },
+   {
+    "name": "Rentencheck",
+    "label": "0%",
+    "type": "paragraph",
+    "props": { "sm": 4,
+      "xs":4 }
+ },
+ {
+  "name": "rentenhoeheNullGesetzlicheAltersvorsorge",
+  "label": "",
+  "type": "text",
+  "props": { "sm": 4,
+    "xs":4 }
+  },
+  {
+    "name": "rentenhoeheNullPercentGesetzlicheAltersvorsorge",
+    "label": "",
+    "type": "checkbox",
+    "props": { "sm": 4,
+      "xs":4 }
+    },
+  {
+   "name": "Rentencheck",
+   "label": "1%",
+   "type": "paragraph",
+   "props": { "sm": 4,
+     "xs":4 }
+},
+{
+ "name": "rentenhoeheNullGesetzlicheAltersvorsorge",
+ "label": "",
+ "type": "text",
+ "props": { "sm": 4,
+   "xs":4 }
+ },
+ {
+   "name": "rentenhoeheOnePercentGesetzlicheAltersvorsorge",
+   "label": "",
+   "type": "checkbox",
+   "props": { "sm": 4,
+     "xs":4 }
+   },
+ {
+  "name": "Rentencheck",
+  "label": "2%",
+  "type": "paragraph",
+  "props": { "sm": 4,
+    "xs":4 }
+},
+{
+"name": "rentenhoeheNullGesetzlicheAltersvorsorge",
+"label": "",
+"type": "text",
+"props": { "sm": 4,
+  "xs":4 }
+},
+{
+  "name": "rentenhoeheTwoPercentGesetzlicheAltersvorsorge",
+  "label": "",
+  "type": "checkbox",
+  "props": { "sm": 4,
+    "xs":4 }
+  },
+{
+ "name": "Rentencheck",
+ "label": "3%",
+ "type": "paragraph",
+ "props": { "sm": 4,
+   "xs":4 }
+},
+{
+"name": "rentenhoeheNullGesetzlicheAltersvorsorge",
+"label": "",
+"type": "text",
+"props": { "sm": 4,
+ "xs":4 }
+},
+{
+  "name": "rentenhoeheThreePercentGesetzlicheAltersvorsorge",
+  "label": "",
+  "type": "checkbox",
+  "props": { "sm": 4,
+    "xs":4 }
+  }
+      ]},
      {
        "name": "datumLetzteRenteninformationBescheidRentenschaetzungGesetzlicheAltersvorsorge",
        "label": "Datum letzte/r Renteninformation/-bescheid",
        "type": "date",
        "suiteValue":"letzteRenteninformation"
-    }]},
+    },
     {
       "section": "Bei Selbstständigen:",
       "card": true,
@@ -192,7 +302,16 @@
   "label": "für ca. Anzahl Jahre",
   "type": "text",
   "suiteValue":"selbstBruttoJahreseinkommenJahre"
-}]}
+}
+]
+},
+{
+  "name": "notizen",
+  "type": "textarea",
+  "rows":5,
+  "label": "Notizen",
+  "suiteValue":"notizen"
+}
         ]
         
     }

@@ -126,7 +126,7 @@
           },
           {
             "name": "facebookKommunikation",
-            "label": "(icon) Facebook",
+            "label": "Facebook",
             "type": "text",
             "props": {
                 "sm": 6,
@@ -136,7 +136,7 @@
           },
           {
             "name": "xingKommunikation",
-            "label": "(icon) Xing",
+            "label": "Xing",
             "type": "text",
             "props": {
                 "sm": 6,

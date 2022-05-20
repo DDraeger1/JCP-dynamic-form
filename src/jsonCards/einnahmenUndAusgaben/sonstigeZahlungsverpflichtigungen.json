@@ -81,6 +81,13 @@
                 { "value": "JAEHRLICH", "label": "Jährlich" }
               ],
               "suiteValue":"zahlweise"
+          },
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
           }
     ]
 }

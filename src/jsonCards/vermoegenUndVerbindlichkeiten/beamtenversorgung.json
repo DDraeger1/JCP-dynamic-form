@@ -14,12 +14,14 @@
         {
             "name": "bundBeamtenversorgung",
             "type": "checkbox",
-            "label": "Bund"
+            "label": "Bund",
+            "suiteValue": "bundesbeamter"
           },
           {
             "name": "bundeslandBeamtenversorgung",
             "type": "text",
-            "label": "Bundesland"
+            "label": "Bundesland",
+            "suiteValue": "bundesland"
           },
           {
             "section": "Besoldungsgruppe/Stufe",
@@ -27,17 +29,21 @@
             "items": [
                 {"name":"besoldungsgruppeBeamtenversorgung",
                 "type":"text",
-            "label":"Besoldungsgruppe (R10)"},
+            "label":"Besoldungsgruppe (R10)",
+            "suiteValue": "besoldungsgruppe,"},
             {"name":"stufeBeamtenversorgung",
                 "type":"text",
-            "label":"Stufe (01)"}
+            "label":"Stufe (01)",
+            "suiteValue": "stufe"}
                 ]},
                 {"name":"dienstjahreBeamtenversorgung",
                     "type":"text",
-                "label":"Ruhegehaltsfähige Dienstjahre"},
+                "label":"Ruhegehaltsfähige Dienstjahre",
+                "suiteValue": "ruhegehaltsfaehigeDienstjahre"},
                 {"name":"zulagenBeamtenversorgung",
                     "type":"text",
-                "label":"Ruhegehaltsfähige Zulagen (€)"},
+                "label":"Ruhegehaltsfähige Zulagen (€)",
+                "suiteValue": "ruhegehaltsfaehigeZulagen"},
                 {
                     "section": "",
                     "card": true,
@@ -50,14 +56,16 @@
                         { "value": "2", "label": "Beamter auf Probe" },
                         { "value": "3", "label": "Beamter auf Zeit" },
                         { "value": "4", "label": "Beamter auf Lebenszeit" }
-                    ]}
+                    ],
+                    "suiteValue": "beamtenstatus"}
                     ]},
                     {"name":"wartezeitBeamtenversorgung",
                         "type":"select",
                     "label":"Wartezeit erfüllt",
                     "options":[
                         { "value": false, "label": "Nein" },
-                        { "value": true, "label": "Ja" }]
+                        { "value": true, "label": "Ja" }],
+                        "suiteValue": "wartezeitErfuellt"
                     },
                     {
                         "section": "Arbeitszeit",
@@ -66,13 +74,15 @@
                             {
                                 "name": "vollzeitBeamtenversorgung",
                                 "type": "checkbox",
-                                "label": "Vollzeit"
+                                "label": "Vollzeit",
+                                "suiteValue": "vollzeit"
                               },
                               {
                                   "name":"teilzeitBeamtenversorgung",
                                   "type":"text",
                                   "condition":"vollzeitBeamtenversorgung",
-                                  "label":"Teilzeit: Stunden von Stunden"
+                                  "label":"Teilzeit: Stunden von Stunden",
+                                  "suiteValue": "teilzeitStunden"
                               }
                         ]
                     },
@@ -83,12 +93,14 @@
                             {
                                 "name": "vonZividienstzeitenBeamtenversorgung",
                                 "type": "date",
-                                "label": "von"
+                                "label": "von",
+                                "suiteValue": "wehrZivilVon"
                               },
                               {
                                   "name":"bisZividienstzeitenBeamtenversorgung",
                                   "type":"date",
-                                  "label":"bis"
+                                  "label":"bis",
+                                  "suiteValue": "wehrZivilBis"
                               }
                         ]
                     },
@@ -99,12 +111,14 @@
                             {
                                 "name": "vonHochschulzeitenBeamtenversorgung",
                                 "type": "date",
-                                "label": "von"
+                                "label": "von",
+                                "suiteValue": "fachHochschulVon"
                               },
                               {
                                   "name":"bisHochschulzeitenBeamtenversorgung",
                                   "type":"date",
-                                  "label":"bis"
+                                  "label":"bis",
+                                  "suiteValue": "fachHochschulBis"
                               }
                         ]},
                         {
@@ -114,24 +128,35 @@
                                 {
                                     "name": "rentenbeginnBeamtenversorgung",
                                     "type": "date",
-                                    "label": "Rentenbeginn"
+                                    "label": "Rentenbeginn",
+                                    "suiteValue": "versicherungsbeginn"
                                   },
                                   {
                                     "name": "pensionsanspruchBeamtenversorgung",
                                     "type": "text",
-                                    "label": "Pensionsanspruch (€)"
+                                    "label": "Pensionsanspruch (€)",
+                                    "suiteValue": "pensionsanspruch"
                                   },
                                   {
                                     "name": "dienstunfähigkeitsrenteBeamtenversorgung",
                                     "type": "text",
-                                    "label": "Dienstunfähigkeitsrente"
+                                    "label": "Dienstunfähigkeitsrente",
+                                    "suiteValue": "dienstunfaehigkeitsrente"
                                   },
                                   {
                                     "name": "witwerrenteBeamtenversorgung",
                                     "type": "text",
-                                    "label": "Witwen-/Witwerrente (€)"
+                                    "label": "Witwen-/Witwerrente (€)",
+                                    "suiteValue": "witwenrente"
                                   }
                                 ]
+                                },
+                                {
+                                  "name": "notizen",
+                                  "type": "textarea",
+                                  "rows":5,
+                                  "label": "Notizen",
+                                  "suiteValue":"notizen"
                                 }
     ]
 }

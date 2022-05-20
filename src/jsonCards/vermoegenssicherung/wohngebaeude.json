@@ -556,6 +556,13 @@
         "label": "Liste der Vorschäden (Datum/Art/Höhe)",
         "type": "text",
         "suiteValue":"vorschaedenNotiz"
+      },
+      {
+        "name": "notizen",
+        "type": "textarea",
+        "rows":5,
+        "label": "Notizen",
+        "suiteValue":"notizen"
       }
     ]
 }

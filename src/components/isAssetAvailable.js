@@ -1,9 +1,7 @@
 import setAssetWithTariftype from "./setAssetWithTariftype";
-import emptyCardTemplate from "./emptyCardTemplate";
 function isAssetAvailable(
   result,
   setFormData,
-  dummyData,
   setLoaded,
   vertragId,
   card,
@@ -11,9 +9,11 @@ function isAssetAvailable(
   showExternalProductId,
   mandantTabIndex,
   bankverbindungen,
-  arbeitgeber
+  arbeitgeber,
+  setVertragName
   ) {
-  let cardValues =setAssetWithTariftype( result.analyseAssets, card, false, result.mandantGroup,mandantTabIndex,bankverbindungen,arbeitgeber)
+  let cardValues =setAssetWithTariftype( result.analyseAssets, card, false, result.mandantGroup,mandantTabIndex,bankverbindungen,arbeitgeber,
+    setVertragName)
   function booleanFormater(booleanString) {
     let output = false;
     if (booleanString === "true") {
@@ -30,136 +30,219 @@ function isAssetAvailable(
           result.analyseAssets.map((asset) => {
             if (asset.id === vertragId) {
               if (
+                asset.tarifTypeId.includes("GAS") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+                  setVertragName);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("STROM") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("KAPITALLEBEN") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("PRIVATRENTE") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("FONDSLEBEN") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("FONDSRENTEN") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("PENSIONSKASSE_3") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
+                vertragFound = true;
+              }
+              if (
+                asset.tarifTypeId.includes("ZUSATZVERSORGUNGSKASSE") &&
+                asset.id === vertragId
+              ) {
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
+                vertragFound = true;
+              }
+              if (
                 asset.tarifTypeId.includes("BEAMTENBEIHILFE") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("BERUFSSTAENDISCHE_VORSORGE") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("BEAMTENVERSORGUNG") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("BAUHERRENHAFTPFLICHT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("WASSERSPORTHAFTPFLICHT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("GEWAESSERSCHADENHAFTPFLICHT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("RENTE") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("DARLEHEN") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("RUERUP") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("SACHWERT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("RIESTER") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("DIREKT_3") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("DIREKTZUSAGE") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("PENSIONSFONDS_3") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("DIREKT_40") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("UNTERSTUETZUNGSKASSE") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("GESETZLICHE_AV") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("EINNAHMEN") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("EINKOMMEN_GEHALT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
 
                 vertragFound = true;
               }
@@ -167,7 +250,8 @@ function isAssetAvailable(
                 asset.tarifTypeId.includes("EINKOMMEN_MINIJOB") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
 
                 vertragFound = true;
               }
@@ -175,7 +259,8 @@ function isAssetAvailable(
                 asset.tarifTypeId.includes("EINKOMMEN_SELBSTAENDIGER") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
 
                 vertragFound = true;
               }
@@ -183,7 +268,8 @@ function isAssetAvailable(
                 asset.tarifTypeId.includes("AUSGABEN") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
 
                 vertragFound = true;
               }
@@ -191,7 +277,8 @@ function isAssetAvailable(
                 asset.tarifTypeId.includes("AUTOMOBILCLUB") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
 
                 vertragFound = true;
               }
@@ -199,13 +286,15 @@ function isAssetAvailable(
                 asset.tarifTypeId.includes("SONSTIGE_ZAHLUNG") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
               }
               if (
                 asset.tarifTypeId.includes("KONSUMKREDIT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
 
                 vertragFound = true;
               }
@@ -213,20 +302,23 @@ function isAssetAvailable(
                 asset.tarifTypeId.includes("BANKPRODUKTE") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
               }
               if (
                 asset.tarifTypeId.includes("VWL_BAUSPAREN") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("IMMOBILIENBESTAND") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
 
                 vertragFound = true;
               }
@@ -234,18 +326,21 @@ function isAssetAvailable(
                 asset.tarifTypeId.includes("BETEILIGUNGEN") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (asset.tarifTypeId.includes("BU") && asset.id === vertragId) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("UNFALL") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
 
                 vertragFound = true;
               }
@@ -253,14 +348,16 @@ function isAssetAvailable(
                 asset.tarifTypeId.includes("RISIKO") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("DREADDISEASE") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
@@ -269,68 +366,79 @@ function isAssetAvailable(
                 (asset.tarifTypeId.includes("PFLEGETAGEGELD") &&
                   asset.id === vertragId)
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("GESETZLICHE_KRANKEN") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (asset.tarifTypeId.includes("KVV") && asset.id === vertragId) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (asset.tarifTypeId.includes("KVZ") && asset.id === vertragId) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("PRIVATHAFTPFLICHT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("HUNDEHALTERHAFTPFLICHT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("PFERDEHALTERHAFTPFLICHT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("HAUSRAT") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("RECHTSSCHUTZ") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
                 asset.tarifTypeId.includes("WOHNGEBAEUDE") &&
                 asset.id === vertragId
               ) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (asset.tarifTypeId.includes("KFZ") && asset.id === vertragId) {
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
               if (
@@ -338,7 +446,8 @@ function isAssetAvailable(
                 asset.id === vertragId
               ) {
                 
-                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber);
+                cardValues = setAssetWithTariftype(asset, card, true, result.mandantGroup,  mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName);
                 vertragFound = true;
               }
             }
@@ -357,16 +466,18 @@ function isAssetAvailable(
               if (card !== "KIND") {
                 if (card !== "BANKVERBINDUNG") {
                   if(card !== "PERSONALDATEN"){
+                    if(card !== "ERWEITERTEBERUFSFRAGEN"){
           setVersicherungsnehmerValue({
             index: 0,
             tarifTypeId: card,
           });
         }
       }
-    }}}}}}}
+    }}}}}}}}
   }
   if(card ==="BANKVERBINDUNG"){
-    cardValues =setAssetWithTariftype( result.analyseAssets, card, false, result.mandantGroup,mandantTabIndex,bankverbindungen,arbeitgeber)
+    cardValues =setAssetWithTariftype( result.analyseAssets, card, false, result.mandantGroup,mandantTabIndex,bankverbindungen,arbeitgeber,
+  setVertragName)
   console.log(bankverbindungen)
 
   }

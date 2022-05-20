@@ -8,7 +8,7 @@
       "visibilityDeleteIcon":"visible",
       "items":[
         {"name":"deleteBankverbindung",
-        "type":"costumFunction",
+        "type":"customFunction",
       "label":0
     },
         {
@@ -70,7 +70,7 @@
       "visibilityDeleteIcon":"visible",
         "items":[
           {"name":"deleteBankverbindung",
-            "type":"costumFunction",
+            "type":"customFunction",
           "label":1
         },
               {
@@ -132,7 +132,7 @@
       "visibilityDeleteIcon":"visible",
       "items":[
         {"name":"deleteBankverbindung",
-          "type":"costumFunction",
+          "type":"customFunction",
         "label":2
       },
               {
@@ -194,7 +194,7 @@
       "visibilityDeleteIcon":"visible",
       "items":[
         {"name":"deleteBankverbindung",
-          "type":"costumFunction",
+          "type":"customFunction",
         "label":3
       },
               {
@@ -256,7 +256,7 @@
       "visibilityDeleteIcon":"visible",
       "items":[
         {"name":"deleteBankverbindung",
-          "type":"costumFunction",
+          "type":"customFunction",
         "label":4
       },
               {
@@ -319,7 +319,7 @@
       "visibilityDeleteIcon":"visible",
       "items":[
         {"name":"deleteBankverbindung",
-          "type":"costumFunction",
+          "type":"customFunction",
         "label":5
       },
               {

@@ -54,12 +54,16 @@
                 { "value": "FAMILIENVERSICHERT", "label": "Familienv." },
                 { "value": "FREIWILLIG_VERSICHERT", "label": "Freiwilligen V." }
             ],
+            "props": { "sm": 9,
+              "xs":9 },
             "suiteValue":"status"
           },
           {
             "name": "mitKTGGesetzlicheKrankenversicherung",
             "label": "mit KTG",
             "type": "checkbox",
+            "props": { "sm": 3,
+              "xs":3 },
             "suiteValue":"mitKT"
           },
           {
@@ -99,6 +103,10 @@
           "label":"beitrag (inkl. Arbeitgeberanteil)",
         "type":"text",
       "suiteValue":"beitrag"},
+      {
+        "section": "",
+        "card": true,
+        "items": [
           {
             "name": "GKVZusatzbeitragGesetzlicheKrankenversicherung",
             "label": "GKV-Zusatzbeitrag",
@@ -120,7 +128,7 @@
             "props": { "sm": 6,
               "xs":6 },
               "suiteValue":"gkvZusatzsatz"
-          },
+          }]},
           {
             "name": "vonBusprogrammGesetzlicheKrankenversicherung",
             "label": "Bonusprogramm",
@@ -136,6 +144,13 @@
             "props": { "sm": 6,
               "xs":6 },
               "suiteValue":"zusatzleistungen"
+          },
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
           }
         ]
         }

@@ -1,0 +1,68 @@
+{
+  "section": "Strom",
+  "card": true,
+  "mobileClassname": "Strom",
+  "items": [
+    {
+      "name": "tarifbezeichnungStrom",
+      "type": "text",
+      "label": "Tarifbezeichnung",
+      "suiteValue":"tarifbezeichnung"
+    },
+    {
+        "name": "personenzuordnungStrom",
+        "label": "Personenzuordnung",
+        "type": "selectMandant",
+        "tarifType":"STROM",
+        "props": { "required": true },
+        "suiteValue":"versicherungsnehmerId"
+      },
+    { "name": "anbieterStrom", "type": "text", "label": "Anbieter",
+        "suiteValue":"gesellschaft" },
+    {
+      "name": "versicherungsnummerStrom",
+      "type": "text",
+      "label": "Vertragsnummer",
+      "suiteValue":"versicherungsnummer"
+    },
+    {
+      "name": "jaehrlicherVerbrauchStrom",
+      "type": "text",
+      "label": "Jährlicher Verbrauch (kWh)",
+      "suiteValue":"jaehrlicherVerbrauch"
+    },
+    {
+      "section": "Vertragslaufzeit",
+      "card": true,
+      "items": [
+        {
+          "name": "vertragslaufzeitStrom",
+          "type": "date",
+          "label": "Vertragsbeginn",
+        "props": { "required": true },
+        "suiteValue":"versicherungsbeginn"
+    },
+        {
+          "name": "vertragslaufzeitStrom",
+          "type": "date",
+          "label": "Vertragsende",
+          "suiteValue":"versicherungsende"
+        }
+      ]
+    },
+    { "name": "zahlweiseStrom", "type": "select", "label": "Zahlweise",
+        "props": { "required": true },
+        "suiteValue":"zahlweise",
+        "options": [
+            { "value": "MONATLICH", "label": "Monatlich" },
+            { "value": "ZWEIMONATLICH", "label": "Zweimonatlich" },
+            { "value": "QUARTAL", "label": "Quartal" },
+            { "value": "HALBJAEHRLICH", "label": "Halbjährlich" },
+            { "value": "JAEHRLICH", "label": "Jährlich" }]
+    },
+    { "name": "beitragStrom", "type": "text", "label": "Beitrag (€)",
+        "props": { "required": true },
+        "suiteValue":"beitrag"
+    }
+  ]
+}

@@ -19,70 +19,113 @@
         {
           "name": "gesellschaftBauherrenhaftpflicht",
           "type": "gesellschaft",
-          "props": { "required": true }
+          "props": { "required": true },
+          "suiteValue": "gesellschaft"
         },
         {
           "name": "vertragsnummerBauherrenhaftpflicht",
           "type": "text",
-          "label": "Vertragsnummer"
+          "label": "Vertragsnummer",
+          "suiteValue": "versicherungsnummer"
         }
       ]
     },
     {
       "section": "",
       "card": true,
-      "items": [{ "name": "bausummeBauherrenhaftpflicht", "label": "Versicherungssumme (€)", "type": "text" },
-        {"name":"Bauherrenhaftpflicht",
-            "label":"Bausumme inkl. Eigenleistung (€)",
-        "type":"text"},
-        {"name":"wohnflaecheBauherrenhaftpflicht",
-            "label":"Wohnfläche (in qm)",
-        "type":"text"},
-        {"name":"hoeheEigenleistungenBauherrenhaftpflicht",
-            "label":"Höhe der Eigenleistungen (€)",
-        "type":"text"},
-        {"name":"selbstbeteiligungBauherrenhaftpflicht",
-            "label":"Selbstbeteiligung (€)",
-        "type":"text"},
-        {"name":"fertighausBauherrenhaftpflicht",
-            "label":"Handelt es sich um ein Fertighaus",
-        "type":"text"}
-    
-    ]
+      "items": [
+        {
+          "name": "bausummeBauherrenhaftpflicht",
+          "label": "Versicherungssumme (€)",
+          "type": "text",
+          "suiteValue": "versicherungssumme"
+        },
+        {
+          "name": "Bauherrenhaftpflicht",
+          "label": "Bausumme inkl. Eigenleistung (€)",
+          "type": "text",
+          "suiteValue": "wohnflaeche"
+        },
+        {
+          "name": "wohnflaecheBauherrenhaftpflicht",
+          "label": "Wohnfläche (in qm)",
+          "type": "text",
+          "suiteValue": "bausumme"
+        },
+        {
+          "name": "hoeheEigenleistungenBauherrenhaftpflicht",
+          "label": "Höhe der Eigenleistungen (€)",
+          "type": "text",
+          "suiteValue": "bausummme"
+        },
+        {
+          "name": "selbstbeteiligungBauherrenhaftpflicht",
+          "label": "Selbstbeteiligung (€)",
+          "type": "text",
+          "suiteValue": "sb"
+        },
+        {
+          "name": "fertighausBauherrenhaftpflicht",
+          "label": "Handelt es sich um ein Fertighaus",
+          "type": "text",
+          "suiteValue": "fertighaus"
+        }
+      ]
     },
     {
       "section": "Vertragslaufzeit",
       "card": true,
       "items": [
-        {"name":"vertragsbeginnBauherrenhaftpflicht",
-          "label":"Vertragsbeginn",
-      "type":"date",
-    "props":{
-      "required":true
-    }},
-    {"name":"vertragsendeBauherrenhaftpflicht",
-      "label":"Vertragsende",
-  "type":"date",
-"props":{
-  "required":true
-}}
-      ]},
-      {
-        "section": "Vorschäden",
-        "card": true,
-        "items": [
-          {"name":"anzahlVorschaedenFuenfJahreBauherrenhaftpflicht",
-            "label":"Anzahl Vorschäden letzten 5 Jahren",
-        "type":"text"
-      },
-          {"name":"anzahlVorschaedenBauherrenhaftpflicht",
-            "label":"Höhe der Vorschäden",
-        "type":"text"
-      },
-      {"name":"vorschadensummeBauherrenhaftpflicht",
-        "label":"Vorschadensumme/-art/-höhe",
-    "type":"text"
-  }
-        ]}
+        {
+          "name": "vertragsbeginnBauherrenhaftpflicht",
+          "label": "Vertragsbeginn",
+          "type": "date",
+          "props": {
+            "required": true
+          },
+          "suiteValue": "versicherungsbeginn"
+        },
+        {
+          "name": "vertragsendeBauherrenhaftpflicht",
+          "label": "Vertragsende",
+          "type": "date",
+          "props": {
+            "required": true
+          },
+          "suiteValue": "versicherungsende"
+        }
+      ]
+    },
+    {
+      "section": "Vorschäden",
+      "card": true,
+      "items": [
+        {
+          "name": "anzahlVorschaedenFuenfJahreBauherrenhaftpflicht",
+          "label": "Anzahl Vorschäden letzten 5 Jahren",
+          "type": "text",
+          "suiteValue": "vorschaedenAnzahl"
+        },
+        {
+          "name": "anzahlVorschaedenBauherrenhaftpflicht",
+          "label": "Höhe der Vorschäden",
+          "type": "text",
+          "suiteValue": "vorschaedenHoehe"
+        },
+        {
+          "name": "vorschadensummeBauherrenhaftpflicht",
+          "label": "Vorschadensumme/-art/-höhe",
+          "type": "text",
+          "suiteValue": "vorschaedenNotiz"
+        }
+      ]
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows": 5,
+      "label": "Notizen",
+      "suiteValue": "notizen"
+    }
   ]
 }

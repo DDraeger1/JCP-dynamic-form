@@ -1,0 +1,15 @@
+.dateiFotoBox{
+    width: 49%;
+    height: 100%;
+    display:inline-block !important;
+    border: 2px solid black;
+}
+.imgBox{
+    height: 40%;
+    min-height: 255px;
+    border: 2px solid black;
+}
+.imgDataGrid{
+min-height: 255px;
+border: 2px solid black;
+}

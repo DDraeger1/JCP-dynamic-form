@@ -6,7 +6,10 @@
 }
 .drawer{
   z-index: 1 !important;
-  
+}
+.subTab{
+  place-content: center;
+  place-self: center;
 }
 .verticalDividerLine{
   width: 1px;
