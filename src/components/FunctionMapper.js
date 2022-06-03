@@ -1379,9 +1379,38 @@ function Tilgung({ watch }) {
     </p>
   );
 }
-function DeleteArbeitgeber(index) {
+function DeleteArbeitgeber({index}) {
+  const {mandantGroup,mandantTabIndex,login} = useContext(Context)
+  /*
+  https://jcp-suite.de/suite/analyseApp
+  body: 
+  id: c323e1dc-e199-11ec-bdc8-001c4270ffe9
+mandantId: e5943e40-9eb4-11ec-a423-001c4270ffe9
+action: deleteArbeitgeber
+  */
+ console.log(index)
+
+  function onClickDeleteArbeitgeber(){
+    const deleteArbeitgeberBody = new FormData();
+deleteArbeitgeberBody.append("id", mandantGroup[mandantTabIndex].mandant.arbeitgebers[index].id);
+deleteArbeitgeberBody.append("mandantId",mandantGroup[mandantTabIndex].mandantId );
+  deleteArbeitgeberBody.append("action", "deleteArbeitgeber");
+
+  const deleteArbeitgeberPOST = {
+    method: "post",
+    url: "https://jcp-suite.de/suite/analyseApp",
+      headers: { Authorization: "Bearer " + login },
+      data: deleteArbeitgeberBody,
+  };
+      axios(deleteArbeitgeberPOST).then((result)=>{
+        console.log("success")
+      }).catch((error)=>{
+console.log("error")
+console.log(error)
+      })
+  }
   return (
-    <IconButton>
+    <IconButton onClick={()=>onClickDeleteArbeitgeber()}>
       <Close />
     </IconButton>
   );

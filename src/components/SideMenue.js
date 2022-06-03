@@ -102,7 +102,10 @@ function SideMenue({
   setTabIndex,
   uebersichtVisibility,
   setUebersichtVisibility,
+  getDataWithLogin,
+  setLoaded
 }) {
+  const allVertraege = ["SHOWALL"];
   const params = useParams();
   const theme = useTheme();
   const {
@@ -116,8 +119,11 @@ function SideMenue({
     toggleOpenDialog,
     login,
     searchString,
-    setSearchString,
+    setSearchString
   } = useContext(Context);
+  const [tariftypeArray, setTariftypeArray] = useState(allVertraege);
+
+  const [tableData, setTableData] = useState({})
   const [anchorElMandantHinzufuegen, setAnchorElMandantHinzufuegen] =
     useState(null);
   const [anchorElAktionen, setAnchorElAktionen] = useState(null);
@@ -129,10 +135,11 @@ function SideMenue({
   const handleCloseMandantHinzufuegen = () => {
     setAnchorElMandantHinzufuegen(null);
   };
-  const handleClickAktionen = (event, assetId) => {
+  const handleClickAktionen = (event, values) => {
     event.stopPropagation();
+setTableData({assetId:values.assetId, tarifTypeId:values.tarifTypeId})
     setAnchorElAktionen(event.currentTarget);
-    setAssetId(assetId);
+    setAssetId(values.assetId);
   };
   const handleCloseAktionen = () => {
     setAnchorElAktionen(null);
@@ -204,7 +211,7 @@ function SideMenue({
             asset.versicherungsnehmer.vorname +
             " " +
             asset.versicherungsnehmer.nachname),
-      AktionButton: asset.id,
+      AktionButton: {assetId:asset.id,tarifTypeId:asset.tarifTypeId},
     };
 
     return output;
@@ -479,7 +486,6 @@ function SideMenue({
     "KVZ",
     "BEAMTENBEIHILFE",
   ];
-  const allVertraege = ["SHOWALL"];
   const columns = [
     {
       field: "icon",
@@ -583,7 +589,6 @@ function SideMenue({
   const [assetId, setAssetId] = useState("");
   const [openVertragHinzufuegen, toggleOpenVertragHinzufuegen] =
     useState(false);
-  const [tariftypeArray, setTariftypeArray] = useState(allVertraege);
   const [vertragUebersichtHeader, setVertragUebersichtHeader] =
     useState("Alle Verträge");
   const [emptyWindowStyle, setEmptyWindowStyle] = useState("emptyWindow");
@@ -595,6 +600,7 @@ function SideMenue({
 
   const handleFileWarningOpen = () => {
     toggleOpenFileWarning(true);
+    setCard(tableData.tarifTypeId)
   };
   const handleFileWarningClose = () => {
     toggleOpenFileWarning(false);
@@ -715,6 +721,18 @@ function SideMenue({
         alert("deleted");
       })
       .catch((err) => alert(err));
+      toggleOpenNextQuestion(false)
+      toggleOpenFileWarning(false)
+      setTimeout(()=>{
+      getDataWithLogin(login)
+
+      },200)
+      setTimeout(()=>{
+        setLoaded(false)
+      },400)
+      setTimeout(()=>{
+      setLoaded(true)
+    },600)
   }
   function deletePerson() {
     let deleteParams = {};
@@ -755,11 +773,14 @@ function SideMenue({
     axios
       .post(submitCopyVertrag(login).url, dataPaket, submitCopyVertrag(login))
       .then((response) => {
-        setVertragId(response.copyId);
+        console.log(response)
+        setVertragId(response.data.copyId);
+        getDataWithLogin(login)
       })
       .catch((error) => {
         console.log(error);
       });
+
   }
   function submitKuendigung() {
     const dataPaket = qs.stringify({
@@ -824,7 +845,7 @@ function SideMenue({
             disableRipple
             disableFocusRipple
           >
-            <i class="fa fa-id-card fa-2x" style={buttonColor}></i>
+            <i class="fa fa-book fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
@@ -893,16 +914,16 @@ function SideMenue({
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
-        <div className="buttonContainer" onClick={() => setCard("AUSWEIS")}>
-          <Typography className={descriptionStyle}>Legitimation</Typography>
+        <div className="buttonContainer" onClick={() => setCard("STEUERN")}>
+          <Typography className={descriptionStyle}>Steuern</Typography>
           <Button
             className="iconButtonToolbar"
-            onClick={() => setCard("AUSWEIS")}
+            onClick={() => setCard("STEUERN")}
             disableTouchRipple
             disableRipple
             disableFocusRipple
           >
-            <i class="fa fa-book fa-2x" style={buttonColor}></i>
+            <i class="icon-fa-font-files fa-2x" style={buttonColor}></i>
           </Button>
           <Divider sx={{ width: "100%" }} />
         </div>
@@ -1097,11 +1118,16 @@ function SideMenue({
     }
     return output;
   }
+  function addVertagAktionen(event) {
+    setCard(tableData.tarifTypeId);
+    setVertragId(tableData.assetId);
+    toggleOpenDialog(true);
+  }
   function addVertag(event) {
+    console.log(event)
       setCard(event.row.icon);
       setVertragId(event.id);
       toggleOpenDialog(true);
-
   }
   function onChangeSearch(event){
     setLocalSearchString(event.target.value)
@@ -1134,15 +1160,16 @@ function SideMenue({
         style={{
           backgroundColor: colorProperties.MAINCOLOR,
           visibility: loaded ? "visible" : "hidden",
-        }}
+    justifyContent: "center !important"
+  }}
       >
         <Tabs
           value={tabIndex}
           onChange={handleChange}
-
-          centeredonKeyDownSearch
+          className="subTab"
+          centered
         >
-          <Tab label="Personendaten" className="subTab" />
+          <Tab label="Personendaten" />
           <Tab label="Verträge" />
         </Tabs>
       </div>
@@ -1339,7 +1366,7 @@ function SideMenue({
             <DataGrid
               sx={{ borderRadius: "20px 20px 0px 0px" }}
               hideFooter
-              rows={setRows(assets, tariftypeArray)}
+              rows={setRows(assets, tariftypeArray)} 
               onRowDoubleClick={(event) => {
                 addVertag(event);
               }}
@@ -1457,7 +1484,7 @@ function SideMenue({
               color: "black",
               justifyContent: "flex-start",
             }}
-            onClick={(event) => addVertag(event)}
+            onClick={(event) => addVertagAktionen(event)}
           >
             Baustein editieren
           </Button>

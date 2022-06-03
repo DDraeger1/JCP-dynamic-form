@@ -332,3 +332,14 @@ export function setName(name, tarifType) {
   }
   return output;
 }
+
+export function checkConditionString(condition, section){
+let output = false
+console.log()
+if(section === "Personendaten"){
+if(condition === "Firma"){
+  output=true
+}
+}
+return output
+}

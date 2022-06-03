@@ -40,7 +40,7 @@ import BezugHinzufuegen from "./BezugHinzufuegen";
 import EntferneBezug from "./EntferneBezug";
 import { Context } from "../context/Context";
 import FunctionMapper from "./FunctionMapper";
-import { formatMandantName, checkForKind, mapIncomingData } from "./mapAssets";
+import { formatMandantName, checkForKind, mapIncomingData,checkConditionString } from "./mapAssets";
 import { useEffect } from "react";
 
 function DynamicForm(
@@ -66,6 +66,7 @@ function DynamicForm(
   },
   ref
 ) {
+
   let testArray = [];
   function checkForCustomInput(options, value, type) {
     let output = "";
@@ -166,8 +167,11 @@ function DynamicForm(
       returnVal = items
         ? { ...acc, ...items.reduce(reduceDefinitionWatchers, {}) }
         : { ...acc };
-
+if(typeof watch(condition) === "string"){
+  returnVal[condition] = checkConditionString(watch(condition), formDefinition[0].section)
+} if(typeof watch(condition) === "boolean"){
       if (condition) returnVal[condition] = watch(condition);
+}
       return returnVal;
     },
     [watch]
@@ -220,6 +224,8 @@ function DynamicForm(
         type: type,
         label: label,
         suiteValue: suiteValue,
+        menuOptions:menuOptions
+
       });
       if (props.required) {
         requiredFields.push(name);
@@ -1089,9 +1095,10 @@ function DynamicForm(
       </Grid>
     );
   };
-  function mapSuiteValues() {
+        function mapSuiteValues() {
     let output = {};
-    testArray.forEach((item) => {
+    
+testArray.forEach((item) => {
       output = {
         ...output,
         ...translateToSuiteData(item, item.name, values[item.name]),
@@ -1144,13 +1151,14 @@ function DynamicForm(
           }
         }
         if (item.type === "selectMandant" || item.type === "selectMandantbAV") {
+
           if (typeof value !== "undefined") {
             if (value !== "Placeholder") {
               //TODO: Wenn assetId´s hinzugefügt werden, diese methode löschen!
               if (value === "ARBEITGEBER") {
                 output = { ...output, mp: "sonstige" };
               } else {
-                if (value) {
+
                   switch (mandantGroup[value].art) {
                     case "MANDANT":
                       output = { ...output, mp: "m" };
@@ -1164,7 +1172,7 @@ function DynamicForm(
                     default:
                       break;
                   }
-                }
+                
 
                 output = {
                   ...output,
@@ -1217,11 +1225,10 @@ function DynamicForm(
       }
       if (item.type === "vertragsname") {
         output = { ...output, [item.suiteValue]: value };
-        console.log(value);
       }
       if (item.type === "toggleButtonGroup") {
         item.menuOptions.map((option) => {
-          if (option.name === value) {
+        if (option.name === value) {
             output = { ...output, [option.suiteValue]: true };
             if (tarifTypeIdFromCardState === "EINNAHMEN") {
               output = { ...output, art: option.suiteValue };
@@ -1241,6 +1248,7 @@ function DynamicForm(
 
     testArray.forEach((item) => {
       if (typeof dirtyValues[item.name] !== "undefined") {
+
         output = {
           ...output,
           ...translateToSuiteData(item, item.name, dirtyValues[item.name]),
@@ -1390,8 +1398,6 @@ function DynamicForm(
 
   function formatDataForSubmission(valuesToSubmit, dirtyValues) {
     let vertragIdSuite = vertragId;
-    console.log(valuesToSubmit);
-    console.log(dirtyValues);
     if (vertragId === "newVertrag") {
       vertragIdSuite = "0";
     }
@@ -1410,6 +1416,7 @@ function DynamicForm(
           ...valuesToSubmit,
           ...dirtyValues,
           id: vertragIdSuite,
+          angebotsType:"VERTRAG"
         },
         mobileClassname: mobileClassname,
         mandantId: valuesToSubmit.versicherungsnehmerId,
@@ -1463,7 +1470,6 @@ function DynamicForm(
       output = { ...output, json: { ...output.json, kategorie: "thvhund" } };
     }
     if (vertragName.length !== 0) {
-      debugger;
       output = { ...output, json: { ...output.json, name: vertragName } };
     }
     /*
@@ -1510,7 +1516,6 @@ if(tarifTypeIdFromCardState === "KVZ"){
     }
     return output;
   }
-  console.log(formState)
 
   const submitDirtyFields = useCallback(async (values) => {
     let valuesToSubmitUnformated = mapSuiteValues();
@@ -1522,8 +1527,6 @@ if(tarifTypeIdFromCardState === "KVZ"){
         }, {})
       ),
     };
-    console.log(dirtyValues)
-    debugger
     let valuesToSubmit = formatDataForSubmission(
       valuesToSubmitUnformated,
       dirtyValues
@@ -1584,6 +1587,7 @@ if(tarifTypeIdFromCardState === "KVZ"){
   useEffect(() => {
     setRequiredFilled(checkRequiredFields(watch(requiredFields)));
   }, [forceUseEffect]);
+
   function checkRequiredFields(fields) {
     let array = [];
     let isUndefined = false;

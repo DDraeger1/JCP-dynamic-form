@@ -1,1241 +1,1381 @@
 {
-    "section": "Arbeitgeber",
-    "card": true,
-    "items": [
-      {"name":"selected2Persons",
-        "type":"paragraph",
-      "props":{"sm":1,"xs":1}},
-      {"name":"selected3Persons",
-        "type":"paragraph",
-      "props":{"sm":1,"xs":1}},
-      {"name":"selected4Persons",
-        "type":"paragraph",
-      "props":{"sm":1,"xs":1}},
-      {"name":"selected5Persons",
-        "type":"paragraph",
-      "props":{"sm":1,"xs":1}},
-      {"name":"selected6Persons",
-      "type":"paragraph",
-    "props":{"sm":5,"xs":1}},
+  "section": "Arbeitgeber",
+  "card": true,
+  "items": [
+    {
+      "name": "selected2Persons",
+      "type": "paragraph",
+      "props": { "sm": 1, "xs": 1 }
+    },
+    {
+      "name": "selected3Persons",
+      "type": "paragraph",
+      "props": { "sm": 1, "xs": 1 }
+    },
+    {
+      "name": "selected4Persons",
+      "type": "paragraph",
+      "props": { "sm": 1, "xs": 1 }
+    },
+    {
+      "name": "selected5Persons",
+      "type": "paragraph",
+      "props": { "sm": 1, "xs": 1 }
+    },
+    {
+      "name": "selected6Persons",
+      "type": "paragraph",
+      "props": { "sm": 5, "xs": 1 }
+    },
     {
       "accordionText": "Arbeitgeber",
       "card": false,
-      "accordionId":0,
+      "accordionId": 0,
       "items": [
         {
-        "name": "firmennameArbeitgeber",
-        "label": "Firmenname",
-        "type": "text",
-        "props": {
-          "sm": 6,
-          "xs":6
-        },
-        "suiteValue":"firmenname0"
-      },
-      {
-        "name": "rechtsformArbeitgeber",
-        "label": "Rechtsform (z.B GmbH, GbR, etc.)",
-        "type": "text",
-        "props": {
-          "sm": 6,
-          "xs":6
-        },
-        "suiteValue":"rechtsform0"
-    },
-    {
-      "name": "straßeArbeitgeber",
-      "label": "Straße",
-      "type": "text",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "suiteValue":"strasse0"
-    },
-    {
-      "name": "nummerArbeitgeber",
-      "label": "Nr.",
-      "type": "text",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "suiteValue":"hausnummer0"
-    },
-    {
-      "name": "postleitzahlArbeitgeber",
-      "label": "Postleitzahl",
-      "type": "text",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "suiteValue":"postleitzahl0"
-    },
-    {
-      "name": "wohnortArbeitgeber",
-      "label": "Wohnort",
-      "type": "text",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "suiteValue":"ort0"
-    },
-    {
-      "name": "telefonnummerArbeitgeber",
-      "label": "Telefonnummer",
-      "type": "text",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "suiteValue":"tel0"
-    },
-    {
-      "name": "seitWannbeschaeftigtArbeitgeber",
-      "label": "seit wann beshäftigt?",
-      "type": "text",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "suiteValue":"beschaeftigt0"
-    },
-    {
-      "section": "Betriebliche Altersvorsorge",
-      "card": true,
-      "items": [
-    {
-      "name": "inGewerkschaftBAVArbeitgeber",
-      "label": "Sind Sie in der Gewerkschaft?",
-      "type": "select",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "options": [
-        { "value": true, "label": "Ja" },
-        { "value": false, "label": "Nein" }
-    ],
-    "suiteValue":"mitgliedGewerkschaft0"
-    },
-    {
-      "name": "inWelcheGewerkschaftBAVArbeitgeber",
-      "label": "Falls ja, welche Gewerkschaft?",
-      "type": "text",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "suiteValue":"nameGewerkschaft0"
-    },
-    {
-      "name": "tarifgebundenBAVArbeitgeber",
-      "label": "Ist ihr Arbeitgeber tarifgebunden?",
-      "type": "select",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "options": [
-        { "value": true, "label": "Ja" },
-        { "value": false, "label": "Nein" }
-    ],
-    "suiteValue":"tarifgebunden0"
-    },
-    {
-      "name": "tarifvertragBestehenBAVArbeitgeber",
-      "label": "Besteht ein Tarifvertrag?",
-      "type": "select",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "options": [
-        { "value": true, "label": "Ja" },
-        { "value": false, "label": "Nein" }
-    ],
-    "suiteValue":"verbindlicherVertrag0"
-    },
-    {
-        "name": "welcherTarifvertragBAVArbeitgeber",
-        "label": "Welcher Tarifvertrag gilt?",
-        "type": "text",
-        "props": {
-          "sm": 6,
-          "xs":6
-        },
-        "suiteValue":"verbindlicherVertrag0"
-      },
-      {
-          "name": "unternehmensgrößeBAVArbeitgeber",
-          "label": "Unternehmensgröße",
+          "name": "firmennameArbeitgeber",
+          "label": "Firmenname",
           "type": "text",
           "props": {
             "sm": 6,
-            "xs":6
+            "xs": 6,
+            "required":true
           },
-          "suiteValue":"unternehmensgroesse0"
+          "suiteValue": "firmenname0"
         },
         {
-            "name": "ansprechspartnerArbeitgeber",
-            "label": "Ansprechspartner",
-            "type": "text",
-            "props": {
-              "sm": 6,
-              "xs":6
-            },
-            "suiteValue":"avAnsprechpartnerName0"
+          "name": "rechtsformArbeitgeber",
+          "label": "Rechtsform (z.B GmbH, GbR, etc.)",
+          "type": "text",
+          "props": {
+            "sm": 6,
+            "xs": 6
           },
-          {
+          "suiteValue": "rechtsform0"
+        },
+        {
+          "name": "straßeArbeitgeber",
+          "label": "Straße",
+          "type": "text",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "strasse0"
+        },
+        {
+          "name": "nummerArbeitgeber",
+          "label": "Nr.",
+          "type": "text",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "hausnummer0"
+        },
+        {
+          "name": "postleitzahlArbeitgeber",
+          "label": "Postleitzahl",
+          "type": "text",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "postleitzahl0"
+        },
+        {
+          "name": "wohnortArbeitgeber",
+          "label": "Wohnort",
+          "type": "text",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "ort0"
+        },
+        {
+          "name": "telefonnummerArbeitgeber",
+          "label": "Telefonnummer",
+          "type": "text",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "tel0"
+        },
+        {
+          "name": "seitWannbeschaeftigtArbeitgeber",
+          "label": "seit wann beschäftigt?",
+          "type": "date",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "beschaeftigt0"
+        },
+        {
+          "section": "Betriebliche Altersvorsorge",
+          "card": true,
+          "items": [
+            {
+              "name": "inGewerkschaftBAVArbeitgeber",
+              "label": "Sind Sie in der Gewerkschaft?",
+              "type": "select",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "mitgliedGewerkschaft0"
+            },
+            {
+              "name": "inWelcheGewerkschaftBAVArbeitgeber",
+              "label": "Falls ja, welche Gewerkschaft?",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "nameGewerkschaft0"
+            },
+            {
+              "name": "tarifgebundenBAVArbeitgeber",
+              "label": "Ist ihr Arbeitgeber tarifgebunden?",
+              "type": "select",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "tarifgebunden0"
+            },
+            {
+              "name": "tarifvertragBestehenBAVArbeitgeber",
+              "label": "Besteht ein Tarifvertrag?",
+              "type": "select",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "verbindlicherVertrag0"
+            },
+            {
+              "name": "welcherTarifvertragBAVArbeitgeber",
+              "label": "Welcher Tarifvertrag gilt?",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "verbindlicherVertrag0"
+            },
+            {
+              "name": "unternehmensgrößeBAVArbeitgeber",
+              "label": "Unternehmensgröße",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "unternehmensgroesse0"
+            },
+            {
+              "name": "brancheBAVArbeitgeber",
+              "label": "Branche der Firma",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "branche0"
+            },
+            {
+              "name": "ansprechspartnerArbeitgeber",
+              "label": "Ansprechspartner",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerName0"
+            },
+            {
               "name": "telNrAnsprechspartnerArbeitgeber",
               "label": "Telefon Nummer des Ansprechspartners",
               "type": "text",
               "props": {
                 "sm": 6,
-                "xs":6
+                "xs": 6
               },
-              "suiteValue":"avAnsprechpartnerTelefon0"
+              "suiteValue": "avAnsprechpartnerTelefon0"
             },
             {
-                "name": "emailAnsprechspartnerArbeitgeber",
-                "label": "Email des Ansprechspartners",
-                "type": "text",
-                "suiteValue":"avAnsprechpartnerEmail0"
-              }]}]},
-              {
-                "accordionText": "Arbeitgeber 2",
-            "condition":"selected2Persons",
-            "card": false,
-            "accordionId":1,
-                "items": [
-              {
-                "name": "firmennameArbeitgeber2",
-                "label": "Firmenname",
-                "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                  "sm": 6,
-                  "xs":6
-                },
-                "suiteValue":"firmenname1"
-              },
-              {
-                "name": "rechtsformArbeitgeber2",
-                "label": "Rechtsform (z.B GmbH, GbR, etc.)",
-                "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                  "sm": 6,
-                  "xs":6
-                },
-                "suiteValue":"rechtsform1"
-            },
-            {
-              "name": "straßeArbeitgeber2",
-              "label": "Straße",
+              "name": "emailAnsprechspartnerArbeitgeber",
+              "label": "Email des Ansprechspartners",
               "type": "text",
-            "condition":"selected2Persons",
-            "props": {
+              "props": {
                 "sm": 6,
-                "xs":6
+                "xs": 6
               },
-              "suiteValue":"strasse1"
-            },
-            {
-              "name": "nummerArbeitgeber2",
-              "label": "Nr.",
-              "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                "sm": 6,
-                "xs":6
-              },
-              "suiteValue":"hausnummer1"
-            },
-            {
-              "name": "postleitzahlArbeitgeber2",
-              "label": "Postleitzahl",
-              "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                "sm": 6,
-                "xs":6
-              },
-              "suiteValue":"postleitzahl1"
-            },
-            {
-              "name": "wohnortArbeitgeber2",
-              "label": "Wohnort",
-              "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                "sm": 6,
-                "xs":6
-              },
-              "suiteValue":"ort1"
-            },
-            {
-              "name": "telefonnummerArbeitgeber2",
-              "label": "Telefonnummer",
-              "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                "sm": 6,
-                "xs":6
-              },
-              "suiteValue":"tel1"
-            },
-            {
-              "name": "seitWannbeschaeftigtArbeitgeber2",
-              "label": "seit wann beshäftigt?",
-              "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                "sm": 6,
-                "xs":6
-              },
-              "suiteValue":"beschaeftigt1"
-            },
-            {
-              "section": "Betriebliche Altersvorsorge",
-              "card": true,
-            "condition":"selected2Persons",
-              "items": [
+              "suiteValue": "avAnsprechpartnerEmail0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionText": "Arbeitgeber 2",
+      "condition": "selected2Persons",
+      "card": false,
+      "accordionId": 1,
+      "items": [
+        {
+          "name": "firmennameArbeitgeber2",
+          "label": "Firmenname",
+          "type": "text",
+          "condition": "selected2Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6,
+            "required":true
+          },
+          "suiteValue": "firmenname1"
+        },
+        {
+          "name": "rechtsformArbeitgeber2",
+          "label": "Rechtsform (z.B GmbH, GbR, etc.)",
+          "type": "text",
+          "condition": "selected2Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "rechtsform1"
+        },
+        {
+          "name": "straßeArbeitgeber2",
+          "label": "Straße",
+          "type": "text",
+          "condition": "selected2Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "strasse1"
+        },
+        {
+          "name": "nummerArbeitgeber2",
+          "label": "Nr.",
+          "type": "text",
+          "condition": "selected2Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "hausnummer1"
+        },
+        {
+          "name": "postleitzahlArbeitgeber2",
+          "label": "Postleitzahl",
+          "type": "text",
+          "condition": "selected2Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "postleitzahl1"
+        },
+        {
+          "name": "wohnortArbeitgeber2",
+          "label": "Wohnort",
+          "type": "text",
+          "condition": "selected2Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "ort1"
+        },
+        {
+          "name": "telefonnummerArbeitgeber2",
+          "label": "Telefonnummer",
+          "type": "text",
+          "condition": "selected2Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "tel1"
+        },
+        {
+          "name": "seitWannbeschaeftigtArbeitgeber2",
+          "label": "seit wann beschäftigt?",
+          "type": "date",
+          "condition": "selected2Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "beschaeftigt1"
+        },
+        {
+          "section": "Betriebliche Altersvorsorge",
+          "card": true,
+          "condition": "selected2Persons",
+          "items": [
             {
               "name": "inGewerkschaftBAVArbeitgeber2",
               "label": "Sind Sie in der Gewerkschaft?",
               "type": "select",
-            "condition":"selected2Persons",
-            "props": {
+              "condition": "selected2Persons",
+              "props": {
                 "sm": 6,
-                "xs":6
+                "xs": 6
               },
               "options": [
                 { "value": true, "label": "Ja" },
                 { "value": false, "label": "Nein" }
-            ],
-            "suiteValue":"mitgliedGewerkschaft1"
+              ],
+              "suiteValue": "mitgliedGewerkschaft1"
             },
             {
               "name": "inWelcheGewerkschaftBAVArbeitgeber2",
               "label": "Falls ja, welche Gewerkschaft?",
               "type": "text",
-            "condition":"selected2Persons",
-            "props": {
+              "condition": "selected2Persons",
+              "props": {
                 "sm": 6,
-                "xs":6
+                "xs": 6
               },
-              "suiteValue":"nameGewerkschaft1"
+              "suiteValue": "nameGewerkschaft1"
             },
             {
               "name": "tarifgebundenBAVArbeitgeber2",
               "label": "Ist ihr Arbeitgeber tarifgebunden?",
               "type": "select",
-            "condition":"selected2Persons",
-            "props": {
+              "condition": "selected2Persons",
+              "props": {
                 "sm": 6,
-                "xs":6
+                "xs": 6
               },
               "options": [
                 { "value": true, "label": "Ja" },
                 { "value": false, "label": "Nein" }
-            ],
-            "suiteValue":"tarifgebunden1"
+              ],
+              "suiteValue": "tarifgebunden1"
             },
             {
               "name": "tarifvertragBestehenBAVArbeitgeber2",
               "label": "Besteht ein Tarifvertrag?",
               "type": "select",
-            "condition":"selected2Persons",
-            "props": {
+              "condition": "selected2Persons",
+              "props": {
                 "sm": 6,
-                "xs":6
+                "xs": 6
               },
               "options": [
                 { "value": true, "label": "Ja" },
                 { "value": false, "label": "Nein" }
-            ],
-            "suiteValue":"verbindlicherVertrag1"
+              ],
+              "suiteValue": "verbindlicherVertrag1"
             },
             {
-                "name": "welcherTarifvertragBAVArbeitgeber2",
-                "label": "Welcher Tarifvertrag gilt?",
-                "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                  "sm": 6,
-                  "xs":6
-                },
-                "suiteValue":"verbindlicherVertrag1"
+              "name": "welcherTarifvertragBAVArbeitgeber2",
+              "label": "Welcher Tarifvertrag gilt?",
+              "type": "text",
+              "condition": "selected2Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
               },
-              {
-                  "name": "unternehmensgrößeBAVArbeitgeber2",
-                  "label": "Unternehmensgröße",
-                  "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                    "sm": 6,
-                    "xs":6
-                  },
-                  "suiteValue":"unternehmensgroesse1"
-                },
-                {
-                    "name": "ansprechspartnerArbeitgeber2",
-                    "label": "Ansprechspartner",
-                    "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                      "sm": 6,
-                      "xs":6
-                    },
-                    "suiteValue":"avAnsprechpartnerName1"
-                  },
-                  {
-                      "name": "telNrAnsprechspartnerArbeitgeber2",
-                      "label": "Telefon Nummer des Ansprechspartners",
-                      "type": "text",
-            "condition":"selected2Persons",
-            "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "suiteValue":"avAnsprechpartnerTelefon1"
-                    },
-                    {
-                        "name": "emailAnsprechspartnerArbeitgeber2",
-                        "label": "Email des Ansprechspartners",
-            "condition":"selected2Persons",
-            "type": "text",
-            "suiteValue":"avAnsprechpartnerEmail1"
-                      }]}]},
-                      {
-                        "accordionText": "Arbeitgeber 3",
-                    "condition":"selected3Persons",
-                    "card": false,
-                    "accordionId":2,
-                        "items": [
-                      {
-                        "name": "firmennameArbeitgeber3",
-                        "label": "Firmenname",
-                        "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                          "sm": 6,
-                          "xs":6
-                        },
-                        "suiteValue":"firmenname2"
-                      },
-                      {
-                        "name": "rechtsformArbeitgeber3",
-                        "label": "Rechtsform (z.B GmbH, GbR, etc.)",
-                        "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                          "sm": 6,
-                          "xs":6
-                        },
-                        "suiteValue":"rechtsform2"
-                    },
-                    {
-                      "name": "straßeArbeitgeber3",
-                      "label": "Straße",
-                      "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "suiteValue":"strasse2"
-                    },
-                    {
-                      "name": "nummerArbeitgeber3",
-                      "label": "Nr.",
-                      "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "suiteValue":"hausnummer2"
-                    },
-                    {
-                      "name": "postleitzahlArbeitgeber3",
-                      "label": "Postleitzahl",
-                      "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "suiteValue":"postleitzahl2"
-                    },
-                    {
-                      "name": "wohnortArbeitgeber3",
-                      "label": "Wohnort",
-                      "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "suiteValue":"ort2"
-                    },
-                    {
-                      "name": "telefonnummerArbeitgeber3",
-                      "label": "Telefonnummer",
-                      "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "suiteValue":"tel2"
-                    },
-                    {
-                      "name": "seitWannbeschaeftigtArbeitgeber3",
-                      "label": "seit wann beshäftigt?",
-                      "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "suiteValue":"beschaeftigt2"
-                    },
-                    {
-                      "section": "Betriebliche Altersvorsorge",
-                      "card": true,
-                    "condition":"selected3Persons",
-                      "items": [
-                    {
-                      "name": "inGewerkschaftBAVArbeitgeber3",
-                      "label": "Sind Sie in der Gewerkschaft?",
-                      "type": "select",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "options": [
-                        { "value": true, "label": "Ja" },
-                        { "value": false, "label": "Nein" }
-                    ],
-                    "suiteValue":"mitgliedGewerkschaft2"
-                    },
-                    {
-                      "name": "inWelcheGewerkschaftBAVArbeitgeber3",
-                      "label": "Falls ja, welche Gewerkschaft?",
-                      "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "suiteValue":"nameGewerkschaft2"
-                    },
-                    {
-                      "name": "tarifgebundenBAVArbeitgeber3",
-                      "label": "Ist ihr Arbeitgeber tarifgebunden?",
-                      "type": "select",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "options": [
-                        { "value": true, "label": "Ja" },
-                        { "value": false, "label": "Nein" }
-                    ],
-                    "suiteValue":"tarifgebunden2"
-                    },
-                    {
-                      "name": "tarifvertragBestehenBAVArbeitgeber3",
-                      "label": "Besteht ein Tarifvertrag?",
-                      "type": "select",
-                    "condition":"selected3Persons",
-                    "props": {
-                        "sm": 6,
-                        "xs":6
-                      },
-                      "options": [
-                        { "value": true, "label": "Ja" },
-                        { "value": false, "label": "Nein" }
-                    ],
-                    "suiteValue":"verbindlicherVertrag2"
-                    },
-                    {
-                        "name": "welcherTarifvertragBAVArbeitgeber3",
-                        "label": "Welcher Tarifvertrag gilt?",
-                        "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                          "sm": 6,
-                          "xs":6
-                        },
-                        "suiteValue":"verbindlicherVertrag2"
-                      },
-                      {
-                          "name": "unternehmensgrößeBAVArbeitgeber3",
-                          "label": "Unternehmensgröße",
-                          "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                            "sm": 6,
-                            "xs":6
-                          },
-                          "suiteValue":"unternehmensgroesse2"
-                        },
-                        {
-                            "name": "ansprechspartnerArbeitgeber3",
-                            "label": "Ansprechspartner",
-                            "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                              "sm": 6,
-                              "xs":6
-                            },
-                            "suiteValue":"avAnsprechpartnerName2"
-                          },
-                          {
-                              "name": "telNrAnsprechspartnerArbeitgeber3",
-                              "label": "Telefon Nummer des Ansprechspartners",
-                              "type": "text",
-                    "condition":"selected3Persons",
-                    "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "suiteValue":"avAnsprechpartnerTelefon2"
-                            },
-                            {
-                                "name": "emailAnsprechspartnerArbeitgeber3",
-                                "label": "Email des Ansprechspartners",
-                    "condition":"selected3Persons",
-                    "type": "text",
-                    "suiteValue":"avAnsprechpartnerEmail2"
-                              }]}]},
-                              {
-                                "accordionText": "Arbeitgeber 4",
-                            "condition":"selected4Persons",
-                            "accordionId":3,
-                            "card": false,
-                                "items": [
-                              {
-                                "name": "firmennameArbeitgeber4",
-                                "label": "Firmenname",
-                                "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                  "sm": 6,
-                                  "xs":6
-                                },
-                                "suiteValue":"firmenname3"
-                              },
-                              {
-                                "name": "rechtsformArbeitgeber4",
-                                "label": "Rechtsform (z.B GmbH, GbR, etc.)",
-                                "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                  "sm": 6,
-                                  "xs":6
-                                },
-                                "suiteValue":"rechtsform3"
-                            },
-                            {
-                              "name": "straßeArbeitgeber4",
-                              "label": "Straße",
-                              "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "suiteValue":"strasse3"
-                            },
-                            {
-                              "name": "nummerArbeitgeber4",
-                              "label": "Nr.",
-                              "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "suiteValue":"hausnummer3"
-                            },
-                            {
-                              "name": "postleitzahlArbeitgeber4",
-                              "label": "Postleitzahl",
-                              "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "suiteValue":"postleitzahl3"
-                            },
-                            {
-                              "name": "wohnortArbeitgeber4",
-                              "label": "Wohnort",
-                              "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "suiteValue":"ort3"
-                            },
-                            {
-                              "name": "telefonnummerArbeitgeber4",
-                              "label": "Telefonnummer",
-                              "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "suiteValue":"tel3"
-                            },
-                            {
-                              "name": "seitWannbeschaeftigtArbeitgeber4",
-                              "label": "seit wann beshäftigt?",
-                              "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "suiteValue":"beschaeftigt3"
-                            },
-                            {
-                              "section": "Betriebliche Altersvorsorge",
-                              "card": true,
-                            "condition":"selected4Persons",
-                              "items": [
-                            {
-                              "name": "inGewerkschaftBAVArbeitgeber4",
-                              "label": "Sind Sie in der Gewerkschaft?",
-                              "type": "select",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "options": [
-                                { "value": true, "label": "Ja" },
-                                { "value": false, "label": "Nein" }
-                            ],
-                            "suiteValue":"mitgliedGewerkschaft3"
-                            },
-                            {
-                              "name": "inWelcheGewerkschaftBAVArbeitgeber4",
-                              "label": "Falls ja, welche Gewerkschaft?",
-                              "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "suiteValue":"nameGewerkschaft4"
-                            },
-                            {
-                              "name": "tarifgebundenBAVArbeitgeber4",
-                              "label": "Ist ihr Arbeitgeber tarifgebunden?",
-                              "type": "select",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "options": [
-                                { "value": true, "label": "Ja" },
-                                { "value": false, "label": "Nein" }
-                            ],
-                            "suiteValue":"tarifgebunden3"
-                            },
-                            {
-                              "name": "tarifvertragBestehenBAVArbeitgeber4",
-                              "label": "Besteht ein Tarifvertrag?",
-                              "type": "select",
-                            "condition":"selected4Persons",
-                            "props": {
-                                "sm": 6,
-                                "xs":6
-                              },
-                              "options": [
-                                { "value": true, "label": "Ja" },
-                                { "value": false, "label": "Nein" }
-                            ],
-                            "suiteValue":"verbindlicherVertrag3"
-                            },
-                            {
-                                "name": "welcherTarifvertragBAVArbeitgeber4",
-                                "label": "Welcher Tarifvertrag gilt?",
-                                "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                  "sm": 6,
-                                  "xs":6
-                                },
-                                "suiteValue":"verbindlicherVertrag3"
-                              },
-                              {
-                                  "name": "unternehmensgrößeBAVArbeitgeber4",
-                                  "label": "Unternehmensgröße",
-                                  "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                    "sm": 6,
-                                    "xs":6
-                                  },
-                                  "suiteValue":"unternehmensgroesse3"
-                                },
-                                {
-                                    "name": "ansprechspartnerArbeitgeber4",
-                                    "label": "Ansprechspartner",
-                                    "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                      "sm": 6,
-                                      "xs":6
-                                    },
-                                    "suiteValue":"avAnsprechpartnerName3"
-                                  },
-                                  {
-                                      "name": "telNrAnsprechspartnerArbeitgeber4",
-                                      "label": "Telefon Nummer des Ansprechspartners",
-                                      "type": "text",
-                            "condition":"selected4Persons",
-                            "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "suiteValue":"avAnsprechpartnerTelefon3"
-                                    },
-                                    {
-                                        "name": "emailAnsprechspartnerArbeitgeber4",
-                                        "label": "Email des Ansprechspartners",
-                            "condition":"selected4Persons",
-                            "type": "text",
-                            "suiteValue":"avAnsprechpartnerEmail3"
-                                      }]}]},
-                                      {
-                                        "accordionText": "Arbeitgeber 5",
-                                    "condition":"selected5Persons",
-                                    "accordionId":4,
-                                    "card": false,
-                                        "items": [
-                                      {
-                                        "name": "firmennameArbeitgeber5",
-                                        "label": "Firmenname",
-                                        "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                          "sm": 6,
-                                          "xs":6
-                                        },
-                                        "suiteValue":"firmenname4"
-                                      },
-                                      {
-                                        "name": "rechtsformArbeitgeber5",
-                                        "label": "Rechtsform (z.B GmbH, GbR, etc.)",
-                                        "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                          "sm": 6,
-                                          "xs":6
-                                        },
-                                        "suiteValue":"rechtsform4"
-                                    },
-                                    {
-                                      "name": "straßeArbeitgeber5",
-                                      "label": "Straße",
-                                      "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "suiteValue":"strasse4"
-                                    },
-                                    {
-                                      "name": "nummerArbeitgeber5",
-                                      "label": "Nr.",
-                                      "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "suiteValue":"hausnummer4"
-                                    },
-                                    {
-                                      "name": "postleitzahlArbeitgeber5",
-                                      "label": "Postleitzahl",
-                                      "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "suiteValue":"postleitzahl4"
-                                    },
-                                    {
-                                      "name": "wohnortArbeitgeber5",
-                                      "label": "Wohnort",
-                                      "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "suiteValue":"ort4"
-                                    },
-                                    {
-                                      "name": "telefonnummerArbeitgeber5",
-                                      "label": "Telefonnummer",
-                                      "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "suiteValue":"tel4"
-                                    },
-                                    {
-                                      "name": "seitWannbeschaeftigtArbeitgeber5",
-                                      "label": "seit wann beshäftigt?",
-                                      "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "suiteValue":"beschaeftigt4"
-                                    },
-                                    {
-                                      "section": "Betriebliche Altersvorsorge",
-                                      "card": true,
-                                    "condition":"selected5Persons",
-                                      "items": [
-                                    {
-                                      "name": "inGewerkschaftBAVArbeitgeber5",
-                                      "label": "Sind Sie in der Gewerkschaft?",
-                                      "type": "select",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "options": [
-                                        { "value": true, "label": "Ja" },
-                                        { "value": false, "label": "Nein" }
-                                    ],
-                                    "suiteValue":"mitgliedGewerkschaft4"
-                                    },
-                                    {
-                                      "name": "inWelcheGewerkschaftBAVArbeitgeber5",
-                                      "label": "Falls ja, welche Gewerkschaft?",
-                                      "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "suiteValue":"nameGewerkschaft4"
-                                    },
-                                    {
-                                      "name": "tarifgebundenBAVArbeitgeber5",
-                                      "label": "Ist ihr Arbeitgeber tarifgebunden?",
-                                      "type": "select",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "options": [
-                                        { "value": true, "label": "Ja" },
-                                        { "value": false, "label": "Nein" }
-                                    ],
-                                    "suiteValue":"tarifgebunden4"
-                                    },
-                                    {
-                                      "name": "tarifvertragBestehenBAVArbeitgeber5",
-                                      "label": "Besteht ein Tarifvertrag?",
-                                      "type": "select",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                        "sm": 6,
-                                        "xs":6
-                                      },
-                                      "options": [
-                                        { "value": true, "label": "Ja" },
-                                        { "value": false, "label": "Nein" }
-                                    ],
-                                    "suiteValue":"verbindlicherVertrag4"
-                                    },
-                                    {
-                                        "name": "welcherTarifvertragBAVArbeitgeber5",
-                                        "label": "Welcher Tarifvertrag gilt?",
-                                        "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                          "sm": 6,
-                                          "xs":6
-                                        },
-                                        "suiteValue":"verbindlicherVertrag4"
-                                      },
-                                      {
-                                          "name": "unternehmensgrößeBAVArbeitgeber5",
-                                          "label": "Unternehmensgröße",
-                                          "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                            "sm": 6,
-                                            "xs":6
-                                          },
-                                          "suiteValue":"unternehmensgroesse4"
-                                        },
-                                        {
-                                            "name": "ansprechspartnerArbeitgeber5",
-                                            "label": "Ansprechspartner",
-                                            "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                              "sm": 6,
-                                              "xs":6
-                                            },
-                                            "suiteValue":"avAnsprechpartnerName4"
-                                          },
-                                          {
-                                              "name": "telNrAnsprechspartnerArbeitgeber5",
-                                              "label": "Telefon Nummer des Ansprechspartners",
-                                              "type": "text",
-                                    "condition":"selected5Persons",
-                                    "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "suiteValue":"avAnsprechpartnerTelefon4"
-                                            },
-                                            {
-                                                "name": "emailAnsprechspartnerArbeitgeber5",
-                                                "label": "Email des Ansprechspartners",
-                                    "condition":"selected5Persons",
-                                    "type": "text",
-                                    "suiteValue":"avAnsprechpartnerEmail4"
-                                              }]}]},
-                                              {
-                                                "accordionText": "Arbeitgeber 6",
-                                            "condition":"selected6Persons",
-                                            "accordionId":5,
-                                            "card": false,
-                                                "items": [
-                                              {
-                                                "name": "firmennameArbeitgeber6",
-                                                "label": "Firmenname",
-                                                "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                  "sm": 6,
-                                                  "xs":6
-                                                },
-                                                "suiteValue":"firmenname5"
-                                              },
-                                              {
-                                                "name": "rechtsformArbeitgeber6",
-                                                "label": "Rechtsform (z.B GmbH, GbR, etc.)",
-                                                "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                  "sm": 6,
-                                                  "xs":6
-                                                },
-                                                "suiteValue":"rechtsform5"
-                                            },
-                                            {
-                                              "name": "straßeArbeitgeber6",
-                                              "label": "Straße",
-                                              "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "suiteValue":"strasse5"
-                                            },
-                                            {
-                                              "name": "nummerArbeitgeber6",
-                                              "label": "Nr.",
-                                              "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "suiteValue":"hausnummer5"
-                                            },
-                                            {
-                                              "name": "postleitzahlArbeitgeber6",
-                                              "label": "Postleitzahl",
-                                              "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "suiteValue":"postleitzahl5"
-                                            },
-                                            {
-                                              "name": "wohnortArbeitgeber6",
-                                              "label": "Wohnort",
-                                              "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "suiteValue":"ort5"
-                                            },
-                                            {
-                                              "name": "telefonnummerArbeitgeber6",
-                                              "label": "Telefonnummer",
-                                              "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "suiteValue":"tel5"
-                                            },
-                                            {
-                                              "name": "seitWannbeschaeftigtArbeitgeber6",
-                                              "label": "seit wann beshäftigt?",
-                                              "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "suiteValue":"beschaeftigt5"
-                                            },
-                                            {
-                                              "section": "Betriebliche Altersvorsorge",
-                                              "card": true,
-                                            "condition":"selected6Persons",
-                                              "items": [
-                                            {
-                                              "name": "inGewerkschaftBAVArbeitgeber6",
-                                              "label": "Sind Sie in der Gewerkschaft?",
-                                              "type": "select",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "options": [
-                                                { "value": true, "label": "Ja" },
-                                                { "value": false, "label": "Nein" }
-                                            ],
-                                            "suiteValue":"mitgliedGewerkschaft5"
-                                            },
-                                            {
-                                              "name": "inWelcheGewerkschaftBAVArbeitgeber6",
-                                              "label": "Falls ja, welche Gewerkschaft?",
-                                              "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "suiteValue":"nameGewerkschaft5"
-                                            },
-                                            {
-                                              "name": "tarifgebundenBAVArbeitgeber6",
-                                              "label": "Ist ihr Arbeitgeber tarifgebunden?",
-                                              "type": "select",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "options": [
-                                                { "value": true, "label": "Ja" },
-                                                { "value": false, "label": "Nein" }
-                                            ],
-                                            "suiteValue":"tarifgebunden5"
-                                            },
-                                            {
-                                              "name": "tarifvertragBestehenBAVArbeitgeber6",
-                                              "label": "Besteht ein Tarifvertrag?",
-                                              "type": "select",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                "sm": 6,
-                                                "xs":6
-                                              },
-                                              "options": [
-                                                { "value": true, "label": "Ja" },
-                                                { "value": false, "label": "Nein" }
-                                            ],
-                                            "suiteValue":"verbindlicherVertrag5"
-                                            },
-                                            {
-                                                "name": "welcherTarifvertragBAVArbeitgeber6",
-                                                "label": "Welcher Tarifvertrag gilt?",
-                                                "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                  "sm": 6,
-                                                  "xs":6
-                                                },
-                                                "suiteValue":"verbindlicherVertrag5"
-                                              },
-                                              {
-                                                  "name": "unternehmensgrößeBAVArbeitgeber6",
-                                                  "label": "Unternehmensgröße",
-                                                  "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                    "sm": 6,
-                                                    "xs":6
-                                                  },
-                                                  "suiteValue":"unternehmensgroesse5"
-                                                },
-                                                {
-                                                    "name": "ansprechspartnerArbeitgeber6",
-                                                    "label": "Ansprechspartner",
-                                                    "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                      "sm": 6,
-                                                      "xs":6
-                                                    },
-                                                    "suiteValue":"avAnsprechpartnerName5"
-                                                  },
-                                                  {
-                                                      "name": "telNrAnsprechspartnerArbeitgeber6",
-                                                      "label": "Telefon Nummer des Ansprechspartners",
-                                                      "type": "text",
-                                            "condition":"selected6Persons",
-                                            "props": {
-                                                        "sm": 6,
-                                                        "xs":6
-                                                      },
-                                                      "suiteValue":"avAnsprechpartnerTelefon6"
-                                                    },
-                                                    {
-                                                        "name": "emailAnsprechspartnerArbeitgeber6",
-                                                        "label": "Email des Ansprechspartners",
-                                            "condition":"selected6Persons",
-                                            "type": "text",
-                                            "suiteValue":"avAnsprechpartnerEmail5"
-                                                      }]}]},
-                                                      {"name":"arbeitgeberHinzufuegen",
-    "type":"customFunction",
-    "suiteValue":""}
-    ]
+              "suiteValue": "verbindlicherVertrag1"
+            },
+            {
+              "name": "unternehmensgrößeBAVArbeitgeber2",
+              "label": "Unternehmensgröße",
+              "type": "text",
+              "condition": "selected2Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "unternehmensgroesse1"
+            },
+            {
+              "name": "brancheBAVArbeitgeber2",
+              "label": "Branche der Firma",
+              "condition": "selected2Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "branche1"
+            },
+            {
+              "name": "ansprechspartnerArbeitgeber2",
+              "label": "Ansprechspartner",
+              "type": "text",
+              "condition": "selected2Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerName1"
+            },
+            {
+              "name": "telNrAnsprechspartnerArbeitgeber2",
+              "label": "Telefon Nummer des Ansprechspartners",
+              "type": "text",
+              "condition": "selected2Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerTelefon1"
+            },
+            {
+              "name": "emailAnsprechspartnerArbeitgeber2",
+              "label": "Email des Ansprechspartners",
+              "condition": "selected2Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerEmail1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionText": "Arbeitgeber 3",
+      "condition": "selected3Persons",
+      "card": false,
+      "accordionId": 2,
+      "items": [
+        {
+          "name": "firmennameArbeitgeber3",
+          "label": "Firmenname",
+          "type": "text",
+          "condition": "selected3Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6,
+            "required":true
+          },
+          "suiteValue": "firmenname2"
+        },
+        {
+          "name": "rechtsformArbeitgeber3",
+          "label": "Rechtsform (z.B GmbH, GbR, etc.)",
+          "type": "text",
+          "condition": "selected3Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "rechtsform2"
+        },
+        {
+          "name": "straßeArbeitgeber3",
+          "label": "Straße",
+          "type": "text",
+          "condition": "selected3Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "strasse2"
+        },
+        {
+          "name": "nummerArbeitgeber3",
+          "label": "Nr.",
+          "type": "text",
+          "condition": "selected3Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "hausnummer2"
+        },
+        {
+          "name": "postleitzahlArbeitgeber3",
+          "label": "Postleitzahl",
+          "type": "text",
+          "condition": "selected3Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "postleitzahl2"
+        },
+        {
+          "name": "wohnortArbeitgeber3",
+          "label": "Wohnort",
+          "type": "text",
+          "condition": "selected3Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "ort2"
+        },
+        {
+          "name": "telefonnummerArbeitgeber3",
+          "label": "Telefonnummer",
+          "type": "text",
+          "condition": "selected3Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "tel2"
+        },
+        {
+          "name": "seitWannbeschaeftigtArbeitgeber3",
+          "label": "seit wann beschäftigt?",
+          "type": "date",
+          "condition": "selected3Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "beschaeftigt2"
+        },
+        {
+          "section": "Betriebliche Altersvorsorge",
+          "card": true,
+          "condition": "selected3Persons",
+          "items": [
+            {
+              "name": "inGewerkschaftBAVArbeitgeber3",
+              "label": "Sind Sie in der Gewerkschaft?",
+              "type": "select",
+              "condition": "selected3Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "mitgliedGewerkschaft2"
+            },
+            {
+              "name": "inWelcheGewerkschaftBAVArbeitgeber3",
+              "label": "Falls ja, welche Gewerkschaft?",
+              "type": "text",
+              "condition": "selected3Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "nameGewerkschaft2"
+            },
+            {
+              "name": "tarifgebundenBAVArbeitgeber3",
+              "label": "Ist ihr Arbeitgeber tarifgebunden?",
+              "type": "select",
+              "condition": "selected3Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "tarifgebunden2"
+            },
+            {
+              "name": "tarifvertragBestehenBAVArbeitgeber3",
+              "label": "Besteht ein Tarifvertrag?",
+              "type": "select",
+              "condition": "selected3Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "verbindlicherVertrag2"
+            },
+            {
+              "name": "welcherTarifvertragBAVArbeitgeber3",
+              "label": "Welcher Tarifvertrag gilt?",
+              "type": "text",
+              "condition": "selected3Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "verbindlicherVertrag2"
+            },
+            {
+              "name": "unternehmensgrößeBAVArbeitgeber3",
+              "label": "Unternehmensgröße",
+              "type": "text",
+              "condition": "selected3Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "unternehmensgroesse2"
+            },
+            {
+              "name": "brancheBAVArbeitgeber3",
+              "label": "Branche der Firma",
+              "condition": "selected3Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "branche2"
+            },
+            {
+              "name": "ansprechspartnerArbeitgeber3",
+              "label": "Ansprechspartner",
+              "type": "text",
+              "condition": "selected3Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerName2"
+            },
+            {
+              "name": "telNrAnsprechspartnerArbeitgeber3",
+              "label": "Telefon Nummer des Ansprechspartners",
+              "type": "text",
+              "condition": "selected3Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerTelefon2"
+            },
+            {
+              "name": "emailAnsprechspartnerArbeitgeber3",
+              "label": "Email des Ansprechspartners",
+              "condition": "selected3Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerEmail2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionText": "Arbeitgeber 4",
+      "condition": "selected4Persons",
+      "accordionId": 3,
+      "card": false,
+      "items": [
+        {
+          "name": "firmennameArbeitgeber4",
+          "label": "Firmenname",
+          "type": "text",
+          "condition": "selected4Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6,
+            "required":true
+          },
+          "suiteValue": "firmenname3"
+        },
+        {
+          "name": "rechtsformArbeitgeber4",
+          "label": "Rechtsform (z.B GmbH, GbR, etc.)",
+          "type": "text",
+          "condition": "selected4Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "rechtsform3"
+        },
+        {
+          "name": "straßeArbeitgeber4",
+          "label": "Straße",
+          "type": "text",
+          "condition": "selected4Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "strasse3"
+        },
+        {
+          "name": "nummerArbeitgeber4",
+          "label": "Nr.",
+          "type": "text",
+          "condition": "selected4Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "hausnummer3"
+        },
+        {
+          "name": "postleitzahlArbeitgeber4",
+          "label": "Postleitzahl",
+          "type": "text",
+          "condition": "selected4Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "postleitzahl3"
+        },
+        {
+          "name": "wohnortArbeitgeber4",
+          "label": "Wohnort",
+          "type": "text",
+          "condition": "selected4Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "ort3"
+        },
+        {
+          "name": "telefonnummerArbeitgeber4",
+          "label": "Telefonnummer",
+          "type": "text",
+          "condition": "selected4Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "tel3"
+        },
+        {
+          "name": "seitWannbeschaeftigtArbeitgeber4",
+          "label": "seit wann beschäftigt?",
+          "type": "date",
+          "condition": "selected4Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "beschaeftigt3"
+        },
+        {
+          "section": "Betriebliche Altersvorsorge",
+          "card": true,
+          "condition": "selected4Persons",
+          "items": [
+            {
+              "name": "inGewerkschaftBAVArbeitgeber4",
+              "label": "Sind Sie in der Gewerkschaft?",
+              "type": "select",
+              "condition": "selected4Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "mitgliedGewerkschaft3"
+            },
+            {
+              "name": "inWelcheGewerkschaftBAVArbeitgeber4",
+              "label": "Falls ja, welche Gewerkschaft?",
+              "type": "text",
+              "condition": "selected4Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "nameGewerkschaft4"
+            },
+            {
+              "name": "tarifgebundenBAVArbeitgeber4",
+              "label": "Ist ihr Arbeitgeber tarifgebunden?",
+              "type": "select",
+              "condition": "selected4Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "tarifgebunden3"
+            },
+            {
+              "name": "tarifvertragBestehenBAVArbeitgeber4",
+              "label": "Besteht ein Tarifvertrag?",
+              "type": "select",
+              "condition": "selected4Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "verbindlicherVertrag3"
+            },
+            {
+              "name": "welcherTarifvertragBAVArbeitgeber4",
+              "label": "Welcher Tarifvertrag gilt?",
+              "type": "text",
+              "condition": "selected4Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "verbindlicherVertrag3"
+            },
+            {
+              "name": "unternehmensgrößeBAVArbeitgeber4",
+              "label": "Unternehmensgröße",
+              "type": "text",
+              "condition": "selected4Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "unternehmensgroesse3"
+            },
+            {
+              "name": "brancheBAVArbeitgeber4",
+              "label": "Branche der Firma",
+              "condition": "selected4Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "branche3"
+            },
+
+            {
+              "name": "ansprechspartnerArbeitgeber4",
+              "label": "Ansprechspartner",
+              "type": "text",
+              "condition": "selected4Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerName3"
+            },
+            {
+              "name": "telNrAnsprechspartnerArbeitgeber4",
+              "label": "Telefon Nummer des Ansprechspartners",
+              "type": "text",
+              "condition": "selected4Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerTelefon3"
+            },
+            {
+              "name": "emailAnsprechspartnerArbeitgeber4",
+              "label": "Email des Ansprechspartners",
+              "condition": "selected4Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerEmail3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionText": "Arbeitgeber 5",
+      "condition": "selected5Persons",
+      "accordionId": 4,
+      "card": false,
+      "items": [
+        {
+          "name": "firmennameArbeitgeber5",
+          "label": "Firmenname",
+          "type": "text",
+          "condition": "selected5Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6,
+            "required":true
+          },
+          "suiteValue": "firmenname4"
+        },
+        {
+          "name": "rechtsformArbeitgeber5",
+          "label": "Rechtsform (z.B GmbH, GbR, etc.)",
+          "type": "text",
+          "condition": "selected5Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "rechtsform4"
+        },
+        {
+          "name": "straßeArbeitgeber5",
+          "label": "Straße",
+          "type": "text",
+          "condition": "selected5Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "strasse4"
+        },
+        {
+          "name": "nummerArbeitgeber5",
+          "label": "Nr.",
+          "type": "text",
+          "condition": "selected5Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "hausnummer4"
+        },
+        {
+          "name": "postleitzahlArbeitgeber5",
+          "label": "Postleitzahl",
+          "type": "text",
+          "condition": "selected5Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "postleitzahl4"
+        },
+        {
+          "name": "wohnortArbeitgeber5",
+          "label": "Wohnort",
+          "type": "text",
+          "condition": "selected5Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "ort4"
+        },
+        {
+          "name": "telefonnummerArbeitgeber5",
+          "label": "Telefonnummer",
+          "type": "text",
+          "condition": "selected5Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "tel4"
+        },
+        {
+          "name": "seitWannbeschaeftigtArbeitgeber5",
+          "label": "seit wann beschäftigt?",
+          "type": "date",
+          "condition": "selected5Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "beschaeftigt4"
+        },
+        {
+          "section": "Betriebliche Altersvorsorge",
+          "card": true,
+          "condition": "selected5Persons",
+          "items": [
+            {
+              "name": "inGewerkschaftBAVArbeitgeber5",
+              "label": "Sind Sie in der Gewerkschaft?",
+              "type": "select",
+              "condition": "selected5Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "mitgliedGewerkschaft4"
+            },
+            {
+              "name": "inWelcheGewerkschaftBAVArbeitgeber5",
+              "label": "Falls ja, welche Gewerkschaft?",
+              "type": "text",
+              "condition": "selected5Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "nameGewerkschaft4"
+            },
+            {
+              "name": "tarifgebundenBAVArbeitgeber5",
+              "label": "Ist ihr Arbeitgeber tarifgebunden?",
+              "type": "select",
+              "condition": "selected5Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "tarifgebunden4"
+            },
+            {
+              "name": "tarifvertragBestehenBAVArbeitgeber5",
+              "label": "Besteht ein Tarifvertrag?",
+              "type": "select",
+              "condition": "selected5Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "verbindlicherVertrag4"
+            },
+            {
+              "name": "welcherTarifvertragBAVArbeitgeber5",
+              "label": "Welcher Tarifvertrag gilt?",
+              "type": "text",
+              "condition": "selected5Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "verbindlicherVertrag4"
+            },
+            {
+              "name": "unternehmensgrößeBAVArbeitgeber5",
+              "label": "Unternehmensgröße",
+              "type": "text",
+              "condition": "selected5Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "unternehmensgroesse4"
+            },
+            {
+              "name": "brancheBAVArbeitgeber5",
+              "label": "Branche der Firma",
+              "condition": "selected5Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "branche4"
+            },
+            {
+              "name": "ansprechspartnerArbeitgeber5",
+              "label": "Ansprechspartner",
+              "type": "text",
+              "condition": "selected5Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerName4"
+            },
+            {
+              "name": "telNrAnsprechspartnerArbeitgeber5",
+              "label": "Telefon Nummer des Ansprechspartners",
+              "type": "text",
+              "condition": "selected5Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerTelefon4"
+            },
+            {
+              "name": "emailAnsprechspartnerArbeitgeber5",
+              "label": "Email des Ansprechspartners",
+              "condition": "selected5Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerEmail4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionText": "Arbeitgeber 6",
+      "condition": "selected6Persons",
+      "accordionId": 5,
+      "card": false,
+      "items": [
+        {
+          "name": "firmennameArbeitgeber6",
+          "label": "Firmenname",
+          "type": "text",
+          "condition": "selected6Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6,
+            "required":true
+          },
+          "suiteValue": "firmenname5"
+        },
+        {
+          "name": "rechtsformArbeitgeber6",
+          "label": "Rechtsform (z.B GmbH, GbR, etc.)",
+          "type": "text",
+          "condition": "selected6Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "rechtsform5"
+        },
+        {
+          "name": "straßeArbeitgeber6",
+          "label": "Straße",
+          "type": "text",
+          "condition": "selected6Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "strasse5"
+        },
+        {
+          "name": "nummerArbeitgeber6",
+          "label": "Nr.",
+          "type": "text",
+          "condition": "selected6Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "hausnummer5"
+        },
+        {
+          "name": "postleitzahlArbeitgeber6",
+          "label": "Postleitzahl",
+          "type": "text",
+          "condition": "selected6Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "postleitzahl5"
+        },
+        {
+          "name": "wohnortArbeitgeber6",
+          "label": "Wohnort",
+          "type": "text",
+          "condition": "selected6Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "ort5"
+        },
+        {
+          "name": "telefonnummerArbeitgeber6",
+          "label": "Telefonnummer",
+          "type": "text",
+          "condition": "selected6Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "tel5"
+        },
+        {
+          "name": "seitWannbeschaeftigtArbeitgeber6",
+          "label": "seit wann beschäftigt?",
+          "type": "date",
+          "condition": "selected6Persons",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "beschaeftigt5"
+        },
+        {
+          "section": "Betriebliche Altersvorsorge",
+          "card": true,
+          "condition": "selected6Persons",
+          "items": [
+            {
+              "name": "inGewerkschaftBAVArbeitgeber6",
+              "label": "Sind Sie in der Gewerkschaft?",
+              "type": "select",
+              "condition": "selected6Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "mitgliedGewerkschaft5"
+            },
+            {
+              "name": "inWelcheGewerkschaftBAVArbeitgeber6",
+              "label": "Falls ja, welche Gewerkschaft?",
+              "type": "text",
+              "condition": "selected6Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "nameGewerkschaft5"
+            },
+            {
+              "name": "tarifgebundenBAVArbeitgeber6",
+              "label": "Ist ihr Arbeitgeber tarifgebunden?",
+              "type": "select",
+              "condition": "selected6Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "tarifgebunden5"
+            },
+            {
+              "name": "tarifvertragBestehenBAVArbeitgeber6",
+              "label": "Besteht ein Tarifvertrag?",
+              "type": "select",
+              "condition": "selected6Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "options": [
+                { "value": true, "label": "Ja" },
+                { "value": false, "label": "Nein" }
+              ],
+              "suiteValue": "verbindlicherVertrag5"
+            },
+            {
+              "name": "welcherTarifvertragBAVArbeitgeber6",
+              "label": "Welcher Tarifvertrag gilt?",
+              "type": "text",
+              "condition": "selected6Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "verbindlicherVertrag5"
+            },
+            {
+              "name": "unternehmensgrößeBAVArbeitgeber6",
+              "label": "Unternehmensgröße",
+              "type": "text",
+              "condition": "selected6Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "unternehmensgroesse5"
+            },
+            {
+              "name": "brancheBAVArbeitgeber6",
+              "label": "Branche der Firma",
+              "condition": "selected6Persons",
+              "type": "text",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "branche5"
+            },
+
+            {
+              "name": "ansprechspartnerArbeitgeber6",
+              "label": "Ansprechspartner",
+              "type": "text",
+              "condition": "selected6Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerName5"
+            },
+            {
+              "name": "telNrAnsprechspartnerArbeitgeber6",
+              "label": "Telefon Nummer des Ansprechspartners",
+              "type": "text",
+              "condition": "selected6Persons",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              },
+              "suiteValue": "avAnsprechpartnerTelefon6"
+            },
+            {
+              "name": "emailAnsprechspartnerArbeitgeber6",
+              "label": "Email des Ansprechspartners",
+              "condition": "selected6Persons",
+              "type": "text",
+              "suiteValue": "avAnsprechpartnerEmail5",
+              "props": {
+                "sm": 6,
+                "xs": 6
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "arbeitgeberHinzufuegen",
+      "type": "customFunction",
+      "suiteValue": ""
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows": 5,
+      "label": "Notizen",
+      "suiteValue": "notizen"
+    }
+  ]
 }

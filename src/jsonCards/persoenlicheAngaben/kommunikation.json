@@ -1,7 +1,6 @@
 {
     "section": "Kommunikation",
     "card": true,
-
     "items": [
       {
         "section": "Ansprechpartner für...",
@@ -118,12 +117,37 @@
                 "xs":6
               },
               "suiteValue":"telefaxGeschaeftlich"
-          },
+          }
+        ]},
+        {
+          "section": "E-Mail",
+          "card": true,
+          "items": [
+            {
+              "name": "privatEmailKommunikation",
+              "label": "privat",
+              "type": "text",
+              "props": {
+                  "sm": 6,
+                  "xs":6
+                },
+                "suiteValue":"email"
+            },
+            {
+              "name": "geschaeftlichEmailKommunikation",
+              "label": "geschäftlich",
+              "type": "text",
+              "props": {
+                  "sm": 6,
+                  "xs":6
+                },
+                "suiteValue":"emailGeschaeftlich"
+            }
+          ]},
           {
-            "name": "socialMediaKommunikationHeader",
-            "label": "Social Media",
-            "type": "header"
-          },
+            "section": "Social Media",
+            "card":true,
+            "items":[
           {
             "name": "facebookKommunikation",
             "label": "Facebook",
@@ -143,6 +167,13 @@
                 "xs":6
               },
               "suiteValue":"xing"
-          }]}
+          }]},
+          {
+            "name": "notizen",
+            "type": "textarea",
+            "rows":5,
+            "label": "Notizen",
+            "suiteValue":"notizen"
+          }
     ]
 }

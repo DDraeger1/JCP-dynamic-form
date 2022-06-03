@@ -38,6 +38,7 @@ const [berechneteRestschuld, setBerechneteRestschuld] = useState(0)
 const [beitragGesamtbAV,setBeitragGesamtbAV] = useState(0)
 const [searchString,setSearchString] =useState("")
 const [vertragName, setVertragName] = useState("")
+const [rowLength, setRowLength] = useState(0)
 const [colorProperties,setColorProperties] =useState({
   BUTTONCOLOR: "#C91413",
   COLOR1: "#404041",
@@ -93,6 +94,7 @@ return (
         filterContent, setFilterContent,
         colorProperties,setColorProperties,
         vertragName, setVertragName,
+        rowLength, setRowLength
       }}
     >
       {props.children}

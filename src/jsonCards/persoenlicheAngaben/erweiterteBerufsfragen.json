@@ -317,7 +317,7 @@
       "label": "Reisetätigkeit/Berufliche Gefahren",
       "type": "select",
       "options": [
-        { "value": "", "label": "keine Reisetätigkeit" },
+        { "value": " ", "label": "keine Reisetätigkeit" },
         { "value": "0", "label": "unter 20% Reisetätigkeit" },
         { "value": "3", "label": "20%-50% Reisetätigkeit" },
         { "value": "1", "label": "über 50% Reisetätigkeit" },
@@ -330,7 +330,7 @@
       "label": "Besonderheiten",
       "type": "select",
       "options": [
-        { "value": "", "label": "ohne" },
+        { "value": " ", "label": "ohne" },
         { "value": "110", "label": "Bundeswehr" },
         { "value": "111", "label": "Polizei" },
         { "value": "120", "label": "Bundeswehr in Friedensmission" },
@@ -399,6 +399,13 @@
         { "value": "53", "label": "Wasserjet - Rennen" }
       ],
       "suiteValue":"eb_hobby"
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }

@@ -2,6 +2,10 @@
     height: 28px;
     padding:6px 0px 6px 8px !important;
   }
+  .fotoDateiFlex{
+    display: flex;
+    flex-direction: row;
+  }
   .mock {
       width:100vw;
      height:99.6vh;

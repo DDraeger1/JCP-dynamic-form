@@ -76,6 +76,13 @@
     "label": "Wohngeld (€)",
     "type": "text",
     "suiteValue":""
+  },
+  {
+    "name": "notizen",
+    "type": "textarea",
+    "rows":5,
+    "label": "Notizen",
+    "suiteValue":"notizen"
   }
     ]
 }

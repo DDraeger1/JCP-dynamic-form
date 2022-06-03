@@ -1789,7 +1789,8 @@ function setAssetWithTariftype(
   mandantTabIndex,
   bankverbindungenParam,
   arbeitgeber,
-  setVertragName
+  setVertragName,
+  vertragId
 ) {
   let assetFound = false;
 
@@ -2297,6 +2298,7 @@ if (card === "PERSONALDATEN") {
         titelPersonendaten: mandantGroup[mandantTabIndex].mandant.titel,
         vornamePersonendaten: mandantGroup[mandantTabIndex].mandant.vorname,
         namePersonendaten: mandantGroup[mandantTabIndex].mandant.nachname,
+        staatsangehoerigkeitPersonendaten: mandantGroup[mandantTabIndex].mandant.staatsangehoerigkeit,
         geburtsdatumPersonendaten: dateFormater(
           mandantGroup[mandantTabIndex].mandant.geburtsdatum
         ),
@@ -2305,6 +2307,12 @@ if (card === "PERSONALDATEN") {
         seitWannPersonendaten: dateFormater(
           mandantGroup[mandantTabIndex].mandant.familienstandSeit
         ),
+        rechtsformPersonendaten:mandantGroup[mandantTabIndex].mandant.rechtsform,
+        geschaeftsfuehrerPersonendaten:mandantGroup[mandantTabIndex].mandant.firmaChef,
+        taetigkeitsbereichPersonendaten:mandantGroup[mandantTabIndex].mandant.firmaTaetigkeit,
+        umsatzPersonendaten:mandantGroup[mandantTabIndex].mandant.firmaUmsatz,
+        lohnGehaltssummePersonendaten:mandantGroup[mandantTabIndex].mandant.firmaLohn,
+        websitePersonendaten:mandantGroup[mandantTabIndex].mandant.firmawebsite,
         streetAdressePersonendaten:
           mandantGroup[mandantTabIndex].mandant.strasse,
         PLZAdressePersonendaten:
@@ -2450,6 +2458,7 @@ output = {
           " " +
           mandantGroup[mandantTabIndex].mandant.name,
         kontonummerBankdaten: bankDaten[0].kontonr,
+        blzBankdaten:bankDaten[0].blz,
         ibanBankdaten: bankDaten[0].iban,
         bicBankdaten: bankDaten[0].bic,
       };
@@ -2463,6 +2472,7 @@ output = {
           " " +
           mandantGroup[mandantTabIndex].mandant.name,
         kontonummerBankdaten2: bankDaten[1].kontonr,
+        blzBankdaten2:bankDaten[1].blz,
         ibanBankdaten2: bankDaten[1].iban,
         bicBankdaten2: bankDaten[1].bic,
         selected2Persons: true,
@@ -2477,6 +2487,7 @@ output = {
           " " +
           mandantGroup[mandantTabIndex].mandant.name,
         kontonummerBankdaten3: bankDaten[2].kontonr,
+        blzBankdaten3:bankDaten[2].blz,
         ibanBankdaten3: bankDaten[2].iban,
         bicBankdaten3: bankDaten[2].bic,
         selected3Persons: true,
@@ -2491,6 +2502,7 @@ output = {
           " " +
           mandantGroup[mandantTabIndex].mandant.name,
         kontonummerBankdaten4: bankDaten[3].kontonr,
+        blzBankdaten4:bankDaten[3].blz,
         ibanBankdaten4: bankDaten[3].iban,
         bicBankdaten4: bankDaten[3].bic,
         selected4Persons: true,
@@ -2505,6 +2517,7 @@ output = {
           " " +
           mandantGroup[mandantTabIndex].mandant.name,
         kontonummerBankdaten5: bankDaten[4].kontonr,
+        blzBankdaten5:bankDaten[4].blz,
         ibanBankdaten5: bankDaten[4].iban,
         bicBankdaten5: bankDaten[4].bic,
         selected5Persons: true,
@@ -2519,6 +2532,7 @@ output = {
           " " +
           mandantGroup[mandantTabIndex].mandant.name,
         kontonummerBankdaten6: bankDaten[5].kontonr,
+        blzBankdaten6:bankDaten[5].blz,
         ibanBankdaten6: bankDaten[5].iban,
         bicBankdaten6: bankDaten[5].bic,
         selected6Persons: true,
@@ -2556,6 +2570,7 @@ output = {
         tarifvertragBestehenBAVArbeitgeber: arbeitgeber[0].verbindlicherVertrag,
         welcherTarifvertragBAVArbeitgeber: arbeitgeber[0].nameTarifvertrag,
         unternehmensgrößeBAVArbeitgeber: arbeitgeber[0].unternehmensgroesse,
+        brancheBAVArbeitgeber:arbeitgeber[0].branche,
         ansprechspartnerArbeitgeber: arbeitgeber[0].avAnsprechpartnerName,
         telNrAnsprechspartnerArbeitgeber:
           arbeitgeber[0].avAnsprechpartnerTelefon,
@@ -2584,6 +2599,7 @@ output = {
           arbeitgeber[1].verbindlicherVertrag,
         welcherTarifvertragBAVArbeitgeber: arbeitgeber[1].nameTarifvertrag,
         unternehmensgrößeBAVArbeitgeber2: arbeitgeber[1].unternehmensgroesse,
+        brancheBAVArbeitgeber:arbeitgeber[1].branche,
         ansprechspartnerArbeitgeber2: arbeitgeber[1].avAnsprechpartnerName,
         telNrAnsprechspartnerArbeitgeber2:
           arbeitgeber[1].avAnsprechpartnerTelefon,
@@ -2613,6 +2629,7 @@ output = {
           arbeitgeber[2].verbindlicherVertrag,
         welcherTarifvertragBAVArbeitgeber: arbeitgeber[2].nameTarifvertrag,
         unternehmensgrößeBAVArbeitgeber3: arbeitgeber[2].unternehmensgroesse,
+        brancheBAVArbeitgeber:arbeitgeber[2].branche,
         ansprechspartnerArbeitgeber3: arbeitgeber[2].avAnsprechpartnerName,
         telNrAnsprechspartnerArbeitgeber3:
           arbeitgeber[2].avAnsprechpartnerTelefon,
@@ -2642,6 +2659,7 @@ output = {
           arbeitgeber[3].verbindlicherVertrag,
         welcherTarifvertragBAVArbeitgeber: arbeitgeber[3].nameTarifvertrag,
         unternehmensgrößeBAVArbeitgeber4: arbeitgeber[3].unternehmensgroesse,
+        brancheBAVArbeitgeber:arbeitgeber[3].branche,
         ansprechspartnerArbeitgeber4: arbeitgeber[3].avAnsprechpartnerName,
         telNrAnsprechspartnerArbeitgeber4:
           arbeitgeber[3].avAnsprechpartnerTelefon,
@@ -2671,6 +2689,7 @@ output = {
           arbeitgeber[4].verbindlicherVertrag,
         welcherTarifvertragBAVArbeitgeber: arbeitgeber[4].nameTarifvertrag,
         unternehmensgrößeBAVArbeitgeber5: arbeitgeber[4].unternehmensgroesse,
+        brancheBAVArbeitgeber:arbeitgeber[4].branche,
         ansprechspartnerArbeitgeber5: arbeitgeber[4].avAnsprechpartnerName,
         telNrAnsprechspartnerArbeitgeber5:
           arbeitgeber[4].avAnsprechpartnerTelefon,
@@ -2700,6 +2719,7 @@ output = {
           arbeitgeber[5].verbindlicherVertrag,
         welcherTarifvertragBAVArbeitgeber: arbeitgeber[5].nameTarifvertrag,
         unternehmensgrößeBAVArbeitgeber6: arbeitgeber[5].unternehmensgroesse,
+        brancheBAVArbeitgeber6:arbeitgeber[5].branche,
         ansprechspartnerArbeitgeber6: arbeitgeber[5].avAnsprechpartnerName,
         telNrAnsprechspartnerArbeitgeber6:
           arbeitgeber[5].avAnsprechpartnerTelefon,
@@ -2751,6 +2771,7 @@ output = {
           mandantGroup[mandantTabIndex].mandant
             .aufenthaltstitelAusstellungsdatum
         ) || "",
+        aufenthaltstitelAusweisdaten:mandantGroup[mandantTabIndex].mandant.aufenthaltstitelAuswahl,
       gueltigAbAufenthaltstitelAusweisdaten:
         dateFormater(
           mandantGroup[mandantTabIndex].mandant.aufenthaltstitelGueltigAb
@@ -2809,6 +2830,8 @@ output = {
       privatFaxKommunikation: mandantGroup[mandantTabIndex].mandant.telefax,
       geschaeftlichFaxKommunikation:
         mandantGroup[mandantTabIndex].mandant.telefaxGeschaeftlich,
+        privatEmailKommunikation: mandantGroup[mandantTabIndex].mandant.email,
+        geschaeftlichEmailKommunikation: mandantGroup[mandantTabIndex].mandant.emailGeschaeftlich,
       facebookKommunikation: mandantGroup[mandantTabIndex].mandant.facebook,
       xingKommunikation: mandantGroup[mandantTabIndex].mandant.xing,
     };
@@ -2925,128 +2948,129 @@ output = {
       if (
         asset.tarifTypeId.includes("BEAMTENBEIHILFE") &&
         card === "BEAMTENBEIHILFE"
-      ) {
+      && asset.id === vertragId){
+
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("PRIVATRENTE") && card === "PRIVATRENTE") {
+      if (asset.tarifTypeId.includes("PRIVATRENTE") && card === "PRIVATRENTE"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("FONDSLEBEN") && card === "FONDSLEBEN") {
+      if (asset.tarifTypeId.includes("FONDSLEBEN") && card === "FONDSLEBEN"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("KAPITALLEBEN") && card === "KAPITALLEBEN") {
+      if (asset.tarifTypeId.includes("KAPITALLEBEN") && card === "KAPITALLEBEN"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("FONDSRENTEN") && card === "FONDSRENTEN") {
+      if (asset.tarifTypeId.includes("FONDSRENTEN") && card === "FONDSRENTEN"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("GAS") &&
         card === "GAS"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("STROM") &&
         card === "STROM"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("BERUFSSTAENDISCHE_VORSORGE") &&
         card === "BERUFSSTAENDISCHE_VORSORGE"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("DARLEHEN") && card === "DARLEHEN") {
+      if (asset.tarifTypeId.includes("DARLEHEN") && card === "DARLEHEN"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("BEAMTENVERSORGUNG") &&
         card === "BEAMTENVERSORGUNG"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("BAUHERRENHAFTPFLICHT") &&
         card === "BAUHERRENHAFTPFLICHT"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("WASSERSPORTHAFTPFLICHT") &&
         card === "WASSERSPORTHAFTPFLICHT"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("GEWAESSERSCHADENHAFTPFLICHT") &&
         card === "GEWAESSERSCHADENHAFTPFLICHT"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("JAGDHAFTPFLICHT") && card === "JAGDHAFTPFLICHT") {
+      if (asset.tarifTypeId.includes("JAGDHAFTPFLICHT") && card === "JAGDHAFTPFLICHT"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("RENTE") && card === "RENTE") {
+      if (asset.tarifTypeId.includes("RENTE") && card === "RENTE"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("DARLEHEN") && card === "DARLEHEN") {
+      if (asset.tarifTypeId.includes("DARLEHEN") && card === "DARLEHEN"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("RUERUP") && card === "RUERUP") {
+      if (asset.tarifTypeId.includes("RUERUP") && card === "RUERUP"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("RIESTER") && card === "RIESTER") {
+      if (asset.tarifTypeId.includes("RIESTER") && card === "RIESTER"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("SACHWERT") && card === "SACHWERT") {
+      if (asset.tarifTypeId.includes("SACHWERT") && card === "SACHWERT"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("DIREKTZUSAGE") &&
         card === "DIREKTZUSAGE"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("PENSIONSFONDS_3") &&
         card === "PENSIONSFONDS_3"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("PENSIONSKASSE_3") &&
         card === "PENSIONSKASSE_3"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("PENSIONSKASSE_40") &&
         card === "PENSIONSKASSE_40"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
@@ -3054,210 +3078,212 @@ output = {
       if (
         asset.tarifTypeId.includes("ZUSATZVERSORGUNGSKASSE") &&
         card === "ZUSATZVERSORGUNGSKASSE"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("DIREKT_40") && card === "DIREKT_40") {
+      if (asset.tarifTypeId.includes("DIREKT_40") && card === "DIREKT_40"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("UNTERSTUETZUNGSKASSE") &&
         card === "UNTERSTUETZUNGSKASSE"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("DIREKT_3") && card === "DIREKT_3") {
+      if (asset.tarifTypeId.includes("DIREKT_3") && card === "DIREKT_3"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("GESETZLICHE_AV") &&
         card === "GESETZLICHE_AV"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("EINNAHMEN") && card === "EINNAHMEN") {
+      if (asset.tarifTypeId.includes("EINNAHMEN") && card === "EINNAHMEN"&& asset.id === vertragId){
         cardTemplateData = asset;
       }
       if (
         asset.tarifTypeId.includes("EINKOMMEN_GEHALT") &&
         card === "EINKOMMEN_GEHALT"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("EINKOMMEN_MINIJOB") &&
         card === "EINKOMMEN_MINIJOB"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("EINKOMMEN_SELBSTAENDIGER") &&
         card === "EINKOMMEN_SELBSTAENDIGER"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("AUSGABEN") && card === "AUSGABEN") {
+      if (asset.tarifTypeId.includes("AUSGABEN") && card === "AUSGABEN"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("AUTOMOBILCLUB") &&
         card === "AUTOMOBILCLUB"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("SONSTIGE_ZAHLUNG") &&
         card === "SONSTIGE_ZAHLUNG"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("KONSUMKREDIT") &&
         card === "KONSUMKREDIT"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("BANKPRODUKTE") &&
         card === "BANKPRODUKTE"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("VWL_BAUSPAREN") &&
         card === "VWL_BAUSPAREN"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("IMMOBILIENBESTAND") &&
         card === "IMMOBILIENBESTAND"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("BETEILIGUNGEN") &&
         card === "BETEILIGUNGEN"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("BU") && card === "BU") {
+      if (asset.tarifTypeId.includes("BU") && card === "BU"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("UNFALL") && card === "UNFALL") {
+      if (asset.tarifTypeId.includes("UNFALL") && card === "UNFALL"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("RISIKO") && card === "RISIKO") {
+      if (asset.tarifTypeId.includes("RISIKO") && card === "RISIKO"&& asset.id === vertragId){
+
         cardTemplateData = asset;
         assetFound = true;
+        console.log("triggered")
       }
       if (
         asset.tarifTypeId.includes("DREADDISEASE") &&
         card === "DREADDISEASE"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("PFLEGEKOSTEN") &&
         card === "PFLEGEKOSTEN"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("PFLEGERENTEN") &&
         card === "PFLEGERENTEN"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("PFLEGETAGEGELD") &&
         card === "PFLEGETAGEGELD"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("GESETZLICHE_KRANKEN") &&
         card === "GESETZLICHE_KRANKEN"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("KVV") && card === "KVV") {
+      if (asset.tarifTypeId.includes("KVV") && card === "KVV"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("KVZ") && card === "KVZ") {
+      if (asset.tarifTypeId.includes("KVZ") && card === "KVZ"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("PRIVATHAFTPFLICHT") &&
         card === "PRIVATHAFTPFLICHT"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("HUNDEHALTERHAFTPFLICHT") &&
         card === "HUNDEHALTERHAFTPFLICHT"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("PFERDEHALTERHAFTPFLICHT") &&
         card === "PFERDEHALTERHAFTPFLICHT"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("HAUSRAT") && card === "HAUSRAT") {
+      if (asset.tarifTypeId.includes("HAUSRAT") && card === "HAUSRAT"&& asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("RECHTSSCHUTZ") &&
         card === "RECHTSSCHUTZ"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
       if (
         asset.tarifTypeId.includes("WOHNGEBAEUDE") &&
         card === "WOHNGEBAEUDE"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
-      if (asset.tarifTypeId.includes("KFZ") && card === "KFZ") {
+      if (asset.tarifTypeId.includes("KFZ") && card === "KFZ"&& asset.id === vertragId){
         cardTemplateData = asset;
       }
       if (
         asset.tarifTypeId.includes("WOHNSITUATION") &&
         card === "WOHNSITUATION"
-      ) {
+      && asset.id === vertragId){
         cardTemplateData = asset;
         assetFound = true;
       }
@@ -6651,7 +6677,7 @@ artKapitalversicherung: cardTemplateData.art,
       setVertragName(cardTemplateData.name)
     }
   }
-
+console.log(output)
   return output;
 }
 export default setAssetWithTariftype;

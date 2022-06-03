@@ -4,6 +4,10 @@
 
   "items": [
     {
+      "section": "Personalausweis",
+      "card": true,
+      "items": [
+    {
       "name": "nummerAusweisdaten",
       "label": "Nummer",
       "type": "text",
@@ -42,7 +46,7 @@
         "xs":6
       },
       "suiteValue":"personalausweisVerwaltung"
-    },
+    }]},
     {
       "section": "Reisepass",
       "card": true,
@@ -211,6 +215,34 @@
       },
       "suiteValue":"aufenthaltstitelAusstellungsdatum"
     },
+    {"name":"aufenthaltstitelAusweisdaten",
+      "label":"Aufenthaltstitel",
+    "type":"select",
+  "options":[
+    {
+      "label": "Aufenthaltserlaubnis",
+      "value": "aufenthaltserlaubnis"
+  }, {
+      "label": "Blaue Karte EU",
+      "value": "blaueKarteEu"
+  }, {
+      "label": "ICT-Karte",
+      "value": "ictKarte"
+  }, {
+      "label": "Mobiler-ICT-Karte",
+      "value": "mobilerIctKarte"
+  }, {
+      "label": "Daueraufenthalt - EU",
+      "value": "daueraufenthaltEu"
+  }, {
+      "label": "Niederlassungserlaubnis",
+      "value": "niederlassungserlaubnis"
+  }, {
+      "label": "Visum",
+      "value": "visum"
+  }
+  ],
+"suiteValue":"aufenthaltstitelAuswahl"},
     {
       "name": "gueltigAbAufenthaltstitelAusweisdaten",
       "label": "Gültig ab",
@@ -239,6 +271,13 @@
           "suiteValue":"geburtsurkundeVerwaltung"
         }
       ]
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }

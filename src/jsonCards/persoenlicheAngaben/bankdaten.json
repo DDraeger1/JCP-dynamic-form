@@ -42,6 +42,14 @@
               },
               "suiteValue":"kontonr0"
           },
+          {"name":"blzBankdaten",
+          "label":"Bankleitzahl",
+        "type":"text",
+        "props": {
+            "sm": 6,
+            "xs":6
+          },
+      "suiteValue":"blz0"},
           {
             "name": "ibanBankdaten",
             "label": "IBAN",
@@ -56,6 +64,10 @@
             "name": "bicBankdaten",
             "label": "BIC",
             "type": "text",
+            "props": {
+                "sm": 6,
+                "xs":6
+              },
             "suiteValue":"bic0"
           }]},
           {
@@ -104,6 +116,14 @@
                     },
                     "suiteValue":"kontonr1"
                 },
+                {"name":"blzBankdaten2",
+                "label":"Bankleitzahl",
+              "type":"text",
+              "props": {
+                  "sm": 6,
+                  "xs":6
+                },
+            "suiteValue":"blz1"},
                 {
                   "name": "ibanBankdaten2",
                   "label": "IBAN",
@@ -118,6 +138,10 @@
                   "name": "bicBankdaten2",
                   "label": "BIC",
                   "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    },
                   "suiteValue":"bic1"
                 }]},
           {
@@ -166,6 +190,14 @@
                     },
                     "suiteValue":"kontonr2"
                 },
+                {"name":"blzBankdaten3",
+                "label":"Bankleitzahl",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  },
+              "type":"text",
+            "suiteValue":"blz2"},
                 {
                   "name": "ibanBankdaten3",
                   "label": "IBAN",
@@ -180,6 +212,10 @@
                   "name": "bicBankdaten3",
                   "label": "BIC",
                   "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    },
                   "suiteValue":"bic2"
                 }]},
           {
@@ -228,6 +264,14 @@
                     },
                     "suiteValue":"kontonr3"
                 },
+                {"name":"blzBankdaten4",
+                "label":"Bankleitzahl",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  },
+              "type":"text",
+            "suiteValue":"blz3"},
                 {
                   "name": "ibanBankdaten4",
                   "label": "IBAN",
@@ -242,6 +286,10 @@
                   "name": "bicBankdaten4",
                   "label": "BIC",
                   "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    },
                   "suiteValue":"bic3"
                 }]},
           {
@@ -290,6 +338,14 @@
                     },
                     "suiteValue":"kontonr4"
                 },
+                {"name":"blzBankdaten5",
+                "label":"Bankleitzahl",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  },
+              "type":"text",
+            "suiteValue":"blz4"},
                 {
                   "name": "ibanBankdaten5",
                   "label": "IBAN",
@@ -304,6 +360,10 @@
                   "name": "bicBankdaten5",
                   "label": "BIC",
                   "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    },
                   "suiteValue":"bic4"
                 }]},
                 {
@@ -353,6 +413,14 @@
                     },
                     "suiteValue":"kontonr5"
                 },
+                {"name":"blzBankdaten6",
+                "label":"Bankleitzahl",
+                "props": {
+                    "sm": 6,
+                    "xs":6
+                  },
+              "type":"text",
+            "suiteValue":"blz5"},
                 {
                   "name": "ibanBankdaten6",
                   "label": "IBAN",
@@ -367,8 +435,19 @@
                   "name": "bicBankdaten6",
                   "label": "BIC",
                   "type": "text",
+                  "props": {
+                      "sm": 6,
+                      "xs":6
+                    },
                   "suiteValue":"bic5"
-                }]}
+                }]},
+                {
+                  "name": "notizen",
+                  "type": "textarea",
+                  "rows":5,
+                  "label": "Notizen",
+                  "suiteValue":"notizen"
+                }
         ]
         
 }

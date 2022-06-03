@@ -276,7 +276,7 @@ function VertragComponents({
       type: "altersvorsorge",
       html: (
         <Button
-          onClick={() => initForm("GESETZLICHE_AV")} //Richig? TODO
+          onClick={() => initForm("PRIVATRENTE")}
           startIcon={
             <div
               style={{
@@ -1214,39 +1214,6 @@ function VertragComponents({
           className="selectNewVertrag"
         >
           Rechtschutz
-        </Button>
-      ),
-    },
-    {
-      name: "KFZ-Versicherung",
-      type: "vermoegenssicherung",
-      html: (
-        <Button
-          onClick={() => initForm("")}
-          startIcon={
-            <div
-              style={{
-                backgroundColor: "#565656 ",
-                height: "52px",
-                width: "52px",
-                borderRadius: "50%",
-                textAlign: "center",
-              }}
-            >
-              {" "}
-              <i
-                style={{
-                  color: "white",
-                  marginTop: "15px",
-                  verticalAlign: "middle",
-                }}
-                class="fa fa-car fa-lg"
-              ></i>
-            </div>
-          }
-          className="selectNewVertrag"
-        >
-          KFZ-Versicherung
         </Button>
       ),
     },

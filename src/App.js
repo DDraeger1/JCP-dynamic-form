@@ -38,7 +38,6 @@ import { Tooltip, Button, TextField } from "@mui/material";
 import debugMenue from "./jsonCards/debug/debugMenue.json";
 import SideMenue from "./components/SideMenue";
 
-import newMandant from "./jsonCards/persoenlicheAngaben/newMandant.json";
 import erweiterteBerufsfragen from "./jsonCards/persoenlicheAngaben/erweiterteBerufsfragen.json";
 import kind from "./jsonCards/persoenlicheAngaben/kind.json";
 import ausweisdaten from "./jsonCards/persoenlicheAngaben/ausweisdaten.json";
@@ -1641,6 +1640,7 @@ function App(props) {
   const [isBusy, setIsBusy] = useState(false);
   const [rawData, setRawData] = useState({ success: false });
   const [formData, setFormData] = useState({ success: false });
+  const [showImageUI, toggleImageUI] = useState(false)
   const {
     einkommenGehaltContext,
     versicherungsnehmerValue,
@@ -1677,6 +1677,8 @@ function App(props) {
     setColorProperties,
     vertragName,
     setVertragName,
+
+    rowLength
   } = useContext(Context);
 
   //note: Personendaten crashen wegen gesellschaft, suitevalues, einkommen gehalt entfernen taste checken,BETEILIGUNGEN, IMMOBILIENBESTAND, VWL_BAUSPAREN in live suite
@@ -1857,7 +1859,6 @@ function App(props) {
       jsonForm = [personaldaten];
       break;
     case "GESETZLICHE_AV":
-      console.log("test")
       dummyData = { ...gesetzlicheAltersvorsorgeValues };
       jsonForm = [gesetzlicheAltersvorsorge];
       break;
@@ -2040,7 +2041,6 @@ function App(props) {
       setIsBusy(false);
     }
   };
-
   const handleSubmit = (data) => {
     console.log("Nun folgende Daten ans Backend übertragen", data);
     let dataPaket = qs.stringify({ ...data, json: JSON.stringify(data.json) });
@@ -2228,7 +2228,10 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
     }
     return output;
   }
-
+function toggleUI(){
+  toggleImageUI(!showImageUI)
+}
+console.log(card)
   const getDataLiveSuite = (param) => {
     axios(loginLiveSuite)
       .then((login) => {
@@ -2241,6 +2244,41 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
         console.log(error);
       });
   };
+  function getUpdatedAssetDataWithLogin(login) {
+    setLogin(login);
+    Promise.all([
+      axios(requestOptionsMandantLiveSuite(login)),
+      axios(requestOptionsAnalyseAssetsLiveSuite(login)),
+      axios(requestOptionsMandantGroupLiveSuite(login)),
+      axios(getContextIdByIdLiveSuite(login)),
+      axios(getBeraterLiveSuite(login)),
+    ])
+      .then((result) => {
+        setRawData({
+          ...rawData, 
+          mandantData: result[0].data.data,
+          mandantGroup: result[2].data.data.mandantMandantGroups,
+          analyseAssets: result[1].data.data,
+          contextProductId: result[3].data.data,
+          berater: result[4].data.data,
+          success: true,
+        });
+        setColorProperties(result[3].data.data.colorProperties);
+        setMandantGroup(result[2].data.data.mandantMandantGroups);
+        setBankverbindungen(
+          result[2].data.data.mandantMandantGroups[mandantTabIndex].mandant
+            .bankverbindungs
+        );
+        setArbeitgeberData(
+          result[2].data.data.mandantMandantGroups[mandantTabIndex].mandant
+            .arbeitgebers
+        );
+      })
+      .catch((error) => {
+        console.log("error");
+        console.log(error);
+      });
+  }
   function getDataWithLogin(login) {
     setLogin(login);
     Promise.all([
@@ -2340,7 +2378,7 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
         rawData,
         setFormData,
         setLoaded,
-        "none",
+        vertragId,
         card,
         setVersicherungsnehmerValue,
         rawData.contextProductId.contextConfig.desktop.showExternalProductId,
@@ -2393,6 +2431,7 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
       if (!checkIfPersonendaten(card)) {
+        console.log(vertragId)
         if (vertragId.length > 1) {
           Promise.all([
             axios(requestOptionsGesellschaftIdLiveSuite(login)),
@@ -2541,10 +2580,10 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
             setVertragName
           );
           setTimeout(() => {
-            setLoaded(false);
+            setLoaded(false)
           }, 50);
           setTimeout(() => {
-            setLoaded(true);
+            setLoaded(true)
           }, 100);
           break;
         case "BANKVERBINDUNG":
@@ -2593,6 +2632,7 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
       }
     }
   }, [card]);
+  console.log(vertragId)
   useEffect(() => {
     if (rawData.success === true && initialised === true) {
       renderAnzahlVp(anzahlVp);
@@ -2945,6 +2985,7 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
   const handleClose = () => {
     toggleEditNameTextField(false);
     toggleOpenDialog(false);
+    setVertragName("")
   };
   //  theme={setTheme((loaded ? rawData.contextProductId.colorProperties : false))}
   // 65-240 = 175
@@ -2979,10 +3020,19 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
     } else {
       output = jsonForm[0].section;
     }
+    if(tabIndex === 0){
+      output = jsonForm[0].section;
+    }
     return output;
   }
+  function newVertrag(){
+      setFormData({...dummyData, formData})
+    return(formData)
+  }
   return (
+    
     <div style={{ backgroundColor: "#eeeeee", overflowX: "hidden" }}>
+      
       <ThemeProvider>
         <MuiPickersUtilsProvider
           utils={DateFnsUtils}
@@ -2990,10 +3040,13 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
           className="mock4"
         >
           <div className="fillWhiteSpace" />
+          
           {!loaded ? null : (
             <SideMenue
               assets={rawData.analyseAssets}
               setCard={setCard}
+              setLoaded={setLoaded}
+              getDataWithLogin={getUpdatedAssetDataWithLogin}
               colorProperties={
                 loaded
                   ? rawData.contextProductId.colorProperties
@@ -3037,6 +3090,7 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
             </div>
           ) : (
             <div className={cardClassName}>
+
               <Dialog
                 open={openDialog}
                 onClose={(_, reason) => {
@@ -3177,9 +3231,24 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
                 </DialogTitle>
 
                 <DialogContent dividers={"paper"}>
-                  {formWidth === "50%" ? 
-                <DateiFotoUI/> : null}
-                  <DynamicForm
+                  <div className="fotoDateiFlex">
+   {showImageUI ?<DateiFotoUI
+    login={login}
+    card={card}
+    visibility={"visible"}
+    checkIfPersonendaten={checkIfPersonendaten}
+    mandantGroup={mandantGroup}
+    colorProperties={colorProperties}
+    />:
+    <DateiFotoUI
+    login={login}
+    card={card}
+    visibility={"hidden"}
+    checkIfPersonendaten={checkIfPersonendaten}
+    mandantGroup={mandantGroup}
+    colorProperties={colorProperties}
+    />}
+                                    <DynamicForm
                     // Das gesamte Formular kann deaktiviert werden (read-only)
                     disabled={isBusy}
                     // falls eine kompakte Ansicht gewünscht wird, werden alle Elemente auf voller Breite
@@ -3211,6 +3280,7 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
                     renderAnzahlVp={renderAnzahlVp}
                     checkIfPersonendaten={checkIfPersonendaten}
                   />
+                  </div>
                 </DialogContent>
                 <DialogActions
                   className="cardFooter"
@@ -3229,8 +3299,9 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
                       :rawData.contextProductId.colorProperties.COLOR1 + " !important"
                     }}
                     variant="contained"
+                    onClick={()=>toggleUI()}
                   >
-                    Dateien / Fotos
+                    {"Dateien / Fotos ("+rowLength+")"}
                   </Button>
                   <Button
                     startIcon={<Close />}
@@ -3287,6 +3358,7 @@ https://jcp-suite.de/suite/file.json?action=getFileById&folder=Fotos&id=e8af5d9a
         )}
       </Tooltip>
     </div>
+    
   );
 }
 export default App;

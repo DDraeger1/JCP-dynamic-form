@@ -3,150 +3,938 @@
   "card": true,
 
   "items": [
-      {
-          "section": "Berater",
-          "card": true,
-        
-          "items": [
-              {
-                  "name": "beraterPersonendaten",
-                  "label": "Berater",
-                  "type": "selectBerater",
-                  "suiteValue":"beraterId"
-              },
-              {
-                  "name": "nebenberaterPersonendaten",
-                  "label": "Nebenberater",
-                  "type": "selectBerater",
-                  "suiteValue":"nebenberaterId"
-              }
-          ]},
-      {
-          "section": "Name",
-          "card": true,
-        
-          "items": [
     {
-      "name": "anredePersonendaten",
-      "label": "Anrede",
-      "type": "select",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "options": [
+      "section": "Berater",
+      "card": true,
+
+      "items": [
         {
-          "value": "Mann",
-          "label": "Herr"
+          "name": "beraterPersonendaten",
+          "label": "Berater",
+          "type": "selectBerater",
+          "suiteValue": "beraterId"
         },
         {
-          "value": "Frau",
-          "label": "Frau"
-        },
-        {
-          "value": "Firma",
-          "label": "Firma"
+          "name": "nebenberaterPersonendaten",
+          "label": "Nebenberater",
+          "type": "selectBerater",
+          "suiteValue": "nebenberaterId"
         }
-      ],
-      "suiteValue":"anrede"
+      ]
     },
     {
-      "name": "titelPersonendaten",
-      "label": "Titel",
-      "type": "text",
-      "props": {
-        "sm": 6,
-        "xs":6
-      },
-      "suiteValue":"titel"
+      "section": "Name",
+      "card": true,
+
+      "items": [
+        {
+          "name": "anredePersonendaten",
+          "label": "Anrede",
+          "type": "select",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "options": [
+            {
+              "value": "Mann",
+              "label": "Herr"
+            },
+            {
+              "value": "Frau",
+              "label": "Frau"
+            },
+            {
+              "value": "Firma",
+              "label": "Firma"
+            }
+          ],
+          "suiteValue": "anrede"
+        },
+        {
+          "name": "titelPersonendaten",
+          "label": "Titel",
+          "type": "text",
+          "props": {
+            "sm": 6,
+            "xs": 6
+          },
+          "suiteValue": "titel"
+        },
+        {
+          "name": "vornamePersonendaten",
+          "label": "Vorname",
+          "type": "text",
+          "props": {
+            "required": true
+          },
+          "suiteValue": "vorname"
+        },
+        {
+          "name": "namePersonendaten",
+          "label": "Name",
+          "type": "text",
+          "props": {
+            "required": true
+          },
+          "suiteValue": "nachname"
+        },
+        {
+          "name": "staatsangehoerigkeitPersonendaten",
+          "label": "Staatsangehörigkeit",
+          "type": "select",
+          "options": [
+            {
+              "value": "Afghanistan",
+              "label": "Afghanistan"
+            },
+            {
+              "value": "Ägypten",
+              "label": "Ägypten"
+            },
+            {
+              "value": "Albanien",
+              "label": "Albanien"
+            },
+            {
+              "value": "Algerien",
+              "label": "Algerien"
+            },
+            {
+              "value": "Andorra",
+              "label": "Andorra"
+            },
+            {
+              "value": "Argentinien",
+              "label": "Argentinien"
+            },
+            {
+              "value": "Armenien",
+              "label": "Armenien"
+            },
+            {
+              "value": "Aserbaidschan",
+              "label": "Aserbaidschan"
+            },
+            {
+              "value": "Äthiopien",
+              "label": "Äthiopien"
+            },
+            {
+              "value": "Australien",
+              "label": "Australien"
+            },
+            {
+              "value": "Bahamas",
+              "label": "Bahamas"
+            },
+            {
+              "value": "Bahrain",
+              "label": "Bahrain"
+            },
+            {
+              "value": "Bangladesch",
+              "label": "Bangladesch"
+            },
+            {
+              "value": "Barbados",
+              "label": "Barbados"
+            },
+            {
+              "value": "Belgien",
+              "label": "Belgien"
+            },
+            {
+              "value": "Belize",
+              "label": "Belize"
+            },
+            {
+              "value": "Benin",
+              "label": "Benin"
+            },
+            {
+              "value": "Bolivien",
+              "label": "Bolivien"
+            },
+            {
+              "value": "Bosnien und Herzegowina",
+              "label": "Bosnien und Herzegowina"
+            },
+            {
+              "value": "Botswana",
+              "label": "Botswana"
+            },
+            {
+              "value": "Brasilien",
+              "label": "Brasilien"
+            },
+            {
+              "value": "Brunei",
+              "label": "Brunei"
+            },
+            {
+              "value": "Bulgarien",
+              "label": "Bulgarien"
+            },
+            {
+              "value": "Burkina Faso",
+              "label": "Burkina Faso"
+            },
+            {
+              "value": "Burundi",
+              "label": "Burundi"
+            },
+            {
+              "value": "Chile",
+              "label": "Chile"
+            },
+            {
+              "value": "China",
+              "label": "China"
+            },
+            {
+              "value": "Costa Rica",
+              "label": "Costa Rica"
+            },
+            {
+              "value": "Dänemark",
+              "label": "Dänemark"
+            },
+            {
+              "value": "Deutschland",
+              "label": "Deutschland"
+            },
+            {
+              "value": "Dominica",
+              "label": "Dominica"
+            },
+            {
+              "value": "Dominikanische Republik",
+              "label": "Dominikanische Republik"
+            },
+            {
+              "value": "Ecuador",
+              "label": "Ecuador"
+            },
+            {
+              "value": "El Salvador",
+              "label": "El Salvador"
+            },
+            {
+              "value": "Elfenbeinküste",
+              "label": "Elfenbeinküste"
+            },
+            {
+              "value": "England (Vereinigtes Königreich)",
+              "label": "England (Vereinigtes Königreich)"
+            },
+            {
+              "value": "Eritrea EST Estland",
+              "label": "Eritrea EST Estland"
+            },
+            {
+              "value": "Färöer-Inseln",
+              "label": "Färöer-Inseln"
+            },
+            {
+              "value": "Fidschi",
+              "label": "Fidschi"
+            },
+            {
+              "value": "Finnland",
+              "label": "Finnland"
+            },
+            {
+              "value": "Frankreich",
+              "label": "Frankreich"
+            },
+            {
+              "value": "Gabun",
+              "label": "Gabun"
+            },
+            {
+              "value": "Gambia",
+              "label": "Gambia"
+            },
+            {
+              "value": "Georgien",
+              "label": "Georgien"
+            },
+            {
+              "value": "Ghana",
+              "label": "Ghana"
+            },
+            {
+              "value": "Gibraltar",
+              "label": "Gibraltar"
+            },
+            {
+              "value": "Grenada",
+              "label": "Grenada"
+            },
+            {
+              "value": "Griechenland",
+              "label": "Griechenland"
+            },
+            {
+              "value": "Guatemala",
+              "label": "Guatemala"
+            },
+            {
+              "value": "Guinea",
+              "label": "Guinea"
+            },
+            {
+              "value": "Guyana",
+              "label": "Guyana"
+            },
+            {
+              "value": "Haiti",
+              "label": "Haiti"
+            },
+            {
+              "value": "Indien",
+              "label": "Indien"
+            },
+            {
+              "value": "Indonesien",
+              "label": "Indonesien"
+            },
+            {
+              "value": "Insel Alderney",
+              "label": "Insel Alderney"
+            },
+            {
+              "value": "Irak",
+              "label": "Irak"
+            },
+            {
+              "value": "Iran",
+              "label": "Iran"
+            },
+            {
+              "value": "Irland",
+              "label": "Irland"
+            },
+            {
+              "value": "Island",
+              "label": "Island"
+            },
+            {
+              "value": "Isle of Man",
+              "label": "Isle of Man"
+            },
+            {
+              "value": "Israel",
+              "label": "Israel"
+            },
+            {
+              "value": "Italien",
+              "label": "Italien"
+            },
+            {
+              "value": "Jamaika",
+              "label": "Jamaika"
+            },
+            {
+              "value": "Japan",
+              "label": "Japan"
+            },
+            {
+              "value": "Jemen",
+              "label": "Jemen"
+            },
+            {
+              "value": "Jersey",
+              "label": "Jersey"
+            },
+            {
+              "value": "Jordanien",
+              "label": "Jordanien"
+            },
+            {
+              "value": "Kambodscha",
+              "label": "Kambodscha"
+            },
+            {
+              "value": "Kamerun",
+              "label": "Kamerun"
+            },
+            {
+              "value": "Kanada",
+              "label": "Kanada"
+            },
+            {
+              "value": "Kasachstan",
+              "label": "Kasachstan"
+            },
+            {
+              "value": "Katar",
+              "label": "Katar"
+            },
+            {
+              "value": "Kenia",
+              "label": "Kenia"
+            },
+            {
+              "value": "Kirgisistan",
+              "label": "Kirgisistan"
+            },
+            {
+              "value": "Kolumbien",
+              "label": "Kolumbien"
+            },
+            {
+              "value": "Kongo, Demokratische Republik",
+              "label": "Kongo, Demokratische Republik"
+            },
+            {
+              "value": "Kongo, Republik",
+              "label": "Kongo, Republik"
+            },
+            {
+              "value": "Korea",
+              "label": "Korea"
+            },
+            {
+              "value": "Kroatien",
+              "label": "Kroatien"
+            },
+            {
+              "value": "Kosovo",
+              "label": "Kosovo"
+            },
+            {
+              "value": "Kuba",
+              "label": "Kuba"
+            },
+            {
+              "value": "Kuwait",
+              "label": "Kuwait"
+            },
+            {
+              "value": "Laos",
+              "label": "Laos"
+            },
+            {
+              "value": "Lesotho",
+              "label": "Lesotho"
+            },
+            {
+              "value": "Lettland",
+              "label": "Lettland"
+            },
+            {
+              "value": "Libanon",
+              "label": "Libanon"
+            },
+            {
+              "value": "Liberia",
+              "label": "Liberia"
+            },
+            {
+              "value": "Libyen",
+              "label": "Libyen"
+            },
+            {
+              "value": "Liechtenstein",
+              "label": "Liechtenstein"
+            },
+            {
+              "value": "Litauen",
+              "label": "Litauen"
+            },
+            {
+              "value": "Luxemburg",
+              "label": "Luxemburg"
+            },
+            {
+              "value": "Madagaskar",
+              "label": "Madagaskar"
+            },
+            {
+              "value": "Malawi",
+              "label": "Malawi"
+            },
+            {
+              "value": "Malaysia",
+              "label": "Malaysia"
+            },
+            {
+              "value": "Mali",
+              "label": "Mali"
+            },
+            {
+              "value": "Malta",
+              "label": "Malta"
+            },
+            {
+              "value": "Marokko",
+              "label": "Marokko"
+            },
+            {
+              "value": "Mauretanien",
+              "label": "Mauretanien"
+            },
+            {
+              "value": "Mauritius",
+              "label": "Mauritius"
+            },
+            {
+              "value": "Mazedonien",
+              "label": "Mazedonien"
+            },
+            {
+              "value": "Mexiko",
+              "label": "Mexiko"
+            },
+            {
+              "value": "Moldawien",
+              "label": "Moldawien"
+            },
+            {
+              "value": "Monaco",
+              "label": "Monaco"
+            },
+            {
+              "value": "Mongolei",
+              "label": "Mongolei"
+            },
+            {
+              "value": "Montenegro",
+              "label": "Montenegro"
+            },
+            {
+              "value": "Mosambik",
+              "label": "Mosambik"
+            },
+            {
+              "value": "Myanmar",
+              "label": "Myanmar"
+            },
+            {
+              "value": "Namibia",
+              "label": "Namibia"
+            },
+            {
+              "value": "Nauru",
+              "label": "Nauru"
+            },
+            {
+              "value": "Nepal",
+              "label": "Nepal"
+            },
+            {
+              "value": "Neuseeland",
+              "label": "Neuseeland"
+            },
+            {
+              "value": "Nicaragua",
+              "label": "Nicaragua"
+            },
+            {
+              "value": "Niederlande",
+              "label": "Niederlande"
+            },
+            {
+              "value": "Niederländische Antillen",
+              "label": "Niederländische Antillen"
+            },
+            {
+              "value": "Niger",
+              "label": "Niger"
+            },
+            {
+              "value": "Nigeria",
+              "label": "Nigeria"
+            },
+            {
+              "value": "Norwegen",
+              "label": "Norwegen"
+            },
+            {
+              "value": "Österreich",
+              "label": "Österreich"
+            },
+            {
+              "value": "Pakistan",
+              "label": "Pakistan"
+            },
+            {
+              "value": "Panama",
+              "label": "Panama"
+            },
+            {
+              "value": "Papua-Neuguinea",
+              "label": "Papua-Neuguinea"
+            },
+            {
+              "value": "Paraguay",
+              "label": "Paraguay"
+            },
+            {
+              "value": "PE",
+              "label": "Peru"
+            },
+            {
+              "value": "Philippinen",
+              "label": "Philippinen"
+            },
+            {
+              "value": "Polen",
+              "label": "Polen"
+            },
+            {
+              "value": "Portugal",
+              "label": "Portugal"
+            },
+            {
+              "value": "Ruanda",
+              "label": "Ruanda"
+            },
+            {
+              "value": "Rumänien",
+              "label": "Rumänien"
+            },
+            {
+              "value": "Russland",
+              "label": "Russland"
+            },
+            {
+              "value": "Sambia",
+              "label": "Sambia"
+            },
+            {
+              "value": "Samoa",
+              "label": "Samoa"
+            },
+            {
+              "value": "San Marino",
+              "label": "San Marino"
+            },
+            {
+              "value": "Sansibar",
+              "label": "Sansibar"
+            },
+            {
+              "value": "Saudi-Arabien",
+              "label": "Saudi-Arabien"
+            },
+            {
+              "value": "Schweden",
+              "label": "Schweden"
+            },
+            {
+              "value": "Schweiz",
+              "label": "Schweiz"
+            },
+            {
+              "value": "Senegal",
+              "label": "Senegal"
+            },
+            {
+              "value": "SRB3",
+              "label": "Serbien"
+            },
+            {
+              "value": "Seychellen",
+              "label": "Seychellen"
+            },
+            {
+              "value": "Sierra Leone",
+              "label": "Sierra Leone"
+            },
+            {
+              "value": "Simbabwe",
+              "label": "Simbabwe"
+            },
+            {
+              "value": "Singapur",
+              "label": "Singapur"
+            },
+            {
+              "value": "Slowakei",
+              "label": "Slowakei"
+            },
+            {
+              "value": "Slowenien",
+              "label": "Slowenien"
+            },
+            {
+              "value": "Somalia",
+              "label": "Somalia"
+            },
+            {
+              "value": "Spanien",
+              "label": "Spanien"
+            },
+            {
+              "value": "Sri Lanka",
+              "label": "Sri Lanka"
+            },
+            {
+              "value": "St. Lucia",
+              "label": "St. Lucia"
+            },
+            {
+              "value": "St. Vincent und Grenadinen",
+              "label": "St. Vincent und Grenadinen"
+            },
+            {
+              "value": "Südafrika",
+              "label": "Südafrika"
+            },
+            {
+              "value": "Sudan",
+              "label": "Sudan"
+            },
+            {
+              "value": "Suriname",
+              "label": "Suriname"
+            },
+            {
+              "value": "Swasiland",
+              "label": "Swasiland"
+            },
+            {
+              "value": "Syrien",
+              "label": "Syrien"
+            },
+            {
+              "value": "Tadschikistan",
+              "label": "Tadschikistan"
+            },
+            {
+              "value": "Tansania",
+              "label": "Tansania"
+            },
+            {
+              "value": "Thailand",
+              "label": "Thailand"
+            },
+            {
+              "value": "Togo",
+              "label": "Togo"
+            },
+            {
+              "value": "Trinidad und Tobago",
+              "label": "Trinidad und Tobago"
+            },
+            {
+              "value": "Tschad",
+              "label": "Tschad"
+            },
+            {
+              "value": "Tschechien",
+              "label": "Tschechien"
+            },
+            {
+              "value": "Tunesien",
+              "label": "Tunesien"
+            },
+            {
+              "value": "Türkei",
+              "label": "Türkei"
+            },
+            {
+              "value": "Turkmenistan",
+              "label": "Turkmenistan"
+            },
+            {
+              "value": "Uganda",
+              "label": "Uganda"
+            },
+            {
+              "value": "Ukraine",
+              "label": "Ukraine"
+            },
+            {
+              "value": "Ungarn",
+              "label": "Ungarn"
+            },
+            {
+              "value": "Uruguay",
+              "label": "Uruguay"
+            },
+            {
+              "value": "USA",
+              "label": "USA"
+            },
+            {
+              "value": "Usbekistan",
+              "label": "Usbekistan"
+            },
+            {
+              "value": "Vatikanstadt",
+              "label": "Vatikanstadt"
+            },
+            {
+              "value": "Venezuela",
+              "label": "Venezuela"
+            },
+            {
+              "value": "Vereinigte Arabische Emirate",
+              "label": "Vereinigte Arabische Emirate"
+            },
+            {
+              "value": "Vietnam",
+              "label": "Vietnam"
+            },
+            {
+              "value": "Virgin Islands",
+              "label": "Virgin Islands"
+            },
+            {
+              "value": "Weißrussland",
+              "label": "Weißrussland"
+            },
+            {
+              "value": "Zentralafrikanische Republik",
+              "label": "Zentralafrikanische Republik"
+            },
+            {
+              "value": "Zypern",
+              "label": "Zypern"
+            }
+          ],
+          "suiteValue": "staatsangehoerigkeit"
+        }
+      ]
     },
     {
-      "name": "vornamePersonendaten",
-      "label": "Vorname",
-      "type": "text",
-      "props": {
-        "required": true
-      },
-      "suiteValue":"vorname"
-    },
-    {
-      "name": "namePersonendaten",
-      "label": "Name",
-      "type": "text",
-      "props": {
-        "required": true
-      },
-      "suiteValue":"nachname"
-    }
-  ]},
-  {
       "section": "Geburtstag",
       "card": true,
-    
+
       "items": [
-    {
-      "name": "geburtsdatumPersonendaten",
-      "label": "Geburtsdatum",
-      "type": "date",
-      "suiteValue":"geburtsdatum",
-      "props":{
-        "required":true
-      }
-    },
-    {
-      "name": "familienstandPersonendaten",
-      "label": "Familienstand",
-      "type": "select",
-      "props": {
-        "sm": 8,
-        "xs":8
-      },
-      "options": [
         {
-          "value": "FAMILIENSTAND_VERHEIRATET",
-          "label": "Verheiratet"
+          "name": "geburtsdatumPersonendaten",
+          "label": "Geburtsdatum",
+          "type": "date",
+          "suiteValue": "geburtsdatum",
+          "props": {
+            "required": true
+          }
         },
         {
-          "value": "FAMILIENSTAND_LEDIG",
-          "label": "Ledig"
+          "name": "familienstandPersonendaten",
+          "label": "Familienstand",
+          "type": "select",
+          "props": {
+            "sm": 8,
+            "xs": 8
+          },
+          "options": [
+            {
+              "value": "FAMILIENSTAND_VERHEIRATET",
+              "label": "Verheiratet"
+            },
+            {
+              "value": "FAMILIENSTAND_LEDIG",
+              "label": "Ledig"
+            },
+            {
+              "value": "FAMILIENSTAND_GESCHIEDEN",
+              "label": "geschieden"
+            },
+            {
+              "value": "FAMILIENSTAND_VERWITWET",
+              "label": "verwitwet"
+            }
+          ],
+          "suiteValue": "familienstand"
         },
         {
-          "value": "FAMILIENSTAND_GESCHIEDEN",
-          "label": "geschieden"
-        },
-        {
-          "value": "FAMILIENSTAND_VERWITWET",
-          "label": "verwitwet"
+          "name": "seitWannPersonendaten",
+          "label": "Seit wann?",
+          "type": "date",
+          "props": { "sm": 4, "xs": 4 },
+          "suiteValue": "familienstandSeit"
         }
-      ],
-      "suiteValue":"familienstand"
+      ]
     },
     {
-      "name": "seitWannPersonendaten",
-      "label": "Seit wann?",
-      "type": "date",
-      "props": { "sm": 4,
-        "xs":4 },
-        "suiteValue":"familienstandSeit"
-    }]},
+      "section": "Firma",
+      "card": true,
+      "condition": "anredePersonendaten",
+      "items": [
+        {
+          "name": "rechtsformPersonendaten",
+          "type": "text",
+          "label": "Rechtsform (z.B. GmbH, GbR, etc.)",
+          "suiteValue": "rechtsform"
+        },
+        {
+          "name": "geschaeftsfuehrerPersonendaten",
+          "type": "text",
+          "label": "Geschäftsfuehrer",
+          "suiteValue": "firmaChef"
+        },
+        {
+          "name": "taetigkeitsbereichPersonendaten",
+          "type": "text",
+          "label": "Tätigkeitsbereich",
+          "suiteValue": "firmaTaetigkeit"
+        },
+        {
+          "name": "umsatzPersonendaten",
+          "type": "text",
+          "label": "Umsatz",
+          "suiteValue": "firmaUmsatz"
+        },
+        {
+          "name": "lohnGehaltssummePersonendaten",
+          "type": "text",
+          "label": "Lohn-/Gehaltssumme",
+          "suiteValue": "firmaLohn"
+        },
+        {
+          "name": "websitePersonendaten",
+          "type": "text",
+          "label": "Website",
+          "suiteValue": "firmawebsite"
+        }
+      ]
+    },
     {
       "section": "Adresse",
       "card": true,
       "items": [
-    { "name": "streetAdressePersonendaten", "label": "Straße", "type": "text", "props": { "sm": 8 },
-    "suiteValue":"strasse"  },
-    { "name": "hausnummerAdressePersonendaten", "label": "Hausnr", "type": "text", "props": { "sm": 4 },
-    "suiteValue":"hausnummer"  },
-    { "name": "PLZAdressePersonendaten", "label": "PLZ", "type": "text", "props": { "sm": 3 },
-    "suiteValue":"postleitzahl" },
-    { "name": "cityAdressePersonendaten", "label": "Ort", "type": "text", "props": { "sm": 9 },
-    "suiteValue":"ort" },
-    {
-      "name": "seitWannAdressePersonendaten",
-      "label": "Seit wann?",
-      "type": "date",
-      "suiteValue":"wohnhaftSeit"
-    }]},
+        {
+          "name": "streetAdressePersonendaten",
+          "label": "Straße",
+          "type": "text",
+          "props": { "sm": 8 },
+          "suiteValue": "strasse"
+        },
+        {
+          "name": "hausnummerAdressePersonendaten",
+          "label": "Hausnr",
+          "type": "text",
+          "props": { "sm": 4 },
+          "suiteValue": "hausnummer"
+        },
+        {
+          "name": "PLZAdressePersonendaten",
+          "label": "PLZ",
+          "type": "text",
+          "props": { "sm": 3 },
+          "suiteValue": "postleitzahl"
+        },
+        {
+          "name": "cityAdressePersonendaten",
+          "label": "Ort",
+          "type": "text",
+          "props": { "sm": 9 },
+          "suiteValue": "ort"
+        },
+        {
+          "name": "seitWannAdressePersonendaten",
+          "label": "Seit wann?",
+          "type": "date",
+          "suiteValue": "wohnhaftSeit"
+        }
+      ]
+    },
     {
       "name": "hobbiesHeader",
       "label": "Hobbies",
@@ -156,89 +944,85 @@
       "name": "fallschirmspringenHobbysPersonendaten",
       "label": "Fallschirmspringen",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"fallschirmspringen"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "fallschirmspringen"
     },
     {
       "name": "motorradHobbysPersonendaten",
       "label": "Motorrad",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"motorradfahrer"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "motorradfahrer"
     },
     {
       "name": "karateHobbysPersonendaten",
       "label": "Karate",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"karate"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "karate"
     },
     {
       "name": "surfenHobbysPersonendaten",
       "label": "Surfen",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"surfen"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "surfen"
     },
     {
       "name": "jagdHobbysPersonendaten",
       "label": "Jagd",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"jagd"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "jagd"
     },
     {
       "name": "segelnHobbysPersonendaten",
       "label": "Segeln",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"segeln"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "segeln"
     },
     {
       "name": "hobbysMotorbootPersonendaten",
       "label": "Motorboot",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"motorboot"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "motorboot"
     },
     {
       "name": "hobbysTauchenPersonendaten",
       "label": "Tauchen",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"tauchen"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "tauchen"
     },
     {
       "name": "hobbysKletternPersonendaten",
       "label": "Klettern",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"klettern"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "klettern"
     },
     {
       "name": "hobbysBergsteigenPersonendaten",
       "label": "Bergsteigen",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"bergsteigen"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "bergsteigen"
     },
     {
       "name": "hobbysSonstigesPersonendaten",
       "label": "Sonstiges",
       "type": "checkbox",
-      "props": { "sm": 4,
-        "xs":6 },
-        "suiteValue":"sonstiges"
+      "props": { "sm": 4, "xs": 6 },
+      "suiteValue": "sonstiges"
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }

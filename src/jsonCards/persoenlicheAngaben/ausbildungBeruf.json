@@ -187,6 +187,13 @@
         { "value": "uber50", "label": "über 50%" }
       ],
       "suiteValue":"reisetaetigkeit"
-    }]}
+    }]},
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
+    }
   ]
 }

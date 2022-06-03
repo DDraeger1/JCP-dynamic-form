@@ -52,11 +52,11 @@ background-color: green;
     flex-direction: row !important;
     vertical-align: top !important;
     align-items: baseline !important;
-
 }
 .subTab{
 height:39px !important;
 place-self: center !important;
+justify-content: center !important;
 }
 .toolBar{
     height: calc(100vh -
@@ -292,6 +292,7 @@ z-index: 100;
     height: 49px;
     z-index:50;
     top:0;
+    justify-content: center !important;
 }
 .menuBarBottom{
     position: fixed;

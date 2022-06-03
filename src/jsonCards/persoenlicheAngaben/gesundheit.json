@@ -47,7 +47,7 @@
             "type": "select",
               "options":[
                 { "value": true, "label": "Ja" },
-                { "value": false, "label": "Nein, seit... Jahren nicht mehr" },
+                { "value": "neinseit", "label": "Nein, seit... Jahren nicht mehr" },
                 { "value": false, "label": "Nein, noch nie" }
               ],
             "props": {
@@ -274,7 +274,7 @@
           }]},
           {
 
-              "label": "Werden derzeit Zahnbehandlungen, Zahnersatzmaßnahmen, Behandlungen wegen Zahn- und Kieferregulierung oder Parodontose durchgeführt oder sind solche notwendig, angeraten oder beabsichtigt?",
+              "section": "Werden derzeit Zahnbehandlungen, Zahnersatzmaßnahmen, Behandlungen wegen Zahn- und Kieferregulierung oder Parodontose durchgeführt oder sind solche notwendig, angeraten oder beabsichtigt?",
               "card":true,
               "items": [
           {
@@ -339,6 +339,13 @@
               "type": "text",
               "suiteValue":"zahnersatzJahren"
           }]
+        },
+        {
+          "name": "notizen",
+          "type": "textarea",
+          "rows":5,
+          "label": "Notizen",
+          "suiteValue":"notizen"
         }
     ]
 }

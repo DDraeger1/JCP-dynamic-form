@@ -28,7 +28,8 @@
       "type": "text",
       "props": {
         "sm": 6,
-        "xs":6
+        "xs":6,
+        "required":true
       },
       "suiteValue":"vorname"
     },
@@ -242,6 +243,13 @@
         { "value": "s", "label": "Sonstige" }
       ],
       "suiteValue":"kinderzulageRiester"
+    },
+    {
+      "name": "notizen",
+      "type": "textarea",
+      "rows":5,
+      "label": "Notizen",
+      "suiteValue":"notizen"
     }
   ]
 }
